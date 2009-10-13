@@ -13,7 +13,7 @@ using Vivasky.Core;
 
 #endregion
 
-public partial class admin_entry : System.Web.UI.Page, System.Web.UI.ICallbackEventHandler
+public partial class PostEdit : System.Web.UI.Page, System.Web.UI.ICallbackEventHandler
 {
 	private const string RAW_EDITOR_COOKIE = "useraweditor";
 
