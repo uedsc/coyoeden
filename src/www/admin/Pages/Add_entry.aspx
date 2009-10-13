@@ -1,5 +1,5 @@
-<%@ Page Language="C#" MasterPageFile="~/admin/admin1.master" AutoEventWireup="true" CodeFile="Add_entry.aspx.cs" Inherits="admin_entry" ValidateRequest="False" EnableSessionState="True" %>
-<%@ Register Src="../htmlEditor.ascx" TagPrefix="Blog" TagName="TextEditor" %>
+<%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true" CodeFile="Add_entry.aspx.cs" Inherits="admin_entry" ValidateRequest="False" EnableSessionState="True" %>
+<%@ Register Src="~/Views/shared/htmlEditor.ascx" TagPrefix="Blog" TagName="TextEditor" %>
 <%@ Import Namespace="CoyoEden.Core" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cphAdmin" Runat="Server">

@@ -1,5 +1,4 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeFile="site.master.cs" Inherits="admin_site" %>
-<%@ Register Src="menu.ascx" TagName="menu" TagPrefix="uc1" %>
 <%@ Import Namespace="Vivasky.Core" %>
 <%@ Import Namespace="CoyoEden.Core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -44,7 +43,7 @@
                                             <div style="padding-right: 18px; margin-bottom: 1em;">
                                             
                                                <div class="tabs" style="width:100%">
-                                                  <uc1:menu ID="Menu1" runat="server" />
+                                                  <blog:AdminMenu ID="Menu1" runat="server" />
                                                 </div>
                                                 
                                                   <div class="main">                                                  

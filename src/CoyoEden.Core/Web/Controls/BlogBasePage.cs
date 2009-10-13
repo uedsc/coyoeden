@@ -64,7 +64,7 @@ namespace CoyoEden.Core.Web.Controls
 			if (!Page.IsCallback)
 			{
 				// Links
-				AddGenericLink("contents", "Archive", Utils.RelativeWebRoot + "archive.aspx");
+				AddGenericLink("contents", "Archive", String.Format("{0}archive.aspx", Utils.RelativeWebRoot));
 				AddGenericLink("start", BlogSettings.Instance.Name, Utils.RelativeWebRoot);
 				AddGenericLink("application/rdf+xml", "meta", "SIOC", Utils.AbsoluteWebRoot + "sioc.axd");
 				AddGenericLink("application/apml+xml", "meta", "APML", Utils.AbsoluteWebRoot + "apml.axd");
@@ -72,8 +72,8 @@ namespace CoyoEden.Core.Web.Controls
 
 				if (string.IsNullOrEmpty(BlogSettings.Instance.AlternateFeedUrl))
 				{
-					AddGenericLink("application/rss+xml", "alternate", BlogSettings.Instance.Name + " (RSS)", String.Format("{0}?format=rss", BlogSettings.FeedUrl));
-					AddGenericLink("application/atom+xml", "alternate", BlogSettings.Instance.Name + " (ATOM)", BlogSettings.FeedUrl + "?format=atom");
+					AddGenericLink("application/rss+xml", "alternate", String.Format("{0} (RSS)", BlogSettings.Instance.Name), String.Format("{0}?format=rss", BlogSettings.FeedUrl));
+					AddGenericLink("application/atom+xml", "alternate", String.Format("{0} (ATOM)", BlogSettings.Instance.Name), BlogSettings.FeedUrl + "?format=atom");
 				}
 				else
 				{
@@ -86,7 +86,7 @@ namespace CoyoEden.Core.Web.Controls
 				AddDefaultLanguages();
 
                 AddLocalizationKeys();
-				AddJavaScriptInclude(Utils.RelativeWebRoot + "blog.js", true, true);				
+				AddJavaScriptInclude(String.Format("{0}blog.js", Utils.RelativeWebRoot), true, true);				
 
 				if (BlogSettings.Instance.EnableOpenSearch)
 					AddGenericLink("application/opensearchdescription+xml", "search", BlogSettings.Instance.Name, Utils.AbsoluteWebRoot + "opensearch.axd");
@@ -100,7 +100,7 @@ namespace CoyoEden.Core.Web.Controls
 
 			if (User.IsInRole(BlogSettings.Instance.AdministratorRole))
 			{
-				AddJavaScriptInclude(Utils.RelativeWebRoot + "admin/widget.js", true, true);
+				AddJavaScriptInclude(String.Format("{0}assets/js/widget.js", Utils.RelativeWebRoot), true, true);
 			}
 
 			if (BlogSettings.Instance.RemoveWhitespaceInStyleSheets)
@@ -117,7 +117,7 @@ namespace CoyoEden.Core.Web.Controls
 			base.OnPreRenderComplete(e);
 			if (BlogSettings.Instance.UseBlogNameInPageTitles)
 			{
-				Page.Title = (BlogSettings.Instance.Name + " | " + Page.Title);
+				Page.Title = (String.Format("{0} | {1}", BlogSettings.Instance.Name, Page.Title));
 			}
 		}
 
@@ -163,8 +163,8 @@ namespace CoyoEden.Core.Web.Controls
 				{
 					if (!c.Attributes["href"].StartsWith("http://"))
 					{
-						string url = Utils.RelativeWebRoot + "themes/" + BlogSettings.Instance.Theme + "/css.axd?name=" + c.Attributes["href"];
-						c.Attributes["href"] = url.Replace(".css", BlogSettings.Instance.Version() + ".css");
+						string url = String.Format("{0}themes/{1}/css.axd?name={2}", Utils.RelativeWebRoot, BlogSettings.Instance.Theme, c.Attributes["href"]);
+						c.Attributes["href"] = url.Replace(".css", String.Format("{0}.css", BlogSettings.Instance.Version()));
 						c.EnableViewState = false;
 					}
 				}
@@ -178,7 +178,7 @@ namespace CoyoEden.Core.Web.Controls
 		{
 			HtmlMeta meta = new HtmlMeta();
 			meta.HttpEquiv = "content-type";
-			meta.Content = Response.ContentType + "; charset=" + Response.ContentEncoding.HeaderName;
+			meta.Content = String.Format("{0}; charset={1}", Response.ContentType, Response.ContentEncoding.HeaderName);
 			Page.Header.Controls.Add(meta);
 		}
 
@@ -237,7 +237,7 @@ namespace CoyoEden.Core.Web.Controls
 		{
 			if (placeInBottom)
 			{
-                string script = "<script type=\"text/javascript\"" + (addDeferAttribute ? " defer=\"defer\"" : string.Empty) + " src=\"" + ResolveScriptUrl(url) + "\"></script>";
+				string script = String.Format("<script type=\"text/javascript\"{0} src=\"{1}\"></script>", (addDeferAttribute ? " defer=\"defer\"" : string.Empty), ResolveScriptUrl(url));
 				ClientScript.RegisterStartupScript(GetType(), url.GetHashCode().ToString(), script);
 			}
 			else
@@ -274,7 +274,7 @@ namespace CoyoEden.Core.Web.Controls
 		/// <returns></returns>
 		public virtual string ResolveScriptUrl(string url)
 		{
-			return Utils.RelativeWebRoot + "js.axd?path=" + HttpUtility.UrlEncode(url) + "&amp;v=" + BlogSettings.Instance.Version();
+			return String.Format("{0}js.axd?path={1}&amp;v={2}", Utils.RelativeWebRoot, HttpUtility.UrlEncode(url), BlogSettings.Instance.Version());
 		}
 
 		/// <summary>
@@ -285,7 +285,7 @@ namespace CoyoEden.Core.Web.Controls
 		/// </remarks>
 		protected virtual void AddTrackingScript()
 		{
-			ClientScript.RegisterStartupScript(this.GetType(), "tracking", "\n" + BlogSettings.Instance.TrackingScript, false);
+			ClientScript.RegisterStartupScript(this.GetType(), "tracking", String.Format("\n{0}", BlogSettings.Instance.TrackingScript), false);
 		}
 
 		/// <summary>

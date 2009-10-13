@@ -2,7 +2,7 @@ using System;
 using System.Web;
 using System.Web.UI.WebControls;
 
-public partial class admin_tinyMCE : System.Web.UI.UserControl
+public partial class Views_shared_tinyMCE : System.Web.UI.UserControl
 {
 
   public string Text

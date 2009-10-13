@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeFile="tinyMCE.ascx.cs" Inherits="admin_tinyMCE" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="tinyMCE.ascx.cs" Inherits="Views_shared_tinyMCE" %>
 <%@ Import Namespace="CoyoEden.Core" %>
 
 <script type="text/javascript" src="<%=Vivasky.Core.Utils.RelativeWebRoot %>editors/tiny_mce3/tiny_mce.js"></script>

@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.UI.WebControls;
 
 
-public partial class admin_htmlEditor : System.Web.UI.UserControl
+public partial class Views_shared_htmlEditor : System.Web.UI.UserControl
 {
 
 

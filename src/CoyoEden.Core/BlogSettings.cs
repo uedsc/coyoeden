@@ -288,6 +288,14 @@ namespace CoyoEden.Core
 				}
 			}
 		}
+		/// <summary>
+		/// current theme applied to the admin dashboard
+		/// </summary>
+		public string ThemeBackfield
+		{
+			get;
+			set;
+		}
 		#endregion
 
 		#region MobileTheme
@@ -780,13 +788,20 @@ namespace CoyoEden.Core
 		/// </summary>
 		private void Load()
 		{
-			Type settingsType = this.GetType();
-
-			//------------------------------------------------------------
-			//	Enumerate through individual settings nodes
-			//------------------------------------------------------------
+			//load from db
 			CurrentSettings = Setting.LoadAll(SettingTypes.AppSetting);
-
+			//init
+			var themeb = CurrentSettings.SingleOrDefault(x => x.SettingName == "ThemeBackfield");
+			if (themeb == null) {
+				themeb = new Setting { 
+					Id=GuidExt.NewGuid(GuidExt.GuidStrategy.OrderedSequential),
+					SettingName = "ThemeBackfield",
+					SettingValue="admin",
+					SettingType=SettingTypes.AppSetting.ToString()
+				};
+				CurrentSettings.Add(themeb);
+			};
+			//full fill
 			CurrentSettings.ForEach(x => {
 				this.SetPropertyValue(x.SettingName, x.SettingValue, true);
 			});

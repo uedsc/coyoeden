@@ -1,5 +1,5 @@
-<%@ Page Language="C#" MasterPageFile="~/admin/admin1.master" AutoEventWireup="true" ValidateRequest="False" CodeFile="Profiles.aspx.cs" Inherits="admin_profiles" Title="Modify Profiles" %>
-<%@ Register Src="~/admin/htmlEditor.ascx" TagPrefix="Blog" TagName="TextEditor" %>
+<%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true" ValidateRequest="False" CodeFile="Profiles.aspx.cs" Inherits="admin_profiles" Title="Modify Profiles" %>
+<%@ Register Src="~/Views/shared/htmlEditor.ascx" TagPrefix="Blog" TagName="TextEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphAdmin" runat="Server">
 <br />
     <div class="settings" id="dropdown" runat="server">
