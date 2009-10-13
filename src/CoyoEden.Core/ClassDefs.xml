@@ -1,0 +1,681 @@
+﻿<classes>
+  <class name="Category" assembly="CoyoEden.Core" table="cy_Categories" displayName="Category">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="Name">
+      <rule name="Name">
+        <add key="maxLength" value="50" />
+        <add key="minLength" value="5" />
+      </rule>
+    </property>
+    <property name="Description">
+      <rule name="Description">
+        <add key="maxLength" value="200" />
+      </rule>
+    </property>
+    <property name="Tag" default="(N'Post')" compulsory="true">
+      <rule name="Tag">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="ParentID" type="Guid">
+      <businessObjectLookupList class="Category" assembly="CoyoEden.Core" />
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="CategoryExts" type="multiple" relatedClass="CategoryExt" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKCategory" />
+    </relationship>
+    <relationship name="Parent" type="single" relatedClass="Category" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="ParentID" relatedProperty="Id" />
+    </relationship>
+    <relationship name="PostCategories" type="multiple" relatedClass="PostCategory" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="CategoryID" />
+    </relationship>
+    <relationship name="ProductCategories" type="multiple" relatedClass="ProductCategory" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKCategory" />
+    </relationship>
+    <relationship name="SubCategories" type="multiple" relatedClass="Category" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="ParentID" />
+    </relationship>
+  </class>
+  <class name="CategoryExt" assembly="CoyoEden.Core" table="cy_CategoryExt" displayName="Category Ext">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="FKCategory" type="Guid" compulsory="true">
+      <businessObjectLookupList class="Category" assembly="CoyoEden.Core" />
+    </property>
+    <property name="FKXProperty" type="Guid" compulsory="true">
+      <businessObjectLookupList class="XProperty" assembly="CoyoEden.Core" />
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Category" type="single" relatedClass="Category" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKCategory" relatedProperty="Id" />
+    </relationship>
+    <relationship name="XProperty" type="single" relatedClass="XProperty" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKXProperty" relatedProperty="Id" />
+    </relationship>
+  </class>
+  <class name="Page" assembly="CoyoEden.Core" table="cy_Pages" displayName="Page">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="Title">
+      <rule name="Title">
+        <add key="maxLength" value="255" />
+      </rule>
+    </property>
+    <property name="Description" />
+    <property name="Content" />
+    <property name="Keywords" />
+    <property name="DateCreated" type="DateTime" />
+    <property name="DateModified" type="DateTime" />
+    <property name="IsPublished" type="Boolean" />
+    <property name="IsFrontPage" type="Boolean" />
+    <property name="ShowInList" type="Boolean" />
+    <property name="ParentID" type="Guid" />
+    <property name="Slug">
+      <rule name="Slug">
+        <add key="maxLength" value="255" />
+      </rule>
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Parent" type="single" relatedClass="Page" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="ParentID" relatedProperty="Id" />
+    </relationship>
+    <relationship name="SubPages" type="multiple" relatedClass="Page" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="ParentID" />
+    </relationship>
+  </class>
+  <class name="PingService" assembly="CoyoEden.Core" table="cy_PingService" displayName="Ping Service">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="Link">
+      <rule name="Link">
+        <add key="maxLength" value="255" />
+      </rule>
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+  </class>
+  <class name="Post" assembly="CoyoEden.Core" table="cy_Posts" displayName="Post">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="Title">
+      <rule name="Title">
+        <add key="maxLength" value="255" />
+      </rule>
+    </property>
+    <property name="Description" />
+    <property name="Content" />
+    <property name="DateCreated" type="DateTime" />
+    <property name="DateModified" type="DateTime" />
+    <property name="Author">
+      <rule name="Author">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="IsPublished" type="Boolean" />
+    <property name="IsCommentEnabled" type="Boolean" />
+    <property name="Raters" type="Int32" />
+    <property name="Rating" type="Single" />
+    <property name="Slug">
+      <rule name="Slug">
+        <add key="maxLength" value="255" />
+      </rule>
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="PostCategories" type="multiple" relatedClass="PostCategory" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="PostID" />
+    </relationship>
+    <relationship name="PostComments" type="multiple" relatedClass="PostComment" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="PostID" />
+    </relationship>
+    <relationship name="PostNotifies" type="multiple" relatedClass="PostNotify" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="PostID" />
+    </relationship>
+    <relationship name="PostTags" type="multiple" relatedClass="PostTag" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="PostID" />
+    </relationship>
+  </class>
+  <class name="PostCategory" assembly="CoyoEden.Core" table="cy_PostCategory" displayName="Post Category">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="PostID" type="Guid" compulsory="true">
+      <businessObjectLookupList class="Post" assembly="CoyoEden.Core" />
+    </property>
+    <property name="CategoryID" type="Guid" compulsory="true">
+      <businessObjectLookupList class="Category" assembly="CoyoEden.Core" />
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Category" type="single" relatedClass="Category" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="CategoryID" relatedProperty="Id" />
+    </relationship>
+    <relationship name="Post" type="single" relatedClass="Post" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="PostID" relatedProperty="Id" />
+    </relationship>
+  </class>
+  <class name="PostComment" assembly="CoyoEden.Core" table="cy_PostComment" displayName="Post Comment">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="PostID" type="Guid" compulsory="true">
+      <businessObjectLookupList class="Post" assembly="CoyoEden.Core" />
+    </property>
+    <property name="ParentID" type="Guid" compulsory="true" />
+    <property name="DateCreated" type="DateTime" compulsory="true" />
+    <property name="Author">
+      <rule name="Author">
+        <add key="maxLength" value="255" />
+      </rule>
+    </property>
+    <property name="Email">
+      <rule name="Email">
+        <add key="maxLength" value="255" />
+      </rule>
+    </property>
+    <property name="Website">
+      <rule name="Website">
+        <add key="maxLength" value="255" />
+      </rule>
+    </property>
+    <property name="Country">
+      <rule name="Country">
+        <add key="maxLength" value="255" />
+      </rule>
+    </property>
+    <property name="Ip">
+      <rule name="Ip">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="IsApproved" type="Boolean" />
+    <property name="Content" />
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Post" type="single" relatedClass="Post" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="PostID" relatedProperty="Id" />
+    </relationship>
+  </class>
+  <class name="PostNotify" assembly="CoyoEden.Core" table="cy_PostNotify" displayName="Post Notify">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="PostID" type="Guid" compulsory="true">
+      <businessObjectLookupList class="Post" assembly="CoyoEden.Core" />
+    </property>
+    <property name="NotifyAddress">
+      <rule name="NotifyAddress">
+        <add key="maxLength" value="255" />
+      </rule>
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Post" type="single" relatedClass="Post" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="PostID" relatedProperty="Id" />
+    </relationship>
+  </class>
+  <class name="PostTag" assembly="CoyoEden.Core" table="cy_PostTag" displayName="Post Tag">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="PostID" type="Guid" compulsory="true">
+      <businessObjectLookupList class="Post" assembly="CoyoEden.Core" />
+    </property>
+    <property name="Tag">
+      <rule name="Tag">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Post" type="single" relatedClass="Post" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="PostID" relatedProperty="Id" />
+    </relationship>
+  </class>
+  <class name="Product" assembly="CoyoEden.Core" table="cy_Products" displayName="Product">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="Name" compulsory="true">
+      <rule name="Name">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="Description" compulsory="true">
+      <rule name="Description">
+        <add key="maxLength" value="1073741823" />
+      </rule>
+    </property>
+    <property name="Price" type="Decimal" compulsory="true" />
+    <property name="CostPrice" type="Decimal" compulsory="true" />
+    <property name="Stock" type="Int32" compulsory="true" />
+    <property name="ExternalLink">
+      <rule name="ExternalLink">
+        <add key="maxLength" value="100" />
+      </rule>
+    </property>
+    <property name="CreatedOn" type="DateTime" compulsory="true" />
+    <property name="CreatedBy">
+      <rule name="CreatedBy">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="ModifiedOn" type="DateTime" compulsory="true" />
+    <property name="ModifiedBy">
+      <rule name="ModifiedBy">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="IsDeleted" type="Boolean" default="False" compulsory="true" />
+    <property name="FKFolder" type="Guid" compulsory="true">
+      <businessObjectLookupList class="XFolder" assembly="CoyoEden.Core" />
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Folder" type="single" relatedClass="XFolder" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKFolder" relatedProperty="Id" />
+    </relationship>
+    <relationship name="ProductCategories" type="multiple" relatedClass="ProductCategory" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKProduct" />
+    </relationship>
+    <relationship name="ProductExts" type="multiple" relatedClass="ProductExt" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKProduct" />
+    </relationship>
+  </class>
+  <class name="ProductCategory" assembly="CoyoEden.Core" table="cy_ProductCategory" displayName="Product Category">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="FKProduct" type="Guid" compulsory="true">
+      <businessObjectLookupList class="Product" assembly="CoyoEden.Core" />
+    </property>
+    <property name="FKCategory" type="Guid" compulsory="true">
+      <businessObjectLookupList class="Category" assembly="CoyoEden.Core" />
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Category" type="single" relatedClass="Category" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKCategory" relatedProperty="Id" />
+    </relationship>
+    <relationship name="Product" type="single" relatedClass="Product" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKProduct" relatedProperty="Id" />
+    </relationship>
+  </class>
+  <class name="ProductExt" assembly="CoyoEden.Core" table="cy_ProductExt" displayName="Product Ext">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="FKProduct" type="Guid" compulsory="true">
+      <businessObjectLookupList class="Product" assembly="CoyoEden.Core" />
+    </property>
+    <property name="FKXProperty" type="Guid" compulsory="true">
+      <businessObjectLookupList class="XProperty" assembly="CoyoEden.Core" />
+    </property>
+    <property name="FKXPropertySetting" type="Guid" compulsory="true">
+      <businessObjectLookupList class="XPropertySetting" assembly="CoyoEden.Core" />
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Product" type="single" relatedClass="Product" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKProduct" relatedProperty="Id" />
+    </relationship>
+    <relationship name="XProperty" type="single" relatedClass="XProperty" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKXProperty" relatedProperty="Id" />
+    </relationship>
+    <relationship name="XPropertySetting" type="single" relatedClass="XPropertySetting" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKXPropertySetting" relatedProperty="Id" />
+    </relationship>
+  </class>
+  <class name="Profile" assembly="CoyoEden.Core" table="cy_Profiles" displayName="Profile">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="UserName">
+      <rule name="UserName">
+        <add key="maxLength" value="100" />
+      </rule>
+    </property>
+    <property name="SettingName">
+      <rule name="SettingName">
+        <add key="maxLength" value="200" />
+      </rule>
+    </property>
+    <property name="SettingValue" />
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+  </class>
+  <class name="Role" assembly="CoyoEden.Core" table="cy_Roles" displayName="Role">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="Name" compulsory="true">
+      <rule name="Name">
+        <add key="maxLength" value="100" />
+      </rule>
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="UserRoles" type="multiple" relatedClass="UserRole" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="RoleID" />
+    </relationship>
+  </class>
+  <class name="Setting" assembly="CoyoEden.Core" table="cy_Settings" displayName="Setting">
+    <property name="SettingName" compulsory="true">
+      <rule name="SettingName">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="SettingValue" />
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="SettingType" default="(N'AppSetting')" compulsory="true">
+      <rule name="SettingType">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <primaryKey isObjectID="false">
+      <prop name="Id" />
+      <prop name="SettingName" />
+    </primaryKey>
+  </class>
+  <class name="StopWord" assembly="CoyoEden.Core" table="cy_StopWords" displayName="Stop Word">
+    <property name="Word" compulsory="true">
+      <rule name="Word">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <primaryKey isObjectID="false">
+      <prop name="Word" />
+    </primaryKey>
+  </class>
+  <class name="Tag" assembly="CoyoEden.Core" table="cy_Tags" displayName="Tag">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="Name" compulsory="true">
+      <rule name="Name">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="Hits" type="Int32" compulsory="true" />
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="UserTags" type="multiple" relatedClass="UserTag" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKTag" />
+    </relationship>
+    <relationship name="XFolderTags" type="multiple" relatedClass="XFolderTag" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKTag" />
+    </relationship>
+  </class>
+  <class name="User" assembly="CoyoEden.Core" table="cy_Users" displayName="User">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="UserName" compulsory="true">
+      <rule name="UserName">
+        <add key="maxLength" value="100" />
+      </rule>
+    </property>
+    <property name="Password" compulsory="true">
+      <rule name="Password">
+        <add key="maxLength" value="255" />
+      </rule>
+    </property>
+    <property name="LastLoginTime" type="DateTime" />
+    <property name="EmailAddress">
+      <rule name="EmailAddress">
+        <add key="maxLength" value="100" />
+      </rule>
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="UserRoles" type="multiple" relatedClass="UserRole" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="UserID" />
+    </relationship>
+    <relationship name="UserTags" type="multiple" relatedClass="UserTag" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKUser" />
+    </relationship>
+  </class>
+  <class name="UserRole" assembly="CoyoEden.Core" table="cy_UserRoles" displayName="User Role">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="UserID" type="Guid" compulsory="true">
+      <businessObjectLookupList class="User" assembly="CoyoEden.Core" />
+    </property>
+    <property name="RoleID" type="Guid" compulsory="true">
+      <businessObjectLookupList class="Role" assembly="CoyoEden.Core" />
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Role" type="single" relatedClass="Role" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="RoleID" relatedProperty="Id" />
+    </relationship>
+    <relationship name="User" type="single" relatedClass="User" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="UserID" relatedProperty="Id" />
+    </relationship>
+  </class>
+  <class name="UserTag" assembly="CoyoEden.Core" table="cy_UserTag" displayName="User Tag">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="FKUser" type="Guid" compulsory="true">
+      <businessObjectLookupList class="User" assembly="CoyoEden.Core" />
+    </property>
+    <property name="FKTag" type="Guid" compulsory="true">
+      <businessObjectLookupList class="Tag" assembly="CoyoEden.Core" />
+    </property>
+    <property name="CreatedOn" type="DateTime" compulsory="true" />
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Tag" type="single" relatedClass="Tag" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKTag" relatedProperty="Id" />
+    </relationship>
+    <relationship name="User" type="single" relatedClass="User" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKUser" relatedProperty="Id" />
+    </relationship>
+  </class>
+  <class name="Widget" assembly="CoyoEden.Core" table="cy_Widgets" displayName="Widget">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="Title" compulsory="true">
+      <rule name="Title">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="Name" compulsory="true">
+      <rule name="Name">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="Movable" type="Boolean" default="True" compulsory="true" />
+    <property name="Deletable" type="Boolean" default="True" compulsory="true" />
+    <property name="Collapsable" type="Boolean" default="False" compulsory="true" />
+    <property name="Editable" type="Boolean" default="False" compulsory="true" />
+    <property name="ShowTitle" type="Boolean" default="True" compulsory="true" />
+    <property name="Template" compulsory="true">
+      <rule name="Template">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="Tag" compulsory="true">
+      <rule name="Tag">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="ExtConfig">
+      <rule name="ExtConfig">
+        <add key="maxLength" value="2147483647" />
+      </rule>
+    </property>
+    <property name="FKZone" type="Guid" compulsory="true">
+      <businessObjectLookupList class="WidgetZone" assembly="CoyoEden.Core" />
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Zone" type="single" relatedClass="WidgetZone" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKZone" relatedProperty="Id" />
+    </relationship>
+  </class>
+  <class name="WidgetZone" assembly="CoyoEden.Core" table="cy_WidgetZone" displayName="Widget Zone">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="Name" compulsory="true">
+      <rule name="Name">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="Tag" compulsory="true">
+      <rule name="Tag">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Widgets" type="multiple" relatedClass="Widget" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKZone" />
+    </relationship>
+  </class>
+  <class name="XFile" assembly="CoyoEden.Core" table="cy_XFiles" displayName="X File">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="Name" compulsory="true">
+      <rule name="Name">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="Description">
+      <rule name="Description">
+        <add key="maxLength" value="500" />
+      </rule>
+    </property>
+    <property name="Url" compulsory="true">
+      <rule name="Url">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="CreatedOn" type="DateTime" compulsory="true" />
+    <property name="CreatedBy" compulsory="true">
+      <rule name="CreatedBy">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="ExtName" compulsory="true">
+      <rule name="ExtName">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="Hits" type="Int32" compulsory="true" />
+    <property name="FKFolder" type="Guid" compulsory="true">
+      <businessObjectLookupList class="XFolder" assembly="CoyoEden.Core" />
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Folder" type="single" relatedClass="XFolder" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKFolder" relatedProperty="Id" />
+    </relationship>
+  </class>
+  <class name="XFolder" assembly="CoyoEden.Core" table="cy_XFolders" displayName="X Folder">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="Name" compulsory="true">
+      <rule name="Name">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="Description">
+      <rule name="Description">
+        <add key="maxLength" value="500" />
+      </rule>
+    </property>
+    <property name="DisplayOrder" type="Int32" compulsory="true" />
+    <property name="CreatedOn" type="DateTime" compulsory="true" />
+    <property name="CreatedBy">
+      <rule name="CreatedBy">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="ModifiedOn" type="DateTime" compulsory="true" />
+    <property name="ModifiedBy">
+      <rule name="ModifiedBy">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="IsDeleted" type="Boolean" default="False" compulsory="true" />
+    <property name="Hits" type="Int32" compulsory="true" />
+    <property name="XType" type="Int32" compulsory="true" />
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Products" type="multiple" relatedClass="Product" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKFolder" />
+    </relationship>
+    <relationship name="XFiles" type="multiple" relatedClass="XFile" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKFolder" />
+    </relationship>
+    <relationship name="XFolderTags" type="multiple" relatedClass="XFolderTag" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKXFolder" />
+    </relationship>
+  </class>
+  <class name="XFolderTag" assembly="CoyoEden.Core" table="cy_XFolderTag" displayName="X Folder Tag">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="FKXFolder" type="Guid" compulsory="true">
+      <businessObjectLookupList class="XFolder" assembly="CoyoEden.Core" />
+    </property>
+    <property name="FKTag" type="Guid" compulsory="true">
+      <businessObjectLookupList class="Tag" assembly="CoyoEden.Core" />
+    </property>
+    <property name="CreatedOn" type="DateTime" compulsory="true" />
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="Tag" type="single" relatedClass="Tag" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKTag" relatedProperty="Id" />
+    </relationship>
+    <relationship name="XFolder" type="single" relatedClass="XFolder" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKXFolder" relatedProperty="Id" />
+    </relationship>
+  </class>
+  <class name="XProperty" assembly="CoyoEden.Core" table="cy_XProperties" displayName="X Property">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="Name" compulsory="true">
+      <rule name="Name">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="Description" compulsory="true">
+      <rule name="Description">
+        <add key="maxLength" value="500" />
+      </rule>
+    </property>
+    <property name="IsDeleted" type="Boolean" default="False" compulsory="true" />
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="CategoryExts" type="multiple" relatedClass="CategoryExt" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKXProperty" />
+    </relationship>
+    <relationship name="ProductExts" type="multiple" relatedClass="ProductExt" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKXProperty" />
+    </relationship>
+    <relationship name="XPropertySettings" type="multiple" relatedClass="XPropertySetting" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKXProperty" />
+    </relationship>
+  </class>
+  <class name="XPropertySetting" assembly="CoyoEden.Core" table="cy_XPropertySettings" displayName="X Property Setting">
+    <property name="Id" type="Guid" compulsory="true" />
+    <property name="SettingName" compulsory="true">
+      <rule name="SettingName">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="SettingValue" compulsory="true">
+      <rule name="SettingValue">
+        <add key="maxLength" value="500" />
+      </rule>
+    </property>
+    <property name="IsDeleted" type="Boolean" default="False" compulsory="true" />
+    <property name="FKXProperty" type="Guid" compulsory="true">
+      <businessObjectLookupList class="XProperty" assembly="CoyoEden.Core" />
+    </property>
+    <primaryKey>
+      <prop name="Id" />
+    </primaryKey>
+    <relationship name="ProductExts" type="multiple" relatedClass="ProductExt" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="Id" relatedProperty="FKXPropertySetting" />
+    </relationship>
+    <relationship name="XProperty" type="single" relatedClass="XProperty" relatedAssembly="CoyoEden.Core">
+      <relatedProperty property="FKXProperty" relatedProperty="Id" />
+    </relationship>
+  </class>
+</classes>

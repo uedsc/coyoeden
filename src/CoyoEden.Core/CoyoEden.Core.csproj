@@ -1,0 +1,280 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{01E90852-19D6-4DEB-9CEA-C05803D2371D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CoyoEden.Core</RootNamespace>
+    <AssemblyName>CoyoEden.Core</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>CoyoEden.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Habanero.Base">
+      <HintPath>..\..\libs\Habanero.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Habanero.BO">
+      <HintPath>..\..\libs\Habanero.BO.dll</HintPath>
+    </Reference>
+    <Reference Include="Habanero.DB">
+      <HintPath>..\..\libs\Habanero.DB.dll</HintPath>
+    </Reference>
+    <Reference Include="Habanero.Util">
+      <HintPath>..\..\libs\Habanero.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.5.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMapAdapter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=88b37c2f548f0735, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\StructureMapAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Vivasky.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\Vivasky.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\MetaWeblog\MetaWeblogHandler.cs" />
+    <Compile Include="API\MetaWeblog\XMLRPCRequest.cs" />
+    <Compile Include="API\MetaWeblog\XMLRPCResponse.cs" />
+    <Compile Include="AuthorProfile.cs" />
+    <Compile Include="BlogRollItem.cs" />
+    <Compile Include="BlogSettings.cs" />
+    <Compile Include="BOBroker.cs" />
+    <Compile Include="BootStrappers\ServicesRegister.cs" />
+    <Compile Include="CategoryExt.cs" />
+    <Compile Include="CategoryExt.Def.cs">
+      <DependentUpon>CategoryExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataContracts\CommentInputData.cs" />
+    <Compile Include="DataContracts\SettingTypes.cs" />
+    <Compile Include="DataContracts\WidgetData.cs" />
+    <Compile Include="Infrastructure\BusinessBase.cs" />
+    <Compile Include="Category.cs" />
+    <Compile Include="Category.Def.cs">
+      <DependentUpon>Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommentHandlers.cs" />
+    <Compile Include="Infrastructure\ICategory.cs" />
+    <Compile Include="Infrastructure\IComment.cs" />
+    <Compile Include="Infrastructure\ICustomFilter.cs" />
+    <Compile Include="Infrastructure\ExtensionAttribute.cs" />
+    <Compile Include="Infrastructure\IPublishable.cs" />
+    <Compile Include="Infrastructure\ISettingsBehavior.cs" />
+    <Compile Include="Page.cs" />
+    <Compile Include="Page.Def.cs">
+      <DependentUpon>Page.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PingService.cs" />
+    <Compile Include="PingService.Def.cs">
+      <DependentUpon>PingService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ping\Manager.cs" />
+    <Compile Include="Ping\Pingback.cs" />
+    <Compile Include="Ping\PingService.cs" />
+    <Compile Include="Ping\Trackback.cs" />
+    <Compile Include="Post.cs" />
+    <Compile Include="Post.Def.cs">
+      <DependentUpon>Post.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PostCategory.cs" />
+    <Compile Include="PostCategory.Def.cs">
+      <DependentUpon>PostCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PostComment.cs" />
+    <Compile Include="PostComment.Def.cs">
+      <DependentUpon>PostComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PostNotify.cs" />
+    <Compile Include="PostNotify.Def.cs">
+      <DependentUpon>PostNotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PostTag.cs" />
+    <Compile Include="PostTag.Def.cs">
+      <DependentUpon>PostTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs" />
+    <Compile Include="Product.Def.cs">
+      <DependentUpon>Product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductCategory.cs" />
+    <Compile Include="ProductCategory.Def.cs">
+      <DependentUpon>ProductCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductExt.cs" />
+    <Compile Include="ProductExt.Def.cs">
+      <DependentUpon>ProductExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.cs" />
+    <Compile Include="Profile.Def.cs">
+      <DependentUpon>Profile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\DbMembershipProvider.cs" />
+    <Compile Include="Providers\DbRoleProvider.cs" />
+    <Compile Include="Referrer.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="Role.Def.cs">
+      <DependentUpon>Role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\SavedEventArgs.cs" />
+    <Compile Include="Search.cs" />
+    <Compile Include="Infrastructure\ServingEventArgs.cs" />
+    <Compile Include="Setting.cs" />
+    <Compile Include="Setting.Def.cs">
+      <DependentUpon>Setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StopWord.cs" />
+    <Compile Include="StopWord.Def.cs">
+      <DependentUpon>StopWord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\SyndicationFormat.cs" />
+    <Compile Include="Infrastructure\SyndicationGenerator.cs" />
+    <Compile Include="Tag.cs" />
+    <Compile Include="Tag.Def.cs">
+      <DependentUpon>Tag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs" />
+    <Compile Include="User.Def.cs">
+      <DependentUpon>User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserRole.cs" />
+    <Compile Include="UserRole.Def.cs">
+      <DependentUpon>UserRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserTag.cs" />
+    <Compile Include="UserTag.Def.cs">
+      <DependentUpon>UserTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Web\AppConfig.cs" />
+    <Compile Include="Web\Controls\BlogBasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Web\Controls\CommentViewBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Web\Controls\PageSiteMap.cs" />
+    <Compile Include="Web\Controls\PostViewBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Web\Controls\RewriteFormHtmlTextWriter.cs" />
+    <Compile Include="Web\Extensions\ExtensionManager.cs" />
+    <Compile Include="Web\Extensions\ExtensionParameter.cs" />
+    <Compile Include="Web\Extensions\ExtensionSettings.cs" />
+    <Compile Include="Web\Extensions\ManagedExtension.cs" />
+    <Compile Include="Web\HttpHandlers\Apml.cs" />
+    <Compile Include="Web\HttpHandlers\BlogMLExportHandler.cs" />
+    <Compile Include="Web\HttpHandlers\CssHandler.cs" />
+    <Compile Include="Web\HttpHandlers\FileHandler.cs" />
+    <Compile Include="Web\HttpHandlers\Foaf.cs" />
+    <Compile Include="Web\HttpHandlers\ImageHandler.cs" />
+    <Compile Include="Web\HttpHandlers\JavaScriptHandler.cs" />
+    <Compile Include="Web\HttpHandlers\OpenSearchHandler.cs" />
+    <Compile Include="Web\HttpHandlers\OpmlHandler.cs" />
+    <Compile Include="Web\HttpHandlers\PingbackHandler.cs" />
+    <Compile Include="Web\HttpHandlers\RatingHandler.cs" />
+    <Compile Include="Web\HttpHandlers\RsdHandler.cs" />
+    <Compile Include="Web\HttpHandlers\Sioc.cs" />
+    <Compile Include="Web\HttpHandlers\SiteMap.cs" />
+    <Compile Include="Web\HttpHandlers\SyndicationHandler.cs" />
+    <Compile Include="Web\HttpHandlers\TrackbackHandler.cs" />
+    <Compile Include="Web\HttpModules\CompressionModule.cs" />
+    <Compile Include="Web\HttpModules\ReferrerModule.cs" />
+    <Compile Include="Web\HttpModules\UrlRewrite.cs" />
+    <Compile Include="Web\HttpModules\WwwSubDomainModule.cs" />
+    <Compile Include="Web\InstallUtil.cs" />
+    <Compile Include="Widget.cs" />
+    <Compile Include="Widget.Def.cs">
+      <DependentUpon>Widget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WidgetZone.cs" />
+    <Compile Include="WidgetZone.Def.cs">
+      <DependentUpon>WidgetZone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XFile.cs" />
+    <Compile Include="XFile.Def.cs">
+      <DependentUpon>XFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XFolder.cs" />
+    <Compile Include="XFolder.Def.cs">
+      <DependentUpon>XFolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XFolderTag.cs" />
+    <Compile Include="XFolderTag.Def.cs">
+      <DependentUpon>XFolderTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XProperty.cs" />
+    <Compile Include="XProperty.Def.cs">
+      <DependentUpon>XProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XPropertySetting.cs" />
+    <Compile Include="XPropertySetting.Def.cs">
+      <DependentUpon>XPropertySetting.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ClassDefs.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CoyoEden.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Syndication\Atom\" />
+    <Folder Include="Syndication\Data\" />
+    <Folder Include="Syndication\Extensions\Common\" />
+    <Folder Include="Syndication\Rss\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <!-- NB: These build events MUST be after the above project import  -->
+  <PropertyGroup>
+    <PostBuildEvent />
+    <PreBuildEvent />
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,124 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4F368B96-0883-4D1E-9F5D-262BA2ED7199}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CoyoEden.UI</RootNamespace>
+    <AssemblyName>CoyoEden.UI</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>CoyoEden.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Habanero.Base">
+      <HintPath>..\..\libs\Habanero.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Habanero.BO">
+      <HintPath>..\..\libs\Habanero.BO.dll</HintPath>
+    </Reference>
+    <Reference Include="Habanero.UI.Base">
+      <HintPath>..\..\libs\Habanero.UI.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Habanero.UI.Win">
+      <HintPath>..\..\libs\Habanero.UI.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="Habanero.Util">
+      <HintPath>..\..\libs\Habanero.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\libs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Vivasky.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3dce3ee0dadf9acd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\Vivasky.Core.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="..\CoyoEden.Core\CoyoEden.Core.csproj">
+      <Project>{01E90852-19D6-4DEB-9CEA-C05803D2371D}</Project>
+      <Name>CoyoEden.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoyoEden.Logic\CoyoEden.Logic.csproj">
+      <Project>{D081F447-38BC-4092-81B3-D349065DEEEE}</Project>
+      <Name>CoyoEden.Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationBase.cs" />
+    <Compile Include="Controls\AuthorList.cs" />
+    <Compile Include="Controls\Blogroll.cs" />
+    <Compile Include="Controls\CategoryList.cs" />
+    <Compile Include="Controls\MonthList.cs" />
+    <Compile Include="Controls\PageList.cs" />
+    <Compile Include="Controls\PostCalendar.cs" />
+    <Compile Include="Controls\RecentComments.cs" />
+    <Compile Include="Controls\RecentPosts.cs" />
+    <Compile Include="Controls\RelatedPosts.cs" />
+    <Compile Include="Controls\SearchBox.cs" />
+    <Compile Include="Controls\SearchOnSearch.cs" />
+    <Compile Include="Controls\TagCloud.cs" />
+    <Compile Include="Controls\WidgetAncestor.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\WidgetBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\WidgetEditBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\WidgetZone.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\CommentListView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PostListView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ViewBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CoyoEden.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <!-- NB: These build events MUST be after the above project import  -->
+  <PropertyGroup>
+    <PostBuildEvent />
+    <PreBuildEvent />
+  </PropertyGroup>
+</Project>
