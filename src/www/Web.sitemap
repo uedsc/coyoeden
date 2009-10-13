@@ -12,6 +12,6 @@
     <siteMapNode url="~/admin/Pages/Profiles.aspx" title="profiles"  description=""  roles="administrators, editors"/>
     <siteMapNode url="~/admin/Pages/Users.aspx" title="users"  description=""  roles="administrators"/>
     <siteMapNode url="~/admin/Comments/Default.aspx" title="comments"  description=""  roles="administrators"/>
-    <siteMapNode url="~/admin/Extension Manager/default.aspx" title="Extensions"  description=""  roles="administrators"/>
+    <siteMapNode url="~/admin/Extensions/default.aspx" title="Extensions"  description=""  roles="administrators"/>
   </siteMapNode>
 </siteMap>
