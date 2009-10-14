@@ -1,0 +1,66 @@
+/**
+ ** The css of the beautiful thin table
+ ** Required:1,img/tbHeaderBg,jpg;2,img/tbBullet1.gif;3,img/tbBullet2.gif
+ */
+/*Table style-begin*/
+.ThinTable {
+	width: 98%;
+	padding: 0;
+	margin: 0;
+}
+.ThinTable caption {
+	padding: 0 0 5px 0;
+	/*width: 750px;*/	 
+	font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	text-align: right;
+}
+
+.ThinTable th {
+	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: left;
+	padding: 3px 3px 3px 6px;
+	background: #CAE8EA url(../img/thintable/tbHeaderBg.jpg) no-repeat;
+}
+
+.ThinTable th.nobg {
+	border-top: 0;
+	border-left: 0;
+	border-right: 1px solid #C1DAD7;
+	background: none;
+}
+
+.ThinTable td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+	padding: 1px 1px 1px 2px;
+	color: #4f6b72;
+}
+
+
+.ThinTable td.alt {
+	background: #F5FAFA;
+	color: #797268;
+}
+
+.ThinTable th.spec {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #fff url(../img/thintable/tbBullet1.gif) no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+}
+
+.ThinTable th.specalt {
+	border-left: 1px solid #C1DAD7;
+	border-top: 0;
+	background: #f5fafa url(../img/thintable/tbBullet2.gif) no-repeat;
+	font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #797268;
+}
+/*Table style-end*/

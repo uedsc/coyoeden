@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\jquery\jquery-1.3.2.min.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\jquery\jqModal.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\jquery\jquery.blockUI.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\jquery\jquery.dateentry.min.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\jquery\jquery.event.drag-1.5.min.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\jquery\jquery.ifixpng2.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\jquery\jquery.jgrowl.min.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\jquery\jquery.json-1.3.min.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\jquery\jquery.string.1.0.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\jquery\jquery.tools.min.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\jquery\jquery.validate.min.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\date.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\shadedborder.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\Vivasky.com.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\Vivasky.StringUtils.js</string>
+  <string>F:\7Garden\Documents\Visual Studio 2008\Projects\Vivasky\trunk\src\LiziShopWww\Assets\js\local\lizishop.Common.js</string>
+</ArrayOfString>

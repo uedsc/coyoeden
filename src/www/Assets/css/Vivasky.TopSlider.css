@@ -1,0 +1,193 @@
+/*
+Name: Sliding Login Panel with jQuery 1.3.2
+Author: Jeremie Tisseau
+Script URI:web-kreation.com/index.php/tutorials/nice-clean-sliding-login-panel-built-with-jquery/
+/* Panel Tab/button */
+/* sliding panel */
+#toppanelC 
+{
+	position:fixed !important;  /*Panel will overlap  content */
+    position:absolute; /*ie6 don't know about fixed*/
+    /*position: relative;*/   /*Panel will "push" the content down */
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+#toppanelC .tab {
+  	background: url(../img/topslider/tab_b.png) repeat-x 0 0;
+	height: 42px;
+	position: relative;
+    top: 0;
+    z-index: 999;
+}
+#toppanelC .tab ul.login {
+	display: block;
+	position: relative;
+  	float: right;
+  	clear: right;
+  	height: 42px;
+	width: auto;
+  	font-weight: bold;
+	line-height: 42px;
+	margin: 0;
+	right: 150px;
+  	color: white;
+  	font-size: 80%;
+	text-align: center;
+}
+#toppanelC .tab ul.login li {
+ 	text-align: left;
+  	padding: 0 6px;
+	display: block;
+	margin:0;
+	float: left;
+	height: 42px;
+  	background: url(../img/topslider/tab_m.png) repeat-x 0 0;
+}
+#toppanelC .tab ul.login li.left {
+  	background: url(../img/topslider/tab_l.png) no-repeat left 0;
+	width: 30px;
+	padding: 0;
+}
+#toppanelC .tab ul.login li.right {
+  	background: url(../img/topslider/tab_r.png) no-repeat left 0;
+	width: 30px;
+	padding: 0;
+}
+#toppanelC .tab ul.login li a {
+	color: #15ADFF;
+}
+#toppanelC .tab ul.login li a:hover {
+	color: white;
+}
+#toppanelC .tab ul.login li a.current {
+	color: #BE6062;
+}
+#toppanelC .tab ul.login li a.current:hover {
+	color: #15ADFF;
+}
+#toppanelC .tab .sep {color:#414141}
+#toppanelC .tab a.open,#toppanelC .tab a.close {
+	height: 20px;
+	line-height: 20px !important;
+	padding-left: 30px !important;
+	cursor: pointer;
+	display: block;
+	width: 100px;
+	position: relative;
+	top: 11px;
+}
+#toppanelC .tab a.open {background: url(../img/topslider/bt_open.png) no-repeat left 0;}
+#toppanelC .tab a.close {background: url(../img/topslider/bt_close.png) no-repeat left 0;}
+#toppanelC .tab a:hover.open {background: url(../img/topslider/bt_open.png) no-repeat left -19px;}
+#toppanelC .tab a:hover.close {background: url(../img/topslider/bt_close.png) no-repeat left -19px;}
+#toppanel {
+	width: 100%;
+	height: 270px;
+	color: #999999;
+	background: #272727;
+	overflow: hidden;
+	position: relative;
+	z-index: 3;
+	display: none;
+}
+#toppanel h1 {
+	font-size: 1.6em;
+	padding: 5px 0 10px;
+	margin: 0;
+	color: white;
+}
+#toppanel h2{
+	font-size: 1.2em;
+	padding: 10px 0 5px;
+	margin: 0;
+	color: white;
+}
+#toppanel p {
+	margin: 5px 0;
+	padding: 0;
+}
+#toppanel a {
+	text-decoration: none;
+	color: #15ADFF;
+}
+#toppanel a:hover {
+	color: white;
+}
+#toppanel a-lost-pwd {
+	display: block;
+	float: left;
+}
+#toppanel .content {
+	width: 960px;
+	margin: 0 auto;
+	padding-top: 15px;
+	text-align: left;
+	font-size: 0.85em;
+}
+#toppanel .content .left {
+	width: 280px;
+	float: left;
+	padding: 0 15px;
+	border-left: 1px solid #333;
+}
+#toppanel .content .right {
+	border-right: 1px solid #333;
+}
+#toppanel .content form {
+	margin: 0 0 10px 0;
+}
+#toppanel .content label {
+	float: left;
+	padding-top: 8px;
+	clear: both;
+	width: 280px;
+	display: block;
+	line-height:20px;
+}
+#toppanel .content input.field {
+	border: 1px #1A1A1A solid;
+	background: #414141;
+	margin-right: 5px;
+	margin-top: 4px;
+	width: 200px;
+	color: white;
+	height: 16px;
+}
+#toppanel .content input:focus.field {
+	background: #545454;
+}
+/* BUTTONS */
+/* Login and Register buttons */
+#toppanel .content input.bt_silver,
+#toppanel .content input.bt_blue {
+	display: block;
+	float: left;
+	clear: left;
+	height: 24px;
+	text-align: center;
+	cursor: pointer;
+	border: none;
+	font-weight: bold;
+	margin: 10px 0;
+}
+#toppanel .content input.bt_silver {
+	width: 74px;
+	background: transparent url(../img/topslider/bt_silver.png) no-repeat 0 0;
+}
+#toppanel .content input.bt_blue {
+	width: 94px;
+	color: white;
+	background: transparent url(../img/topslider/bt_blue.png) no-repeat 0 0;
+}
+#toppanel .lost-pwd {
+	display: block;
+	float:left;
+	clear: right;
+	padding: 15px 5px 0;
+	font-size: 0.95em;
+	text-decoration: underline;
+}

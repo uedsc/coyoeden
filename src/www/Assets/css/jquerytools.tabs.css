@@ -1,0 +1,93 @@
+﻿/* root element for tabs  */
+ul.tabs { 
+	list-style:none; 
+	margin:0 !important; 
+	padding:0;
+	height:30px;
+	border-bottom:1px solid #666;	
+}
+
+/* single tab */
+ul.tabs li { 
+	float:left;	 
+	text-indent:0;
+	padding:0;
+	margin:0 !important;
+	list-style-image:none !important; 
+}
+
+/* link inside the tab. uses a background image */
+ul.tabs a { 
+	background: url(../img/jquerytools/tabs/blue.png) no-repeat -552px 0;
+	font-size:11px;
+	display:block;
+	height: 30px;  
+	line-height:30px;
+	width: 80px;
+	text-align:center;	
+	text-decoration:none;
+	color:#000;
+	padding:0px;
+	margin:0px;	
+	position:relative;
+	top:1px;
+}
+
+ul.tabs a:active {
+	outline:none;		
+}
+
+/* when mouse enters the tab move the background image */
+ul.tabs a:hover {
+	background-position: -552px -31px;	
+	color:#fff;	
+}
+
+/* active tab uses a class name "current". it's highlight is also done by moving the background image. */
+ul.tabs a.current, ul.tabs a.current:hover, ul.tabs li.current a {
+	background-position: -552px -62px;		
+	cursor:default !important; 
+	color:#000 !important;
+}
+
+/* Different widths for tabs: use a class name: w1, w2, w3 or w2 */
+
+
+/* width 1 */
+ul.tabs a.w1 			{ background-position: -552px 0; width:80px; }
+ul.tabs a.w1:hover 	{ background-position: -552px -31px; }
+ul.tabs a.w1.current { background-position: -552px -62px; }
+
+/* width 2 */
+ul.tabs a.w2 			{ background-position: -419px -0px; width:134px; }
+ul.tabs a.w2:hover 	{ background-position: -419px -31px; }
+ul.tabs a.w2.current { background-position: -419px -62px; }
+
+
+/* width 3 */
+ul.tabs a.w3 			{ background-position: -246px -0px; width:174px; }
+ul.tabs a.w3:hover 	{ background-position: -246px -31px; }
+ul.tabs a.w3.current { background-position: -246px -62px; }
+
+/* width 4 */
+ul.tabs a.w4 			{ background-position: -0px -0px; width:247px; }
+ul.tabs a.w4:hover 	{ background-position: -0px -31px; }
+ul.tabs a.w4.current { background-position: -0px -62px; }
+/* tab pane--added by Levin */
+div.tab_p, div.tab_header{
+	border:1px solid #666;
+	background-color:#ddd;	
+}
+div.tab_p{
+	min-height:150px;
+    border-width:0 1px 1px 1px;
+	display:none;
+	padding:5px;
+	height:auto !important; /*兼容FF,IE7也支持 !important标签*/
+    height:150px; /*兼容ie6*/
+    overflow:visible;
+}
+div.tab_header{
+    border-width:0px 1px 0px 1px;
+    padding:5px;
+}

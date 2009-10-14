@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode url="default.aspx" title="Coyo Eden"  description="" roles="administrators, editors">
-    <siteMapNode url="~/admin/Pages/Add_entry.aspx" title="add_entry"  description=""  roles="administrators, editors"/>
+    <siteMapNode url="~/admin/Pages/PostEdit.aspx" title="add_entry"  description=""  roles="administrators, editors"/>
     <siteMapNode url="~/admin/Pages/Blogroll.aspx" title="blogroll"  description=""  roles="administrators, editors"/>
     <siteMapNode url="~/admin/Pages/Controls.aspx" title="controls"  description=""  roles="administrators"/>
     <siteMapNode url="~/admin/Pages/Categories.aspx" title="categories"  description=""  roles="administrators, editors"/>
@@ -13,5 +13,6 @@
     <siteMapNode url="~/admin/Pages/Users.aspx" title="users"  description=""  roles="administrators"/>
     <siteMapNode url="~/admin/Comments/Default.aspx" title="comments"  description=""  roles="administrators"/>
     <siteMapNode url="~/admin/Extensions/default.aspx" title="Extensions"  description=""  roles="administrators"/>
+	<siteMapNode url="~/admin/Pages/XProperties.aspx" title="Extension properties" description="" roles="administrators"/>
   </siteMapNode>
 </siteMap>

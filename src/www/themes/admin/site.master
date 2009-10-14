@@ -7,6 +7,8 @@
     <title>CoyoEden.NET Admin</title>
     <link rel="stylesheet" href="style.css" type="text/css" />
     <link rel="shortcut icon" href="~/pics/CoyoEden.ico" type="image/x-icon"/>
+    <link rel="icon" type="image/gif" href="~/pics/animated_favicon1.gif" >
+    <asp:ContentPlaceHolder id="cphHead" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
     <table style="height: 100%; width: 100%" cellpadding="0" cellspacing="0">
