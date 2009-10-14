@@ -1,6 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true" CodeFile="referrers.aspx.cs" Inherits="admin_Pages_referrers" Title="Referrers" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="cphAdmin" runat="Server">
+<asp:Content ID="Content0" ContentPlaceHolderID="cphHead" Runat="Server"></asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="cphMain" runat="Server">
     <label for="">
         <%=Resources.labels.enableReferrerTracking %></label>
     <asp:CheckBox runat="Server" ID="cbEnableReferrers" AutoPostBack="true" /><br />
@@ -47,3 +47,4 @@
         <asp:Button runat="server" ID="btnSave" 
             Text="<%$ Resources:labels, saveSettings %>"/></div>
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" Runat="Server"></asp:Content>

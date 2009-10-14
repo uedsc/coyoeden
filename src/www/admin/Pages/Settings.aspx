@@ -4,7 +4,8 @@
 
 <%@ Import Namespace="CoyoEden.Core" %>
 <%@ Import Namespace="Vivasky.Core" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="cphAdmin" runat="Server">
+<asp:Content ID="Content0" ContentPlaceHolderID="cphHead" Runat="Server"></asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="cphMain" runat="Server">
 
     <script type="text/javascript">
       function PreviewTheme()
@@ -238,3 +239,4 @@
         <asp:Button runat="server" ID="btnSave" /></div>
     <br />
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" Runat="Server"></asp:Content>

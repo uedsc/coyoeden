@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" CodeFile="Settings.aspx.cs" Inherits="admin_Comments_Settings" %>
 <%@ Register src="Menu.ascx" tagname="TabMenu" tagprefix="menu" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="cphAdmin" Runat="Server">
+<asp:Content ID="Content0" ContentPlaceHolderID="cphHead" Runat="Server"></asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="cphMain" Runat="Server">
 
     <script type="text/javascript">
 
@@ -270,3 +270,4 @@
     </div>
       
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" Runat="Server"></asp:Content>

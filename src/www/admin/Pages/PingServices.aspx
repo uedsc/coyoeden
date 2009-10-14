@@ -1,5 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true" CodeFile="PingServices.aspx.cs" Inherits="admin_Pages_PingServices" Title="Ping services" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="cphAdmin" Runat="Server">
+<asp:Content ID="Content0" ContentPlaceHolderID="cphHead" Runat="Server"></asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="cphMain" Runat="Server">
   <asp:TextBox runat="Server" ID="txtNewCategory" Width="300" MaxLength="255" />  
   <asp:Button runat="server" ID="btnAdd" ValidationGroup="new" />
   <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="Server" ValidationGroup="new" ControlToValidate="txtNewCategory" ErrorMessage="Please specify a ping service" /><br /><hr />
@@ -24,4 +25,5 @@
     </Columns>
   </asp:GridView>
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" Runat="Server"></asp:Content>
 

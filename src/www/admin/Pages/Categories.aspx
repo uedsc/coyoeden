@@ -1,5 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true" ValidateRequest="False" CodeFile="Categories.aspx.cs" Inherits="admin_Pages_Categories" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="cphAdmin" Runat="Server">
+<asp:Content ID="Content0" ContentPlaceHolderID="cphHead" Runat="Server"></asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="cphMain" Runat="Server">
 
   <asp:Label ID="lblNewCategory" runat ="server" AssociatedControlID="txtNewCategory" Text="Title" /><br />
   <asp:TextBox runat="Server" ID="txtNewCategory" Width="200" /><br />
@@ -48,3 +49,4 @@
   </asp:GridView>
   
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" Runat="Server"></asp:Content>

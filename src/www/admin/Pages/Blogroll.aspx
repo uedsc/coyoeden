@@ -1,5 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true" CodeFile="Blogroll.aspx.cs" Inherits="admin_Pages_blogroll" Title="Blogroll" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="cphAdmin" runat="Server">
+<asp:Content ID="Content0" ContentPlaceHolderID="cphHead" Runat="Server"></asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="cphMain" runat="Server">
 
 <br />
 
@@ -119,3 +120,4 @@
 <AlternatingRowStyle CssClass="alt"></AlternatingRowStyle>
     </asp:GridView>
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" Runat="Server"></asp:Content>

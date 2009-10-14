@@ -1,7 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true"
     CodeFile="Users.aspx.cs" Inherits="admin_newuser" Title="Create new user" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="cphAdmin" runat="Server">
+<asp:Content ID="Content0" ContentPlaceHolderID="cphHead" Runat="Server"></asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="cphMain" runat="Server">
     <br />
     <div class="settings">
         <h1>
@@ -49,3 +49,4 @@
         </asp:GridView>
     </div>
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" Runat="Server"></asp:Content>

@@ -1,7 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true" CodeFile="Pages.aspx.cs" ValidateRequest="false" Inherits="admin_Pages_pages" Title="Add page" %>
 <%@ Register Src="~/Views/shared/htmlEditor.ascx" TagPrefix="Blog" TagName="TextEditor" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="cphAdmin" Runat="Server">
+<asp:Content ID="Content0" ContentPlaceHolderID="cphHead" Runat="Server"></asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="cphMain" Runat="Server">
   <script type="text/javascript">
   function ToggleVisibility()
   {
@@ -87,3 +87,4 @@
   </div>
   <br />
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" Runat="Server"></asp:Content>

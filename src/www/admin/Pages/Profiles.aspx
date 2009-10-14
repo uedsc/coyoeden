@@ -1,6 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true" ValidateRequest="False" CodeFile="Profiles.aspx.cs" Inherits="admin_profiles" Title="Modify Profiles" %>
 <%@ Register Src="~/Views/shared/htmlEditor.ascx" TagPrefix="Blog" TagName="TextEditor" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="cphAdmin" runat="Server">
+<asp:Content ID="Content0" ContentPlaceHolderID="cphHead" Runat="Server"></asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="cphMain" runat="Server">
 <br />
     <div class="settings" id="dropdown" runat="server">
         
@@ -79,3 +80,4 @@
     </p>
     
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" Runat="Server"></asp:Content>
