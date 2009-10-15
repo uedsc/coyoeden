@@ -9,10 +9,11 @@ using System.Web.UI.WebControls;
 using System.Globalization;
 using CoyoEden.Core;
 using Vivasky.Core;
+using CoyoEden.UI;
 
 #endregion
 
-public partial class admin_Pages_configuration : System.Web.UI.Page
+public partial class admin_Pages_configuration :AdminBasePage
 {
 	protected void Page_Load(object sender, EventArgs e)
 	{
@@ -42,7 +43,7 @@ public partial class admin_Pages_configuration : System.Web.UI.Page
 			MailMessage mail = new MailMessage();
 			mail.From = new MailAddress(txtEmail.Text, txtName.Text);
 			mail.To.Add(mail.From);
-			mail.Subject = "Test mail from " + txtName.Text;
+			mail.Subject = String.Format("Test mail from {0}", txtName.Text);
 			mail.Body = "Success";
 			SmtpClient smtp = new SmtpClient(txtSmtpServer.Text);
             // don't send credentials if a server doesn't require it,
@@ -58,7 +59,7 @@ public partial class admin_Pages_configuration : System.Web.UI.Page
 		}
 		catch (Exception ex)
 		{
-			lbSmtpStatus.Text = "Could not connect - " + ex.Message;
+			lbSmtpStatus.Text = String.Format("Could not connect - {0}", ex.Message);
 			lbSmtpStatus.Style.Add(HtmlTextWriterStyle.Color, "red");
 		}
 	}
@@ -160,7 +161,7 @@ public partial class admin_Pages_configuration : System.Web.UI.Page
         if (enabledHttpCompressionSettingChanged)
         { 
             // To avoid errors in IIS7 when toggling between compression and no-compression, re-start the app.
-            string ConfigPath = HttpContext.Current.Request.PhysicalApplicationPath + "web.config";
+			string ConfigPath = String.Format("{0}web.config", HttpContext.Current.Request.PhysicalApplicationPath);
             File.SetLastWriteTimeUtc(ConfigPath, DateTime.UtcNow);
         }
 
@@ -244,12 +245,18 @@ public partial class admin_Pages_configuration : System.Web.UI.Page
 
 	private void BindThemes()
 	{
-		string path = Server.MapPath(Utils.RelativeWebRoot + "themes/");
+		string path = Server.MapPath(String.Format("{0}themes/", Utils.RelativeWebRoot));
 		foreach (string dic in Directory.GetDirectories(path))
 		{
 			int index = dic.LastIndexOf(Path.DirectorySeparatorChar) + 1;
-			ddlTheme.Items.Add(dic.Substring(index));
-			ddlMobileTheme.Items.Add(dic.Substring(index));
+			var themeName = dic.Substring(index);
+			//ignore
+			if (themeName.StartsWith("_") || themeName.StartsWith(".") || themeName.ToLower().StartsWith("admin")) continue;
+			ddlTheme.Items.Add(themeName);
+			if (themeName.ToLower().StartsWith("mobile"))
+			{
+				ddlMobileTheme.Items.Add(themeName);
+			};
 		}
 	}
 
@@ -274,7 +281,7 @@ public partial class admin_Pages_configuration : System.Web.UI.Page
 		else
 		{
 
-			string path = Server.MapPath(Utils.RelativeWebRoot + "App_GlobalResources/");
+			string path = Server.MapPath(String.Format("{0}App_GlobalResources/", Utils.RelativeWebRoot));
 			foreach (string file in Directory.GetFiles(path, "labels.*.resx"))
 			{
 

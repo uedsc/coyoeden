@@ -51,5 +51,25 @@ namespace CoyoEden.UI.Views
 			image.Append("\" alt=\"\" />");
 			return image.ToString();
 		}
+		public string CssClass { get; set; }
+		public string AbsoluteWebRoot
+		{
+			get
+			{
+				return Utils.AbsoluteWebRoot.ToString();
+			}
+		}
+
+		public bool IsDebug
+		{
+			get
+			{
+				return Utils.IsWebDebug;
+			}
+		}
+		/// <summary>
+		/// Tag of current control.
+		/// </summary>
+		public string Tag { get; set; }
 	}
 }

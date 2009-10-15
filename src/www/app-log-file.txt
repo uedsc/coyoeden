@@ -31,3 +31,104 @@
 2009-10-15 00:30:26,902 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
 2009-10-15 00:30:26,938 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.1627 starting
 2009-10-15 00:30:26,938 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 09:27:08,662 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 09:27:08,677 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.16978 starting
+2009-10-15 09:27:08,677 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 09:27:10,818 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Error opening connection to db : SqlException
+        System.Data.SqlClient.SqlException: Login failed for user 'sa'.
+           在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnection owningObject)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(String host, String newPassword, Boolean redirectedUserInstance, SqlConnection owningObject, SqlConnectionString connectionOptions, Int64 timerStart)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(SqlConnection owningObject, SqlConnectionString connectionOptions, String newPassword, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, Object providerInfo, String newPassword, SqlConnection owningObject, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnection owningConnection, DbConnectionPool pool, DbConnectionOptions options)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+2009-10-15 09:27:10,834 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Error reading from database : 
+          System.Data.SqlClient.SqlException: Login failed for user 'sa'.
+             在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnection owningObject)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(String host, String newPassword, Boolean redirectedUserInstance, SqlConnection owningObject, SqlConnectionString connectionOptions, Int64 timerStart)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(SqlConnection owningObject, SqlConnectionString connectionOptions, String newPassword, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, Object providerInfo, String newPassword, SqlConnection owningObject, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnection owningConnection, DbConnectionPool pool, DbConnectionOptions options)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+   在 Habanero.DB.DatabaseConnection.LoadDataReader(ISqlStatement selectSql)
+2009-10-15 09:27:10,834 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Sql: Raw statement: SELECT [cy_Settings].[SettingName], [cy_Settings].[SettingValue], [cy_Settings].[Id], [cy_Settings].[SettingType] FROM [cy_Settings] WHERE [cy_Settings].[SettingType] = @Param0   , Parameter values: AppSetting, 
+2009-10-15 09:27:11,084 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Error opening connection to db : SqlException
+        System.Data.SqlClient.SqlException: Login failed for user 'sa'.
+           在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+2009-10-15 09:27:11,100 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Error reading from database : 
+          System.Data.SqlClient.SqlException: Login failed for user 'sa'.
+             在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+   在 Habanero.DB.DatabaseConnection.LoadDataReader(ISqlStatement selectSql)
+2009-10-15 09:27:11,100 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Sql: Raw statement: SELECT [cy_Settings].[SettingName], [cy_Settings].[SettingValue], [cy_Settings].[Id], [cy_Settings].[SettingType] FROM [cy_Settings] WHERE [cy_Settings].[SettingType] = @Param0   , Parameter values: AppSetting, 
+2009-10-15 09:37:19,256 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 09:37:19,288 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.16978 starting
+2009-10-15 09:37:19,288 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 10:01:50,999 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 10:01:51,015 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.16978 starting
+2009-10-15 10:01:51,015 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 11:03:04,609 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 11:03:04,624 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.16978 starting
+2009-10-15 11:03:04,624 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 11:59:02,776 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 11:59:02,792 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21543 starting
+2009-10-15 11:59:02,792 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 14:08:13,094 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 14:08:13,110 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21543 starting
+2009-10-15 14:08:13,110 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 14:17:38,678 [9] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 14:17:38,693 [9] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21543 starting
+2009-10-15 14:17:38,693 [9] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 14:19:50,211 [9] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 14:19:50,227 [9] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21543 starting
+2009-10-15 14:19:50,227 [9] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 14:26:37,999 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 14:26:38,014 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21543 starting
+2009-10-15 14:26:38,014 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 14:46:30,686 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 14:46:30,701 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21543 starting
+2009-10-15 14:46:30,701 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 15:02:44,636 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 15:02:44,651 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21543 starting
+2009-10-15 15:02:44,651 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 15:10:16,688 [8] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 15:10:16,704 [8] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21543 starting
+2009-10-15 15:10:16,704 [8] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 15:13:18,128 [8] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 15:13:18,159 [8] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21543 starting
+2009-10-15 15:13:18,159 [8] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 15:19:32,492 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 15:19:32,508 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21543 starting
+2009-10-15 15:19:32,508 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 15:35:21,098 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-10-15 15:35:21,129 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21543 starting
+2009-10-15 15:35:21,129 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------

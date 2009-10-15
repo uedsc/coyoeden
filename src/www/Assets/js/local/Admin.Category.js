@@ -11,8 +11,8 @@
 var CategoryM = function() {
 
 	return {
-		Init: function() {
-			CategoryM.Asmx = BosApp.Asmx("Category");
+	Init: function() {
+			CategoryM.Asmx = LocalApp.Asmx("Category");
 		} //endof Init
 	};
 } ();     //endof CategoryM

@@ -6,6 +6,10 @@
 <head id="Head1" runat="server">
     <title>CoyoEden.NET Admin</title>
     <vs:SiteCSS ID="cssReset" CSSRelativeToRoot="Assets/css/reset.css" runat="server" />
+    <vs:SiteCSS ID="cssjqtools_tab" CSSRelativeToRoot="Assets/css/jquerytools.tabs-no-images.css" runat="server" />
+	<vs:SiteCSS ID="cssjqModal" CSSRelativeToRoot="Assets/css/jqModal.css" runat="server" />
+	<vs:SiteCSS ID="cssjqdateentry" CSSRelativeToRoot="Assets/css/jquery.dateentry.css" runat="server" />
+	<vs:SiteCSS ID="cssjqTime" CSSRelativeToRoot="Assets/css/jquery.countdown.css" runat="server" />
     <link rel="stylesheet" href="style.css" type="text/css" />
     <link rel="shortcut icon" href="~/pics/CoyoEden.ico" type="image/x-icon"/>
     <link rel="icon" type="image/gif" href="~/pics/animated_favicon1.gif" />
@@ -22,15 +26,17 @@
 		<div id="blogTitle" class="clearfix"></div> 
 	</div>
 	<div id="bodyC" class="clearfix">
-		<div id="leftColumn" class="column">&nbsp;</div>
-		<div id="middleColumn"  class="column">
+		<div id="bodyInner"  class="column">
 		  <div class="tabs"><blog:AdminMenu ID="Menu1" runat="server" /></div>
 		  <div class="main"><asp:ContentPlaceHolder ID="cphMain" runat="server" /></div> 
 		</div>
-		<div id="rightColumn"  class="column">&nbsp;</div>
 	</div>
 	</form>
 	<div id="footer"><a href="http://vivasky.com">CoyoEden.NET <%=BlogSettings.Instance.Version() %></a></div>
+	<!--jqModal UI place holder-->
+	<vs:jqModalUI CssClass="dialog_jqm" ID="jqModal1" runat="server" />
+	<!--!jqModal UI-->
+	<vs:coreScripts ID="coreJS" runat="server" />
 	<asp:ContentPlaceHolder ID="cphFooter" runat="server"></asp:ContentPlaceHolder> 
 </body>
 </html>

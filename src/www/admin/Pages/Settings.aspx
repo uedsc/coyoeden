@@ -1,39 +1,8 @@
-<%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" ValidateRequest="false"
-    AutoEventWireup="true" CodeFile="Settings.aspx.cs" Inherits="admin_Pages_configuration"
-    Title="Settings" %>
-
+<%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" ValidateRequest="false" AutoEventWireup="true" CodeFile="Settings.aspx.cs" Inherits="admin_Pages_configuration" Title="Settings" %>
 <%@ Import Namespace="CoyoEden.Core" %>
 <%@ Import Namespace="Vivasky.Core" %>
 <asp:Content ID="Content0" ContentPlaceHolderID="cphHead" Runat="Server"></asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphMain" runat="Server">
-
-    <script type="text/javascript">
-      function PreviewTheme()
-      {
-        var theme = document.getElementById('<%=ddlTheme.ClientID %>').value;
-        var path = '../../?theme=' + theme;
-        window.open(path);
-      }
-      
-			function geodeAsk()
-			{
-				if (navigator.geolocation)
-					navigator.geolocation.getCurrentPosition(geoFound, geoNotFound);
-			}
-
-			function geoFound(pos)
-			{
-				document.getElementById('<%=txtGeocodingLatitude.ClientID %>').value = pos.latitude;
-				document.getElementById('<%=txtGeocodingLongitude.ClientID %>').value = pos.longitude;
-			}
-
-			function geoNotFound()
-			{
-				alert('You must be on a wifi network for us to determine your location');
-			}       
-    </script>
-
-    <br />
     <div style="text-align: right">
         <asp:Button runat="server" ID="btnSaveTop" />
     </div>
@@ -54,8 +23,8 @@
         
         <label for="<%=ddlTheme.ClientID %>"><%=Resources.labels.theme %></label>
         <asp:DropDownList runat="server" ID="ddlTheme" />
-        <a href="javascript:void(PreviewTheme());">Preview</a> | 
-        <a href="http://www.dotnetCoyoEden.net/page/themes.aspx" target="_blank">Download</a><br />
+        <a href="#" id="btnPreviewTheme" title="Preview theme">Preview</a> | 
+        <a href="http://www.vivasky.com/page/themes.aspx" target="_blank">Download</a><br />
         
         <label for="<%=ddlMobileTheme.ClientID %>"><%=Resources.labels.mobileTheme %></label>
         <asp:DropDownList runat="server" ID="ddlMobileTheme" /><br />
@@ -239,4 +208,15 @@
         <asp:Button runat="server" ID="btnSave" /></div>
     <br />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" Runat="Server"></asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" Runat="Server">
+<vs:SiteJScript ID="jsSetting" ScriptRelativeToRoot="Assets/js/local/admin.setting.js" runat="server"/>
+<script type="text/javascript">
+	//<!CDATA[
+	MSetting.Init({
+		ddlThemeID:'<%=ddlTheme.ClientID %>',
+		txtGeocodingLongitudeID: '<%=txtGeocodingLongitude.ClientID %>',
+		txtGeocodingLatitude: '<%=txtGeocodingLatitude.ClientID %>'
+	});
+	//]]>
+</script>
+</asp:Content>

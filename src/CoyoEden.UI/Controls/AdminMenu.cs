@@ -7,12 +7,35 @@ using System.Web;
 using System.Web.UI.HtmlControls;
 using Vivasky.Core;
 using System.Web.UI;
+using Vivasky.Core.Services;
 
 namespace CoyoEden.UI.Controls
 {
-	public class AdminMenu:WebControl
+	public class AdminMenu:WebControl,ICacheable
 	{
+		#region member variables
+		public string SelectedCssClass { get; set; }
+
 		private static object _SyncRoot = new object();
+		private static List<SiteMapNode> _menuItems;
+		private List<SiteMapNode> MenuItems
+		{
+			get
+			{
+				if (_menuItems == null)
+				{
+					lock (_SyncRoot)
+					{
+						if (_menuItems == null)
+						{
+							_menuItems = loadMenus();
+						}
+					}
+				}
+
+				return _menuItems;
+			}
+		}
 
 		private static string _Html;
 		/// <summary>
@@ -29,12 +52,14 @@ namespace CoyoEden.UI.Controls
 					{
 						if (_Html == null)
 						{
-							HtmlGenericControl ul = BuildMenu();
-							using (System.IO.StringWriter sw = new System.IO.StringWriter())
+							using (var menu = BuildMenu())
 							{
-								ul.RenderControl(new HtmlTextWriter(sw));
-								_Html = sw.ToString();
-							}
+								using (System.IO.StringWriter sw = new System.IO.StringWriter())
+								{
+									menu.RenderControl(new HtmlTextWriter(sw));
+									_Html = sw.ToString();
+								}
+							};
 						}
 					}
 				}
@@ -42,10 +67,42 @@ namespace CoyoEden.UI.Controls
 				return _Html;
 			}
 		}
+		#endregion
+
+		#region helper methods
+		private bool isSelected(SiteMapNode node) {
+			return HttpContext.Current.Request.RawUrl.IndexOf(node.Url, StringComparison.OrdinalIgnoreCase) != -1;
+		}
+		private void detectRequestUrl()
+		{
+
+			var isSame = HttpContext.Current.Request.Url.Equals(HttpContext.Current.Request.UrlReferrer);
+			if (!isSame)
+			{
+				//clear cache
+				_Html = null;
+			}
+		}
 		private HtmlGenericControl BuildMenu()
 		{
-			var request = HttpContext.Current.Request;
 			HtmlGenericControl ulMenu = new HtmlGenericControl("ul") { ID = "ulMenu" };
+			if (null != MenuItems) {
+				MenuItems.ForEach(x => {
+					var cssClass = isSelected(x) ? SelectedCssClass : null;
+					AddMenuItem(ref ulMenu, Utils.Translate(x.Title, x.Title), x.Url, cssClass);
+				});
+			}
+			if (!HttpContext.Current.Request.RawUrl.ToUpperInvariant().Contains("/ADMIN/"))
+			{
+				AddMenuItem(ref ulMenu, Utils.Translate("changePassword"), String.Format("{0}login.aspx", Utils.RelativeWebRoot), "changepwd");
+			}
+			return ulMenu;
+		}
+
+		private List<SiteMapNode> loadMenus()
+		{
+			var retVal = new List<SiteMapNode>();
+			var request = HttpContext.Current.Request;
 			SiteMapNode root = SiteMap.Providers["SecuritySiteMap"].RootNode;
 			if (root != null)
 			{
@@ -56,35 +113,31 @@ namespace CoyoEden.UI.Controls
 						if (!request.RawUrl.ToUpperInvariant().Contains("/ADMIN/") && (adminNode.Url.Contains("xmanager") || adminNode.Url.Contains("PingServices")))
 							continue;
 
-						HtmlAnchor a = new HtmlAnchor();
-						a.HRef = adminNode.Url;
-
-						a.InnerHtml = String.Format("<span>{0}</span>", Utils.Translate(adminNode.Title, adminNode.Title));//"<span>" + Utils.Translate(info.Name.Replace(".aspx", string.Empty)) + "</span>";
-						if (request.RawUrl.IndexOf(adminNode.Url, StringComparison.OrdinalIgnoreCase) != -1)
-							a.Attributes["class"] = "current";
-						HtmlGenericControl li = new HtmlGenericControl("li");
-						li.Controls.Add(a);
-						ulMenu.Controls.Add(li);
+						retVal.Add(adminNode);
 					}
 				}
 			}
-
-			if (!request.RawUrl.ToUpperInvariant().Contains("/ADMIN/"))
-				AddItem(ref ulMenu,Utils.Translate("changePassword"), String.Format("{0}login.aspx", Utils.RelativeWebRoot));
-
-			return ulMenu;
+			return retVal;
 		}
-
-		public void AddItem(ref HtmlGenericControl ulMenu, string text, string url)
+		private static void AddMenuItem(ref HtmlGenericControl ulMenu, string text, string url, string cssClass)
 		{
-			HtmlAnchor a = new HtmlAnchor();
-			a.InnerHtml = String.Format("<span>{0}</span>", text);
-			a.HRef = url;
+			using (var li = new HtmlGenericControl("li"))
+			{
+				using (var a = new HtmlAnchor())
+				{
+					a.InnerHtml = String.Format("<span>{0}</span>", text);
+					a.HRef = url;
+					if (!string.IsNullOrEmpty(cssClass))
+						a.Attributes["class"] = cssClass;
 
-			HtmlGenericControl li = new HtmlGenericControl("li");
-			li.Controls.Add(a);
-			ulMenu.Controls.Add(li);
+					li.Controls.Add(a);
+				}
+				ulMenu.Controls.Add(li);
+			}
 		}
+		#endregion
+
+		#region base overrides
 		/// <summary>
 		/// Renders the control.
 		/// </summary>
@@ -93,5 +146,23 @@ namespace CoyoEden.UI.Controls
 			writer.Write(Html);
 			writer.Write(Environment.NewLine);
 		}
+		protected override void OnPreRender(EventArgs e)
+		{
+			base.OnPreRender(e);
+			SelectedCssClass = SelectedCssClass ?? "current";
+			//set selected menu
+			detectRequestUrl();
+		}
+		#endregion
+
+		#region ICacheable Members
+
+		public void ClearCache()
+		{
+			_menuItems = null;
+			_Html = null;
+		}
+
+		#endregion
 	}
 }
