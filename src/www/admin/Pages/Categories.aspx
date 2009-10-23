@@ -22,18 +22,18 @@
     <Columns>      
       <asp:TemplateField HeaderText="<%$ Resources:labels, name %>">
         <ItemTemplate>
-          <%# Server.HtmlEncode(Eval("title").ToString()) %>
+          <%# Server.HtmlEncode(Eval("Name").ToString()) %>
         </ItemTemplate>
         <EditItemTemplate>
-          <asp:TextBox runat="server" ID="txtTitle" Text='<%# Eval("title") %>' />
+          <asp:TextBox runat="server" ID="txtTitle" Text='<%# Eval("Name") %>' />
         </EditItemTemplate>
       </asp:TemplateField>
       <asp:TemplateField HeaderText="<%$ Resources:labels, description %>">
        <ItemTemplate>
-          <%# Server.HtmlEncode(Eval("description").ToString())%>
+          <%# Server.HtmlEncode(Eval("Description") == null ? "" : Eval("Description").ToString())%>
         </ItemTemplate>
         <EditItemTemplate>
-          <asp:TextBox runat="server" MaxLength="255" ID="txtDescription" Text='<%# Eval("description") %>'  />
+          <asp:TextBox runat="server" MaxLength="255" ID="txtDescription" Text='<%# Eval("Description") %>'  />
         </EditItemTemplate>
       </asp:TemplateField>
       <asp:TemplateField HeaderText="Parent">

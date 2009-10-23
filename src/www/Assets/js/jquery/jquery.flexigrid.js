@@ -279,14 +279,9 @@
 				var ncol = $("th[axis='col" + cid + "']", this.hDiv)[0];
 				var n = $('thead th', g.hDiv).index(ncol);
 				var cb = $('input[value=' + cid + ']', g.nDiv)[0];
-
-
 				if (visible == null) {
 					visible = ncol.hide;
-				}
-
-
-
+				};
 				if ($('input:checked', g.nDiv).length < p.minColToggle && !visible) return false;
 
 				if (visible) {
@@ -298,7 +293,7 @@
 					ncol.hide = true;
 					$(ncol).hide();
 					cb.checked = false;
-				}
+				};
 
 				$('tbody tr', t).each
 							(

@@ -1,7 +1,9 @@
 ﻿///<reference path="jquery/jquery-1.3.2.js"/>
 ///<reference path="jquery/jquery.string.1.0.js"/>
 ///<reference path="jquery/jquery.event.drag-1.5.js"/>
+var __undefined;
 var Vivasky = {};
+Vivasky.undefined = __undefined;
 /*=============================1,jquery plugin of Vivasky=================================*/
 //You need an anonymous function to wrap around your function to avoid conflict
 ; (function($) {

@@ -109,6 +109,9 @@
     <Compile Include="Views\ViewBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Views\XPropertyAdminView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="CoyoEden.snk" />

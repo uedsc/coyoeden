@@ -81,14 +81,27 @@ LocalApp.InitUpload = function(container, opts) {
 LocalApp.Asmx = function(serviceName,actionName) {
 	return LocalApp.WebRoot + "Services/" + serviceName + ".asmx/"+actionName;
 }; //endof Asmx
-LocalApp.SetData=function(name, val, key) {
+LocalApp.SetData = function(name, val, key) {
+///<summary>cache data for document</summary>
 	key = key || "cfg";
 	var _data = $(document).data(key) || {};
 	_data[name] = val;
 	$(document).data(key, _data);
 }; //endof setdata
 LocalApp.GetData = function(cachedKey) {
+///<summary>get cached data of document</summary>
 	return $(document).data(cachedKey);
+}; //endof getdata
+LocalApp.SetDataF = function(name, val, key) {
+///<summary>cache data for #aspnetForm</summary>
+	key = key || "cfg";
+	var _data = $("#aspnetForm").data(key) || {};
+	_data[name] = val;
+	$("#aspnetForm").data(key,_data);
+}; //endof setdataf
+LocalApp.GetDataF = function(cachedKey) {
+	///<summary>get cached data of document</summary>
+	return $("#aspnetForm").data(cachedKey);
 }; //endof getdata
 $(document).ready(function() {
 	//ie6 bng fix.fuck ie6

@@ -6,6 +6,7 @@ using System.Web.UI;
 using CoyoEden.Core;
 using Vivasky.Core;
 using System.Security.Cryptography;
+using System.IO;
 
 namespace CoyoEden.UI.Views
 {
@@ -20,7 +21,12 @@ namespace CoyoEden.UI.Views
 			}
 		}
 		public virtual string GetViewPath(string viewName) {
-			return String.Format("{0}themes/{1}/{2}.ascx", Utils.RelativeWebRoot, CurrentTheme,viewName);
+			var tempStr = string.Format("themes/{0}/{1}.ascx", CurrentTheme, viewName);
+			var retVal = string.Format("{0}Views/{1}.ascx", Utils.RelativeWebRoot, viewName);
+			if (File.Exists(Utils.ConvertToPhysicalPath(tempStr))) {
+				retVal = string.Format("{0}{1}", Utils.RelativeWebRoot, tempStr);
+			}
+			return retVal;
 		}
 		/// <summary>
 		/// Displays the Gravatar image that matches the specified email.

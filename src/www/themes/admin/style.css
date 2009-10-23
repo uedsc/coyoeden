@@ -116,6 +116,36 @@ label.error{color:Red; max-width:150px;overflow:scroll;}
 .simple_form p input.error{background:url(img/unchecked.gif) no-repeat;background-position:right;color:Red;}
 .simple_form p input.valid{background:url(img/checked.gif) no-repeat;background-position:right;color:Green;}
 .simple_form p textarea.cur{border-bottom:1px solid red;}
+
+.item-block {
+border-bottom:1px solid #DFDFDF;
+color:#B5CAD0;
+padding:10px;
+width:98%;
+}
+.item-block-subtitle a{
+color:#fff;
+background:#F489A7;
+padding:0px 2px;
+text-transform:uppercase;
+}
+.item-block-subtitle a:hover {
+color:#4A586C; text-decoration:none;
+}
+.item-block-details {
+display:inline;
+margin-left:10px;
+width:98%;
+float:right;
+}
+.item-block-title {
+line-height:1.1;
+padding:0px;
+margin:0px;font-size:100%;
+}
+
+
+
 /*/admin.global*/
 
 /*----------------------------
