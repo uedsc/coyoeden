@@ -28,7 +28,7 @@
 	<div id="bodyC" class="clearfix">
 		<div id="bodyInner"  class="column">
 		  <div class="tabs"><blog:AdminMenu ID="Menu1" runat="server" /></div>
-		  <div class="main"><asp:ContentPlaceHolder ID="cphMain" runat="server" /></div> 
+		  <div class="main clearfix"><asp:ContentPlaceHolder ID="cphMain" runat="server" /></div> 
 		</div>
 	</div>
 	</form>

@@ -120,8 +120,15 @@ label.error{color:Red; max-width:150px;overflow:scroll;}
 .item-block {
 border-bottom:1px solid #DFDFDF;
 color:#B5CAD0;
-padding:10px;
-width:98%;
+width:32%;
+float:left;
+background:#fff;
+margin-top:5px;
+margin-right:5px;
+padding:10px 5px;
+}
+.item-block-details {
+display:inline;
 }
 .item-block-subtitle a{
 color:#fff;
@@ -132,16 +139,9 @@ text-transform:uppercase;
 .item-block-subtitle a:hover {
 color:#4A586C; text-decoration:none;
 }
-.item-block-details {
-display:inline;
-margin-left:10px;
-width:98%;
-float:right;
-}
+
 .item-block-title {
 line-height:1.1;
-padding:0px;
-margin:0px;font-size:100%;
 }
 
 
@@ -311,34 +311,26 @@ table.referrer caption {
 }
 
 .tabs {
-	float: left;
 	width: 100%;
 	background: #FFFFFF;
 	font-size: 93%;
 	line-height: normal;
-	margin: 0;
-	padding: 0; 
 	border-bottom:solid 1px #B8C1CA;
 }
 
 .tabs ul {
-	margin: 0;
 	padding: 10px 10px 0 50px;
-	list-style: none;
 	position: relative;
 	top: 1px;
 }
 
 .tabs li {
 	display: inline;
-	margin: 0;
-	padding: 0;
 }
 
 .tabs a {
 	float: left;
 	background: url( "img/tableftB.gif" ) no-repeat left top;
-	margin: 0;
 	padding: 0 0 0 4px;
 	text-decoration: none;
 	text-transform: capitalize;

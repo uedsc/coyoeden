@@ -85,7 +85,8 @@ namespace CoyoEden.UI.Controls
 		}
 		private HtmlGenericControl BuildMenu()
 		{
-			HtmlGenericControl ulMenu = new HtmlGenericControl("ul") { ID = "ulMenu" };
+			HtmlGenericControl ulMenu = new HtmlGenericControl("ul") { ID = "ulMenu"};
+			ulMenu.Attributes["class"] = "clearfix";
 			if (null != MenuItems) {
 				MenuItems.ForEach(x => {
 					var cssClass = isSelected(x) ? SelectedCssClass : null;
