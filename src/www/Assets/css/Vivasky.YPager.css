@@ -1,0 +1,35 @@
+﻿.YPager {
+            font-size: 80%;
+        }
+        
+.YPager a {
+    text-decoration: none;
+	border: solid 1px #AAE;
+	color: #15B;
+}
+
+.YPager a, .YPager span {
+    display: block;
+    float: left;
+    padding: 0.3em 0.5em;
+    margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.YPager .current {
+    background: #26B;
+    color: #fff;
+	border: solid 1px #AAE;
+}
+
+.YPager .current.prev, .YPager .current.next{
+	color:#999;
+	border-color:#999;
+	background:#fff;
+}
+.YPager .jumper_label
+{
+	font-size:110%;
+	font-weight:bold;	
+}
+.YPager input.jumper{width:30px;color: #F1AA1E;font-weight:bold;}

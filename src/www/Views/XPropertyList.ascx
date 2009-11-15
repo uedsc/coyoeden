@@ -2,6 +2,7 @@
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="CoyoEden.Core" %>
 <%@ Import Namespace="Vivasky.Core" %>
+<div class="xPropertyList clearfix">
 <% XPropertyList.OrderBy(item=>item.Name).ToList().ForEach(x=>{ %>
 <div class="item-block">
 	<div class="item-block-details">
@@ -10,3 +11,4 @@
 	</div>
 </div>
 <%}); %>
+</div>

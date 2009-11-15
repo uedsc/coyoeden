@@ -14,8 +14,16 @@ namespace CoyoEden.UI.Views
 		public List<XProperty> XPropertyList {
 			get
 			{
-				return XProperty.XProperties;
+				return XProperty.XProperties.Skip(PageIndex * PageSize).Take(PageSize).ToList();
 			}
 		}
+		public int ItemCount {
+			get
+			{
+				return XProperty.XProperties.Count;
+			}
+		}
+		public int PageIndex { get; set; }
+		public int PageSize { get; set; }
 	}
 }
