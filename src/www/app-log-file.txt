@@ -231,3 +231,35 @@ Login failed for user 'sa'.
 2009-11-16 15:56:31,256 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
 2009-11-16 15:56:31,272 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.28461 starting
 2009-11-16 15:56:31,272 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-17 14:22:36,378 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-17 14:22:36,394 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.25153 starting
+2009-11-17 14:22:36,394 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-17 15:04:40,535 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-17 15:04:40,551 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.25153 starting
+2009-11-17 15:04:40,551 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-17 15:10:52,475 [8] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-17 15:10:52,490 [8] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.25153 starting
+2009-11-17 15:10:52,490 [8] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-17 15:49:44,505 [8] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-17 15:49:44,521 [8] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.25153 starting
+2009-11-17 15:49:44,521 [8] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-17 16:02:38,010 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-17 16:02:38,026 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.25153 starting
+2009-11-17 16:02:38,026 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-17 16:02:39,995 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Error reading from database : 
+          System.Data.SqlClient.SqlException: Incorrect syntax near the keyword 'FROM'.
+             在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.SqlDataReader.ConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, DbAsyncResult result)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 Habanero.DB.DatabaseConnection.LoadDataReader(ISqlStatement selectSql)
+2009-11-17 16:02:40,010 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Sql: Raw statement: SELEC FROM [cy_Pages] WHERE [cy_Pages].[IsFrontPage] = @Param0   , Parameter values: 1, 

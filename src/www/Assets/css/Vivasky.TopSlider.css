@@ -13,8 +13,7 @@ Script URI:web-kreation.com/index.php/tutorials/nice-clean-sliding-login-panel-b
     width: 100%;
     z-index: 999;
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+	margin:0 auto;
 }
 #toppanelC .tab {
   	background: url(../img/topslider/tab_b.png) repeat-x 0 0;
@@ -85,8 +84,10 @@ Script URI:web-kreation.com/index.php/tutorials/nice-clean-sliding-login-panel-b
 #toppanelC .tab a:hover.open {background: url(../img/topslider/bt_open.png) no-repeat left -19px;}
 #toppanelC .tab a:hover.close {background: url(../img/topslider/bt_close.png) no-repeat left -19px;}
 #toppanel {
-	width: 100%;
-	height: 270px;
+	/*width: 100%;*/
+	min-height: 270px;
+	height:auto !important;  
+	height:270px;  
 	color: #999999;
 	background: #272727;
 	overflow: hidden;

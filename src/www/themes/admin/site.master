@@ -32,6 +32,8 @@
 		</div>
 	</div>
 	<vs:coreScripts ID="coreJS" runat="server" />
+	<vs:SiteJScript ID="jqueryUI" runat="server" ScriptRelativeToRoot="Assets/js/jquery/jquery-ui-1.7.2.custom.min.js" />
+	<vs:SiteJScript ID="siteTop" runat="server" ScriptRelativeToRoot="Assets/js/Vivasky.TopSlider.js" />
 	</form>
 	<div id="footer"><a href="http://vivasky.com">CoyoEden.NET <%=BlogSettings.Instance.Version() %></a></div>
 	<!--jqModal UI place holder-->

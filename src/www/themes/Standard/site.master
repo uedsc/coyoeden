@@ -1,20 +1,24 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeFile="site.master.cs" Inherits="StandardSite" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="site.master.cs" Inherits="StandardSite"%>
 <%@ Import Namespace="CoyoEden.Core" %>
 <%@ Import Namespace="Vivasky.Core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head runat="server" profile="http://gmpg.org/xfn/11">
+	<vs:SiteCSS ID="cssReset" CSSRelativeToRoot="Assets/css/reset.css" runat="server" />
+	<vs:SiteCSS ID="SiteCSS1" CSSRelativeToRoot="Assets/css/960.css" runat="server" />
     <link rel="stylesheet" href="style.css" type="text/css" />
     <link rel="shortcut icon" href="~/pics/CoyoEden.ico" type="image/x-icon"/>
+    <vs:SiteCSS ID="cssSiteTop" CSSRelativeToRoot="Assets/css/Vivasky.TopSlider.css" runat="server" />
+	<vs:JQTheme ID="jqTheme" runat="server" />
+	<vs:SiteCSS ID="cssjqtools_tab" CSSRelativeToRoot="Assets/css/jquerytools.tabs-no-images.css" runat="server" />
 </head>
 <body>
-
-  <div id="header">
+  <vs:siteTop ID="xxxxx" runat="server" Tag="Normal" />
+  <div id="header" class="container_12">
     <p><a href="<%=Utils.AbsoluteWebRoot %>"><%=BlogSettings.Instance.Name %></a></p>
     <span><%=BlogSettings.Instance.Description %></span>
   </div>
-  
-  <div id="menu">
+  <div id="menu" class="container_12">
     <a href="javascript:void(CoyoEden.filterByAPML())" class="apmlfilter"><%=Resources.labels.filterByApml %></a>
     <ul>
       <li><a href="<%=Utils.AbsoluteWebRoot %>" rel="home"><%=Resources.labels.home %></a></li>
@@ -24,24 +28,34 @@
       <li><a runat="server" id="aLogin" /></li>
     </ul>
   </div>
-  
   <form runat="Server" class="body">
-    
-    <div id="content">
-      <blog:SearchOnSearch runat="server" MaxResults="3" Headline="You searched for" Text="Here are some results for the search term on this website" />
+    <div class="container_12 clearfix">
+      <div id="content">
+      <blog:SearchOnSearch ID="SearchOnSearch1" runat="server" MaxResults="3" Headline="You searched for" Text="Here are some results for the search term on this website" />
       <asp:ContentPlaceHolder ID="cphBody" runat="server" />
-      
-      <p id="footer">
+		</div>
+
+		<div id="sidepanel">
+		  <blog:WidgetZone ID="WidgetZone1" runat="server" ZoneName="cy_WidgetZone0" />
+		</div>
+    </div>
+    <vs:SiteJScript ID="jquery" ScriptRelativeToRoot="Assets/js/jquery/jquery-1.3.2.min.js" runat="server"/>
+	<vs:SiteJScript ID="jqueryUI" runat="server" ScriptRelativeToRoot="Assets/js/jquery/jquery-ui-1.7.2.custom.min.js" />
+	<vs:SiteJScript ID="jquery_tools" ScriptRelativeToRoot="Assets/js/jquery/jquery.tools.min.js" runat="server"/>
+	<vs:SiteJScript ID="jquery_json" ScriptRelativeToRoot="Assets/js/jquery/jquery.json-1.3.min.js" runat="server"/>
+	<vs:SiteJScript ID="siteTop" runat="server" ScriptRelativeToRoot="Assets/js/Vivasky.TopSlider.js" />
+	<script type="text/javascript">
+	//<![CDATA[
+		var WebRoot = '<%=Utils.AbsoluteWebRoot.ToString() %>>';
+		$(document).ready(function() {
+			$("ul#topTabs").tabs("div#toppanelBody > div.tab_p");
+		});
+	//]]>
+	</script>
+  </form>
+  <p id="footer" class="container_12">
         Powered by <a href="http://www.vivasky.com">CoyoEden.NET</a> <%=BlogSettings.Instance.Version() %><br />
         Theme by <a href="http://www.lizishop.cn">LiziShop</a>
-      </p>
-    </div>
-
-    <div id="sidepanel">
-      <blog:WidgetZone runat="server" ZoneName="cy_WidgetZone0" />
-    </div>
-    
-  </form>
-  
+  </p>
 </body>
 </html>
