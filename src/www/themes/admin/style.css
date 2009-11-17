@@ -222,6 +222,10 @@ line-height:1.1;
 	padding: 45px 10px 3px 10px;
 	background-color: #F1F1F1;
 	border-top: solid 1px #B8C1CA;
+	/*min-height*/
+	min-height: 400px;
+	height: auto !important; 
+	height: 400px;
 }
 
 .settings {

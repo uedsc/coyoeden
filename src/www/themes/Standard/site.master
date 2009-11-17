@@ -29,13 +29,13 @@
     </ul>
   </div>
   <form runat="Server" class="body">
-    <div class="container_12 clearfix">
-      <div id="content">
-      <blog:SearchOnSearch ID="SearchOnSearch1" runat="server" MaxResults="3" Headline="You searched for" Text="Here are some results for the search term on this website" />
-      <asp:ContentPlaceHolder ID="cphBody" runat="server" />
+    <div id="widgetZones" class="container_12 clearfix">
+		<div id="widgetzone_LeftZone" class="widgetzone widgetzone_2col_left">
+			<blog:SearchOnSearch ID="SearchOnSearch1" runat="server" MaxResults="3" Headline="You searched for" Text="Here are some results for the search term on this website" />
+			<asp:ContentPlaceHolder ID="cphBody" runat="server" />
 		</div>
 
-		<div id="sidepanel">
+		<div id="widgetzone_RightZone" class="widgetzone widgetzone_2col_right">
 		  <blog:WidgetZone ID="WidgetZone1" runat="server" ZoneName="cy_WidgetZone0" />
 		</div>
     </div>

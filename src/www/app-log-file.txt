@@ -263,3 +263,6 @@ Login failed for user 'sa'.
    дк System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
    дк Habanero.DB.DatabaseConnection.LoadDataReader(ISqlStatement selectSql)
 2009-11-17 16:02:40,010 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Sql: Raw statement: SELEC FROM [cy_Pages] WHERE [cy_Pages].[IsFrontPage] = @Param0   , Parameter values: 1, 
+2009-11-17 22:41:29,754 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-17 22:41:29,787 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.40803 starting
+2009-11-17 22:41:29,787 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
