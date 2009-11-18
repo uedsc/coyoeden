@@ -266,3 +266,75 @@ Login failed for user 'sa'.
 2009-11-17 22:41:29,754 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
 2009-11-17 22:41:29,787 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.40803 starting
 2009-11-17 22:41:29,787 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-18 10:51:12,877 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-18 10:51:12,893 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.25153 starting
+2009-11-18 10:51:12,893 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-18 10:51:19,971 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Error opening connection to db : SqlException
+        System.Data.SqlClient.SqlException: Cannot open database "CoyoEden" requested by the login. The login failed.
+Login failed for user 'sa'.
+           在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnection owningObject)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(String host, String newPassword, Boolean redirectedUserInstance, SqlConnection owningObject, SqlConnectionString connectionOptions, Int64 timerStart)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(SqlConnection owningObject, SqlConnectionString connectionOptions, String newPassword, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, Object providerInfo, String newPassword, SqlConnection owningObject, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnection owningConnection, DbConnectionPool pool, DbConnectionOptions options)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+2009-11-18 10:51:19,987 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Error reading from database : 
+          System.Data.SqlClient.SqlException: Cannot open database "CoyoEden" requested by the login. The login failed.
+Login failed for user 'sa'.
+             在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnection owningObject)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(String host, String newPassword, Boolean redirectedUserInstance, SqlConnection owningObject, SqlConnectionString connectionOptions, Int64 timerStart)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(SqlConnection owningObject, SqlConnectionString connectionOptions, String newPassword, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, Object providerInfo, String newPassword, SqlConnection owningObject, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnection owningConnection, DbConnectionPool pool, DbConnectionOptions options)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+   在 Habanero.DB.DatabaseConnection.LoadDataReader(ISqlStatement selectSql)
+2009-11-18 10:51:19,987 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Sql: Raw statement: SELECT [cy_Settings].[SettingName], [cy_Settings].[SettingValue], [cy_Settings].[Id], [cy_Settings].[SettingType] FROM [cy_Settings] WHERE [cy_Settings].[SettingType] = @Param0   , Parameter values: AppSetting, 
+2009-11-18 10:51:20,284 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Error opening connection to db : SqlException
+        System.Data.SqlClient.SqlException: Cannot open database "CoyoEden" requested by the login. The login failed.
+Login failed for user 'sa'.
+           在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+2009-11-18 10:51:20,284 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Error reading from database : 
+          System.Data.SqlClient.SqlException: Cannot open database "CoyoEden" requested by the login. The login failed.
+Login failed for user 'sa'.
+             在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+   在 Habanero.DB.DatabaseConnection.LoadDataReader(ISqlStatement selectSql)
+2009-11-18 10:51:20,284 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Sql: Raw statement: SELECT [cy_Settings].[SettingName], [cy_Settings].[SettingValue], [cy_Settings].[Id], [cy_Settings].[SettingType] FROM [cy_Settings] WHERE [cy_Settings].[SettingType] = @Param0   , Parameter values: AppSetting, 
+2009-11-18 10:53:13,926 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-18 10:53:13,941 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.25153 starting
+2009-11-18 10:53:13,941 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-18 13:56:08,543 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-18 13:56:08,559 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.25051 starting
+2009-11-18 13:56:08,559 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-18 17:54:40,245 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-18 17:54:40,260 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.32157 starting
+2009-11-18 17:54:40,260 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------

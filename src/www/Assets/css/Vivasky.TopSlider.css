@@ -10,23 +10,24 @@ Script URI:web-kreation.com/index.php/tutorials/nice-clean-sliding-login-panel-b
     position:absolute; /*ie6 don't know about fixed*/
     /*position: relative;*/   /*Panel will "push" the content down */
     top: 0;
+    left:0;
     width: 100%;
     z-index: 999;
     text-align: center;
 	margin:0 auto;
 }
 #toppanelC .tab {
-  	background: url(../img/topslider/tab_b.png) repeat-x 0 0;
+  	background:url(../img/topslider/tab_b.png) repeat-x 0 0;
 	height: 42px;
 	position: relative;
     top: 0;
+    left:0;
     z-index: 999;
 }
 #toppanelC .tab ul.login {
 	display: block;
 	position: relative;
   	float: right;
-  	clear: right;
   	height: 42px;
 	width: auto;
   	font-weight: bold;

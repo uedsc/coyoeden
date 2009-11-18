@@ -15,6 +15,7 @@ namespace CoyoEden.UI.Controls
 	{
 		#region member variables
 		public string SelectedCssClass { get; set; }
+		public int DisplayNum { get; set; }
 
 		private static object _SyncRoot = new object();
 		private static List<SiteMapNode> _menuItems;
@@ -71,7 +72,12 @@ namespace CoyoEden.UI.Controls
 
 		#region helper methods
 		private bool isSelected(SiteMapNode node) {
-			return HttpContext.Current.Request.RawUrl.IndexOf(node.Url, StringComparison.OrdinalIgnoreCase) != -1;
+			var rawUrl=HttpContext.Current.Request.RawUrl;
+			var yes=rawUrl.IndexOf(node.Url, StringComparison.OrdinalIgnoreCase) != -1;
+			//sub pages check
+			rawUrl = rawUrl.Substring(0, rawUrl.LastIndexOf("/"));
+			yes = yes || (rawUrl.IndexOf(node.Url.Substring(0,node.Url.LastIndexOf("/")))!=-1);
+			return yes;
 		}
 		private void detectRequestUrl()
 		{
@@ -85,13 +91,16 @@ namespace CoyoEden.UI.Controls
 		}
 		private HtmlGenericControl BuildMenu()
 		{
+			DisplayNum = DisplayNum < 1 ? 5 : DisplayNum;
 			HtmlGenericControl ulMenu = new HtmlGenericControl("ul") { ID = "ulMenu"};
 			ulMenu.Attributes["class"] = "clearfix";
 			if (null != MenuItems) {
-				MenuItems.ForEach(x => {
+				MenuItems.Take(DisplayNum).ToList().ForEach(x => {
 					var cssClass = isSelected(x) ? SelectedCssClass : null;
 					AddMenuItem(ref ulMenu, Utils.Translate(x.Title, x.Title), x.Url, cssClass);
 				});
+				//TODO:
+				AddMoreLink(ref ulMenu,MenuItems.Skip(DisplayNum));
 			}
 			if (!HttpContext.Current.Request.RawUrl.ToUpperInvariant().Contains("/ADMIN/"))
 			{
@@ -99,7 +108,6 @@ namespace CoyoEden.UI.Controls
 			}
 			return ulMenu;
 		}
-
 		private List<SiteMapNode> loadMenus()
 		{
 			var retVal = new List<SiteMapNode>();
@@ -135,6 +143,10 @@ namespace CoyoEden.UI.Controls
 				}
 				ulMenu.Controls.Add(li);
 			}
+		}
+		private void AddMoreLink(ref HtmlGenericControl ulMenu, IEnumerable<SiteMapNode> iEnumerable)
+		{
+			throw new NotImplementedException();
 		}
 		#endregion
 

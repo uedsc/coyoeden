@@ -216,16 +216,17 @@ line-height:1.1;
 }
 .banner .topactions a{margin-left:10px;line-height:50px;}
 .main {
+	/*min-height*/
+	min-height: 400px;
+	height: auto !important; 
+	height: 400px;	
 	border-style: solid;
 	border-width: 1px;
 	border-color: #B8C1CA;
 	padding: 45px 10px 3px 10px;
 	background-color: #F1F1F1;
 	border-top: solid 1px #B8C1CA;
-	/*min-height*/
-	min-height: 400px;
-	height: auto !important; 
-	height: 400px;
+
 }
 
 .settings {

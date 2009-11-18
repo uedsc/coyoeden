@@ -112,7 +112,10 @@
     <Compile Include="Views\ViewBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\XPropertyAdminView.cs">
+    <Compile Include="Views\XPropertyDetailViewM.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\XPropertyListViewM.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
   </ItemGroup>

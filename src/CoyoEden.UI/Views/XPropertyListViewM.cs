@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CoyoEden.Core;
+using CoyoEden.Core.Infrastructure;
 
 namespace CoyoEden.UI.Views
 {
-	public class XPropertyAdminView:ViewBase
+	public class XPropertyListViewM:ViewBase
 	{
 		/// <summary>
 		/// All extensive properties
@@ -25,5 +26,10 @@ namespace CoyoEden.UI.Views
 		}
 		public int PageIndex { get; set; }
 		public int PageSize { get; set; }
+		protected ItemView DisplayingIn
+		{
+			get;
+			private set;
+		}
 	}
 }

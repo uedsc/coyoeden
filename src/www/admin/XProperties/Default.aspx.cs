@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CoyoEden.UI;
 
-public partial class admin_Pages_XProperties :AdminBasePage
+public partial class admin_XProperties_Default : AdminBasePage
 {
 	protected void Page_Load(object sender, EventArgs e)
 	{
@@ -14,7 +14,8 @@ public partial class admin_Pages_XProperties :AdminBasePage
 		Xprolist.PageIndex = yPager1.CurrentPage;
 		Xprolist.PageSize = yPager1.ItemsPerPage;
 	}
-	protected void yPager1_OnPageChanged(object sender, EventArgs e) {
+	protected void yPager1_OnPageChanged(object sender, EventArgs e)
+	{
 		Xprolist.PageIndex = yPager1.CurrentPage;
 	}
 }

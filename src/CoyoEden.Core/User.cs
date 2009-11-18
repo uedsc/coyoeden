@@ -5,7 +5,8 @@
 using System;
 using Habanero.BO;
 using System.Collections.Generic;
-using System.Linq;    
+using System.Linq;
+using CoyoEden.Core.DataContracts;    
 namespace CoyoEden.Core
 {
 
@@ -35,5 +36,13 @@ namespace CoyoEden.Core
 			return Users.SingleOrDefault(x => x.EmailAddress.Equals(email, StringComparison.OrdinalIgnoreCase));
 		}
 
+		public static UserInfo GetUserInfo(string userName) { 
+			//TODO:
+			return new UserInfo { 
+				UserName=userName,
+				Points=2000,
+				MessageCount=12
+			};
+		}
     }
 }

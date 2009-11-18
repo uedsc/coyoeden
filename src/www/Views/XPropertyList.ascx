@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="CoyoEden.UI.Views.XPropertyAdminView"%>
+﻿<%@ Control Language="C#" Inherits="CoyoEden.UI.Views.XPropertyListViewM"%>
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="CoyoEden.Core" %>
 <%@ Import Namespace="Vivasky.Core" %>

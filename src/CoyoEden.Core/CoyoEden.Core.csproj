@@ -90,6 +90,7 @@
     </Compile>
     <Compile Include="DataContracts\CommentInputData.cs" />
     <Compile Include="DataContracts\SettingTypes.cs" />
+    <Compile Include="DataContracts\UserInfo.cs" />
     <Compile Include="DataContracts\WidgetData.cs" />
     <Compile Include="Infrastructure\BusinessBase.cs" />
     <Compile Include="Category.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Infrastructure\ExtensionAttribute.cs" />
     <Compile Include="Infrastructure\IPublishable.cs" />
     <Compile Include="Infrastructure\ISettingsBehavior.cs" />
+    <Compile Include="Infrastructure\ItemView.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Page.Def.cs">
       <DependentUpon>Page.cs</DependentUpon>
