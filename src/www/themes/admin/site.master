@@ -1,5 +1,4 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="site.master.cs" Inherits="admin_site" %>
-
 <%@ Import Namespace="Vivasky.Core" %>
 <%@ Import Namespace="CoyoEden.Core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -14,6 +13,7 @@
 		runat="server" />
 	<vs:SiteCSS ID="cssjqTime" CSSRelativeToRoot="Assets/css/jquery.countdown.css" runat="server" />
 	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link rel="stylesheet" href="profile.css" type="text/css" />
 	<link rel="shortcut icon" href="~/pics/CoyoEden.ico" type="image/x-icon" />
 	<link rel="icon" type="image/gif" href="~/pics/animated_favicon1.gif" />
 	<asp:ContentPlaceHolder ID="cphHead" runat="server">
@@ -75,34 +75,35 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="p-header-user clearfix">
-		<asp:PlaceHolder ID="phQuickNav" runat="server"></asp:PlaceHolder>
-		<div class="p-usr">
-			<div class="g-login">
-				<ul>
-					<li class="nickname"><a href="<%=Utils.RelativeWebRoot %>profile.aspx?u=<%=UserData.UserName%>"
-						title="<%=UserData.UserName%>">
-						<img width="16" height="16" alt="<%=UserData.UserName%>" src="<%=UserData.Avatar %>" />
-					</a><a href="<%=Utils.RelativeWebRoot %>profile.aspx?u=<%=UserData.UserName%>" title="<%=UserData.UserName%>">
-						<strong>
-							<%=UserData.UserName%></strong></a> </li>
-					<li class="narrow">|</li>
-					<li class="pmicon "><a title="<%=UserData.MessageCount %>条站内信" href="<%=Utils.RelativeWebRoot %>admin/users/message.aspx">
-						<%=UserData.MessageCount %></a></li>
-					<li class="narrow">|</li>
-					<li class="setting"><a title="设置" href="<%=Utils.RelativeWebRoot %>admin/users/profile.aspx">
-						设置</a></li>
-					<li class="narrow">|</li>
-					<li class="account"><a title="我的帐户" href="<%=Utils.RelativeWebRoot %>admin/users/account.aspx">
-						帐户<span>(<%=UserData.Points %>)</span></a></li>
-					<li class="narrow">|</li>
-					<li class="exit">
-						<asp:LoginStatus ID="LoginStatus1" runat="server" SkinID="adminLoginStatus" />
-					</li>
-				</ul>
+		<div class="p-header-user clearfix">
+			<asp:PlaceHolder ID="phQuickNav" runat="server"></asp:PlaceHolder>
+			<div class="p-usr">
+				<div class="g-login">
+					<ul>
+						<li class="nickname"><a href="<%=Utils.RelativeWebRoot %>profile.aspx?u=<%=UserData.UserName%>"
+							title="<%=UserData.UserName%>">
+							<img width="16" height="16" alt="<%=UserData.UserName%>" src="<%=UserData.Avatar %>" />
+						</a><a href="<%=Utils.RelativeWebRoot %>profile.aspx?u=<%=UserData.UserName%>" title="<%=UserData.UserName%>">
+							<strong>
+								<%=UserData.UserName%></strong></a> </li>
+						<li class="narrow">|</li>
+						<li class="pmicon "><a title="<%=UserData.MessageCount %>条站内信" href="<%=Utils.RelativeWebRoot %>admin/users/message.aspx">
+							<%=UserData.MessageCount %></a></li>
+						<li class="narrow">|</li>
+						<li class="setting"><a title="设置" href="<%=Utils.RelativeWebRoot %>admin/users/profile.aspx">
+							设置</a></li>
+						<li class="narrow">|</li>
+						<li class="account"><a title="我的帐户" href="<%=Utils.RelativeWebRoot %>admin/users/account.aspx">
+							帐户<span>(<%=UserData.Points %>)</span></a></li>
+						<li class="narrow">|</li>
+						<li class="exit">
+						<vs:logonStatus ID="logonStatus1" runat="server" />
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
+		<span class="shine"></span>
 	</div>
 	<div id="p-nowrap" class="personal_bg_v1">
 		<div id="column695">
@@ -116,7 +117,7 @@
 					</div>
 				</div>
 				<div class="usr_navigation">
-					<blog:AdminMenu ID="Menu1" runat="server" />
+					<blog:AdminMenu ID="Menu1" runat="server" SelectedCssClass="active" TopActive="true" DisplayNum="6"/>
 				</div>
 			</div>
 			<div class="c695_main clearfix">

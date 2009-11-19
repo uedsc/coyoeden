@@ -16,7 +16,18 @@ namespace CoyoEden.UI.Controls
 		#region member variables
 		public string SelectedCssClass { get; set; }
 		public int DisplayNum { get; set; }
-
+		/// <summary>
+		/// put the selected item at the first place
+		/// </summary>
+		public bool TopActive { get; set; }
+		/// <summary>
+		/// index of selected menu
+		/// </summary>
+		protected int SelectedIndex
+		{
+			get;
+			private set;
+		}
 		private static object _SyncRoot = new object();
 		private static List<SiteMapNode> _menuItems;
 		private List<SiteMapNode> MenuItems
@@ -33,7 +44,6 @@ namespace CoyoEden.UI.Controls
 						}
 					}
 				}
-
 				return _menuItems;
 			}
 		}
@@ -75,8 +85,11 @@ namespace CoyoEden.UI.Controls
 			var rawUrl=HttpContext.Current.Request.RawUrl;
 			var yes=rawUrl.IndexOf(node.Url, StringComparison.OrdinalIgnoreCase) != -1;
 			//sub pages check
-			rawUrl = rawUrl.Substring(0, rawUrl.LastIndexOf("/"));
-			yes = yes || (rawUrl.IndexOf(node.Url.Substring(0,node.Url.LastIndexOf("/")))!=-1);
+			if (rawUrl.ToUpper().IndexOf("/PAGES/") < 0)
+			{
+				rawUrl = rawUrl.Substring(0, rawUrl.LastIndexOf("/"));
+				yes = yes || (rawUrl.IndexOf(node.Url.Substring(0, node.Url.LastIndexOf("/"))) != -1);
+			}
 			return yes;
 		}
 		private void detectRequestUrl()
@@ -91,20 +104,21 @@ namespace CoyoEden.UI.Controls
 		}
 		private HtmlGenericControl BuildMenu()
 		{
+			//sort
+			sortMenus(MenuItems);
 			DisplayNum = DisplayNum < 1 ? 5 : DisplayNum;
 			HtmlGenericControl ulMenu = new HtmlGenericControl("ul") { ID = "ulMenu"};
-			ulMenu.Attributes["class"] = "clearfix";
+			ulMenu.Attributes["class"] =string.IsNullOrEmpty(CssClass)?"clearfix":string.Format("{0} {1}",CssClass,"clearfix");
 			if (null != MenuItems) {
-				MenuItems.Take(DisplayNum).ToList().ForEach(x => {
-					var cssClass = isSelected(x) ? SelectedCssClass : null;
-					AddMenuItem(ref ulMenu, Utils.Translate(x.Title, x.Title), x.Url, cssClass);
-				});
-				//TODO:
-				AddMoreLink(ref ulMenu,MenuItems.Skip(DisplayNum));
-			}
-			if (!HttpContext.Current.Request.RawUrl.ToUpperInvariant().Contains("/ADMIN/"))
-			{
-				AddMenuItem(ref ulMenu, Utils.Translate("changePassword"), String.Format("{0}login.aspx", Utils.RelativeWebRoot), "changepwd");
+				//add top links
+				var topLinks = MenuItems.Take(DisplayNum).ToList();
+				for (int i = 0; i <topLinks.Count; i++)
+				{
+					var cssClass = i == SelectedIndex ? SelectedCssClass : null;
+					AddMenuItem(ref ulMenu, Utils.Translate(topLinks[i].Title, topLinks[i].Title), topLinks[i].Url, cssClass);
+				}
+				//more links
+				AddMoreLinks(ref ulMenu, MenuItems.Skip(DisplayNum).ToList());
 			}
 			return ulMenu;
 		}
@@ -128,6 +142,17 @@ namespace CoyoEden.UI.Controls
 			}
 			return retVal;
 		}
+		private void sortMenus(List<SiteMapNode> items) {
+			var menu = items.SingleOrDefault(x => isSelected(x));
+			SelectedIndex = items.IndexOf(menu);
+			if (!TopActive) return;
+
+			SelectedIndex = 0;
+			if (menu != null) {
+				items.Remove(menu);
+				items.Insert(0, menu);
+			}
+		}
 		private static void AddMenuItem(ref HtmlGenericControl ulMenu, string text, string url, string cssClass)
 		{
 			using (var li = new HtmlGenericControl("li"))
@@ -144,9 +169,39 @@ namespace CoyoEden.UI.Controls
 				ulMenu.Controls.Add(li);
 			}
 		}
-		private void AddMoreLink(ref HtmlGenericControl ulMenu, IEnumerable<SiteMapNode> iEnumerable)
+		private void AddMoreLinks(ref HtmlGenericControl ulMenu, List<SiteMapNode> items)
 		{
-			throw new NotImplementedException();
+			if (items.Count == 0) return;
+			var tempSelectedIndex =SelectedIndex-DisplayNum;
+			var cssTemp = SelectedIndex >= DisplayNum ? String.Format(" {0}", SelectedCssClass) : "";
+			//more links
+			var sbInnerHtml = new StringBuilder();
+			using (var liMore=new HtmlGenericControl("li"))
+			{
+				sbInnerHtml.AppendFormat("<a class=\"more{0}\" title=\"\" href=\"#\"><span>{1}</span></a>",
+					cssTemp,
+					Utils.Translate("more","更多")
+					);
+				//showmore_menu
+				sbInnerHtml.Append("<div class=\"showmore_menu\" style=\"display:none;\">");
+				sbInnerHtml.Append("<dl>");
+				for (int i = 0; i < items.Count; i++)
+				{
+					sbInnerHtml.Append("<dd>");
+					if (i == tempSelectedIndex) {
+						sbInnerHtml.AppendFormat("<a title=\"\" href=\"{0}\" class=\"active_sub\">{1}</a>",items[i].Url,items[i].Title);
+
+					} else {
+						sbInnerHtml.AppendFormat("<a title=\"\" href=\"{0}\">{1}</a>", items[i].Url, items[i].Title);
+					}
+					
+					sbInnerHtml.Append("</dd>");
+				}
+				sbInnerHtml.Append("</dl>");
+				sbInnerHtml.Append("</div>");
+				liMore.InnerHtml = sbInnerHtml.ToString();
+				ulMenu.Controls.Add(liMore);
+			}//endof using
 		}
 		#endregion
 

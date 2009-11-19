@@ -338,3 +338,84 @@ Login failed for user 'sa'.
 2009-11-18 17:54:40,245 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
 2009-11-18 17:54:40,260 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.32157 starting
 2009-11-18 17:54:40,260 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-19 11:42:56,205 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-19 11:42:56,221 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21052 starting
+2009-11-19 11:42:56,221 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-19 11:42:58,612 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Error opening connection to db : SqlException
+        System.Data.SqlClient.SqlException: 已成功与服务器建立连接，但是在登录过程中发生错误。 (provider: 共享内存提供程序, error: 0 - 管道的另一端上无任何进程。)
+           在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadSni(DbAsyncResult asyncResult, TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadNetworkPacket()
+   在 System.Data.SqlClient.TdsParserStateObject.ReadBuffer()
+   在 System.Data.SqlClient.TdsParserStateObject.ReadByte()
+   在 System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnection owningObject)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(String host, String newPassword, Boolean redirectedUserInstance, SqlConnection owningObject, SqlConnectionString connectionOptions, Int64 timerStart)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(SqlConnection owningObject, SqlConnectionString connectionOptions, String newPassword, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, Object providerInfo, String newPassword, SqlConnection owningObject, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnection owningConnection, DbConnectionPool pool, DbConnectionOptions options)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+2009-11-19 11:42:58,643 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Error reading from database : 
+          System.Data.SqlClient.SqlException: 已成功与服务器建立连接，但是在登录过程中发生错误。 (provider: 共享内存提供程序, error: 0 - 管道的另一端上无任何进程。)
+             在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadSni(DbAsyncResult asyncResult, TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadNetworkPacket()
+   在 System.Data.SqlClient.TdsParserStateObject.ReadBuffer()
+   在 System.Data.SqlClient.TdsParserStateObject.ReadByte()
+   在 System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnection owningObject)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(String host, String newPassword, Boolean redirectedUserInstance, SqlConnection owningObject, SqlConnectionString connectionOptions, Int64 timerStart)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(SqlConnection owningObject, SqlConnectionString connectionOptions, String newPassword, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, Object providerInfo, String newPassword, SqlConnection owningObject, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnection owningConnection, DbConnectionPool pool, DbConnectionOptions options)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+   在 Habanero.DB.DatabaseConnection.LoadDataReader(ISqlStatement selectSql)
+2009-11-19 11:42:58,643 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Sql: Raw statement: SELECT [cy_Settings].[SettingName], [cy_Settings].[SettingValue], [cy_Settings].[Id], [cy_Settings].[SettingType] FROM [cy_Settings] WHERE [cy_Settings].[SettingType] = @Param0   , Parameter values: AppSetting, 
+2009-11-19 11:42:58,877 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Error opening connection to db : SqlException
+        System.Data.SqlClient.SqlException: 已成功与服务器建立连接，但是在登录过程中发生错误。 (provider: 共享内存提供程序, error: 0 - 管道的另一端上无任何进程。)
+           在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+2009-11-19 11:42:58,877 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Error reading from database : 
+          System.Data.SqlClient.SqlException: 已成功与服务器建立连接，但是在登录过程中发生错误。 (provider: 共享内存提供程序, error: 0 - 管道的另一端上无任何进程。)
+             在 System.Data.ProviderBase.DbConnectionPool.GetConnection(DbConnection owningObject)
+   在 System.Data.ProviderBase.DbConnectionFactory.GetConnection(DbConnection owningConnection)
+   在 System.Data.ProviderBase.DbConnectionClosed.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+   在 Habanero.DB.DatabaseConnection.LoadDataReader(ISqlStatement selectSql)
+2009-11-19 11:42:58,877 [4] ERROR Habanero.DB.DatabaseConnection [(null)] - Sql: Raw statement: SELECT [cy_Settings].[SettingName], [cy_Settings].[SettingValue], [cy_Settings].[Id], [cy_Settings].[SettingType] FROM [cy_Settings] WHERE [cy_Settings].[SettingType] = @Param0   , Parameter values: AppSetting, 
+2009-11-19 11:43:55,440 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-19 11:43:55,456 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21052 starting
+2009-11-19 11:43:55,456 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-19 12:02:48,486 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-19 12:02:48,518 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21052 starting
+2009-11-19 12:02:48,518 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-19 12:25:23,254 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-19 12:25:23,269 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21052 starting
+2009-11-19 12:25:23,269 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-19 12:28:53,772 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-11-19 12:28:53,788 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.21052 starting
+2009-11-19 12:28:53,788 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
