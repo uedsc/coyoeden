@@ -13,6 +13,6 @@
     <siteMapNode url="~/admin/Pages/Users.aspx" title="users"  description=""  roles="administrators"/>
     <siteMapNode url="~/admin/Comments/Default.aspx" title="comments"  description=""  roles="administrators"/>
     <siteMapNode url="~/admin/Extensions/default.aspx" title="Extensions"  description=""  roles="administrators"/>
-	<siteMapNode url="~/admin/XProperties/Default.aspx" title="Extension properties" description="" roles="administrators"/>
+	<siteMapNode url="~/admin/XProperties/Default.aspx" title="XProperties" description="" roles="administrators"/>
   </siteMapNode>
 </siteMap>

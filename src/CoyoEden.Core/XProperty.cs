@@ -6,6 +6,7 @@ using System;
 using Habanero.BO;
 using System.Collections.Generic;
 using System.Linq;
+using Vivasky.Core;
 
 namespace CoyoEden.Core
 {
@@ -34,6 +35,33 @@ namespace CoyoEden.Core
 		public static XProperty GetXProperty(string name)
 		{
 			return XProperties.SingleOrDefault(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+		}
+		/// <summary>
+		/// TODO:Add 'Icon' as a column
+		/// </summary>
+		public string Icon {
+			get
+			{
+				return String.Format("{0}themes/admin/img/icon_c100.jpg", Utils.AbsoluteWebRoot);
+			}
+		}
+		public DateTime CreatedOn {
+			get
+			{
+				return DateTime.Now;
+			}
+		}
+		public DateTime ModifiedOn {
+			get
+			{
+				return DateTime.Now;
+			}
+		}
+		public string CreatedBy {
+			get
+			{
+				return "CoyoEden";
+			}
 		}
     }
 }

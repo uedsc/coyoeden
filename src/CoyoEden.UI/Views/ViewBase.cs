@@ -7,6 +7,7 @@ using CoyoEden.Core;
 using Vivasky.Core;
 using System.Security.Cryptography;
 using System.IO;
+using CoyoEden.Core.DataContracts;
 
 namespace CoyoEden.UI.Views
 {
@@ -18,6 +19,12 @@ namespace CoyoEden.UI.Views
 				string theme = Request.QueryString["theme"];
 				theme = string.IsNullOrEmpty(theme) ?BlogSettings.Instance.Theme: theme;
 				return theme;
+			}
+		}
+		public virtual string ThemeRoot {
+			get
+			{
+				return string.Format("{0}themes/{1}/",AbsoluteWebRoot,CurrentTheme);
 			}
 		}
 		public virtual string GetViewPath(string viewName) {
@@ -77,5 +84,7 @@ namespace CoyoEden.UI.Views
 		/// Tag of current control.
 		/// </summary>
 		public string Tag { get; set; }
+
+		public UserInfo UserData { get; set; }
 	}
 }

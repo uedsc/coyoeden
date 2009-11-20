@@ -1,5 +1,6 @@
 ﻿body{ text-align:center; font-family:Arial,sans-serif; background:url(img/mbg.jpg) top repeat-x #fff; color:#000; }
 /*admin.global*/
+#web_loading{ position:fixed; _position:absolute; z-index:60; background:#f00; color:#fff; font-size:12px; font-weight:bold; padding:3px; width:60px; right:0; top:0;}
 a{text-decoration:none;color:#3366cc; cursor:pointer;}
 a:hover{text-decoration:underline; cursor:pointer;}
 .alt td {

@@ -178,6 +178,7 @@ namespace CoyoEden.UI.Controls
 			var sbInnerHtml = new StringBuilder();
 			using (var liMore=new HtmlGenericControl("li"))
 			{
+				liMore.Attributes["class"] = "showmore";
 				sbInnerHtml.AppendFormat("<a class=\"more{0}\" title=\"\" href=\"#\"><span>{1}</span></a>",
 					cssTemp,
 					Utils.Translate("more","更多")

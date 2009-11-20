@@ -1,0 +1,67 @@
+﻿/*profile_collect*/
+.collectThread_list ul li {padding-top:10px;}
+.profile_collect .collectThread_list .collect_item100_thread .acts{ padding-top:5px; padding-bottom:5px; min-height:20px; height:auto;_height:20px;} 
+.profile_collect .collectThread_list .collect_item100_thread{ position:relative;}
+.profile_collect .collectThread_list .collect_item100_thread a.removeIT{ position:absolute; top:0; right:10px;}
+.collect_item100_thread{ border-bottom:1px #ddd solid; padding-bottom:5px; position:relative; padding-left:130px; min-height:130px; _height:130px;}
+.collect_item100_thread p.cover{ position:absolute; top:0; left:0; background:url(img/main_bg.gif) -736px -1389px no-repeat; width:109px; height:123px; padding:7px 0 0 7px;}
+.collect_item100_thread p.cover span{display:table-cell;  text-align:center; vertical-align:middle; *display:block;*font-size:87px; *font-family:Arial;  width:100px; height:100px; background:#f9f9f9;  overflow:hidden; }
+.collect_item100_thread p.cover span img{ vertical-align:middle; }
+.collect_item100_thread .info .name{ font-size:14px; color:#999;}
+.collect_item100_thread .info .name span.stat a{ font-size:11px; color:#fff;font-family:PMingLiU,AppleGothic,Verdana,Gulim,Sans-serif; background:#66C266; padding:2px 1px 2px 2px; margin-left:10px;}
+.collect_item100_thread .info .author{ color:#666;font-size:12px; padding:6px 0;}
+.collect_item100_thread .info .author a{ color:#8CA6D7; }
+.collect_item100_thread .info .des{  font-size:12px; color:#999; line-height:1.7; border-bottom:1px #e5e5e5 dashed; padding-bottom:10px;}
+.collect_item100_thread .acts{ position:relative; width:100%; height:20px;  padding-top:10px;}
+.collect_item100_thread .acts .counts a{ color:#999;}
+.collect_item100_thread .acts .counts a:hover{ color:#36c;}
+.collect_item100_thread .acts .actions{font-size:11px; font-family:PMingLiU,AppleGothic,Verdana,Gulim,Sans-serif; color:#999; position:absolute; top:12px;}
+.collect_item100_thread .acts .actions a{color:#8CA6D7; padding-left:5px; padding-right:5px;}
+.collect_item100_thread .acts .actions a:hover{ color:#fff; background:#f60; text-decoration:none;}
+
+.profile_collect .collectBlock_listNew .collect_item100_cover{ position:relative;}
+.profile_collect .collectBlock_listNew .collect_item100_cover a.removeIT{ position:absolute; top:188px; right:10px;}
+.profile_collect .collectBlock_listNew ul li{ border-bottom:1px #e5e5e5 solid; margin-right:0; padding-right:25px;}
+.profile_collect .tag_block a{ color:#bbb;}
+.collect_item100_cover{ width:200px; overflow:hidden;}
+.collect_item100_cover .cover{background:url(img/pro_sprites.gif) 100% -206px no-repeat; width:145px; height:115px; display:block; overflow:hidden;}
+.collect_item100_cover .cover span{ display:table-cell;  text-align:center; vertical-align:middle; *display:block;*font-size:87px; *font-family:Arial;  width:100px; height:100px; background:#fff; position:relative; padding-top:7px; padding-left:7px;}
+.collect_item100_cover .cover span img{ vertical-align:middle;}
+.collect_item100_cover .name{ font-size:12px; height:30px; padding:6px 0; color:#999;  height:30px; overflow:hidden;}
+.collect_item100_cover .time{ color:#aaa;  font-size:11px;}
+.collect_item100_cover .author{ font-size:12px; color:#999; padding:7px 0;}
+.collect_item100_cover .author a{ color:#8CA6D7;}
+
+
+/*common item list*/
+/*w=wrap;i=item;s=size*/
+.ilist_root .ilist_w0 ul li{padding-top:10px;}
+.ilist_root .ilist_w0 .i_s100_0 .acts{ padding-top:5px; padding-bottom:5px; min-height:20px; height:auto;_height:20px;} 
+.ilist_root .ilist_w0 .i_s100_0{border-bottom:1px #ddd solid; padding-bottom:5px; position:relative; padding-left:130px; min-height:130px; _height:130px;}
+.ilist_root .ilist_w0 .i_s100_0 a.removeIT{ position:absolute; top:0; right:10px;}
+.ilist_root .ilist_w1 ul li{ border-bottom:1px #e5e5e5 solid; margin-right:0; padding-right:25px;float:left;display:inline;margin-bottom:15px;padding-bottom:10px;}
+.ilist_root .ilist_w1 .i_s100_1{ position:relative;width:200px;overflow:hidden;}
+.ilist_root .ilist_wrap_1 .i_s100_1 a.removeIT{ position:absolute; top:188px; right:10px;}
+.i_s100_0 p.cover{ position:absolute; top:0; left:0; background:url(img/main_bg.gif) -736px -1389px no-repeat; width:109px; height:123px; padding:7px 0 0 7px;}
+.i_s100_0 p.cover span{display:table-cell;  text-align:center; vertical-align:middle; *display:block;*font-size:87px; *font-family:Arial;  width:100px; height:100px; background:#f9f9f9;  overflow:hidden; }
+.i_s100_0 p.cover span img{ vertical-align:middle; }
+.i_s100_0 .info .name{ font-size:14px; color:#999;}
+.i_s100_0 .info .name span.stat a{ font-size:11px; color:#fff;font-family:PMingLiU,AppleGothic,Verdana,Gulim,Sans-serif; background:#66C266; padding:2px 1px 2px 2px; margin-left:10px;}
+.i_s100_0 .info .author{ color:#666;font-size:12px; padding:6px 0;}
+.i_s100_0 .info .author a{ color:#8CA6D7; }
+.i_s100_0 .info .des{  font-size:12px; color:#999; line-height:1.7; border-bottom:1px #e5e5e5 dashed; padding-bottom:10px;}
+.i_s100_0 .acts{ position:relative; width:100%; height:20px;  padding-top:10px;}
+.i_s100_0 .acts .counts a{ color:#999;}
+.i_s100_0 .acts .counts a:hover{ color:#36c;}
+.i_s100_0 .acts .actions{font-size:11px; font-family:PMingLiU,AppleGothic,Verdana,Gulim,Sans-serif; color:#999; position:absolute; top:12px;}
+.i_s100_0 .acts .actions a{color:#8CA6D7; padding-left:5px; padding-right:5px;}
+.i_s100_0 .acts .actions a:hover{ color:#fff; background:#f60; text-decoration:none;}
+.i_s100_1 .cover{background:url(img/pro_sprites.gif) 100% -206px no-repeat; width:145px; height:115px; display:block; overflow:hidden;}
+.i_s100_1 .cover span{ display:table-cell;  text-align:center; vertical-align:middle; *display:block;*font-size:87px; *font-family:Arial;  width:100px; height:100px; background:#fff; position:relative; padding-top:7px; padding-left:7px;}
+.i_s100_1 .cover span img{ vertical-align:middle;}
+.i_s100_1 .name{ font-size:12px; height:30px; padding:6px 0; color:#999;  height:30px; overflow:hidden;}
+.i_s100_1 .time{ color:#aaa;  font-size:11px;}
+.i_s100_1 .author{ font-size:12px; color:#999; padding:7px 0;}
+.i_s100_1 .author a{ color:#8CA6D7;}
+
+.ilist_root .tag_block a{ color:#bbb;}

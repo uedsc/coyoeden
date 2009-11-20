@@ -1,6 +1,9 @@
 body{ background:#333; margin:0; padding:0;line-height:normal;}
 h2.Atitle a,h2.Atitle a{ color:#f60; padding:0; margin:0;}
+/*common set*/
 .common_sec3{ border-top:1px #e5e5e5 solid;}
+.blank10{margin-top:10px;}
+.pool10{padding-top:10px;}
 /*header*/
 #p-header{ background:url(img/p_head.png) repeat-x; height:84px; width:100%; text-align:left; position:relative; z-index:2;}
 * html #p-header{ background:url(img/p_head_ie.png) repeat-x; height:84px; width:100%; text-align:left; position:static; z-index:1;}
@@ -154,6 +157,7 @@ form#globalsearch{ width:262px;}
 .usr_navigation ul li.showmore dl{ background:#fff;padding:4px 7px; border:1px #b3b3b3 solid; position:relative; top:-1px; left:-1px;}
 .usr_navigation ul li.showmore dl dd { padding:0; margin:0;}
 .usr_navigation ul li.showmore dl dd a{ display:block; position:static; background:none; padding:0; padding-left:4px; color:#36c; height:24px; line-height:24px;}
+.usr_navigation ul li.showmore dl dd a.active_sub{color:Red;}
 .usr_navigation ul li.showmore dl dd a:hover{ color:#fff; background:#8CA6D7;  text-decoration:none;}
 
 

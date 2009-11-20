@@ -36,5 +36,6 @@ public partial class admin_site : System.Web.UI.MasterPage
 
 	UserData = User.GetUserInfo(UserName);
 	UserData.Avatar = UserData.Avatar ?? DefaultAvatar;
+	IDropMenu1.UserData = UserData;
   }
 }
