@@ -1,8 +1,23 @@
 body{ background:#333; margin:0; padding:0;line-height:normal;}
 h2.Atitle a,h2.Atitle a{ color:#f60; padding:0; margin:0;}
+h3.Ptitle{ font-size:12px; font-weight:bold; border-bottom:1px #c7c7c7 solid; line-height:1.8;}
+h3.Ptitle span{ font-weight:normal; color:#999; padding:0 5px;}
+.viewmode a{ display:block; overflow:hidden; height:20px; text-indent:-9999em; float:left;}
+.viewmode a.byList{background:url(img/main_bg.gif) 0 -1082px no-repeat;width:24px; }
+.viewmode a.byList_active{background:url(img/main_bg.gif) 0 -1062px no-repeat;width:24px; }
+.viewmode a.byBlock{background:url(img/main_bg.gif) -24px -1062px no-repeat; width:25px;}
+.viewmode a.byBlock_active{background:url(img/main_bg.gif) -24px -1082px no-repeat; width:25px;}
 /*common set*/
 .common_sec3{ border-top:1px #e5e5e5 solid;}
-.blank10{margin-top:10px;}
+.blank10{ margin-top:10px;}
+.blank15{ margin-top:15px;}
+.blank20{ margin-top:20px;}
+.blank25{ margin-top:25px;}
+.blank30{ margin-top:30px;}
+.blank40{ margin-top:40px;}
+.blank60{ margin-top:60px;}
+.blank70{ margin-top:70px;}
+.blank80{ margin-top:80px;}
 .pool10{padding-top:10px;}
 /*header*/
 #p-header{ background:url(img/p_head.png) repeat-x; height:84px; width:100%; text-align:left; position:relative; z-index:2;}

@@ -17,6 +17,10 @@ namespace CoyoEden.UI.Controls
 		public string SelectedCssClass { get; set; }
 		public int DisplayNum { get; set; }
 		/// <summary>
+		/// Whether append 'clearfix' css class
+		/// </summary>
+		public bool Clearfix { get; set; }
+		/// <summary>
 		/// put the selected item at the first place
 		/// </summary>
 		public bool TopActive { get; set; }
@@ -108,7 +112,7 @@ namespace CoyoEden.UI.Controls
 			sortMenus(MenuItems);
 			DisplayNum = DisplayNum < 1 ? 5 : DisplayNum;
 			HtmlGenericControl ulMenu = new HtmlGenericControl("ul") { ID = "ulMenu"};
-			ulMenu.Attributes["class"] =string.IsNullOrEmpty(CssClass)?"clearfix":string.Format("{0} {1}",CssClass,"clearfix");
+			addCssClass(ref ulMenu);
 			if (null != MenuItems) {
 				//add top links
 				var topLinks = MenuItems.Take(DisplayNum).ToList();
@@ -203,6 +207,16 @@ namespace CoyoEden.UI.Controls
 				liMore.InnerHtml = sbInnerHtml.ToString();
 				ulMenu.Controls.Add(liMore);
 			}//endof using
+		}
+		private void addCssClass(ref HtmlGenericControl ulMenu)
+		{
+			var css = "";
+			if (Clearfix) {
+				css = string.IsNullOrEmpty(CssClass) ? "clearfix" : string.Format("{0} {1}", CssClass, "clearfix");
+			}
+			if (!string.IsNullOrEmpty(css)) {
+				ulMenu.Attributes["class"] = css;
+			};
 		}
 		#endregion
 

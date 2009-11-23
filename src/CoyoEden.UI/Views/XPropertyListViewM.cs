@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CoyoEden.Core;
 using CoyoEden.Core.Infrastructure;
+using CoyoEden.Core.DataContracts;
 
 namespace CoyoEden.UI.Views
 {
@@ -15,7 +16,9 @@ namespace CoyoEden.UI.Views
 		public List<XProperty> XPropertyList {
 			get
 			{
-				return XProperty.XProperties.Skip(PageIndex * PageSize).Take(PageSize).ToList();
+				var allItems=XProperty.XProperties;
+
+				return allItems.Skip(PageIndex * PageSize).Take(PageSize).ToList();
 			}
 		}
 		public int ItemCount {
@@ -26,10 +29,6 @@ namespace CoyoEden.UI.Views
 		}
 		public int PageIndex { get; set; }
 		public int PageSize { get; set; }
-		protected ItemView DisplayingIn
-		{
-			get;
-			private set;
-		}
+
 	}
 }

@@ -86,5 +86,17 @@ namespace CoyoEden.UI.Views
 		public string Tag { get; set; }
 
 		public UserInfo UserData { get; set; }
+
+		/// <summary>
+		/// query string data
+		/// </summary>
+		protected QStringData QStrData
+		{
+			get
+			{
+				var data = Request["d"];
+				return QStringData.New(data);
+			}
+		}
 	}
 }

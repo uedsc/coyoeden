@@ -8,7 +8,7 @@
 ///<reference path="../jquery/jquery.dateentry.min.js"/>
 ///<reference path="Local.Common.js"/>
 ///<reference path="../date.js"/>
-var App = function() {
+var XPropertyApp = function() {
 	//private
 	var p = {};
 	p.initShowTypeEvent = function() {
@@ -34,7 +34,7 @@ var App = function() {
 	};
 	//public
 	var pub = {};
-	pub.Init = function() {
+	pub.Init = function(opts) {
 		$("#listOrderType").change(p.setOrder);
 		p.initShowTypeEvent();
 	};

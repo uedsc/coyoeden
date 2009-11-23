@@ -65,3 +65,6 @@
 .i_s100_1 .author a{ color:#8CA6D7;}
 
 .ilist_root .tag_block a{ color:#bbb;}
+
+/*YPager custom css*/
+.YPager{font-size:70%;margin-top:15px;margin-left:10px;}

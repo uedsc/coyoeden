@@ -102,35 +102,6 @@ label.error{color:Red; max-width:150px;overflow:scroll;}
 .simple_form p input.valid{background:url(img/checked.gif) no-repeat;background-position:right;color:Green;}
 .simple_form p textarea.cur{border-bottom:1px solid red;}
 
-.item-block {
-border-bottom:1px solid #DFDFDF;
-color:#B5CAD0;
-width:32%;
-float:left;
-background:#fff;
-margin-top:5px;
-margin-right:5px;
-padding:10px 5px;
-}
-.item-block-details {
-display:inline;
-}
-.item-block-subtitle a{
-color:#fff;
-background:#F489A7;
-padding:0px 2px;
-text-transform:uppercase;
-}
-.item-block-subtitle a:hover {
-color:#4A586C; text-decoration:none;
-}
-
-.item-block-title {
-line-height:1.1;
-}
-
-
-
 /*/admin.global*/
 
 /*----------------------------
@@ -350,14 +321,14 @@ input[type="checkbox"] {
 	background: none;
 }
 
-.info {
+.info1 {
 	background: url(img/info.gif) right top no-repeat;
 	padding:15px 50px 10px 15px;
 	border: 1px solid #ccc; 
 }
 
 /* Extension settings */
-.mgr input, select {
+.mgr input,.mgr select {
     margin: 5px 0 5px 0;
 }
 .mgrRadioList {

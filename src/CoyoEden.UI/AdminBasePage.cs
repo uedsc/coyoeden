@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.UI;
 using CoyoEden.Core;
 using Vivasky.Core;
+using CoyoEden.Core.DataContracts;
 
 namespace CoyoEden.UI
 {
@@ -30,5 +31,18 @@ namespace CoyoEden.UI
 				return;
 			};
 		}
+
+		#region member variables
+		/// <summary>
+		/// query string data
+		/// </summary>
+		protected QStringData QStrData {
+			get
+			{
+				var data= Request["d"];
+				return QStringData.New(data);
+			}
+		}
+		#endregion
 	}
 }

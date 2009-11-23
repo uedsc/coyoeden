@@ -52,7 +52,7 @@
 					</li>
 				</ul>
 				<div id="global_search">
-					<form onsubmit="App.OnSearch()" method="get" action="<%=Utils.RelativeWebRoot %>/search.aspx"
+					<form onsubmit="App.OnSearch()" method="get" action="<%=Utils.RelativeWebRoot %>search.aspx"
 					id="globalsearch">
 					<fieldset>
 						<input type="text" value="搜索你感兴趣的内容..."
@@ -115,7 +115,7 @@
 						<img width="50" height="50" alt="" src="<%=UserData.Avatar %>" /></a>
 					<div class="infos">
 						<h1><%=Page.Title %></h1>
-						<p><a title="" href="<%=Utils.AbsoluteWebRoot.ToString() %>home.aspx?u=<%=UserData.UserName %>>">回我的主页</a></p>
+						<p><a title="" href="<%=Utils.AbsoluteWebRoot.ToString() %>home.aspx?u=<%=UserData.UserName %>">回我的主页</a></p>
 					</div>
 				</div>
 				<div class="usr_navigation">

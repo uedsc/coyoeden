@@ -89,6 +89,8 @@
       <DependentUpon>CategoryExt.cs</DependentUpon>
     </Compile>
     <Compile Include="DataContracts\CommentInputData.cs" />
+    <Compile Include="DataContracts\QStringData.cs" />
+    <Compile Include="DataContracts\QueryTypes.cs" />
     <Compile Include="DataContracts\SettingTypes.cs" />
     <Compile Include="DataContracts\UserInfo.cs" />
     <Compile Include="DataContracts\WidgetData.cs" />
