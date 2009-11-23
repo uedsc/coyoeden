@@ -14,22 +14,23 @@ namespace CoyoEden.Tests.Core.DataContracts
 		public void can_parse_str()
 		{
 			//arrange
-			var data = "a-1$v-true$lb-2008$ub-2009";
+			var data = "a-1$v-1$lb-2008$ub-2009";
 			//act
 			var obj = QStringData.New(data);
 			//assert
-			Assert.IsTrue(obj.a == QueryTypes.Filter);
+			Assert.IsTrue(obj.a == ActionTypes.Filter);
+			Assert.IsTrue(obj.v == YesNoOptions.Yes);
 			Console.WriteLine(obj.ToJSONStr());
 			Console.WriteLine(obj.ToString());
 		}
 		[Test]
 		public void can_set_property() {
 			//arrange
-			var data = "a-1$v-true$lb-2008$ub-2009";
+			var data = "a-1$v-1$lb-2008$ub-2009";
 			//act
 			var obj = QStringData.New(data);
 			obj.Set("a", 2);
-			obj.Set("v", true);
+			obj.Set("v", 2);
 			//assert
 			Console.WriteLine(obj.ToString());
 		}

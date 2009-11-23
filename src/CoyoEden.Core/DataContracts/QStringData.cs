@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Vivasky.Core;
 using System.Text.RegularExpressions;
 
@@ -17,13 +14,13 @@ namespace CoyoEden.Core.DataContracts
 		/// <summary>
 		/// action
 		/// </summary>
-		public QueryTypes a { get; set; }
+		public ActionTypes a { get; set; }
 
 		#region common query string keys
 		/// <summary>
 		/// isvalid
 		/// </summary>
-		public bool? v { get; set; }
+		public YesNoOptions v { get; set; }
 		/// <summary>
 		/// id
 		/// </summary>
@@ -58,7 +55,7 @@ namespace CoyoEden.Core.DataContracts
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="queryString">accept like:a-1$v-true$lb-2008$ub-2009</param>
+		/// <param name="queryString">accept like:a-1$v-0$lb-2008$ub-2009</param>
 		/// <returns></returns>
 		public static QStringData New(string queryString) {
 			return new QStringData().ParseData(queryString);
@@ -73,7 +70,7 @@ namespace CoyoEden.Core.DataContracts
 		/// <returns></returns>
 		public QStringData ParseData(string rawRequestString)
 		{
-			a = QueryTypes.Unkown;
+			a = ActionTypes.Unkown;
 			if (string.IsNullOrEmpty(rawRequestString)) return this;
 			var parts = rawRequestString.Split(STR_FIELDSPLIT.ToCharArray());
 			if (parts[0].Length != 3)//'a-1'.length==3

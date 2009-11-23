@@ -5,7 +5,10 @@ using System.Text;
 
 namespace CoyoEden.Core.DataContracts
 {
-	public enum QueryTypes
+	/// <summary>
+	/// Action types
+	/// </summary>
+	public enum ActionTypes
 	{
 		Unkown,
 		Filter,
