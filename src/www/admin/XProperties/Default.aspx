@@ -10,8 +10,8 @@
 	<div class="c695_l_navi">
 		<ul class="c695_navigate clearfix">
 		<li><a class="current" title="" href="Default.aspx">所有的扩展属性</a></li>
-		<li><a title="" href="default.aspx?<%=QStrData.Set("a",1).Set("v",true) %>">在用的扩展属性</a></li>
-		<li><a title="" href="default.aspx?<%=QStrData.Set("a",1).Set("v",false) %>">停用的扩展属性</a></li>
+		<li><a title="" href="default.aspx?d=a-1$v-1%>">在用的扩展属性</a></li>
+		<li><a title="" href="default.aspx?d=a-1$v-2 %>">停用的扩展属性</a></li>
 		</ul>
 	</div>
 	<div class="c695_l_toolbar clearfix">
@@ -47,12 +47,12 @@
 		<h3 class="Ptitle">标签</h3>
 		<div class="library_tag_list pool5"> 
 			<a title="" href="default.aspx" class="current">全部</a>
-			<a title="" href="default.aspx?<%=QStrData.Set("a",1).Set("t0",DateTime.Now.Year) %>"><%=DateTime.Now.Year %></a>
-			<a title="" href="default.aspx?<%=QStrData.Set("a",1).Set("t0",DateTime.Now.AddYears(-1).Year) %>"><%=DateTime.Now.AddYears(-1).Year %></a>
+			<a title="" href="default.aspx?d=a-1$t0-<%=DateTime.Now.Year %>"><%=DateTime.Now.Year %></a>
+			<a title="" href="default.aspx?d=a-1$t0-<%=DateTime.Now.AddYears(-1).Year%>"><%=DateTime.Now.AddYears(-1).Year %></a>
 		</div>
 	</div>
 	<div class="side_actions pad20 blank80"> 
-		<a title="" href="show.aspx?<%=QStringData.New("a-2")%>" class="relate_links">新建扩展属性</a>
+		<a title="" href="show.aspx?d=a-2>" class="relate_links">新建扩展属性</a>
 	</div>
 </div>
 </asp:Content>
