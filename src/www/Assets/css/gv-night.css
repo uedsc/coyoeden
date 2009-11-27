@@ -1,0 +1,35 @@
+﻿/* table style */
+table.night
+{
+	border:solid 1px #ad9e87;
+}
+
+/* header cell style */
+.night th
+{
+	border-right-color:#ad9e87;
+	border-bottom-color:#ad9e87;
+    background:#e1d6c7 url(../img/gv-night.gif) repeat-x;
+    color:#59483f;
+}  
+
+/* cell styles */
+.night td
+{
+    border-bottom-color:#f2e8da;	
+    border-right-color:#f2e8da;	
+}
+
+/* mouseover row style */
+.night .row-over 
+{ 
+	background-color:#f2e8da;
+}
+
+/* select row style */
+.night .row-select
+{
+	background-color:#ad9e87;
+	color:#fff;
+}
+

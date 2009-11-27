@@ -63,34 +63,6 @@ img {
 	font-size: 80%;
 	text-align:center
 }
-
-/*----------------------------
-					 Header
-----------------------------*/
-
-#header {
-	text-align: left;
-	margin-bottom: 30px;
-}
-
-#header p {
-	font-family: Arial;
-	font-size: 40px;
-	font-weight: bold;
-	letter-spacing: 8px;
-}
-
-#header span {
-	font-weight: normal;
-	letter-spacing: 4px;
-	color: silver;
-}
-
-#header a {
-	text-decoration: none;
-	color: white;
-}
-
 /*----------------------------
 						Menu
 ----------------------------*/
@@ -1156,3 +1128,56 @@ div.post .text a[rel~="sweetheart"][rel~="met"] {
 	margin: 0 auto 12px auto;
 	padding: 0;
 }
+
+/*css reload-2009-11-27*/
+/*global.css*/
+#web_loading{ position:fixed; _position:absolute; z-index:60; background:#f00; color:#fff; font-size:12px; font-weight:bold; padding:3px; width:60px; right:0; top:0;}
+.wrap960{margin:0 auto;width:960px;}
+/*site first h1,for the sake of SEO*/
+div#vivasky_content h1
+{
+display:block;
+height:0;
+overflow:hidden;
+width:0;
+}
+/*header*/
+#header-inner{position:relative;z-index:50;}
+#header-inner #logo{ width:160px; height:60px;}
+#header-inner #logo a{ display:block; overflow:hidden; width:160px; height:60px;background:url(img/logo.gif) 0 0 no-repeat; text-indent:-9999em; _position:relative; _z-index:65;}
+/*#header-#global_search*/
+#fav_search{ position:absolute; top:0; right:0; text-align:right; }
+/* addfav */
+#add2fav{ font-size:12px; border-top:2px #dbdbdb solid; padding:5px 0; }
+#add2fav a{ color:#a8a8a8;  text-decoration:none; margin:4px;}
+#add2fav a.l_a{ border-left:1px #d5d5d5 solid; padding-left:8px;}
+#add2fav a:hover{ text-decoration:underline;}
+#header-inner #global_search{ position:relative; z-index:70; float:right; margin:8px 0 0 0;}
+#header-inner #global_search input.g_txt{ background:url(img/bg_sprit2.gif) 0 -665px no-repeat; width:200px; height:26px; line-height:26px;  border:0; float:left; _display:inline; font-size:12px; padding-left:10px;}
+form#globalsearch{ width:262px;}
+@-moz-document url-prefix(){#header-inner #global_search input.g_txt{ line-height:normal; padding-top:6px;}}
+#globalsearch-go{ background:url(img/gsearch_button.gif) 0 0 no-repeat; width:31px; height:25px; border:0; float:left;_display:inline;}
+#p-header #global_search .typing{ background-position:0 100%;}
+#global_search span.search_menu{ position:relative; float:left;}
+#global_search span.search_menu a.down{background:url(img/gsearch_button.gif) -31px 0 no-repeat; display:block; overflow:hidden; width:21px; height:25px; text-indent:-999em; text-align:left;}
+#global_search span.search_menu a.up{background:url(img/gsearch_button.gif) -31px -25px no-repeat; display:block; overflow:hidden; width:21px; height:25px; text-indent:-999em; text-align:left;}
+#global_search #search_menu_drop{ width:100px; position:absolute; top:25px; right:7px;  background:#999; margin-left:0; margin-top:0; }
+#global_search #search_menu_drop .menu_drop_inner{background:#fff;  border:1px #D1CFCF solid;padding:5px 10px; position:relative; top:-1px; left:-1px;}
+#global_search #search_menu_drop a{ color:#36c; display:block; font-size:12px; text-align:left; display:block; line-height:1.5; padding:2px 0 2px 5px; }
+#global_search #search_menu_drop a:hover{ background:#36c; color:#fff; }
+/* navigate */
+#navigate{ background:url(img/navi_mbg.png) 0 0 repeat-x; height:72px;}
+* html #navigate{overflow:hidden;background:url(img/navi_mbg.gif) 0 0 repeat-x; height:72px;}
+
+#navigate .navi_main{position:relative; height:45px; display:block; overflow:hidden;}
+#navigate .navi_main h2 a{ text-decoration:none; color:#fff; padding-left:8px; float:left;cursor:pointer; margin:0 5px; }
+#navigate .navi_main h2 a span{ font-size:14px; padding-right:11px; font-weight:normal; line-height:48px;}
+#navigate .navi_main h2 a:hover{ zoom:1;}
+#navigate .navi_main h2 a:hover span{ text-decoration:underline;}
+
+#navigate .navi_main h2 a.m_cur{  text-decoration:none; color:#fff; background:url(img/navi_tab.png) 0 0 no-repeat; float:left;padding-left:7px; cursor:pointer; }
+#navigate .navi_main h2 a.m_cur span{ font-size:14px; background:url(img/navi_tab.png) 100% 100% no-repeat; float:left; height:45px; line-height:45px; padding-right:11px; position:relative; left:5px; font-weight:bold;}
+
+* html #navigate .navi_main h2 a.m_cur{ text-decoration:none; color:#fff; background:url(img/navi_tab_ie.gif) 0 0 no-repeat; float:left;padding-left:7px; cursor:pointer; } 
+* html #navigate .navi_main h2 a.m_cur span{ font-size:14px; background:url(img/navi_tab_ie.gif) 100% 100% no-repeat; float:left; height:45px; line-height:45px; padding-right:11px;  font-weight:bold;}  
+

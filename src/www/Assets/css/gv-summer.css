@@ -1,0 +1,36 @@
+﻿/* table style */
+table.summer
+{
+	border:solid 1px #84a360;
+}
+
+/* header cell style */
+.summer th
+{
+    color:#376f18;
+	border-right-color:#84a360;
+	border-bottom-color:#84a360;
+    background:#b0d781 url(../img/gv-summer.gif) repeat-x;
+}  
+
+/* cell styles */
+.summer td
+{
+    color:#000;
+    border-bottom-color:#e7f2da;	
+    border-right-color:#e7f2da;	
+}
+
+/* mouseover row style */
+.summer .row-over 
+{ 
+	background-color:#e7f2da;
+}
+
+/* mouse selectrow style */
+.summer .row-select 
+{ 
+	color:#fff;
+	background-color:#84a360;
+}
+

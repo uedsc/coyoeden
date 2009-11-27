@@ -5,29 +5,77 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head runat="server" profile="http://gmpg.org/xfn/11">
 	<vs:SiteCSS ID="cssReset" CSSRelativeToRoot="Assets/css/reset.css" runat="server" />
-	<vs:SiteCSS ID="SiteCSS1" CSSRelativeToRoot="Assets/css/960.css" runat="server" />
     <link rel="stylesheet" href="style.css" type="text/css" />
     <link rel="shortcut icon" href="~/pics/CoyoEden.ico" type="image/x-icon"/>
     <vs:SiteCSS ID="cssSiteTop" CSSRelativeToRoot="Assets/css/Vivasky.TopSlider.css" runat="server" />
 	<vs:JQTheme ID="jqTheme" runat="server" />
 	<vs:SiteCSS ID="cssjqtools_tab" CSSRelativeToRoot="Assets/css/jquerytools.tabs-no-images.css" runat="server" />
 </head>
-<body>
+<body class="<%=CssClass %>">
+  <div id="vivasky_content"><h1><%=Page.Title%></h1></div>
+  <div id="web_loading">Loading...</div>
   <vs:siteTop ID="xxxxx" runat="server" Tag="Normal" />
-  <div id="header" class="container_12">
-    <p><a href="<%=Utils.AbsoluteWebRoot %>"><%=BlogSettings.Instance.Name %></a></p>
-    <span><%=BlogSettings.Instance.Description %></span>
+  <!--#header-->
+  <div id="header">
+	<div id="header-inner" class="wrap960 clearfix">
+		<div id="logo"><a title="<%=BlogSettings.Instance.Description %>" href="/"><%=BlogSettings.Instance.Name %></a></div>
+		<div id="fav_search">
+		<div id="add2fav">
+			<a id="addcollect" title="加入收藏夹" href="javascript:void(0)">+加入收藏夹</a>
+		</div>
+		<div id="global_search">
+			<form onsubmit="App.OnSearch()" method="get" action="<%=Utils.RelativeWebRoot %>search.aspx"
+			id="globalsearch">
+			<fieldset>
+				<input type="text" value="搜索你感兴趣的内容..."
+					title="搜索你感兴趣的内容..." maxlength="50" name="key" class="g_txt grey autoS ac_input"
+					id="globalsearch-query" autocomplete="off" />
+				<input type="submit" value="" title="搜索" class="" id="globalsearch-go" />
+				<input type="hidden" name="pos" value="1" />
+				<span class="search_menu"><a title="快捷搜索" href="javascript:;" class="down">快捷搜索</a>
+					<a style="display: none;" title="快捷搜索" href="javascript:;" class="up">快捷搜索</a>
+					<div style="display: none;" id="search_menu_drop">
+						<div class="menu_drop_inner">
+							<a title="" href="<%=Utils.RelativeWebRoot %>/search.aspx?t=post">文章</a> <a title=""
+								href="<%=Utils.RelativeWebRoot %>/search.aspx?t=software">软件</a> <a title="" href="<%=Utils.RelativeWebRoot %>/search.aspx?t=event">
+									活动</a> <a title="" href="<%=Utils.RelativeWebRoot %>/search.aspx?t=collect">精选集</a>
+							<a title="" href="<%=Utils.RelativeWebRoot %>/search.aspx?t=group">小组</a> <a title=""
+								href="<%=Utils.RelativeWebRoot %>/search.aspx?t=user">用户</a>
+						</div>
+					</div>
+				</span>
+			</fieldset>
+			</form>
+		</div>
+	</div>
+	</div>
   </div>
-  <div id="menu" class="container_12">
-    <a href="javascript:void(CoyoEden.filterByAPML())" class="apmlfilter"><%=Resources.labels.filterByApml %></a>
-    <ul>
-      <li><a href="<%=Utils.AbsoluteWebRoot %>" rel="home"><%=Resources.labels.home %></a></li>
-      <li><a href="<%=Utils.AbsoluteWebRoot %>archive.aspx"><%=Resources.labels.archive %></a></li>
-      <li><a href="<%=Utils.AbsoluteWebRoot %>contact.aspx"><%=Resources.labels.contact %></a></li>
-      <li><a href="<%=BlogSettings.FeedUrl %>" class="feed"><img src="<%=Utils.AbsoluteWebRoot %>pics/rssButton.gif" alt="Feed" /><%=Resources.labels.subscribe %></a></li>
-      <li><a runat="server" id="aLogin" /></li>
-    </ul>
-  </div>
+  <!--#navigation-->
+	<div id="navigate">
+		<div class="navi_main clearfix">
+			<h2 id="f_index">
+				<a title="<%=Resources.labels.home %>" href="<%=Utils.RelativeWebRoot %>">
+				<span><%=Resources.labels.home %></span> </a>
+			</h2>
+			<h2 id="f_music">
+				<a title="音乐" href="<%=Utils.RelativeWebRoot %>music.aspx" class=""><span>音乐</span></a>
+			</h2>
+			<h2 id="f_collect">
+				<a title="精选集" href="<%=Utils.RelativeWebRoot %>collects.aspx"
+						class=""><span>精选集</span></a>
+			</h2>
+			<h2 id="f_gallery">
+				<a title="画册" href="<%=Utils.RelativeWebRoot %>galleries.aspx"
+						class=""><span>画册</span></a>
+			</h2>
+			<h2 id="f_group">
+				<a title="小组" href="<%=Utils.RelativeWebRoot %>groups.aspx" class=""><span>小组</span></a>
+			</h2>
+		</div>
+		<ul class="navi_sec inner_idx clearfix">
+			<!--Second navi-->
+		</ul>
+	</div>
   <form runat="Server" class="body">
     <div id="widgetZones" class="container_12 clearfix">
 		<div id="widgetzone_LeftZone" class="widgetzone widgetzone_2col_left">
