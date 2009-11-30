@@ -65,31 +65,7 @@ namespace CoyoEden.UI.Controls
 		{
 			if (string.IsNullOrEmpty(Name))
 				throw new NullReferenceException("Name must be set on a widget");
-
-			StringBuilder sb = new StringBuilder();
-
-			sb.Append("<div class=\"widget " + this.Name.Replace(" ", string.Empty).ToLowerInvariant() + "\" id=\"widget" + WidgetID + "\">");
-
-			if (Thread.CurrentPrincipal.IsInRole(BlogSettings.Instance.AdministratorRole))
-			{
-
-				sb.Append("<a class=\"delete\" href=\"javascript:void(0)\" onclick=\"CoyoEden.widgetAdmin.removeWidget('" + WidgetID + "');return false\" title=\"" + Utils.Translate("delete", "delete") + " widget\">X</a>");
-				//if (IsEditable)
-				sb.Append("<a class=\"edit\" href=\"javascript:void(0)\" onclick=\"CoyoEden.widgetAdmin.editWidget('" + Name + "', '" + WidgetID + "');return false\" title=\"" + Utils.Translate("edit", "edit") + " widget\">" + Utils.Translate("edit", "edit") + "</a>");
-				sb.Append("<a class=\"move\" href=\"javascript:void(0)\" onclick=\"CoyoEden.widgetAdmin.initiateMoveWidget('" + WidgetID + "');return false\" title=\"" + Utils.Translate("move", "move") + " widget\">" + Utils.Translate("move", "move") + "</a>");
-			}
-
-			if (ShowTitle)
-				sb.Append(String.Format("<h4>{0}</h4>", Title));
-			else
-				sb.Append("<br />");
-
-			sb.Append("<div class=\"content\">");
-
-			writer.Write(sb.ToString());
 			base.Render(writer);
-			writer.Write("</div>");
-			writer.Write("</div>");
 		}
 
 	}

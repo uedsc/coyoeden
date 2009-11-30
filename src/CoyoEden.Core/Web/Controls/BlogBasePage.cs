@@ -297,6 +297,28 @@ namespace CoyoEden.Core.Web.Controls
 			LiteralControl control = new LiteralControl(code);
 			Page.Header.Controls.Add(control);
 		}
+		/// <summary>
+		/// Current theme
+		/// </summary>
+		public virtual string CurrentTheme
+		{
+			get
+			{
+				string theme = Request.QueryString["theme"];
+				theme = string.IsNullOrEmpty(theme) ? BlogSettings.Instance.Theme : theme;
+				return theme;
+			}
+		}
+		/// <summary>
+		/// Url root of current theme
+		/// </summary>
+		public virtual string ThemeRoot
+		{
+			get
+			{
+				return string.Format("{0}themes/{1}/", Utils.AbsoluteWebRoot, CurrentTheme);
+			}
+		}
 
 		/// <summary>
 		/// Raises the <see cref="E:System.Web.UI.TemplateControl.Error"></see> event.

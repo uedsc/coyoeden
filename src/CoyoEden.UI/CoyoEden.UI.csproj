@@ -112,6 +112,9 @@
     <Compile Include="Views\ViewBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Views\WidgetLayoutViewM.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Views\XPropertyDetailViewM.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -121,6 +124,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CoyoEden.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\about.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

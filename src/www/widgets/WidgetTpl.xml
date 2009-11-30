@@ -1,9 +1,0 @@
-﻿<li id="%Id%" class="widget %Name% %Color%">
-	<div class="widget-head %Movable%">
-		<a class="action collapse" href="#">COLLAPSE</a>
-		<h3 class="title">%Title%</h3>
-		<a class="action remove" href="#">CLOSE</a>
-		<a class="action edit" href="#">EDIT</a>
-	</div>
-	<div class="widget-content">$</div>
-</li>

@@ -10,11 +10,13 @@ using System.Collections.Generic;
 using System.IO;
 using Vivasky.Core;
 using System.Linq;
+using System.Xml.Linq;
 namespace CoyoEden.Core
 {
 
     public partial class Widget
-    {
+	{
+		#region .ctor
 		public Widget() {
 			Id = GuidExt.NewGuid(GuidExt.GuidStrategy.OrderedSequential);
 			this.Saved+=(s,e)=>{
@@ -23,7 +25,16 @@ namespace CoyoEden.Core
 					AllWidgets.Add(this);
 				}
 			};
+			//default color xproperty
+			var colorProperty = XProperty.GetXProperty("WidgetColor");
+			if (colorProperty != null&&colorProperty.XPropertySettings.Count>0)
+			{
+				var colorIndex = new Random().Next(colorProperty.XPropertySettings.Count);
+				AddExtConfig("WidgetColor", colorProperty.XPropertySettings[colorIndex].SettingValue);
+			}
 		}
+		#endregion
+
 		public const string PREFIX_CACHEID = "cy_widget_";
 
 		#region biz methods

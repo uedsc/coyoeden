@@ -1,0 +1,3 @@
+﻿CoyoEden.UI.Views
+
+ViewModels goes here.

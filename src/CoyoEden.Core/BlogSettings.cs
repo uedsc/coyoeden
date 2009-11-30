@@ -943,5 +943,17 @@ namespace CoyoEden.Core
 		public static string AppVersion() {
 			return typeof(BlogSettings).Assembly.GetName().Version.ToString();
 		}
+		/// <summary>
+		/// get a file of current theme in the relative url format
+		/// </summary>
+		/// <returns></returns>
+		public static string GetFileOfCurTheme(string fileName,string defaultFile) {
+			var file = string.Format("{0}themes/{1}/{2}",Utils.RelativeWebRoot,BlogSettings.Instance.Theme,fileName);
+			var pFile = System.Web.HttpContext.Current.Request.MapPath(file);
+			if (!System.IO.File.Exists(pFile)) {
+				file = defaultFile;
+			}
+			return file;
+		}
 	}
 }

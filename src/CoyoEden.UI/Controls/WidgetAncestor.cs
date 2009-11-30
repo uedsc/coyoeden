@@ -11,7 +11,7 @@ namespace CoyoEden.UI.Controls
 	public abstract class WidgetAncestor:UserControl
 	{
 		#region Properties
-		protected Widget BOWidget { get; private set; }
+		public Widget BOWidget { get; set; }
 		/// <summary>
 		/// Gets or sets the title of the widget. It is mandatory for all widgets to set the Title.
 		/// </summary>
@@ -55,7 +55,6 @@ namespace CoyoEden.UI.Controls
 			}
 			else
 			{
-				BOWidget = Widget.Find(WidgetID);
 				Cache[CacheKey] = BOWidget;
 			}
 			return BOWidget.ExtConfigs;

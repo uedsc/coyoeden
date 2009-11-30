@@ -29,12 +29,17 @@ namespace CoyoEden.UI.Controls
         /// <summary>
         /// Gets or sets the name of the data-container used by this instance
         /// </summary>
-        public string ZoneName
+        public string Name
         {
             get { return _ZoneName; }
             set { _ZoneName = Utils.RemoveIllegalCharacters(value); }
         }
-
+		public HtmlTags HtmlTag { get; set; }
+		public enum HtmlTags
+		{
+			Ul,
+			Div
+		}
         protected override void OnInit(EventArgs e)
         {
 			BOZone = loadData();
@@ -43,7 +48,7 @@ namespace CoyoEden.UI.Controls
 
 		private BOWidgetZone loadData()
 		{
-			var data = BOWidgetZone.Load(ZoneName);
+			var data = BOWidgetZone.Load(Name);
 			return data;
 		}
 		/// <summary>
@@ -53,34 +58,10 @@ namespace CoyoEden.UI.Controls
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-			string fileNameFormat = "{0}widgets/{1}/widget.ascx";
-			string fileName = string.Empty;
+			var widgetTemplate = BlogSettings.GetFileOfCurTheme("widgetLayout.ascx", "~/views/widgetLayout.ascx");
+
 			BOZone.Widgets.ForEach(x => {
-				fileName = string.Format(fileNameFormat, Utils.RelativeWebRoot, x.Name);
-				try
-				{
-					WidgetBase control = (WidgetBase)Page.LoadControl(fileName);
-					control.WidgetID = x.Id.Value;
-					control.ID = control.WidgetID.ToString().Replace("-", string.Empty);
-					control.Title = x.Title;
-					control.Zone = _ZoneName;
-
-					if (control.IsEditable)
-						control.ShowTitle = x.ShowTitle.Value;
-					else
-						control.ShowTitle = control.DisplayHeader;
-
-					control.LoadWidget();
-					this.Controls.Add(control);
-				}
-				catch (Exception ex)
-				{
-					Literal lit = new Literal { Text = String.Format("<p style=\"color:red\">Widget {0} not found.<p>", x.Name) };
-					lit.Text += ex.Message;
-					lit.Text += String.Format("<a class=\"delete\" href=\"javascript:void(0)\" onclick=\"CoyoEden.widgetAdmin.removeWidget('{0}');return false\" title=\"{1} widget\">X</a>",x.Id.Value.ToString(), Utils.Translate("delete", "delete"));
-
-					this.Controls.Add(lit);
-				}
+				loadWidget(x, widgetTemplate);
 			});
 		}
 
@@ -94,23 +75,56 @@ namespace CoyoEden.UI.Controls
 		/// </param>
 		protected override void Render(System.Web.UI.HtmlTextWriter writer)
 		{
-			writer.Write(String.Format("<div id=\"widgetzone_{0}\" class=\"widgetzone\">", _ZoneName));
+			var adminClass = Thread.CurrentPrincipal.IsInRole("admin") ? " wzone_admin" : "";//TODO:
+			writer.Write(string.Format("<{0} id=\"widgetzone_{1}\" class=\"widgetzone{2}\">", HtmlTag, Name, adminClass));
 
 			base.Render(writer);
 
-			writer.Write("</div>");
-
-			if (Thread.CurrentPrincipal.IsInRole(BlogSettings.Instance.AdministratorRole))
+			writer.Write(string.Format("</{0}>", HtmlTag));
+		}
+		/// <summary>
+		/// load a widget
+		/// </summary>
+		/// <param name="boWidget"></param>
+		/// <returns></returns>
+		private void loadWidget(Widget boWidget,string widgetTemplate)
+		{
+			var control = default(WidgetBase);
+			string fileNameFormat = "{0}widgets/{1}/widget.ascx";
+			string fileName = string.Empty;
+			fileName = string.Format(fileNameFormat, Utils.RelativeWebRoot, boWidget.Name);
+			
+			try
 			{
-				string selectorId = String.Format("widgetselector_{0}", _ZoneName);
-				writer.Write(String.Format("<select id=\"{0}\" class=\"widgetselector\">", selectorId));
-				Widget.WidgetModels.ForEach(x => { 
-					writer.Write(String.Format("<option value=\"{0}\">{0}</option>", x));
-				});
+				//get widget
+				control = (WidgetBase)Page.LoadControl(fileName);
+				control.BOWidget = boWidget;
+				control.WidgetID = boWidget.Id.Value;
+				control.ID = control.WidgetID.ToString().Replace("-", string.Empty);
+				control.Title = boWidget.Title;
+				control.Zone = _ZoneName;
 
-				writer.Write("</select>&nbsp;&nbsp;");
-				writer.Write(String.Format("<input type=\"button\" value=\"Add\" onclick=\"CoyoEden.widgetAdmin.addWidget(CoyoEden.$('{0}').value, '{1}')\" />", selectorId, _ZoneName));
-				writer.Write("<div class=\"clear\" id=\"clear\">&nbsp;</div>");
+				if (control.IsEditable)
+					control.ShowTitle = boWidget.ShowTitle.Value;
+				else
+					control.ShowTitle = control.DisplayHeader;
+
+				control.LoadWidget();
+
+				//get widget template
+				var template = (CoyoEden.UI.Views.WidgetLayoutViewM)Page.LoadControl(widgetTemplate);
+				template.WidgetCore = control;
+				template.ViewData = control.BOWidget;
+
+				this.Controls.Add(template);
+			}
+			catch (Exception ex)
+			{
+				Literal lit = new Literal { Text = String.Format("<p style=\"color:red\">Widget {0} not found.<p>", boWidget.Name) };
+				lit.Text += ex.Message;
+				lit.Text += String.Format("<a class=\"delete\" href=\"javascript:void(0)\" onclick=\"CoyoEden.widgetAdmin.removeWidget('{0}');return false\" title=\"{1} widget\">X</a>", boWidget.Id.Value.ToString(), Utils.Translate("delete", "delete"));
+
+				this.Controls.Add(lit);
 			}
 		}
 
