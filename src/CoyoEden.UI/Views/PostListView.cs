@@ -166,12 +166,12 @@ namespace CoyoEden.UI.Views
 			var page = CurrentPage();
 			if (page > 0)
 			{
-				(Page as BlogBasePage).AddGenericLink("next", "Next page", NextPageUrl);
+				(Page as SiteBasePage).AddGenericLink("next", "Next page", NextPageUrl);
 				Page.Title += String.Format(" - Page {0}", (page + 1));
 			};
 			if (HasPreviousPosts)
 			{
-				(Page as BlogBasePage).AddGenericLink("prev", "Previous page", PreviousPageUrl);
+				(Page as SiteBasePage).AddGenericLink("prev", "Previous page", PreviousPageUrl);
 			}
 			base.OnPreRender(e);
 		}

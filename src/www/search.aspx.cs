@@ -15,7 +15,7 @@ using CoyoEden.Core.Infrastructure;
 
 #endregion
 
-public partial class search : CoyoEden.Core.Web.Controls.BlogBasePage
+public partial class search : CoyoEden.UI.SiteBasePage
 {
 
 	private const int PAGE_SIZE = 20;

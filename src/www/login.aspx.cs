@@ -5,10 +5,11 @@ using System.Web.Security;
 using System.Web.UI.WebControls;
 using Vivasky.Core;
 using CoyoEden.Core.Web.Controls;
+using CoyoEden.UI;
 
 #endregion
 
-public partial class login : BlogBasePage
+public partial class login : SiteBasePage
 {
 	/// <summary>
 	/// Handles the Load event of the Page control.

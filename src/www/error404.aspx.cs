@@ -7,8 +7,9 @@ using CoyoEden.Core.Web.Controls;
 using CoyoEden.Core;
 using System.Collections.Generic;
 using CoyoEden.Core.Infrastructure;
+using CoyoEden.UI;
 
-public partial class error404 : BlogBasePage
+public partial class error404 : SiteBasePage
 {
   protected void Page_Load(object sender, EventArgs e)
   {

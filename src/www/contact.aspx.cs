@@ -11,10 +11,11 @@ using CoyoEden.Core.Web.Controls;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 using Vivasky.Core;
+using CoyoEden.UI;
 
 #endregion
 
-public partial class contact : BlogBasePage, ICallbackEventHandler
+public partial class contact : SiteBasePage, ICallbackEventHandler
 {
 
 	private static readonly Regex _Regex = new Regex("<[^>]*>", RegexOptions.Compiled);

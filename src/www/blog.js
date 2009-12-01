@@ -5,7 +5,7 @@ CoyoEden = {
     }
 	,
     webRoot: '',
-    // internationalization (injected into the <head> by BlogBasePage)
+    // internationalization (injected into the <head> by SiteBasePage)
     i18n: {
         hasRated: '',
         savingTheComment: '',

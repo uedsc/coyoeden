@@ -20,6 +20,12 @@ namespace CoyoEden.UI.Views
 				return ViewData.Id.ToString();
 			}
 		}
+		protected string Title {
+			get
+			{
+				return ViewData.Title;
+			}
+		}
 		protected string Name {
 			get
 			{

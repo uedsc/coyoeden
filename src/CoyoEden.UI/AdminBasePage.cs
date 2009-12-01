@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.UI;
 using CoyoEden.Core;
 using Vivasky.Core;
 using CoyoEden.Core.DataContracts;
@@ -12,6 +8,10 @@ namespace CoyoEden.UI
 	public class AdminBasePage : System.Web.UI.Page
 	{
 		private string _Theme = BlogSettings.Instance.ThemeBackfield;
+		/// <summary>
+		/// Body css Class of the page
+		/// </summary>
+		protected string CssClass { get; set; }
 		protected override void OnPreInit(EventArgs e)
 		{
 			if (Request.QueryString["theme"] != null)

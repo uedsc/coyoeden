@@ -11,10 +11,11 @@ using System.Web.UI;
 using Vivasky.Core;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.Core.Web.Controls;
+using CoyoEden.UI;
 
 #endregion
 
-public partial class _default : BlogBasePage
+public partial class _default : SiteBasePage
 {
 	protected void Page_Load(object sender, EventArgs e)
 	{

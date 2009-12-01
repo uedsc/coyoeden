@@ -10,10 +10,12 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using System.Threading;
 using Vivasky.Core;
+using CoyoEden.Core;
+using CoyoEden.Core.Web.Controls;
 
 #endregion
 
-namespace CoyoEden.Core.Web.Controls
+namespace CoyoEden.UI
 {
 	/// <summary>
 	/// All pages in the custom themes as well as pre-defined pages in the root
@@ -24,7 +26,7 @@ namespace CoyoEden.Core.Web.Controls
 	/// derived pages as well as adding RSS, RSD, tracking script
 	/// and a whole lot more.
 	/// </remarks>
-	public abstract class BlogBasePage : System.Web.UI.Page
+	public abstract class SiteBasePage : System.Web.UI.Page
 	{
 
 		private string _Theme = BlogSettings.Instance.Theme;
@@ -105,6 +107,9 @@ namespace CoyoEden.Core.Web.Controls
 
 			if (BlogSettings.Instance.RemoveWhitespaceInStyleSheets)
 				CompressCss();
+
+			
+
 		}
 
 		/// <summary>
@@ -120,7 +125,6 @@ namespace CoyoEden.Core.Web.Controls
 				Page.Title = (String.Format("{0} | {1}", BlogSettings.Instance.Name, Page.Title));
 			}
 		}
-
 		/// <summary>
 		/// Adds the localization keys to JavaScript for use globally.
 		/// </summary>
@@ -362,6 +366,11 @@ namespace CoyoEden.Core.Web.Controls
 				base.Render(new RewriteFormHtmlTextWriter(writer));
 			//}
 		}
-
+		protected bool UserIsAdmin {
+			get
+			{
+				return Page.User.IsInRole(BlogSettings.Instance.AdministratorRole);
+			}
+		}
 	}
 }

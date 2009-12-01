@@ -13,7 +13,7 @@ using CoyoEden.Core.Infrastructure;
 
 #endregion
 
-public partial class post : CoyoEden.Core.Web.Controls.BlogBasePage
+public partial class post : CoyoEden.UI.SiteBasePage
 {
 	protected void Page_Init(object sender, EventArgs e)
 	{

@@ -14,7 +14,7 @@ using CoyoEden.Core.Infrastructure;
 
 #endregion
 
-public partial class page : CoyoEden.Core.Web.Controls.BlogBasePage
+public partial class page : CoyoEden.UI.SiteBasePage
 {
 	/// <summary>
 	/// Handles the Load event of the Page control.

@@ -194,9 +194,6 @@
       <DependentUpon>UserTag.cs</DependentUpon>
     </Compile>
     <Compile Include="Web\AppConfig.cs" />
-    <Compile Include="Web\Controls\BlogBasePage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Web\Controls\CommentViewBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

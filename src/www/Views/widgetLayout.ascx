@@ -8,7 +8,7 @@
 	<%} %>
 	<%if (ShowTitle)
    { %>
-		<h3 class="title">%Title%</h3>
+		<h3 class="title"><%=Title%></h3>
 	<%} %>
 	<%if (Deletable)
    { %>

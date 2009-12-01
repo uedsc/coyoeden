@@ -11,7 +11,7 @@ using Vivasky.Core;
 
 #endregion
 
-public partial class archive : CoyoEden.Core.Web.Controls.BlogBasePage
+public partial class archive : CoyoEden.UI.SiteBasePage
 {
 	/// <summary>
 	/// Handles the Load event of the Page control.

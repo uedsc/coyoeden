@@ -6,8 +6,9 @@ using System.Web.UI.HtmlControls;
 using CoyoEden.Core.Web.Controls;
 using CoyoEden.Core;
 using System.Collections.Generic;
+using CoyoEden.UI;
 
-public partial class error_occurred : BlogBasePage
+public partial class error_occurred : SiteBasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
