@@ -10,6 +10,9 @@ using Vivasky.Core;
 
 namespace CoyoEden.Core
 {
+	/// <summary>
+	/// extensive property which has multiple value options.
+	/// </summary>
     public partial class XProperty
     {
 		private static readonly object _synHelper = new object();

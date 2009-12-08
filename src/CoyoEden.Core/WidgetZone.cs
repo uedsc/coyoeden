@@ -8,6 +8,7 @@ using Vivasky.Core.Services;
 using System.Collections.Generic;
 using System.Linq;
 using Vivasky.Core.Infrastructure;
+using CoyoEden.Core.DataContracts;
 namespace CoyoEden.Core
 {   
     public partial class WidgetZone:ICacheable
@@ -67,6 +68,9 @@ namespace CoyoEden.Core
 				data.Save();
 			}
 			return data;
+		}
+		public static void Sort(WidgetSortingData sortData, out BOMessager msg) {
+			msg = new BOMessager();
 		}
 		#endregion
 

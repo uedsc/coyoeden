@@ -539,3 +539,29 @@ Login failed for user 'sa'.
 2009-12-01 17:05:09,179 [9] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
 2009-12-01 17:05:09,195 [9] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.28041 starting
 2009-12-01 17:05:09,195 [9] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-12-08 10:37:24,039 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-12-08 10:37:24,055 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.28041 starting
+2009-12-08 10:37:24,055 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-12-08 12:20:22,422 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-12-08 12:20:22,454 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.22193 starting
+2009-12-08 12:20:22,454 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-12-08 12:27:28,624 [8] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-12-08 12:27:28,639 [8] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.22397 starting
+2009-12-08 12:27:28,639 [8] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-12-08 14:49:22,240 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-12-08 14:49:22,427 [4] DEBUG HabaneroApp [(null)] - CoyoEdenv1.0.0.22397 starting
+2009-12-08 14:49:22,427 [4] DEBUG HabaneroApp [(null)] - ---------------------------------------------------------------------
+2009-12-08 14:49:25,255 [8] ERROR Habanero.DB.DatabaseConnection [(null)] - Error opening connection to db : InvalidOperationException
+        System.InvalidOperationException: Invalid operation. The connection is closed.
+           at System.Data.SqlClient.SqlConnection.GetOpenConnection()
+   at System.Data.SqlClient.SqlConnection.get_Parser()
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+2009-12-08 14:49:25,255 [8] ERROR Habanero.DB.DatabaseConnection [(null)] - Error reading from database : 
+          System.InvalidOperationException: Invalid operation. The connection is closed.
+             at System.Data.SqlClient.SqlConnection.GetOpenConnection()
+   at System.Data.SqlClient.SqlConnection.get_Parser()
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Habanero.DB.DatabaseConnection.GetOpenConnectionForReading()
+   at Habanero.DB.DatabaseConnection.LoadDataReader(ISqlStatement selectSql)
+2009-12-08 14:49:25,255 [8] ERROR Habanero.DB.DatabaseConnection [(null)] - Sql: Raw statement: SELECT [cy_Pages].[Id], [cy_Pages].[Title], [cy_Pages].[Description], [cy_Pages].[Content], [cy_Pages].[Keywords], [cy_Pages].[DateCreated], [cy_Pages].[DateModified], [cy_Pages].[IsPublished], [cy_Pages].[IsFrontPage], [cy_Pages].[ShowInList], [cy_Pages].[ParentID], [cy_Pages].[Slug] FROM [cy_Pages] WHERE [cy_Pages].[IsFrontPage] = @Param0   , Parameter values: 1, 

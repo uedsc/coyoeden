@@ -9,5 +9,12 @@ namespace CoyoEden.UI
 	public class SiteMaster:Vivasky.Core.Web.SiteMaster
 	{
 		public string CssClass { get; set; }
+		protected bool UserIsAdmin
+		{
+			get
+			{
+				return Page.User.IsInRole(BlogSettings.Instance.AdministratorRole);
+			}
+		}
 	}
 }

@@ -11,4 +11,6 @@ $(document).ready(function() {
 	$("#toggle a").click(function() {
 		$("#toggle a").toggle(); return false;
 	});
+	//tabs
+	$("ul#topTabs").tabs("div#toppanelBody > div.tab_p");
 });

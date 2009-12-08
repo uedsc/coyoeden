@@ -35,8 +35,7 @@ namespace CoyoEden.UI.Views
 		protected string Color {
 			get
 			{
-				var color= ViewData.ExtConfigs["WidgetColor"];
-				color = string.IsNullOrEmpty(color) ? null : color ;
+				var color = ViewData.Color;
 				return color;
 			}
 		}
@@ -55,13 +54,13 @@ namespace CoyoEden.UI.Views
 		protected bool Deletable {
 			get
 			{
-				return ViewData.Deletable.Value;
+				return ViewData.Deletable.Value&&UserIsAdmin;
 			}
 		}
 		protected bool Editable {
 			get
 			{
-				return ViewData.Editable.Value;
+				return ViewData.Editable.Value&&UserIsAdmin;
 			}
 		}
 		protected bool ShowTitle {

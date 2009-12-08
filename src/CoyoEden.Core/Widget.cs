@@ -26,17 +26,12 @@ namespace CoyoEden.Core
 				}
 			};
 			//default color xproperty
-			var colorProperty = XProperty.GetXProperty("WidgetColor");
-			if (colorProperty != null&&colorProperty.XPropertySettings.Count>0)
-			{
-				var colorIndex = new Random().Next(colorProperty.XPropertySettings.Count);
-				AddExtConfig("WidgetColor", colorProperty.XPropertySettings[colorIndex].SettingValue);
-			}
+			AddExtConfig(EXTCFG_COLOR, GetRandomColor());
 		}
 		#endregion
 
 		public const string PREFIX_CACHEID = "cy_widget_";
-
+		public const string EXTCFG_COLOR = "WidgetColor";
 		#region biz methods
 		/// <summary>
 		/// Use this method to add extension config
@@ -64,7 +59,21 @@ namespace CoyoEden.Core
 				return XmlUtil.Deserialize<SerializableStringDictionary>(ExtConfig);
 			}
 		}
-
+		public string Color {
+			get
+			{
+				var retVal = "null";
+				if (ExtConfigs.ContainsKey(EXTCFG_COLOR))
+				{
+					retVal = ExtConfigs[EXTCFG_COLOR];
+				}
+				else {
+					retVal = GetRandomColor();
+					ExtConfigs.Add(EXTCFG_COLOR, retVal);
+				}
+				return retVal;
+			}
+		}
 		#endregion
 
 
@@ -116,6 +125,32 @@ namespace CoyoEden.Core
 		/// <returns></returns>
 		public static Widget Find(Guid id) {
 			return AllWidgets.SingleOrDefault(x => x.Id.Value.Equals(id));
+		}
+
+		private static XProperty _XColor;
+		/// <summary>
+		/// get the WidgetColor XProperty
+		/// </summary>
+		public static XProperty XColor {
+			get
+			{
+				if (_XColor == null) {
+					_XColor = XProperty.GetXProperty(EXTCFG_COLOR);
+				}
+				return _XColor;
+			}
+		}
+		/// <summary>
+		/// Get a random color for the widget
+		/// </summary>
+		/// <returns></returns>
+		public static string GetRandomColor() {
+			var retVal = "null";
+			if (XColor != null && XColor.XPropertySettings.Count > 0) {
+				var colorIndex = new Random().Next(XColor.XPropertySettings.Count);
+				retVal = XColor.XPropertySettings[colorIndex].SettingValue;
+			}
+			return retVal;
 		}
 		#endregion
 	}

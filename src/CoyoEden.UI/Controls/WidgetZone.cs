@@ -76,7 +76,7 @@ namespace CoyoEden.UI.Controls
 		protected override void Render(System.Web.UI.HtmlTextWriter writer)
 		{
 			var adminClass = Thread.CurrentPrincipal.IsInRole("admin") ? " wzone_admin" : "";//TODO:
-			writer.Write(string.Format("<{0} id=\"widgetzone_{1}\" class=\"widgetzone{2}\">", HtmlTag, Name, adminClass));
+			writer.Write(string.Format("<{0} id=\"{1}\" class=\"widgetzone{2}\">", HtmlTag, Name, adminClass));
 
 			base.Render(writer);
 

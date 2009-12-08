@@ -98,5 +98,12 @@ namespace CoyoEden.UI.Views
 				return QStringData.New(data);
 			}
 		}
+		protected bool UserIsAdmin
+		{
+			get
+			{
+				return Page.User.IsInRole(BlogSettings.Instance.AdministratorRole);
+			}
+		}
 	}
 }

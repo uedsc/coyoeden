@@ -165,7 +165,6 @@ img {
 
 }
 #widgetZones .widget .widget-head a.edit  {
-    background: url(img/wg_buttons.gif) no-repeat;
     width: 24px;
     margin: 8px 4px 8px 4px;
 }
@@ -174,6 +173,7 @@ img {
     background-position:-52px 0;
     width: 14px;
     margin: 8px 0 8px 4px;
+    float:left;
 }
 #widgetZones .widget .widget-content {
     background: #333 url(img/widget-content-bg.png) repeat-x;
@@ -219,7 +219,7 @@ img {
     float: left;
     margin: 0 0 7px 7px;
 }
-
+#widgetZones .widget-placeholder { border: 2px dashed pink;margin: 0px 0px 30px 8px;}
 /* End Columns section */
 div.widgetzone .clear{
 	clear: left;
