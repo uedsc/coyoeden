@@ -78,7 +78,7 @@
 		p.opts = options;
 		// Go through the matched elements and return the jQuery object.
 		p.items = this;
-		p.items_m = items.filter(p.opts.css_m);
+		p.items_m = p.items.filter(p.opts.css_m);
 		p.zones = $(p.opts.zone);
 		//make sortable
 		p.makeSortable();

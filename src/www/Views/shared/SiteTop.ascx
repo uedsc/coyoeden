@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="CoyoEden.UI.Views.SiteTop"%>
+<%@ Import Namespace="Vivasky.Core" %>
 <!--TODO:Css sprite on SiteTop-->
 <div id="toppanelC">
 	<div id="toppanel">
@@ -32,7 +33,7 @@
 	<div class="tab clearfix">
 		<ul class="login">
 	    	<li class="left"> </li>
-	    	<li><%=UserName??"Hello guest" %></li>
+	    	<li id="cur_user"><%=UserName??"Hello guest" %></li>
 			<li class="sep">|</li>
 			<li id="toggle">
 				<a href="#" class="open" id="open">Open Panel</a>
