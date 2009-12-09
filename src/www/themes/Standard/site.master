@@ -74,26 +74,27 @@
 			<h2 id="f_group">
 				<a title="小组" href="<%=Utils.RelativeWebRoot %>groups.aspx" class=""><span>小组</span></a>
 			</h2>
-			<ul id="profile" class="profile_log clearfix">
-				<li class="nickname">
-					<a href="<%=Utils.RelativeWebRoot %>profile.aspx?u=<%=UserData.UserName%>" title="<%=UserData.UserName%>">
-						<img width="16" height="16" alt="<%=UserData.UserName%>" src="<%=UserData.Avatar %>" />
-					</a>
-					<a href="<%=Utils.RelativeWebRoot %>profile.aspx?u=<%=UserData.UserName%>" title="<%=UserData.UserName%>"><strong><%=UserData.UserName%></strong></a>
-				</li>
-				<li class="pmicon "><a title="<%=UserData.MessageCount %>条站内信" href="<%=Utils.RelativeWebRoot %>admin/users/message.aspx">
-					<%=UserData.MessageCount %></a></li>
-				<li class="narrow">|</li>
-				<li class="setting"><a title="设置" href="<%=Utils.RelativeWebRoot %>admin/users/profile.aspx">
-					设置</a></li>
-				<li class="narrow">|</li>
-				<li class="account"><a title="我的帐户" href="<%=Utils.RelativeWebRoot %>admin/users/account.aspx">
-					帐户<span>(<%=UserData.Points %>)</span></a></li>
-				<li class="narrow">|</li>
-				<li class="exit">
-				<vs:logonStatus ID="logonStatus1" runat="server" />
-				</li>
-			</ul>
+			<div id="u_navigate">
+				<ul class="navi_user user_log clearfix">
+					<li class="nickname">
+						<a class="avatar" href="<%=Utils.RelativeWebRoot %>profile.aspx?u=<%=UserData.UserName%>" title="<%=UserData.UserName%>">
+							<img width="16" height="16" alt="<%=UserData.UserName%>" src="<%=UserData.Avatar %>" />
+						</a>
+						<a href="<%=Utils.RelativeWebRoot %>profile.aspx?u=<%=UserData.UserName%>" title="<%=UserData.UserName%>"><strong><%=UserData.UserName%></strong></a>
+					</li>
+					<%if (Page.User.Identity.IsAuthenticated)
+					{ %>
+					<li><a class="lineB" title="个人设置" href="<%=Utils.RelativeWebRoot %>admin/users/profile.aspx">设置</a></li>
+					<li><a title="我的帐户" href="<%=Utils.RelativeWebRoot %>admin/users/account.aspx" class="lineB">帐户<span>(<%=UserData.Points%>)</span></a></li>
+					<li class="pmicon">
+						<a class="lineB" title="<%=UserData.MessageCount %>条消息" href="<%=Utils.RelativeWebRoot %>admin/users/message.aspx">
+							<span><%=UserData.MessageCount%></span>
+						</a>
+					</li>
+					<%} %>
+					<li class="lineB exit"><vs:logonStatus ID="logonStatus1" runat="server" /></li>
+				</ul>
+			</div>
 		</div>
 		<ul class="navi_sec inner_idx clearfix">
 			<!--Second navi-->
