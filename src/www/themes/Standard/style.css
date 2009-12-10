@@ -1117,15 +1117,15 @@ overflow:hidden;
 width:0;
 }
 /*header*/
-#header-inner{position:relative;z-index:50;margin-top:35px;}
-#header-inner #logo{ width:160px; height:60px;}
-#header-inner #logo a{ display:block; overflow:hidden; width:160px; height:60px;background:url(img/logo.gif) 0 0 no-repeat; text-indent:-9999em; _position:relative; _z-index:65;}
+#header{position:relative;z-index:50;margin-top:35px;}
+#header #logo{ width:160px; height:60px;}
+#header #logo a{ display:block; overflow:hidden; width:160px; height:60px;background:url(img/logo.gif) 0 0 no-repeat; text-indent:-9999em; _position:relative; _z-index:65;}
 /*#header-#global_search*/
 #fav_search{ position:absolute; top:0; right:0; text-align:right; height:60px;}
-#header-inner #global_search{ position:relative; z-index:70; float:right; margin:8px 0 0 0;right:0;top:25px;}
-#header-inner #global_search input.g_txt{ background:url(img/bg_sprit2.gif) 0 -665px no-repeat; width:200px; height:26px; line-height:26px;  border:0; float:left; _display:inline; font-size:12px; padding-left:10px;}
+#header #global_search{ position:relative; z-index:70; float:right; margin:8px 0 0 0;right:0;top:25px;}
+#header #global_search input.g_txt{ background:url(img/bg_sprit2.gif) 0 -665px no-repeat; width:200px; height:26px; line-height:26px;  border:0; float:left; _display:inline; font-size:12px; padding-left:10px;}
 form#globalsearch{ width:262px;}
-@-moz-document url-prefix(){#header-inner #global_search input.g_txt{ line-height:normal; padding-top:6px;}}
+@-moz-document url-prefix(){#header #global_search input.g_txt{ line-height:normal; padding-top:6px;}}
 #globalsearch-go{ background:url(img/gsearch_button.gif) 0 0 no-repeat; width:31px; height:25px; border:0; float:left;_display:inline;}
 #p-header #global_search .typing{ background-position:0 100%;}
 #global_search span.search_menu{ position:relative; float:left;}
@@ -1136,7 +1136,7 @@ form#globalsearch{ width:262px;}
 #global_search #search_menu_drop a{ color:#36c; display:block; font-size:12px; text-align:left; display:block; line-height:1.5; padding:2px 0 2px 5px; }
 #global_search #search_menu_drop a:hover{ background:#36c; color:#fff; }
 /* navigate */
-#navigate #navigate-inner{ background:url(img/navi_mbg.png) 0 0 repeat-x; height:72px;}
+#navigate{ background:url(img/navi_mbg.png) 0 0 repeat-x; height:72px;}
 
 * html #navigate{overflow:hidden;background:url(img/navi_mbg.gif) 0 0 repeat-x; height:72px;}
 
@@ -1189,3 +1189,20 @@ form#globalsearch{ width:262px;}
     #u_navigate li.pmicon a{background:url(img/letter.gif) 0 0px no-repeat;}
 	#u_navigate li.noticeicon a{ background:url(img/notice.gif) 0 0 no-repeat; }
 }
+/*channel_tab*/
+#channel_tab{ padding:15px 0 ; position:relative; min-height:20px;_height:20px;*zoom:1;}
+#channel_tab ul li{ float:left; margin-right:8px;}
+#channel_tab ul li a{ color:#fff; text-decoration:none;  background:url(img/c_tabs.gif) 0 -20px no-repeat; float:left;padding-left:8px; cursor:pointer; }
+#channel_tab ul li a span{  font-size:12px; background:url(img/c_tabs.gif) 100% -20px no-repeat; float:left; height:20px; overflow:hidden; line-height:21px; padding-right:8px; font-weight:bold;}
+#channel_tab ul li a.tab_cur,#channel_tab ul li a:hover{ color:#fff; text-decoration:none;  background:url(img/c_tabs.gif) 0 0 no-repeat; float:left;padding-left:8px; cursor:pointer; }
+#channel_tab ul li a.tab_cur span,#channel_tab ul li a:hover span{  font-size:12px; background:url(img/c_tabs.gif) 100% 0 no-repeat; float:left; height:20px; overflow:hidden; line-height:21px; padding-right:8px; font-weight:bold;}
+/*#main*/
+#m6_left{ float:left; width:670px; }
+#m6_right{ float:right; width:265px;}
+/*#footer*/
+#footer{ margin:100px auto 0 auto;}
+.footer_dl{display:block; background:#f8f8f8; border-top:1px #e6e6e6 solid; width:940px; padding:15px 10px 10px 10px; }
+.footer_dl dl{ display:block; float:left; display:inline;  font-size:12px; border-right:1px #ececec solid; padding:0 20px; margin-right:10px; width:182px; height:160px;  }
+.footer_dl dl dt{ font-weight:bold; color:#333; line-height:2;}
+.footer_dl dl dd a{ color:#777; line-height:1.8;}
+.footer_dl dl dd a:hover{ color:#36c;}

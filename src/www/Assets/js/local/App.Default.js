@@ -20,12 +20,13 @@ var App = function() {
 	};
 	p.onPageOk = function() {
 		p.loading(0);
-		$("#widgetZones .widget").xwidget({onSort:p.onWidgetSort});
+		$("#widgetZones .widget").xwidget({ onSort: p.onWidgetSort });
 	};
 
 	//public
 	var pub = {};
 	pub.Init = function(opts) {
+		p.opts = opts;
 		$(document).ready(p.onPageOk);
 	};
 	return pub;

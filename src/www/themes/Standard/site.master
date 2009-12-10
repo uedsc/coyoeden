@@ -21,10 +21,9 @@
   <vs:siteTop ID="xxxxx" runat="server" Tag="Normal" />
   <%} %>
   <!--#header-->
-  <div id="header">
-	<div id="header-inner" class="wrap960 clearfix">
-		<div id="logo"><a title="<%=BlogSettings.Instance.Description %>" href="/"><%=BlogSettings.Instance.Name %></a></div>
-		<div id="fav_search">
+  <div id="header" class="wrap960 clearfix">
+	<div id="logo"><a title="<%=BlogSettings.Instance.Description %>" href="/"><%=BlogSettings.Instance.Name %></a></div>
+	<div id="fav_search">
 		<div id="global_search">
 			<form onsubmit="App.OnSearch()" method="get" action="<%=Utils.RelativeWebRoot %>search.aspx"
 			id="globalsearch">
@@ -50,11 +49,9 @@
 			</form>
 		</div>
 	</div>
-	</div>
   </div>
   <!--#navigation-->
-	<div id="navigate">
-		<div id="navigate-inner" class="wrap960">
+	<div id="navigate" class="wrap960">
 		<div class="navi_main clearfix">
 			<h2 id="f_index">
 				<a class="m_cur" title="<%=Resources.labels.home %>" href="<%=Utils.RelativeWebRoot %>">
@@ -99,44 +96,39 @@
 		<ul class="navi_sec inner_idx clearfix">
 			<!--Second navi-->
 		</ul>
-		</div>
 	</div>
-  <form runat="Server" class="body">
-    <div id="widgetZones" class="container_12 clearfix">
-		<div id="widgetzone_LeftZone" class="widgetzone widgetzone_2col_left">
-			<blog:SearchOnSearch ID="SearchOnSearch1" runat="server" MaxResults="3" Headline="You searched for" Text="Here are some results for the search term on this website" />
-			<asp:ContentPlaceHolder ID="cphBody" runat="server" />
-		</div>
-
-		<div id="widgetzone_RightZone" class="widgetzone widgetzone_2col_right">
-		  <blog:WidgetZone ID="WidgetZone1" runat="server" Name="cy_WidgetZone0" />
-		</div>
-    </div>
-	<vs:SiteJScript ID="jquery" ScriptRelativeToRoot="Assets/js/jquery/jquery-1.3.2.min.js" runat="server"/>
-	<vs:SiteJScript ID="jquery_tools" ScriptRelativeToRoot="Assets/js/jquery/jquery.tools.min.js" runat="server"/>
-	<vs:SiteJScript ID="jquery_json" ScriptRelativeToRoot="Assets/js/jquery/jquery.json-1.3.min.js" runat="server"/>
-	<vs:SiteJScript ID="jquery_jqModal" ScriptRelativeToRoot="Assets/js/jquery/jqModal.js" runat="server"/>
-	<vs:SiteJScript ID="vivasky_com" ScriptRelativeToRoot="Assets/js/Vivasky.com.js" runat="server"/>
-	<vs:SiteJScript ID="jqueryUI" runat="server" ScriptRelativeToRoot="Assets/js/jquery/jquery-ui-1.7.2.custom.min.js" />
-	<vs:SiteJScript ID="js_appHome" ScriptRelativeToRoot="Assets/js/local/app.default.js" runat="server"/>
-	<vs:SiteJScript ID="js_widgets" runat="server" ScriptRelativeToRoot="Assets/js/utils.widget.js" />
-	<%if (UserIsAdmin)
-   { %>
-	<vs:SiteJScript ID="siteTop" runat="server" ScriptRelativeToRoot="Assets/js/Vivasky.TopSlider.js" />
-	<%} %>
-	<script type="text/javascript">
-	//<![CDATA[
-		var WebRoot = '<%=Utils.AbsoluteWebRoot.ToString() %>>';
-		App.Init({
-			webRoot:WebRoot,
-			admin:'<%=UserIsAdmin?1:0 %>'
-		});
-	//]]>
-	</script>
-  </form>
-  <p id="footer" class="container_12">
+	<div id="channel_tab" class="wrap960"></div>
+	<div id="main" class="clearfix">
+		<form id="Form1" runat="Server" class="body">
+			<asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+			<!--site scripts-->
+			<vs:SiteJScript ID="jquery" ScriptRelativeToRoot="Assets/js/jquery/jquery-1.3.2.min.js" runat="server"/>
+			<vs:SiteJScript ID="jquery_tools" ScriptRelativeToRoot="Assets/js/jquery/jquery.tools.min.js" runat="server"/>
+			<vs:SiteJScript ID="jquery_json" ScriptRelativeToRoot="Assets/js/jquery/jquery.json-1.3.min.js" runat="server"/>
+			<vs:SiteJScript ID="jquery_jqModal" ScriptRelativeToRoot="Assets/js/jquery/jqModal.js" runat="server"/>
+			<vs:SiteJScript ID="vivasky_com" ScriptRelativeToRoot="Assets/js/Vivasky.com.js" runat="server"/>
+			<vs:SiteJScript ID="jqueryUI" runat="server" ScriptRelativeToRoot="Assets/js/jquery/jquery-ui-1.7.2.custom.min.js" />
+			<vs:SiteJScript ID="js_appHome" ScriptRelativeToRoot="Assets/js/local/app.default.js" runat="server"/>
+			<vs:SiteJScript ID="js_widgets" runat="server" ScriptRelativeToRoot="Assets/js/utils.widget.js" />
+			<%if (UserIsAdmin)
+		   { %>
+			<vs:SiteJScript ID="siteTop" runat="server" ScriptRelativeToRoot="Assets/js/Vivasky.TopSlider.js" />
+			<%} %>
+			<script type="text/javascript">
+				//<![CDATA[
+				var WebRoot = '<%=Utils.AbsoluteWebRoot.ToString() %>>';
+				App.Init({
+					webRoot: WebRoot,
+					admin: '<%=UserIsAdmin?1:0 %>'
+				});
+				//]]>
+			</script>
+			<!--/site scripts-->
+		</form>
+	</div>
+  <div id="footer" class="wrap960">
         Powered by <a href="http://www.vivasky.com">CoyoEden.NET</a> <%=BlogSettings.Instance.Version() %><br />
         Theme by <a href="http://www.lizishop.cn">LiziShop</a>
-  </p>
+  </div>
 </body>
 </html>

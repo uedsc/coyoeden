@@ -5,17 +5,22 @@
 <% this.Master.CssClass = UserIsAdmin?"admin home":"home"; %>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphBody"  Runat="Server">
-  <div id="divError" runat="Server" />
-  <uc1:PostList ID="PostList1" runat="server" />
-  <blog:PostCalendar runat="server" ID="calendar" 
-    EnableViewState="false"
-    ShowPostTitles="true" 
-    BorderWidth="0"
-    NextPrevStyle-CssClass="header"
-    CssClass="calendar" 
-    WeekendDayStyle-CssClass="weekend" 
-    OtherMonthDayStyle-CssClass="other" 
-    UseAccessibleHeader="true" 
-    Visible="false" 
-    Width="100%" />    
+	<div id="m6_left">
+		<div id="divError" runat="Server" />
+		<uc1:PostList ID="PostList1" runat="server" />
+		<blog:PostCalendar runat="server" ID="calendar" 
+		EnableViewState="false"
+		ShowPostTitles="true" 
+		BorderWidth="0"
+		NextPrevStyle-CssClass="header"
+		CssClass="calendar" 
+		WeekendDayStyle-CssClass="weekend" 
+		OtherMonthDayStyle-CssClass="other" 
+		UseAccessibleHeader="true" 
+		Visible="false" 
+		Width="100%" /> 
+	</div>
+	<div id="m6_right">
+		 <blog:WidgetZone ID="WidgetZone1" runat="server" Name="cy_WidgetZone0" />
+	</div>   
 </asp:Content>
