@@ -279,6 +279,13 @@ namespace CoyoEden.Core
 					_Posts[i].Previous = _Posts[i + 1];
 			}
 		}
+		//TODO:Put these properties into physical table
+		public bool IsHeadline {
+			get
+			{
+				return Title.IndexOf("headline",StringComparison.OrdinalIgnoreCase)>=0;
+			}
+		}
 
 		#endregion
 
@@ -539,6 +546,16 @@ namespace CoyoEden.Core
 			var tempInt=0;
 			var items = Broker.GetBusinessObjectCollection<Post>(criteriaStr, "", 0, count, out tempInt);
 			return items;
+		}
+		public static List<Post> GetPosts(bool isHeadline,int count,out int total) {
+			total = 0;
+			var retVal = default(List<Post>);
+			var criteriaStr = "1=1";
+			if (isHeadline) {
+				criteriaStr += " and IsHeadline=1";
+			}
+			retVal = Broker.GetBusinessObjectCollection<Post>(criteriaStr, " DateCreated Desc", 0, count, out total);
+			return retVal;
 		}
 		/// <summary>
 		/// Returns all posts in the specified category

@@ -6,6 +6,10 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphBody"  Runat="Server">
 	<div id="m6_left">
+		<div class="headlines">
+			<h3>本期主题精选集</h3>
+			<!--TODO:headline view-->
+		</div>
 		<div id="divError" runat="Server" />
 		<uc1:PostList ID="PostList1" runat="server" />
 		<blog:PostCalendar runat="server" ID="calendar" 

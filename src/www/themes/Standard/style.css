@@ -1198,6 +1198,9 @@ form#globalsearch{ width:262px;}
 #channel_tab ul li a.tab_cur span,#channel_tab ul li a:hover span{  font-size:12px; background:url(img/c_tabs.gif) 100% 0 no-repeat; float:left; height:20px; overflow:hidden; line-height:21px; padding-right:8px; font-weight:bold;}
 /*#main*/
 #m6_left{ float:left; width:670px; }
+/*#main .headlines*/
+div.headlines{}
+
 #m6_right{ float:right; width:265px;}
 /*#footer*/
 #footer{ margin:100px auto 0 auto;}
