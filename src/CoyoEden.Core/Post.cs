@@ -547,8 +547,20 @@ namespace CoyoEden.Core
 			var items = Broker.GetBusinessObjectCollection<Post>(criteriaStr, "", 0, count, out tempInt);
 			return items;
 		}
+		/// <summary>
+		/// TODO:Get headline posts
+		/// </summary>
+		/// <param name="isHeadline"></param>
+		/// <param name="count"></param>
+		/// <param name="total"></param>
+		/// <returns></returns>
 		public static List<Post> GetPosts(bool isHeadline,int count,out int total) {
 			total = 0;
+			//for test
+			if (Utils.IsDebug)
+			{
+				return Posts.ToList();
+			}
 			var retVal = default(List<Post>);
 			var criteriaStr = "1=1";
 			if (isHeadline) {
