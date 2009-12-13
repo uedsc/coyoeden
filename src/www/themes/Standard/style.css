@@ -294,77 +294,34 @@ div.widget a.delete:hover{
 	border: none;
 	margin-right: 3px;
 }
-
-/*----------------------------
-					 Posts
-----------------------------*/
-
-div.post, .mceContentBody {
-	border: 1px solid silver;
-	padding: 3px 10px;
-	margin-bottom: 20px;
-	background-color: white;
-	line-height: 125%;
-}
-
-div.post h1, .mceContentBody h1 {
-	margin: 5px 0 0 0;
-}
-
-div.post .author {
-	color: #666666;
-	font-size: 95%;
-	float: left;
-	text-transform: capitalize;
-}
-
-div.post .pubDate {
-	color: #666666;
-	font-size: 95%;
-	float: right;
-}
-
-div.post .text {
-	margin-top: 30px;
-}
-
-div.post .text h2 {
-	margin-bottom: -10px;
-}
-
-div.post .text h3 {
-	font-size: 11px;
-	margin-bottom: -10px;
-	padding: 0;
-}
-
-div.post .footer {
+/*itemview-for post or excerpt*/
+div.itemview .footer {
 	text-align: right;
 	border-top: 1px dashed silver;
 	padding-top: 4px;
 	padding-bottom: 2px;
 }
 
-div.post .bottom {
-	margin-bottom: 45px;
+div.itemview .bottom{
+	margin-bottom: 20px;
 }
 
-div.post .categories {
+div.itemview .categories{
 	margin-bottom: 5px;
 	float: right;
 }
 
-div.post .tags {
+div.itemview .tags {
 	float: left;
 	margin-bottom: 5px;
 }
 
-div.post .text a[href^="http:"] {
+div.itemview .text a[href^="http:"] {
 	background: url(../../pics/remote.gif) right top no-repeat;
 	padding-right: 10px;
   white-space: nowrap;
 }
-
+div.itemview a.icon img{ float:left; margin-right:10px; margin-bottom:5px;}
 /*----------------------------
 			Related Posts
 ----------------------------*/
@@ -808,7 +765,7 @@ ul#monthList ul.open{
 ----------------------------*/
 
 .rating{
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 
 .rating p{
@@ -1108,6 +1065,24 @@ div.post .text a[rel~="sweetheart"][rel~="met"] {
 /*global.css*/
 #web_loading{ position:fixed; _position:absolute; z-index:60; background:#f00; color:#fff; font-size:12px; font-weight:bold; padding:3px; width:60px; right:0; top:0;}
 .wrap960{margin:0 auto;width:960px;}
+.common_sec{background:url(img/bg_sprit2.gif) 0 -1358px repeat-x #fff;  border-top:1px #ddd solid;}
+.common_sec2{background:url(img/bg_sprit2.gif) 0 -1358px repeat-x #fff;  border-top:1px #c7c7c7 solid;}
+.yellow_sec{background:url(img/bg_sprit2.gif) 0 -1358px repeat-x #fff;  border-top:1px #f60 solid;}
+.green_sec{background:url(img/bg_sprit2.gif) 0 -1358px repeat-x #fff;  border-top:1px #090 solid;}
+/*Btitle*/
+h3.Btitle{font-size:14px; height:30px; line-height:30px; }
+h3.Btitle a{ font-size:0.9em; font-weight:normal; color:#36c; text-decoration:none; padding-left:15px;}
+h3.Btitle a:hover{ text-decoration:underline;}
+h3.filter_title span{ color:#999; font-weight:normal; font-size:12px; padding-left:5px;}
+* html h3.Btitle a{ font-size:0.8em;}
+*+html h3.Btitle a{ font-size:0.8em;}
+h3.Btitle span.time{ font-size:12px; color:#999; font-weight:normal; padding-left:15px;}
+h3.Dtitle{ font-size:12px; height:24px; line-height:24px;}
+h3.Dtitle span{ color:#999; font-weight:normal; padding-left:2px;}
+span.x_more,span.y_more{ position:absolute; top:5px; *top:0; right:5px;}
+span.x_more a{ font-size:12px; color:#7e7e7e; background:url(img/icons.gif) right -128px no-repeat; *background:url(img/icons.gif) right -130px no-repeat; padding-right:12px;}
+span.y_more a{ font-size:12px; color:#36c; font-weight:bold; background:url(img/icons.gif) right -128px no-repeat; *background:url(img/icons.gif) right -130px no-repeat; padding-right:12px;}
+
 /*site first h1,for the sake of SEO*/
 div#vivasky_content h1
 {
@@ -1197,14 +1172,58 @@ form#globalsearch{ width:262px;}
 #channel_tab ul li a.tab_cur,#channel_tab ul li a:hover{ color:#fff; text-decoration:none;  background:url(img/c_tabs.gif) 0 0 no-repeat; float:left;padding-left:8px; cursor:pointer; }
 #channel_tab ul li a.tab_cur span,#channel_tab ul li a:hover span{  font-size:12px; background:url(img/c_tabs.gif) 100% 0 no-repeat; float:left; height:20px; overflow:hidden; line-height:21px; padding-right:8px; font-weight:bold;}
 /*#main*/
+#main{text-align:left;}
 #m6_left{ float:left; width:670px; }
 /*#main .headlines*/
-div.headlines{ background:#f6f6f6; border-bottom:1px solid #d9d9d9; border-top:1px solid #d9d9d9; padding:10px;}
-div.headlines h3{ font-size:14px; padding-bottom:5px;}
-.excerpt{background:#fff; border:1px solid #f0f0f0; padding:10px 10px 15px 10px; font-size:12px; color:#999;} 
-.excerpt .intro{ color:#666; line-height:20px; margin-bottom:5px;}
-.excerpt .intro h4{ font-size:14px; padding-bottom:5px;}
-.excerpt .intro img{ float:left; margin-right:10px; margin-bottom:5px;}
+#headlines{ background:#f6f6f6; border-bottom:1px solid #d9d9d9; border-top:1px solid #d9d9d9; padding:6.18px;}
+#headlines h3{ font-size:14px; padding-bottom:5px;}
+#headlines .excerpt{background:#fff; border:1px solid #f0f0f0; padding:3.82px 3.82px 15px 3.82px; font-size:12px; color:#999;line-height:1.5;} 
+#headlines .excerpt .intro{ color:#666;margin-bottom:5px;min-height:185px;_height:185px;}
+#headlines .excerpt .intro h4{ font-size:14px; padding-bottom:10px;}
+#headlines .excerpt .intro p.text{margin-top:15px;}
+#headlines .excerpt .intro a.more-link{font-style:italic;}
+#headlines .excerpt small {
+	background-color:#468175;
+	padding:3px 8px 3px 8px;
+	color:#fffffe;
+	font-size:1.0em;
+}
+#headlines .excerpt small a {
+	color:#fffffe;
+}
+#headlines .excerpt small a:hover {
+	text-decoration:underline;
+	color:#fffffe;
+}
+#headlines .excerpt small a.link_category
+{
+	font-weight:bold;	
+}
+/*#main #posts*/
+#posts{font-size:12px; margin-bottom:10px; position:relative; margin-top:10px;padding-left:6.18px;padding-right:6.18px;}
+#posts .itemview{line-height:1.5; position:relative; padding:10px 3.82px 0px 3.82px; min-height:110px;_height:110px;*zoom:1; border-bottom:1px #e5e5e5 solid;}
+#posts .itemview p.icon{ position:absolute; top:10px; left:0;}
+#posts .itemview p.icon span{ display:table-cell;  text-align:center; vertical-align:middle; *display:block;*font-size:87px; *font-family:Arial;  width:100px; height:100px; background:#f9f9f9; position:relative;}
+#posts .itemview p.icon span img{ vertical-align:middle;}
+#posts .itemview .item_main h4{ font-size:14px; padding-bottom:10px;}
+#posts .itemview .item_main h4 span{ color:#999; font-weight:normal;}
+#posts .itemview .item_main h4 em{ font-style:normal; color:#f00; text-decoration:none;}
+#posts .itemview small{padding:3px 8px 3px 8px;color:#999;font-size:1.0em;}
+#posts .itemview small a{color:#8CA6D7;}
+#posts .itemview small a:hover {text-decoration:underline;color:#fffffe;}
+#posts .itemview .item_main .brief{color:#333; font-size:12px;margin-top:10px;}
+#posts .itemview .item_main p.details{ color:#999; margin-top:10px;}
+#posts .itemview span.counts{ font-size:12px; color:#999; position:absolute; right:5px; top:12px;background:#FDF9F5; border:1px #FDE6CF solid; padding:3px 5px;}
+#posts .itemview span.counts a{color:#7E7C7A; text-decoration:none;}
+#posts .itemview span.counts a:hover{ color:#000;}
+#posts .itemview span.counts a em{color:#D1CECC; font-style:normal; padding:0 3px;}
+#posts .itemview span.edit{ color:#999; font-size:12px; margin-left:30px;}
+#posts .itemview span.edit a{ text-decoration:underline;}
+#posts .itemview span.edit a:hover{ text-decoration:none;}
+#posts .itemview span.delete{ position:absolute; top:5px; right:10px;}
+#posts .itemview span.delete a{background:url(img/close.gif) 0 -26px no-repeat; width:13px; height:13px; display:block; text-indent:-999em;}
+#posts .itemview span.delete a:hover{ background-position:0 -13px;}
+
 #m6_right{ float:right; width:265px;}
 /*#footer*/
 #footer{ margin:100px auto 0 auto;}

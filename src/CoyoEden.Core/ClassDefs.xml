@@ -117,6 +117,7 @@
     </property>
     <property name="IsPublished" type="Boolean" />
     <property name="IsCommentEnabled" type="Boolean" />
+    <property name="IsHeadline" type="Boolean" default="False" compulsory="true" />
     <property name="Raters" type="Int32" />
     <property name="Rating" type="Single" />
     <property name="Slug">

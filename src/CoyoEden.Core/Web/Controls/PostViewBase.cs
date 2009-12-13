@@ -169,7 +169,7 @@ namespace CoyoEden.Core.Web.Controls
 				string body = Post.Content;
 				if (ShowExcerpt)
 				{
-					string link = String.Format(" <a href=\"{0}\">[{1}]</a>", Post.RelativeLink, Utils.Translate("more"));
+					string link = String.Format(" <a href=\"{0}\" title=\"\" class=\"more-link\">[{1}]</a>", Post.RelativeLink, Utils.Translate("more"));
 
 					if (!string.IsNullOrEmpty(Post.Description))
 					{
@@ -219,7 +219,7 @@ namespace CoyoEden.Core.Web.Controls
 		protected virtual string CategoryLinks(string separator)
 		{
 			string[] keywords = new string[Post.Categories.Count];
-			string link = "<a href=\"{0}\">{1}</a>";
+			string link = "<a href=\"{0}\" title=\"View all posts in {1}\" rel=\"category tag\" class=\"link_category\">{1}</a>";
 			for (int i = 0; i < Post.Categories.Count; i++)
 			{
                 Category c = Category.GetCategory(Post.Categories[i].Id.Value);

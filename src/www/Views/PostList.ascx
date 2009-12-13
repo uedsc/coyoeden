@@ -1,10 +1,14 @@
 <%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" Inherits="CoyoEden.UI.Views.PostListView" %>
-<div runat="server" id="posts" class="posts">
+<div id="posts" class="posts">
+	<h3 class="Btitle">最新原创主题</h3>
+	<div class="common_sec2">
 	<%var ipost = 0; %>
 	<%PostsToShow.ForEach(x => { %>
 	<%=RenderSinglePost(x as CoyoEden.Core.Post,ipost) %>
 	<%ipost++; %>
     <%}); %>
+    </div>
+    <span class="x_more"><a href="/post/list.aspx" title="更多主题">更多</a></span>
 </div>
 <div id="postPaging">
 <%if(!NothingToShow){%>

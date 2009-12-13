@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CoyoEden.Core;
+using Vivasky.Core.Web;
+using CoyoEden.Core.Web.Controls;
+using CoyoEden.Core.Infrastructure;
 
 namespace CoyoEden.UI.Views
 {
@@ -15,14 +18,41 @@ namespace CoyoEden.UI.Views
 			get;
 			private set;
 		}
-
+		private string _ItemViewPath;
+		/// <summary>
+		/// View path of the item view.
+		/// </summary>
+		public string ItemViewPath
+		{
+			get
+			{
+				return _ItemViewPath;
+			}
+			set
+            {
+            	_ItemViewPath = value;
+            }
+		}
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
+			_ItemViewPath =_ItemViewPath?? GetViewPath("HeadlineView");
+			vmPost = new ViewManager<PostViewBase>(ItemViewPath);
 			ShowCount = ShowCount < 1 ? 1 : ShowCount;
 			var tempTotal = 0;
 			HeadlinesToShow = Post.GetPosts(true, ShowCount, out tempTotal);
 			Total = tempTotal;
+		}
+		private ViewManager<PostViewBase> vmPost;
+		protected string RenderSinglePost(Post post, int index)
+		{
+			vmPost.Control.ShowExcerpt = true;
+			vmPost.Control.Post = post;
+			vmPost.Control.Index = index;
+			vmPost.Control.ID = String.Format("excerpt{0}", post.Id.ToString().Replace("-", string.Empty));
+			vmPost.Control.Location = ServingLocation.PostList;
+			var postHtml = vmPost.Render();
+			return postHtml;
 		}
 	}
 }

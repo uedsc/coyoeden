@@ -444,6 +444,14 @@
             <Items />
           </LookupListSource>
         </Property>
+        <Property PropertyName="IsHeadline" DisplayName="Is Headline" DatabaseFieldName="IsHeadline" Compulsory="True" DefaultValue="False" PropertyType="Boolean">
+          <PropertyRule>
+            <Parameters />
+          </PropertyRule>
+          <LookupListSource>
+            <Items />
+          </LookupListSource>
+        </Property>
         <Property PropertyName="Raters" DisplayName="Raters" DatabaseFieldName="Raters" PropertyType="Int32">
           <PropertyRule>
             <Parameters>

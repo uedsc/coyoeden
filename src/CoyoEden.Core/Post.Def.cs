@@ -123,6 +123,18 @@ namespace CoyoEden.Core
             }
         }
         
+        public virtual Boolean? IsHeadline
+        {
+            get
+            {
+                return ((Boolean?)(base.GetPropertyValue("IsHeadline")));
+            }
+            set
+            {
+                base.SetPropertyValue("IsHeadline", value);
+            }
+        }
+        
         public virtual Int32? Raters
         {
             get
