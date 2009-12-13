@@ -12,13 +12,14 @@ a[href^="\/file.axd"] {
 /* Colors */
 .grey{ color:#bbb;}
 .bg_grey{ background:#fafafa;}
+.color-null{background:#EDEDED;}
 .color-yellow {background:#f2bc00;}
 .color-red    {background:#dd0000;}
 .color-blue   {background:#148ea4;}
 .color-white  {background:#dfdfdf;}
 .color-orange {background:#f66e00;}
 .color-green  {background:#8dc100;}
-.color-yellow h3,.color-white h3,.color-green h3{color:#000;}
+.color-null h3,.color-yellow h3,.color-white h3,.color-green h3{color:#000;}
 .color-red h3,.color-blue h3,.color-orange h3{color:#FFF;}
 
 .loginbox{
@@ -81,50 +82,48 @@ a[href^="\/file.axd"] {
 /*----------------------------
 					 Widgets
 ----------------------------*/
-/* Columns section */
-#widgetZones .widgetzone
+/* widgetzone-Columns section */
+.widgetzone
 {
 	/* Min-height: */
 	min-height: 400px;
 	height: auto !important; 
 	height: 400px;
 }
-#widgetZones .widgetzone_3col {
+.widgetzone_3col {
     float: left;
     width: 33.3%;
 }
-#widgetZones .widgetzone_2col_left
+.widgetzone_2col_left
 {
 	float:left;
 	width:71%;	
 }
-#widgetZones .widgetzone_2col_right
+.widgetzone_2col_right
 {
 	float:right;
 	width:28%;
 }
-
-/* Column dividers (background-images) : */
-#widgetZones #widgetzone_LeftZone { background: url(img/column-bg-left.png) no-repeat right top; padding-right:8px;}
-#widgetZones #widgetzone_RightZone { background: url(img/column-bg-right.png) no-repeat left top; }
-#widgetZones .widget {
-    margin: 0px 0px 30px 8px;
-    padding: 2px;
+/* widget */
+.widget {
+    margin-bottom:6.18px;
+    padding: 6.18px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
 }
-#widgetZones .widget .widget-head {
+.widget .widget-head {
     color: #000;
     overflow: hidden;
     width: 100%;
     height: 30px;
     line-height: 30px;
 }
-#widgetZones .widget .widget-head h3 {
+.widget .widget-head h4 {
     padding: 0 5px;
     float: left;
+    font-size:14px;
 }
-#widgetZones .widget .widget-head a
+.widget .widget-head a
 {
     float: right;
     display: inline;
@@ -133,24 +132,24 @@ a[href^="\/file.axd"] {
     outline: none;
     background:url(img/wg_buttons.gif) no-repeat;
 }
-#widgetZones .widget .widget-head a.remove  {
+.widget .widget-head a.remove  {
 	background-position:-24px 0;
     width: 14px;
     margin: 8px 4px 8px 0;
 
 }
-#widgetZones .widget .widget-head a.edit  {
+.widget .widget-head a.edit  {
     width: 24px;
     margin: 8px 4px 8px 4px;
 }
 
-#widgetZones .widget .widget-head a.collapse  {
+.widget .widget-head a.collapse  {
     background-position:-52px 0;
     width: 14px;
     margin: 8px 0 8px 4px;
     float:left;
 }
-#widgetZones .widget .widget-content {
+.widget .widget-content {
     background: #333 url(img/widget-content-bg.png) repeat-x;
     padding: 0 5px;
     color: #DDD;
@@ -161,93 +160,40 @@ a[href^="\/file.axd"] {
     line-height: 1.2em;
     overflow: hidden;
 }
-#widgetZones .widget .widget-content p {
+.widget .widget-content p {
     padding: 0.8em 0;
     border-bottom: 1px solid #666;
 }
-#widgetZones .widget .widget-content img {
+.widget .widget-content img {
     float: right;
     margin: 10px;
     border: 1px solid #FFF;
 }
-#widgetZones .widget .widget-content pre {
+.widget .widget-content pre {
     padding: 0.5em 5px;
     color: #EEE;
     font-size: 12px;
 }
-#widgetZones .widget .widget-content ul {
+.widget .widget-content ul {
     padding: 5px 0 5px 20px;
     list-style: disc;
 }
-#widgetZones .widget .widget-content ul li {padding: 3px 0;}
-#widgetZones .widget .widget-content ul.images {
+.widget .widget-content ul li {padding: 3px 0;}
+.widget .widget-content ul.images {
     padding: 7px 0 0 0;
     list-style: none;
     height: 1%;
 }
-#widgetZones .widget .widget-content ul.images li {
+.widget .widget-content ul.images li {
     display: inline;
     float: left;
 }
-#widgetZones .widget .widget-content ul.images img {
+.widget .widget-content ul.images img {
     display: inline;
     float: left;
     margin: 0 0 7px 7px;
 }
-#widgetZones .widget-placeholder { border: 2px dashed pink;margin: 0px 0px 30px 8px;}
-/* End Columns section */
-div.widgetzone .clear{
-	clear: left;
-}
-
-div.widget{
-	background: white;
-	border: 1px solid silver;
-	padding: 10px 15px;
-	margin-bottom: 10px;
-	z-index: 1;
-	min-width: 1px;
-}
-
-div.widget .content{
-	line-height: 16px;
-	color: #666666;
-}
-
-div.widget h4{
-	font-size: 120%;
-	border-bottom: 1px solid silver;
-	padding-bottom: 5px;
-	margin: 0;
-	margin-bottom: 5px;
-	z-index: 0;
-	color: #999999;
-	letter-spacing: 1px;
-}
-
-div.widget a.edit, div.widget a.move{
-	font-size: 85%;
-	font-weight: normal;
-	float: right;
-	z-index: 1;
-	margin-left: 5px;
-}
-
-div.widget a.delete{
-	font-weight: bold;
-	color: #999999;
-	float: right;
-	margin-left: 5px;
-	position: relative;
-	top: -3px;
-	z-index: 1;
-	text-decoration: none;
-}
-
-div.widget a.delete:hover{
-	color: black;
-}
-
+.widget-placeholder { border: 2px dashed pink;margin: 0px 0px 30px 8px;}
 .widgetzone .widget ul {
 	list-style-type: none;
 	margin: 0;
@@ -1084,13 +1030,7 @@ span.x_more a{ font-size:12px; color:#7e7e7e; background:url(img/icons.gif) righ
 span.y_more a{ font-size:12px; color:#36c; font-weight:bold; background:url(img/icons.gif) right -128px no-repeat; *background:url(img/icons.gif) right -130px no-repeat; padding-right:12px;}
 
 /*site first h1,for the sake of SEO*/
-div#vivasky_content h1
-{
-display:block;
-height:0;
-overflow:hidden;
-width:0;
-}
+div#vivasky_content h1{display:block;height:0;overflow:hidden;width:0;}
 /*header*/
 #header{position:relative;z-index:50;margin-top:35px;}
 #header #logo{ width:160px; height:60px;}
@@ -1182,23 +1122,10 @@ form#globalsearch{ width:262px;}
 #headlines .excerpt .intro h4{ font-size:14px; padding-bottom:10px;}
 #headlines .excerpt .intro p.text{margin-top:15px;}
 #headlines .excerpt .intro a.more-link{font-style:italic;}
-#headlines .excerpt small {
-	background-color:#468175;
-	padding:3px 8px 3px 8px;
-	color:#fffffe;
-	font-size:1.0em;
-}
-#headlines .excerpt small a {
-	color:#fffffe;
-}
-#headlines .excerpt small a:hover {
-	text-decoration:underline;
-	color:#fffffe;
-}
-#headlines .excerpt small a.link_category
-{
-	font-weight:bold;	
-}
+#headlines .excerpt small {background-color:#468175;padding:3px 8px 3px 8px;color:#fffffe;font-size:1.0em;}
+#headlines .excerpt small a {color:#fffffe;}
+#headlines .excerpt small a:hover {text-decoration:underline;color:#fffffe;}
+#headlines .excerpt small a.link_category{font-weight:bold;}
 /*#main #posts*/
 #posts{font-size:12px; margin-bottom:10px; position:relative; margin-top:10px;padding-left:6.18px;padding-right:6.18px;}
 #posts .itemview{line-height:1.5; position:relative; padding:10px 3.82px 0px 3.82px; min-height:110px;_height:110px;*zoom:1; border-bottom:1px #e5e5e5 solid;}

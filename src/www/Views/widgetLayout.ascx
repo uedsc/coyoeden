@@ -3,12 +3,9 @@
 <%var movableCss = Movable ? " widget-m" : "";%>
 <li id="<%=Id %>" class="widget<%=movableCss %> <%=Name %><%=colorCss%>">
 	<div class="widget-head">
-	<%if(Collapsable){ %>
-		<a class="action collapse" href="#">COLLAPSE</a>
-	<%} %>
 	<%if (ShowTitle)
    { %>
-		<h3 class="title"><%=Title%></h3>
+		<h4 class="title"><%=Title%></h4>
 	<%} %>
 	<%if (Deletable)
    { %>
