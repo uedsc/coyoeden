@@ -23,7 +23,7 @@
     </div>
 	  
     <div id="content">
-      <blog:SearchOnSearch ID="SearchOnSearch1" runat="server" MaxResults="3" Headline="You searched for" Text="Here are some results for the search term on this website" />
+      <vs:SearchOnSearch ID="SearchOnSearch1" runat="server" MaxResults="3" Headline="You searched for" Text="Here are some results for the search term on this website" />
       <asp:ContentPlaceHolder ID="cphBody" runat="server" />
     </div>
     

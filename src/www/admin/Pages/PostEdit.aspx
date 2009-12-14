@@ -1,5 +1,4 @@
 <%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true" CodeFile="PostEdit.aspx.cs" Inherits="PostEdit" ValidateRequest="False" EnableSessionState="True" %>
-<%@ Register Src="~/Views/shared/htmlEditor.ascx" TagPrefix="Blog" TagName="TextEditor" %>
 <%@ Import Namespace="CoyoEden.Core" %>
 <asp:Content ID="Content0" ContentPlaceHolderID="cphHead" Runat="Server"></asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphMain" Runat="Server">
@@ -100,7 +99,7 @@ function ToggleTagSelector()
   <asp:RequiredFieldValidator runat="server" ControlToValidate="txtTitle" ErrorMessage="Please enter a title" Display="Dynamic" />
   <br /><br />
   
-  <Blog:TextEditor runat="server" id="txtContent" />
+  <vs:TextEditor runat="server" id="txtContent" />
   <asp:TextBox runat="server" ID="txtRawContent" Width="100%" TextMode="multiLine" Height="300px" Visible="false" />
   <br />
   

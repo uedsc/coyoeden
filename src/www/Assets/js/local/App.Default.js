@@ -20,7 +20,7 @@ var App = function() {
 	};
 	p.onPageOk = function() {
 		p.loading(0);
-		$("#widgetZones .widget").xwidget({ onSort: p.onWidgetSort });
+		$(".widget").xwidget({ onSort: p.onWidgetSort });
 	};
 
 	//public

@@ -119,7 +119,7 @@
 					</div>
 				</div>
 				<div class="usr_navigation">
-					<blog:AdminMenu ID="Menu1" runat="server" SelectedCssClass="active" TopActive="true" DisplayNum="6"/>
+					<vs:AdminMenu ID="Menu1" runat="server" SelectedCssClass="active" TopActive="true" DisplayNum="6"/>
 				</div>
 			</div>
 			<div class="c695_main clearfix">

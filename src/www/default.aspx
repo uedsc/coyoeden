@@ -11,7 +11,7 @@
 		<uc1:HeadlineList ID="HeadlineList1" runat="server" ShowCount="5"/>
 		<div id="divError" runat="Server" />
 		<uc1:PostList ID="PostList1" runat="server" />
-		<blog:PostCalendar runat="server" ID="calendar" 
+		<vs:PostCalendar runat="server" ID="calendar" 
 		EnableViewState="false"
 		ShowPostTitles="true" 
 		BorderWidth="0"
@@ -24,6 +24,18 @@
 		Width="100%" /> 
 	</div>
 	<div id="m6_right">
-		 <blog:WidgetZone ID="WidgetZone1" runat="server" Name="cy_WidgetZone0" />
+		 <vs:WidgetZone ID="WidgetZone1" runat="server" Name="cy_WidgetZone0" />
 	</div>   
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="cphFooter"  Runat="Server">
+<vs:SiteJScript ID="js_widgets" runat="server" ScriptRelativeToRoot="Assets/js/utils.widget.js" />
+<vs:SiteJScript ID="js_appHome" ScriptRelativeToRoot="Assets/js/local/app.default.js" runat="server"/>
+<script type="text/javascript">
+	//<![CDATA[
+	App.Init({
+		webRoot: WebRoot,
+		admin: '<%=UserIsAdmin?1:0 %>'
+	});
+	//]]>
+</script>
 </asp:Content>

@@ -26,7 +26,7 @@
       </ul>
       
       <p>You can also try to <strong>search for the page you were looking for</strong>:</p>
-      <blog:SearchBox runat="server" />
+      <vs:SearchBox runat="server" />
       
       <p>I'm sorry for the inconvenience</p>
     </div>
@@ -39,7 +39,7 @@
       </p>
       
       <p>You can also try to <strong>search for the page you were looking for</strong>:</p>
-      <blog:SearchBox ID="SearchBox2" runat="server" /><br /><br />
+      <vs:SearchBox ID="SearchBox2" runat="server" /><br /><br />
     </div>
     
     <div id="divDirectHit" runat="server" visible="False">
@@ -51,7 +51,7 @@
       </ul>
       
       <p>You can also try to <strong>search for the page you were looking for</strong>:</p>
-      <blog:SearchBox ID="SearchBox1" runat="server" />
+      <vs:SearchBox ID="SearchBox1" runat="server" />
       
       <hr />
       

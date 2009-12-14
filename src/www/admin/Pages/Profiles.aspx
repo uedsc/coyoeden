@@ -72,7 +72,7 @@
       <br /><br />
       
       <label for="<%=tbAboutMe.ClientID %>"><%=Resources.labels.aboutMe %></label><br />
-      <Blog:TextEditor runat="server" id="tbAboutMe" Rows="5" Width="50px" TextMode="MultiLine"  /><br /> 
+      <vs:TextEditor runat="server" id="tbAboutMe" Rows="5" Width="50px" TextMode="MultiLine"  /><br /> 
     </div>
         
     <p style="text-align:right;"><br />

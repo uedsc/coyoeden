@@ -108,8 +108,6 @@
 			<vs:SiteJScript ID="jquery_jqModal" ScriptRelativeToRoot="Assets/js/jquery/jqModal.js" runat="server"/>
 			<vs:SiteJScript ID="vivasky_com" ScriptRelativeToRoot="Assets/js/Vivasky.com.js" runat="server"/>
 			<vs:SiteJScript ID="jqueryUI" runat="server" ScriptRelativeToRoot="Assets/js/jquery/jquery-ui-1.7.2.custom.min.js" />
-			<vs:SiteJScript ID="js_appHome" ScriptRelativeToRoot="Assets/js/local/app.default.js" runat="server"/>
-			<vs:SiteJScript ID="js_widgets" runat="server" ScriptRelativeToRoot="Assets/js/utils.widget.js" />
 			<%if (UserIsAdmin)
 		   { %>
 			<vs:SiteJScript ID="siteTop" runat="server" ScriptRelativeToRoot="Assets/js/Vivasky.TopSlider.js" />
@@ -117,18 +115,53 @@
 			<script type="text/javascript">
 				//<![CDATA[
 				var WebRoot = '<%=Utils.AbsoluteWebRoot.ToString() %>>';
-				App.Init({
-					webRoot: WebRoot,
-					admin: '<%=UserIsAdmin?1:0 %>'
-				});
 				//]]>
 			</script>
 			<!--/site scripts-->
 		</form>
 	</div>
   <div id="footer" class="wrap960">
-        Powered by <a href="http://www.vivasky.com">CoyoEden.NET</a> <%=BlogSettings.Instance.Version() %><br />
+	  <div class="footer_dl clearfix">
+		  <dl>
+			  <dt>关于</dt>
+			  <dd>
+				  <a title="关于我们" href="/about.aspx">关于我们</a></dd>
+			  <dd>
+				  <a title="使用帮助" href="/help.aspx">使用帮助</a></dd>
+			  <dd>
+				  <a title="服务协议" href="/agreement.aspx">服务协议</a></dd>
+			  <dd>
+				  <a title="联系我们" href="/contact.aspx">联系我们</a></dd>
+		  </dl>
+		  <dl>
+			  <dt>发现</dt>
+			  <dd>
+				  <a title="标签云" href="/tag.aspx">标签云</a></dd>
+			  <dd>
+				  <a title="最新头条" href="/post/list.aspx?t=headline">最新头条</a></dd>
+			  <dd>
+				  <a title="最热主题" href="/post/list.aspx?t=hot">热门主题</a></dd>
+			  <dd>
+				  <a title="最热相册" href="/gallery/list.aspx">热门相册</a></dd>
+		  </dl>
+		  <dl>
+			  <dt>Top-10</dt>
+			  <dd>
+				  <a title="最新发布的主题" href="/post/list.aspx">最新主题</a></dd>
+			  <dd>
+				  <a title="评分最高的主题" href="/post/list.aspx?t=toprate">最佳主题</a></dd>
+			  <dd>
+				  <a title="最热门的软件" href="/post/list.aspx?t=download">最热门软件</a></dd>
+			  <dd>
+				  <a title="最热门的商品" href="/product/list.aspx?t=top10">最热门商品</a></dd>
+		  </dl>
+	  </div>
+	  <div class="copyright">
+	    Powered by <a href="http://www.vivasky.com">CoyoEden.NET</a> <%=BlogSettings.Instance.Version() %><br />
         Theme by <a href="http://www.lizishop.cn">LiziShop</a>
+	  </div>
   </div>
+  	<asp:ContentPlaceHolder ID="cphFooter" runat="server">
+	</asp:ContentPlaceHolder>
 </body>
 </html>

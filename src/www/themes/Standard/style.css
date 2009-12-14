@@ -12,7 +12,7 @@ a[href^="\/file.axd"] {
 /* Colors */
 .grey{ color:#bbb;}
 .bg_grey{ background:#fafafa;}
-.color-null{background:#EDEDED;}
+.color-null{background:#F6F6F6;}
 .color-yellow {background:#f2bc00;}
 .color-red    {background:#dd0000;}
 .color-blue   {background:#148ea4;}
@@ -89,6 +89,11 @@ a[href^="\/file.axd"] {
 	min-height: 400px;
 	height: auto !important; 
 	height: 400px;
+	background:#f6f6f6;
+	border-left:1px solid #E7E7E7;
+	border-right:1px solid #E7E7E7;
+	border-bottom:1px solid #E7E7E7;
+	line-height:normal;
 }
 .widgetzone_3col {
     float: left;
@@ -110,23 +115,26 @@ a[href^="\/file.axd"] {
     padding: 6.18px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
+    border-top:2px solid #eaeaea;
+	min-height:61.8px;
+	_height:61.8px;
 }
 .widget .widget-head {
     color: #000;
     overflow: hidden;
     width: 100%;
-    height: 30px;
-    line-height: 30px;
 }
+.widget-m .widget-head{cursor:move;}
 .widget .widget-head h4 {
-    padding: 0 5px;
+    padding-bottom:6.18px;
     float: left;
-    font-size:14px;
+    font-size:12px;
 }
-.widget .widget-head a
+.widget .widget-head a.action
 {
     float: right;
-    display: inline;
+    display: none;
+    margin-left:3.82px;
     height: 14px;
     text-indent: -9999em;
     outline: none;
@@ -135,23 +143,19 @@ a[href^="\/file.axd"] {
 .widget .widget-head a.remove  {
 	background-position:-24px 0;
     width: 14px;
-    margin: 8px 4px 8px 0;
-
 }
 .widget .widget-head a.edit  {
     width: 24px;
-    margin: 8px 4px 8px 4px;
 }
 
-.widget .widget-head a.collapse  {
-    background-position:-52px 0;
+.widget .widget-head a.collapse
+{
+	background-position:-52px 0;
     width: 14px;
-    margin: 8px 0 8px 4px;
-    float:left;
 }
 .widget .widget-content {
-    background: #333 url(img/widget-content-bg.png) repeat-x;
-    padding: 0 5px;
+    background:#fff;
+    padding: 0 3.82px;
     color: #DDD;
     -moz-border-radius-bottomleft: 2px;
     -moz-border-radius-bottomright: 2px;
@@ -174,11 +178,6 @@ a[href^="\/file.axd"] {
     color: #EEE;
     font-size: 12px;
 }
-.widget .widget-content ul {
-    padding: 5px 0 5px 20px;
-    list-style: disc;
-}
-.widget .widget-content ul li {padding: 3px 0;}
 .widget .widget-content ul.images {
     padding: 7px 0 0 0;
     list-style: none;
@@ -194,17 +193,6 @@ a[href^="\/file.axd"] {
     margin: 0 0 7px 7px;
 }
 .widget-placeholder { border: 2px dashed pink;margin: 0px 0px 30px 8px;}
-.widgetzone .widget ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	text-transform: capitalize;
-}
-
-.widgetzone .widget ul li {
-	margin-bottom: 3px;
-}
-
 .widgetzone div.search{
 	background: none;
 	border: none;
@@ -306,6 +294,7 @@ div.itemview a.icon img{ float:left; margin-right:10px; margin-bottom:5px;}
 
 ul.recentPosts li{
 	padding-bottom: 10px;
+	font-size:85%;
 }
 
 ul.recentPosts li a{
@@ -315,7 +304,6 @@ ul.recentPosts li a{
 ul.recentPosts li span{
 	display: block;
 	text-indent: 10px;
-	text-transform: none;
 }
 
 /*----------------------------
@@ -324,7 +312,7 @@ ul.recentPosts li span{
 
 ul.recentComments li{
 	padding-bottom: 10px;
-	text-transform: none;
+	font-size:85%;
 }
 
 ul.recentComments li a.postTitle{
@@ -555,7 +543,7 @@ ul.recentComments li a.postTitle{
 	margin-top: 5px;
 	font-size: 85%;
 }
-
+#searchbox label{font-size:85%;}
 #searchbox input {
 	font-size: 85%;
 }
@@ -616,41 +604,25 @@ ul#monthList ul.open{
 /*----------------------------
 				 Tag cloud
 ----------------------------*/
-
-.tagcloud {
-	margin-bottom: 10px;
-	white-space: normal;
-}
-
-.tagcloud li {
-	display: inline;
-}
-
-.tagcloud a {
+.TagCloud a,.tagcloud a {
 	margin-right: 3px;
 	display: inline;
 }
-
-.tagcloud a.biggest {
+.TagCloud a.biggest,.tagcloud a.biggest {
 	font-size: 130%;
 }
-
-.tagcloud a.big {
+.TagCloud a.big,.tagcloud a.big {
 	font-size: 124%;
 }
-
-.tagcloud a.medium {
+.TagCloud a.medium,.tagcloud a.medium {
 	font-size: 115%;
 }
-
-.tagcloud a.small {
+.TagCloud a.small,.tagcloud a.small {
 	font-size: 100%;
 }
-
-.tagcloud a.smallest {
+.TagCloud a.smallest,.tagcloud a.smallest {
 	font-size: 90%;
 }
-
 /*----------------------------
 					 Page
 ----------------------------*/
@@ -1034,7 +1006,7 @@ div#vivasky_content h1{display:block;height:0;overflow:hidden;width:0;}
 /*header*/
 #header{position:relative;z-index:50;margin-top:35px;}
 #header #logo{ width:160px; height:60px;}
-#header #logo a{ display:block; overflow:hidden; width:160px; height:60px;background:url(img/logo.gif) 0 0 no-repeat; text-indent:-9999em; _position:relative; _z-index:65;}
+#header #logo a{ display:block; overflow:hidden; width:160px; height:60px;/*background:url(img/logo.gif) 0 0 no-repeat;*/ text-indent:-9999em; _position:relative; _z-index:65;}
 /*#header-#global_search*/
 #fav_search{ position:absolute; top:0; right:0; text-align:right; height:60px;}
 #header #global_search{ position:relative; z-index:70; float:right; margin:8px 0 0 0;right:0;top:25px;}
@@ -1153,7 +1125,7 @@ form#globalsearch{ width:262px;}
 
 #m6_right{ float:right; width:265px;}
 /*#footer*/
-#footer{ margin:100px auto 0 auto;}
+#footer{ margin:100px auto 0 auto;line-height:normal;}
 .footer_dl{display:block; background:#f8f8f8; border-top:1px #e6e6e6 solid; width:940px; padding:15px 10px 10px 10px; }
 .footer_dl dl{ display:block; float:left; display:inline;  font-size:12px; border-right:1px #ececec solid; padding:0 20px; margin-right:10px; width:182px; height:160px;  }
 .footer_dl dl dt{ font-weight:bold; color:#333; line-height:2;}

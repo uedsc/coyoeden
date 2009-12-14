@@ -28,6 +28,6 @@ public partial class widgets_Tag_cloud_edit : WidgetEditBase
 	{
 		CurrentSettings["minimumposts"] = ddlNumber.SelectedValue;
 		SaveSettings(CurrentSettings);
-		widgets_Tag_cloud_widget.Reload();
+		TagCloud.Reload();
 	}
 }

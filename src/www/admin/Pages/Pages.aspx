@@ -42,7 +42,7 @@
   <asp:CheckBox runat="Server" ID="cbShowInList" Text="<%$ Resources:labels, showInList %>" Checked="true" />
   <br /><br />
 
-  <blog:TextEditor runat="server" id="txtContent" TabIndex="4" />
+  <vs:TextEditor runat="server" id="txtContent" TabIndex="4" />
   
   <table id="entrySettings">
     <tr>

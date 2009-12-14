@@ -21,11 +21,11 @@
 		    <form id="Form1" runat="server">
 		    <div class="content">
 		    
-                <blog:SearchOnSearch ID="SearchOnSearch1" runat="server" MaxResults="3" Headline="You searched for" Text="Here are some results for the search term on this website" />
+                <vs:SearchOnSearch ID="SearchOnSearch1" runat="server" MaxResults="3" Headline="You searched for" Text="Here are some results for the search term on this website" />
                 <asp:ContentPlaceHolder ID="cphBody" runat="server" />
             </div>
             <div class="sidenav">
-            <blog:WidgetZone runat="server" Name="be_WIDGET_ZONE" />
+            <vs:WidgetZone runat="server" Name="be_WIDGET_ZONE" />
             <p><asp:LoginStatus runat="Server" LoginText="Sign in" LogoutText="Sign out" EnableViewState="false" /></p>
               
             </div>

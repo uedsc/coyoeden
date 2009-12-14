@@ -28,9 +28,7 @@
 		return false;
 	};
 	p.makeSortable = function() {
-		p.items_m.find(p.opts.css_h).css({
-			cursor: 'move'
-		}).mousedown(function(e) {
+		p.items_m.find(p.opts.css_h).mousedown(function(e) {
 			p.items_m.css({ width: '' });
 			$(this).parent().css({
 				width: $(this).parent().width() + 'px'
@@ -71,6 +69,10 @@
 			}
 		});
 	};
+	p.onHeadOver = function() {
+		$(p.opts.css_a, this).show();
+	};
+	p.onHeadOut = function() { $(p.opts.css_a, this).hide(); };
 	//main plugin body
 	$.fn.xwidget = function(options) {
 		// Set the options.
@@ -89,6 +91,7 @@
 			//edit action
 			$(options.css_edit, this).click(p.onEdit);
 			//collapse action
+			$(options.css_h, this).hover(p.onHeadOver, p.onHeadOut);
 			$(options.css_collapse, this).toggle(p.onCollapseOn, p.onCollapseOff);
 		});
 	};
@@ -101,7 +104,8 @@
 		css_remove: '.remove',
 		css_edit: '.edit',
 		css_collapse: '.collapse',
-		css_m: '.widget-m'
+		css_m: '.widget-m',
+		css_a: '.action'
 	};
 	// Public functions.
 	$.fn.xwidget.onWidgetRemoved = function(obj) {
