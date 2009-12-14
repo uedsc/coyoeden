@@ -16,7 +16,7 @@ namespace CoyoEden.UI.Controllers
 		[WebMethod(true)]
 		public BOMessager Sort(WidgetSortingData data) {
 			var retVal = new BOMessager();
-
+			CoyoEden.Core.WidgetZone.Sort(data, out retVal);
 			return retVal;
 		}
 	}

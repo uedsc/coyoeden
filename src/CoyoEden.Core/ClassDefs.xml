@@ -502,6 +502,7 @@
     <property name="FKZone" type="Guid" compulsory="true">
       <businessObjectLookupList class="WidgetZone" assembly="CoyoEden.Core" />
     </property>
+    <property name="DisplayIndex" type="Int32" compulsory="true" />
     <primaryKey>
       <prop name="Id" />
     </primaryKey>

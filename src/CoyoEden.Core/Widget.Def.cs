@@ -158,6 +158,18 @@ namespace CoyoEden.Core
                 base.SetPropertyValue("FKZone", value);
             }
         }
+        
+        public virtual Int32? DisplayIndex
+        {
+            get
+            {
+                return ((Int32?)(base.GetPropertyValue("DisplayIndex")));
+            }
+            set
+            {
+                base.SetPropertyValue("DisplayIndex", value);
+            }
+        }
         #endregion
         
         #region Relationships

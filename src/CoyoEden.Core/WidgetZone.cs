@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Vivasky.Core.Infrastructure;
 using CoyoEden.Core.DataContracts;
+using Vivasky.Core;
 namespace CoyoEden.Core
 {   
     public partial class WidgetZone:ICacheable
@@ -71,6 +72,36 @@ namespace CoyoEden.Core
 		}
 		public static void Sort(WidgetSortingData sortData, out BOMessager msg) {
 			msg = new BOMessager();
+			if (sortData.Zone0 == sortData.Zone1) { 
+				//sort in the same zone
+				var zone = Find(sortData.Zone0);
+				for (int i = 0; i < zone.WidgetList.Count; i++)
+				{
+					if (i < sortData.NewIndex) {
+						continue;
+					}
+					zone.Widgets[i].DisplayIndex++;
+				}
+				//TODO:persistence
+	
+			} else { 
+				//TODO:Handle the sort between different zones
+			}
+		}
+		#endregion
+
+		#region biz Methods
+		public List<Widget> WidgetList {
+			get
+			{
+				var cachedKey = Utils.GetCaller();
+				var items = System.Web.HttpContext.Current.Cache[cachedKey] as List<Widget>;
+				if (items == null) {
+					items = Widgets;
+					System.Web.HttpContext.Current.Cache[cachedKey] = items;
+				}
+				return items;
+			}
 		}
 		#endregion
 

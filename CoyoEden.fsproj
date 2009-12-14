@@ -1632,6 +1632,17 @@
             <Items />
           </LookupListSource>
         </Property>
+        <Property PropertyName="DisplayIndex" DisplayName="Display Index" DatabaseFieldName="DisplayIndex" Compulsory="True" PropertyType="Int32">
+          <PropertyRule>
+            <Parameters>
+              <KeyValuePair Key="max" />
+              <KeyValuePair Key="min" />
+            </Parameters>
+          </PropertyRule>
+          <LookupListSource>
+            <Items />
+          </LookupListSource>
+        </Property>
         <Property PropertyName="ExtConfig" DisplayName="Ext Config" DatabaseFieldName="ExtConfig" PropertyType="String">
           <PropertyRule RuleName="ExtConfig" HasRule="True">
             <Parameters>

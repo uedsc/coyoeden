@@ -1125,9 +1125,10 @@ form#globalsearch{ width:262px;}
 
 #m6_right{ float:right; width:265px;}
 /*#footer*/
-#footer{ margin:100px auto 0 auto;line-height:normal;}
+#footer{ margin:100px auto 0 auto;line-height:normal;text-align:left;}
 .footer_dl{display:block; background:#f8f8f8; border-top:1px #e6e6e6 solid; width:940px; padding:15px 10px 10px 10px; }
 .footer_dl dl{ display:block; float:left; display:inline;  font-size:12px; border-right:1px #ececec solid; padding:0 20px; margin-right:10px; width:182px; height:160px;  }
 .footer_dl dl dt{ font-weight:bold; color:#333; line-height:2;}
 .footer_dl dl dd a{ color:#777; line-height:1.8;}
 .footer_dl dl dd a:hover{ color:#36c;}
+#footer .copyright{text-align:center;}

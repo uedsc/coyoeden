@@ -60,7 +60,7 @@ namespace CoyoEden.UI.Controls
 			base.OnLoad(e);
 			var widgetTemplate = BlogSettings.GetFileOfCurTheme("widgetLayout.ascx", "~/views/widgetLayout.ascx");
 
-			BOZone.Widgets.ForEach(x => {
+			BOZone.WidgetList.ForEach(x => {
 				loadWidget(x, widgetTemplate);
 			});
 		}
