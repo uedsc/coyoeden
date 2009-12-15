@@ -108,13 +108,15 @@
 			<vs:SiteJScript ID="jquery_jqModal" ScriptRelativeToRoot="Assets/js/jquery/jqModal.js" runat="server"/>
 			<vs:SiteJScript ID="vivasky_com" ScriptRelativeToRoot="Assets/js/Vivasky.com.js" runat="server"/>
 			<vs:SiteJScript ID="jqueryUI" runat="server" ScriptRelativeToRoot="Assets/js/jquery/jquery-ui-1.7.2.custom.min.js" />
+			<vs:SiteJScript ID="js_local" runat="server" ScriptRelativeToRoot="Assets/js/local/local.common.js" />
 			<%if (UserIsAdmin)
 		   { %>
 			<vs:SiteJScript ID="siteTop" runat="server" ScriptRelativeToRoot="Assets/js/Vivasky.TopSlider.js" />
 			<%} %>
 			<script type="text/javascript">
 				//<![CDATA[
-				var WebRoot = '<%=Utils.AbsoluteWebRoot.ToString() %>>';
+				var WebRoot = '<%=Utils.AbsoluteWebRoot.ToString() %>';
+				LocalApp.WebRoot = WebRoot;
 				//]]>
 			</script>
 			<!--/site scripts-->

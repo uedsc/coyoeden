@@ -26,6 +26,7 @@ namespace CoyoEden.Core
 		#endregion
 
 		#region factory methods
+		public static string CACHE_KEY_WidgetList; 
 		private static readonly object _SynHelper = new object();
 		private static List<WidgetZone> _allWidgetZones;
 		public static List<WidgetZone> AllWidgetZones
@@ -75,14 +76,17 @@ namespace CoyoEden.Core
 			if (sortData.Zone0 == sortData.Zone1) { 
 				//sort in the same zone
 				var zone = Find(sortData.Zone0);
-				for (int i = 0; i < zone.WidgetList.Count; i++)
-				{
-					if (i < sortData.NewIndex) {
-						continue;
+				if (zone.WidgetList.Count > 0) {
+					var item = zone.WidgetList.Find(x => x.Id.Value.Equals(sortData.Id));
+					zone.WidgetList.Remove(item);
+					zone.WidgetList.Insert(sortData.NewIndex, item);
+					for (int i = 0; i < zone.WidgetList.Count; i++)
+					{
+						zone.WidgetList[i].DisplayIndex = i;
 					}
-					zone.Widgets[i].DisplayIndex++;
 				}
 				//TODO:persistence
+				System.Web.HttpContext.Current.Cache[CACHE_KEY_WidgetList] = zone.WidgetList;
 	
 			} else { 
 				//TODO:Handle the sort between different zones
@@ -94,11 +98,11 @@ namespace CoyoEden.Core
 		public List<Widget> WidgetList {
 			get
 			{
-				var cachedKey = Utils.GetCaller();
-				var items = System.Web.HttpContext.Current.Cache[cachedKey] as List<Widget>;
+				CACHE_KEY_WidgetList= Utils.GetCaller();
+				var items = System.Web.HttpContext.Current.Cache[CACHE_KEY_WidgetList] as List<Widget>;
 				if (items == null) {
-					items = Widgets;
-					System.Web.HttpContext.Current.Cache[cachedKey] = items;
+					items = Widgets.OrderBy(x=>x.DisplayIndex).ToList();
+					System.Web.HttpContext.Current.Cache[CACHE_KEY_WidgetList] = items;
 				}
 				return items;
 			}

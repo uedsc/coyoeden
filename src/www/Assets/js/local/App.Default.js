@@ -14,7 +14,7 @@ var App = function() {
 	p.onWidgetSort = function(data) {
 		if (p.opts.admin != "1") return false;
 		p.loading(1);
-		$.ajaxJsonPost(LocalApp.Asmx("WidgetService", "Sort"), $.toJSON(data), function(msg) {
+		$.ajaxJsonPost(LocalApp.Asmx("WidgetService", "Sort"), $.toJSON({data:data.sdata}), function(msg) {
 			p.loading(0);
 		}, null);
 	};

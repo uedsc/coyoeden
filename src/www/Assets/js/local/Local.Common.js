@@ -6,9 +6,9 @@
 * Requirements:jquery.js
 * lastUpdate:20090701
 */
-
-$.blockUI.defaults.overlayCSS = { backgroundColor: '#6AA5D7', opacity: .5 };
-
+if ($.blockUI) {
+	$.blockUI.defaults.overlayCSS = { backgroundColor: '#6AA5D7', opacity: .5 };
+};
 var LocalApp = {};
 LocalApp.jqMTipX = function(msg, jqmSelector, tipType) {
 	///<summary>Pop up a tipbox using jqModal</summary>
@@ -105,16 +105,19 @@ LocalApp.GetDataF = function(cachedKey) {
 }; //endof getdata
 $(document).ready(function() {
 	//ie6 bng fix.fuck ie6
-	$.ifixpng(LocalApp.WebRoot + "assets/img/pixel.gif");
-	$(".ipng").ifixpng();
+	if ($.ifixpng) {
+		$.ifixpng(LocalApp.WebRoot + "assets/img/pixel.gif");
+		$(".ipng").ifixpng();
+	};
 });
 
 /*=====================jQuery.Validate ext============================*/
-jQuery.validator.messages.required = "不能为空";
-jQuery.validator.messages.number = "请输合法的数字";
-jQuery.validator.messages.digits = "请输数字";
-jQuery.validator.messages.min = jQuery.validator.format("请输>={0}的值");
-jQuery.validator.messages.max = jQuery.validator.format("请输<={0}的值");
-jQuery.validator.messages.dateISO = "日期格式应为yyyy-MM-dd";
-
+if (jQuery.validator) {
+	jQuery.validator.messages.required = "不能为空";
+	jQuery.validator.messages.number = "请输合法的数字";
+	jQuery.validator.messages.digits = "请输数字";
+	jQuery.validator.messages.min = jQuery.validator.format("请输>={0}的值");
+	jQuery.validator.messages.max = jQuery.validator.format("请输<={0}的值");
+	jQuery.validator.messages.dateISO = "日期格式应为yyyy-MM-dd";
+};
 /*====================swfupload ext==================================*/
