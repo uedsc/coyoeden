@@ -84,6 +84,8 @@
     <Compile Include="BlogSettings.cs" />
     <Compile Include="BOBroker.cs" />
     <Compile Include="BootStrappers\ServicesRegister.cs" />
+    <Compile Include="Caching\CacheKeys.cs" />
+    <Compile Include="Caching\CacheManager.cs" />
     <Compile Include="CategoryExt.cs" />
     <Compile Include="CategoryExt.Def.cs">
       <DependentUpon>CategoryExt.cs</DependentUpon>
@@ -109,6 +111,7 @@
     <Compile Include="Infrastructure\IPublishable.cs" />
     <Compile Include="Infrastructure\ISettingsBehavior.cs" />
     <Compile Include="Infrastructure\ItemView.cs" />
+    <Compile Include="Infrastructure\ListingEventArgs.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Page.Def.cs">
       <DependentUpon>Page.cs</DependentUpon>

@@ -10,6 +10,7 @@ using System.Linq;
 using Vivasky.Core.Infrastructure;
 using CoyoEden.Core.DataContracts;
 using Vivasky.Core;
+using CoyoEden.Core.Infrastructure;
 namespace CoyoEden.Core
 {   
     public partial class WidgetZone:ICacheable
@@ -26,7 +27,6 @@ namespace CoyoEden.Core
 		#endregion
 
 		#region factory methods
-		public static string CACHE_KEY_WidgetList; 
 		private static readonly object _SynHelper = new object();
 		private static List<WidgetZone> _allWidgetZones;
 		public static List<WidgetZone> AllWidgetZones
@@ -39,7 +39,12 @@ namespace CoyoEden.Core
 					{
 						if (_allWidgetZones == null)
 						{
-							_allWidgetZones = LoadAll();
+							onLoadingAll(ref _allWidgetZones);
+							if (_allWidgetZones == null)
+							{
+								_allWidgetZones = LoadAll();
+								onLoadedAll(_allWidgetZones);
+							}
 						}
 					}
 				}
@@ -85,8 +90,11 @@ namespace CoyoEden.Core
 						zone.WidgetList[i].DisplayIndex = i;
 					}
 				}
-				//TODO:persistence
-				System.Web.HttpContext.Current.Cache[CACHE_KEY_WidgetList] = zone.WidgetList;
+				//persistence
+				zone.Widgets.Clear();
+				zone.Widgets.AddRange(zone.WidgetList);
+				zone.Widgets.SaveAll();
+				onSorted(zone, zone.WidgetList);
 	
 			} else { 
 				//TODO:Handle the sort between different zones
@@ -98,11 +106,11 @@ namespace CoyoEden.Core
 		public List<Widget> WidgetList {
 			get
 			{
-				CACHE_KEY_WidgetList= Utils.GetCaller();
-				var items = System.Web.HttpContext.Current.Cache[CACHE_KEY_WidgetList] as List<Widget>;
+				var items=default(List<Widget>);
+				onLoadingWidgets(this,ref items);
 				if (items == null) {
 					items = Widgets.OrderBy(x=>x.DisplayIndex).ToList();
-					System.Web.HttpContext.Current.Cache[CACHE_KEY_WidgetList] = items;
+					onLoadedWidgets(this,items);
 				}
 				return items;
 			}
@@ -116,6 +124,50 @@ namespace CoyoEden.Core
 			_allWidgetZones = null;
 		}
 
+		#endregion
+
+		#region events
+		public static event EventHandler<ListingEventArgs<WidgetZone>> LoadingAll;
+		public static event EventHandler<ListingEventArgs<WidgetZone>> LoadedAll;
+		static void onLoadingAll(ref List<WidgetZone> zones) {
+			if (null != LoadingAll) {
+				var args=new ListingEventArgs<WidgetZone>(zones);
+				LoadingAll(null, args);
+				zones = args.ItemList;
+			}
+		}
+		static void onLoadedAll(List<WidgetZone> zones)
+		{
+			if (null != LoadingAll)
+			{
+				LoadedAll(null, new ListingEventArgs<WidgetZone>(zones));
+			}
+		}
+		public static event EventHandler<ListingEventArgs<Widget>> LoadingWidgets;
+		public static event EventHandler<ListingEventArgs<Widget>> LoadedWidgets;
+		static void onLoadingWidgets(WidgetZone target,ref List<Widget> widgets)
+		{
+			if (null != LoadingWidgets)
+			{
+				var args= new ListingEventArgs<Widget>(widgets);
+				LoadingWidgets(target,args);
+				widgets = args.ItemList;
+			}
+		}
+		static void onLoadedWidgets(WidgetZone target, List<Widget> widgets)
+		{
+			if (null != LoadedWidgets)
+			{
+				var args=new ListingEventArgs<Widget>(widgets);
+				LoadedWidgets(target, args);
+			}
+		}
+		public static event EventHandler<ListingEventArgs<Widget>> Sorted;
+		static void onSorted(WidgetZone zone, List<Widget> items) {
+			if (null != Sorted) {
+				Sorted(zone, new ListingEventArgs<Widget>(items));
+			}
+		}
 		#endregion
 	}
 }

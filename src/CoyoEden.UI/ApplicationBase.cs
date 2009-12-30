@@ -8,6 +8,7 @@ using CoyoEden.Core;
 using Vivasky.Core;
 using CoyoEden.Core.Web.Extensions;
 using CoyoEden.Core.BootStrappers;
+using Vivasky.Core.Infrastructure;
 
 namespace CoyoEden.UI
 {
@@ -43,6 +44,11 @@ namespace CoyoEden.UI
 			ServicesRegister.Boot();
 
 			ExtensionManager.LoadExtensions();
+
+			//cache
+			if (AppSettingsHelper.Instance.GetBoolean("App.EnableCache", true)){
+				CoyoEden.Core.Caching.CacheManager.Init();
+			}
 		}
 		/// <summary>
 		/// Application Error handler
