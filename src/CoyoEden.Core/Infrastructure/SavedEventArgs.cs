@@ -30,7 +30,6 @@ namespace CoyoEden.Core.Infrastructure
     }
 
   }
-
   /// <summary>
   /// The action performed by the save event.
   /// </summary>

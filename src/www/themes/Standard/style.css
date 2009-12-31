@@ -1028,6 +1028,7 @@ form#globalsearch{ width:262px;}
 * html #navigate{overflow:hidden;background:url(img/navi_mbg.gif) 0 0 repeat-x; height:72px;}
 
 #navigate .navi_main{position:relative; height:45px; display:block; overflow:hidden;}
+#navigate .navi_main h2{display:inline;}
 #navigate .navi_main h2 a{ text-decoration:none; color:#fff; padding-left:8px; float:left;cursor:pointer; margin:0 5px; }
 #navigate .navi_main h2 a span{ font-size:14px; padding-right:11px; font-weight:normal; line-height:48px;}
 #navigate .navi_main h2 a:hover{ zoom:1;}
@@ -1053,7 +1054,7 @@ form#globalsearch{ width:262px;}
 *+html #navigate ul.navi_sec li a{ padding-bottom:10px;}
 #navigate ul.navi_sec li a.s_cur{ color:#fff; font-weight:bold; background:url(img/snavi_icon.gif) center bottom no-repeat;}
 /*usr_navi*/
-#u_navigate{position:relative; z-index:10;}
+#u_navigate{position:relative; z-index:10;display:inline;float:right;}
 #u_navigate .navi_user{ background:url(img/bg_sprit2.gif) 0 -735px repeat-x; width:300px; height:30px; position:absolute; z-index:5; top:9px; right:0;}
 #u_navigate .navi_user{ text-align:right; padding-right:10px;}
 #u_navigate .navi_user li{ display:inline; font-size:12px; line-height:30px;}

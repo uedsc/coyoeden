@@ -12,6 +12,9 @@
 	};
 	p.onEdit = function() {
 		var id = $(this).parents(p.opts.css_w).attr("id");
+		if (p.opts.onEdit) {
+			p.opts.onEdit({Id:id});
+		};
 		alert("You are editting " + id);
 		return false;
 	};
@@ -61,10 +64,10 @@
 				p.zones.sortable('enable');
 			},
 			update: function(e, ui) {
-				var newIds = $.map(p.zones.find(p.opts.css_m), function(obj,i) { return obj.id; });
-				var newI = $.inArray(p.iItem,newIds);
+				var newIds = $.map(p.zones.find(p.opts.css_m), function(obj, i) { return obj.id; });
+				var newI = $.inArray(p.iItem, newIds);
 				p.iZone1 = ui.item.parents(p.opts.zone).attr("id");
-				var data = {Items:newIds, /*sortdata*/sdata: { Id: p.iItem, NewIndex: newI, Zone0: p.iZone0, Zone1: p.iZone1} };
+				var data = { Items: newIds, /*sortdata*/sdata: { Id: p.iItem, NewIndex: newI, Zone0: p.iZone0, Zone1: p.iZone1} };
 				if (p.opts.onSort) {
 					p.opts.onSort(data);
 				};
