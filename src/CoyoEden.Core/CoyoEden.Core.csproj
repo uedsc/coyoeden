@@ -98,12 +98,14 @@
     <Compile Include="DataContracts\WidgetData.cs" />
     <Compile Include="DataContracts\WidgetSortingData.cs" />
     <Compile Include="DataContracts\YesNoOptions.cs" />
+    <Compile Include="Infrastructure\ActionEventArgs.cs" />
     <Compile Include="Infrastructure\BusinessBase.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Category.Def.cs">
       <DependentUpon>Category.cs</DependentUpon>
     </Compile>
     <Compile Include="CommentHandlers.cs" />
+    <Compile Include="Infrastructure\IBOLogic.cs" />
     <Compile Include="Infrastructure\ICategory.cs" />
     <Compile Include="Infrastructure\IComment.cs" />
     <Compile Include="Infrastructure\ICustomFilter.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Infrastructure\ISettingsBehavior.cs" />
     <Compile Include="Infrastructure\ItemView.cs" />
     <Compile Include="Infrastructure\ListingEventArgs.cs" />
+    <Compile Include="Infrastructure\LogicAction.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Page.Def.cs">
       <DependentUpon>Page.cs</DependentUpon>
