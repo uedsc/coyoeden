@@ -27,13 +27,7 @@ namespace CoyoEden.UI.Controls
 		/// </summary>
 		/// <value>The widget ID.</value>
 		public Guid WidgetID { get; set; }
-		public string CacheKey
-		{
-			get
-			{
-				return Widget.PREFIX_CACHEID + WidgetID;
-			}
-		}
+
 		public SerializableStringDictionary CurrentSettings {
 			get
 			{
@@ -49,14 +43,6 @@ namespace CoyoEden.UI.Controls
 		/// <returns>Settings</returns>
 		public SerializableStringDictionary GetSettings()
 		{
-			if (Cache[CacheKey] != null)
-			{
-				BOWidget = Cache[CacheKey] as Widget;
-			}
-			else
-			{
-				Cache[CacheKey] = BOWidget;
-			}
 			return BOWidget.ExtConfigs;
 		}
 		/// <summary>
@@ -75,7 +61,6 @@ namespace CoyoEden.UI.Controls
 				BOWidget.ExtConfigs.Add(key, settings[key]);
 			}
 			BOWidget.Save();
-			Cache[CacheKey] = BOWidget;
 		}
 	}
 }

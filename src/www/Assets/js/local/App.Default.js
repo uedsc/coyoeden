@@ -1,6 +1,7 @@
 ﻿///<reference path="../jquery/jquery-1.3.2.js"/>
 ///<reference path="../Vivasky.StringUtils.js"/>
 ///<reference path="../Vivasky.com.js"/>
+///<reference path="Local.Common.js"/>
 var App = function() {
 	//private
 	var p = {};
@@ -31,12 +32,7 @@ var App = function() {
 	p.onWidgetEditting = function(o) {
 		if (p.isAdmin()) {
 			p.loading(1);
-			$.ajaxJsonPost(LocalApp.Asmx("WidgetService", "Edit"), $.toJSON({ data: o }), function(msg) {
-				p.loading(0); msg = msg.d || msg;
-				if (!msg.IsError) {
-					$.navTo();
-				} else { alert(msg.Body); };
-			}, p.loading);
+			LocalApp.IFrame("#widgetEditor", "admin/widgetEditor.aspx", {id:o.Id});
 		};
 	};
 	p.onPageOk = function() {

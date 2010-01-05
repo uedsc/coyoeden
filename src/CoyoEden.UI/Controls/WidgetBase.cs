@@ -2,15 +2,6 @@
 
 using System;
 using System.Web.UI;
-using System.Threading;
-using System.Text;
-using CoyoEden.Core;
-using System.Collections.Specialized;
-using Vivasky.Core;
-using CoyoEden.Core.Infrastructure;
-using CoyoEden.Core.DataContracts;
-using Vivasky.Core.Infrastructure;
-using Vivasky.Core.Utility;
 
 #endregion
 namespace CoyoEden.UI.Controls

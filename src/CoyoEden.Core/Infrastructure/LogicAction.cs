@@ -8,7 +8,14 @@ namespace CoyoEden.Core.Infrastructure
 	public enum LogicAction
 	{
 		None,
-		PrepareEditingUI,
+		/// <summary>
+		/// Showing a editing view
+		/// </summary>
+		EditingView,
+		/// <summary>
+		/// showing a displaying view
+		/// </summary>
+		DisplayingView,
 		Editing,
 		AddNew,
 		Update,

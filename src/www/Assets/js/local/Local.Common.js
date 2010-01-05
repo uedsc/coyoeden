@@ -78,6 +78,35 @@ LocalApp.InitUpload = function(container, opts) {
 
 	$(container).append(iframe);
 };      //endof InitUpload
+LocalApp.IFrame = function(container, src, opts,id) {
+	if (src.indexOf("http://") < 0) {
+		src = LocalApp.WebRoot + src;
+	};
+	src = src +"?"+ $.param(opts);
+
+	id =id || "LocalAppIFrame";
+	var items = $("#"+id);
+	if (items.size() > 0) {
+		items.attr("src", src);
+		return;
+	};
+
+	var size = { 'height': 200, 'width': 'auto' };
+	size = $.extend(size, opts.size || {});
+	var iframe = document.createElement('iframe');
+	iframe.name = id;
+	iframe.id =id;
+	iframe.style.height = size.height + 'px';
+	iframe.style.width = size.width == "auto" ? "99%" : (size.width + 'px');
+	iframe.style.backgroundColor = 'white';
+	iframe.style.border = '1px solid #888';
+	iframe.frameborder = '0';
+	iframe.scrolling = 'no';
+
+	iframe.src = src;
+
+	$(container).append(iframe);
+};          //endof InitUpload
 LocalApp.Asmx = function(serviceName,actionName) {
 	return LocalApp.WebRoot + "Services/" + serviceName + ".asmx/"+actionName;
 }; //endof Asmx

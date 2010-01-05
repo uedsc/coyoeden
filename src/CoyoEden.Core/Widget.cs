@@ -11,6 +11,8 @@ using System.IO;
 using Vivasky.Core;
 using System.Linq;
 using System.Xml.Linq;
+using CoyoEden.Core.Infrastructure;
+using System.Web;
 namespace CoyoEden.Core
 {
 
@@ -30,8 +32,6 @@ namespace CoyoEden.Core
 		}
 		#endregion
 
-		public const string PREFIX_CACHEID = "cy_widget_";
-		public const string EXTCFG_COLOR = "WidgetColor";
 		#region biz methods
 		/// <summary>
 		/// Use this method to add extension config
@@ -48,6 +48,9 @@ namespace CoyoEden.Core
 		#endregion
 
 		#region properties
+		public const string PREFIX_CACHEID = "cy_widget_";
+		public const string EXTCFG_COLOR = "WidgetColor";
+		public const string WidgetPathFormatStr_EDIT = "{0}widgets/{1}/edit.ascx"; 
 		public SerializableStringDictionary ExtConfigs
 		{
 			get
@@ -75,7 +78,6 @@ namespace CoyoEden.Core
 			}
 		}
 		#endregion
-
 
 		#region factory methods
 		private static readonly object _SynHelper = new object();
@@ -123,8 +125,20 @@ namespace CoyoEden.Core
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
-		public static Widget Find(Guid id) {
-			return AllWidgets.SingleOrDefault(x => x.Id.Value.Equals(id));
+		public static Widget Find(Guid id,out BOMessager msg) {
+			msg = new BOMessager();
+			var obj=default(Widget);
+			onQuerying(id.ToString(), ref obj, out msg);
+			if (obj != null) return obj;
+			obj = AllWidgets.Find(x=>x.Id.Value.Equals(id));
+			if (obj == null)
+			{
+				msg.Error<Widget>(BOMessager.NORECORD_X, id);
+			}
+			else {
+				onQueried(id.ToString(), obj);
+			}
+			return obj;
 		}
 
 		private static XProperty _XColor;
@@ -151,6 +165,59 @@ namespace CoyoEden.Core
 				retVal = XColor.XPropertySettings[colorIndex].SettingValue;
 			}
 			return retVal;
+		}
+		/// <summary>
+		/// Loading a editing view
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="msg"></param>
+		/// <returns></returns>
+		public static string LoadEditView(Guid id, out BOMessager msg) {
+			var obj = Find(id, out msg);
+			var retVal = default(string);
+			if (obj != null) {//dispatching the showing logic to the CoyoEden.UI component.
+				onShowing(obj, out msg);
+				if (!msg.IsError) {
+					retVal = msg.Body;
+				}
+			}
+			return retVal;
+		}
+		#endregion
+
+
+		#region events
+		public static event EventHandler<ActionEventArgs> Querying;
+		public static event EventHandler<ActionEventArgs> Queried;
+		public static event EventHandler<ActionEventArgs<Widget>> Showing;
+		static void onQuerying<Tt>(string queryingKey,ref Tt retVal, out BOMessager msg) {
+			msg=new BOMessager();
+			if (Querying != null) { 
+				var args=new ActionEventArgs(LogicAction.Query,retVal,ref msg);
+				Querying(null, args);
+			}
+		}
+		static void onQueried<Tt>(string queryingKey, Tt result) {
+			if (null != Queried) {
+				var args = new ActionEventArgs(LogicAction.Query, result);
+				Queried(null, args);
+			}
+		}
+		static void onShowing(Widget obj,out BOMessager msg) {
+			msg = new BOMessager();
+			var ucPath = string.Format(WidgetPathFormatStr_EDIT, Utils.RelativeWebRoot, obj.Name);
+			if (File.Exists(HttpContext.Current.Server.MapPath(ucPath)))
+			{
+				if (Showing != null)
+				{
+					var args = new ActionEventArgs<Widget>(LogicAction.EditingView, obj, ref msg);
+					Showing(ucPath, args);
+				}
+			}
+			else { 
+				//not editable
+				msg.Error<Widget>("Not Editable!");
+			}
 		}
 		#endregion
 	}

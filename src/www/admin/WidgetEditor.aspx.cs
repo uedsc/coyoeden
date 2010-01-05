@@ -11,6 +11,7 @@ using Vivasky.Core;
 using CoyoEden.Core.DataContracts;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.UI.Controls;
+using Vivasky.Core.Infrastructure;
 
 #endregion
 
@@ -44,8 +45,8 @@ public partial class User_controls_WidgetEditor : System.Web.UI.Page
         string zone = Request.QueryString["zone"];
         string getMoveItems = Request.QueryString["getmoveitems"];
         
-		if (!string.IsNullOrEmpty(widget) && !string.IsNullOrEmpty(id))
-			InitEditor(widget, id, zone);
+		if (!string.IsNullOrEmpty(id))
+			InitEditor(id);
 
 		if (!string.IsNullOrEmpty(move))
 			MoveWidgets(move);
@@ -372,26 +373,29 @@ public partial class User_controls_WidgetEditor : System.Web.UI.Page
 	/// <param name="type">The type of widget to edit.</param>
 	/// <param name="id">The id of the particular widget to edit.</param>
     /// <param name="zone">The zone the widget to be edited is in.</param>
-	private void InitEditor(string type, string id, string zone)
+	private void InitEditor(string id)
 	{
-		XmlDocument doc = GetXmlDocument(zone);
-		XmlNode node = doc.SelectSingleNode(String.Format("//widget[@id=\"{0}\"]", id));
-		string fileName = String.Format("{0}widgets/{1}/edit.ascx", Utils.RelativeWebRoot, type);
+		var guid = new Guid(id);
+		var msg = new BOMessager();
+		var widget = Widget.Find(guid, out msg);
+
+		string fileName = String.Format(Widget.WidgetPathFormatStr_EDIT, Utils.RelativeWebRoot,widget.Name);
 
 		if (File.Exists(Server.MapPath(fileName)))
 		{
 			WidgetEditBase edit = (WidgetEditBase)LoadControl(fileName);
-			edit.WidgetID = new Guid(node.Attributes["id"].InnerText);
-			edit.Title = node.Attributes["title"].InnerText;
+			edit.WidgetID =guid;
+			edit.Title =widget.Title;
 			edit.ID = "widget";
-			edit.ShowTitle = bool.Parse(node.Attributes["showTitle"].InnerText);
+			edit.ShowTitle = widget.ShowTitle.Value;
+			edit.BOWidget = widget;
 			phEdit.Controls.Add(edit);
 		}
 
 		if (!Page.IsPostBack)
 		{
-			cbShowTitle.Checked = bool.Parse(node.Attributes["showTitle"].InnerText);
-			txtTitle.Text = node.Attributes["title"].InnerText;
+			cbShowTitle.Checked = widget.ShowTitle.Value;
+			txtTitle.Text = widget.Title;
 			txtTitle.Focus();
 			btnSave.Text = Resources.labels.save;
 		}

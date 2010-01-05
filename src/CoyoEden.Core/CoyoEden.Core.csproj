@@ -105,7 +105,6 @@
       <DependentUpon>Category.cs</DependentUpon>
     </Compile>
     <Compile Include="CommentHandlers.cs" />
-    <Compile Include="Infrastructure\IBOLogic.cs" />
     <Compile Include="Infrastructure\ICategory.cs" />
     <Compile Include="Infrastructure\IComment.cs" />
     <Compile Include="Infrastructure\ICustomFilter.cs" />

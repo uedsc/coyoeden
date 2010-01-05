@@ -21,4 +21,21 @@ namespace CoyoEden.Core.Infrastructure
 		}
 
 	}
+	public class ActionEventArgs : ActionEventArgs<object>
+	{
+		public ActionEventArgs()
+		{
+			
+		}
+		public ActionEventArgs(LogicAction action, object target)
+			: base(action, target)
+		{
+			
+		}
+		public ActionEventArgs(LogicAction action, object target, ref BOMessager msg)
+			: base(action, target, ref msg)
+		{
+			
+		}
+                                                             }
 }

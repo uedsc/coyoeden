@@ -25,7 +25,7 @@
 			</p>
 			</form>
 		</div>
-		<div class="tab_p"><asp:PlaceHolder ID="phContent" runat="server"></asp:PlaceHolder></div>
+		<div class="tab_p"><div id="widgetEditor"></div></div>
 
 		</div>
 	</div>	
