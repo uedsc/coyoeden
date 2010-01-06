@@ -1,6 +1,6 @@
 ﻿///<reference path="jquery/jquery-1.3.2.js"/>
 ///<reference path="jquery/jquery.string.1.0.js"/>
-///<reference path="jquery/jquery.event.drag-1.5.js"/>
+///<reference path="jquery/jquery-ui-1.7.2.custom.min.js"/>
 var __undefined;
 var Vivasky = {};
 Vivasky.undefined = __undefined;
@@ -434,6 +434,9 @@ $.jqMExt = Vivasky.jqMExt = {
 			mode = jqmApi.uiData.mode || '-1';
 		};
 		switch (mode) {
+			case '-2':
+				$(".dialog_acts", w).hide();				
+				break;
 			case '-1':
 				$(".dialog_title,.dialog_acts", w).hide();
 				break;
@@ -448,25 +451,30 @@ $.jqMExt = Vivasky.jqMExt = {
 				break;
 		}; //endof switch
 	}, //endof prepareUI
-	ieBGFix: function() {
+	ieBGFix: function(jqmApi) {
+		$('.dialog_sharp').width($('.dialog_main').width());
 		if ($.browser.msie) {
 			$('.dialog_sharp').height($('.dialog_main').height());
 		};
+		var left = ($(window).width() - jqmApi.w.width()) / 2; left = left < 0 ? 0 : left;
+		var top = ($(window).height() - jqmApi.w.height()) / 2; top = top < 0 ? 0 : top;
+		alert(left + "---" + top);
+		jqmApi.w.css({ left: left + 'px', top: top + 'px' });
 	},
 	onShow: function(c) {
 		Vivasky.jqMExt.prepareUI(c);
 		c.w.show();
-		Vivasky.jqMExt.ieBGFix();
+		Vivasky.jqMExt.ieBGFix(c);
 		$(".jqmClose", c.w[0]).live("click", function() { c.w.jqmHide(); return false; }); //our close trigger may be dynamically generated.
 	},
 	onLoad: function(c) {
-		Vivasky.jqMExt.ieBGFix();
+		Vivasky.jqMExt.ieBGFix(c);
 	},
 	jqm: function(jqmSelector, uiData, modal, toTop) {
 		///<summary>simply show a dom using jqModal.If wanna use ajax,pls use jqmAjax or jqmAjaxPost</summary>
 		///<param name="jqmSelector">jqm which?</param>
 		///<param name="uiData">Default is:{title:'',content:'',flag:'alert_ok',btn_ok:'确 认',btn_close:'取 消',mode:'-1'}</param>
-		var tpData = { title: '', content: '', btn_ok: '确 认', btn_close: '取 消', onHide: null, mode: '-1'};
+		var tpData = { title: '', content: '', btn_ok: '确 认', btn_close: '取 消', onHide: null, mode: '-1' };
 		uiData = $.extend(tpData, uiData);
 		if (uiData.flag) {
 			uiData.mode = "-1"; //no title,no buttons
@@ -529,7 +537,7 @@ $.jqMExt = Vivasky.jqMExt = {
 		var callback1 = function(msg) {//msg is server response data
 			if (msg.d) msg = msg.d; //keep compatible to asp.net asmx/svc
 			if (msg.IsOk) {//data contract:{IsOk:true,Body:'asdfsd',others:'others data'}
-				tpData.mode = msg.IsAlert?"-1":rawMode;
+				tpData.mode = msg.IsAlert ? "-1" : rawMode;
 				tpData.content = msg.IsAlert ? Vivasky.jqMExt.alertHtml.parseTpl(msg) : msg.Body;
 				if (msg.Title && msg.Title != "") { tpData.title = msg.Title; };
 			} else { //endof msg.IsOk. if !msg.IsOk,we should process manually in the onLoad callback
