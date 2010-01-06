@@ -1,6 +1,6 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeFile="edit.ascx.cs" Inherits="widgets_TextBox_edit" %>
 <%@ Import Namespace="CoyoEden.Core" %>
-
+<vs:SiteJScript ID="jquery_tinyMCE" ScriptRelativeToRoot="Assets/js/jquery/jquery-1.3.2.min.js" runat="server"/>
 <script type="text/javascript" src="<%=Vivasky.Core.Utils.RelativeWebRoot %>editors/tiny_mce3/tiny_mce.js"></script>
 <script type="text/javascript">
 //<![CDATA[

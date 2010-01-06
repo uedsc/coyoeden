@@ -5,6 +5,7 @@
 <head runat="server">
   <title>Widget Editor</title>
   <link rel="Stylesheet" rev="Stylesheet" type="text/css" href="<%=Utils.AbsoluteWebRoot%>assets/css/local.widgeteditor.css" />
+  <vs:SiteJScript ID="jquery" ScriptRelativeToRoot="Assets/js/jquery/jquery-1.3.2.min.js" runat="server"/>
 </head>
 <body>
   <form id="form1" runat="server">
