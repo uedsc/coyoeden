@@ -15,7 +15,6 @@
 		if (p.opts.onEdit) {
 			p.opts.onEdit({Id:id});
 		};
-		alert("You are editting " + id);
 		return false;
 	};
 	p.onCollapseOn = function() {

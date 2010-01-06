@@ -14,89 +14,32 @@ LocalApp.jqMTipX = function(msg, jqmSelector, tipType) {
 	///<summary>Pop up a tipbox using jqModal</summary>
 	$.jqMExt.jqm(jqmSelector || "#jqModal1", { title: msg, flag: tipType || 'alert_error' });
 }; //endof TipX
-LocalApp.PopUpload = function(opts) {
-	///<summary>Init a Uploader</summary>
-	///<param name="opts">E.g:{rel:"category",uploader:"SWF"}</param>
-	window.scrollTo(0, 0);
-	//opts.t = Math.PI * Math.random();
-	var uploadSRC = LocalApp.WebRoot + 'aspx/upload.aspx?' + $.param(opts);
-
-	var items = $("#PortalUploader");
-	if (items.size() > 0) {
-		$("#jqModal1").jqmShow();
-		$("#PortalUploader").attr("src", uploadSRC); //can't use items.attr here...firefox don't work
-		return;
-	};
-
-	var size = { 'height': 200, 'width': 'auto' };
-	size = $.extend(size, opts.size || {});
-	var w = size.width == "auto" ? "99%" : (size.width + 'px');
-	var iframe = document.createElement('iframe');
-	iframe.name = 'PortalUploader';
-	iframe.id = 'PortalUploader';
-	iframe.style.height = size.height + 'px';
-	iframe.style.width = w;
-	iframe.style.backgroundColor = 'white';
-	iframe.style.border = '1px solid #888';
-	iframe.frameborder = '0';
-	iframe.scrolling = 'no';
-	$(iframe).attr("title", "文件上传部件");
-
-	$("<div id='PortalUploaderWrapper' style='display:none;'></div>").append(iframe).appendTo("body");
-
-	$.jqMExt.jqm("#jqModal1", { title: "文件上传部件", content: $("#PortalUploaderWrapper").html(), mode: '1' });
-	$("#PortalUploaderWrapper").empty();
-	$("#PortalUploader").attr("src", uploadSRC);
-	//ie6 sitll css fix
-	if ($.browser.msie) {
-		var p = $("#PortalUploader").parent(); p.width(p.width()).css("overflow", "hidden"); p = null;
-	};
-};               //endof LocalApp.PopUpload
-LocalApp.InitUpload = function(container, opts) {
-	var uploadSRC = LocalApp.WebRoot + 'aspx/upload.aspx?' + $.param(opts);
-
-	var items = $("#PortalUploader");
-	if (items.size() > 0) {
-		items.attr("src", uploadSRC);
-		return;
-	};
-
-	var size = { 'height': 200, 'width': 'auto' };
-	size = $.extend(size, opts.size || {});
-	var iframe = document.createElement('iframe');
-	iframe.name = 'PortalUploader';
-	iframe.id = 'PortalUploader';
-	iframe.style.height = size.height + 'px';
-	iframe.style.width = size.width == "auto" ? "99%" : (size.width + 'px');
-	iframe.style.backgroundColor = 'white';
-	iframe.style.border = '1px solid #888';
-	iframe.frameborder = '0';
-	iframe.scrolling = 'no';
-
-	$(iframe).attr("title", "文件上传部件");
-	iframe.src = uploadSRC;
-
-	$(container).append(iframe);
-};      //endof InitUpload
-LocalApp.IFrame = function(container, src, opts,id) {
+LocalApp.IFrame = function(container, src, opts) {
+	///<summary>create a iframe</summary>
+	///<param name="container">where the iframe should be put.If equals 'pop',a popup iframe will be created using jqModal.</param>
+	///<param name="src">src of the iframe.</param>
+	///<param name="opts">additional parameters.opts.data will be converted as the query string of the iframe.</param>
 	if (src.indexOf("http://") < 0) {
 		src = LocalApp.WebRoot + src;
 	};
-	src = src +"?"+ $.param(opts);
+	if (opts && opts.data) {
+		src = src + "?" + $.param(opts.data);
+	};
 
-	id =id || "LocalAppIFrame";
-	var items = $("#"+id);
+	var id = opts.id || "LocalAppIFrame";
+	var items = $("#" + id);
 	if (items.size() > 0) {
-		items.attr("src", src);
+		if (container == "pop") { $("#jqModal1").jqmShow(); };
+		$("#" + id).attr("src", src);//can't use items here...firefox doesn't work.
 		return;
 	};
 
-	var size = { 'height': 200, 'width': 'auto' };
+	var size = { 'height':200, 'width': 'auto' };
 	size = $.extend(size, opts.size || {});
 	var iframe = document.createElement('iframe');
 	iframe.name = id;
-	iframe.id =id;
-	iframe.style.height = size.height + 'px';
+	iframe.id = id;
+	iframe.style.height = size.height == 'auto' ? "61.8%" : (size.height + 'px');
 	iframe.style.width = size.width == "auto" ? "99%" : (size.width + 'px');
 	iframe.style.backgroundColor = 'white';
 	iframe.style.border = '1px solid #888';
@@ -104,9 +47,34 @@ LocalApp.IFrame = function(container, src, opts,id) {
 	iframe.scrolling = 'no';
 
 	iframe.src = src;
-
-	$(container).append(iframe);
-};          //endof InitUpload
+	if (container == "pop") {
+		if (LocalApp.LocalAppIFrameWrapper) {
+			LocalApp.LocalAppIFrameWrapper.append(iframe).appendTo("body");
+		} else {
+			$("<div id='LocalAppIFrameWrapper' style='display:none;'></div>").append(iframe).appendTo("body");
+			LocalApp.LocalAppIFrameWrapper = $("#LocalAppIFrameWrapper").remove();
+		};
+		$.jqMExt.jqm("#jqModal1", { title: opts.title || "LocalAppIFrame", content: LocalApp.LocalAppIFrameWrapper.html(), mode:opts.mode||'-2',okClick:opts.okClick||null});
+		//ie6 sitll css fix
+		if ($.browser.msie) {
+			var p = $("#"+id).parent(); p.width(p.width()).css("overflow", "hidden"); p = null;
+		};
+	} else {
+		$(container).append(iframe);
+	};
+};                     //endof InitUpload
+LocalApp.InitUpload = function(container, opts) {
+	var uploadSRC = LocalApp.WebRoot + 'aspx/upload.aspx';
+	LocalApp.IFrame(container, uploadSRC, { title: '文件上传部件', id: 'PortalUploader', data: opts });
+};        //endof InitUpload
+LocalApp.PopUpload = function(opts) {
+	///<summary>Init a Uploader</summary>
+	///<param name="opts">E.g:{rel:"category",uploader:"SWF"}</param>
+	window.scrollTo(0, 0);
+	//opts.t = Math.PI * Math.random();
+	var uploadSRC = LocalApp.WebRoot + 'aspx/upload.aspx';
+	LocalApp.IFrame("pop", uploadSRC, {title:'文件上传部件',id:'PortalUploader',data:opts});
+};                //endof LocalApp.PopUpload
 LocalApp.Asmx = function(serviceName,actionName) {
 	return LocalApp.WebRoot + "Services/" + serviceName + ".asmx/"+actionName;
 }; //endof Asmx

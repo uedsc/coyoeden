@@ -29,10 +29,12 @@ var App = function() {
 			p.loading(0);
 		}, p.loading);
 	};
+	p.onWidgetSaving = function(evt,jqmApi) {
+		window.frames["widgetEditorFrame"].document.submit();
+	};
 	p.onWidgetEditting = function(o) {
 		if (p.isAdmin()) {
-			p.loading(1);
-			LocalApp.IFrame("#widgetEditor", "admin/widgetEditor.aspx", {id:o.Id});
+			LocalApp.IFrame("pop", "admin/widgetEditor.aspx", { title: 'Widget Editor', id: 'widgetEditorFrame', data: { id: o.Id }, size: { height: 450, width: 700} });
 		};
 	};
 	p.onPageOk = function() {

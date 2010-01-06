@@ -11,6 +11,7 @@
     <vs:SiteCSS ID="cssSiteTop" CSSRelativeToRoot="Assets/css/Vivasky.TopSlider.css" runat="server" />
 	<vs:JQTheme ID="jqTheme" runat="server" />
 	<vs:SiteCSS ID="cssjqtools_tab" CSSRelativeToRoot="Assets/css/jquerytools.tabs-no-images.css" runat="server" />
+	<vs:SiteCSS ID="cssjqModal" CSSRelativeToRoot="Assets/css/jqModal.css" runat="server" />
 	<asp:ContentPlaceHolder ID="cphHeader" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body class="<%=CssClass %>">
@@ -163,6 +164,9 @@
         Theme by <a href="http://www.lizishop.cn">LiziShop</a>
 	  </div>
   </div>
+	<!--jqModal UI place holder-->
+	<vs:jqModalUI CssClass="dialog_jqm" ID="jqModal1" runat="server" />
+	<!--!jqModal UI-->
   	<asp:ContentPlaceHolder ID="cphFooter" runat="server">
 	</asp:ContentPlaceHolder>
 </body>

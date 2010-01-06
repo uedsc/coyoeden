@@ -435,7 +435,7 @@ $.jqMExt = Vivasky.jqMExt = {
 		};
 		switch (mode) {
 			case '-2':
-				$(".dialog_acts", w).hide();				
+				$(".dialog_acts", w).hide();
 				break;
 			case '-1':
 				$(".dialog_title,.dialog_acts", w).hide();
@@ -452,13 +452,14 @@ $.jqMExt = Vivasky.jqMExt = {
 		}; //endof switch
 	}, //endof prepareUI
 	ieBGFix: function(jqmApi) {
-		$('.dialog_sharp').width($('.dialog_main').width());
+		var d = { w: $('.dialog_main').width(), h: $('.dialog_main').height() };
+		$('.dialog_sharp').width(d.w);
 		if ($.browser.msie) {
-			$('.dialog_sharp').height($('.dialog_main').height());
+			$('.dialog_sharp').height(d.h);
+			jqmApi.w.width(d.w);
 		};
 		var left = ($(window).width() - jqmApi.w.width()) / 2; left = left < 0 ? 0 : left;
 		var top = ($(window).height() - jqmApi.w.height()) / 2; top = top < 0 ? 0 : top;
-		alert(left + "---" + top);
 		jqmApi.w.css({ left: left + 'px', top: top + 'px' });
 	},
 	onShow: function(c) {
@@ -485,9 +486,8 @@ $.jqMExt = Vivasky.jqMExt = {
 			ajax: null, modal: modal || true, toTop: toTop || true,
 			onShow: function(_api) { _api.uiData = uiData; Vivasky.jqMExt.onShow(_api); },
 			onHide: uiData.onHide
-		}).drag(
-		 	function(event) { return $(event.target).is('.jqDrag'); },
-			function(event) { var pos = { top: event.offsetY, left: event.offsetX }; $(this).css(pos); }
+		}).draggable(
+			{ handle: '.jqDrag' }
 		).jqmShow();
 	}, //endof jqm
 	jqmAjax: function(jqmSelector, url, uiData, responseTarget) {
@@ -508,9 +508,8 @@ $.jqMExt = Vivasky.jqMExt = {
 			onHide: uiData.onHide,
 			onShow: function(_api) { _api.uiData = tpData; jqmApi = _api; Vivasky.jqMExt.onShow(_api); },
 			onLoad: function(_api) { Vivasky.jqMExt.prepareUI({ uiData: { mode: rawMode} }); if (uiData.onLoad) { uiData.onLoad(_api); }; Vivasky.jqMExt.onLoad(_api); }
-		}).drag(
-			function(event) { return $(event.target).is('.jqDrag'); },
-			function(event) { var pos = { top: event.offsetY, left: event.offsetX }; $(this).css(pos); }
+		}).draggable(
+			{ handle: '.jqDrag' }
 		).jqmShow();
 	}, //endof jqmAjax
 	jqmAjaxPost: function(jqmSelector, url, uiData, data, callback) {
@@ -529,9 +528,8 @@ $.jqMExt = Vivasky.jqMExt = {
 			modal: true,
 			toTop: true,
 			onHide: tpData.onHide
-		}).drag(
-		 	function(event) { return $(event.target).is('.jqDrag'); },
-			function(event) { var pos = { top: event.offsetY, left: event.offsetX }; $(this).css(pos); }
+		}).draggable(
+			{ handle: '.jqDrag' }
 		).jqmShow();
 
 		var callback1 = function(msg) {//msg is server response data

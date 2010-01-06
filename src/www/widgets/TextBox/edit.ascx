@@ -3,6 +3,7 @@
 
 <script type="text/javascript" src="<%=Vivasky.Core.Utils.RelativeWebRoot %>editors/tiny_mce3/tiny_mce.js"></script>
 <script type="text/javascript">
+//<![CDATA[
 	tinyMCE.init({
 		// General options
 		mode: "exact",
@@ -10,7 +11,6 @@
 		theme: "advanced",
 		plugins: "inlinepopups,fullscreen,contextmenu,emotions,table,iespell",
 		convert_urls: false,
-	  
 	  // Theme options
 		theme_advanced_buttons1: "fullscreen,code,|,cut,copy,paste,|,undo,redo,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,outdent,indent,|,iespell,link,unlink,sub,sup,removeformat,cleanup,charmap,emotions",
 		theme_advanced_buttons2: "",
@@ -22,6 +22,7 @@
 		
 		tab_focus : ":prev,:next"
 	});
+	//]]>
 </script>
 
-<asp:TextBox runat="server" ID="txtText" TextMode="multiLine" Columns="100" Rows="10" style="width:700px;height:372px" /><br />
+<asp:TextBox runat="server" ID="txtText" TextMode="multiLine" Columns="100" Rows="10" style="width:600px;height:360px" /><br />
