@@ -4,81 +4,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cphMain" Runat="Server">
 
 <div id="tagselector" style="display: none">
-    <a href="javascript:void(ToggleTagSelector())" style="color:Black;float:right">Close</a>
+    <a href="#" style="color:Black;float:right" id="lnkTagsCloser">Close</a>
     <div style="clear:both"></div>
     <asp:PlaceHolder runat="server" ID="phTags" />
     <div style="clear:both"></div>
   </div>
-  
-<script type="text/javascript">
-function ToggleVisibility()
-{
-  var element = document.getElementById('<%=ulDrafts.ClientID%>');
-  if (element.style.display == "none")
-    element.style.display = "block";
-  else
-    element.style.display = "none";
-}
-
-function GetSlug()
-{
-  var title = document.getElementById('<%=txtTitle.ClientID %>').value;
-  WebForm_DoCallback('__Page', title, ApplySlug, 'slug', null, false) 
-}
-
-function ApplySlug(arg, context)
-{
-  var slug = document.getElementById('<%=txtSlug.ClientID %>');
-  slug.value = arg;
-}
-
-function AutoSave()
-{
-	var content = document.getElementById('<%=txtRawContent.ClientID %>') != null ? document.getElementById('<%=txtRawContent.ClientID %>').value : tinyMCE.activeEditor.getContent();
-  var title = document.getElementById('<%=txtTitle.ClientID %>').value;
-  var desc = document.getElementById('<%=txtDescription.ClientID %>').value;
-  var slug = document.getElementById('<%=txtSlug.ClientID %>').value;
-  var tags = document.getElementById('<%=txtTags.ClientID %>').value;
-  var s = ';|;';
-  var post = content + s + title + s + desc + s + slug + s + tags;
-  
-  if (content.length > 10)
-  {
-    WebForm_DoCallback('__Page', '_autosave' + post, null, 'autosave', null, false);
-  }
-  
-  setTimeout("AutoSave()", 5000);
-}
-
-document.body.onkeypress = ESCclose;
-
-function ESCclose(evt) 
-{
-  if (!evt)
-    evt = window.event; 
-    
-  if (evt.keyCode == 27) 
-    document.getElementById('tagselector').style.display = 'none';  
- }
-
-function AddTag(element)
-{
-  var input = document.getElementById('<%=txtTags.ClientID %>');  
-  input.value += element.innerHTML + ', ';
-}
-
-function ToggleTagSelector()
-{
-  var element = document.getElementById('tagselector');
-  if (element.style.display == "none")
-    element.style.display = "block";
-  else
-    element.style.display = "none";
-}
-</script>
-
   <div id="divDrafts" runat="server" visible="False" enableviewstate="False" style="margin-bottom: 10px">
-    <a id="aDrafts" runat="server" href="javascript:void(ToggleVisibility());" />
+    <a id="aDrafts" runat="server" href="#" />
     <ul id="ulDrafts" runat="server" style="display:none;list-style-type:circle" />
   </div>
 
@@ -98,8 +30,7 @@ function ToggleTagSelector()
   <asp:RequiredFieldValidator runat="server" ControlToValidate="txtDate" ErrorMessage="Please enter a date (yyyy-mm-dd hh:mm)" Display="Dynamic" />
   <asp:RequiredFieldValidator runat="server" ControlToValidate="txtTitle" ErrorMessage="Please enter a title" Display="Dynamic" />
   <br /><br />
-  
-  <vs:TextEditor runat="server" id="txtContent" />
+  <asp:TextBox runat="Server" ID="txtEditorHost" CssClass="post" Width="100%" Height="250px" TextMode="MultiLine" />
   <asp:TextBox runat="server" ID="txtRawContent" Width="100%" TextMode="multiLine" Height="300px" Visible="false" />
   <br />
   
@@ -124,7 +55,7 @@ function ToggleTagSelector()
       <td class="label">Slug (optional)</td>
       <td>
         <asp:TextBox runat="server" ID="txtSlug" Width="400" />
-        <a href="javascript:void(GetSlug());">Extract from title</a>
+        <a href="#" id="lnkGetSlug" title="">Extract from title</a>
       </td>
     </tr>
     <tr>
@@ -147,7 +78,7 @@ function ToggleTagSelector()
       <td class="label">Tags</td>
       <td>
         <asp:TextBox runat="server" ID="txtTags" Width="400" />
-        <a href="javascript:void(ToggleTagSelector())">Show selector</a>
+        <a href="#" id="lnkShowTags">Show selector</a>
         <span><%=Resources.labels.separateTagsWitComma %></span>
       </td>
     </tr>
@@ -164,11 +95,24 @@ function ToggleTagSelector()
     <asp:Button runat="server" ID="btnSave" />
   </div>
   <br />
-<% if (Request.QueryString["id"] == null){ %>  
-  <script type="text/javascript">
-    setTimeout("AutoSave()", 5000);
-  </script>
-<%} %>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" Runat="Server"></asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphFooter" Runat="Server">
+<vs:TextEditor runat="server" id="txtContent"/>
+<vs:SiteJScript ID="appJS1" ScriptRelativeToRoot="Assets/js/local/admin.postedit.js" runat="server"/>
+<script type="text/javascript">
+	//<![CDATA[
+	PostEditApp.Init({
+		ulDraftsID: '<%=ulDrafts.ClientID%>',
+		txtTitleID: '<%=txtTitle.ClientID %>',
+		txtSlugID: '<%=txtSlug.ClientID %>',
+		txtRawContentID: '<%=txtRawContent.ClientID %>',
+		txtDescriptionID: '<%=txtDescription.ClientID %>',
+		txtTagsID: '<%=txtTags.ClientID %>',
+		tagselectorID: 'tagselector',
+		lnkGetSlugID: 'lnkGetSlug',
+		id: '<%=Request.QueryString["id"] %>'
+	});
+	//]]>
+</script>
+</asp:Content>
 

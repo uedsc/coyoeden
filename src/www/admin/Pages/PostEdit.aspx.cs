@@ -19,6 +19,7 @@ public partial class PostEdit : System.Web.UI.Page, System.Web.UI.ICallbackEvent
 
 	protected void Page_Load(object sender, EventArgs e)
 	{
+		txtContent.Target = txtEditorHost;
 		this.MaintainScrollPositionOnPostBack = true;
 		txtTitle.Focus();
 		BindTags();

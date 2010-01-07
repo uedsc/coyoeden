@@ -14,5 +14,6 @@
     <siteMapNode url="~/admin/Comments/Default.aspx" title="comments"  description=""  roles="administrators"/>
     <siteMapNode url="~/admin/Extensions/default.aspx" title="Extensions"  description=""  roles="administrators"/>
 	<siteMapNode url="~/admin/XProperties/Default.aspx" title="XProperties" description="" roles="administrators"/>
+	<siteMapNode url="~/admin/widgets/Default.aspx" title="widgets" description="" roles="administrators"/>
   </siteMapNode>
 </siteMap>

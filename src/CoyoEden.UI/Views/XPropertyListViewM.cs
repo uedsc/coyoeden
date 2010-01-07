@@ -8,27 +8,15 @@ using CoyoEden.Core.DataContracts;
 
 namespace CoyoEden.UI.Views
 {
-	public class XPropertyListViewM:ViewBase
+	public class XPropertyListViewM:CommonItemListViewM<XProperty>
 	{
-		/// <summary>
-		/// All extensive properties
-		/// </summary>
-		public List<XProperty> XPropertyList {
+		public override List<XProperty> AllItems
+		{
 			get
 			{
-				var allItems=XProperty.XProperties;
-
-				return allItems.Skip(PageIndex * PageSize).Take(PageSize).ToList();
+				return XProperty.XProperties;
 			}
 		}
-		public int ItemCount {
-			get
-			{
-				return XProperty.XProperties.Count;
-			}
-		}
-		public int PageIndex { get; set; }
-		public int PageSize { get; set; }
 
 	}
 }

@@ -116,6 +116,9 @@
     <Compile Include="Views\CommentListView.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Views\CommonItemListViewM.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Views\HeadlineListView.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -129,6 +132,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\WidgetLayoutViewM.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\WidgetListViewM.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\XPropertyDetailViewM.cs">

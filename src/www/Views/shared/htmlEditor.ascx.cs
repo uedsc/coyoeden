@@ -6,8 +6,6 @@ using System.Web.UI.WebControls;
 
 public partial class Views_shared_htmlEditor : System.Web.UI.UserControl
 {
-
-
   public string Text
   {
     get { return TinyMCE1.Text; }
@@ -19,6 +17,17 @@ public partial class Views_shared_htmlEditor : System.Web.UI.UserControl
       get { return TinyMCE1.TabIndex; }
       set { TinyMCE1.TabIndex = value; }
   }
-
-
+/// <summary>
+/// target textbox applying tinyMCE
+/// </summary>
+  public TextBox Target {
+	  get
+	  {
+		  return TinyMCE1.Target;
+	  }
+	  set
+      {
+      	TinyMCE1.Target =value;
+      }
+  }
 }

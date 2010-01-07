@@ -48,6 +48,16 @@ namespace CoyoEden.Core
 		#endregion
 
 		#region properties
+		/// <summary>
+		/// TODO:fetch from config
+		/// </summary>
+		public string Icon
+		{
+			get
+			{
+				return String.Format("{0}themes/admin/img/icon_c100.jpg", Utils.AbsoluteWebRoot);
+			}
+		}
 		public const string PREFIX_CACHEID = "cy_widget_";
 		public const string EXTCFG_COLOR = "WidgetColor";
 		public const string WidgetPathFormatStr_EDIT = "{0}widgets/{1}/edit.ascx"; 
