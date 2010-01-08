@@ -479,14 +479,10 @@
         <add key="maxLength" value="50" />
       </rule>
     </property>
-    <property name="Movable" type="Boolean" default="True" compulsory="true" />
-    <property name="Deletable" type="Boolean" default="True" compulsory="true" />
-    <property name="Collapsable" type="Boolean" default="False" compulsory="true" />
-    <property name="Editable" type="Boolean" default="False" compulsory="true" />
     <property name="ShowTitle" type="Boolean" default="True" compulsory="true" />
     <property name="Template" compulsory="true">
       <rule name="Template">
-        <add key="maxLength" value="50" />
+        <add key="maxLength" value="200" />
       </rule>
     </property>
     <property name="Tag" compulsory="true">
@@ -494,6 +490,7 @@
         <add key="maxLength" value="50" />
       </rule>
     </property>
+    <property name="DisplayIndex" type="Int32" compulsory="true" />
     <property name="ExtConfig">
       <rule name="ExtConfig">
         <add key="maxLength" value="2147483647" />
@@ -502,7 +499,6 @@
     <property name="FKZone" type="Guid" compulsory="true">
       <businessObjectLookupList class="WidgetZone" assembly="CoyoEden.Core" />
     </property>
-    <property name="DisplayIndex" type="Int32" compulsory="true" />
     <primaryKey>
       <prop name="Id" />
     </primaryKey>
@@ -638,6 +634,23 @@
     <property name="Description" compulsory="true">
       <rule name="Description">
         <add key="maxLength" value="500" />
+      </rule>
+    </property>
+    <property name="Icon">
+      <rule name="Icon">
+        <add key="maxLength" value="100" />
+      </rule>
+    </property>
+    <property name="CreatedOn" type="DateTime" compulsory="true" />
+    <property name="CreatedBy">
+      <rule name="CreatedBy">
+        <add key="maxLength" value="50" />
+      </rule>
+    </property>
+    <property name="ModifiedOn" type="DateTime" compulsory="true" />
+    <property name="ModifiedBy">
+      <rule name="ModifiedBy">
+        <add key="maxLength" value="50" />
       </rule>
     </property>
     <property name="IsDeleted" type="Boolean" default="False" compulsory="true" />

@@ -27,8 +27,9 @@ namespace CoyoEden.Core
 					AllWidgets.Add(this);
 				}
 			};
-			//default color xproperty
-			AddExtConfig(EXTCFG_COLOR, GetRandomColor());
+			//default xproperty
+			AddExtConfig(EXTCFG_COLOR, XProperty.GetRandomXSetting(EXTCFG_COLOR,"null"));
+			AddExtConfig(EXTCFG_ICON, XProperty.GetRandomXSetting(EXTCFG_ICON, "themes/admin/img/icon_c100.jpg"));
 		}
 		#endregion
 
@@ -49,17 +50,28 @@ namespace CoyoEden.Core
 
 		#region properties
 		/// <summary>
-		/// TODO:fetch from config
+		/// icon
 		/// </summary>
 		public string Icon
 		{
 			get
 			{
-				return String.Format("{0}themes/admin/img/icon_c100.jpg", Utils.AbsoluteWebRoot);
+				var retVal=default(string);
+				if (ExtConfigs.ContainsKey(EXTCFG_ICON))
+				{
+					retVal = ExtConfigs[EXTCFG_ICON];
+				}
+				else
+				{
+					retVal = XProperty.GetRandomXSetting(EXTCFG_ICON, "themes/admin/img/icon_c100.jpg");
+					ExtConfigs.Add(EXTCFG_ICON, retVal);
+				}
+				return string.Format("{0}{1}", Utils.AbsoluteWebRoot, retVal);
 			}
 		}
 		public const string PREFIX_CACHEID = "cy_widget_";
 		public const string EXTCFG_COLOR = "WidgetColor";
+		public const string EXTCFG_ICON = "SiteIcon";
 		public const string WidgetPathFormatStr_EDIT = "{0}widgets/{1}/edit.ascx"; 
 		public SerializableStringDictionary ExtConfigs
 		{
@@ -81,10 +93,30 @@ namespace CoyoEden.Core
 					retVal = ExtConfigs[EXTCFG_COLOR];
 				}
 				else {
-					retVal = GetRandomColor();
+					retVal = XProperty.GetRandomXSetting(EXTCFG_COLOR, "null");
 					ExtConfigs.Add(EXTCFG_COLOR, retVal);
 				}
 				return retVal;
+			}
+		}
+		/// <summary>
+		/// physical template path for editing
+		/// </summary>
+		public string EditTemplatePath {
+			get
+			{
+				var ucpath = string.Format(WidgetPathFormatStr_EDIT, Utils.RelativeWebRoot, Name);
+				ucpath = HttpContext.Current.Server.MapPath(ucpath);
+				if (!File.Exists(ucpath)) {
+					ucpath = null;
+				}
+				return ucpath;
+			}
+		}
+		public bool Editable {
+			get
+			{
+				return (null != EditTemplatePath);
 			}
 		}
 		#endregion
@@ -164,17 +196,18 @@ namespace CoyoEden.Core
 				return _XColor;
 			}
 		}
+		private static XProperty _XIcon;
 		/// <summary>
-		/// Get a random color for the widget
+		/// get the SiteIcon XProperty
 		/// </summary>
-		/// <returns></returns>
-		public static string GetRandomColor() {
-			var retVal = "null";
-			if (XColor != null && XColor.XPropertySettings.Count > 0) {
-				var colorIndex = new Random().Next(XColor.XPropertySettings.Count);
-				retVal = XColor.XPropertySettings[colorIndex].SettingValue;
+		public static XProperty XIcon {
+			get
+			{
+				if (_XColor == null) {
+					_XColor = XProperty.GetXProperty(EXTCFG_ICON);
+				}
+				return _XColor;
 			}
-			return retVal;
 		}
 		/// <summary>
 		/// Loading a editing view
@@ -215,13 +248,12 @@ namespace CoyoEden.Core
 		}
 		static void onShowing(Widget obj,out BOMessager msg) {
 			msg = new BOMessager();
-			var ucPath = string.Format(WidgetPathFormatStr_EDIT, Utils.RelativeWebRoot, obj.Name);
-			if (File.Exists(HttpContext.Current.Server.MapPath(ucPath)))
+			if (obj.Editable)
 			{
 				if (Showing != null)
 				{
 					var args = new ActionEventArgs<Widget>(LogicAction.EditingView, obj, ref msg);
-					Showing(ucPath, args);
+					Showing(obj.EditTemplatePath, args);
 				}
 			}
 			else { 

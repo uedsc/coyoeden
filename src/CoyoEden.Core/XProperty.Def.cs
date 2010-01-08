@@ -51,6 +51,66 @@ namespace CoyoEden.Core
             }
         }
         
+        public virtual String Icon
+        {
+            get
+            {
+                return ((String)(base.GetPropertyValue("Icon")));
+            }
+            set
+            {
+                base.SetPropertyValue("Icon", value);
+            }
+        }
+        
+        public virtual DateTime? CreatedOn
+        {
+            get
+            {
+                return ((DateTime?)(base.GetPropertyValue("CreatedOn")));
+            }
+            set
+            {
+                base.SetPropertyValue("CreatedOn", value);
+            }
+        }
+        
+        public virtual String CreatedBy
+        {
+            get
+            {
+                return ((String)(base.GetPropertyValue("CreatedBy")));
+            }
+            set
+            {
+                base.SetPropertyValue("CreatedBy", value);
+            }
+        }
+        
+        public virtual DateTime? ModifiedOn
+        {
+            get
+            {
+                return ((DateTime?)(base.GetPropertyValue("ModifiedOn")));
+            }
+            set
+            {
+                base.SetPropertyValue("ModifiedOn", value);
+            }
+        }
+        
+        public virtual String ModifiedBy
+        {
+            get
+            {
+                return ((String)(base.GetPropertyValue("ModifiedBy")));
+            }
+            set
+            {
+                base.SetPropertyValue("ModifiedBy", value);
+            }
+        }
+        
         public virtual Boolean? IsDeleted
         {
             get

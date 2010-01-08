@@ -1,4 +1,4 @@
-<Project EditorVersion="2.3.1" ProjectFileName="F:\7Garden\Documents\Visual Studio 2008\Projects\CoyoEden\CoyoEden.fsproj">
+<Project EditorVersion="2.3.1" ProjectFileName="E:\SysDir\My Documents\Visual Studio 2008\Projects\Vivasky\CoyoEden\CoyoEden.fsproj">
   <ProjectSettings HabaneroDllPath="F:\7Garden\Documents\Visual Studio 2008\Projects\CoyoEden\libs" ProjectName="CoyoEden" SolutionDirectory="src" BaseProjectName="CoyoEden" TestUiProjectName="CoyoEden.Test.UI" TestBoProjectName="CoyoEden.Test.BO" LogicProjectName="CoyoEden.Logic" BoProjectName="CoyoEden.Core" UIWinProjectName="CoyoEden.UI" DatabaseConfig="SqlServer: .\SQLEXPRESS - CoyoEden(sa)" DefaultAssembly="CoyoEden.Core" TableNamePrefix="cy_">
     <StoredDatabaseConfig Vendor="SqlServer" Server=".\SQLEXPRESS" Database="CoyoEden" Username="sa" Password="123456" />
     <CustomPropertyTypes />
@@ -1566,38 +1566,6 @@
             <Items />
           </LookupListSource>
         </Property>
-        <Property PropertyName="Movable" DisplayName="Movable" DatabaseFieldName="Movable" Compulsory="True" DefaultValue="True" PropertyType="Boolean">
-          <PropertyRule>
-            <Parameters />
-          </PropertyRule>
-          <LookupListSource>
-            <Items />
-          </LookupListSource>
-        </Property>
-        <Property PropertyName="Deletable" DisplayName="Deletable" DatabaseFieldName="Deletable" Compulsory="True" DefaultValue="True" PropertyType="Boolean">
-          <PropertyRule>
-            <Parameters />
-          </PropertyRule>
-          <LookupListSource>
-            <Items />
-          </LookupListSource>
-        </Property>
-        <Property PropertyName="Collapsable" DisplayName="Collapsable" DatabaseFieldName="Collapsable" Compulsory="True" DefaultValue="False" PropertyType="Boolean">
-          <PropertyRule>
-            <Parameters />
-          </PropertyRule>
-          <LookupListSource>
-            <Items />
-          </LookupListSource>
-        </Property>
-        <Property PropertyName="Editable" DisplayName="Editable" DatabaseFieldName="Editable" Compulsory="True" DefaultValue="False" PropertyType="Boolean">
-          <PropertyRule>
-            <Parameters />
-          </PropertyRule>
-          <LookupListSource>
-            <Items />
-          </LookupListSource>
-        </Property>
         <Property PropertyName="ShowTitle" DisplayName="Show Title" DatabaseFieldName="ShowTitle" Compulsory="True" DefaultValue="True" PropertyType="Boolean">
           <PropertyRule>
             <Parameters />
@@ -1609,7 +1577,7 @@
         <Property PropertyName="Template" DisplayName="Template" DatabaseFieldName="Template" Compulsory="True" PropertyType="String">
           <PropertyRule RuleName="Template" HasRule="True">
             <Parameters>
-              <KeyValuePair Key="maxLength" Value="50" />
+              <KeyValuePair Key="maxLength" Value="200" />
               <KeyValuePair Key="minLength" />
               <KeyValuePair Key="patternMatch" />
               <KeyValuePair Key="patternMatchMessage" />
@@ -2099,6 +2067,67 @@
           <PropertyRule RuleName="Description" HasRule="True">
             <Parameters>
               <KeyValuePair Key="maxLength" Value="500" />
+              <KeyValuePair Key="minLength" />
+              <KeyValuePair Key="patternMatch" />
+              <KeyValuePair Key="patternMatchMessage" />
+            </Parameters>
+          </PropertyRule>
+          <LookupListSource>
+            <Items />
+          </LookupListSource>
+        </Property>
+        <Property PropertyName="Icon" DisplayName="Icon" DatabaseFieldName="Icon" PropertyType="String">
+          <PropertyRule RuleName="Icon" HasRule="True">
+            <Parameters>
+              <KeyValuePair Key="maxLength" Value="100" />
+              <KeyValuePair Key="minLength" />
+              <KeyValuePair Key="patternMatch" />
+              <KeyValuePair Key="patternMatchMessage" />
+            </Parameters>
+          </PropertyRule>
+          <LookupListSource>
+            <Items />
+          </LookupListSource>
+        </Property>
+        <Property PropertyName="CreatedOn" DisplayName="Created On" DatabaseFieldName="CreatedOn" Compulsory="True" PropertyType="DateTime">
+          <PropertyRule>
+            <Parameters>
+              <KeyValuePair Key="max" />
+              <KeyValuePair Key="min" />
+            </Parameters>
+          </PropertyRule>
+          <LookupListSource>
+            <Items />
+          </LookupListSource>
+        </Property>
+        <Property PropertyName="CreatedBy" DisplayName="Created By" DatabaseFieldName="CreatedBy" PropertyType="String">
+          <PropertyRule RuleName="CreatedBy" HasRule="True">
+            <Parameters>
+              <KeyValuePair Key="maxLength" Value="50" />
+              <KeyValuePair Key="minLength" />
+              <KeyValuePair Key="patternMatch" />
+              <KeyValuePair Key="patternMatchMessage" />
+            </Parameters>
+          </PropertyRule>
+          <LookupListSource>
+            <Items />
+          </LookupListSource>
+        </Property>
+        <Property PropertyName="ModifiedOn" DisplayName="Modified On" DatabaseFieldName="ModifiedOn" Compulsory="True" PropertyType="DateTime">
+          <PropertyRule>
+            <Parameters>
+              <KeyValuePair Key="max" />
+              <KeyValuePair Key="min" />
+            </Parameters>
+          </PropertyRule>
+          <LookupListSource>
+            <Items />
+          </LookupListSource>
+        </Property>
+        <Property PropertyName="ModifiedBy" DisplayName="Modified By" DatabaseFieldName="ModifiedBy" PropertyType="String">
+          <PropertyRule RuleName="ModifiedBy" HasRule="True">
+            <Parameters>
+              <KeyValuePair Key="maxLength" Value="50" />
               <KeyValuePair Key="minLength" />
               <KeyValuePair Key="patternMatch" />
               <KeyValuePair Key="patternMatchMessage" />

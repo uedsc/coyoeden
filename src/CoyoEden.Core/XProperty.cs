@@ -54,34 +54,14 @@ namespace CoyoEden.Core
 		{
 			return XProperties.SingleOrDefault(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
 		}
-		/// <summary>
-		/// TODO:Add 'Icon' as a column
-		/// </summary>
-		public string Icon {
-			get
-			{
-				return String.Format("{0}themes/admin/img/icon_c100.jpg", Utils.AbsoluteWebRoot);
+		public static string GetRandomXSetting(string xPropertyName,string defaultVal) {
+			var xP = GetXProperty(xPropertyName);
+			if (xP != null && xP.XPropertySettings.Count > 0) {
+				var tempIndex = new Random().Next(xP.XPropertySettings.Count);
+				return xP.XPropertySettings[tempIndex].SettingValue;
 			}
+			return defaultVal;
 		}
-		public DateTime CreatedOn {
-			get
-			{
-				return DateTime.Now;
-			}
-		}
-		public DateTime ModifiedOn {
-			get
-			{
-				return DateTime.Now;
-			}
-		}
-		public string CreatedBy {
-			get
-			{
-				return "CoyoEden";
-			}
-		}
-
 		#region events
 		public static event EventHandler<ActionEventArgs> Querying;
 		public static event EventHandler<ActionEventArgs> Queried;

@@ -39,28 +39,10 @@ namespace CoyoEden.UI.Views
 				return color;
 			}
 		}
-		protected bool Movable {
-			get
-			{
-				return ViewData.Movable.Value ;
-			}
-		}
-		protected bool Collapsable {
-			get
-			{
-				return ViewData.Collapsable.Value;
-			}
-		}
-		protected bool Deletable {
-			get
-			{
-				return ViewData.Deletable.Value&&UserIsAdmin;
-			}
-		}
 		protected bool Editable {
 			get
 			{
-				return ViewData.Editable.Value&&UserIsAdmin;
+				return ViewData.Editable&&UserIsAdmin;
 			}
 		}
 		protected bool ShowTitle {

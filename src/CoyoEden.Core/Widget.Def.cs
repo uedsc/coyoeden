@@ -51,54 +51,6 @@ namespace CoyoEden.Core
             }
         }
         
-        public virtual Boolean? Movable
-        {
-            get
-            {
-                return ((Boolean?)(base.GetPropertyValue("Movable")));
-            }
-            set
-            {
-                base.SetPropertyValue("Movable", value);
-            }
-        }
-        
-        public virtual Boolean? Deletable
-        {
-            get
-            {
-                return ((Boolean?)(base.GetPropertyValue("Deletable")));
-            }
-            set
-            {
-                base.SetPropertyValue("Deletable", value);
-            }
-        }
-        
-        public virtual Boolean? Collapsable
-        {
-            get
-            {
-                return ((Boolean?)(base.GetPropertyValue("Collapsable")));
-            }
-            set
-            {
-                base.SetPropertyValue("Collapsable", value);
-            }
-        }
-        
-        public virtual Boolean? Editable
-        {
-            get
-            {
-                return ((Boolean?)(base.GetPropertyValue("Editable")));
-            }
-            set
-            {
-                base.SetPropertyValue("Editable", value);
-            }
-        }
-        
         public virtual Boolean? ShowTitle
         {
             get
@@ -135,6 +87,18 @@ namespace CoyoEden.Core
             }
         }
         
+        public virtual Int32? DisplayIndex
+        {
+            get
+            {
+                return ((Int32?)(base.GetPropertyValue("DisplayIndex")));
+            }
+            set
+            {
+                base.SetPropertyValue("DisplayIndex", value);
+            }
+        }
+        
         public virtual String ExtConfig
         {
             get
@@ -156,18 +120,6 @@ namespace CoyoEden.Core
             set
             {
                 base.SetPropertyValue("FKZone", value);
-            }
-        }
-        
-        public virtual Int32? DisplayIndex
-        {
-            get
-            {
-                return ((Int32?)(base.GetPropertyValue("DisplayIndex")));
-            }
-            set
-            {
-                base.SetPropertyValue("DisplayIndex", value);
             }
         }
         #endregion
