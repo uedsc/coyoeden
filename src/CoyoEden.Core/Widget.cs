@@ -100,13 +100,21 @@ namespace CoyoEden.Core
 			}
 		}
 		/// <summary>
+		/// relative template path for editing
+		/// </summary>
+		public string EditTemplateRelativePath {
+			get
+			{
+				return string.Format(WidgetPathFormatStr_EDIT, Utils.RelativeWebRoot, Name); ;
+			}
+		}
+		/// <summary>
 		/// physical template path for editing
 		/// </summary>
 		public string EditTemplatePath {
 			get
 			{
-				var ucpath = string.Format(WidgetPathFormatStr_EDIT, Utils.RelativeWebRoot, Name);
-				ucpath = HttpContext.Current.Server.MapPath(ucpath);
+				var ucpath =HttpContext.Current.Server.MapPath(EditTemplateRelativePath);
 				if (!File.Exists(ucpath)) {
 					ucpath = null;
 				}

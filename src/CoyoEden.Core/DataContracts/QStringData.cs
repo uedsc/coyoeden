@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using Vivasky.Core;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace CoyoEden.Core.DataContracts
 {
@@ -9,8 +11,8 @@ namespace CoyoEden.Core.DataContracts
 	/// </summary>
 	public class QStringData
 	{
-		const string STR_FIELDSPLIT = "$";
-		const string STR_KEYVALUESPLIT = "-";
+		public static string STR_FIELDSPLIT = "$";
+		public static string STR_KEYVALUESPLIT = "^";
 		/// <summary>
 		/// action
 		/// </summary>
@@ -55,7 +57,7 @@ namespace CoyoEden.Core.DataContracts
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="queryString">accept like:a-1$v-0$lb-2008$ub-2009</param>
+		/// <param name="queryString">accept like:a^1$v^0$lb^2008$ub^2009</param>
 		/// <returns></returns>
 		public static QStringData New(string queryString) {
 			return new QStringData().ParseData(queryString);
@@ -73,23 +75,24 @@ namespace CoyoEden.Core.DataContracts
 			a = ActionTypes.Unkown;
 			if (string.IsNullOrEmpty(rawRequestString)) return this;
 			var parts = rawRequestString.Split(STR_FIELDSPLIT.ToCharArray());
-			if (parts[0].Length != 3)//'a-1'.length==3
+			if (parts[0].Length != 3)//'a^1'.length==3
 			{
 				return this;
 			};
-
-			var jsonData = rawRequestString.Replace(STR_FIELDSPLIT, ",").Replace(STR_KEYVALUESPLIT, ":");
-			jsonData = String.Format("{{{0}}}", jsonData);
-
-			var tempObj = jsonData.DeserializeJSONStr<QStringData>();
-			a = tempObj.a;
-			v = tempObj.v;
-			i = tempObj.i;
-			ub = tempObj.ub;
-			lb = tempObj.lb;
-			t0 = tempObj.t0;
-			t1 = tempObj.t1;
-			t2 = tempObj.t2;
+			var parts0=default(string[]);
+			parts.ToList().ForEach(x => {
+				parts0 = x.Split(STR_KEYVALUESPLIT.ToCharArray());
+				if (parts0[0] == "a" || parts0[0] == "v")
+				{
+					var i=0;
+					int.TryParse(parts0[1],out i);
+					Set(parts0[0], i);
+				}
+				else
+				{
+					Set(parts0[0], parts0[1]);
+				}
+			});
 			return this;
 		}
 		/// <summary>

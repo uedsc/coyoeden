@@ -9,10 +9,10 @@
 <div class="c695_left">
 	<div class="c695_l_navi">
 		<ul class="c695_navigate clearfix">
-		<li><a class="current" title="" href="Default.aspx">All widgets</a></li>
+		<li><a class="<%=CheckTagCss("","current") %>" title="" href="Default.aspx">All widgets</a></li>
 		<%CoyoEden.Core.WidgetZone.AllWidgetZones.ForEach(x =>
 		{%>
-		<li><a title="" href="default.aspx?d=a-1$t0-<%=x.Name %>"><%=x.Name %></a></li>
+		<li><a title="" class="<%=CheckTagCss(x.Name,"current") %>" href="default.aspx?d=a^1$t0^<%=x.Name %>"><%=x.Name %></a></li>
 		<%});%>
 		</ul>
 	</div>
@@ -45,7 +45,7 @@
 		</div>
 	</div>
 	<div class="side_actions pad20 blank80"> 
-		<a title="" href="show.aspx?d=a-2" class="relate_links">新建部件</a>
+		<a title="" href="show.aspx?d=a^2" class="relate_links">新建部件</a>
 	</div>
 </div>
 </asp:Content>

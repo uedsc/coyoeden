@@ -2,6 +2,8 @@
 using CoyoEden.Core;
 using Vivasky.Core;
 using CoyoEden.Core.DataContracts;
+using Vivasky.Core.Infrastructure;
+using System.Collections.Generic;
 
 namespace CoyoEden.UI
 {
@@ -42,6 +44,34 @@ namespace CoyoEden.UI
 				var data= Request["d"];
 				return QStringData.New(data);
 			}
+		}
+		/// <summary>
+		/// application tips
+		/// </summary>
+		protected string AppTip
+		{
+			get
+			{
+				if (AppMsg == null) return null;
+				return AppMsg.ToJSONStr1();
+			}
+		}
+		protected BOMessager AppMsg { get; set; }
+		#endregion
+
+		#region methods
+		/// <summary>
+		/// Check if a tag has been selected,and return the specified css class.
+		/// </summary>
+		/// <param name="navTag"></param>
+		/// <param name="css"></param>
+		/// <returns></returns>
+		protected string CheckTagCss(string navTag, string yescss)
+		{
+			if ((QStrData.a == ActionTypes.None || QStrData.a == ActionTypes.Unkown) && string.IsNullOrEmpty(navTag)) return yescss;
+			var tags = new List<String> { QStrData.t0, QStrData.t1, QStrData.t2 };
+			if (tags.Contains(navTag)) return yescss;
+			return "";
 		}
 		#endregion
 	}

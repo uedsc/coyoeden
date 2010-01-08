@@ -14,7 +14,7 @@ namespace CoyoEden.Core.DataContracts
 		Filter,
 		New,
 		Edit,
-		Delete
-
+		Delete,
+		None
 	}
 }

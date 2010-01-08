@@ -2,20 +2,27 @@
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="CoyoEden.Core" %>
 <%@ Import Namespace="Vivasky.Core" %>
+<%var editPath = "#"; %>
 <div class="ilist_w0 common_sec3 pool10 blank10">
 	<ul>
 	<% ItemsPaged.ForEach(x=>{ %>
+	<%editPath = "#"; if (x.Editable) { editPath = "show.aspx?d=a^3$i^" + x.Id.Value; } %>
 	<li>
 	<div class="i_s100_0">
 		<div class="info">
-			<p class="cover"><span><a href="show.aspx?i=<%=x.Id %>" title="<%=x.Name %>"><img src="<%=x.Icon %>" alt="<%=x.Name %>"/></a></span></p>
+			<p class="cover"><span><a href="<%=editPath %>" title="<%=x.Name %>"><img src="<%=x.Icon %>" alt="<%=x.Name %>"/></a></span></p>
 			<div class="detail">
-				<p class="name"><a href="show.aspx?i=<%=x.Id %>" title="<%=x.Name %>"><strong><%=x.Title %></strong></a></p>
+				<p class="name"><a href="<%=editPath %>" title="<%=x.Name %>"><strong><%=x.Title %></strong></a></p>
 				<p class="author"><span class="time"><%=x.Tag %></span></p>
 				<p class="des">Show title:<%=x.ShowTitle.Value %>,Display Index:<%=x.DisplayIndex %></p>
 			</div>
 		</div>
-		<div class="acts">  </div>
+		<div class="acts">
+			<%if (x.Editable)
+	 { %>
+			<a href="<%=editPath %>" title="<%=x.Name %>">Edit</a>
+			<%} %>
+		</div>
 	</div>
 	</li>
 	<%}); %>
@@ -25,11 +32,16 @@
 	<ul class="clearfix">
 	<% ItemsPaged.ForEach(x =>
 	{ %>
+	<%editPath = "#"; if (x.Editable) { editPath = "show.aspx?d=a^3$i^" + x.Id.Value; } %>
 	<li>
 		<div class="i_s100_1">
-			<p class="cover"> <span><a title="<%=x.Name %>" href="show.aspx?i=<%=x.Id %>"><img alt="<%=x.Name %>" src="<%=x.Icon %>"/></a></span> </p>
-			<p class="name"><a href="show.aspx?i=<%=x.Id %>" title="<%=x.Name %>"><strong><%=x.Title %></strong></a></p>
+			<p class="cover"> <span><a title="<%=x.Name %>" href="<%=editPath %>"><img alt="<%=x.Name %>" src="<%=x.Icon %>"/></a></span> </p>
+			<p class="name"><a href="<%=editPath %>" title="<%=x.Name %>"><strong><%=x.Title %></strong></a></p>
 			<p class="time"><%=x.Tag %></p>
+			<%if (x.Editable)
+	 { %>
+			<p><a href="<%=editPath %>" title="<%=x.Name %>">Edit</a></p>
+			<%} %>
 		</div>
 	</li>
 	<%}); %>
