@@ -12,6 +12,7 @@ using CoyoEden.UI.Controls;
 public partial class admin_widgets_show : AdminBasePage
 {
 	protected Widget ViewData { get; set; }
+    protected bool ShowHtmlEditor { get; set; }
 	protected void Page_Load(object sender, EventArgs e)
 	{
 		loadWidget();
@@ -40,6 +41,10 @@ public partial class admin_widgets_show : AdminBasePage
 				txtTitle.Text = ViewData.Title;
 				txtTitle.Focus();
 				btnSave.Text = Resources.labels.save;
+                ShowHtmlEditor = edit.HtmlEditorHost != null;
+                if (ShowHtmlEditor) {
+                    txtContent.Target = edit.HtmlEditorHost;
+                }
 			}
 			btnSave.Click += new EventHandler(btnSave_Click);
 		}

@@ -30,4 +30,8 @@ public partial class Views_shared_htmlEditor : System.Web.UI.UserControl
       	TinyMCE1.Target =value;
       }
   }
+/// <summary>
+/// custom tinymce options.in json format
+/// </summary>
+  public string TinyMCEOpts { get; set; }
 }

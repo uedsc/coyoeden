@@ -37,6 +37,18 @@
 </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphFooter" Runat="Server">
+<%if (ShowHtmlEditor)
+  { %>
+  <vs:TextEditor 
+    runat="server" 
+    id="txtContent"
+    TinyMCEOpts="{
+        plugins: 'inlinepopups,fullscreen,contextmenu,emotions,table,iespell',
+        theme_advanced_buttons1:'fullscreen,code,|,cut,copy,paste,|,undo,redo,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,outdent,indent,|,iespell,link,unlink,sub,sup,removeformat,cleanup,charmap,emotions',
+        theme_advanced_source_editor_height: 425
+    }"
+    />
+<%} %>
 <vs:SiteJScript ID="appJS" ScriptRelativeToRoot="Assets/js/local/admin.widget.js" runat="server"/>
 <script type="text/javascript">
 //<![CDATA[

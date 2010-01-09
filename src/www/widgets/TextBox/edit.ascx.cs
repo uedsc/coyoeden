@@ -11,7 +11,11 @@ using CoyoEden.UI.Controls;
 
 public partial class widgets_TextBox_edit : WidgetEditBase
 {
-
+    protected override void OnInit(EventArgs e)
+    {
+        HtmlEditorHost = txtText;
+        base.OnInit(e);
+    }
 	/// <summary>
 	/// Handles the Load event of the Page control.
 	/// </summary>

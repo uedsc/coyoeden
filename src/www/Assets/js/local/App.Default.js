@@ -34,7 +34,7 @@ var App = function() {
 	};
 	p.onWidgetEditting = function(o) {
 		if (p.isAdmin()) {
-			LocalApp.IFrame("pop", "admin/widgetEditor.aspx", { title: 'Widget Editor', id: 'widgetEditorFrame', data: { id: o.Id }, size: { height: 450, width: 700} });
+			LocalApp.IFrame("pop", "admin/widgets/popshow.aspx", { title: 'Widget Editor', id: 'widgetEditorFrame', data: { id: o.Id }, size: { height: 450, width: 700} });
 		};
 	};
 	p.onPageOk = function() {

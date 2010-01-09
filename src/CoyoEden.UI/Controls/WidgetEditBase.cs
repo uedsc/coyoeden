@@ -1,6 +1,7 @@
 #region Using
 
 using System;
+using System.Web.UI.WebControls;
 #endregion
 namespace CoyoEden.UI.Controls
 {
@@ -29,6 +30,9 @@ namespace CoyoEden.UI.Controls
 				Saved(null, new EventArgs());
 			}
 		}
-
+        /// <summary>
+        /// HtmlEditor Host.Some widget need a html editor when editing.
+        /// </summary>
+        public TextBox HtmlEditorHost { get; set; }
 	}
 }
