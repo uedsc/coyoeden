@@ -12,7 +12,7 @@ var WidgetApp = function() {
 	var p = {};
 	p.showAppTip = function() {
 		if (p.appTip&&p.appTip.Body.length>0) {
-			LocalApp.jqMTipX(p.appTip.Body);
+		    LocalApp.jqMTipX(p.appTip.Body, null, p.appTip.IsError ? "alert_error" : "alert_ok",2000);
 		};
 	};
 	var pub = {};

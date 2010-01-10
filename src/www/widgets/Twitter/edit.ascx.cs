@@ -30,13 +30,12 @@ public partial class widgets_Twitter_edit : WidgetEditBase
 
 	public override void Save()
 	{
-		CurrentSettings["feedurl"] = txtUrl.Text;
-		CurrentSettings["accounturl"] = txtAccountUrl.Text;
-		CurrentSettings["maxitems"] = txtTwits.Text;
-        CurrentSettings["pollinginterval"] = txtPolling.Text;
-        CurrentSettings["followmetext"] = txtFollowMe.Text;
-		SaveSettings(CurrentSettings);
-
+        AddSetting("feedurl", txtUrl.Text)
+            .AddSetting("accounturl", txtAccountUrl.Text)
+            .AddSetting("maxitems", txtTwits.Text)
+            .AddSetting("pollinginterval", txtPolling.Text)
+            .AddSetting("followmetext", txtFollowMe.Text)
+            .Update();
         // Don't need to clear Feed out of cache because when the Settings are cleared,
         // the last modified date (i.e. TwitterSettings.LastModified) will reset to
         // DateTime.MinValue and Twitter will be re-queried.

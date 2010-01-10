@@ -206,7 +206,6 @@ public partial class User_controls_WidgetEditor : System.Web.UI.Page
 	private void AddWidget(string type, string zone)
 	{
 		WidgetBase widget = (WidgetBase)LoadControl(String.Format("{0}widgets/{1}/widget.ascx", Utils.RelativeWebRoot, type));
-		widget.WidgetID = Guid.NewGuid();
 		widget.ID = widget.WidgetID.ToString().Replace("-", string.Empty);
 		widget.Title = type;
         widget.Zone = zone;
@@ -384,12 +383,9 @@ public partial class User_controls_WidgetEditor : System.Web.UI.Page
 		if (File.Exists(Server.MapPath(fileName)))
 		{
 			WidgetEditBase edit = (WidgetEditBase)LoadControl(fileName);
-			edit.WidgetID =guid;
-			edit.Title =widget.Title;
-			edit.ID = "widget";
-			edit.ShowTitle = widget.ShowTitle.Value;
-			edit.BOWidget = widget;
-			phEdit.Controls.Add(edit);
+            edit.BOWidget = widget;
+            edit.ID = "widget";
+            phEdit.Controls.Add(edit);
 		}
 
 		if (!Page.IsPostBack)

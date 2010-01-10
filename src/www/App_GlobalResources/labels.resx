@@ -799,4 +799,7 @@
   <data name="commentNotificationUnsubscribe" xml:space="preserve">
     <value>Unsubscribe from future comment notification emails to this post.</value>
   </data>
+  <data name="operationDone" xml:space="preserve">
+    <value>Operation done</value>
+  </data>
 </root>

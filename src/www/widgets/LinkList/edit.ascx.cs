@@ -146,8 +146,8 @@ public partial class widgets_LinkList_edit : WidgetEditBase
 
   void Save(XmlDocument doc)
   {
-	  CurrentSettings["content"] = doc.InnerXml;
-	  SaveSettings(CurrentSettings);
+      AddSetting("content", doc.InnerXml)
+          .Update();
   }
 
   XmlDocument Doc()

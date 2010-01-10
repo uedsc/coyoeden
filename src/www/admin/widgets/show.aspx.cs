@@ -13,6 +13,7 @@ public partial class admin_widgets_show : AdminBasePage
 {
 	protected Widget ViewData { get; set; }
     protected bool ShowHtmlEditor { get; set; }
+    private WidgetEditBase EditTarget { get; set; }
 	protected void Page_Load(object sender, EventArgs e)
 	{
 		loadWidget();
@@ -29,24 +30,22 @@ public partial class admin_widgets_show : AdminBasePage
 			ViewData = Widget.Find(guid, out msg);
 			AppMsg = msg;
 
-			WidgetEditBase edit = (WidgetEditBase)LoadControl(ViewData.EditTemplateRelativePath);
-			edit.WidgetID = guid;
-			edit.Title = ViewData.Title;
-			edit.ID = "widget";
-			edit.ShowTitle = ViewData.ShowTitle.Value;
-			edit.BOWidget = ViewData;
-			phEdit.Controls.Add(edit);
+			EditTarget = (WidgetEditBase)LoadControl(ViewData.EditTemplateRelativePath);
+            EditTarget.BOWidget = ViewData;
+            EditTarget.ID = "widget";
+
+            phEdit.Controls.Add(EditTarget);
 			if (!Page.IsPostBack) {
 				cbShowTitle.Checked = ViewData.ShowTitle.Value;
 				txtTitle.Text = ViewData.Title;
 				txtTitle.Focus();
 				btnSave.Text = Resources.labels.save;
-                ShowHtmlEditor = edit.HtmlEditorHost != null;
+                ShowHtmlEditor = EditTarget.HtmlEditorHost != null;
                 if (ShowHtmlEditor) {
-                    txtContent.Target = edit.HtmlEditorHost;
+                    txtContent.Target = EditTarget.HtmlEditorHost;
                 }
 			}
-			btnSave.Click += new EventHandler(btnSave_Click);
+            btnSave.Click += btnSave_Click;
 		}
 	}
 	/// <summary>
@@ -56,15 +55,14 @@ public partial class admin_widgets_show : AdminBasePage
 	/// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
 	private void btnSave_Click(object sender, EventArgs e)
 	{
-		WidgetEditBase widget = (WidgetEditBase)FindControl("widget");
-
-		if (widget != null)
-			widget.Save();
+        if (EditTarget != null)
+        {
+            EditTarget.Title = txtTitle.Text.Trim();
+            EditTarget.ShowTitle = cbShowTitle.Checked;
+            EditTarget.Save();
+        }
 
 		WidgetEditBase.OnSaved();
-
-		// To avoid JS errors with TextBox widget loading tinyMce scripts while
-		// the edit window is closing, don't output phEdit.
-		phEdit.Visible = false;
+        AppMsg = new BOMessager() { Body=Resources.labels.operationDone};
 	}
 }

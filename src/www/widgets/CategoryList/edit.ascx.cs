@@ -29,8 +29,8 @@ public partial class widgets_Categories_edit : WidgetEditBase
 
 	public override void Save()
 	{
-		CurrentSettings["showrssicon"] = cbShowRssIcon.Checked.ToString();
-		CurrentSettings["showpostcount"] = cbShowPostCount.Checked.ToString();
-		SaveSettings(CurrentSettings);
+        AddSetting("showrssicon", cbShowRssIcon.Checked.ToString())
+            .AddSetting("showpostcount", cbShowPostCount.Checked.ToString())
+            .Update();
 	}
 }

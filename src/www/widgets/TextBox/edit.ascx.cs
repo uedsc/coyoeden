@@ -25,7 +25,10 @@ public partial class widgets_TextBox_edit : WidgetEditBase
 	{
 		if (!Page.IsPostBack)
 		{
-			txtText.Text = CurrentSettings["content"];
+            if (CurrentSettings.ContainsKey("content"))
+            {
+                txtText.Text = CurrentSettings["content"];
+            }
 		}
 	}
 
@@ -34,7 +37,6 @@ public partial class widgets_TextBox_edit : WidgetEditBase
 	/// </summary>
 	public override void Save()
 	{
-		CurrentSettings["content"] = txtText.Text;
-		SaveSettings(CurrentSettings);
+        AddSetting("content", txtText.Text).Update();
 	}
 }

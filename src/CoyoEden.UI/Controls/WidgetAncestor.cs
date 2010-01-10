@@ -16,17 +16,40 @@ namespace CoyoEden.UI.Controls
 		/// Gets or sets the title of the widget. It is mandatory for all widgets to set the Title.
 		/// </summary>
 		/// <value>The title of the widget.</value>
-		public string Title { get; set; }
+		public string Title {
+            get
+            {
+                return (BOWidget!=null)?BOWidget.Title:null;
+            }
+            set
+            {
+            	BOWidget.Title = value;
+            }
+        }
 		/// <summary>
 		/// Gets or sets a value indicating whether [show title].
 		/// </summary>
 		/// <value><c>true</c> if [show title]; otherwise, <c>false</c>.</value>
-		public bool ShowTitle { get; set; }
+		public bool ShowTitle {
+            get
+            {
+                return BOWidget.ShowTitle.Value;
+            }
+            set
+            {
+            	BOWidget.ShowTitle = value;
+            }
+        }
 		/// <summary>
 		/// Gets the widget ID.
 		/// </summary>
 		/// <value>The widget ID.</value>
-		public Guid WidgetID { get; set; }
+		public Guid WidgetID {
+            get
+            {
+                return BOWidget!=null?BOWidget.Id.Value:Guid.Empty;
+            }
+        }
 
 		public SerializableStringDictionary CurrentSettings {
 			get
@@ -34,6 +57,15 @@ namespace CoyoEden.UI.Controls
 				return GetSettings();
 			}
 		}
+        /// <summary>
+        /// add an extra setting for the widget
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        public WidgetAncestor AddSetting(string name, string value) {
+            BOWidget.AddExtConfig(name, value);
+            return this;
+        }
 		#endregion
 
 
@@ -46,20 +78,10 @@ namespace CoyoEden.UI.Controls
 			return BOWidget.ExtConfigs;
 		}
 		/// <summary>
-		/// Saves settings to data store
+		/// update the related business object.
 		/// </summary>
-		/// <param name="settings">Settings</param>
-		protected virtual void SaveSettings(SerializableStringDictionary settings)
+		public virtual void Update()
 		{
-
-			foreach (string key in settings.Keys)
-			{
-				if (BOWidget.ExtConfigs.ContainsKey(key))
-				{
-					BOWidget.ExtConfigs.Remove(key);
-				};
-				BOWidget.ExtConfigs.Add(key, settings[key]);
-			}
 			BOWidget.Save();
 		}
 	}

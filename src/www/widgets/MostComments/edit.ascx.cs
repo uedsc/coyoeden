@@ -39,11 +39,11 @@ public partial class widgets_Most_comments_edit : WidgetEditBase
 
 	public override void Save()
 	{
-		CurrentSettings["avatarsize"] = txtSize.Text;
-		CurrentSettings["numberofvisitors"] = txtNumber.Text;
-		CurrentSettings["days"] = txtDays.Text;
-		CurrentSettings["showcomments"] = cbShowComments.Checked.ToString();
-		SaveSettings(CurrentSettings);
+        AddSetting("avatarsize", txtSize.Text)
+            .AddSetting("numberofvisitors", txtNumber.Text)
+            .AddSetting("days", txtDays.Text)
+            .AddSetting("showcomments", cbShowComments.Checked.ToString())
+            .Update();
 
 		Cache.Remove("most_comments");
 	}

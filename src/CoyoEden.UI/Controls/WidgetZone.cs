@@ -99,9 +99,7 @@ namespace CoyoEden.UI.Controls
 				//get widget
 				control = (WidgetBase)Page.LoadControl(fileName);
 				control.BOWidget = boWidget;
-				control.WidgetID = boWidget.Id.Value;
 				control.ID = control.WidgetID.ToString().Replace("-", string.Empty);
-				control.Title = boWidget.Title;
 				control.Zone = _ZoneName;
 
 				if (control.IsEditable)

@@ -8,7 +8,10 @@
    { %>
 		<h4 class="title"><%=Title%></h4>
 	<%} %>
-	<a class="action remove" href="#">CLOSE</a>
+	<%if (Deletable)
+   { %>
+		<a class="action remove" href="#">CLOSE</a>
+	<%} %>
 	<%if (Editable)
    { %>
 		<a class="action edit" href="#">EDIT</a>

@@ -32,10 +32,10 @@ public partial class widgets_RecentPosts_edit : WidgetEditBase
 
 	public override void Save()
 	{
-		CurrentSettings["numberofposts"] = txtNumberOfPosts.Text;
-		CurrentSettings["showcomments"] = cbShowComments.Checked.ToString();
-		CurrentSettings["showrating"] = cbShowRating.Checked.ToString();
-		SaveSettings(CurrentSettings);
+        AddSetting("numberofposts", txtNumberOfPosts.Text)
+            .AddSetting("showcomments", cbShowComments.Checked.ToString())
+            .AddSetting("showrating", cbShowRating.Checked.ToString())
+            .Update();
 		HttpRuntime.Cache.Remove("widget_recentposts");
 	}
 }

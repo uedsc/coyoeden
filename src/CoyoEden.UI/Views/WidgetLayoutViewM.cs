@@ -39,6 +39,13 @@ namespace CoyoEden.UI.Views
 				return color;
 			}
 		}
+        protected bool Deletable
+        {
+            get
+            {
+                return UserIsAdmin;
+            }
+        }
 		protected bool Editable {
 			get
 			{

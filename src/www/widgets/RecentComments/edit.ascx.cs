@@ -26,8 +26,8 @@ public partial class widgets_RecentComments_edit : WidgetEditBase
 
 	public override void Save()
 	{
-		CurrentSettings["numberofcomments"] = txtNumberOfPosts.Text;
-		SaveSettings(CurrentSettings);
+        AddSetting("numberofcomments", txtNumberOfPosts.Text)
+            .Update();
 		HttpRuntime.Cache.Remove("widget_recentcomments");
 	}
 }

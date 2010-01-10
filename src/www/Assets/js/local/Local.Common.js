@@ -10,10 +10,16 @@ if ($.blockUI) {
 	$.blockUI.defaults.overlayCSS = { backgroundColor: '#6AA5D7', opacity: .5 };
 };
 var LocalApp = {};
-LocalApp.jqMTipX = function(msg, jqmSelector, tipType) {
-	///<summary>Pop up a tipbox using jqModal</summary>
-	$.jqMExt.jqm(jqmSelector || "#jqModal1", { title: msg, flag: tipType || 'alert_error' });
-}; //endof TipX
+LocalApp.jqMTipX = function(msg, jqmSelector, tipType, timeout) {
+    ///<summary>Pop up a tipbox using jqModal</summary>
+    var onshow = null;
+    if (timeout && timeout > 0) {
+        onshow = function(jqmApi) {
+            window.setTimeout(function() {jqmApi.w.jqmHide(); }, timeout);
+        };
+    };
+    $.jqMExt.jqm(jqmSelector || "#jqModal1", { title: msg, flag: tipType || 'alert_error', onShow: onshow });
+};          //endof TipX
 LocalApp.IFrame = function(container, src, opts) {
 	///<summary>create a iframe</summary>
 	///<param name="container">where the iframe should be put.If equals 'pop',a popup iframe will be created using jqModal.</param>

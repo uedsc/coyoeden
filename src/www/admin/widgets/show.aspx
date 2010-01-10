@@ -1,5 +1,4 @@
-﻿<%@ Page Title="Widget Editor" Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true" CodeFile="show.aspx.cs" Inherits="admin_widgets_show" %>
-
+﻿<%@ Page Title="Widget Editor" ValidateRequest="false" Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true" CodeFile="show.aspx.cs" Inherits="admin_widgets_show" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphHead" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphMain" Runat="Server">

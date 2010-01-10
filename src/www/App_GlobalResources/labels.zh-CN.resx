@@ -988,4 +988,8 @@
     <value>原文</value>
     <comment>the original post</comment>
   </data>
+  <data name="operationDone" xml:space="preserve">
+    <value>操作处理成功</value>
+    <comment>Operation done!</comment>
+  </data>
 </root>

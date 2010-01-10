@@ -10,28 +10,44 @@ namespace CoyoEden.UI
 	public class AdminBasePage : System.Web.UI.Page
 	{
 		private string _Theme = BlogSettings.Instance.ThemeBackfield;
+        /// <summary>
+        /// indicate that the page won't apply the master page.
+        /// </summary>
+        protected bool NotMasterPage { get; set; }
 		/// <summary>
 		/// Body css Class of the page
 		/// </summary>
 		protected string CssClass { get; set; }
 		protected override void OnPreInit(EventArgs e)
 		{
-			if (Request.QueryString["theme"] != null)
-				_Theme = Request.QueryString["theme"];
+            //power check
+            powerCheck();
 
-			MasterPageFile = String.Format("{0}themes/{1}/site.master", Utils.RelativeWebRoot, _Theme);
+            if (!NotMasterPage)
+            {
+                if (Request.QueryString["theme"] != null)
+                    _Theme = Request.QueryString["theme"];
+
+                MasterPageFile = String.Format("{0}themes/{1}/site.master", Utils.RelativeWebRoot, _Theme);
+            }
 			base.OnPreInit(e);
-
-			powerCheck();
 		}
 
 		private void powerCheck()
 		{
+            //authenticated
 			if (!Page.User.Identity.IsAuthenticated)
 			{
 				Response.Redirect(Utils.RelativeWebRoot);
 				return;
 			};
+            //authorization
+            if (!User.IsInRole(BlogSettings.Instance.AdministratorRole))
+            {
+                Response.StatusCode = 403;
+                Response.Clear();
+                Response.End();
+            }
 		}
 
 		#region member variables

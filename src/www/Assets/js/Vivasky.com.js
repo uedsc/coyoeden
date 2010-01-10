@@ -413,148 +413,149 @@ $.isEnter = function(event) {
 }; //endof $.isEnter
 /*===============================3,extension for jqModal===================================*/
 $.jqMExt = Vivasky.jqMExt = {
-	initUIData: function(uidata) {
-		uidata = uidata || { mode: '-1' };
-		var tpData = { title: '', content: '', btn_ok: '确 认', btn_close: '取 消', onHide: null };
-		tpData = $.extend(tpData, uidata);
-		tpData.content = Vivasky.jqMExt.ajaxText;
-		return tpData;
-	}, //endof initUIData
-	jqMCssClass: '.dialog_jqm',
-	ajaxText: '<p class="loading">正为您在处理数据, 请稍候...</p>',
-	alertHtml: '<div class="alert %Flag%"><strong>%Title%</strong><p>%Body%</p></div>',
-	prepareUI: function(jqmApi) {
-		///<summary>update the layout of the jqModal according to the layout mode</summary>
-		///<param name="jqmApi">jqm api;jqmApi.mode:'-1':only content;'0':title+content+ok;'1':title+content+close;'2':all</param>
-		var w = jqmApi.w;
-		var mode = '-1';
-		if (jqmApi.uiData) {
-			if (jqmApi.uiData.okClick) $(".dialog_btn_ok", w).unbind("click").click(function(evt) { jqmApi.uiData.okClick(evt, jqmApi); });
-			$.deserializeX(jqmApi.uiData, { prefix: 'dialog_', context: w });
-			mode = jqmApi.uiData.mode || '-1';
-		};
-		switch (mode) {
-			case '-2':
-				$(".dialog_acts", w).hide();
-				break;
-			case '-1':
-				$(".dialog_title,.dialog_acts", w).hide();
-				break;
-			case '0':
-				$(".dialog_title,.dialog_acts", w).show().children(".dialog_btn_close").hide();
-				break;
-			case '1':
-				$(".dialog_title,.dialog_acts", w).show().children(".dialog_btn_ok").hide();
-				break;
-			case '2':
-				$(".dialog_title,.dialog_acts", w).show();
-				break;
-		}; //endof switch
-	}, //endof prepareUI
-	ieBGFix: function(jqmApi) {
-		var d = { w: $('.dialog_main').width(), h: $('.dialog_main').height() };
-		$('.dialog_sharp').width(d.w);
-		if ($.browser.msie) {
-			$('.dialog_sharp').height(d.h);
-			jqmApi.w.width(d.w);
-		};
-		var left = ($(window).width() - jqmApi.w.width()) / 2; left = left < 0 ? 0 : left;
-		var top = ($(window).height() - jqmApi.w.height()) / 2; top = top < 0 ? 0 : top;
-		jqmApi.w.css({ left: left + 'px', top: top + 'px' });
-	},
-	onShow: function(c) {
-		Vivasky.jqMExt.prepareUI(c);
-		c.w.show();
-		Vivasky.jqMExt.ieBGFix(c);
-		$(".jqmClose", c.w[0]).live("click", function() { c.w.jqmHide(); return false; }); //our close trigger may be dynamically generated.
-	},
-	onLoad: function(c) {
-		Vivasky.jqMExt.ieBGFix(c);
-	},
-	jqm: function(jqmSelector, uiData, modal, toTop) {
-		///<summary>simply show a dom using jqModal.If wanna use ajax,pls use jqmAjax or jqmAjaxPost</summary>
-		///<param name="jqmSelector">jqm which?</param>
-		///<param name="uiData">Default is:{title:'',content:'',flag:'alert_ok',btn_ok:'确 认',btn_close:'取 消',mode:'-1'}</param>
-		var tpData = { title: '', content: '', btn_ok: '确 认', btn_close: '取 消', onHide: null, mode: '-1' };
-		uiData = $.extend(tpData, uiData);
-		if (uiData.flag) {
-			uiData.mode = "-1"; //no title,no buttons
-			uiData.content = Vivasky.jqMExt.alertHtml.parseTpl({ Title: uiData.title, Flag: uiData.flag, Body: uiData.content });
-		};
+    initUIData: function(uidata) {
+        uidata = uidata || { mode: '-1' };
+        var tpData = { title: '', content: '', btn_ok: '确 认', btn_close: '取 消', onHide: null };
+        tpData = $.extend(tpData, uidata);
+        tpData.content = Vivasky.jqMExt.ajaxText;
+        return tpData;
+    }, //endof initUIData
+    jqMCssClass: '.dialog_jqm',
+    ajaxText: '<p class="loading">正为您在处理数据, 请稍候...</p>',
+    alertHtml: '<div class="alert %Flag%"><strong>%Title%</strong><p>%Body%</p></div>',
+    prepareUI: function(jqmApi) {
+        ///<summary>update the layout of the jqModal according to the layout mode</summary>
+        ///<param name="jqmApi">jqm api;jqmApi.mode:'-1':only content;'0':title+content+ok;'1':title+content+close;'2':all</param>
+        var w = jqmApi.w;
+        var mode = '-1';
+        if (jqmApi.uiData) {
+            if (jqmApi.uiData.okClick) $(".dialog_btn_ok", w).unbind("click").click(function(evt) { jqmApi.uiData.okClick(evt, jqmApi); });
+            $.deserializeX(jqmApi.uiData, { prefix: 'dialog_', context: w });
+            mode = jqmApi.uiData.mode || '-1';
+        };
+        switch (mode) {
+            case '-2':
+                $(".dialog_acts", w).hide();
+                break;
+            case '-1':
+                $(".dialog_title,.dialog_acts", w).hide();
+                break;
+            case '0':
+                $(".dialog_title,.dialog_acts", w).show().children(".dialog_btn_close").hide();
+                break;
+            case '1':
+                $(".dialog_title,.dialog_acts", w).show().children(".dialog_btn_ok").hide();
+                break;
+            case '2':
+                $(".dialog_title,.dialog_acts", w).show();
+                break;
+        }; //endof switch
+    }, //endof prepareUI
+    ieBGFix: function(jqmApi) {
+        var d = { w: $('.dialog_main').width(), h: $('.dialog_main').height() };
+        $('.dialog_sharp').width(d.w);
+        if ($.browser.msie) {
+            $('.dialog_sharp').height(d.h);
+            jqmApi.w.width(d.w);
+        };
+        var left = ($(window).width() - jqmApi.w.width()) / 2; left = left < 0 ? 0 : left;
+        var top = ($(window).height() - jqmApi.w.height()) / 2; top = top < 0 ? 0 : top;
+        jqmApi.w.css({ left: left + 'px', top: top + 'px' });
+    },
+    onShow: function(c) {
+        Vivasky.jqMExt.prepareUI(c);
+        c.w.show();
+        Vivasky.jqMExt.ieBGFix(c);
+        $(".jqmClose", c.w[0]).live("click", function() { c.w.jqmHide(); return false; }); //our close trigger may be dynamically generated.
+        if (c.uiData.onShow) { c.uiData.onShow(c); };
+    },
+    onLoad: function(c) {
+        Vivasky.jqMExt.ieBGFix(c);
+    },
+    jqm: function(jqmSelector, uiData, modal, toTop) {
+        ///<summary>simply show a dom using jqModal.If wanna use ajax,pls use jqmAjax or jqmAjaxPost</summary>
+        ///<param name="jqmSelector">jqm which?</param>
+    ///<param name="uiData">Default is:{title:'',content:'',flag:'alert_ok',btn_ok:'确 认',btn_close:'取 消',mode:'-1'}</param>
+        var tpData = { title: '', content: '', btn_ok: '确 认', btn_close: '取 消', onHide: null, mode: '-1' ,onShow:null};
+        uiData = $.extend(tpData, uiData);
+        if (uiData.flag) {
+            uiData.mode = "-1"; //no title,no buttons
+            uiData.content = Vivasky.jqMExt.alertHtml.parseTpl({ Title: uiData.title, Flag: uiData.flag, Body: uiData.content });
+        };
 
-		$(jqmSelector).jqm({
-			ajax: null, modal: modal || true, toTop: toTop || true,
-			onShow: function(_api) { _api.uiData = uiData; Vivasky.jqMExt.onShow(_api); },
-			onHide: uiData.onHide
-		}).draggable(
+        $(jqmSelector).jqm({
+            ajax: null, modal: modal || true, toTop: toTop || true,
+            onShow: function(_api) { _api.uiData = uiData; Vivasky.jqMExt.onShow(_api); },
+            onHide: uiData.onHide
+        }).draggable(
 			{ handle: '.jqDrag' }
 		).jqmShow();
-	}, //endof jqm
-	jqmAjax: function(jqmSelector, url, uiData, responseTarget) {
-		///<summary>ajax get request via jqModal's internal ajax feature</summary>
-		///<param name="jqmSelector">modal which?</param>
-		///<param name="url">ajax url</param>
-		///<param name="responseTarget">response target element.default is div.dialog_main</param>
-		var tpData = $.jqMExt.initUIData(uiData);
-		var rawMode = tpData.mode; tpData.mode = '-1';
+    }, //endof jqm
+    jqmAjax: function(jqmSelector, url, uiData, responseTarget) {
+        ///<summary>ajax get request via jqModal's internal ajax feature</summary>
+        ///<param name="jqmSelector">modal which?</param>
+        ///<param name="url">ajax url</param>
+        ///<param name="responseTarget">response target element.default is div.dialog_main</param>
+        var tpData = $.jqMExt.initUIData(uiData);
+        var rawMode = tpData.mode; tpData.mode = '-1';
 
-		var jqmApi = null;
-		$(jqmSelector).jqm({
-			ajax: url,
-			modal: true,
-			toTop: true,
-			target: responseTarget || 'div.dialog_content',
-			ajaxText: Vivasky.jqMExt.ajaxText,
-			onHide: uiData.onHide,
-			onShow: function(_api) { _api.uiData = tpData; jqmApi = _api; Vivasky.jqMExt.onShow(_api); },
-			onLoad: function(_api) { Vivasky.jqMExt.prepareUI({ uiData: { mode: rawMode} }); if (uiData.onLoad) { uiData.onLoad(_api); }; Vivasky.jqMExt.onLoad(_api); }
-		}).draggable(
+        var jqmApi = null;
+        $(jqmSelector).jqm({
+            ajax: url,
+            modal: true,
+            toTop: true,
+            target: responseTarget || 'div.dialog_content',
+            ajaxText: Vivasky.jqMExt.ajaxText,
+            onHide: uiData.onHide,
+            onShow: function(_api) { _api.uiData = tpData; jqmApi = _api; Vivasky.jqMExt.onShow(_api); },
+            onLoad: function(_api) { Vivasky.jqMExt.prepareUI({ uiData: { mode: rawMode} }); if (uiData.onLoad) { uiData.onLoad(_api); }; Vivasky.jqMExt.onLoad(_api); }
+        }).draggable(
 			{ handle: '.jqDrag' }
 		).jqmShow();
-	}, //endof jqmAjax
-	jqmAjaxPost: function(jqmSelector, url, uiData, data, callback) {
-		///<summary>ajax post request.Prepare the UI using jqModal when the request is finished.</summary>
-		///<param name="jqmSelector">modal which?</param>
-		///<param name="url">ajax url</param>
-		///<param name="uiData">ui data for jqModal.{title:'',content:'',btn_ok:'',btn_close:'',okClick:null,mode:'-1'}</param>
-		///<param name="data">data to be posted to server.Should be a json string like "{Name:'xxx',Age:11}"</param>
-		///<param name="callback">ajax request callback</param>
-		var tpData = $.jqMExt.initUIData(uiData);
-		var rawMode = tpData.mode; tpData.mode = '-1';
-		var jqmApi = {};
-		$(jqmSelector).jqm({
-			ajax: null,
-			onShow: function(_api) { _api.uiData = tpData; jqmApi = _api; Vivasky.jqMExt.onShow(_api); }, //we get the jqModal api here,
-			modal: true,
-			toTop: true,
-			onHide: tpData.onHide
-		}).draggable(
+    }, //endof jqmAjax
+    jqmAjaxPost: function(jqmSelector, url, uiData, data, callback) {
+        ///<summary>ajax post request.Prepare the UI using jqModal when the request is finished.</summary>
+        ///<param name="jqmSelector">modal which?</param>
+        ///<param name="url">ajax url</param>
+        ///<param name="uiData">ui data for jqModal.{title:'',content:'',btn_ok:'',btn_close:'',okClick:null,mode:'-1'}</param>
+        ///<param name="data">data to be posted to server.Should be a json string like "{Name:'xxx',Age:11}"</param>
+        ///<param name="callback">ajax request callback</param>
+        var tpData = $.jqMExt.initUIData(uiData);
+        var rawMode = tpData.mode; tpData.mode = '-1';
+        var jqmApi = {};
+        $(jqmSelector).jqm({
+            ajax: null,
+            onShow: function(_api) { _api.uiData = tpData; jqmApi = _api; Vivasky.jqMExt.onShow(_api); }, //we get the jqModal api here,
+            modal: true,
+            toTop: true,
+            onHide: tpData.onHide
+        }).draggable(
 			{ handle: '.jqDrag' }
 		).jqmShow();
 
-		var callback1 = function(msg) {//msg is server response data
-			if (msg.d) msg = msg.d; //keep compatible to asp.net asmx/svc
-			if (msg.IsOk) {//data contract:{IsOk:true,Body:'asdfsd',others:'others data'}
-				tpData.mode = msg.IsAlert ? "-1" : rawMode;
-				tpData.content = msg.IsAlert ? Vivasky.jqMExt.alertHtml.parseTpl(msg) : msg.Body;
-				if (msg.Title && msg.Title != "") { tpData.title = msg.Title; };
-			} else { //endof msg.IsOk. if !msg.IsOk,we should process manually in the onLoad callback
-				tpData.content = Vivasky.jqMExt.alertHtml.parseTpl(msg);
-			};
-			jqmApi.uiData = tpData;
-			Vivasky.jqMExt.prepareUI(jqmApi);
-			//ie bg fix
-			Vivasky.jqMExt.onLoad();
-			if (callback && $.isFunction(callback)) { callback(msg, jqmApi); };
-		}; //endof jqmLocalCallback
+        var callback1 = function(msg) {//msg is server response data
+            if (msg.d) msg = msg.d; //keep compatible to asp.net asmx/svc
+            if (msg.IsOk) {//data contract:{IsOk:true,Body:'asdfsd',others:'others data'}
+                tpData.mode = msg.IsAlert ? "-1" : rawMode;
+                tpData.content = msg.IsAlert ? Vivasky.jqMExt.alertHtml.parseTpl(msg) : msg.Body;
+                if (msg.Title && msg.Title != "") { tpData.title = msg.Title; };
+            } else { //endof msg.IsOk. if !msg.IsOk,we should process manually in the onLoad callback
+                tpData.content = Vivasky.jqMExt.alertHtml.parseTpl(msg);
+            };
+            jqmApi.uiData = tpData;
+            Vivasky.jqMExt.prepareUI(jqmApi);
+            //ie bg fix
+            Vivasky.jqMExt.onLoad();
+            if (callback && $.isFunction(callback)) { callback(msg, jqmApi); };
+        }; //endof jqmLocalCallback
 
-		$.ajaxJsonPost(url, data, callback1, function() {
-			tpData.content = Vivasky.jqMExt.alertHtml.parseTpl({ Flag: 'alert_error', Title: '服务器通讯发生错误,请稍候重试' });
-			jqmApi.uiData = tpData;
-			Vivasky.jqMExt.prepareUI(jqmApi);
-			Vivasky.jqMExt.onLoad();
-		});
-	} //endof jqmAjaxPost
+        $.ajaxJsonPost(url, data, callback1, function() {
+            tpData.content = Vivasky.jqMExt.alertHtml.parseTpl({ Flag: 'alert_error', Title: '服务器通讯发生错误,请稍候重试' });
+            jqmApi.uiData = tpData;
+            Vivasky.jqMExt.prepareUI(jqmApi);
+            Vivasky.jqMExt.onLoad();
+        });
+    } //endof jqmAjaxPost
 };
 /*=============================flexigrid ext===========================*/
 $.fGrid = function(validateCallback, opts, beforeCallback, afterCallback) {
