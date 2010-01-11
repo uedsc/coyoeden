@@ -10,6 +10,18 @@ if ($.blockUI) {
 	$.blockUI.defaults.overlayCSS = { backgroundColor: '#6AA5D7', opacity: .5 };
 };
 var LocalApp = {};
+LocalApp.Loading = function(f) {
+    if (!f) {
+        if (LocalApp.LOADER) {
+            $("#header").before(LocalApp.LOADER.html("Server error...")); return false;
+        };
+    };
+    if (f == 1) {//loading...
+        if (LocalApp.LOADER) { $("#header").before(LocalApp.LOADER.html("Loading...")); };
+    } else if (f == 0) {//hide
+        LocalApp.LOADER = $("#web_loading").remove();
+    };
+};
 LocalApp.jqMTipX = function(msg, jqmSelector, tipType, timeout) {
     ///<summary>Pop up a tipbox using jqModal</summary>
     var onshow = null;

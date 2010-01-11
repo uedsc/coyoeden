@@ -22,5 +22,12 @@ namespace CoyoEden.UI.Controllers
 			CoyoEden.Core.WidgetZone.Sort(data, out retVal);
 			return retVal;
 		}
+        [WebMethod(true)]
+        public BOMessager Delete(IdInputData<Guid> data)
+        {
+            var retVal = new BOMessager();
+            Widget.Remove(data.Id, out retVal);
+            return retVal;
+        }
 	}
 }

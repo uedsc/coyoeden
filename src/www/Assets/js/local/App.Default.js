@@ -5,7 +5,6 @@
 var App = function() {
     //private
     var p = {};
-    p.ajaxError
     p.isAdmin = function() {
         if (p.opts.admin != "1") return false;
         return true;
@@ -34,9 +33,22 @@ var App = function() {
             LocalApp.IFrame("pop", "admin/widgets/popshow.aspx", { title: 'Widget Editor', id: 'widgetEditorFrame', data: { id: o.Id }, size: { height: 450, width: 700} });
         };
     };
+    p.onWidgetRemoving = function(o) {
+        if (!p.isAdmin()) return false;
+        p.loading(1);
+        $.ajaxJsonPost(
+            LocalApp.Asmx("WidgetService", "Delete"), $.toJSON({ data: o.sdata }), function(msg) {
+                p.loading(0);
+                if (!msg.IsError) {
+                    o.Target.hide().remove();
+                } else {
+                    alert(msg.Body);
+                };
+            }, p.loading);
+    };
     p.onPageOk = function() {
         p.loading(0);
-        $(".widget").xwidget({ onSort: p.onWidgetSort, onEdit: p.onWidgetEditting });
+        $(".widget").xwidget({ onSort: p.onWidgetSort, onEdit: p.onWidgetEditting, onRemove: p.onWidgetRemoving });
     };
 
     //public

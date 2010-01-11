@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using CoyoEden.UI;
 using CoyoEden.Core;
+using Vivasky.Core.WebControls;
 
 public partial class admin_widgets_Default :AdminBasePage
 {
@@ -18,4 +20,20 @@ public partial class admin_widgets_Default :AdminBasePage
 	{
 		WidgetList1.PageIndex = yPager1.CurrentPage;
 	}
+    protected void OnWidgetsLoad(object sender, EventArgs arg)
+    {
+        var ddl = sender as SiteDDSelect;
+        if (ddl != null)
+        {
+            ddl.DataSource = Widget.WidgetModels.Cast<object>();
+        }
+    }
+    protected void OnWidgetZonesLoad(object sender, EventArgs arg)
+    {
+        var ddl = sender as SiteDDSelect;
+        if (ddl != null)
+        {
+            ddl.DataSource = WidgetZone.AllWidgetZones.Cast<object>();
+        }
+    }
 }

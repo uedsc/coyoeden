@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Vivasky.Core.Cache;
+using CoyoEden.Core.Infrastructure;
 
 namespace CoyoEden.Core.Caching
 {
 	public class CacheManager
 	{
 		public static void Init() {
+            //widgetzone
 			WidgetZone.LoadingAll += (s, e) => {
 				e.ItemList = Cacher<WidgetZone>.Get<List<WidgetZone>>(CacheKeys.All_WidgetZone);
 			};
@@ -25,6 +27,14 @@ namespace CoyoEden.Core.Caching
 				Cacher<WidgetZone>.Remove(key);
 				Cacher<WidgetZone>.Add(key, e.ItemList);
 			};
+            //widget
+            Widget.SavedX += (s, e) => {
+                if (e.Action == LogicAction.Delete) {
+                    var obj = (Widget)e.Target;
+                    var key = string.Format(CacheKeys.List_Widgets_Zone,obj.Zone.Id);
+                    Cacher<WidgetZone>.Remove(key);
+                }
+            };
 		}
 	}
 }

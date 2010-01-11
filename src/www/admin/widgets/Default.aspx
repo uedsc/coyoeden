@@ -44,11 +44,31 @@
 			<a title="" href="default.aspx" class="current">总数 <span>(<%=WidgetList1.ItemCount%>)</span></a> 
 		</div>
 	</div>
+	<div class="c265_side_filter pad20 blank60">
+		<h3 class="Ptitle">新建部件</h3>
+		<div class="widgetadder pool5" id="widgetAdder"> 
+            <p class="grey">
+			<vs:SiteDDSelect ID="listWidget" runat="server" Name="WidgetName" Tip="Select a widget" OnLoad="OnWidgetsLoad"/>
+			</p>
+		    <p class="grey">
+			<vs:SiteDDSelect ID="listZone" runat="server" Name="WidgetZone" KeyField="Name" DescField="Name" Tip="Select a Zone" OnLoad="OnWidgetZonesLoad"/>
+			</p>
+			<a title="" id="lnkSave" href="#">保 存</a>
+		</div>
+	</div>
 	<div class="side_actions pad20 blank80"> 
 		<a title="" href="show.aspx?d=a^2" class="relate_links">新建部件</a>
 	</div>
 </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphFooter" Runat="Server">
+<vs:SiteJScript ID="appJS" ScriptRelativeToRoot="Assets/js/local/admin.widget.js" runat="server"/>
+<script type="text/javascript">
+//<![CDATA[
+    WidgetApp.Init({
+	    appTip:''
+	});
+//]]>
+</script>
 </asp:Content>
 

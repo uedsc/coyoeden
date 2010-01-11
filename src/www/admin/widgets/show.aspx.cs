@@ -21,6 +21,7 @@ public partial class admin_widgets_show : AdminBasePage
 	private void loadWidget() {
 		if (string.IsNullOrEmpty(QStrData.i))
 		{
+            //add new
 			ViewData = new Widget();
 		}
 		else

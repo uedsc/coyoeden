@@ -190,7 +190,23 @@ namespace CoyoEden.Core
 			}
 			return obj;
 		}
-
+        public static void Remove(Guid id, out BOMessager msg)
+        {
+            msg = new BOMessager();
+            var obj = Find(id, out msg);
+            if (msg.IsError) return;
+            onSaving(LogicAction.Delete,obj, out msg);
+            if (msg.IsError) return;
+            try
+            {
+                obj.MarkForDelete();
+                obj.Save();
+                onSaved(LogicAction.Delete, obj);
+            }
+            catch (Exception ex) {
+                msg.Error<Widget>(ex, true);
+            }
+        }
 		private static XProperty _XColor;
 		/// <summary>
 		/// get the WidgetColor XProperty
@@ -240,6 +256,8 @@ namespace CoyoEden.Core
 		#region events
 		public static event EventHandler<ActionEventArgs> Querying;
 		public static event EventHandler<ActionEventArgs> Queried;
+        public static event EventHandler<ActionEventArgs> SavingX;
+        public static event EventHandler<ActionEventArgs> SavedX;
 		public static event EventHandler<ActionEventArgs<Widget>> Showing;
 		static void onQuerying<Tt>(string queryingKey,ref Tt retVal, out BOMessager msg) {
 			msg=new BOMessager();
@@ -254,6 +272,23 @@ namespace CoyoEden.Core
 				Queried(null, args);
 			}
 		}
+        static void onSaving<Tt>(LogicAction action,Tt target, out BOMessager msg)
+        {
+            msg = new BOMessager();
+            if (SavingX != null)
+            {
+                var args = new ActionEventArgs(action, target, ref msg);
+                SavingX(null, args);
+            }
+        }
+        static void onSaved<Tt>(LogicAction action,Tt result)
+        {
+            if (null != SavedX)
+            {
+                var args = new ActionEventArgs(action, result);
+                SavedX(null, args);
+            }
+        }
 		static void onShowing(Widget obj,out BOMessager msg) {
 			msg = new BOMessager();
 			if (obj.Editable)
