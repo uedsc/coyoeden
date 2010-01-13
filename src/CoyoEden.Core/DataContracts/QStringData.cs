@@ -75,14 +75,11 @@ namespace CoyoEden.Core.DataContracts
 			a = ActionTypes.Unkown;
 			if (string.IsNullOrEmpty(rawRequestString)) return this;
 			var parts = rawRequestString.Split(STR_FIELDSPLIT.ToCharArray());
-			if (parts[0].Length != 3)//'a^1'.length==3
-			{
-				return this;
-			};
+
 			var parts0=default(string[]);
 			parts.ToList().ForEach(x => {
 				parts0 = x.Split(STR_KEYVALUESPLIT.ToCharArray());
-				if (parts0[0] == "a" || parts0[0] == "v")
+				if (parts0[0] == "a" || parts0[0] == "v")//ActionTypes and YesNoOptions are enums 
 				{
 					var i=0;
 					int.TryParse(parts0[1],out i);

@@ -29,5 +29,19 @@ namespace CoyoEden.UI.Controllers
             Widget.Remove(data.Id, out retVal);
             return retVal;
         }
+        [WebMethod(true)]
+        public BOMessager Add(WidgetAddingData data)
+        {
+            var retVal = new BOMessager();
+            var zone = WidgetZone.Find(data.Zone);
+            if (zone == null)
+            {
+                retVal.Error<WidgetZone>(BOMessager.NORECORD_X, data.Zone);
+            }
+            else {
+                zone.AddWidget(data.Name, out retVal);
+            }
+            return retVal;
+        }
 	}
 }

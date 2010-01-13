@@ -6,11 +6,15 @@ using Vivasky.Core.WebControls;
 
 public partial class admin_widgets_Default :AdminBasePage
 {
+    /// <summary>
+    /// Current selected Zone
+    /// </summary>
+    protected WidgetZone CurZone { get; set; }
 	protected void Page_Load(object sender, EventArgs e)
 	{
 		if (!string.IsNullOrEmpty(QStrData.t0)) {
-			var zone = WidgetZone.Find(QStrData.t0);
-			WidgetList1.Zone = zone;
+			CurZone= WidgetZone.Find(QStrData.t0);
+            WidgetList1.Zone = CurZone;
 		}
 		yPager1.TotalItems = WidgetList1.ItemCount;
 		WidgetList1.PageIndex = yPager1.CurrentPage;

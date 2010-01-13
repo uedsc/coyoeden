@@ -16,28 +16,38 @@ var WidgetApp = function() {
         };
     };
     p.getAddWidgetInfo = function(showError) {
-        var info = $("#widgetAdder select").serializeX();
+        var w = p.listWidget.val();
         var isOk = true;
-        alert($.toJSON(info));
-        if (showError) {
-            //
+
+        if (w == "" && showError) {
+            alert("Please select a widget!");
+            p.listWidget.focus();
+            isOk = false;
         };
-        return { isOk: isOk, data: info };
+        return { isOk: isOk, widget: w };
     };
     p.onWidgetAdd = function(evt) {
+        var z = $(this).attr("rel");
         var info = p.getAddWidgetInfo(true);
         if (info.isOk) {
             LocalApp.Loading(1);
-            $.ajaxJsonPost(LocalApp.Asmx("WidgetService", "Add"), $.toJSON({ data: info.data }), function(msg) {
+            $.ajaxJsonPost(LocalApp.Asmx("WidgetService", "Add"), $.toJSON({ data: { Name: info.widget, Zone: z} }), function(msg) {
+                p.appTip = msg = msg.d || msg;
                 LocalApp.Loading(0);
+                p.showAppTip();
             }, LocalApp.Loading);
         };
         return false;
     };
+    p.initObjs = function(opts) {
+        p.listWidget = $("#listWidget");
+        p.lnkSave = $("#lnkSave");
+    };
     var pub = {};
     pub.Init = function(opts) {
+        p.initObjs(opts);
         if (opts.appTip.length > 0) { p.appTip = $.evalJSON(opts.appTip); p.showAppTip(); };
-        $("#lnkSave").click(p.onWidgetAdd);
+        p.lnkSave.click(p.onWidgetAdd);
     };
     return pub;
 } ();

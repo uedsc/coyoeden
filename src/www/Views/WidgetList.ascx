@@ -18,10 +18,13 @@
 			</div>
 		</div>
 		<div class="acts">
+	        <span class="actions">
 			<%if (x.Editable)
 	 { %>
-			<a href="<%=editPath %>" title="<%=x.Name %>">Edit</a>
+	        <a href="<%=editPath %>" title="<%=x.Name %>">Edit</a>
 			<%} %>
+		    <a href="#<%=x.Id.Value %>" title="">Delete</a>
+		    </span>
 		</div>
 	</div>
 	</li>

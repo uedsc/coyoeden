@@ -76,6 +76,9 @@ namespace CoyoEden.Core
 			}
 			return data;
 		}
+        public static WidgetZone Find(Guid id) {
+            return AllWidgetZones.SingleOrDefault(x=>x.Id.Value.Equals(id));
+        }
 		public static void Sort(WidgetSortingData sortData, out BOMessager msg) {
 			msg = new BOMessager();
 			if (sortData.Zone0 == sortData.Zone1) { 
@@ -115,6 +118,15 @@ namespace CoyoEden.Core
 				return items;
 			}
 		}
+        /// <summary>
+        /// Add a widget to the current zone
+        /// </summary>
+        /// <param name="widgetName"></param>
+        /// <param name="msg"></param>
+        public void AddWidget(string widgetName,out BOMessager msg)
+        {
+            Widget.AddNewToZone(widgetName, this, out msg);
+        }
 		#endregion
 
 		#region ICacheable Members

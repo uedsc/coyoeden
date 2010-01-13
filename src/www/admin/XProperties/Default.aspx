@@ -39,13 +39,13 @@
 <div class="c265_side">
 	<div class="c265_side_filter pad20 blank40">
 		<h3 class="Ptitle">属性</h3>
-		<div class="library_tag_list pool5"> 
+		<div class="sec_tlist pool5"> 
 			<a title="" href="default.aspx" class="current">总数 <span>(<%=Xprolist.ItemCount %>)</span></a> 
 		</div>
 	</div>
 	<div class="c265_side_filter pad20 blank60">
 		<h3 class="Ptitle">标签</h3>
-		<div class="library_tag_list pool5"> 
+		<div class="sec_tlist pool5"> 
 			<a title="" href="default.aspx" class="current">全部</a>
 			<a title="" href="default.aspx?d=a-1$t0-<%=DateTime.Now.Year %>"><%=DateTime.Now.Year %></a>
 			<a title="" href="default.aspx?d=a-1$t0-<%=DateTime.Now.AddYears(-1).Year%>"><%=DateTime.Now.AddYears(-1).Year %></a>

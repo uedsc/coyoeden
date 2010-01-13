@@ -29,7 +29,7 @@ namespace CoyoEden.Core.Caching
 			};
             //widget
             Widget.SavedX += (s, e) => {
-                if (e.Action == LogicAction.Delete) {
+                if (e.Action == LogicAction.Delete||e.Action==LogicAction.AddNew) {
                     var obj = (Widget)e.Target;
                     var key = string.Format(CacheKeys.List_Widgets_Zone,obj.Zone.Id);
                     Cacher<WidgetZone>.Remove(key);

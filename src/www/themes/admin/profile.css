@@ -355,17 +355,20 @@ a.ico_cate_filter{ background:url(img/pro_sprites.gif) 0 -655px no-repeat; font-
 .c265_side_seek span.seek_keywords{ font-size:12px; color:#f00; width:240px; overflow:hidden; word-break:break-all;word-wrap:break-word;}
 .c265_side_seek span.seek_keywords a{ padding-left:5px;}
 
-.c265_side .c265_side_radio{ font-size:12px; ;font-family:"Microsoft YaHei","微软雅黑","Microsoft JhengHei","华文黑体",STHeiti,Georgia,"Times New Roman",Times,serif; }
+.c265_side .c265_side_radio{ font-size:12px;font-family:"Microsoft YaHei","微软雅黑","Microsoft JhengHei","华文黑体",STHeiti,Georgia,"Times New Roman",Times,serif; }
 
 .c265_side .c265_side_radio p{ line-height:2; padding-bottom:10px; color:#999;}
 
 .pad20{ width:224px; overflow:hidden; margin-left:20px;}
 .pad12{ width:240px; overflow:hidden; margin-left:12px;}
-.library_tag_list a{ display:block; font-size:12px; color:#999; line-height:2; padding-left:3px;}
-.library_tag_list a span{ font-size:11px; color:#aaa;}
-.library_tag_list a:hover{ color:#36c;}
-.library_tag_list a.current,.library_tag_list a.current:hover{ font-size:14px; font-weight:bold; color:#f60; text-decoration:underline;}
-.library_tag_list a.showmore{ color:#8CA6D7;}
+/*sidebar section*/
+/*sec=section;t=tag;*/
+.sec0{margin-top:6.18px;}
+.sec_tlist a{ display:block; font-size:12px; color:#999; line-height:2; padding-left:3px;}
+.sec_tlist a span{ font-size:11px; color:#aaa;}
+.sec_tlist a:hover{ color:#36c;}
+.sec_tlist a.current,.sec_tlist a.current:hover{ font-size:14px; font-weight:bold; color:#f60; text-decoration:underline;}
+.sec_tlist a.showmore{ color:#8CA6D7;}
 
 
 .side_actions a.sub_RSS,.side_actions a.sub_Widget{ display:block; margin-top:10px;}

@@ -21,6 +21,8 @@ namespace CoyoEden.Core
 		#region .ctor
 		public Widget() {
 			Id = GuidExt.NewGuid(GuidExt.GuidStrategy.OrderedSequential);
+            ShowTitle = true;
+            Template = "";
 			this.Saved+=(s,e)=>{
 				AllWidgets.RemoveAll(x=>x.Id.Equals(this.Id));
 				if (!this.Status.IsDeleted) {
@@ -72,7 +74,8 @@ namespace CoyoEden.Core
 		public const string PREFIX_CACHEID = "cy_widget_";
 		public const string EXTCFG_COLOR = "WidgetColor";
 		public const string EXTCFG_ICON = "SiteIcon";
-		public const string WidgetPathFormatStr_EDIT = "{0}widgets/{1}/edit.ascx"; 
+		public const string WidgetPathFormatStr_EDIT = "{0}widgets/{1}/edit.ascx";
+        public const string WidgetPathFormatStr_DISPLAY = "{0}widgets/{1}/widget.ascx";
 		public SerializableStringDictionary ExtConfigs
 		{
 			get
@@ -105,7 +108,7 @@ namespace CoyoEden.Core
 		public string EditTemplateRelativePath {
 			get
 			{
-				return string.Format(WidgetPathFormatStr_EDIT, Utils.RelativeWebRoot, Name); ;
+				return string.Format(WidgetPathFormatStr_EDIT, Utils.RelativeWebRoot, Name);
 			}
 		}
 		/// <summary>
@@ -202,6 +205,28 @@ namespace CoyoEden.Core
                 obj.MarkForDelete();
                 obj.Save();
                 onSaved(LogicAction.Delete, obj);
+            }
+            catch (Exception ex) {
+                msg.Error<Widget>(ex, true);
+            }
+        }
+        /// <summary>
+        /// Add a new widget to the specified widgetzone
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="zone"></param>
+        /// <param name="msg"></param>
+        public static void AddNewToZone(string name,WidgetZone zone,out BOMessager msg) {
+            msg = new BOMessager();
+            var w = new Widget() { Name = name,Title=name,Tag=zone.Tag };
+            try
+            {
+                w.DisplayIndex = zone.WidgetList.Max(x => x.DisplayIndex).Value;
+                w.Zone = zone;
+                onSaving(LogicAction.AddNew, w, out msg);
+                if (msg.IsError) return;
+                w.Save();
+                onSaved(LogicAction.AddNew, w);
             }
             catch (Exception ex) {
                 msg.Error<Widget>(ex, true);

@@ -95,6 +95,7 @@
     <Compile Include="DataContracts\ActionTypes.cs" />
     <Compile Include="DataContracts\SettingTypes.cs" />
     <Compile Include="DataContracts\UserInfo.cs" />
+    <Compile Include="DataContracts\WidgetAddingData.cs" />
     <Compile Include="DataContracts\WidgetData.cs" />
     <Compile Include="DataContracts\WidgetSortingData.cs" />
     <Compile Include="DataContracts\YesNoOptions.cs" />

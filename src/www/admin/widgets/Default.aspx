@@ -40,25 +40,20 @@
 <div class="c265_side">
 	<div class="c265_side_filter pad20 blank40">
 		<h3 class="Ptitle">属性</h3>
-		<div class="library_tag_list pool5"> 
+		<div class="sec_tlist pool5"> 
 			<a title="" href="default.aspx" class="current">总数 <span>(<%=WidgetList1.ItemCount%>)</span></a> 
 		</div>
 	</div>
+	<%if (CurZone != null)
+   { %>
 	<div class="c265_side_filter pad20 blank60">
 		<h3 class="Ptitle">新建部件</h3>
-		<div class="widgetadder pool5" id="widgetAdder"> 
-            <p class="grey">
-			<vs:SiteDDSelect ID="listWidget" runat="server" Name="WidgetName" Tip="Select a widget" OnLoad="OnWidgetsLoad"/>
-			</p>
-		    <p class="grey">
-			<vs:SiteDDSelect ID="listZone" runat="server" Name="WidgetZone" KeyField="Name" DescField="Name" Tip="Select a Zone" OnLoad="OnWidgetZonesLoad"/>
-			</p>
-			<a title="" id="lnkSave" href="#">保 存</a>
+		<div class="sec0 sec_tlist pool5" id="widgetAdder"> 
+            <vs:SiteDDSelect ID="listWidget" runat="server" Name="WidgetName" Tip="Select a widget" OnLoad="OnWidgetsLoad"/>
+			<a title="" id="lnkSave" href="#<%=CurZone.Id.Value %>" rel="<%=CurZone.Id.Value %>">保存</a>
 		</div>
 	</div>
-	<div class="side_actions pad20 blank80"> 
-		<a title="" href="show.aspx?d=a^2" class="relate_links">新建部件</a>
-	</div>
+	<%} %>
 </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphFooter" Runat="Server">
