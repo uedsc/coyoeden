@@ -22,7 +22,6 @@ namespace CoyoEden.Core
 		public Widget() {
 			Id = GuidExt.NewGuid(GuidExt.GuidStrategy.OrderedSequential);
             ShowTitle = true;
-            Template = "";
 			this.Saved+=(s,e)=>{
 				AllWidgets.RemoveAll(x=>x.Id.Equals(this.Id));
 				if (!this.Status.IsDeleted) {
@@ -218,10 +217,11 @@ namespace CoyoEden.Core
         /// <param name="msg"></param>
         public static void AddNewToZone(string name,WidgetZone zone,out BOMessager msg) {
             msg = new BOMessager();
-            var w = new Widget() { Name = name,Title=name,Tag=zone.Tag };
+            var w = new Widget() { Name = name,Title=name,Tag=zone.Tag};
             try
             {
-                w.DisplayIndex = zone.WidgetList.Max(x => x.DisplayIndex).Value;
+                w.Template = WidgetPathFormatStr_DISPLAY;
+                w.DisplayIndex = zone.WidgetList.Max(x => x.DisplayIndex).Value+1;
                 w.Zone = zone;
                 onSaving(LogicAction.AddNew, w, out msg);
                 if (msg.IsError) return;
