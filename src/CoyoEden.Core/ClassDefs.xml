@@ -496,6 +496,7 @@
         <add key="maxLength" value="2147483647" />
       </rule>
     </property>
+    <property name="ModifiedOn" type="DateTime" compulsory="true" />
     <property name="FKZone" type="Guid" compulsory="true">
       <businessObjectLookupList class="WidgetZone" assembly="CoyoEden.Core" />
     </property>

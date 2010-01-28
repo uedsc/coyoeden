@@ -32,16 +32,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Habanero.Base">
-      <HintPath>..\..\libs\Habanero.Base.dll</HintPath>
+      <HintPath>F:\7Garden\Documents\Visual%20Studio%202008\Projects\CoyoEden\libs\Habanero.Base.dll</HintPath>
     </Reference>
     <Reference Include="Habanero.BO">
-      <HintPath>..\..\libs\Habanero.BO.dll</HintPath>
+      <HintPath>F:\7Garden\Documents\Visual%20Studio%202008\Projects\CoyoEden\libs\Habanero.BO.dll</HintPath>
     </Reference>
     <Reference Include="Habanero.UI.Base">
-      <HintPath>..\..\libs\Habanero.UI.Base.dll</HintPath>
+      <HintPath>F:\7Garden\Documents\Visual%20Studio%202008\Projects\CoyoEden\libs\Habanero.UI.Base.dll</HintPath>
     </Reference>
     <Reference Include="Habanero.UI.Win">
-      <HintPath>..\..\libs\Habanero.UI.Win.dll</HintPath>
+      <HintPath>F:\7Garden\Documents\Visual%20Studio%202008\Projects\CoyoEden\libs\Habanero.UI.Win.dll</HintPath>
     </Reference>
     <Reference Include="Habanero.Util">
       <HintPath>F:\7Garden\Documents\Visual%20Studio%202008\Projects\CoyoEden\libs\Habanero.Util.dll</HintPath>

@@ -1,4 +1,4 @@
-<Project EditorVersion="2.3.1" ProjectFileName="E:\SysDir\My Documents\Visual Studio 2008\Projects\Vivasky\CoyoEden\CoyoEden.fsproj">
+<Project EditorVersion="2.3.1" ProjectFileName="E:\My Documents\Visual Studio 2008\Projects\coyoeden\CoyoEden.fsproj">
   <ProjectSettings HabaneroDllPath="F:\7Garden\Documents\Visual Studio 2008\Projects\CoyoEden\libs" ProjectName="CoyoEden" SolutionDirectory="src" BaseProjectName="CoyoEden" TestUiProjectName="CoyoEden.Test.UI" TestBoProjectName="CoyoEden.Test.BO" LogicProjectName="CoyoEden.Logic" BoProjectName="CoyoEden.Core" UIWinProjectName="CoyoEden.UI" DatabaseConfig="SqlServer: .\SQLEXPRESS - CoyoEden(sa)" DefaultAssembly="CoyoEden.Core" TableNamePrefix="cy_">
     <StoredDatabaseConfig Vendor="SqlServer" Server=".\SQLEXPRESS" Database="CoyoEden" Username="sa" Password="123456" />
     <CustomPropertyTypes />
@@ -1618,6 +1618,17 @@
               <KeyValuePair Key="minLength" />
               <KeyValuePair Key="patternMatch" />
               <KeyValuePair Key="patternMatchMessage" />
+            </Parameters>
+          </PropertyRule>
+          <LookupListSource>
+            <Items />
+          </LookupListSource>
+        </Property>
+        <Property PropertyName="ModifiedOn" DisplayName="Modified On" DatabaseFieldName="ModifiedOn" Compulsory="True" PropertyType="DateTime">
+          <PropertyRule>
+            <Parameters>
+              <KeyValuePair Key="max" />
+              <KeyValuePair Key="min" />
             </Parameters>
           </PropertyRule>
           <LookupListSource>

@@ -10,18 +10,18 @@
 ///<reference path="../date.js"/>
 var WidgetApp = function() {
     var p = {};
-    p.showAppTip = function() {
-        if (p.appTip && p.appTip.Body.length > 0) {
-            LocalApp.jqMTipX(p.appTip.Body, null, p.appTip.IsError ? "alert_error" : "alert_ok", 2000);
+    p.checkAppTip = function(opts) {
+        if (p._appTip.Body && p._appTip.Body.length > 0) {
+            LocalApp.jqMTipX(p._appTip.Body, null, p._appTip.IsError ? "alert_error" : "alert_ok", 2000);
         };
     };
     p.getAddWidgetInfo = function(showError) {
-        var w = p.listWidget.val();
+        var w = p._listWidget.val();
         var isOk = true;
 
         if (w == "" && showError) {
             alert("Please select a widget!");
-            p.listWidget.focus();
+            p._listWidget.focus();
             isOk = false;
         };
         return { isOk: isOk, widget: w };
@@ -32,22 +32,32 @@ var WidgetApp = function() {
         if (info.isOk) {
             LocalApp.Loading(1);
             $.ajaxJsonPost(LocalApp.Asmx("WidgetService", "Add"), $.toJSON({ data: { Name: info.widget, Zone: z} }), function(msg) {
-                p.appTip = msg = msg.d || msg;
+                p._appTip = msg = msg.d || msg;
                 LocalApp.Loading(0);
-                p.showAppTip();
+                p.checkAppTip();
             }, LocalApp.Loading);
         };
         return false;
     };
-    p.initObjs = function(opts) {
-        p.listWidget = $("#listWidget");
-        p.lnkSave = $("#lnkSave");
+    p.initVar = function(opts) {
+        p._listWidget = $("#listWidget");
+        p._lnkSave = $("#lnkSave");
+        p._listOrderType = $("#listOrderType");
+        p._appTip = opts.appTip;
+        p._qData = opts.qData;
+        //restore obj states
+        
     };
+    p.initEvents = function(opts) {
+        //event registers
+        p._lnkSave.click(p.onWidgetAdd);
+
+    }; //endof initEvents
     var pub = {};
     pub.Init = function(opts) {
-        p.initObjs(opts);
-        if (opts.appTip.length > 0) { p.appTip = $.evalJSON(opts.appTip); p.showAppTip(); };
-        p.lnkSave.click(p.onWidgetAdd);
+        p.initVar(opts);
+        p.initEvents(opts);
+        p.checkAppTip(opts);
     };
     return pub;
 } ();

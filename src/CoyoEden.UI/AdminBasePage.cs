@@ -4,6 +4,7 @@ using Vivasky.Core;
 using CoyoEden.Core.DataContracts;
 using Vivasky.Core.Infrastructure;
 using System.Collections.Generic;
+using CoyoEden.Core.Web;
 
 namespace CoyoEden.UI
 {
@@ -52,24 +53,14 @@ namespace CoyoEden.UI
 
 		#region member variables
 		/// <summary>
-		/// query string data
-		/// </summary>
-		protected QStringData QStrData {
-			get
-			{
-				var data= Request["d"];
-				return QStringData.New(data);
-			}
-		}
-		/// <summary>
 		/// application tips
 		/// </summary>
 		protected string AppTip
 		{
 			get
 			{
-				if (AppMsg == null) return null;
-				return AppMsg.ToJSONStr1();
+				if (AppMsg == null) return "{}";
+				return AppMsg.ToJSONStr();
 			}
 		}
 		protected BOMessager AppMsg { get; set; }
@@ -84,8 +75,8 @@ namespace CoyoEden.UI
 		/// <returns></returns>
 		protected string CheckTagCss(string navTag, string yescss)
 		{
-			if ((QStrData.a == ActionTypes.None || QStrData.a == ActionTypes.Unkown) && string.IsNullOrEmpty(navTag)) return yescss;
-			var tags = new List<String> { QStrData.t0, QStrData.t1, QStrData.t2 };
+            if ((QStr.GetQ<ActionTypes>("a") == ActionTypes.None || QStr.GetQ<ActionTypes>("a") == ActionTypes.Unkown) && string.IsNullOrEmpty(navTag)) return yescss;
+            var tags = new List<String> { QStr.GetQ<string>("t0"), QStr.GetQ<string>("t1"), QStr.GetQ<string>("t2") };
 			if (tags.Contains(navTag)) return yescss;
 			return "";
 		}

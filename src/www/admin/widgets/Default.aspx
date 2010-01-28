@@ -22,8 +22,8 @@
 			<span class="selects">
 			<label for="lang">排序:</label>
 			<select name="order" id="listOrderType">
-				<option selected="" value="1" title="按名称排">默认</option>
-				<option value="2">按标签排</option>
+				<option selected="selected" value="1" title="按时间排">默认</option>
+				<option value="2">按名称排</option>
 			</select>
 			</span> 
 			<span class="viewmode clearfix"> 
@@ -61,7 +61,8 @@
 <script type="text/javascript">
 //<![CDATA[
     WidgetApp.Init({
-	    appTip:''
+	    appTip:<%=AppTip %>,
+	    qData:<%=QStrData.ToJSON() %>
 	});
 //]]>
 </script>

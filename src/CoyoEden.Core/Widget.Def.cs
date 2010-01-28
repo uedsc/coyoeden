@@ -111,6 +111,18 @@ namespace CoyoEden.Core
             }
         }
         
+        public virtual DateTime? ModifiedOn
+        {
+            get
+            {
+                return ((DateTime?)(base.GetPropertyValue("ModifiedOn")));
+            }
+            set
+            {
+                base.SetPropertyValue("ModifiedOn", value);
+            }
+        }
+        
         public virtual Guid? FKZone
         {
             get

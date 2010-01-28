@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.UI;
 using CoyoEden.Core;
 using Vivasky.Core;
+using Vivasky.Core.Infrastructure;
 using System.Security.Cryptography;
 using System.IO;
 using CoyoEden.Core.DataContracts;
@@ -60,7 +61,7 @@ namespace CoyoEden.UI.Views
 			image.Append("&amp;rating=G");
 			image.Append("&amp;size=" + size);
 			image.Append("&amp;default=");
-			image.Append(Server.UrlEncode(Utils.AbsoluteWebRoot + "themes/" + BlogSettings.Instance.Theme + "/noavatar.jpg"));
+            image.Append(Server.UrlEncode(String.Format("{0}themes/{1}/noavatar.jpg", Utils.AbsoluteWebRoot, BlogSettings.Instance.Theme)));
 			image.Append("\" alt=\"\" />");
 			return image.ToString();
 		}
@@ -87,17 +88,28 @@ namespace CoyoEden.UI.Views
 
 		public UserInfo UserData { get; set; }
 
-		/// <summary>
-		/// query string data
-		/// </summary>
-		protected QStringData QStrData
-		{
-			get
-			{
-				var data = Request["d"];
-				return QStringData.New(data);
-			}
-		}
+        /// <summary>
+        /// query string data
+        /// </summary>
+        protected SerializableStringDictionary QStrData
+        {
+            get
+            {
+                var data = Request["d"];
+                var obj = default(SerializableStringDictionary);
+                try
+                {
+                    Check.Require((!string.IsNullOrEmpty(data)));
+                    obj = data.DeserializeJSONStr<SerializableStringDictionary>();
+                }
+                catch (Exception ex)
+                {
+                    obj = new SerializableStringDictionary();
+                }
+                return obj;
+
+            }
+        }
 		protected bool UserIsAdmin
 		{
 			get
