@@ -4,14 +4,12 @@ using System;
 using System.Globalization;
 using System.Web;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
-using System.Threading;
 using Vivasky.Core;
 using CoyoEden.Core;
 using CoyoEden.Core.Web.Controls;
+using Vivasky.Core.Infrastructure;
 
 #endregion
 
@@ -370,6 +368,16 @@ namespace CoyoEden.UI
 			get
 			{
 				return Page.User.IsInRole(BlogSettings.Instance.AdministratorRole);
+			}
+		}
+		/// <summary>
+		/// query string data of current request
+		/// </summary>
+		protected SerializableStringDictionary QStr
+		{
+			get
+			{
+				return Request.QueryString.ToStrDic();
 			}
 		}
 	}

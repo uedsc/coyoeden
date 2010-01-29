@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using System.Web.UI;
 using CoyoEden.Core;
+using CoyoEden.Core.DataContracts;
 using Vivasky.Core;
 using Vivasky.Core.Infrastructure;
-using System.Security.Cryptography;
-using System.IO;
-using CoyoEden.Core.DataContracts;
 
 namespace CoyoEden.UI.Views
 {
@@ -89,25 +87,13 @@ namespace CoyoEden.UI.Views
 		public UserInfo UserData { get; set; }
 
         /// <summary>
-        /// query string data
+        /// query string data of current request
         /// </summary>
-        protected SerializableStringDictionary QStrData
+        protected SerializableStringDictionary QStr
         {
             get
             {
-                var data = Request["d"];
-                var obj = default(SerializableStringDictionary);
-                try
-                {
-                    Check.Require((!string.IsNullOrEmpty(data)));
-                    obj = data.DeserializeJSONStr<SerializableStringDictionary>();
-                }
-                catch (Exception ex)
-                {
-                    obj = new SerializableStringDictionary();
-                }
-                return obj;
-
+				return Request.QueryString.ToStrDic();
             }
         }
 		protected bool UserIsAdmin

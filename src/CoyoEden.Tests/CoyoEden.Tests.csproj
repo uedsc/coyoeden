@@ -89,7 +89,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\DataContracts\QStringDataTests.cs" />
     <Compile Include="Core\SettingTests.cs" />
     <Compile Include="Core\WidgetZoneTests.cs" />
     <Compile Include="ObjExtensionTests.cs" />
@@ -113,6 +112,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="log4net.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\DataContracts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

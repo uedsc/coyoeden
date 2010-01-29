@@ -4,7 +4,6 @@ using Vivasky.Core;
 using CoyoEden.Core.DataContracts;
 using Vivasky.Core.Infrastructure;
 using System.Collections.Generic;
-using CoyoEden.Core.Web;
 
 namespace CoyoEden.UI
 {
@@ -64,6 +63,16 @@ namespace CoyoEden.UI
 			}
 		}
 		protected BOMessager AppMsg { get; set; }
+		/// <summary>
+		/// query string data of current request
+		/// </summary>
+		protected SerializableStringDictionary QStr
+		{
+			get
+			{
+				return Request.QueryString.ToStrDic();
+			}
+		}
 		#endregion
 
 		#region methods
@@ -75,8 +84,8 @@ namespace CoyoEden.UI
 		/// <returns></returns>
 		protected string CheckTagCss(string navTag, string yescss)
 		{
-            if ((QStr.GetQ<ActionTypes>("a") == ActionTypes.None || QStr.GetQ<ActionTypes>("a") == ActionTypes.Unkown) && string.IsNullOrEmpty(navTag)) return yescss;
-            var tags = new List<String> { QStr.GetQ<string>("t0"), QStr.GetQ<string>("t1"), QStr.GetQ<string>("t2") };
+			if ((QStr.GetAs<ActionTypes>("a") == ActionTypes.None || QStr.GetAs<ActionTypes>("a") == ActionTypes.Unkown) && string.IsNullOrEmpty(navTag)) return yescss;
+			var tags = new List<String> { QStr.GetAs<string>("t0"), QStr.GetAs<string>("t1"), QStr.GetAs<string>("t2") };
 			if (tags.Contains(navTag)) return yescss;
 			return "";
 		}

@@ -32,13 +32,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Habanero.Base">
-      <HintPath>F:\7Garden\Documents\Visual%20Studio%202008\Projects\CoyoEden\libs\Habanero.Base.dll</HintPath>
+      <HintPath>..\..\libs\Habanero.Base.dll</HintPath>
     </Reference>
     <Reference Include="Habanero.BO">
-      <HintPath>F:\7Garden\Documents\Visual%20Studio%202008\Projects\CoyoEden\libs\Habanero.BO.dll</HintPath>
+      <HintPath>..\..\libs\Habanero.BO.dll</HintPath>
     </Reference>
     <Reference Include="Habanero.DB">
-      <HintPath>F:\7Garden\Documents\Visual%20Studio%202008\Projects\CoyoEden\libs\Habanero.DB.dll</HintPath>
+      <HintPath>..\..\libs\Habanero.DB.dll</HintPath>
     </Reference>
     <Reference Include="Habanero.Util">
       <HintPath>F:\7Garden\Documents\Visual%20Studio%202008\Projects\CoyoEden\libs\Habanero.Util.dll</HintPath>
@@ -114,7 +114,6 @@
     <Compile Include="Infrastructure\ItemView.cs" />
     <Compile Include="Infrastructure\ListingEventArgs.cs" />
     <Compile Include="Infrastructure\LogicAction.cs" />
-    <Compile Include="Web\QStr.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Page.Def.cs">
       <DependentUpon>Page.cs</DependentUpon>
