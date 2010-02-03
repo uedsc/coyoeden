@@ -6,10 +6,11 @@ using System.Web;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core;
 using CoyoEden.Core.Web.Controls;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
+using System.Collections.Generic;
 
 #endregion
 
@@ -28,7 +29,9 @@ namespace CoyoEden.UI
 	{
 
 		private string _Theme = BlogSettings.Instance.Theme;
-		/// <summary>
+
+        #region base overrides
+        /// <summary>
 		/// Assignes the selected theme to the pages.
 		/// </summary>
 		protected override void OnPreInit(EventArgs e)
@@ -122,8 +125,51 @@ namespace CoyoEden.UI
 			{
 				Page.Title = (String.Format("{0} | {1}", BlogSettings.Instance.Name, Page.Title));
 			}
-		}
-		/// <summary>
+        }
+        /// <summary>
+        /// Initializes the <see cref="T:System.Web.UI.HtmlTextWriter"></see> object and calls on the child
+        /// controls of the <see cref="T:System.Web.UI.Page"></see> to render.
+        /// </summary>
+        /// <param name="writer">The <see cref="T:System.Web.UI.HtmlTextWriter"></see> that receives the page content.</param>
+        protected override void Render(HtmlTextWriter writer)
+        {
+            //if (BlogSettings.Instance.RemoveWhitespaceInPages)
+            //{
+            //  using (HtmlTextWriter htmlwriter = new HtmlTextWriter(new System.IO.StringWriter()))
+            //  {
+            //    base.Render(new RewriteFormHtmlTextWriter(htmlwriter));
+            //    string html = htmlwriter.InnerWriter.ToString();
+            //    html = Utils.RemoveHtmlWhitespace(html);
+            //    writer.Write(html);
+            //  }
+            //}
+            //else
+            //{
+            base.Render(new RewriteFormHtmlTextWriter(writer));
+            //}
+        }
+        /// <summary>
+        /// Raises the <see cref="E:System.Web.UI.TemplateControl.Error"></see> event.
+        /// </summary>
+        /// <param name="e">An <see cref="T:System.EventArgs"></see> that contains the event data.</param>
+        protected override void OnError(EventArgs e)
+        {
+            HttpContext ctx = HttpContext.Current;
+            Exception exception = ctx.Server.GetLastError();
+
+            if (exception != null && exception.Message.Contains("callback"))
+            {
+                // This is a robot spam attack so we send it a 404 status to make it go away.
+                ctx.Response.StatusCode = 404;
+                ctx.Server.ClearError();
+                PostComment.OnSpamAttack();
+            }
+
+            base.OnError(e);
+        }
+        #endregion
+
+        /// <summary>
 		/// Adds the localization keys to JavaScript for use globally.
 		/// </summary>
 		protected virtual void AddLocalizationKeys()
@@ -322,63 +368,23 @@ namespace CoyoEden.UI
 			}
 		}
 
-		/// <summary>
-		/// Raises the <see cref="E:System.Web.UI.TemplateControl.Error"></see> event.
-		/// </summary>
-		/// <param name="e">An <see cref="T:System.EventArgs"></see> that contains the event data.</param>
-		protected override void OnError(EventArgs e)
-		{
-			HttpContext ctx = HttpContext.Current;
-			Exception exception = ctx.Server.GetLastError();
 
-			if (exception != null && exception.Message.Contains("callback"))
-			{
-				// This is a robot spam attack so we send it a 404 status to make it go away.
-				ctx.Response.StatusCode = 404;
-				ctx.Server.ClearError();
-				PostComment.OnSpamAttack();
-			}
-
-			base.OnError(e);
-		}
-
-		/// <summary>
-		/// Initializes the <see cref="T:System.Web.UI.HtmlTextWriter"></see> object and calls on the child
-		/// controls of the <see cref="T:System.Web.UI.Page"></see> to render.
-		/// </summary>
-		/// <param name="writer">The <see cref="T:System.Web.UI.HtmlTextWriter"></see> that receives the page content.</param>
-		protected override void Render(HtmlTextWriter writer)
-		{
-			//if (BlogSettings.Instance.RemoveWhitespaceInPages)
-			//{
-			//  using (HtmlTextWriter htmlwriter = new HtmlTextWriter(new System.IO.StringWriter()))
-			//  {
-			//    base.Render(new RewriteFormHtmlTextWriter(htmlwriter));
-			//    string html = htmlwriter.InnerWriter.ToString();
-			//    html = Utils.RemoveHtmlWhitespace(html);
-			//    writer.Write(html);
-			//  }
-			//}
-			//else
-			//{
-				base.Render(new RewriteFormHtmlTextWriter(writer));
-			//}
-		}
-		protected bool UserIsAdmin {
+		protected virtual bool UserIsAdmin {
 			get
 			{
 				return Page.User.IsInRole(BlogSettings.Instance.AdministratorRole);
 			}
 		}
-		/// <summary>
-		/// query string data of current request
-		/// </summary>
-		protected SerializableStringDictionary QStr
-		{
-			get
-			{
-				return Request.QueryString.ToStrDic();
-			}
-		}
+        /// <summary>
+        /// query string data of current request.
+        /// For the sake of json serialization,we use Dictionary{string,object} instead of the raw NameValueCollection
+        /// </summary>
+        protected virtual Dictionary<string, object> QStr
+        {
+            get
+            {
+                return this.Page.GetQData("d");
+            }
+        }
 	}
 }

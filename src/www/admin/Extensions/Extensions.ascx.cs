@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.Web.Extensions;
 
 public partial class UserControlsXmanagerExtensionsList : System.Web.UI.UserControl

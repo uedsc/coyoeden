@@ -6,7 +6,7 @@ using System;
 using Habanero.BO;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 using System.Linq;
 
 namespace CoyoEden.Core

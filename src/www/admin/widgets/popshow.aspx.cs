@@ -7,11 +7,11 @@ using System.Xml;
 using System.IO;
 using System.Text;
 using CoyoEden.Core;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.DataContracts;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.UI.Controls;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 using CoyoEden.UI;
 
 #endregion

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using CoyoEden.Core;
 using CoyoEden.Core.Infrastructure;
-using Vivasky.Core;
+using SystemX;
 
 #endregion
 

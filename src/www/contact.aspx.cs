@@ -10,7 +10,7 @@ using CoyoEden.Core;
 using CoyoEden.Core.Web.Controls;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.UI;
 
 #endregion

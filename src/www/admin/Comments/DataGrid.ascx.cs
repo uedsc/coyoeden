@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Security;
 using CoyoEden.Core;
 using System.Web.UI.WebControls;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.Infrastructure;
 
 public partial class admin_Comments_DataGrid : System.Web.UI.UserControl

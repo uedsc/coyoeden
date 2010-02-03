@@ -6,10 +6,10 @@ using System.Threading;
 using System.Xml;
 using CoyoEden.Core;
 using System.IO;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.Core.DataContracts;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 using BOWidgetZone=CoyoEden.Core.WidgetZone;
 #endregion
 

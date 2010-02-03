@@ -13,7 +13,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using CoyoEden.Core;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.UI.Controls;
 

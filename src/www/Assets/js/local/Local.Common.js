@@ -16,10 +16,11 @@ LocalApp.Loading = function(f) {
             $("#header").before(LocalApp.LOADER.html("Server error...")); return false;
         };
     };
-    if (f == 1) {//loading...
-        if (LocalApp.LOADER) { $("#header").before(LocalApp.LOADER.html("Loading...")); };
-    } else if (f == 0) {//hide
+    if (f == 0) {
         LocalApp.LOADER = $("#web_loading").remove();
+    } else {
+        var tip = f.Body || "Loading...";
+        if (LocalApp.LOADER) { $("#header").before(LocalApp.LOADER.html(tip)); };
     };
 };
 LocalApp.jqMTipX = function(msg, jqmSelector, tipType, timeout) {

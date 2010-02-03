@@ -2,7 +2,7 @@
 
 using System;
 using System.Collections.Generic;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 
 #endregion
 

@@ -6,12 +6,12 @@ using System;
 using Habanero.BO;
 using System.Collections.Generic;
 using System.Linq;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 using CoyoEden.Core.DataContracts;
 using CoyoEden.Core.Infrastructure;
-using Vivasky.Core.Utility;
+using SystemX.Utility;
 using System.Xml;
-using Vivasky.Core.Services;
+using SystemX.Services;
 
 namespace CoyoEden.Core
 {

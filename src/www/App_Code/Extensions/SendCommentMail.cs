@@ -7,7 +7,7 @@ using CoyoEden.Core;
 using System.Net.Mail;
 using System.Threading;
 using CoyoEden.Core.Infrastructure;
-using Vivasky.Core;
+using SystemX;
 
 #endregion
 

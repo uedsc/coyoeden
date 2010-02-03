@@ -8,7 +8,7 @@
 ///<reference path="../jquery/jquery.dateentry.min.js"/>
 ///<reference path="Local.Common.js"/>
 ///<reference path="../date.js"/>
-var WidgetApp = function() {
+var this$ = function() {
     var p = {};
     p.checkAppTip = function(opts) {
         if (p._appTip.Body && p._appTip.Body.length > 0) {
@@ -39,6 +39,11 @@ var WidgetApp = function() {
         };
         return false;
     };
+    p.onOrderChange = function(evt) {
+        p._qData.o = p._listOrderType.val();
+        LocalApp.Loading(1);
+        window.location.href = "Default.aspx?d=" + $.toJSON(p._qData);
+    };
     p.initVar = function(opts) {
         p._listWidget = $("#listWidget");
         p._lnkSave = $("#lnkSave");
@@ -46,11 +51,12 @@ var WidgetApp = function() {
         p._appTip = opts.appTip;
         p._qData = opts.qData;
         //restore obj states
-        
+
     };
     p.initEvents = function(opts) {
         //event registers
         p._lnkSave.click(p.onWidgetAdd);
+        p._listOrderType.change(p.onOrderChange);
 
     }; //endof initEvents
     var pub = {};

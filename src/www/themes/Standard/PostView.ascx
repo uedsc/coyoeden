@@ -1,5 +1,5 @@
 <%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" Inherits="CoyoEden.Core.Web.Controls.PostViewBase" %>
-<%@ Import Namespace="Vivasky.Core" %>
+<%@ Import Namespace="SystemX" %>
 <div class="post itemview xfolkentry">
 	<a title="<%=Server.HtmlEncode(Post.Title) %>" href="<%=Post.RelativeLink %>" class="icon">
 	<img alt="<%=Server.HtmlEncode(Post.Title) %>" src="http://img.xiami.com/./images/collect/647/47/6506471260025013_1.jpg" width="100" height="100"/>

@@ -1,6 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" ValidateRequest="false" AutoEventWireup="true" CodeFile="Settings.aspx.cs" Inherits="admin_Pages_configuration" Title="Settings" %>
 <%@ Import Namespace="CoyoEden.Core" %>
-<%@ Import Namespace="Vivasky.Core" %>
+<%@ Import Namespace="SystemX" %>
 <asp:Content ID="Content0" ContentPlaceHolderID="cphHead" Runat="Server"></asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphMain" runat="Server">
     <div style="text-align: right">

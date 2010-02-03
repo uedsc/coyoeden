@@ -10,7 +10,7 @@ using System.Web.Security;
 using System.Web.Services.Protocols;
 using System.Text.RegularExpressions;
 using CoyoEden.Core;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 
 /// <summary>
 /// Web Service API for Blog Importer

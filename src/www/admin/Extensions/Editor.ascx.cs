@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.IO;
 using System.Reflection;
 using CoyoEden.Core;
-using Vivasky.Core;
+using SystemX;
 
 public partial class User_controls_xmanager_SourceEditor : UserControl
 {

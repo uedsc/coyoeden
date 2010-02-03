@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using CoyoEden.Core;
-using Vivasky.Core;
+using SystemX;
 using System.Web.UI.WebControls;
 using CoyoEden.Core.Web.Controls;
 using CoyoEden.Core.Infrastructure;
@@ -12,7 +12,7 @@ using System.Web.Security;
 using CoyoEden.Core.Web.Extensions;
 using System.Data;
 using System.Web.UI;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 using System.IO;
 
 namespace CoyoEden.UI.Views

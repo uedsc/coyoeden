@@ -5,7 +5,7 @@ using System.IO;
 using System.Xml;
 using System.Text.RegularExpressions;
 using System.Web;
-using Vivasky.Core;
+using SystemX;
 
 namespace CoyoEden.Core.Infrastructure
 {

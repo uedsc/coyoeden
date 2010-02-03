@@ -4,7 +4,7 @@ using System.Text;
 using System.Web;
 using System.Xml;
 using CoyoEden.Core;
-using Vivasky.Core;
+using SystemX;
 
 namespace CoyoEden.Core.Web.HttpHandlers
 {

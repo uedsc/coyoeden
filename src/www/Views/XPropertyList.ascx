@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="CoyoEden.UI.Views.XPropertyListViewM"%>
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="CoyoEden.Core" %>
-<%@ Import Namespace="Vivasky.Core" %>
+<%@ Import Namespace="SystemX" %>
 <div class="ilist_w0 common_sec3 pool10 blank10">
 	<ul>
 	<% ItemsPaged.OrderBy(item=>item.Name).ToList().ForEach(x=>{ %>

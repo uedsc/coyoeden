@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CoyoEden.Core;
 
 namespace CoyoEden.UI.Views

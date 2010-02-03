@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Net;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.Infrastructure;
 
 #endregion

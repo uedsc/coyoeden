@@ -5,10 +5,10 @@ using System.Configuration;
 using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
-using Vivasky.Core;
+using SystemX;
 using System.Globalization;
 using CoyoEden.Core.DataContracts;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 
 #endregion
 

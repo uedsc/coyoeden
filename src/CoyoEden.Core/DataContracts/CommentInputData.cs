@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Vivasky.Core;
+using SystemX;
 
 namespace CoyoEden.Core.DataContracts
 {

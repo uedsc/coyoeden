@@ -11,11 +11,11 @@ using System.Xml.Serialization;
 using CoyoEden.Core;
 using CoyoEden.Core.Providers;
 using CoyoEden.Core.Web.Controls;
-using Vivasky.Core;
+using SystemX;
 using System.Web.Configuration;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.Core.DataContracts;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 
 namespace CoyoEden.Core.Web.Extensions
 {

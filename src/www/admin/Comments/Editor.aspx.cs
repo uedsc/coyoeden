@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Web;
 using System.Web.Security;
 using CoyoEden.Core;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.Infrastructure;
 
 public partial class admin_Comments_Editor : System.Web.UI.Page

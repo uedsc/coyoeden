@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Linq.Dynamic;
 
 namespace CoyoEden.UI.Views
 {
@@ -11,7 +11,17 @@ namespace CoyoEden.UI.Views
 		public virtual List<T> ItemsPaged {
 			get
 			{
-				return AllItems.Skip(PageIndex * PageSize).Take(PageSize).ToList();
+				var retVal= AllItems.Skip(PageIndex * PageSize).Take(PageSize).ToList();
+                if (!string.IsNullOrEmpty(SortName)) {
+                    if (Ascending)
+                    {
+                        retVal = retVal.AsQueryable().OrderBy("{0} {1}", SortName, "asc").ToList();
+                    }
+                    else {
+                        retVal = retVal.AsQueryable().OrderBy("{0} {1}",SortName,"desc").ToList();
+                    }
+                }
+                return retVal;
 			}
 		}
 		public virtual int ItemCount
@@ -23,5 +33,13 @@ namespace CoyoEden.UI.Views
 		}
 		public virtual int PageIndex { get; set; }
 		public virtual int PageSize { get; set; }
+        /// <summary>
+        /// sorting property
+        /// </summary>
+        public virtual string SortName { get; set; }
+        /// <summary>
+        /// sorting direction.DESC OR ASC
+        /// </summary>
+        public virtual bool Ascending { get; set; }
 	}
 }

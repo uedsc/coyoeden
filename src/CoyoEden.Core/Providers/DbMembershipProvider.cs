@@ -5,9 +5,9 @@ using System.Configuration.Provider;
 using System.Data;
 using System.Data.Common;
 using System.Web.Security;
-using Vivasky.Core;
-using Vivasky.Core.Infrastructure;
-using Vivasky.Core.Utility;
+using SystemX;
+using SystemX.Infrastructure;
+using SystemX.Utility;
 
 namespace CoyoEden.Core.Providers
 {

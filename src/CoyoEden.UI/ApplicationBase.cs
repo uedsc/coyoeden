@@ -5,10 +5,10 @@ using System.Globalization;
 using System.Web;
 using Habanero.UI.Win;
 using CoyoEden.Core;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.Web.Extensions;
 using CoyoEden.Core.BootStrappers;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 
 namespace CoyoEden.UI
 {

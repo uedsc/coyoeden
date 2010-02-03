@@ -5,11 +5,11 @@
 using System;
 using Habanero.BO;
 using System.Xml.Serialization;
-using Vivasky.Core;
+using SystemX;
 using System.Collections.Generic;
 using System.ComponentModel;
 using CoyoEden.Core.Infrastructure;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 
 namespace CoyoEden.Core
 {

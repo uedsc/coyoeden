@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="QuickNav.ascx.cs" Inherits="Views_user_QuickNav" %>
-<%@ Import Namespace="Vivasky.Core"%>
+<%@ Import Namespace="SystemX"%>
 <div class="p-quick clearfix">
 	<span>快捷:</span> 
 	<span>

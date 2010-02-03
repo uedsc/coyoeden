@@ -13,7 +13,7 @@ using System.Security.Cryptography;
 
 using CoyoEden;
 using CoyoEden.Core;
-using Vivasky.Core;
+using SystemX;
 
 #endregion
 

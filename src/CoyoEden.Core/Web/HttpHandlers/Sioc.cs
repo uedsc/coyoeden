@@ -10,7 +10,7 @@ using System.Web.Security;
 using System.IO;
 using System.Security;
 using System.Security.Cryptography;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.Infrastructure;
 
 #endregion

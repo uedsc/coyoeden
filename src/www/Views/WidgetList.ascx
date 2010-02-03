@@ -1,12 +1,12 @@
 ﻿<%@ Control Language="C#"  Inherits="CoyoEden.UI.Views.WidgetListViewM"%>
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="CoyoEden.Core" %>
-<%@ Import Namespace="Vivasky.Core" %>
+<%@ Import Namespace="SystemX" %>
 <%var editPath = "#"; %>
 <div class="ilist_w0 common_sec3 pool10 blank10">
 	<ul>
 	<% ItemsPaged.ForEach(x=>{ %>
-	<%editPath = "#"; if (x.Editable) { editPath = "show.aspx?d=a^3$i^" + x.Id.Value; } %>
+	<%editPath = "#"; if (x.Editable) { editPath = "show.aspx?d={i:'" + x.Id.Value + "'}"; } %>
 	<li>
 	<div class="i_s100_0">
 		<div class="info">
@@ -35,7 +35,7 @@
 	<ul class="clearfix">
 	<% ItemsPaged.ForEach(x =>
 	{ %>
-	<%editPath = "#"; if (x.Editable) { editPath = "show.aspx?d=a^3$i^" + x.Id.Value; } %>
+	<%editPath = "#"; if (x.Editable) { editPath = "show.aspx?d={i:'" + x.Id.Value + "'}"; } %>
 	<li>
 		<div class="i_s100_1">
 			<p class="cover"> <span><a title="<%=x.Name %>" href="<%=editPath %>"><img alt="<%=x.Name %>" src="<%=x.Icon %>"/></a></span> </p>

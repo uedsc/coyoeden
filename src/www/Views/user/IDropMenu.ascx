@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="CoyoEden.UI.Views.ViewBase"%>
-<%@ Import Namespace="Vivasky.Core" %>
+<%@ Import Namespace="SystemX" %>
 <div id="personal_hover" style="display:none;">
     <div id="personal_hover_shadow" class="lightShadow"></div>
     <div id="personal_hover_inner">

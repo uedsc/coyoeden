@@ -5,8 +5,9 @@ using System.Text;
 using System.Web.UI;
 using CoyoEden.Core;
 using CoyoEden.Core.DataContracts;
-using Vivasky.Core;
-using Vivasky.Core.Infrastructure;
+using SystemX;
+using SystemX.Infrastructure;
+using System.Collections.Generic;
 
 namespace CoyoEden.UI.Views
 {
@@ -45,26 +46,26 @@ namespace CoyoEden.UI.Views
 						"<img class=\"thumb\" src=\"http://images.websnapr.com/?url={0}&amp;size=t\" alt=\"{1}\" />", name,
 						email);
 			//http://www.artviper.net/screenshots/screener.php?&url={0}&h={1}&w={1}
-			MD5 md5 = new MD5CryptoServiceProvider();
-			byte[] result = md5.ComputeHash(Encoding.ASCII.GetBytes(email));
-
-			StringBuilder hash = new StringBuilder();
-			for (int i = 0; i < result.Length; i++)
-				hash.Append(result[i].ToString("x2"));
-
-			StringBuilder image = new StringBuilder();
-			image.Append("<img src=\"");
-			image.Append("http://www.gravatar.com/avatar.php?");
-			image.Append(String.Format("gravatar_id={0}", hash));
-			image.Append("&amp;rating=G");
-			image.Append("&amp;size=" + size);
-			image.Append("&amp;default=");
-            image.Append(Server.UrlEncode(String.Format("{0}themes/{1}/noavatar.jpg", Utils.AbsoluteWebRoot, BlogSettings.Instance.Theme)));
-			image.Append("\" alt=\"\" />");
-			return image.ToString();
+            using (MD5 md5 = new MD5CryptoServiceProvider())
+            {
+                byte[] result = md5.ComputeHash(Encoding.ASCII.GetBytes(email));
+                StringBuilder hash = new StringBuilder();
+                for (int i = 0; i < result.Length; i++)
+                    hash.Append(result[i].ToString("x2"));
+                StringBuilder image = new StringBuilder();
+                image.Append("<img src=\"");
+                image.Append("http://www.gravatar.com/avatar.php?");
+                image.Append(String.Format("gravatar_id={0}", hash));
+                image.Append("&amp;rating=G");
+                image.Append("&amp;size=" + size);
+                image.Append("&amp;default=");
+                image.Append(Server.UrlEncode(String.Format("{0}themes/{1}/noavatar.jpg", Utils.AbsoluteWebRoot, BlogSettings.Instance.Theme)));
+                image.Append("\" alt=\"\" />");
+                return image.ToString();
+            }
 		}
 		public string CssClass { get; set; }
-		public string AbsoluteWebRoot
+		public virtual string AbsoluteWebRoot
 		{
 			get
 			{
@@ -72,7 +73,7 @@ namespace CoyoEden.UI.Views
 			}
 		}
 
-		public bool IsDebug
+		public virtual bool IsDebug
 		{
 			get
 			{
@@ -87,16 +88,17 @@ namespace CoyoEden.UI.Views
 		public UserInfo UserData { get; set; }
 
         /// <summary>
-        /// query string data of current request
+        /// query string data of current request.
+        /// For the sake of json serialization,we use Dictionary{string,object} instead of the raw NameValueCollection
         /// </summary>
-        protected SerializableStringDictionary QStr
+        protected virtual Dictionary<string, object> QStr
         {
             get
             {
-				return Request.QueryString.ToStrDic();
+                return this.Page.GetQData("d");
             }
         }
-		protected bool UserIsAdmin
+		protected virtual bool UserIsAdmin
 		{
 			get
 			{

@@ -7,8 +7,8 @@ using Habanero.BO;
 using System.Collections.Generic;
 using CoyoEden.Core.Providers;
 using System.Linq;
-using Vivasky.Core;
-using Vivasky.Core.Infrastructure;
+using SystemX;
+using SystemX.Infrastructure;
 using CoyoEden.Core.Infrastructure;
     
 namespace CoyoEden.Core

@@ -5,7 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using CoyoEden.Core;
 using CoyoEden.Core.DataContracts;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 using CoyoEden.Core.Infrastructure;
 using System.Xml;
  

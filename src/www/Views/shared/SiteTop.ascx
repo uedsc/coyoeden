@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="CoyoEden.UI.Views.SiteTop"%>
-<%@ Import Namespace="Vivasky.Core" %>
+<%@ Import Namespace="SystemX" %>
 <!--TODO:Css sprite on SiteTop-->
 <div id="toppanelC">
 	<div id="toppanel">

@@ -10,7 +10,7 @@ using System.Xml;
 using CoyoEden.Core;
 using System.Net.Mail;
 using System.Collections.Generic;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.UI.Controls;
 

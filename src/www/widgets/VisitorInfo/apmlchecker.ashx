@@ -32,7 +32,7 @@ public class apmlchecker : IHttpHandler
     Uri url;
     if (Uri.TryCreate(website, UriKind.Absolute, out url))
     {
-      Dictionary<Uri, XmlDocument> docs = Vivasky.Core.Utils.FindSemanticDocuments(url, "apml");
+      Dictionary<Uri, XmlDocument> docs = SystemX.Utils.FindSemanticDocuments(url, "apml");
       if (docs.Count > 0)
       {
         foreach (Uri key in docs.Keys)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.UI;
 using CoyoEden.Core;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 
 namespace CoyoEden.UI.Controls
 {

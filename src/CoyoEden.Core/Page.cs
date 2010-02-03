@@ -4,8 +4,8 @@
 // ------------------------------------------------------------------------------
 using System;
 using Habanero.BO;
-using Vivasky.Core.Infrastructure;
-using Vivasky.Core;
+using SystemX.Infrastructure;
+using SystemX;
 using System.Threading;
 using System.Collections.Generic;
 using CoyoEden.Core.Providers;

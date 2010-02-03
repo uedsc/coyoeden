@@ -1,5 +1,5 @@
 ﻿using System;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 
 namespace CoyoEden.Core.Infrastructure
 {

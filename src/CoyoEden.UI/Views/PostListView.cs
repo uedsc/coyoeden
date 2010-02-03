@@ -5,7 +5,7 @@ using CoyoEden.Core.Infrastructure;
 using CoyoEden.Core;
 using CoyoEden.Core.Web.Controls;
 using System.Text.RegularExpressions;
-using Vivasky.Core.Web;
+using SystemX.Web;
 
 namespace CoyoEden.UI.Views
 {

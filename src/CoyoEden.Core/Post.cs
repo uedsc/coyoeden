@@ -5,12 +5,12 @@
 using System;
 using Habanero.BO;
 using System.ComponentModel;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
 using System.Threading;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.Providers;
 using System.Net.Mail;
 using System.Web;

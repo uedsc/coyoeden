@@ -6,7 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CoyoEden.UI;
 using CoyoEden.Core;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
+using SystemX;
 using CoyoEden.UI.Controls;
 
 public partial class admin_widgets_show : AdminBasePage
@@ -19,14 +20,14 @@ public partial class admin_widgets_show : AdminBasePage
 		loadWidget();
 	}
 	private void loadWidget() {
-		if (string.IsNullOrEmpty(QStrData.i))
+		if (string.IsNullOrEmpty(QStr.GetAs<string>("i")))
 		{
             //add new
 			ViewData = new Widget();
 		}
 		else
 		{
-			var guid = new Guid(QStrData.i);
+            var guid = QStr.GetAs<Guid>("i");
 			var msg = new BOMessager();
 			ViewData = Widget.Find(guid, out msg);
 			AppMsg = msg;

@@ -4,11 +4,11 @@
 // ------------------------------------------------------------------------------
 using System;
 using Habanero.BO;
-using Vivasky.Core.Infrastructure;
-using Vivasky.Core.Utility;
+using SystemX.Infrastructure;
+using SystemX.Utility;
 using System.Collections.Generic;
 using System.IO;
-using Vivasky.Core;
+using SystemX;
 using System.Linq;
 using System.Xml.Linq;
 using CoyoEden.Core.Infrastructure;

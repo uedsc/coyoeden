@@ -8,8 +8,8 @@ using System.Xml;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
 using CoyoEden.Core;
-using Vivasky.Core.Infrastructure;
-using Vivasky.Core;
+using SystemX.Infrastructure;
+using SystemX;
 
 #endregion
 

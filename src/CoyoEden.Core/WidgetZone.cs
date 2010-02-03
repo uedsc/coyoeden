@@ -4,12 +4,12 @@
 // ------------------------------------------------------------------------------
 using System;
 using Habanero.BO;
-using Vivasky.Core.Services;
+using SystemX.Services;
 using System.Collections.Generic;
 using System.Linq;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 using CoyoEden.Core.DataContracts;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.Infrastructure;
 namespace CoyoEden.Core
 {   

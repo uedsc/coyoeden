@@ -4,5 +4,5 @@
 <div style="text-align:center">
   <vs:PostCalendar ID="PostCalendar1" runat="Server" NextMonthText=">>" DayNameFormat="FirstTwoLetters" FirstDayOfWeek="monday" PrevMonthText="<<" CssClass="calendar" BorderWidth="0" WeekendDayStyle-CssClass="weekend" OtherMonthDayStyle-CssClass="other" UseAccessibleHeader="true" EnableViewState="false" />
   <br />
-  <a href="<%=Vivasky.Core.Utils.AbsoluteWebRoot %>calendar/default.aspx">View posts in large calendar</a>
+  <a href="<%=SystemX.Utils.AbsoluteWebRoot %>calendar/default.aspx">View posts in large calendar</a>
 </div>

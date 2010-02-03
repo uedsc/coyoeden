@@ -5,9 +5,9 @@ using System.Text;
 using System.Web.UI.WebControls;
 using System.Web;
 using System.Web.UI.HtmlControls;
-using Vivasky.Core;
+using SystemX;
 using System.Web.UI;
-using Vivasky.Core.Services;
+using SystemX.Services;
 
 namespace CoyoEden.UI.Controls
 {

@@ -1,8 +1,8 @@
 ﻿using System;
 using CoyoEden.Core;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.DataContracts;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 using System.Collections.Generic;
 
 namespace CoyoEden.UI
@@ -64,13 +64,14 @@ namespace CoyoEden.UI
 		}
 		protected BOMessager AppMsg { get; set; }
 		/// <summary>
-		/// query string data of current request
+		/// query string data of current request.
+        /// For the sake of json serialization,we use Dictionary{string,object} instead of the raw NameValueCollection
 		/// </summary>
-		protected SerializableStringDictionary QStr
+        protected Dictionary<string,object> QStr
 		{
 			get
 			{
-				return Request.QueryString.ToStrDic();
+                return this.Page.GetQData("d");
 			}
 		}
 		#endregion

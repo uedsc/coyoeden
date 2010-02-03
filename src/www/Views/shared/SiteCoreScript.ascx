@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="CoyoEden.UI.Views.ViewBase"%>
 <%if(!IsDebug){ %>
-<vs:SiteJScript ID="vs_core" ScriptRelativeToRoot="Assets/js/released/vivasky.core.js" runat="server"/>
+<vs:SiteJScript ID="vs_core" ScriptRelativeToRoot="Assets/js/released/SystemX.js" runat="server"/>
 <%} else{%>
 <asp:PlaceHolder ID="phDebugJS" runat="server">
 <vs:SiteJScript ID="jquery" ScriptRelativeToRoot="Assets/js/jquery/jquery-1.3.2.min.js" runat="server"/>

@@ -7,7 +7,7 @@ using System.Data;
 using System.Data.Common;
 using System.Web.Security;
 using System.Linq;
-using Vivasky.Core.Infrastructure;
+using SystemX.Infrastructure;
 
 namespace CoyoEden.Core.Providers
 {

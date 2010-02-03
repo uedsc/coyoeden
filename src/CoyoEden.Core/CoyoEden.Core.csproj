@@ -70,9 +70,9 @@
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Vivasky.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="SystemX, Version=1.1.0.23889, Culture=neutral, PublicKeyToken=3dce3ee0dadf9acd, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\Vivasky.Core.dll</HintPath>
+      <HintPath>..\..\libs\SystemX.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

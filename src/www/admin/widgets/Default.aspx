@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="admin_widgets_Default" %>
 <%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="SystemX" %>
 <%@ Register Src="~/Views/WidgetList.ascx" TagName="WidgetList" TagPrefix="vs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphHead" Runat="Server">
 <vs:SiteCSS ID="cssYPager" runat="server" CSSRelativeToRoot="Assets/css/Vivasky.YPager.css" />
@@ -12,7 +13,7 @@
 		<li><a class="<%=CheckTagCss("","current") %>" title="" href="Default.aspx">All widgets</a></li>
 		<%CoyoEden.Core.WidgetZone.AllWidgetZones.ForEach(x =>
 		{%>
-		<li><a title="" class="<%=CheckTagCss(x.Name,"current") %>" href="default.aspx?d=a^1$t0^<%=x.Name %>"><%=x.Name %></a></li>
+		<li><a title="" class="<%=CheckTagCss(x.Name,"current") %>" href="default.aspx?d={t:'<%=x.Name %>'}"><%=x.Name %></a></li>
 		<%});%>
 		</ul>
 	</div>
@@ -22,13 +23,13 @@
 			<span class="selects">
 			<label for="lang">排序:</label>
 			<select name="order" id="listOrderType">
-				<option selected="selected" value="1" title="按时间排">默认</option>
-				<option value="2">按名称排</option>
+				<option selected="selected" value="ModifiedOn" title="按时间排">默认</option>
+				<option value="Title">按名称排</option>
 			</select>
 			</span> 
 			<span class="viewmode clearfix"> 
-				<a id="showBlock" class="byList" href="javascript:void(0)" title="图片显示">图片显示</a> 
-				<a id="showList" class="byBlock_active" href="javascript:void(0)" title="列表显示">列表显示</a> 
+				<a id="showBlock" class="byList" href="#" title="图片显示">图片显示</a> 
+				<a id="showList" class="byBlock_active" href="#" title="列表显示">列表显示</a> 
 			</span> 
 		</div>
 	</div>
@@ -60,9 +61,9 @@
 <vs:SiteJScript ID="appJS" ScriptRelativeToRoot="Assets/js/local/admin.widget.js" runat="server"/>
 <script type="text/javascript">
 //<![CDATA[
-    WidgetApp.Init({
+    this$.Init({
 	    appTip:<%=AppTip %>,
-	    qData:<%=QStrData.ToJSON() %>
+	    qData:<%=QStr.ToJSONStr() %>
 	});
 //]]>
 </script>

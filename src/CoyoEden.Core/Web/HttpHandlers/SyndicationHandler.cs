@@ -8,7 +8,7 @@ using System.Web;
 using System.Xml;
 using System.Net;
 using CoyoEden.Core;
-using Vivasky.Core;
+using SystemX;
 using CoyoEden.Core.Infrastructure;
 
 #endregion
