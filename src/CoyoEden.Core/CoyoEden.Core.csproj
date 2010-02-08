@@ -55,10 +55,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMapAdapter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=88b37c2f548f0735, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\StructureMapAdapter.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -114,6 +110,7 @@
     <Compile Include="Infrastructure\ItemView.cs" />
     <Compile Include="Infrastructure\ListingEventArgs.cs" />
     <Compile Include="Infrastructure\LogicAction.cs" />
+    <Compile Include="Infrastructure\StructureMapServiceLocator.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Page.Def.cs">
       <DependentUpon>Page.cs</DependentUpon>

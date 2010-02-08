@@ -3,7 +3,6 @@ using StructureMap;
 using StructureMap.Configuration.DSL;
 using System.Collections.Specialized;
 using System.Configuration;
-using StructureMap.ServiceLocatorAdapter;
 using Microsoft.Practices.ServiceLocation;
 using CoyoEden.Core.Infrastructure;
 
