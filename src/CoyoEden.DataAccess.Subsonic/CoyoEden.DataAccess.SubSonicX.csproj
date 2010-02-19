@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0445EAAD-0ACB-4391-8866-35392A5A36CF}</ProjectGuid>
+    <ProjectGuid>{C7C99CC9-0EB8-4635-A009-5CEEC969EC90}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CoyoEden.CoreX</RootNamespace>
-    <AssemblyName>CoyoEden.CoreX</AssemblyName>
+    <RootNamespace>CoyoEden.DataAccess.SubSonicX</RootNamespace>
+    <AssemblyName>CoyoEden.DataAccess.SubSonicX</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,10 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SubSonic.Core, Version=3.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\SubSonic.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -43,20 +48,17 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="SystemX.Csla, Version=1.0.0.0, Culture=neutral, PublicKeyToken=83da40e27fb6a450, processorArchitecture=MSIL">
+    <Reference Include="SystemX, Version=1.1.0.31271, Culture=neutral, PublicKeyToken=3dce3ee0dadf9acd, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\systemX\SystemX.Csla.dll</HintPath>
+      <HintPath>..\..\libs\systemX\SystemX.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICategory.cs" />
-    <Compile Include="ICategoryInfo.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Category.da.cs" />
-    <Compile Include="Models\CategoryCollection.cs" />
-    <Compile Include="Models\CategoryInfo.cs" />
-    <Compile Include="Models\CategoryInfoCollection.cs" />
+    <Compile Include="Category.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecordBase.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="TransactionContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CoyoEden.DataAccess\CoyoEden.DataAccess.csproj">

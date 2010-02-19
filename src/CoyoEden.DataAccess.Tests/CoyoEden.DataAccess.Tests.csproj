@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0445EAAD-0ACB-4391-8866-35392A5A36CF}</ProjectGuid>
+    <ProjectGuid>{EC6791EC-704B-4CAA-BC9D-6D9F3CCB49A0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CoyoEden.CoreX</RootNamespace>
-    <AssemblyName>CoyoEden.CoreX</AssemblyName>
+    <RootNamespace>CoyoEden.DataAccess.Tests</RootNamespace>
+    <AssemblyName>CoyoEden.DataAccess.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,26 +43,10 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="SystemX.Csla, Version=1.0.0.0, Culture=neutral, PublicKeyToken=83da40e27fb6a450, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\systemX\SystemX.Csla.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICategory.cs" />
-    <Compile Include="ICategoryInfo.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Category.da.cs" />
-    <Compile Include="Models\CategoryCollection.cs" />
-    <Compile Include="Models\CategoryInfo.cs" />
-    <Compile Include="Models\CategoryInfoCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CoyoEden.DataAccess\CoyoEden.DataAccess.csproj">
-      <Project>{06A01AA6-86A3-454A-BCD5-FC124FBE8388}</Project>
-      <Name>CoyoEden.DataAccess</Name>
-    </ProjectReference>
+    <Compile Include="SubsonicXTests\RepositoryTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

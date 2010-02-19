@@ -43,6 +43,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoyoEden.DataAccess", "Coyo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoyoEden.CoreX", "CoyoEden.CoreX\CoyoEden.CoreX.csproj", "{0445EAAD-0ACB-4391-8866-35392A5A36CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoyoEden.DataAccess.SubSonicX", "CoyoEden.DataAccess.Subsonic\CoyoEden.DataAccess.SubSonicX.csproj", "{C7C99CC9-0EB8-4635-A009-5CEEC969EC90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoyoEden.DataAccess.Tests", "CoyoEden.DataAccess.Tests\CoyoEden.DataAccess.Tests.csproj", "{EC6791EC-704B-4CAA-BC9D-6D9F3CCB49A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,14 @@ Global
 		{0445EAAD-0ACB-4391-8866-35392A5A36CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0445EAAD-0ACB-4391-8866-35392A5A36CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0445EAAD-0ACB-4391-8866-35392A5A36CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7C99CC9-0EB8-4635-A009-5CEEC969EC90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7C99CC9-0EB8-4635-A009-5CEEC969EC90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7C99CC9-0EB8-4635-A009-5CEEC969EC90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7C99CC9-0EB8-4635-A009-5CEEC969EC90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC6791EC-704B-4CAA-BC9D-6D9F3CCB49A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC6791EC-704B-4CAA-BC9D-6D9F3CCB49A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC6791EC-704B-4CAA-BC9D-6D9F3CCB49A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC6791EC-704B-4CAA-BC9D-6D9F3CCB49A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,5 +96,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0445EAAD-0ACB-4391-8866-35392A5A36CF} = {643FD44F-1C94-447E-BD26-175915FAAF5B}
 		{06A01AA6-86A3-454A-BCD5-FC124FBE8388} = {C9AF670F-8AA0-40B9-A9BB-EE4846278DA4}
+		{C7C99CC9-0EB8-4635-A009-5CEEC969EC90} = {C9AF670F-8AA0-40B9-A9BB-EE4846278DA4}
+		{EC6791EC-704B-4CAA-BC9D-6D9F3CCB49A0} = {C9AF670F-8AA0-40B9-A9BB-EE4846278DA4}
 	EndGlobalSection
 EndGlobal

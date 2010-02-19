@@ -1,0 +1,29 @@
+﻿<#@ assembly name="Vivasky.Labs.T4Helper.dll"#>
+<#@ import namespace="Vivasky.T4Helper" #>
+<#@ import namespace="Vivasky.T4Helper.Entities" #>
+<#@ import namespace="System.Collections.Generic"#>
+<#@ include file="DtoInterfaceTemplate.tt" #>
+
+<#+
+// <copyright file="DtoInterfaceGen.tt" company="Www.Vivasky.Com">
+//  Copyright © Www.Vivasky.Com. All Rights Reserved.
+// </copyright>
+
+public class DtoInterfaceGen : Generator
+{
+	public string ConnectionString;
+	public string Namespace;
+	public DtoInterfaceTemplate DtoInterfaceT = new DtoInterfaceTemplate();
+	protected override void RunCore()
+	{
+		List<Table> tables=Utils.LoadTables(ConnectionString);
+		this.DtoInterfaceT.Namespace=Namespace;
+		
+		foreach (Table table in tables)
+		{
+		  this.DtoInterfaceT.TableX = table;
+		  this.DtoInterfaceT.Render();
+		}
+	}
+}
+#>

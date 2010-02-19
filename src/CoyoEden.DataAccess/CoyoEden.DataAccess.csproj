@@ -50,8 +50,109 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICategoryDto.cs" />
-    <Compile Include="IPostDto.cs" />
+    <Compile Include="ICategoryDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ICategoryExtDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ICategoryInfoDto.cs" />
+    <Compile Include="IDto.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IPageDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IPingServiceDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IPostCategoryDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IPostCommentDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IPostDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IPostNotifyDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IPostTagDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IProductCategoryDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IProductDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IProductExtDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IProfileDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IRoleDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ISettingDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IStopWordDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITagDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IUserDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IUserRoleDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IUserTagDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IWidgetDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IWidgetZoneDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IXFileDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IXFolderDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IXFolderTagDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IXPropertyDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IXPropertySettingDto.g.cs">
+      <DependentUpon>IDto.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="DtoInterfaceTemplate.tt">
+    </None>
+    <None Include="DtoInterfaceGen.tt">
+      <LastGenOutput>DtoInterfaceGen.cs</LastGenOutput>
+    </None>
+    <None Include="IDto.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IDto.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
