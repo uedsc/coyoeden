@@ -7,7 +7,7 @@ using System.Web.Security;
 using CoyoEden.Core;
 using System.Threading;
 using System.Globalization;
-using SystemX;
+using SystemX.Web;
 
 #endregion
 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Web.UI;
 using CoyoEden.Core;
 using CoyoEden.Core.DataContracts;
-using SystemX;
+using SystemX.Web;
 using SystemX.Infrastructure;
 using System.Collections.Generic;
 

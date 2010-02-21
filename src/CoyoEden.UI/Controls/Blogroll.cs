@@ -13,7 +13,7 @@ using System.Web.UI.HtmlControls;
 #endregion
 
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 
 namespace CoyoEden.UI.Controls

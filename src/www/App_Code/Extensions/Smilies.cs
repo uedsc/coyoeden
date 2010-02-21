@@ -3,7 +3,8 @@
 using System;
 using CoyoEden.Core;
 using CoyoEden.Core.Web.Controls;
-using SystemX;
+using SystemX.Web;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 
 #endregion
@@ -57,6 +58,6 @@ public class Smilies
   /// </summary>
   private static string Convert(string name, string alt)
   {
-    return string.Format(LINK, Utils.RelativeWebRoot, name, alt);
+    return string.Format(LINK, SystemX.Web.Utils.RelativeWebRoot, name, alt);
   }
 }

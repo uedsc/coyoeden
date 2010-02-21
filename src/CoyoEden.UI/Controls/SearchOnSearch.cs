@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 
 #endregion

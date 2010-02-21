@@ -8,7 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 
 #endregion
 

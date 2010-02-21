@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using CoyoEden.Core;
 using System.Collections.Generic;
-using SystemX;
+using SystemX.Web;
 
 #endregion
 
@@ -46,7 +46,7 @@ public partial class admin_Pages_pages : System.Web.UI.Page, System.Web.UI.ICall
 		btnUploadImage.Click += new EventHandler(btnUploadImage_Click);
 		Page.Title = Resources.labels.pages;
 
-		if (!Utils.IsMono)
+        if (!SystemX.Utils.IsMono)
 			Page.Form.DefaultButton = btnSave.UniqueID;
 	}
 

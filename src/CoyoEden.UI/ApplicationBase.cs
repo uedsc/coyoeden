@@ -3,9 +3,8 @@ using System.Text;
 using System.Threading;
 using System.Globalization;
 using System.Web;
-using Habanero.UI.Win;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Web.Extensions;
 using CoyoEden.Core.BootStrappers;
 using SystemX.Infrastructure;
@@ -33,8 +32,8 @@ namespace CoyoEden.UI
 		/// </summary>
 		protected void Application_Start(object sender, EventArgs e)
 		{
-			//Setup Habanero
-			var app = new HabaneroAppWin("CoyoEden", BlogSettings.AppVersion()) {
+			//boot up the SystemX.Luna framework
+			var app = new ApplicationBoot("CoyoEden", BlogSettings.AppVersion()) {
 				//ClassDefsFileName = Server.MapPath("~/app_data/ClassDefs.xml") 
 				ClassDefsXml = BOBroker.GetClassDefsXml()
 			};
@@ -66,7 +65,7 @@ namespace CoyoEden.UI
 
 			try
 			{
-				sb.Append("Url : " + context.Request.Url);
+                sb.Append(String.Format("Url : {0}", context.Request.Url));
 				sb.Append(Environment.NewLine);
 				sb.Append(String.Format("Raw Url : {0}", context.Request.RawUrl));
 				sb.Append(Environment.NewLine);
@@ -79,7 +78,7 @@ namespace CoyoEden.UI
 					sb.Append(Environment.NewLine);
 					sb.Append(String.Format("StackTrace : {0}", ex.StackTrace));
 					sb.Append(Environment.NewLine);
-					sb.Append("TargetSite : " + ex.TargetSite);
+                    sb.Append(String.Format("TargetSite : {0}", ex.TargetSite));
 					sb.Append(Environment.NewLine);
 					sb.Append(String.Format("Environment.StackTrace : {0}", Environment.StackTrace));
 					sb.Append(Environment.NewLine);
@@ -92,7 +91,7 @@ namespace CoyoEden.UI
 			}
 
 			if (BlogSettings.Instance.EnableErrorLogging)
-				Utils.Log(sb.ToString());
+				SystemX.Utils.Log(sb.ToString());
 
 			context.Items["LastErrorDetails"] = sb.ToString();
 			context.Response.StatusCode = 500;

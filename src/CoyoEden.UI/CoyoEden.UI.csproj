@@ -31,21 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Habanero.Base">
-      <HintPath>..\..\libs\Habanero.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Habanero.BO">
-      <HintPath>..\..\libs\Habanero.BO.dll</HintPath>
-    </Reference>
-    <Reference Include="Habanero.UI.Base">
-      <HintPath>..\..\libs\Habanero.UI.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Habanero.UI.Win">
-      <HintPath>..\..\libs\Habanero.UI.Win.dll</HintPath>
-    </Reference>
-    <Reference Include="Habanero.Util">
-      <HintPath>F:\7Garden\Documents\Visual%20Studio%202008\Projects\CoyoEden\libs\Habanero.Util.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -63,13 +48,21 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\systemX\SystemX.dll</HintPath>
     </Reference>
+    <Reference Include="SystemX.LunaAtom, Version=1.0.0.39242, Culture=neutral, PublicKeyToken=d4156e90ea7054af, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\systemX\SystemX.LunaAtom.dll</HintPath>
+    </Reference>
+    <Reference Include="SystemX.LunaBase, Version=1.0.0.39241, Culture=neutral, PublicKeyToken=2459041fffee5b81, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\systemX\SystemX.LunaBase.dll</HintPath>
+    </Reference>
+    <Reference Include="SystemX.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3dce3ee0dadf9acd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\systemX\SystemX.Web.dll</HintPath>
+    </Reference>
     <ProjectReference Include="..\CoyoEden.Core\CoyoEden.Core.csproj">
       <Project>{01E90852-19D6-4DEB-9CEA-C05803D2371D}</Project>
       <Name>CoyoEden.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoyoEden.Logic\CoyoEden.Logic.csproj">
-      <Project>{D081F447-38BC-4092-81B3-D349065DEEEE}</Project>
-      <Name>CoyoEden.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +71,7 @@
     </Compile>
     <Compile Include="ApplicationBase.cs" />
     <Compile Include="Controllers\WidgetController.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="SiteBasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -107,6 +101,7 @@
     <Compile Include="Controls\WidgetZone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SiteMaster.cs">
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\CommentListView.cs">
       <SubType>ASPXCodeBehind</SubType>

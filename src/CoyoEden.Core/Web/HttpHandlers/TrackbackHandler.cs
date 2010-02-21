@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.ComponentModel;
 using CoyoEden.Core;
 using SystemX.Infrastructure;
-using SystemX;
+using SystemX.Web;
 
 #endregion
 

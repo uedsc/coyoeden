@@ -6,7 +6,7 @@ using System.Threading;
 using System.Xml;
 using CoyoEden.Core;
 using System.IO;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.Core.DataContracts;
 using SystemX.Infrastructure;

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/themes/admin/site.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="admin_widgets_Default" %>
 <%@ Import Namespace="System.Linq" %>
-<%@ Import Namespace="SystemX" %>
+<%@ Import Namespace="SystemX.Web" %>
 <%@ Register Src="~/Views/WidgetList.ascx" TagName="WidgetList" TagPrefix="vs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphHead" Runat="Server">
 <vs:SiteCSS ID="cssYPager" runat="server" CSSRelativeToRoot="Assets/css/Vivasky.YPager.css" />

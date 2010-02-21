@@ -13,7 +13,7 @@ using System.Security.Cryptography;
 
 using CoyoEden;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 
 #endregion
 

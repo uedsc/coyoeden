@@ -5,7 +5,7 @@ using System.Configuration.Provider;
 using System.Data;
 using System.Data.Common;
 using System.Web.Security;
-using SystemX;
+using SystemX.Web;
 using SystemX.Infrastructure;
 using SystemX.Utility;
 
@@ -128,7 +128,7 @@ namespace CoyoEden.Core.Providers
                                                   object providerUserKey, out MembershipCreateStatus status)
         {
             MembershipUser user;
-			password = passwordFormat == MembershipPasswordFormat.Hashed ? Utils.HashPassword(password) : password;
+			password = passwordFormat == MembershipPasswordFormat.Hashed ? SystemX.Utils.HashPassword(password) : password;
 
 			var bouser = new User { 
 				Id=GuidExt.NewGuid(GuidExt.GuidStrategy.OrderedSequential),
@@ -194,7 +194,7 @@ namespace CoyoEden.Core.Providers
 				{
 					if (passwordFormat == MembershipPasswordFormat.Hashed)
 					{
-						if (actualPassword == Utils.HashPassword(oldPassword))
+                        if (actualPassword == SystemX.Utils.HashPassword(oldPassword))
 							oldPasswordCorrect = true;
 					}
 					else if (actualPassword == oldPassword)
@@ -205,7 +205,7 @@ namespace CoyoEden.Core.Providers
 			// Update New Password
 			if (oldPasswordCorrect)
 			{
-				newPassword = passwordFormat == MembershipPasswordFormat.Hashed ? Utils.HashPassword(newPassword) : newPassword;
+                newPassword = passwordFormat == MembershipPasswordFormat.Hashed ? SystemX.Utils.HashPassword(newPassword) : newPassword;
 				boUser.Password = newPassword;
 				boUser.Save();
 				success = true;
@@ -260,7 +260,7 @@ namespace CoyoEden.Core.Providers
 				{
 					if (passwordFormat == MembershipPasswordFormat.Hashed)
 					{
-						if (storedPwd == Utils.HashPassword(password))
+                        if (storedPwd == SystemX.Utils.HashPassword(password))
 							validated = true;
 					}
 					else if (storedPwd == password)

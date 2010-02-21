@@ -4,7 +4,7 @@ using System;
 using System.Xml;
 using System.Web;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 
 #endregion
 

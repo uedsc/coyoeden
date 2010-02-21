@@ -1,6 +1,7 @@
 ﻿using System;
 using CoyoEden.Core;
 using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.DataContracts;
 using SystemX.Infrastructure;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace CoyoEden.UI
                 if (Request.QueryString["theme"] != null)
                     _Theme = Request.QueryString["theme"];
 
-                MasterPageFile = String.Format("{0}themes/{1}/site.master", Utils.RelativeWebRoot, _Theme);
+                MasterPageFile = String.Format("{0}themes/{1}/site.master", SystemX.Web.Utils.RelativeWebRoot, _Theme);
             }
 			base.OnPreInit(e);
 		}
@@ -38,7 +39,7 @@ namespace CoyoEden.UI
             //authenticated
 			if (!Page.User.Identity.IsAuthenticated)
 			{
-				Response.Redirect(Utils.RelativeWebRoot);
+				Response.Redirect(SystemX.Web.Utils.RelativeWebRoot);
 				return;
 			};
             //authorization

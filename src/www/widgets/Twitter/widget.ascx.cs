@@ -12,7 +12,7 @@ using CoyoEden.Core;
 using System.IO;
 using System.Web.Hosting;
 using System.Text.RegularExpressions;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.UI.Controls;
 #endregion
 
@@ -151,7 +151,7 @@ public partial class widgets_Twitter_widget : WidgetBase
         {
             string msg = "Error requesting Twitter feed.";
             if (ex != null) msg += " " + ex.Message;
-            Utils.Log(msg);
+            SystemX.Utils.Log(msg);
         }
     }
 
@@ -171,8 +171,8 @@ public partial class widgets_Twitter_widget : WidgetBase
         catch (Exception ex)
         {
             string msg = "Error retrieving Twitter feed.";
-            if (ex != null) msg += " " + ex.Message;
-            Utils.Log(msg);
+            if (ex != null) msg += String.Format(" {0}", ex.Message);
+            SystemX.Utils.Log(msg);
         }
     }
 
@@ -197,7 +197,7 @@ public partial class widgets_Twitter_widget : WidgetBase
         }
         catch (Exception ex)
         {
-            Utils.Log("Error saving last twitter feed load to data store.  Error: " + ex.Message);
+            SystemX.Utils.Log(String.Format("Error saving last twitter feed load to data store.  Error: {0}", ex.Message));
         }
     }
 
@@ -216,7 +216,7 @@ public partial class widgets_Twitter_widget : WidgetBase
         }
         catch (Exception ex)
         {
-            Utils.Log("Error retrieving last twitter feed load from data store.  Error: " + ex.Message);
+            SystemX.Utils.Log(String.Format("Error retrieving last twitter feed load from data store.  Error: {0}", ex.Message));
         }
 
         return doc;

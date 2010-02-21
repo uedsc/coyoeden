@@ -1,16 +1,14 @@
 
 // ------------------------------------------------------------------------------
-// This class was auto-generated for use with the Habanero Enterprise Framework.
+// This class was auto-generated for use with the SystemX Enterprise Framework.
 // ------------------------------------------------------------------------------
-
-namespace CoyoEden.Core
-{
-    using System;
-    using Habanero.BO;
-	using System.Collections.Generic;
+using System;
+using System.Linq;
+using SystemX.LunaAtom;
+using System.Collections.Generic;
 using System.Collections.Specialized;
-    
-    
+namespace CoyoEden.Core
+{    
     public partial class StopWord
     {
 		private static readonly object _SynHelper = new object();
@@ -46,7 +44,7 @@ using System.Collections.Specialized;
 
 		public static List<StopWord> LoadAll()
 		{
-			return Broker.GetBusinessObjectCollection<StopWord>("Id is not null");
+			return Broker.GetBusinessObjectCollection<StopWord>("Id is not null").ToList();
 		} 
     }
 }

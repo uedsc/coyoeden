@@ -11,7 +11,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using CoyoEden.Core;
 using System.Web.Security;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 
 #endregion

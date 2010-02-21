@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using CoyoEden.Core.Providers;
 using System.Linq;
 using SystemX;
-using Habanero.BO;
+using SystemX.Web;
+using SystemX.LunaAtom;
 
 #endregion
 
@@ -160,7 +161,7 @@ namespace CoyoEden.Core
 
 		public string RelativeLink
 		{
-			get { return String.Format("{0}author/{1}.aspx", Utils.RelativeWebRoot, UserName); ; }
+			get { return String.Format("{0}author/{1}.aspx", SystemX.Web.Utils.RelativeWebRoot, UserName); ; }
 		}
 
 

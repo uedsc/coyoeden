@@ -4,7 +4,7 @@ using System.IO;
 using System.Web;
 using System.Web.Security;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 
 namespace CoyoEden.Core.API.MetaWeblog
 {

@@ -1,9 +1,9 @@
 
 // ------------------------------------------------------------------------------
-// This class was auto-generated for use with the Habanero Enterprise Framework.
+// This class was auto-generated for use with the SystemX Enterprise Framework.
 // ------------------------------------------------------------------------------
 using System;
-using Habanero.BO;
+using SystemX.LunaAtom;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using SystemX.Infrastructure;
@@ -51,7 +51,7 @@ namespace CoyoEden.Core
 
 		public static List<PingService> LoadAll()
 		{
-			return Broker.GetBusinessObjectCollection<PingService>("Id is not null");
+			return Broker.GetBusinessObjectCollection<PingService>("Id is not null").ToList();
 		}
 
 		public static void DeleteByLink(string link) {

@@ -10,7 +10,7 @@ using System.Xml;
 using CoyoEden.Core;
 using System.Net.Mail;
 using System.Collections.Generic;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.UI.Controls;
 
@@ -107,7 +107,7 @@ public partial class widgets_Newsletter_widget : WidgetBase, ICallbackEventHandl
             {
                 MailMessage mail = CreateEmail(post);
                 mail.To.Add(node.InnerText);
-                Utils.SendMailMessageAsync(mail);
+                SystemX.Utils.SendMailMessageAsync(mail);
             }
         }
     }

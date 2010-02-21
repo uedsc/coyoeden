@@ -1,15 +1,16 @@
 
 // ------------------------------------------------------------------------------
-// This class was auto-generated for use with the Habanero Enterprise Framework.
+// This class was auto-generated for use with the SystemX Enterprise Framework.
 // ------------------------------------------------------------------------------
 using System;
-using Habanero.BO;
+using SystemX.LunaAtom;
 using System.Collections.Generic;
 using CoyoEden.Core.Providers;
 using System.Linq;
-using SystemX;
+using SystemX.Web;
 using SystemX.Infrastructure;
 using CoyoEden.Core.Infrastructure;
+using SystemX.LunaBase;
     
 namespace CoyoEden.Core
 {
@@ -159,7 +160,7 @@ namespace CoyoEden.Core
 		#region events
 
 		public static event EventHandler<SavedEventArgs> Saved1;
-		public override void Save()
+        public override IBusinessObject Save()
 		{
 			var action = new SavedEventArgs(SaveAction.None);
 			if (this.Status.IsDeleted)
@@ -174,11 +175,12 @@ namespace CoyoEden.Core
 			{
 				action.Action = SaveAction.Update;
 			};
-			base.Save();
+			var bo=base.Save();
 			if (Saved1 != null && this.Status.IsValid())
 			{
 				Saved1(this, action);
 			}
+            return bo;
 		}
 		#endregion
 
@@ -193,7 +195,7 @@ namespace CoyoEden.Core
 
 		#region Factory methods
 		public static List<Category> LoadAll() {
-			return Broker.GetBusinessObjectCollection<Category>("Id is not null");
+			return Broker.GetBusinessObjectCollection<Category>("Id is not null").ToList();
 		}
 		#endregion
 	}

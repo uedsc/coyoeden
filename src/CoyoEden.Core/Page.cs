@@ -1,16 +1,16 @@
 
 // ------------------------------------------------------------------------------
-// This class was auto-generated for use with the Habanero Enterprise Framework.
+// This class was auto-generated for use with the SystemX Enterprise Framework.
 // ------------------------------------------------------------------------------
 using System;
-using Habanero.BO;
+using System.Linq;
+using SystemX.LunaAtom;
 using SystemX.Infrastructure;
-using SystemX;
 using System.Threading;
 using System.Collections.Generic;
-using CoyoEden.Core.Providers;
 using CoyoEden.Core.Infrastructure;
-
+using SystemX.Web;
+using SystemX.LunaBase;
 namespace CoyoEden.Core
 {
 	public partial class Page : IPublishable
@@ -57,8 +57,8 @@ namespace CoyoEden.Core
 		{
 			get
 			{
-				string slug = Utils.RemoveIllegalCharacters(Slug) + BlogSettings.Instance.FileExtension;
-				return String.Format("{0}page/{1}", Utils.RelativeWebRoot, slug);
+				string slug = SystemX.Web.Utils.RemoveIllegalCharacters(Slug) + BlogSettings.Instance.FileExtension;
+				return String.Format("{0}page/{1}", SystemX.Web.Utils.RelativeWebRoot, slug);
 			}
 		}
 
@@ -67,7 +67,7 @@ namespace CoyoEden.Core
 		/// </summary>
 		public Uri AbsoluteLink
 		{
-			get { return Utils.ConvertToAbsolute(RelativeLink); }
+			get { return SystemX.Web.Utils.ConvertToAbsolute(RelativeLink); }
 		}
 
 		private static object _SyncRoot = new object();
@@ -127,7 +127,7 @@ namespace CoyoEden.Core
 			return Broker.GetBusinessObject<Page>("IsFrontPage=1");
 		}
 		public static List<Page> LoadAll() {
-			return Broker.GetBusinessObjectCollection<Page>("Id is not null");
+			return Broker.GetBusinessObjectCollection<Page>("Id is not null").ToList();
 		}
 		#endregion
 
@@ -159,27 +159,28 @@ namespace CoyoEden.Core
 			}
 		}
 		public static event EventHandler<SavedEventArgs> Saved1;
-		public override void Save()
-		{
-			var action = new SavedEventArgs(SaveAction.None);
-			if (this.Status.IsDeleted)
-			{
-				action.Action = SaveAction.Delete;
-			}
-			else if (this.Status.IsNew)
-			{
-				action.Action = SaveAction.Insert;
-			}
-			else if (this.Status.IsDirty)
-			{
-				action.Action = SaveAction.Update;
-			};
-			base.Save();
-			if (Saved1 != null && this.Status.IsValid())
-			{
-				Saved1(this, action);
-			}
-		}
+        public override IBusinessObject Save()
+        {
+            var action = new SavedEventArgs(SaveAction.None);
+            if (this.Status.IsDeleted)
+            {
+                action.Action = SaveAction.Delete;
+            }
+            else if (this.Status.IsNew)
+            {
+                action.Action = SaveAction.Insert;
+            }
+            else if (this.Status.IsDirty)
+            {
+                action.Action = SaveAction.Update;
+            };
+            var bo=base.Save();
+            if (Saved1 != null && this.Status.IsValid())
+            {
+                Saved1(this, action);
+            }
+            return bo;
+        }
 		#endregion
 
 		#region base overrides

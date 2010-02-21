@@ -1,15 +1,9 @@
 #region Using
 
 using System;
-using System.Data;
-using System.Configuration;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using SystemX;
+using SystemX.Web;
 
 #endregion
 
@@ -54,7 +48,7 @@ namespace CoyoEden.Core.Web.Controls
 			// Mono has issues identifying relative paths when the url is rewritten,
 			// so we need to place the full path in the form tag's action attribute
 			// or postbacks won't work in rewritten pages.
-			if (Utils.IsMono)
+			if (SystemX.Utils.IsMono)
 			{
 				if (name == "action")
 				{

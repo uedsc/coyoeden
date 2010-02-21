@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using CoyoEden.Core;
 using System.Text.RegularExpressions;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 
 #endregion
@@ -404,7 +404,7 @@ namespace CoyoEden.Core
 		private static string CleanContent(string content, bool removeHtml)
 		{
 			if (removeHtml)
-				content = Utils.StripHtml(content);
+                content = SystemX.Utils.StripHtml(content);
 
 			content = content
 											.Replace("\\", string.Empty)

@@ -1,11 +1,11 @@
 
 // ------------------------------------------------------------------------------
-// This class was auto-generated for use with the Habanero Enterprise Framework.
+// This class was auto-generated for use with the SystemX Enterprise Framework.
 // ------------------------------------------------------------------------------
 using System;
-using Habanero.BO;
+using SystemX.LunaAtom;
 using System.Xml.Serialization;
-using SystemX;
+using SystemX.Web;
 using System.Collections.Generic;
 using System.ComponentModel;
 using CoyoEden.Core.Infrastructure;
@@ -71,7 +71,7 @@ namespace CoyoEden.Core
 		{
 			get
 			{
-				string ret = Utils.StripHtml(Content).Trim();
+				string ret = SystemX.Utils.StripHtml(Content).Trim();
 				if (ret.Length > 120)
 					return String.Format("{0} ...", ret.Substring(0, 116));
 				return ret;

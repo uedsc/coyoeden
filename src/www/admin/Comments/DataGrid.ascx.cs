@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Security;
 using CoyoEden.Core;
 using System.Web.UI.WebControls;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 
 public partial class admin_Comments_DataGrid : System.Web.UI.UserControl
@@ -346,17 +346,17 @@ public partial class admin_Comments_DataGrid : System.Web.UI.UserControl
 
         if (String.IsNullOrEmpty(email) || !email.Contains("@"))
         {
-            return "<img src=\"" + Utils.AbsoluteWebRoot + "themes/" + BlogSettings.Instance.Theme + "/noavatar.jpg\" alt=\"" + author + "\" width=\"28\" height=\"28\" />";
+            return String.Format("<img src=\"{0}themes/{1}/noavatar.jpg\" alt=\"{2}\" width=\"28\" height=\"28\" />", Utils.AbsoluteWebRoot, BlogSettings.Instance.Theme, author);
         }
 
         string hash = FormsAuthentication.HashPasswordForStoringInConfigFile(email.ToLowerInvariant().Trim(), "MD5").ToLowerInvariant();
-        string gravatar = "http://www.gravatar.com/avatar/" + hash + ".jpg?s=28&amp;d=";
+        string gravatar = String.Format("http://www.gravatar.com/avatar/{0}.jpg?s=28&amp;d=", hash);
 
         string link = string.Empty;
         switch (BlogSettings.Instance.Avatar)
         {
             case "identicon":
-                link = gravatar + "identicon";
+                link = String.Format("{0}identicon", gravatar);
                 break;
 
             case "wavatar":

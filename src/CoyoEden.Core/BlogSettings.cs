@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 using SystemX;
+using SystemX.Web;
 using System.Globalization;
 using CoyoEden.Core.DataContracts;
 using SystemX.Infrastructure;
@@ -107,7 +108,7 @@ namespace CoyoEden.Core
 		{
 			get
 			{
-				return enableHttpCompression && !Utils.IsMono;
+				return enableHttpCompression && !SystemX.Utils.IsMono;
 			}
 			set
 			{
@@ -270,7 +271,7 @@ namespace CoyoEden.Core
 		{
 			get
 			{
-				if (Utils.IsMobile && !string.IsNullOrEmpty(MobileTheme))
+				if (SystemX.Web.Utils.IsMobile && !string.IsNullOrEmpty(MobileTheme))
 					return MobileTheme;
 
 				return configuredTheme;
@@ -921,7 +922,7 @@ namespace CoyoEden.Core
 				if (!string.IsNullOrEmpty(BlogSettings.Instance.AlternateFeedUrl))
 					return BlogSettings.Instance.AlternateFeedUrl;
 				else
-					return Utils.AbsoluteWebRoot + "syndication.axd";
+                    return String.Format("{0}syndication.axd", SystemX.Web.Utils.AbsoluteWebRoot);
 			}
 		}
 		/// <summary>
@@ -948,7 +949,7 @@ namespace CoyoEden.Core
 		/// </summary>
 		/// <returns></returns>
 		public static string GetFileOfCurTheme(string fileName,string defaultFile) {
-			var file = string.Format("{0}themes/{1}/{2}",Utils.RelativeWebRoot,BlogSettings.Instance.Theme,fileName);
+			var file = string.Format("{0}themes/{1}/{2}",SystemX.Web.Utils.RelativeWebRoot,BlogSettings.Instance.Theme,fileName);
 			var pFile = System.Web.HttpContext.Current.Request.MapPath(file);
 			if (!System.IO.File.Exists(pFile)) {
 				file = defaultFile;

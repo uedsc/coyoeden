@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 using System.Web.UI.WebControls;
 using CoyoEden.Core.Web.Controls;
 using CoyoEden.Core.Infrastructure;

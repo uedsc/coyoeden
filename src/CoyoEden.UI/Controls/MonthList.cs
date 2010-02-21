@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 
 #endregion

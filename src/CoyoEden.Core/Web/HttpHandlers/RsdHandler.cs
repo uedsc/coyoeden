@@ -1,10 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Web;
 using System.Xml;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 
 namespace CoyoEden.Core.Web.HttpHandlers
 {
@@ -42,7 +41,7 @@ namespace CoyoEden.Core.Web.HttpHandlers
 
         // Service 
         rsd.WriteStartElement("service");
-        rsd.WriteElementString("engineName", "CoyoEden.NET " + BlogSettings.Instance.Version());
+        rsd.WriteElementString("engineName", String.Format("CoyoEden.NET {0}", BlogSettings.Instance.Version()));
         rsd.WriteElementString("engineLink", "http://dotnetCoyoEden.com");
         rsd.WriteElementString("homePageLink", Utils.AbsoluteWebRoot.ToString());
 
@@ -54,7 +53,7 @@ namespace CoyoEden.Core.Web.HttpHandlers
         rsd.WriteAttributeString("name", "MetaWeblog");
         rsd.WriteAttributeString("preferred", "true");
 				string prefix = BlogSettings.Instance.RequireSSLMetaWeblogAPI ? "https://" : "http://";
-				rsd.WriteAttributeString("apiLink", prefix + context.Request.Url.Authority + Utils.RelativeWebRoot + "metaweblog.axd");
+                rsd.WriteAttributeString("apiLink", String.Format("{0}{1}{2}metaweblog.axd", prefix, context.Request.Url.Authority, Utils.RelativeWebRoot));
         rsd.WriteAttributeString("blogID", Utils.AbsoluteWebRoot.ToString());
         rsd.WriteEndElement();
 
@@ -62,7 +61,7 @@ namespace CoyoEden.Core.Web.HttpHandlers
         rsd.WriteStartElement("api");
         rsd.WriteAttributeString("name", "BlogML");
         rsd.WriteAttributeString("preferred", "false");
-        rsd.WriteAttributeString("apiLink", Utils.AbsoluteWebRoot + "api/BlogImporter.asmx");
+        rsd.WriteAttributeString("apiLink", String.Format("{0}api/BlogImporter.asmx", Utils.AbsoluteWebRoot));
         rsd.WriteAttributeString("blogID", Utils.AbsoluteWebRoot.ToString());
         rsd.WriteEndElement();
 

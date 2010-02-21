@@ -1,9 +1,9 @@
 
 // ------------------------------------------------------------------------------
-// This class was auto-generated for use with the Habanero Enterprise Framework.
+// This class was auto-generated for use with the SystemX Enterprise Framework.
 // ------------------------------------------------------------------------------
 using System;
-using Habanero.BO;
+using SystemX.LunaAtom;
 using System.Collections.Generic;
 using System.Linq;
 using CoyoEden.Core.DataContracts;    
@@ -21,7 +21,7 @@ namespace CoyoEden.Core
 				if (_Users == null) {
 					lock (_synHelper) {
 						if (_Users == null) {
-							_Users = Broker.GetBusinessObjectCollection<User>("Id is not null");
+							_Users = Broker.GetBusinessObjectCollection<User>("Id is not null").ToList();
 						}
 					}
 				}

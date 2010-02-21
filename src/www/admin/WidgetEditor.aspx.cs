@@ -7,7 +7,7 @@ using System.Xml;
 using System.IO;
 using System.Text;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.DataContracts;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.UI.Controls;
@@ -143,13 +143,13 @@ public partial class User_controls_WidgetEditor : System.Web.UI.Page
                     // Also strip HTML.  The Visitor Widget (for example) has an <img> tag in
                     // its Title by default which causes issues when added an an option to the
                     // dropdown list.
-                    string title = Utils.StripHtml(node.Attributes["title"].InnerText ?? string.Empty);
+                    string title = SystemX.Utils.StripHtml(node.Attributes["title"].InnerText ?? string.Empty);
                     if (title.Length > 20)
 						title = String.Format("{0}...", title.Substring(0, 20));
 
                     // Need to escape single quotation marks in widget type and widget title.
                     string description =
-                        Utils.StripHtml(node.InnerText).Replace("'", "\\'") +
+                        SystemX.Utils.StripHtml(node.InnerText).Replace("'", "\\'") +
                         (!string.IsNullOrEmpty(title) &&
                          bool.Parse(node.Attributes["showTitle"].InnerText) ?
 						 String.Format(" ({0})", title.Replace("'", "\\'")) : string.Empty);

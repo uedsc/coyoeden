@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using System.Threading;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 
 #endregion
 
@@ -68,7 +68,7 @@ public partial class PostEdit : System.Web.UI.Page, System.Web.UI.ICallbackEvent
 				cbUseRaw.Checked = true;
 			}
 
-			if (!Utils.IsMono && !cbUseRaw.Checked)
+			if (!SystemX.Utils.IsMono && !cbUseRaw.Checked)
 				Page.Form.DefaultButton = btnSave.UniqueID;
 		}
 

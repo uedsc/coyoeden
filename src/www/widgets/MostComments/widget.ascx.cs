@@ -11,7 +11,7 @@ using System.Globalization;
 using CoyoEden.Core;
 using System.Collections.Specialized;
 using System.Web.Security;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.UI.Controls;
 
 #endregion

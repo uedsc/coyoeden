@@ -8,7 +8,7 @@ using System.Web;
 using System.Xml;
 using System.Net;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 
 #endregion

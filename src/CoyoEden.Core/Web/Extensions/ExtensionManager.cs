@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 using CoyoEden.Core;
 using CoyoEden.Core.Providers;
 using CoyoEden.Core.Web.Controls;
-using SystemX;
+using SystemX.Web;
 using System.Web.Configuration;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.Core.DataContracts;

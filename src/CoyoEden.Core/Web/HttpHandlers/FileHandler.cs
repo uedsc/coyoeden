@@ -3,7 +3,7 @@
 using System;
 using System.IO;
 using System.Web;
-using SystemX;
+using SystemX.Web;
 
 #endregion
 
@@ -68,13 +68,13 @@ namespace CoyoEden.Core.Web.HttpHandlers
 					else
 					{
 						OnBadRequest(fileName);
-						context.Response.Redirect(Utils.AbsoluteWebRoot + "error404.aspx");
+                        context.Response.Redirect(String.Format("{0}error404.aspx", Utils.AbsoluteWebRoot));
 					}
 				}
 				catch (Exception)
 				{
 					OnBadRequest(fileName);
-					context.Response.Redirect(Utils.AbsoluteWebRoot + "error404.aspx");
+                    context.Response.Redirect(String.Format("{0}error404.aspx", Utils.AbsoluteWebRoot));
 				}
 			}
 		}

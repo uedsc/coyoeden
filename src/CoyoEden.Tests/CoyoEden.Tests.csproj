@@ -31,34 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Habanero.Base, Version=2.3.1.0, Culture=neutral, PublicKeyToken=1fb6a9c86f815c07, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\Habanero.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Habanero.BO, Version=2.3.1.0, Culture=neutral, PublicKeyToken=b7599514c88df7f1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\Habanero.BO.dll</HintPath>
-    </Reference>
-    <Reference Include="Habanero.DB, Version=2.3.1.0, Culture=neutral, PublicKeyToken=13cd8e0ef3c14147, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\Habanero.DB.dll</HintPath>
-    </Reference>
-    <Reference Include="Habanero.UI.Base, Version=2.3.1.0, Culture=neutral, PublicKeyToken=a8408464fc128d8b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\Habanero.UI.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Habanero.UI.Win, Version=2.3.1.0, Culture=neutral, PublicKeyToken=0e9ee1bfff5ba48c, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\Habanero.UI.Win.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\nunit.framework.dll</HintPath>
@@ -66,10 +38,6 @@
     <Reference Include="StructureMap, Version=2.5.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMapAdapter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=88b37c2f548f0735, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\StructureMapAdapter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -85,7 +53,19 @@
     <Reference Include="System.Xml" />
     <Reference Include="SystemX, Version=1.1.0.23889, Culture=neutral, PublicKeyToken=3dce3ee0dadf9acd, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\libs\SystemX.dll</HintPath>
+      <HintPath>..\..\libs\systemX\SystemX.dll</HintPath>
+    </Reference>
+    <Reference Include="SystemX.LunaAtom, Version=1.0.0.39242, Culture=neutral, PublicKeyToken=d4156e90ea7054af, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\systemX\SystemX.LunaAtom.dll</HintPath>
+    </Reference>
+    <Reference Include="SystemX.LunaBase, Version=1.0.0.39241, Culture=neutral, PublicKeyToken=2459041fffee5b81, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\systemX\SystemX.LunaBase.dll</HintPath>
+    </Reference>
+    <Reference Include="SystemX.LunaData, Version=1.0.0.39243, Culture=neutral, PublicKeyToken=ae0499c2ca06536b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\systemX\SystemX.LunaData.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -99,10 +79,6 @@
     <ProjectReference Include="..\CoyoEden.Core\CoyoEden.Core.csproj">
       <Project>{01E90852-19D6-4DEB-9CEA-C05803D2371D}</Project>
       <Name>CoyoEden.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CoyoEden.Logic\CoyoEden.Logic.csproj">
-      <Project>{D081F447-38BC-4092-81B3-D349065DEEEE}</Project>
-      <Name>CoyoEden.Logic</Name>
     </ProjectReference>
     <ProjectReference Include="..\CoyoEden.UI\CoyoEden.UI.csproj">
       <Project>{4F368B96-0883-4D1E-9F5D-262BA2ED7199}</Project>

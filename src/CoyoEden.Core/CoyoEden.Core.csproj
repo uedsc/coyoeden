@@ -31,18 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Habanero.Base">
-      <HintPath>..\..\libs\Habanero.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Habanero.BO">
-      <HintPath>..\..\libs\Habanero.BO.dll</HintPath>
-    </Reference>
-    <Reference Include="Habanero.DB">
-      <HintPath>..\..\libs\Habanero.DB.dll</HintPath>
-    </Reference>
-    <Reference Include="Habanero.Util">
-      <HintPath>F:\7Garden\Documents\Visual%20Studio%202008\Projects\CoyoEden\libs\Habanero.Util.dll</HintPath>
-    </Reference>
     <Reference Include="StructureMap, Version=2.5.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\StructureMap.dll</HintPath>
@@ -62,6 +50,22 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\libs\systemX\SystemX.dll</HintPath>
     </Reference>
+    <Reference Include="SystemX.LunaAtom, Version=1.0.0.39242, Culture=neutral, PublicKeyToken=d4156e90ea7054af, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\systemX\SystemX.LunaAtom.dll</HintPath>
+    </Reference>
+    <Reference Include="SystemX.LunaBase, Version=1.0.0.39241, Culture=neutral, PublicKeyToken=2459041fffee5b81, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\systemX\SystemX.LunaBase.dll</HintPath>
+    </Reference>
+    <Reference Include="SystemX.LunaData, Version=1.0.0.39243, Culture=neutral, PublicKeyToken=ae0499c2ca06536b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\systemX\SystemX.LunaData.dll</HintPath>
+    </Reference>
+    <Reference Include="SystemX.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3dce3ee0dadf9acd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\systemX\SystemX.Web.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\MetaWeblog\MetaWeblogHandler.cs" />
@@ -71,6 +75,7 @@
     <Compile Include="BlogRollItem.cs" />
     <Compile Include="BlogSettings.cs" />
     <Compile Include="BOBroker.cs" />
+    <Compile Include="BootStrappers\ApplicationBoot.cs" />
     <Compile Include="BootStrappers\ServicesRegister.cs" />
     <Compile Include="Caching\CacheKeys.cs" />
     <Compile Include="Caching\CacheManager.cs" />

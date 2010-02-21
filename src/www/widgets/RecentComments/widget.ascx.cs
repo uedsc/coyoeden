@@ -13,7 +13,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.UI.Controls;
 

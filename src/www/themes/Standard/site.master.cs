@@ -2,7 +2,7 @@ using System;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.DataContracts;
 using CoyoEden.Core;
 

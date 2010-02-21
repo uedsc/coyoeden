@@ -7,7 +7,8 @@ using CoyoEden.Core;
 using System.Net.Mail;
 using System.Threading;
 using CoyoEden.Core.Infrastructure;
-using SystemX;
+using SystemX.Web;
+using SystemX.Web;
 
 #endregion
 
@@ -54,15 +55,15 @@ public class SendCommentMail
 			mail.Subject = BlogSettings.Instance.EmailSubjectPrefix + subject + post.Title;
 			mail.Body = "<div style=\"font: 11px verdana, arial\">";
 			mail.Body += String.Format("{0}<br /><br />", body.Replace(Environment.NewLine, "<br />"));
-            mail.Body += string.Format("<strong>{0}</strong>: <a href=\"{1}\">{2}</a><br /><br />", Utils.Translate("post", null, defaultCulture), post.PermaLink + "#id_" + comment.Id, post.Title);
+            mail.Body += string.Format("<strong>{0}</strong>: <a href=\"{1}\">{2}</a><br /><br />", SystemX.Web.Utils.Translate("post", null, defaultCulture), post.PermaLink + "#id_" + comment.Id, post.Title);
 
-			string deleteLink = post.AbsoluteLink + "?deletecomment=" + comment.Id;
-            mail.Body += string.Format("<a href=\"{0}\">{1}</a>", deleteLink, Utils.Translate("delete", null, defaultCulture));
+            string deleteLink = String.Format("{0}?deletecomment={1}", post.AbsoluteLink, comment.Id);
+            mail.Body += string.Format("<a href=\"{0}\">{1}</a>", deleteLink, SystemX.Web.Utils.Translate("delete", null, defaultCulture));
 
 			if (BlogSettings.Instance.EnableCommentsModeration)
 			{
-				string approveLink = post.AbsoluteLink + "?approvecomment=" + comment.Id;
-                mail.Body += string.Format(" | <a href=\"{0}\">{1}</a>", approveLink, Utils.Translate("approve", null, defaultCulture));
+                string approveLink = String.Format("{0}?approvecomment={1}", post.AbsoluteLink, comment.Id);
+                mail.Body += string.Format(" | <a href=\"{0}\">{1}</a>", approveLink, SystemX.Web.Utils.Translate("approve", null, defaultCulture));
 			}
 
 			mail.Body += "<br />_______________________________________________________________________________<br />";
@@ -84,7 +85,7 @@ public class SendCommentMail
 			mail.Body += "</div>";
 			mail.Body += "</div>";
 
-			Utils.SendMailMessageAsync(mail);
+			SystemX.Utils.SendMailMessageAsync(mail);
 		}
 	}
 

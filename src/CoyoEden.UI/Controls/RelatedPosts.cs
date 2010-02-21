@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.IO;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 
 #endregion
@@ -134,12 +134,12 @@ namespace CoyoEden.UI.Controls
 					{
 						string description = post.Description;
 						if (description != null && description.Length > DescriptionMaxLength)
-							description = description.Substring(0, DescriptionMaxLength) + "...";
+                            description = String.Format("{0}...", description.Substring(0, DescriptionMaxLength));
 
 						if (String.IsNullOrEmpty(description))
 						{
-							string content = Utils.StripHtml(post.Content);
-							description = content.Length > DescriptionMaxLength ? content.Substring(0, DescriptionMaxLength) + "..." : content;
+							string content = SystemX.Utils.StripHtml(post.Content);
+                            description = content.Length > DescriptionMaxLength ? String.Format("{0}...", content.Substring(0, DescriptionMaxLength)) : content;
 						}
 
 						sb.Append(string.Format(desc, description));

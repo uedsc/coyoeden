@@ -10,7 +10,7 @@ using System.Web.Security;
 using System.IO;
 using System.Security;
 using System.Security.Cryptography;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 
 #endregion
@@ -372,7 +372,7 @@ namespace CoyoEden.Core.Web.HttpHandlers
 
 			// CONTENT
 			//xmlWriter.WriteElementString("dcterms", "created", null, DpUtility.ToW3cDateTime(pub.DateCreated));
-			xmlWriter.WriteElementString("sioc", "content", null, Utils.StripHtml(pub.Content));
+			xmlWriter.WriteElementString("sioc", "content", null, SystemX.Utils.StripHtml(pub.Content));
 			xmlWriter.WriteElementString("content", "encoded", null, pub.Content);
 
 			// TOPICS

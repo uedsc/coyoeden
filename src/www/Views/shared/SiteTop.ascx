@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="CoyoEden.UI.Views.SiteTop"%>
-<%@ Import Namespace="SystemX" %>
+<%@ Import Namespace="SystemX.Web"%>
 <!--TODO:Css sprite on SiteTop-->
 <div id="toppanelC">
 	<div id="toppanel">

@@ -6,7 +6,7 @@ using System.Web;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core;
 using CoyoEden.Core.Web.Controls;
 using SystemX.Infrastructure;

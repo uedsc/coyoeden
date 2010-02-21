@@ -1,5 +1,5 @@
 <%@ Control Language="C#" AutoEventWireup="true"  Inherits="CoyoEden.UI.Views.CommentListView" %>
-<%@ Import Namespace="SystemX" %>
+<%@ Import Namespace="SystemX.Web" %>
 <%@ Import Namespace="CoyoEden.Core" %>
 <% if (CurrentPost.Comments.Count > 0){ %>
 <p id="comment"><%=Resources.labels.comments %></p>

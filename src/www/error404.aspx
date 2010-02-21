@@ -22,7 +22,7 @@
       <p>I suggest you try one of the links below:</p>
       <ul>
         <li><a href="archive.aspx"><%=Resources.labels.archive %></a></li>
-        <li><a href="<%=SystemX.Utils.RelativeWebRoot %>">Home page</a></li>
+        <li><a href="<%=SystemX.Web.Utils.RelativeWebRoot %>">Home page</a></li>
       </ul>
       
       <p>You can also try to <strong>search for the page you were looking for</strong>:</p>
@@ -47,7 +47,7 @@
       <ul>
         <asp:placeholder runat="server" id="phSearchResult" />
         <li><a href="archive.aspx"><%=Resources.labels.archive %></a></li>
-        <li><a href="<%=SystemX.Utils.RelativeWebRoot %>">Home page</a></li>
+        <li><a href="<%=SystemX.Web.Utils.RelativeWebRoot %>">Home page</a></li>
       </ul>
       
       <p>You can also try to <strong>search for the page you were looking for</strong>:</p>

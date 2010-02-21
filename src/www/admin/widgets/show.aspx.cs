@@ -8,6 +8,7 @@ using CoyoEden.UI;
 using CoyoEden.Core;
 using SystemX.Infrastructure;
 using SystemX;
+using SystemX.Web;
 using CoyoEden.UI.Controls;
 
 public partial class admin_widgets_show : AdminBasePage

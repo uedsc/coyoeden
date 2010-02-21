@@ -1,16 +1,16 @@
 
 // ------------------------------------------------------------------------------
-// This class was auto-generated for use with the Habanero Enterprise Framework.
+// This class was auto-generated for use with the SystemX Enterprise Framework.
 // ------------------------------------------------------------------------------
 using System;
-using Habanero.BO;
+using SystemX.LunaAtom;
 using SystemX.Infrastructure;
 using SystemX.Utility;
 using System.Collections.Generic;
 using System.IO;
 using SystemX;
+using SystemX.Web;
 using System.Linq;
-using System.Xml.Linq;
 using CoyoEden.Core.Infrastructure;
 using System.Web;
 namespace CoyoEden.Core
@@ -67,7 +67,7 @@ namespace CoyoEden.Core
 					retVal = XProperty.GetRandomXSetting(EXTCFG_ICON, "themes/admin/img/icon_c100.jpg");
 					ExtConfigs.Add(EXTCFG_ICON, retVal);
 				}
-				return string.Format("{0}{1}", Utils.AbsoluteWebRoot, retVal);
+				return string.Format("{0}{1}", SystemX.Web.Utils.AbsoluteWebRoot, retVal);
 			}
 		}
 		public const string PREFIX_CACHEID = "cy_widget_";
@@ -107,7 +107,7 @@ namespace CoyoEden.Core
 		public string EditTemplateRelativePath {
 			get
 			{
-				return string.Format(WidgetPathFormatStr_EDIT, Utils.RelativeWebRoot, Name);
+				return string.Format(WidgetPathFormatStr_EDIT, SystemX.Web.Utils.RelativeWebRoot, Name);
 			}
 		}
 		/// <summary>
@@ -153,14 +153,14 @@ namespace CoyoEden.Core
 		}
 		public static List<Widget> LoadAll()
 		{
-			return Broker.GetBusinessObjectCollection<Widget>("Id is not null");
+			return Broker.GetBusinessObjectCollection<Widget>("Id is not null").ToList();
 		}
 		public static List<string> WidgetModels
 		{
 			get
 			{
 				var retVal = new List<string>();
-				var dir = new DirectoryInfo(Utils.ConvertToPhysicalPath("widgets", true));
+				var dir = new DirectoryInfo(SystemX.Web.Utils.ConvertToPhysicalPath("widgets", true));
 				foreach (DirectoryInfo obj in dir.GetDirectories())
 				{
 					if (obj.Name.StartsWith("_") || obj.Name.StartsWith(".")) continue;

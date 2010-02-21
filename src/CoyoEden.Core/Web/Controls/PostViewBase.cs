@@ -9,7 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 
 #endregion
@@ -177,7 +177,7 @@ namespace CoyoEden.Core.Web.Controls
 					}
 					else
 					{
-						body = Utils.StripHtml(Post.Content);
+						body = SystemX.Utils.StripHtml(Post.Content);
 						if (body.Length > BlogSettings.Instance.DescriptionCharacters)
 							body = String.Format("{0}...{1}", body.Substring(0, BlogSettings.Instance.DescriptionCharacters), link);
 					}

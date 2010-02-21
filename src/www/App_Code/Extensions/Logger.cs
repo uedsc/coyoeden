@@ -6,7 +6,7 @@ using CoyoEden.Core.Web.Controls;
 using System.IO;
 using System.Text;
 using CoyoEden.Core.Infrastructure;
-using SystemX;
+using SystemX.Web;
 
 #endregion
 
@@ -18,7 +18,7 @@ public class Logger
 {
 	static Logger()
 	{
-        Utils.OnLog += new EventHandler<EventArgs>(OnLog);
+        SystemX.Utils.OnLog += new EventHandler<EventArgs>(OnLog);
 	}
 
 	/// <summary>

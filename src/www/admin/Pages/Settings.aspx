@@ -1,6 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/themes/admin/site.master" ValidateRequest="false" AutoEventWireup="true" CodeFile="Settings.aspx.cs" Inherits="admin_Pages_configuration" Title="Settings" %>
 <%@ Import Namespace="CoyoEden.Core" %>
-<%@ Import Namespace="SystemX" %>
+<%@ Import Namespace="SystemX.Web" %>
 <asp:Content ID="Content0" ContentPlaceHolderID="cphHead" Runat="Server"></asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphMain" runat="Server">
     <div style="text-align: right">
@@ -66,7 +66,7 @@
     <div class="settings">
         <h1><%=Resources.labels.advancedSettings %></h1>
         
-        <div style='display: <%= (Utils.IsMono) ? "none" : "block" %>'>
+        <div style='display: <%= (SystemX.Utils.IsMono) ? "none" : "block" %>'>
             <label for="<%=cbEnableCompression.ClientID %>"><%=Resources.labels.enableHttpCompression %></label>
             <asp:CheckBox runat="server" ID="cbEnableCompression" /><%=Resources.labels.enableHttpCompressionDescription %><br />
         </div>

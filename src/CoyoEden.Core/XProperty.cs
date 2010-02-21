@@ -1,12 +1,12 @@
 
 // ------------------------------------------------------------------------------
-// This class was auto-generated for use with the Habanero Enterprise Framework.
+// This class was auto-generated for use with the SystemX Enterprise Framework.
 // ------------------------------------------------------------------------------
 using System;
-using Habanero.BO;
+using SystemX.LunaAtom;
 using System.Collections.Generic;
 using System.Linq;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 using SystemX.Infrastructure;
 
@@ -44,7 +44,7 @@ namespace CoyoEden.Core
 				retVal = args.Target as List<XProperty>;
 			}
 			if (null != retVal) return retVal;//from cache.
-			retVal = Broker.GetBusinessObjectCollection<XProperty>("Id is not null");
+			retVal = Broker.GetBusinessObjectCollection<XProperty>("Id is not null").ToList();
 			if (null != Queried) {
 				Queried(null, new ActionEventArgs(LogicAction.Query, retVal));
 			}

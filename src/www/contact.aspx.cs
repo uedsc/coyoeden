@@ -10,7 +10,7 @@ using CoyoEden.Core;
 using CoyoEden.Core.Web.Controls;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.UI;
 
 #endregion
@@ -123,7 +123,7 @@ public partial class contact : SiteBasePage, ICallbackEventHandler
 					mail.Attachments.Add(attachment);
 				}
 
-				Utils.SendMailMessage(mail);
+                SystemX.Utils.SendMailMessage(mail);
 			}
 
 			return true;

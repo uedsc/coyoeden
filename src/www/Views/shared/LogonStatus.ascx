@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="CoyoEden.UI.Views.ViewBase"%>
-<%@ Import Namespace="SystemX" %>
+<%@ Import Namespace="SystemX.Web"%>
 <%if (Page.User.Identity.IsAuthenticated)
 { %>
 <a title="" href="<%=Utils.AbsoluteWebRoot.ToString() %>login.aspx?logoff"><%=Resources.labels.logoff%></a>

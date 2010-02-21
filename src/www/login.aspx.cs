@@ -3,7 +3,7 @@
 using System;
 using System.Web.Security;
 using System.Web.UI.WebControls;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Web.Controls;
 using CoyoEden.UI;
 

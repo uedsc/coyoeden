@@ -7,7 +7,7 @@ using System.Xml;
 using System.IO;
 using System.Text;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.DataContracts;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.UI.Controls;

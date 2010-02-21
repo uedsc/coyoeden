@@ -1,9 +1,9 @@
 
 // ------------------------------------------------------------------------------
-// This class was auto-generated for use with the Habanero Enterprise Framework.
+// This class was auto-generated for use with the SystemX Enterprise Framework.
 // ------------------------------------------------------------------------------
 using System;
-using Habanero.BO;
+using SystemX.LunaAtom;
 using System.Collections.Generic;
 using System.Linq;
 using SystemX.Infrastructure;
@@ -65,7 +65,7 @@ namespace CoyoEden.Core
 		}
 
 		public static List<Setting> LoadAll(){
-			return Broker.GetBusinessObjectCollection<Setting>("Id is not null");
+			return Broker.GetBusinessObjectCollection<Setting>("Id is not null").ToList();
 		}
 		public static List<Setting> LoadAll(SettingTypes type) {
 			var items = Broker.GetBusinessObjectCollection<Setting>(string.Format("SettingType='{0}'",type));

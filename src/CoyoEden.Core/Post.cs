@@ -1,20 +1,21 @@
 
 // ------------------------------------------------------------------------------
-// This class was auto-generated for use with the Habanero Enterprise Framework.
+// This class was auto-generated for use with the SystemX Enterprise Framework.
 // ------------------------------------------------------------------------------
 using System;
-using Habanero.BO;
+using SystemX.LunaAtom;
 using System.ComponentModel;
 using SystemX.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
 using System.Threading;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Providers;
 using System.Net.Mail;
 using System.Web;
 using CoyoEden.Core.Infrastructure;
+using SystemX.LunaBase;
 
 namespace CoyoEden.Core
 {    
@@ -464,7 +465,7 @@ namespace CoyoEden.Core
 
 		public static event EventHandler<SavedEventArgs> Saved1;
         public static event EventHandler<SavedEventArgs> Saving;
-		public override void Save()
+        public override IBusinessObject Save()
 		{
 			var action = new SavedEventArgs(SaveAction.None);
 			if (this.Status.IsDeleted) {
@@ -482,11 +483,12 @@ namespace CoyoEden.Core
 				Saving(this, action);
 			}
 
-			base.Save();
+			var bo=base.Save();
 			
 			if (Saved1 != null && this.Status.IsValid()) {
 				Saved1(this, action);
 			}
+            return bo;
 		}
 		#endregion
 
@@ -537,7 +539,7 @@ namespace CoyoEden.Core
 				);
 			var tempInt=0;
 			var items = Broker.GetBusinessObjectCollection<Post>(criteriaStr, "", 0, count, out tempInt);
-			return items;
+			return items.ToList();
 		}
 		/// <summary>
 		/// TODO:Get headline posts
@@ -553,7 +555,7 @@ namespace CoyoEden.Core
 			if (isHeadline) {
 				criteriaStr += " and IsHeadline=1";
 			}
-			retVal = Broker.GetBusinessObjectCollection<Post>(criteriaStr, " DateModified Desc", 0, count, out total);
+			retVal = Broker.GetBusinessObjectCollection<Post>(criteriaStr, " DateModified Desc", 0, count, out total).ToList();
 			return retVal;
 		}
 		/// <summary>
@@ -614,7 +616,7 @@ namespace CoyoEden.Core
 			return items.ToList();
 		}
 		public static List<Post> LoadAll() {
-			return Broker.GetBusinessObjectCollection<Post>("Id is not null");
+			return Broker.GetBusinessObjectCollection<Post>("Id is not null").ToList();
 		}
 		#endregion
 
@@ -743,7 +745,7 @@ namespace CoyoEden.Core
 					mail.Body += string.Format("<a href=\"{0}\">{1}</a>", unsubscribeLink, Utils.Translate("commentNotificationUnsubscribe"));
 
 					mail.To.Add(email);
-					Utils.SendMailMessageAsync(mail);
+                    SystemX.Utils.SendMailMessageAsync(mail);
 				}
 			}
 		}

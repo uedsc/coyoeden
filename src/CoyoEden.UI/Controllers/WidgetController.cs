@@ -10,6 +10,7 @@ using CoyoEden.Core;
 using CoyoEden.Core.DataContracts;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.UI.Views;
+using SystemX.Web.Infrastructure;
 
 namespace CoyoEden.UI.Controllers
 {

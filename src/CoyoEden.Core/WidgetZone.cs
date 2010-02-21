@@ -1,15 +1,15 @@
 
 // ------------------------------------------------------------------------------
-// This class was auto-generated for use with the Habanero Enterprise Framework.
+// This class was auto-generated for use with the SystemX Enterprise Framework.
 // ------------------------------------------------------------------------------
 using System;
-using Habanero.BO;
+using SystemX.LunaAtom;
 using SystemX.Services;
 using System.Collections.Generic;
 using System.Linq;
 using SystemX.Infrastructure;
 using CoyoEden.Core.DataContracts;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 namespace CoyoEden.Core
 {   
@@ -53,7 +53,7 @@ namespace CoyoEden.Core
 		}
 		public static List<WidgetZone> LoadAll()
 		{
-			return Broker.GetBusinessObjectCollection<WidgetZone>("Id is not null");
+			return Broker.GetBusinessObjectCollection<WidgetZone>("Id is not null").ToList();
 		}
 		/// <summary>
 		/// Find by name.If not exists,return null

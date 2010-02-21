@@ -9,7 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using CoyoEden.Core;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
 
 #endregion

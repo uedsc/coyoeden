@@ -5,7 +5,7 @@ using System.IO;
 using System.Xml;
 using System.Text.RegularExpressions;
 using System.Web;
-using SystemX;
+using SystemX.Web;
 
 namespace CoyoEden.Core.Infrastructure
 {

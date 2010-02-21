@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Threading;
 using System.ComponentModel;
-using SystemX;
+using SystemX.Web;
 using CoyoEden.Core.Web.Extensions;
 using CoyoEden.Core.Infrastructure;
 

@@ -3,6 +3,7 @@ using System.Linq;
 using CoyoEden.UI;
 using CoyoEden.Core;
 using SystemX;
+using SystemX.Web;
 using SystemX.WebControls;
 
 public partial class admin_widgets_Default :AdminBasePage
