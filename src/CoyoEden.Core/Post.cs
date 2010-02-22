@@ -215,7 +215,7 @@ namespace CoyoEden.Core
 				string slug = Utils.RemoveIllegalCharacters(Slug) + BlogSettings.Instance.FileExtension;
 
 				if (BlogSettings.Instance.TimeStampPostLinks)
-					return String.Format("{0}post/{1}{2}", Utils.RelativeWebRoot, DateCreated, slug);
+					return String.Format("{0}post/{1:yyyy/MM/dd}{2}", Utils.RelativeWebRoot, DateCreated, slug);
 
 				return String.Format("{0}post/{1}", Utils.RelativeWebRoot, slug);
 			}
@@ -740,7 +740,7 @@ namespace CoyoEden.Core
 					mail.Subject = String.Format("New comment on {0}", Title);
 					mail.Body = String.Format("Comment by {0}<br /><br />", comment.Author);
 					mail.Body += String.Format("{0}<br /><br />", comment.Content.Replace(Environment.NewLine, "<br />"));
-					mail.Body += string.Format("<a href=\"{0}\">{1}</a>", PermaLink + "#id_" + comment.Id, Title);
+                    mail.Body += string.Format("<a href=\"{0}\">{1}</a>", String.Format("{0}#id_{1}", PermaLink, comment.Id), Title);
 					mail.Body += "<br /><br /><hr />";
 					mail.Body += string.Format("<a href=\"{0}\">{1}</a>", unsubscribeLink, Utils.Translate("commentNotificationUnsubscribe"));
 

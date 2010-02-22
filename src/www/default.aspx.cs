@@ -109,7 +109,7 @@ public partial class _default : SiteBasePage
 
 	private void InvalidateCache()
 	{
-		HttpResponse.RemoveOutputCacheItem(Utils.RelativeWebRoot + "default.aspx");
+        HttpResponse.RemoveOutputCacheItem(String.Format("{0}default.aspx", Utils.RelativeWebRoot));
 	}
 	
 	/// <summary>
@@ -125,13 +125,13 @@ public partial class _default : SiteBasePage
 		string year = Request.QueryString["year"];
 		string month = Request.QueryString["month"];
 		string date = Request.QueryString["date"];
-		string page = string.IsNullOrEmpty(Request.QueryString["page"]) ? string.Empty : "?page=" + Request.QueryString["page"];
+        string page = string.IsNullOrEmpty(Request.QueryString["page"]) ? string.Empty : String.Format("?page={0}", Request.QueryString["page"]);
 		string rewrite = null;
 
 		if (!string.IsNullOrEmpty(date))
 		{
 			DateTime dateParsed = DateTime.Parse(date);
-			rewrite = Utils.RelativeWebRoot + dateParsed.Year + "/" + dateParsed.Month + "/" + dateParsed.Day + "/default.aspx";
+            rewrite = String.Format("{0}{1}/{2}/{3}/default.aspx", Utils.RelativeWebRoot, dateParsed.Year, dateParsed.Month, dateParsed.Day);
 		}
 		else if (!string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
 		{
@@ -174,7 +174,7 @@ public partial class _default : SiteBasePage
 				if (c is System.Web.UI.HtmlControls.HtmlMeta && (c as System.Web.UI.HtmlControls.HtmlMeta).Name.ToLower() == "keywords")
 				{
 					tag = c as System.Web.UI.HtmlControls.HtmlMeta;
-					tag.Content += ", " + metakeywords;
+                    tag.Content += String.Format(", {0}", metakeywords);
 					break;
 				}
 			}
@@ -202,7 +202,7 @@ public partial class _default : SiteBasePage
 		{
 			string author = Server.UrlDecode(Request.QueryString["name"]);
 			PostList1.Posts = Post.GetPostsByAuthor(author).ConvertAll(new Converter<Post, IPublishable>(delegate(Post p) { return p as IPublishable; }));
-			Title = "All posts by " + Server.HtmlEncode(author);
+            Title = String.Format("All posts by {0}", Server.HtmlEncode(author));
 		}
 	}
 
@@ -211,7 +211,7 @@ public partial class _default : SiteBasePage
 		if (!string.IsNullOrEmpty(Request.QueryString["tag"]))
 		{
 			PostList1.Posts = Post.GetPostsByTag(Request.QueryString["tag"].Substring(1)).ConvertAll(new Converter<Post, IPublishable>(delegate(Post p) { return p as IPublishable; }));
-			base.Title = " All posts tagged '" + Request.QueryString["tag"].Substring(1) + "'";
+            base.Title = String.Format(" All posts tagged '{0}'", Request.QueryString["tag"].Substring(1));
 			base.AddMetaTag("description", Server.HtmlEncode(BlogSettings.Instance.Description));
 		}
 	}
@@ -224,14 +224,14 @@ public partial class _default : SiteBasePage
 
 		if (!string.IsNullOrEmpty(year) && !string.IsNullOrEmpty(month))
 		{
-			DateTime dateFrom = DateTime.Parse(year + "-" + month + "-01", CultureInfo.InvariantCulture);
+            DateTime dateFrom = DateTime.Parse(String.Format("{0}-{1}-01", year, month), CultureInfo.InvariantCulture);
 			DateTime dateTo = dateFrom.AddMonths(1).AddMilliseconds(-1);
 			PostList1.Posts = Post.GetPostsByDate(dateFrom, dateTo).ConvertAll(new Converter<Post, IPublishable>(delegate(Post p) { return p as IPublishable; }));
 			Title = dateFrom.ToString("MMMM yyyy");
 		}
 		else if (!string.IsNullOrEmpty(year))
 		{
-			DateTime dateFrom = DateTime.Parse(year + "-01-01", CultureInfo.InvariantCulture);
+            DateTime dateFrom = DateTime.Parse(String.Format("{0}-01-01", year), CultureInfo.InvariantCulture);
 			DateTime dateTo = dateFrom.AddYears(1).AddMilliseconds(-1);
 			PostList1.Posts = Post.GetPostsByDate(dateFrom, dateTo).ConvertAll(new Converter<Post, IPublishable>(delegate(Post p) { return p as IPublishable; })); ;
 			Title = dateFrom.ToString("yyyy");
@@ -249,22 +249,5 @@ public partial class _default : SiteBasePage
 			Title = Server.HtmlEncode(Resources.labels.calendar);
 		}
 	}
-
-	//private void DisplayDateRange(string year, string month, string day)
-	//{
-	//  if (string.IsNullOrEmpty(day))
-	//  {
-	//    DateTime dateFrom = DateTime.Parse(year + "-" + month + "-01", CultureInfo.InvariantCulture);
-	//    DateTime dateTo = dateFrom.AddMonths(1).AddMilliseconds(-1);
-	//    PostList1.Posts = Post.GetPostsByDate(dateFrom, dateTo);
-	//    Title = BlogSettings.Instance.Name + " - " + dateFrom.ToString("MMMM yyyy");
-	//  }
-	//  else
-	//  {
-	//    DateTime date = DateTime.Parse(year + "-" + month + "-" + day, CultureInfo.InvariantCulture);
-	//    PostList1.Posts = Post.GetPostsByDate(date, date);
-	//    Title = BlogSettings.Instance.Name + " - " + date.ToString("MMMM d. yyyy");
-	//  }
-	//}
 
 }

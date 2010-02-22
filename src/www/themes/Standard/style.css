@@ -1110,7 +1110,9 @@ div#vivasky_content h1{display:block;height:0;overflow:hidden;width:0;}
 #header #global_search{ position:relative; z-index:70; float:right; margin:8px 0 0 0;right:0;top:25px;}
 #header #global_search input.g_txt{ background:url(img/bg_sprit2.gif) 0 -665px no-repeat; width:200px; height:26px; line-height:26px;  border:0; float:left; _display:inline; font-size:12px; padding-left:10px;}
 form#globalsearch{ width:262px;}
+/*
 @-moz-document url-prefix(){#header #global_search input.g_txt{ line-height:normal; padding-top:6px;}}
+*/
 #globalsearch-go{ background:url(img/gsearch_button.gif) 0 0 no-repeat; width:31px; height:25px; border:0; float:left;_display:inline;}
 #p-header #global_search .typing{ background-position:0 100%;}
 #global_search span.search_menu{ position:relative; float:left;}

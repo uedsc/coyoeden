@@ -5,7 +5,6 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using CoyoEden.Core;
@@ -90,7 +89,7 @@ namespace CoyoEden.Core.Web.Controls
 					catch (Exception)
 					{
 						// Whoopss, can't load that control so lets output something that tells the developer that theres a problem.
-						bodyContent.Controls.Add(new LiteralControl("ERROR - UNABLE TO LOAD CONTROL : " + myMatch.Groups[1].Value));
+                        bodyContent.Controls.Add(new LiteralControl(String.Format("ERROR - UNABLE TO LOAD CONTROL : {0}", myMatch.Groups[1].Value)));
 					}
 
 					currentPosition = myMatch.Index + myMatch.Groups[0].Length;
@@ -243,7 +242,7 @@ namespace CoyoEden.Core.Web.Controls
 
 			string[] tags = new string[Post.Tags.Count];
 			string link = "<a href=\"{0}/{1}\" rel=\"tag\">{2}</a>";
-			string path = Utils.RelativeWebRoot + "?tag=";
+            string path = String.Format("{0}?tag=", Utils.RelativeWebRoot);
 			for (int i = 0; i < Post.Tags.Count; i++)
 			{
 				string tag = Post.Tags[i];
@@ -269,11 +268,11 @@ namespace CoyoEden.Core.Web.Controls
 					if (Post.NotApprovedComments.Count > 0)
 					{
 						sb.AppendFormat(CultureInfo.InvariantCulture, "<a href=\"{0}\">{1} ({2})</a> | ", Post.RelativeLink, Utils.Translate("unapprovedcomments"), Post.NotApprovedComments.Count);
-						sb.AppendFormat(CultureInfo.InvariantCulture, "<a href=\"{0}\">{1}</a> | ", Post.RelativeLink + "?approveallcomments=true", Utils.Translate("approveallcomments"));
+                        sb.AppendFormat(CultureInfo.InvariantCulture, "<a href=\"{0}\">{1}</a> | ", String.Format("{0}?approveallcomments=true", Post.RelativeLink), Utils.Translate("approveallcomments"));
 
 					}
 
-					sb.AppendFormat(CultureInfo.InvariantCulture, "<a href=\"{0}\">{1}</a> | ", Utils.AbsoluteWebRoot + "admin/Pages/Add_entry.aspx?id=" + Post.Id.ToString(), Utils.Translate("edit"));
+                    sb.AppendFormat(CultureInfo.InvariantCulture, "<a href=\"{0}\">{1}</a> | ", String.Format("{0}admin/Pages/PostEdit.aspx?id={1}", Utils.AbsoluteWebRoot, Post.Id), Utils.Translate("edit"));
 					sb.AppendFormat(CultureInfo.InvariantCulture, "<a href=\"javascript:void(0);\" onclick=\"if (confirm('{2}')) location.href='{0}?deletepost={1}'\">{3}</a> | ", Post.RelativeLink, Post.Id.ToString(), confirmDelete, Utils.Translate("delete"));
 					return sb.ToString();
 				}

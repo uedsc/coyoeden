@@ -6,9 +6,10 @@ namespace CoyoEden.Core
     {
         public static string GetClassDefsXml()
         {
-            StreamReader classDefStream = new StreamReader(
-                typeof(BOBroker).Assembly.GetManifestResourceStream("CoyoEden.Core.ClassDefs.xml"));
-            return classDefStream.ReadToEnd();
+            using (StreamReader classDefStream = new StreamReader(typeof(BOBroker).Assembly.GetManifestResourceStream("CoyoEden.Core.ClassDefs.xml")))
+            {
+                return classDefStream.ReadToEnd();
+            }
         }
     }
 }

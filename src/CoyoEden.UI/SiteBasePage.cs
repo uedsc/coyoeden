@@ -69,21 +69,21 @@ namespace CoyoEden.UI
 				// Links
 				AddGenericLink("contents", "Archive", String.Format("{0}archive.aspx", Utils.RelativeWebRoot));
 				AddGenericLink("start", BlogSettings.Instance.Name, Utils.RelativeWebRoot);
-				AddGenericLink("application/rdf+xml", "meta", "SIOC", Utils.AbsoluteWebRoot + "sioc.axd");
-				AddGenericLink("application/apml+xml", "meta", "APML", Utils.AbsoluteWebRoot + "apml.axd");
-				AddGenericLink("application/rdf+xml", "meta", "FOAF", Utils.AbsoluteWebRoot + "foaf.axd");
+                AddGenericLink("application/rdf+xml", "meta", "SIOC", String.Format("{0}sioc.axd", Utils.AbsoluteWebRoot));
+                AddGenericLink("application/apml+xml", "meta", "APML", String.Format("{0}apml.axd", Utils.AbsoluteWebRoot));
+                AddGenericLink("application/rdf+xml", "meta", "FOAF", String.Format("{0}foaf.axd", Utils.AbsoluteWebRoot));
 
 				if (string.IsNullOrEmpty(BlogSettings.Instance.AlternateFeedUrl))
 				{
 					AddGenericLink("application/rss+xml", "alternate", String.Format("{0} (RSS)", BlogSettings.Instance.Name), String.Format("{0}?format=rss", BlogSettings.FeedUrl));
-					AddGenericLink("application/atom+xml", "alternate", String.Format("{0} (ATOM)", BlogSettings.Instance.Name), BlogSettings.FeedUrl + "?format=atom");
+                    AddGenericLink("application/atom+xml", "alternate", String.Format("{0} (ATOM)", BlogSettings.Instance.Name), String.Format("{0}?format=atom", BlogSettings.FeedUrl));
 				}
 				else
 				{
 					AddGenericLink("application/rss+xml", "alternate", BlogSettings.Instance.Name, BlogSettings.FeedUrl);
-				}				
-				
-				AddGenericLink("application/rsd+xml", "edituri", "RSD", Utils.AbsoluteWebRoot + "rsd.axd");
+				}
+
+                AddGenericLink("application/rsd+xml", "edituri", "RSD", String.Format("{0}rsd.axd", Utils.AbsoluteWebRoot));
 
 				AddMetaContentType();
 				AddDefaultLanguages();
@@ -92,7 +92,7 @@ namespace CoyoEden.UI
 				AddJavaScriptInclude(String.Format("{0}blog.js", Utils.RelativeWebRoot), true, true);				
 
 				if (BlogSettings.Instance.EnableOpenSearch)
-					AddGenericLink("application/opensearchdescription+xml", "search", BlogSettings.Instance.Name, Utils.AbsoluteWebRoot + "opensearch.axd");
+                    AddGenericLink("application/opensearchdescription+xml", "search", BlogSettings.Instance.Name, String.Format("{0}opensearch.axd", Utils.AbsoluteWebRoot));
 
 				if (!string.IsNullOrEmpty(BlogSettings.Instance.HtmlHeader))
 					AddCustomCodeToHead();

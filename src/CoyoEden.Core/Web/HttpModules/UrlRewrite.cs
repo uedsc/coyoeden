@@ -76,20 +76,20 @@ namespace CoyoEden.Core.Web.HttpModules
 				}
 				else if (url.Contains("/CALENDAR/"))
 				{
-					context.RewritePath(Utils.RelativeWebRoot + "default.aspx?calendar=show", false);
+                    context.RewritePath(String.Format("{0}default.aspx?calendar=show", Utils.RelativeWebRoot), false);
 				}
-				else if (url.Contains("/DEFAULT" + BlogSettings.Instance.FileExtension.ToUpperInvariant()))
+                else if (url.Contains(String.Format("/DEFAULT{0}", BlogSettings.Instance.FileExtension.ToUpperInvariant())))
 				{
 					RewriteDefault(context);
 				}
 				else if (url.Contains("/AUTHOR/"))
 				{
 					string author = ExtractTitle(context, url);
-					context.RewritePath(Utils.RelativeWebRoot + "default" + BlogSettings.Instance.FileExtension + "?name=" + author + GetQueryString(context), false);
+                    context.RewritePath(String.Format("{0}default{1}?name={2}{3}", Utils.RelativeWebRoot, BlogSettings.Instance.FileExtension, author, GetQueryString(context)), false);
 				}
 				else if (path.Contains("/BLOG.ASPX"))
 				{
-					context.RewritePath(Utils.RelativeWebRoot + "default.aspx?blog=true" + GetQueryString(context));
+                    context.RewritePath(String.Format("{0}default.aspx?blog=true{1}", Utils.RelativeWebRoot, GetQueryString(context)));
 				}
 			}
 		}
@@ -150,7 +150,7 @@ namespace CoyoEden.Core.Web.HttpModules
 
 			if (page != null)
 			{
-				context.RewritePath(Utils.RelativeWebRoot + "page.aspx?id=" + page.Id + GetQueryString(context), false);
+                context.RewritePath(String.Format("{0}page.aspx?id={1}{2}", Utils.RelativeWebRoot, page.Id, GetQueryString(context)), false);
 			}
 		}
 
@@ -161,7 +161,7 @@ namespace CoyoEden.Core.Web.HttpModules
 		private static void RewriteDefault(HttpContext context)
 		{
 			string url = context.Request.RawUrl;
-			string page = "&page=" + context.Request.QueryString["page"];
+            string page = String.Format("&page={0}", context.Request.QueryString["page"]);
 			if (string.IsNullOrEmpty(context.Request.QueryString["page"]))
 				page = null;
 
@@ -170,8 +170,8 @@ namespace CoyoEden.Core.Web.HttpModules
                 string year = match.Groups[1].Value;
                 string month = match.Groups[2].Value;
                 string day = match.Groups[3].Value;
-                string date = year + "-" + month + "-" + day;
-                context.RewritePath(Utils.RelativeWebRoot + "default.aspx?date=" + date + page, false);
+                string date = String.Format("{0}-{1}-{2}", year, month, day);
+                context.RewritePath(String.Format("{0}default.aspx?date={1}{2}", Utils.RelativeWebRoot, date, page), false);
             } else if (YEAR_MONTH.IsMatch(url)) {
                 Match match = YEAR_MONTH.Match(url);
                 string year = match.Groups[1].Value;

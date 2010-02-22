@@ -55,7 +55,7 @@ namespace CoyoEden.CoreX.Models
                 dto.Description = ReadProperty<string>(DescPro);
                 dto.Tag = ReadProperty<string>(TagPro);
                 //insert data
-                _repo.Save<ICategoryDto>(dto);
+                _repo.Save(dto);
                 //update child data
                 DataPortal.UpdateChild(ReadProperty<CategoryCollection>(SubItemsPro), this, _repo);
                 //commit transaction
@@ -82,7 +82,7 @@ namespace CoyoEden.CoreX.Models
                     dto.Description = ReadProperty<string>(DescPro);
                     dto.Tag = ReadProperty<string>(TagPro);
                     //update order data
-                    _repo.Save<ICategoryDto>(dto);
+                    _repo.Save(dto);
                 }
                 //update child data
                 DataPortal.UpdateChild(ReadProperty<CategoryCollection>(SubItemsPro), this, _repo);
@@ -149,7 +149,7 @@ namespace CoyoEden.CoreX.Models
             dto.Description = ReadProperty<string>(DescPro);
             dto.Tag = ReadProperty<string>(TagPro);
             //insert
-            _repo.Save<ICategoryDto>(dto);
+            _repo.Save(dto);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode",
@@ -164,7 +164,7 @@ namespace CoyoEden.CoreX.Models
             dto.Description = ReadProperty<string>(DescPro);
             dto.Tag = ReadProperty<string>(TagPro);
             //update data
-            repo.Save<ICategoryDto>(dto);
+            repo.Save(dto);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode",
