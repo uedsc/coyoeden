@@ -23,8 +23,8 @@ public class SendPings
   /// </summary>
   static SendPings()
   {
-        Post.Saved1 += new EventHandler<SavedEventArgs>(Post_Saved);
-		Page.Saved1 += new EventHandler<SavedEventArgs>(Post_Saved);
+        Post.SavedX += new EventHandler<SavedEventArgs>(Post_Saved);
+		Page.SavedX += new EventHandler<SavedEventArgs>(Post_Saved);
   }
 
   /// <summary>

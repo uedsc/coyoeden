@@ -22,7 +22,7 @@ namespace CoyoEden.UI.Controls
 		/// </summary>
 		static AuthorList()
 		{
-			Post.Saved1 += (sender, e) => _Html = null;
+			Post.SavedX += (sender, e) => _Html = null;
 		}
 
 		#region Properties

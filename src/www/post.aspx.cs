@@ -41,13 +41,13 @@ public partial class post : CoyoEden.UI.SiteBasePage
 			if (Post != null)
 			{
 				if (!this.Post.IsVisible && !Page.User.Identity.IsAuthenticated)
-					Response.Redirect(Utils.RelativeWebRoot + "error404.aspx", true);
+                    Response.Redirect(String.Format("{0}error404.aspx", Utils.RelativeWebRoot), true);
 
 				string theme = BlogSettings.Instance.Theme;
 				if (Request.QueryString["theme"] != null)
 					theme = Request.QueryString["theme"];
 
-				string path = Utils.RelativeWebRoot + "themes/" + theme + "/PostView.ascx";
+                string path = String.Format("{0}themes/{1}/PostView.ascx", Utils.RelativeWebRoot, theme);
 
 				PostViewBase postView = (PostViewBase)LoadControl(path);
 				postView.Post = Post;
@@ -79,11 +79,11 @@ public partial class post : CoyoEden.UI.SiteBasePage
 
 				phRDF.Visible = BlogSettings.Instance.EnableTrackBackReceive;
 
-				base.AddGenericLink("application/rss+xml", "alternate", Server.HtmlEncode(Post.Title) + " (RSS)", postView.CommentFeed + "?format=ATOM");
-				base.AddGenericLink("application/rss+xml", "alternate", Server.HtmlEncode(Post.Title) + " (ATOM)", postView.CommentFeed + "?format=ATOM");
+                base.AddGenericLink("application/rss+xml", "alternate", String.Format("{0} (RSS)", Server.HtmlEncode(Post.Title)), String.Format("{0}?format=ATOM", postView.CommentFeed));
+                base.AddGenericLink("application/rss+xml", "alternate", String.Format("{0} (ATOM)", Server.HtmlEncode(Post.Title)), String.Format("{0}?format=ATOM", postView.CommentFeed));
 
 				if (BlogSettings.Instance.EnablePingBackReceive)
-					Response.AppendHeader("x-pingback", "http://" + Request.Url.Authority + Utils.RelativeWebRoot + "pingback.axd");
+                    Response.AppendHeader("x-pingback", String.Format("http://{0}{1}pingback.axd", Request.Url.Authority, Utils.RelativeWebRoot));
 
                 string commentNotificationUnsubscribeEmailAddress = Request.QueryString["unsubscribe-email"];
                 if (!string.IsNullOrEmpty(commentNotificationUnsubscribeEmailAddress))
@@ -99,7 +99,7 @@ public partial class post : CoyoEden.UI.SiteBasePage
 		}
 		else
 		{
-			Response.Redirect(Utils.RelativeWebRoot + "error404.aspx", true);
+            Response.Redirect(String.Format("{0}error404.aspx", Utils.RelativeWebRoot), true);
 		}
 	}
 

@@ -25,7 +25,6 @@
     </rdf:RDF>
     -->
   </asp:placeholder>
-  
   <vs:RelatedPosts runat="server" ID="related" MaxResults="3" ShowDescription="true" DescriptionMaxLength="100" Visible="false" />
   <uc:CommentView ID="CommentView1" runat="server" />
 </asp:content>

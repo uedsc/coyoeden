@@ -18,7 +18,10 @@ namespace CoyoEden.Core
 		public Page() {
 			Id=GuidExt.NewGuid(GuidExt.GuidStrategy.OrderedSequential);
 			DateCreated = DateTime.Now;
+            Saved += Page_Saved;
 		}
+
+
 
 		public bool HasParentPage {
 			get
@@ -57,6 +60,11 @@ namespace CoyoEden.Core
 		{
 			get
 			{
+                //backward compatible for old posts that having no slug.
+                if (string.IsNullOrEmpty(Slug))
+                {
+                    Slug = Id.ToString();
+                }
 				string slug = SystemX.Web.Utils.RemoveIllegalCharacters(Slug) + BlogSettings.Instance.FileExtension;
 				return String.Format("{0}page/{1}", SystemX.Web.Utils.RelativeWebRoot, slug);
 			}
@@ -158,7 +166,7 @@ namespace CoyoEden.Core
 				Serving(this, eventArgs);
 			}
 		}
-		public static event EventHandler<SavedEventArgs> Saved1;
+		public static event EventHandler<SavedEventArgs> SavedX;
         public override IBusinessObject Save()
         {
             var action = new SavedEventArgs(SaveAction.None);
@@ -175,11 +183,17 @@ namespace CoyoEden.Core
                 action.Action = SaveAction.Update;
             };
             var bo=base.Save();
-            if (Saved1 != null && this.Status.IsValid())
+            if (SavedX != null && this.Status.IsValid())
             {
-                Saved1(this, action);
+                SavedX(this, action);
             }
             return bo;
+        }
+        void Page_Saved(object sender, BOEventArgs e)
+        {
+            if (string.IsNullOrEmpty(Slug)) {
+                Slug = SystemX.Utils.CHSToPinyin(Title);
+            }
         }
 		#endregion
 

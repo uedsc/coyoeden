@@ -98,16 +98,13 @@ namespace CoyoEden.Core.Web.HttpModules
 		{
 			DateTime date = ExtractDate(context);
 			string slug = ExtractTitle(context, url);
-			Post post = Post.Posts.Find(delegate(Post p)
-			{
-				if (date != DateTime.MinValue && (p.DateCreated.Value.Year != date.Year || p.DateCreated.Value.Month != date.Month))
-				{
-					if (p.DateCreated.Value.Day != 1 && p.DateCreated.Value.Day != date.Day)
-						return false;
-				}
-
-				return slug.Equals(Utils.RemoveIllegalCharacters(p.Slug), StringComparison.OrdinalIgnoreCase);
-			});
+            Post post = Post.Posts.Find(p =>
+                        {
+                            if (date != DateTime.MinValue && (p.DateCreated.Value.Year != date.Year || p.DateCreated.Value.Month != date.Month))
+                                if (p.DateCreated.Value.Day != 1 && p.DateCreated.Value.Day != date.Day)
+                                    return false;
+                            return slug.Equals(Utils.RemoveIllegalCharacters(p.Slug), StringComparison.OrdinalIgnoreCase) || slug.Equals(p.Id.ToString(), StringComparison.OrdinalIgnoreCase);
+                        });
 
 			if (post != null)
 			{
@@ -117,7 +114,7 @@ namespace CoyoEden.Core.Web.HttpModules
 				}
 				else
 				{
-					context.RewritePath(String.Format("{0}post.aspx?id={1}{2}", Utils.RelativeWebRoot, post.Id, GetQueryString(context)), false);
+					context.RewritePath(String.Format("{0}post/show.aspx?id={1}{2}", Utils.RelativeWebRoot, post.Id, GetQueryString(context)), false);
 				}
 			}
 		}
@@ -146,7 +143,7 @@ namespace CoyoEden.Core.Web.HttpModules
 		private static void RewritePage(HttpContext context, string url)
 		{
 			string slug = ExtractTitle(context, url);
-			Page page = Page.Pages.Find(p => slug.Equals(Utils.RemoveIllegalCharacters(p.Slug), StringComparison.OrdinalIgnoreCase));
+            Page page = Page.Pages.Find(p => slug.Equals(Utils.RemoveIllegalCharacters(p.Slug), StringComparison.OrdinalIgnoreCase) || slug.Equals(p.Id.ToString(), StringComparison.OrdinalIgnoreCase));
 
 			if (page != null)
 			{
@@ -245,7 +242,7 @@ namespace CoyoEden.Core.Web.HttpModules
 		{
 			string query = context.Request.QueryString.ToString();
 			if (!string.IsNullOrEmpty(query))
-				return "&" + query;
+                return String.Format("&{0}", query);
 
 			return string.Empty;
 		}

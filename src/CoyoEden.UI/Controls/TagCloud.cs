@@ -17,7 +17,7 @@ namespace CoyoEden.UI.Controls
 
 		static TagCloud()
 		{
-			Post.Saved1 += (s, e) => Reload();
+			Post.SavedX += (s, e) => Reload();
 		}
 
 		#region Private fields

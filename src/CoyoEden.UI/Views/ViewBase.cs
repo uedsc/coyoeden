@@ -8,6 +8,7 @@ using CoyoEden.Core.DataContracts;
 using SystemX.Web;
 using SystemX.Infrastructure;
 using System.Collections.Generic;
+using SystemX.WebControls;
 
 namespace CoyoEden.UI.Views
 {
@@ -105,5 +106,21 @@ namespace CoyoEden.UI.Views
 				return Page.User.IsInRole(BlogSettings.Instance.AdministratorRole);
 			}
 		}
+        /// <summary>
+        /// render a dropdownlist control
+        /// </summary>
+        /// <returns></returns>
+        protected virtual string RenderDropDownList(string id,string name,string selecttip,string key,string desc,IEnumerable<object> datasource) {
+            var ddl = new SiteDDSelect();
+            ddl.ID = id;
+            ddl.Name = name;
+            ddl.KeyField = key;
+            ddl.DescField = desc;
+            ddl.Tip = selecttip;
+            ddl.DataSource = datasource;
+
+            var html=new ViewManager<SiteDDSelect>(ddl, false).Render();
+            return html;
+        }
 	}
 }

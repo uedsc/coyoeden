@@ -11,6 +11,7 @@ using CoyoEden.Core;
 using CoyoEden.Core.Web.Controls;
 using SystemX.Infrastructure;
 using System.Collections.Generic;
+using System.IO;
 
 #endregion
 
@@ -35,7 +36,7 @@ namespace CoyoEden.UI
 		/// Assignes the selected theme to the pages.
 		/// </summary>
 		protected override void OnPreInit(EventArgs e)
-		{			
+		{		
 			if (Request.QueryString["theme"] != null)
 				_Theme = Request.QueryString["theme"];
 
@@ -169,6 +170,7 @@ namespace CoyoEden.UI
         }
         #endregion
 
+        #region Methods
         /// <summary>
 		/// Adds the localization keys to JavaScript for use globally.
 		/// </summary>
@@ -374,7 +376,28 @@ namespace CoyoEden.UI
 			{
 				return Page.User.IsInRole(BlogSettings.Instance.AdministratorRole);
 			}
-		}
+        }
+
+        /// <summary>
+        /// get the specified view.( an ascx file)
+        /// </summary>
+        /// <param name="viewName"></param>
+        /// <returns></returns>
+        protected virtual string ViewPath(string viewName) {
+            var viewPath = String.Format("{0}themes/{1}/{2}.ascx", Utils.RelativeWebRoot, CurrentTheme,viewName);
+            if (File.Exists(Server.MapPath(viewPath))) {
+                return viewPath;
+            }
+            //alternative choice
+            viewPath = string.Format("{0}views/{1}.ascx", Utils.RelativeWebRoot, viewName);
+            if (!File.Exists(Server.MapPath(viewPath))) {
+                AppMsg.Error<SiteBasePage>("View {1}.ascx not exists!", viewName);
+            }
+            return viewPath;
+        }
+        #endregion
+
+        #region member variables
         /// <summary>
         /// query string data of current request.
         /// For the sake of json serialization,we use Dictionary{string,object} instead of the raw NameValueCollection
@@ -386,5 +409,31 @@ namespace CoyoEden.UI
                 return this.Page.GetQData("d");
             }
         }
-	}
+        private BOMessager _appMsg = new BOMessager();
+        /// <summary>
+        /// try to resolve current MasterPage as CoyoEden.UI.SiteMaster
+        /// </summary>
+        protected SiteMaster MasterX {
+            get
+            {
+                return Master as SiteMaster;
+            }
+        }
+        /// <summary>
+        /// Connect to Master page's BOMessager instance if exists
+        /// </summary>
+        protected virtual BOMessager AppMsg {
+            get
+            {
+                if (null!=MasterX) return MasterX.AppMsg;
+                return _appMsg;
+            }
+            set
+            {
+                if (null != MasterX) MasterX.AppMsg = value;
+                _appMsg = value;
+            }
+        }
+        #endregion
+    }
 }

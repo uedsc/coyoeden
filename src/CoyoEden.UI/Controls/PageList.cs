@@ -23,7 +23,7 @@ namespace CoyoEden.UI.Controls
     /// </summary>
     static PageList()
     {
-		CoyoEden.Core.Page.Saved1 += (sender, e) => _Html = null;
+		CoyoEden.Core.Page.SavedX += (sender, e) => _Html = null;
     }
 
     #region Properties

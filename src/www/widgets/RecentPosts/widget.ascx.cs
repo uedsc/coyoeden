@@ -25,7 +25,7 @@ public partial class widgets_RecentPosts_widget : WidgetBase
 
 	static widgets_RecentPosts_widget()
 	{
-		Post.Saved1 += delegate { HttpRuntime.Cache.Remove("widget_recentposts"); };
+		Post.SavedX += delegate { HttpRuntime.Cache.Remove("widget_recentposts"); };
 		Post.CommentAdded += delegate { HttpRuntime.Cache.Remove("widget_recentposts"); };
 		Post.CommentRemoved += delegate { HttpRuntime.Cache.Remove("widget_recentposts"); };
 		Post.Rated += delegate { HttpRuntime.Cache.Remove("widget_recentposts"); };

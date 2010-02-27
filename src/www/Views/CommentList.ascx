@@ -1,6 +1,5 @@
 <%@ Control Language="C#" AutoEventWireup="true"  Inherits="CoyoEden.UI.Views.CommentListView" %>
 <%@ Import Namespace="SystemX.Web" %>
-<%@ Import Namespace="CoyoEden.Core" %>
 <% if (CurrentPost.Comments.Count > 0){ %>
 <p id="comment"><%=Resources.labels.comments %></p>
 <%} %>
@@ -23,37 +22,26 @@
 		<asp:HiddenField runat="Server" ID="hiddenReplyTo"  />
 		<p id="cancelReply" style="display:none;"><a href="javascript:void(0);" onclick="CoyoEden.cancelReply();"><%=Resources.labels.cancelReply %></a></p>
 	  <%} %>
-
-	  <label for="<%=txtName.ClientID %>"><%=Resources.labels.name %>*</label>
-	  <% var txtNameID = "txtName" + DateTime.Now.Ticks;%>
-	  <asp:TextBox runat="Server" ID="txtName" TabIndex="2" ValidationGroup="AddComment" />
-	  <% txtName.ID = txtNameID;%>
-	  <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="<%=txtNameID %>" ErrorMessage=" <%$Resources:labels, chooseOtherName %>" Display="dynamic" ClientValidationFunction="CoyoEden.checkAuthorName" EnableClientScript="true" ValidationGroup="AddComment" />
-	  <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="<%=txtNameID %>" ErrorMessage="<%$Resources:labels, required %>" Display="dynamic" ValidationGroup="AddComment" /><br />
-
-	  <label for="<%=txtEmail.ClientID %>"><%=Resources.labels.email %>*</label>
-	  <asp:TextBox runat="Server" ID="txtEmail" TabIndex="3" ValidationGroup="AddComment" />
+      
+	  <label for="txtName"><%=Resources.labels.name %>*</label>
+	  <input type="text" id="txtName" tabindex="2" name="Name" />
+	  <label for="txtEmail"><%=Resources.labels.email %>*</label>
+	  <input type="text" id="txtEmail" tabindex="3" name="Email" />
 	  <span id="gravatarmsg">
 	  <%if (BlogSettings.Instance.Avatar != "none" && BlogSettings.Instance.Avatar != "monster"){ %>
 	  (<%=string.Format(Resources.labels.willShowGravatar, "<a href=\"http://www.gravatar.com\" target=\"_blank\">Gravatar</a>")%>)
 	  <%} %>
 	  </span>
-	  <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtEmail" ErrorMessage="<%$Resources:labels, required %>" Display="dynamic" ValidationGroup="AddComment" />
-	  <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="<%$Resources:labels, enterValidEmail%>" Display="dynamic" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="AddComment" /><br />
-
-	  <label for="<%=txtWebsite.ClientID %>"><%=Resources.labels.website %></label>
-	  <asp:TextBox runat="Server" ID="txtWebsite" TabIndex="4" ValidationGroup="AddComment" />
-	  <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="Server" ControlToValidate="txtWebsite" ValidationExpression="(http://|https://|)([\w-]+\.)+[\w-]+(/[\w- ./?%&=;~]*)?" ErrorMessage="<%$Resources:labels, enterValidUrl %>" Display="Dynamic" ValidationGroup="AddComment" /><br />
+	  <label for="txtWebsite"><%=Resources.labels.website %></label>
+	  <input type="text" id="txtWebsite" tabindex="4" name="Website" />
 	  
 	  <% if(BlogSettings.Instance.EnableCountryInComments){ %>
-	  <label for="<%=ddlCountry.ClientID %>"><%=Resources.labels.country %></label>
-	  <asp:DropDownList runat="server" ID="ddlCountry" onchange="CoyoEden.setFlag(this.value)" TabIndex="5" EnableViewState="false" ValidationGroup="AddComment" />&nbsp;
-	  <asp:Image runat="server" ID="imgFlag" AlternateText="Country flag" Width="16" Height="11" EnableViewState="false" /><br /><br />
+	  <label for="ddlCountry"><%=Resources.labels.country %></label>
+	  <%=RenderDropDownList("ddlCountry","Country","Your country","TwoLetterISORegionName","EnglishName",SystemX.Infrastructure.CountryData.Countries.Cast<object>()) %>
+	  <img alt="Country tag" id="imgFlag" width="16" height="11" /><br /><br />
 	  <%} %>
 
 	  <span class="bbcode<%= !BlogSettings.Instance.ShowLivePreview ? " bbcodeNoLivePreview" : "" %>" title="BBCode tags"><%=BBCodes() %></span>
-	  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtContent" ErrorMessage="<%$Resources:labels, required %>" Display="dynamic" ValidationGroup="AddComment" /><br />
-
 	  <% if (BlogSettings.Instance.ShowLivePreview) { %>  
 	  <ul id="commentMenu">
 		<li id="compose" class="selected" onclick="CoyoEden.composeComment()"><%=Resources.labels.comment%></li>
@@ -61,8 +49,8 @@
 	  </ul>
 	  <% } %>
 	  <div id="commentCompose">
-			<label for="<%=txtContent.ClientID %>" style="display:none"><%=Resources.labels.comment%></label>
-		<asp:TextBox runat="server" ID="txtContent" TextMode="multiLine" Columns="50" Rows="10" TabIndex="6" ValidationGroup="AddComment" />
+			<label for="txtContent" style="display:none"><%=Resources.labels.comment%></label>
+			<textarea id="txtContent" name="Content" rows="10" cols="50" tabindex="6"></textarea>
 	  </div>
 	  <div id="commentPreview">
 		<img src="<%=Utils.RelativeWebRoot %>pics/ajax-loader.gif" alt="Loading" />  
@@ -81,16 +69,16 @@
 <script type="text/javascript">
 <!--//
 function registerCommentBox(){
-	CoyoEden.comments.flagImage = CoyoEden.$("<%= imgFlag.ClientID %>");
-	CoyoEden.comments.contentBox = CoyoEden.$("<%=txtContent.ClientID %>");
+	CoyoEden.comments.flagImage = CoyoEden.$("imgFlag");
+	CoyoEden.comments.contentBox = CoyoEden.$("txtContent");
 	CoyoEden.comments.moderation = <%=BlogSettings.Instance.EnableCommentsModeration.ToString().ToLowerInvariant() %>;
 	CoyoEden.comments.checkName = <%=(!Page.User.Identity.IsAuthenticated).ToString().ToLowerInvariant() %>;
 	CoyoEden.comments.postAuthor = "<%=CurrentPost.Author %>";
-	CoyoEden.comments.nameBox = CoyoEden.$("<%=txtName.ClientID %>");
-	CoyoEden.comments.emailBox = CoyoEden.$("<%=txtEmail.ClientID %>");
-	CoyoEden.comments.websiteBox = CoyoEden.$("<%=txtWebsite.ClientID %>");
-	CoyoEden.comments.countryDropDown = CoyoEden.$("<%=ddlCountry.ClientID %>"); 
-	CoyoEden.comments.captchaField = CoyoEden.$('<%=hfCaptcha.ClientID %>');
+	CoyoEden.comments.nameBox = CoyoEden.$("txtName");
+	CoyoEden.comments.emailBox = CoyoEden.$("txtEmail");
+	CoyoEden.comments.websiteBox = CoyoEden.$("txtWebsite");
+	CoyoEden.comments.countryDropDown = CoyoEden.$("ddlCountry"); 
+	CoyoEden.comments.captchaField = CoyoEden.$('v');
 	CoyoEden.comments.controlId = '<%=this.UniqueID %>';
 	CoyoEden.comments.replyToId = CoyoEden.$("<%=hiddenReplyTo.ClientID %>"); 
 }
@@ -109,7 +97,7 @@ coco =
      pagetitle     : "<%=this.CurrentPost.Title %>",
      author: "<%=this.CurrentPost.Title %>",
      formID        : "<%=Page.Form.ClientID %>",
-     textareaID    : "<%=txtContent.UniqueID %>",
+     textareaID: "txtContent",
      buttonID      : "btnSaveAjax"
 }
 </script>

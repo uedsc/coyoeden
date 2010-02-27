@@ -44,7 +44,7 @@ namespace CoyoEden.Core
 
 		public static List<StopWord> LoadAll()
 		{
-			return Broker.GetBusinessObjectCollection<StopWord>("Id is not null").ToList();
+            return Broker.GetBusinessObjectCollection<StopWord>("Word is not null").ToList();
 		} 
     }
 }

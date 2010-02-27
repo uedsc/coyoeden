@@ -44,5 +44,15 @@ namespace CoyoEden.Core
 				MessageCount=12
 			};
 		}
+        /// <summary>
+        /// Whether current user is an admin
+        /// </summary>
+        public bool IsAdmin {
+            get
+            {
+                if (UserRoles.Exists(x => x.Role.Name.Equals(BlogSettings.Instance.AdministratorRole, StringComparison.OrdinalIgnoreCase))) return true;
+                return false;
+            }
+        }
     }
 }

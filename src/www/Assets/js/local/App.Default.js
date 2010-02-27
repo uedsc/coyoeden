@@ -2,31 +2,19 @@
 ///<reference path="../Vivasky.StringUtils.js"/>
 ///<reference path="../Vivasky.com.js"/>
 ///<reference path="Local.Common.js"/>
-var App = function() {
+var this$ = function() {
     //private
     var p = {};
     p.isAdmin = function() {
         if (p.opts.admin != "1") return false;
         return true;
     };
-    p.loading = function(f) {
-        if (!f) {
-            if (App.LOADER) {
-                $("#header").before(App.LOADER.html("Server error...")); return false;
-            };
-        };
-        if (f == 1) {//loading...
-            if (App.LOADER) { $("#header").before(App.LOADER.html("Loading...")); };
-        } else if (f == 0) {//hide
-            App.LOADER = $("#web_loading").remove();
-        };
-    };
     p.onWidgetSort = function(data) {
         if (!p.isAdmin()) return false;
-        p.loading(1);
+        LocalApp.Loading(1);
         $.ajaxJsonPost(LocalApp.Asmx("WidgetService", "Sort"), $.toJSON({ data: data.sdata }), function(msg) {
-            p.loading(0);
-        }, p.loading);
+            LocalApp.Loading(0);
+        }, LocalApp.Loading);
     };
     p.onWidgetEditting = function(o) {
         if (p.isAdmin()) {
@@ -35,27 +23,33 @@ var App = function() {
     };
     p.onWidgetRemoving = function(o) {
         if (!p.isAdmin()) return false;
-        p.loading(1);
+        LocalApp.Loading(1);
         $.ajaxJsonPost(
             LocalApp.Asmx("WidgetService", "Delete"), $.toJSON({ data: o.sdata }), function(msg) {
-                p.loading(0);
+                LocalApp.Loading(0);
                 if (!msg.IsError) {
                     o.Target.hide().remove();
                 } else {
                     alert(msg.Body);
                 };
-            }, p.loading);
+            }, LocalApp.Loading);
     };
-    p.onPageOk = function() {
-        p.loading(0);
+    p.onLoaded = function() {
+        LocalApp.Loading(0);
         $(".widget").xwidget({ onSort: p.onWidgetSort, onEdit: p.onWidgetEditting, onRemove: p.onWidgetRemoving });
     };
+    p.initVar = function(opts) {
+        p._opts = opts;
+    }; //initVar
+    p.initEvents = function(opts) {
+        $(document).ready(p.onLoaded);
+    }
 
     //public
     var pub = {};
     pub.Init = function(opts) {
-        p.opts = opts;
-        $(document).ready(p.onPageOk);
+        p.initVar(opts);
+        p.initEvents(opts);
     };
     pub.CloseWidgetEditor = function() {
         $("#jqModal1").jqmHide();

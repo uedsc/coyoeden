@@ -3,19 +3,20 @@
 // This class was auto-generated for use with the SystemX Enterprise Framework.
 // ------------------------------------------------------------------------------
 using System;
-using SystemX.LunaAtom;
-using System.ComponentModel;
-using SystemX.Infrastructure;
-using System.Collections.Generic;
-using System.Linq;
 using System.Collections;
-using System.Threading;
-using SystemX.Web;
-using CoyoEden.Core.Providers;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Net.Mail;
+using System.Threading;
 using System.Web;
 using CoyoEden.Core.Infrastructure;
+using SystemX.Infrastructure;
+using SystemX.LunaAtom;
 using SystemX.LunaBase;
+using SystemX.Web;
+using SystemX;
+using Utils=SystemX.Web.Utils;
 
 namespace CoyoEden.Core
 {    
@@ -32,6 +33,7 @@ namespace CoyoEden.Core
 			DateCreated = DateTime.Now;
 			IsPublished = true;
 			IsCommentEnabled = true;
+            Saved += Post_Saved;
 		}
 
 		#endregion
@@ -180,8 +182,10 @@ namespace CoyoEden.Core
 		/// </summary>
 		public Post Previous
 		{
-			get;
-			set;
+            get
+            {
+                return GetPrev(Thread.CurrentPrincipal.Identity.Name);
+            }
 		}
 		/// <summary>
 		/// Gets the next post relative to this one based on time.
@@ -191,8 +195,9 @@ namespace CoyoEden.Core
 		/// </summary>
 		public Post Next
 		{
-			get;
-			set;
+            get {
+                return GetNext(Thread.CurrentPrincipal.Identity.Name);
+            }
 		}
 
 
@@ -212,10 +217,14 @@ namespace CoyoEden.Core
 		{
 			get
 			{
+                //backward compatible for old posts that having no slug.
+                if (string.IsNullOrEmpty(Slug)) {
+                    Slug = Id.ToString();
+                }
 				string slug = Utils.RemoveIllegalCharacters(Slug) + BlogSettings.Instance.FileExtension;
 
 				if (BlogSettings.Instance.TimeStampPostLinks)
-					return String.Format("{0}post/{1:yyyy/MM/dd}{2}", Utils.RelativeWebRoot, DateCreated, slug);
+					return String.Format("{0}post/{1:yyyy/MM/dd}/{2}", Utils.RelativeWebRoot, DateCreated, slug);
 
 				return String.Format("{0}post/{1}", Utils.RelativeWebRoot, slug);
 			}
@@ -255,29 +264,11 @@ namespace CoyoEden.Core
 						{
 							_Posts = LoadAll();
 							_Posts.TrimExcess();
-							AddRelations();
 						}
 					}
 				}
 
 				return _Posts;
-			}
-		}
-
-		/// <summary>
-		/// Sets the Previous and Next properties to all posts.
-		/// </summary>
-		private static void AddRelations()
-		{
-			for (int i = 0; i < _Posts.Count; i++)
-			{
-				_Posts[i].Next = null;
-				_Posts[i].Previous = null;
-				if (i > 0)
-					_Posts[i].Next = _Posts[i - 1];
-
-				if (i < _Posts.Count - 1)
-					_Posts[i].Previous = _Posts[i + 1];
 			}
 		}
 		#endregion
@@ -463,7 +454,7 @@ namespace CoyoEden.Core
 			}
 		}
 
-		public static event EventHandler<SavedEventArgs> Saved1;
+		public static event EventHandler<SavedEventArgs> SavedX;
         public static event EventHandler<SavedEventArgs> Saving;
         public override IBusinessObject Save()
 		{
@@ -485,11 +476,18 @@ namespace CoyoEden.Core
 
 			var bo=base.Save();
 			
-			if (Saved1 != null && this.Status.IsValid()) {
-				Saved1(this, action);
+			if (SavedX != null && this.Status.IsValid()) {
+				SavedX(this, action);
 			}
             return bo;
 		}
+        void Post_Saved(object sender, BOEventArgs e)
+        {
+            //force to use slug
+            if (String.IsNullOrEmpty(Slug)) {
+                Slug = Title.CHSToPinyin();
+            }
+        }
 		#endregion
 
 		#region base overrides
@@ -511,25 +509,11 @@ namespace CoyoEden.Core
 		/// </summary>
 		public static Post GetPost(Guid id)
 		{
-			return GetPost(id, true);
+            return Broker.GetBusinessObject<Post>(string.Format("Id='{0}'", id));
 		}
 		public static Post GetPost(string title) { 
 			title = Utils.RemoveIllegalCharacters(title);
 			var item = Broker.GetBusinessObject<Post>(string.Format("Title='{0}'", title));
-			return item;
-		}
-		public static Post GetPost(Guid id, bool loadNeighbor) {
-			var item = Broker.GetBusinessObject<Post>(string.Format("Id='{0}'", id));
-			if (null == item) return null;
-			if (loadNeighbor)
-			{
-				//previous post
-				var tempItems = GetPosts(item.DateCreated.Value, true, 1);
-				if (tempItems != null && tempItems.Count > 0) item.Previous = tempItems[0];
-				//next post
-				tempItems = GetPosts(item.DateCreated.Value, false, 1);
-				if (tempItems != null && tempItems.Count > 0) item.Next = tempItems[0];
-			}
 			return item;
 		}
 		public static List<Post> GetPosts(DateTime dateFlag,bool isBefore,int count) { 
@@ -659,7 +643,6 @@ namespace CoyoEden.Core
 		{
 			_Posts = LoadAll();
 			_Posts.Sort();
-			AddRelations();
 		}
 
 		/// <summary>
@@ -799,7 +782,38 @@ namespace CoyoEden.Core
 				ApproveComment(comment);
 			}
 		}
-
+        /// <summary>
+        /// get next Post
+        /// </summary>
+        /// <returns></returns>
+        public Post GetNext(string requestUserName) {
+            var u = User.GetUser(requestUserName);
+            if (null == u) {
+                return Broker.GetBusinessObject<Post>(string.Format("DateCreated>'{0}' and IsPublished=1", DateCreated)); 
+            }
+            if (u.IsAdmin)
+            {
+                return Broker.GetBusinessObject<Post>(string.Format("DateCreated>'{0}'",DateCreated));
+            }
+            return Broker.GetBusinessObject<Post>(string.Format("DateCreated>'{0}' and (IsPublished=1 or Author='{1}')", DateCreated,requestUserName));
+        }
+        /// <summary>
+        /// get previous post
+        /// </summary>
+        /// <param name="requestUserName"></param>
+        /// <returns></returns>
+        public Post GetPrev(string requestUserName) {
+            var u = User.GetUser(requestUserName);
+            if (null == u)
+            {
+                return Broker.GetBusinessObject<Post>(string.Format("DateCreated<'{0}' and IsPublished=1", DateCreated));
+            }
+            if (u.IsAdmin)
+            {
+                return Broker.GetBusinessObject<Post>(string.Format("DateCreated<'{0}'", DateCreated));
+            }
+            return Broker.GetBusinessObject<Post>(string.Format("DateCreated<'{0}' and (IsPublished=1 or Author='{1}')", DateCreated, requestUserName));
+        }
 		#endregion
 	}
 }

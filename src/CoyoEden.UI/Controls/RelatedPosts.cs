@@ -19,7 +19,7 @@ namespace CoyoEden.UI.Controls
 
 		static RelatedPosts()
 		{
-			Post.Saved1 += new EventHandler<SavedEventArgs>(Post_Saved);
+			Post.SavedX += new EventHandler<SavedEventArgs>(Post_Saved);
 		}
 
 		static void Post_Saved(object sender, SavedEventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using CoyoEden.Core;
+using SystemX.Infrastructure;
 namespace CoyoEden.UI
 {
 	public class SiteMaster:SystemX.Web.SiteMaster
@@ -12,5 +13,20 @@ namespace CoyoEden.UI
 				return Page.User.IsInRole(BlogSettings.Instance.AdministratorRole);
 			}
 		}
+
+        private BOMessager _appMsg=new BOMessager();
+        /// <summary>
+        /// messager
+        /// </summary>
+        public virtual BOMessager AppMsg{
+            get
+            {
+                return _appMsg;
+            }
+            set
+            {
+            	_appMsg = value;
+            }
+        }
 	}
 }

@@ -21,7 +21,7 @@ namespace CoyoEden.UI.Controls
 
 		static CategoryList()
 		{
-			Post.Saved1 += (sender, e) => _Html = null;
+			Post.SavedX += (sender, e) => _Html = null;
 			Category.Saved1 += (sender, e) => _Html = null;
 		}
 

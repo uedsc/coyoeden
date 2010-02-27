@@ -38,7 +38,7 @@ public partial class widgets_Newsletter_widget : WidgetBase, ICallbackEventHandl
 
     static widgets_Newsletter_widget()
     {
-        Post.Saved1 += new EventHandler<SavedEventArgs>(Post_Saved);
+        Post.SavedX += new EventHandler<SavedEventArgs>(Post_Saved);
         Post.Saving += new EventHandler<SavedEventArgs>(Post_Saving);
     }
 

@@ -23,7 +23,7 @@ namespace CoyoEden.UI.Controls
 
 		static MonthList()
 		{
-			Post.Saved1 += Post_Saved;
+			Post.SavedX += Post_Saved;
 		}
 
 		static void Post_Saved(object sender, SavedEventArgs e)

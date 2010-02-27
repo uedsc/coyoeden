@@ -22,7 +22,7 @@ namespace CoyoEden.UI.Controls
     static RecentPosts()
     {
       BuildPostList();
-      Post.Saved1 += new EventHandler<SavedEventArgs>(Post_Saved);
+      Post.SavedX += new EventHandler<SavedEventArgs>(Post_Saved);
       Post.CommentAdded += delegate { BuildPostList(); };
       Post.CommentRemoved += delegate { BuildPostList(); };
       Post.Rated += delegate { BuildPostList(); };

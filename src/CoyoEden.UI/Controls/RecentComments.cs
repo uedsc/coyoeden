@@ -26,7 +26,7 @@ namespace CoyoEden.UI.Controls
 			BindComments();
 			Post.CommentAdded += delegate { BindComments(); };
 			Post.CommentRemoved += delegate { BindComments(); };
-			Post.Saved1 += new EventHandler<SavedEventArgs>(Post_Saved);
+			Post.SavedX += new EventHandler<SavedEventArgs>(Post_Saved);
 			PostComment.Approved += delegate { BindComments(); };
 			BlogSettings.Changed += delegate { BindComments(); };
 		}

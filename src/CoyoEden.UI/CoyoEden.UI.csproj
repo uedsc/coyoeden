@@ -112,6 +112,9 @@
     <Compile Include="Views\HeadlineListView.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Views\PostDetail.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Views\PostListView.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
