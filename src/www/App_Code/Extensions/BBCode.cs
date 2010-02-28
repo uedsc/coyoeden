@@ -2,9 +2,7 @@
 
 using System;
 using System.Data;
-using System.Text.RegularExpressions;
 using CoyoEden.Core;
-using CoyoEden.Core.Web.Controls;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.Core.Web.Extensions;
 

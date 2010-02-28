@@ -1,8 +1,8 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" Inherits="CoyoEden.Core.Web.Controls.PostViewBase" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" Inherits="CoyoEden.UI.Views.PostView" %>
 <%@ Import Namespace="SystemX.Web" %>
 <div class="excerpt itemview clearfix" id="<%=ID %>">
 	<div class="intro">
-		<a href="<%=Post.RelativeLink %>" title="<%=Post.Title %>" class="icon"><img width="185" height="185" src="http://img.xiami.com/./images/upload//1259299435_2.jpg" alt="" /></a>
+		<a href="<%=Post.RelativeLink %>" title="<%=Post.Title %>" class="icon"><img src="<%=Icon %>" alt="" /></a>
 		<h4>
 			<a href="<%=Post.RelativeLink %>"><%=Server.HtmlEncode(Post.Title) %> </a>
 		</h4>

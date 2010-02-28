@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.UI;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.Core;
-using CoyoEden.Core.Web.Controls;
 using System.Text.RegularExpressions;
 using SystemX.Web;
 
@@ -11,7 +9,7 @@ namespace CoyoEden.UI.Views
 {
 	public class PostListView:ViewBase
 	{
-		private ViewManager<PostViewBase> vmPost;
+		private ViewManager<PostView> vmPost;
 
 		#region view data
 		public bool NothingToShow {
@@ -88,7 +86,7 @@ namespace CoyoEden.UI.Views
 		public string PostViewPath {
 			get
 			{
-				return GetViewPath("PostView");
+				return ViewPath("PostView");
 			}
 		}
 
@@ -177,7 +175,7 @@ namespace CoyoEden.UI.Views
 		}
 		protected override void OnLoad(EventArgs e)
 		{
-			vmPost = new ViewManager<PostViewBase>(PostViewPath);
+			vmPost = new ViewManager<PostView>(PostViewPath);
 			base.OnLoad(e);
 		}
 		#endregion

@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" Inherits="CoyoEden.Core.Web.Controls.PostViewBase" %>
+<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" Inherits="CoyoEden.UI.Views.PostView" %>
 <%@ Import Namespace="SystemX.Web" %>
 <div class="post xfolkentry" id="post<%=Index %>">
     <h1><a class="postheader taggedlink" href="<%=Post.RelativeLink %>"><%=Server.HtmlEncode(Post.Title) %></a></h1>

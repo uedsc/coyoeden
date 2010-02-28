@@ -2,17 +2,13 @@
 using System.Web;
 using System.Web.Hosting;
 using System.Reflection;
-using System.Configuration;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Xml.Serialization;
 using CoyoEden.Core;
-using CoyoEden.Core.Providers;
-using CoyoEden.Core.Web.Controls;
 using SystemX.Web;
-using System.Web.Configuration;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.Core.DataContracts;
 using SystemX.Infrastructure;

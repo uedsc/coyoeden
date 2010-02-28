@@ -10,7 +10,6 @@ using CoyoEden.Core;
 using System.Web.UI;
 using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
-using CoyoEden.Core.Web.Controls;
 using CoyoEden.UI;
 
 #endregion

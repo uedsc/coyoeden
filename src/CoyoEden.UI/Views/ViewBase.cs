@@ -28,7 +28,7 @@ namespace CoyoEden.UI.Views
 				return string.Format("{0}themes/{1}/",AbsoluteWebRoot,CurrentTheme);
 			}
 		}
-		public virtual string GetViewPath(string viewName) {
+		public virtual string ViewPath(string viewName) {
 			var tempStr = string.Format("themes/{0}/{1}.ascx", CurrentTheme, viewName);
 			var retVal = string.Format("{0}Views/{1}.ascx", Utils.RelativeWebRoot, viewName);
 			if (File.Exists(Utils.ConvertToPhysicalPath(tempStr))) {
@@ -58,9 +58,9 @@ namespace CoyoEden.UI.Views
                 image.Append("http://www.gravatar.com/avatar.php?");
                 image.Append(String.Format("gravatar_id={0}", hash));
                 image.Append("&amp;rating=G");
-                image.Append("&amp;size=" + size);
+                image.Append(String.Format("&amp;size={0}", size));
                 image.Append("&amp;default=");
-                image.Append(Server.UrlEncode(String.Format("{0}themes/{1}/noavatar.jpg", Utils.AbsoluteWebRoot, BlogSettings.Instance.Theme)));
+                image.Append(Server.UrlEncode(String.Format("{0}img/nopic_user.gif",ThemeRoot)));
                 image.Append("\" alt=\"\" />");
                 return image.ToString();
             }
@@ -110,7 +110,7 @@ namespace CoyoEden.UI.Views
         /// render a dropdownlist control
         /// </summary>
         /// <returns></returns>
-        protected virtual string RenderDropDownList(string id,string name,string selecttip,string key,string desc,IEnumerable<object> datasource) {
+        protected virtual string RenderDropDownList(string id,string name,string cssClass,string selecttip,string key,string desc,IEnumerable<object> datasource) {
             var ddl = new SiteDDSelect();
             ddl.ID = id;
             ddl.Name = name;
@@ -118,8 +118,21 @@ namespace CoyoEden.UI.Views
             ddl.DescField = desc;
             ddl.Tip = selecttip;
             ddl.DataSource = datasource;
+            ddl.CssClass = cssClass;
 
             var html=new ViewManager<SiteDDSelect>(ddl, false).Render();
+            return html;
+        }
+        /// <summary>
+        /// render a view
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="viewName"></param>
+        /// <returns></returns>
+        protected virtual string RenderView<T>(string viewName) where T:Control 
+        {
+            var vm = ViewPath(viewName);
+            var html = new ViewManager<T>(vm).Render();
             return html;
         }
 	}

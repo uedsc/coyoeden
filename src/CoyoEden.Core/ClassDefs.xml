@@ -125,6 +125,11 @@
         <add key="maxLength" value="255" />
       </rule>
     </property>
+    <property name="Icon">
+      <rule name="Icon">
+        <add key="maxLength" value="100"/>
+      </rule>
+    </property>
     <primaryKey>
       <prop name="Id" />
     </primaryKey>

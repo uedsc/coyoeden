@@ -73,6 +73,9 @@
     <Compile Include="Controllers\WidgetController.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\SiteCssX.cs" />
+    <Compile Include="PageSiteMap.cs" />
+    <Compile Include="RewriteFormHtmlTextWriter.cs" />
     <Compile Include="SiteBasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -103,7 +106,13 @@
     <Compile Include="SiteMaster.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Views\CommentFormView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Views\CommentListView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CommentView.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\CommonItemListViewM.cs">
@@ -116,6 +125,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\PostListView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PostView.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\SiteTop.cs">

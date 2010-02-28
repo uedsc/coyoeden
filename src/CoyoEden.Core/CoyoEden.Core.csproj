@@ -194,14 +194,6 @@
       <DependentUpon>UserTag.cs</DependentUpon>
     </Compile>
     <Compile Include="Web\AppConfig.cs" />
-    <Compile Include="Web\Controls\CommentViewBase.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Web\Controls\PageSiteMap.cs" />
-    <Compile Include="Web\Controls\PostViewBase.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Web\Controls\RewriteFormHtmlTextWriter.cs" />
     <Compile Include="Web\Extensions\ExtensionManager.cs" />
     <Compile Include="Web\Extensions\ExtensionParameter.cs" />
     <Compile Include="Web\Extensions\ExtensionSettings.cs" />
@@ -265,6 +257,7 @@
     <Folder Include="Syndication\Data\" />
     <Folder Include="Syndication\Extensions\Common\" />
     <Folder Include="Syndication\Rss\" />
+    <Folder Include="Web\Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

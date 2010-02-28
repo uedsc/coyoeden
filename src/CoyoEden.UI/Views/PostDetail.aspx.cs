@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CoyoEden.Core;
 using SystemX.Web;
-using CoyoEden.Core.Web.Controls;
 using CoyoEden.Core.Infrastructure;
-using System.Web.UI.WebControls;
-using System.Web.UI;
-using System.IO;
+using System.Globalization;
+using System.Web;
 
 namespace CoyoEden.UI.Views
 {
@@ -40,12 +36,12 @@ namespace CoyoEden.UI.Views
         /// Render a Post
         /// </summary>
         /// <returns></returns>
-        protected string RenderPost(string viewName) {
-            var vm = new ViewManager<PostViewBase>(ViewPath(viewName??"PostView"));
+        protected string RenderPost(string viewName,bool hideIcon) {
+            var vm = new ViewManager<PostView>(ViewPath(viewName??"PostView"));
             vm.Control.Post = ViewModel;
             vm.Control.ID = ViewModel.Id.ToString().Replace("-", string.Empty);
             vm.Control.Location = ServingLocation.SinglePost;
-
+            vm.Control.HidePostIcon = hideIcon;
             AddGenericLink("application/rss+xml", "alternate", String.Format("{0} (RSS)", Server.HtmlEncode(ViewModel.Title)), String.Format("{0}?format=ATOM", vm.Control.CommentFeed));
             AddGenericLink("application/rss+xml", "alternate", String.Format("{0} (ATOM)", Server.HtmlEncode(ViewModel.Title)), String.Format("{0}?format=ATOM", vm.Control.CommentFeed));
 
@@ -173,7 +169,56 @@ namespace CoyoEden.UI.Views
                 return false;
             }
         }
-    
+        /// <summary>
+        /// icon for the post
+        /// </summary>
+        public string Icon
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(ViewModel.Icon)) return string.Format("{0}img/nopic_post.jpg", ThemeRoot);
+                return ViewModel.Icon;
+            }
+        }
+        /// <summary>
+        /// Displays the Post's categories seperated by the specified string.
+        /// </summary>
+        protected virtual string CategoryLinks(string separator)
+        {
+            string[] keywords = new string[ViewModel.Categories.Count];
+            string link = "<a href=\"{0}\" title=\"View all posts in {1}\" rel=\"category tag\" class=\"link_category\">{1}</a>";
+            for (int i = 0; i < ViewModel.Categories.Count; i++)
+            {
+                Category c = Category.GetCategory(ViewModel.Categories[i].Id.Value);
+                if (c != null)
+                {
+                    keywords[i] = string.Format(CultureInfo.InvariantCulture, link, c.RelativeLink, c.Name);
+                }
+            }
+
+
+            return string.Join(separator, keywords);
+        }
+
+        /// <summary>
+        /// Displays the Post's tags seperated by the specified string.
+        /// </summary>
+        protected virtual string TagLinks(string separator)
+        {
+            if (ViewModel.Tags.Count == 0)
+                return null;
+
+            string[] tags = new string[ViewModel.Tags.Count];
+            string link = "<a href=\"{0}/{1}\" rel=\"tag\">{2}</a>";
+            string path = String.Format("{0}?tag=", Utils.RelativeWebRoot);
+            for (int i = 0; i < ViewModel.Tags.Count; i++)
+            {
+                string tag = ViewModel.Tags[i];
+                tags[i] = string.Format(CultureInfo.InvariantCulture, link, path, HttpUtility.UrlEncode(tag), HttpUtility.HtmlEncode(tag));
+            }
+
+            return string.Join(separator, tags);
+        }
         #endregion
     }
 }

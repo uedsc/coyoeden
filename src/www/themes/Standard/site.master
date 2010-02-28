@@ -98,7 +98,7 @@
 			<!--Second navi-->
 		</ul>
 	</div>
-	<div id="channel_tab" class="wrap1280"></div>
+	<div id="channel_tab" class="wrap1280"><asp:ContentPlaceHolder ID="cphChannelTab" runat="server"></asp:ContentPlaceHolder></div>
 	<div id="main" class="wrap1280 clearfix">
 		<form id="Form1" runat="Server" class="body">
 			<asp:ContentPlaceHolder ID="cphBody" runat="server" />

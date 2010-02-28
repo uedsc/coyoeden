@@ -1,15 +1,11 @@
 #region Using
 
 using System;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 using CoyoEden.Core;
-using CoyoEden.Core.Web.Controls;
 using System.Collections.Generic;
 using SystemX.Web;
 using CoyoEden.Core.Infrastructure;
+using CoyoEden.UI.Views;
 
 #endregion
 
@@ -49,7 +45,7 @@ public partial class post : CoyoEden.UI.SiteBasePage
 
                 string path = String.Format("{0}themes/{1}/PostView.ascx", Utils.RelativeWebRoot, theme);
 
-				PostViewBase postView = (PostViewBase)LoadControl(path);
+				var postView = (PostView)LoadControl(path);
 				postView.Post = Post;
 				postView.ID = Post.Id.ToString().Replace("-", string.Empty);
 				postView.Location = ServingLocation.SinglePost;

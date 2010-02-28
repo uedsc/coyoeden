@@ -124,7 +124,7 @@
     <value>Add entry</value>
   </data>
   <data name="addComment" xml:space="preserve">
-    <value>Add comment</value>
+    <value>Leave Your Comment</value>
   </data>
   <data name="addCustomCodeToHeader" xml:space="preserve">
     <value>Add custom code to the HTML head section</value>

@@ -1,13 +1,9 @@
 #region using
 
 using System;
-using System.IO;
-using System.Text;
 using System.Web;
 using System.Text.RegularExpressions;
-using System.Web.Caching;
 using CoyoEden.Core;
-using CoyoEden.Core.Web.Controls;
 using CodeFormatter;
 using CoyoEden.Core.Infrastructure;
 

@@ -1,8 +1,9 @@
 using System;
 using System.Web;
 using SystemX.Web;
+using CoyoEden.Core;
 
-namespace CoyoEden.Core.Web.Controls
+namespace CoyoEden.UI
 {
   /// <summary>
   /// A site map provider for the Pages in CoyoEden.

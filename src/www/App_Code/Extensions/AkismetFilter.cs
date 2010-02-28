@@ -2,8 +2,6 @@
 using System.Net;
 using System.Web;
 using System.IO;
-using CoyoEden.Core;
-using CoyoEden.Core.Web.Controls;
 using Joel.Net;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.Core.Web.Extensions;

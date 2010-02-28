@@ -7,7 +7,7 @@ using SystemX.Web;
 
 #endregion
 
-namespace CoyoEden.Core.Web.Controls
+namespace CoyoEden.UI
 {
 
 	/// <summary>

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CoyoEden.Core;
 using SystemX.Web;
-using CoyoEden.Core.Web.Controls;
 using CoyoEden.Core.Infrastructure;
 
 namespace CoyoEden.UI.Views
@@ -36,14 +33,14 @@ namespace CoyoEden.UI.Views
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-			_ItemViewPath =_ItemViewPath?? GetViewPath("HeadlineView");
-			vmPost = new ViewManager<PostViewBase>(ItemViewPath);
+			_ItemViewPath =_ItemViewPath?? ViewPath("HeadlineView");
+			vmPost = new ViewManager<PostView>(ItemViewPath);
 			ShowCount = ShowCount < 1 ? 1 : ShowCount;
 			var tempTotal = 0;
 			HeadlinesToShow = Post.GetPosts(true, ShowCount, out tempTotal);
 			Total = tempTotal;
 		}
-		private ViewManager<PostViewBase> vmPost;
+		private ViewManager<PostView> vmPost;
 		protected string RenderSinglePost(Post post, int index)
 		{
 			vmPost.Control.ShowExcerpt = true;

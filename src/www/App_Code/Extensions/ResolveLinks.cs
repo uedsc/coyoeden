@@ -4,7 +4,6 @@ using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using CoyoEden.Core;
-using CoyoEden.Core.Web.Controls;
 using CoyoEden.Core.Infrastructure;
 
 #endregion

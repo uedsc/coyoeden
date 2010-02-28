@@ -1,4 +1,4 @@
-<%@ Control Language="C#" EnableViewState="False" Inherits="CoyoEden.Core.Web.Controls.CommentViewBase" %>
+<%@ Control Language="C#" EnableViewState="False" Inherits="CoyoEden.UI.Views.CommentView" %>
 
 <div id="id_<%=Comment.Id %>" class="vcard comment<%= Post.Author.Equals(Comment.Author, StringComparison.OrdinalIgnoreCase) ? " self" : "" %>">
   <p class="date"><%= Comment.DateCreated %> <a href="#id_<%=Comment.Id %>">#</a></p>

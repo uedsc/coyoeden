@@ -12,5 +12,6 @@ namespace CoyoEden.Core.Infrastructure
 		string FullName { get;}
 		string Description { get; set; }
 		Guid? ParentID { get; set; }
+        string RelativeLink { get; }
 	}
 }

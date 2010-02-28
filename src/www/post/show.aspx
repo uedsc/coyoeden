@@ -1,7 +1,37 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/themes/Standard/site.master" Inherits="CoyoEden.UI.Views.PostDetail"%>
+﻿<%@ Page Title="" Language="C#" Inherits="CoyoEden.UI.Views.PostDetail"%>
+<%@ MasterType TypeName="CoyoEden.UI.SiteMaster" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphHeader" Runat="Server">
+<% this.Master.CssClass = UserIsAdmin ? "admin postdetail" : "postdetail"; %>
+<vs:SiteCssX ID="csspostshow" CSSPathInTheme="post.show.css" runat="server"/>
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cphChannelTab" Runat="Server">
+<ul>
+<%var i = 0; %>
+<%ViewModel.Categories.ForEach(x =>
+  { %>
+  <li><a class="<%=i==0?"tab_cur":"" %>" title="" href="<%=x.RelativeLink %>"><span><%=x.Name %></span></a></li>
+  <%i++; %>
+<%}); %>
+<li><h2>/ <%=ViewModel.Title %></h2></li>
+</ul>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphBody" Runat="Server">
+<div id="m300_right">
+<div id="post_info" class="sec_side">
+<p class="icon">
+<img src="<%=Icon %>" alt="<%=ViewModel.Title %>">
+</p>
+<h4><%=ViewModel.Title %></h4>
+<div class="userinfo">
+	<ul>
+		<li><span>作者：</span><a href="<%=Utils.AbsoluteWebRoot %>author/<%=ViewModel.Author %>.aspx" title=""><%=ViewModel.Author %></a></li>
+		<li><span>分类：</span><%=CategoryLinks("|") %></li>
+		<li><span>分类：</span><%=TagLinks("|") %></li>
+		<li><span>发布时间：</span><%=ViewModel.DateCreated %></li>
+	</ul>
+</div>	
+</div>
+</div>
 <div id="m300_left">
 <!--Notification Unsubscription for comments-->
 <%if (NotificationUnsubscription)
@@ -12,10 +42,10 @@
 </div>
 <%} %>
 <!--Post body-->
-<%=RenderPost("PostView") %>
+<%=RenderPost("PostView",true) %>
 <!--/Post body-->
 <!--Post navigation-->
-<div id="postnavigation">
+<div id="postnavigation" class="clearfix">
 <%if (null != ViewModel.Previous)
   {%>
   <%AddGenericLink("prev", ViewModel.Title, ViewModel.RelativeLink.ToString()); %>
@@ -24,7 +54,7 @@
 <%if (null != ViewModel.Next)
   {%>
   <%AddGenericLink("next", ViewModel.Title, ViewModel.RelativeLink.ToString()); %>
-  <span class="next">--<a href="<%=ViewModel.RelativeLink %>" title="<%=Resources.labels.previousPost %>"><%=Server.HtmlEncode(ViewModel.Next.Title)%></a></span>
+  <span class="next"><a href="<%=ViewModel.RelativeLink %>" title="<%=Resources.labels.previousPost %>"><%=Server.HtmlEncode(ViewModel.Next.Title)%></a></span>
 <%} %>
 </div>
 <!--BlogSettings.Instance.EnableTrackBackReceive-->
@@ -41,9 +71,6 @@
   <%=RenderRelatedPost(3,true,200)%>
 <%} %>
 <%=RenderCommentsView("CommentList") %>
-</div>
-<div id="m300_right">
-
 </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphFooter" Runat="Server">

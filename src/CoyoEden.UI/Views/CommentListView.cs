@@ -4,7 +4,6 @@ using System.Text;
 using CoyoEden.Core;
 using SystemX.Web;
 using System.Web.UI.WebControls;
-using CoyoEden.Core.Web.Controls;
 using CoyoEden.Core.Infrastructure;
 using CoyoEden.Core.DataContracts;
 using System.Web;
@@ -53,7 +52,7 @@ namespace CoyoEden.UI.Views
 		public string CommentViewPath {
 			get
 			{
-				return GetViewPath("CommentView");
+				return ViewPath("CommentView");
 			}
 		}
 		public bool NestingSupported {
@@ -113,7 +112,7 @@ namespace CoyoEden.UI.Views
 			if (nestedComments.Count == 0) return;
 			nestedComments.ForEach(x =>
 			{
-				var control = (CommentViewBase)LoadControl(CommentViewPath);
+				var control = (CommentView)LoadControl(CommentViewPath);
 				if (x.IsApproved.Value || !BlogSettings.Instance.EnableCommentsModeration || (!x.IsApproved.Value && Page.User.Identity.IsAuthenticated))
 				{
 					control.Comment = x as PostComment;
@@ -140,7 +139,7 @@ namespace CoyoEden.UI.Views
 			{
 				if (comment.IsApproved.Value || !BlogSettings.Instance.EnableCommentsModeration)
 				{
-					CommentViewBase control = (CommentViewBase)LoadControl(CommentViewPath);
+					var control = (CommentView)LoadControl(CommentViewPath);
 					control.Comment = comment as PostComment;
 					control.Post = CurrentPost;
 					phComments.Controls.Add(control);
@@ -151,7 +150,7 @@ namespace CoyoEden.UI.Views
 			if (!Page.User.Identity.IsAuthenticated) return;
 			foreach (var comment in CurrentPost.NotApprovedComments)
 			{
-				CommentViewBase control = (CommentViewBase)LoadControl(CommentViewPath);
+				var control = (CommentView)LoadControl(CommentViewPath);
 				control.Comment = comment as PostComment;
 				control.Post = CurrentPost;
 				phComments.Controls.Add(control);
@@ -315,7 +314,7 @@ namespace CoyoEden.UI.Views
 			}
 
 			
-			CommentViewBase control = (CommentViewBase)LoadControl(CommentViewPath);
+			var control = (CommentView)LoadControl(CommentViewPath);
 			control.Comment = comment;
 			control.Post = CurrentPost;
 

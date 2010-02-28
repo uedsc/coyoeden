@@ -2,8 +2,6 @@
 
 using System;
 using System.Web;
-using System.Web.UI;
-using CoyoEden.Core.Web.Controls;
 using CoyoEden.Core;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
@@ -14,7 +12,7 @@ using CoyoEden.Core.Infrastructure;
 /// <summary>
 /// Breaks a post where [more] is found in the body and adds a link to full post.
 /// </summary>
-[Extension("Breaks a post where [more] is found in the body and adds a link to full post", "1.4", "CoyoEden.NET", 1010)]
+[Extension("Breaks a post where [more] is found in the body and adds a link to full post", "1.0", "CoyoEden.NET", 1010)]
 public class BreakPost
 {
 

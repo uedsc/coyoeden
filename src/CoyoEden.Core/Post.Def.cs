@@ -170,6 +170,16 @@ namespace CoyoEden.Core
                 base.SetPropertyValue("Slug", value);
             }
         }
+        public virtual string Icon {
+            get
+            {
+                return base.GetPropertyValue<string>("Icon");
+            }
+            set
+            {
+                base.SetPropertyValue("Icon", value);
+            }
+        }
         #endregion
         
         #region Relationships

@@ -13,8 +13,7 @@ using CoyoEden.Core.Infrastructure;
 
 #endregion
 
-namespace CoyoEden.Core.Web.Controls
-{
+namespace CoyoEden.UI.Views{
 	/// <summary>
 	/// The PostView.ascx that is located in the themes folder
 	/// has to inherit from this class. 
@@ -22,7 +21,7 @@ namespace CoyoEden.Core.Web.Controls
 	/// It provides the basic functionaly needed to display a post.
 	/// </remarks>
 	/// </summary>
-	public class PostViewBase : UserControl
+	public class PostView : UserControl
 	{
 		/// <summary>
 		/// Lets process our .Body content and build up our controls collection
@@ -147,7 +146,8 @@ namespace CoyoEden.Core.Web.Controls
 			get { return _ShowExcerpt; }
 			set { _ShowExcerpt = value; }
 		}
-
+        public bool HidePostIcon { get; set; }
+        public bool ShowUserIcon { get; set; }
 		private int _Index;
 		/// <summary>
 		/// The index of the post in a list of posts displayed
@@ -209,7 +209,38 @@ namespace CoyoEden.Core.Web.Controls
 		{
 			get { return Post.RelativeLink.Replace("/post/", "/post/feed/"); }
 		}
-
+        /// <summary>
+        /// icon for the post
+        /// </summary>
+        public string Icon {
+            get
+            {
+                if (string.IsNullOrEmpty(Post.Icon)) return string.Format("{0}img/nopic_post.jpg",ThemeRoot);
+                return Post.Icon;
+            }
+        }
+        /// <summary>
+        /// Current theme
+        /// </summary>
+        public virtual string CurrentTheme
+        {
+            get
+            {
+                string theme = Request.QueryString["theme"];
+                theme = string.IsNullOrEmpty(theme) ? BlogSettings.Instance.Theme : theme;
+                return theme;
+            }
+        }
+        /// <summary>
+        /// Url root of current theme
+        /// </summary>
+        public virtual string ThemeRoot
+        {
+            get
+            {
+                return string.Format("{0}themes/{1}/", Utils.AbsoluteWebRoot, CurrentTheme);
+            }
+        }
 		#region Protected methods
 
 		/// <summary>
