@@ -314,7 +314,6 @@ namespace Cynthia.Web.Framework
  
         public static string GetMonthName(int month)
 		{
-            if (month == null) { return GetMonthName(1); }
             if (month < 1) { return GetMonthName(1); }
 
             if (CultureInfo.CurrentCulture.Name == "fa-IR")
@@ -361,30 +360,6 @@ namespace Cynthia.Web.Framework
         {
             return TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.Now).TotalHours;
         }
-
-        
-        //public static double GetServerGMTOffset()
-        //{
-        //    Double timeOffset = Double.Parse("-5.00", CultureInfo.InvariantCulture);
-
-        //    if (ConfigurationManager.AppSettings["GreenwichMeantimeOffset"] != null)
-        //    {
-        //        if (!Double.TryParse(
-        //            ConfigurationManager.AppSettings["GreenwichMeantimeOffset"],
-        //            NumberStyles.Any,
-        //            CultureInfo.InvariantCulture,
-        //            out timeOffset))
-        //        {
-        //            timeOffset = Double.Parse("-5.00", CultureInfo.InvariantCulture);
-        //        }
-
-        //    }
-
-        //    return timeOffset;
-
-        //}
-
-        
         public static double GetPreferredGmtOffset()
         {
             Double timeOffset;

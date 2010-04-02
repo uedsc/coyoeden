@@ -52,6 +52,9 @@
         </cy:InsecurePanel>
     </div>
     <div id="wrapcenter">
+		<asp:Panel ID="divAlt1" runat="server" CssClass="topside" Visible="True">
+		<asp:ContentPlaceHolder ID="altContent1" runat="server"></asp:ContentPlaceHolder>
+		</asp:Panel>
 	    <asp:Panel id="divLeft" runat="server" cssclass="leftside" visible="True" SkinID="pnlPlain">
 		    <portal:PageMenu id="PageMenu1" runat="server" UseTreeView="true" TreeViewShowExpandCollapse="true"  />
 		    <a id="startcontent"></a>
@@ -64,18 +67,19 @@
 	    </asp:Panel>
 	    <asp:Panel id="divRight" runat="server" visible="True" cssclass="rightside" SkinID="pnlPlain">
 			    <asp:contentplaceholder ID="rightContent" runat="server"></asp:contentplaceholder>
-	    </asp:Panel>		
+	    </asp:Panel>
+	    <asp:Panel ID="divAlt2" runat="server" CssClass="bottomside" Visible="True">
+		<asp:ContentPlaceHolder ID="altContent2" runat="server"></asp:ContentPlaceHolder>
+		</asp:Panel>		
 	</div>
 	<div id="wrapfooter">
 	    <br class="clear" />
 	    <portal:SiteMapLink id="SiteMapLink1" runat="server" CssClass="sitemaplink" /> |
 	    <portal:SkinPreview id="SkinPreview1" runat="server"></portal:SkinPreview> | 
-	    <portal:CopyrightLabel ID="cl1" runat="server"   ShowYear="true" BeginYear="2008" />
-	    <br /><br />
+	    <portal:CopyrightLabel ID="cl1" runat="server"   ShowYear="true" BeginYear="2008" /> |
 		<portal:CynthiaLink id="lnkCynthia" UseImage="false" runat="server" /> |
 		<portal:XhtmlValidatorLink id="lnkw3cValidator" UseImage="false" runat="server" Html5="true" /> |
-		<portal:CSSValidatorLink id="lnkCSSVal1" UseImage="false" runat="server" /> |
-        <a title="Visit the web site of the designer" href="http://www.styleshout.com/">Design by styleshout</a>
+		<portal:CSSValidatorLink id="lnkCSSVal1" UseImage="false" runat="server" />
 	</div>
 </div>
 

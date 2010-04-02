@@ -134,7 +134,9 @@
 </div>
 </div>
 <!--/#home_slider-->
-
+<asp:Panel ID="divAlt1" runat="server" CssClass="topside" Visible="True">
+<asp:ContentPlaceHolder ID="altContent1" runat="server"></asp:ContentPlaceHolder>
+</asp:Panel>
 <form id="frmMain" runat="server">
 <asp:SiteMapDataSource ID="SiteMapData" runat="server" ShowStartingNode="false" />
 <asp:SiteMapDataSource ID="PageMapDataSource" runat="server" ShowStartingNode="false" />
@@ -159,7 +161,7 @@
 	    <br class="clear" />
 	    <portal:SiteMapLink id="SiteMapLink1" runat="server" CssClass="sitemaplink" /> |
 	    <portal:SkinPreview id="SkinPreview1" runat="server"></portal:SkinPreview> | 
-	    <portal:CopyrightLabel ID="cl1" runat="server"   ShowYear="true" BeginYear="2008" />
+	    <portal:CopyrightLabel ID="cl1" runat="server"  ShowYear="true" BeginYear="2009"/>
 	    <br /><br />
 		<portal:CynthiaLink id="lnkCynthia" UseImage="false" runat="server" /> |
 		<portal:XhtmlValidatorLink id="lnkw3cValidator" UseImage="false" runat="server" Html5="true" /> |
@@ -201,6 +203,9 @@ $(document).ready(function(){
 <portal:CGoogleAnalyticsScript ID="CGoogleAnalyticsScript1" runat="server" />
 <portal:Woopra ID="woopra11" runat="server" />
 </form>
+<asp:Panel ID="divAlt2" runat="server" CssClass="bottomside" Visible="True">
+<asp:ContentPlaceHolder ID="altContent2" runat="server"></asp:ContentPlaceHolder>
+</asp:Panel>
 <vs:SiteJScript ID="js_json" ScriptRelativeToRoot="ClientScript/jqCynthia/jquery.json-1.3.min.js" runat="server"/>
 <vs:SiteJScript ID="js_str" ScriptRelativeToRoot="ClientScript/jqCynthia/jquery.string.1.0.js" runat="server"/>
 <vs:SiteJScript ID="js_levin" ScriptRelativeToRoot="ClientScript/jqCynthia/jquery.levin.js" runat="server"/>
@@ -210,6 +215,6 @@ $(document).ready(function(){
     //<![CDATA[
     this$.Init({});
     //]]>
-</script> 
+</script>
 </body>
 </html>

@@ -56,317 +56,69 @@
                             <div class="settingrow pageditnotes">
                                 <asp:Literal ID="litEditNotes" runat="server" />
                             </div>
-                            <div class="settingrow">
-                                &nbsp;</div>
-                            <table border="0">
-                                <tr>
-                                    <td>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </td>
-                                    <td valign="top">
-                                        <table cellspacing="0" cellpadding="2" border="0" class="layoutleft">
-                                            <tr>
-                                                <td align="center">
-                                                    <h2>
-                                                        <cy:SiteLabel ID="lblLeftPane" runat="server" ConfigKey="PageLayoutLeftPaneLabel"
-                                                            UseLabelTag="false"> </cy:SiteLabel>
-                                                    </h2>
-                                                </td>
-                                            </tr>
-                                            <tr valign="top">
-                                                <td>
-                                                    <table cellspacing="0" cellpadding="3" border="0">
-                                                        <tr valign="top">
-                                                            <td rowspan="6">
-                                                                <asp:ListBox ID="leftPane" runat="server" DataValueField="ModuleID" DataTextField="ModuleTitle"
-                                                                    Width="170" Rows="12"></asp:ListBox>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="LeftUpBtn" runat="server" ImageUrl="~/Data/SiteImages/up.gif"
-                                                                    CommandName="up" CommandArgument="LeftPane"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="LeftRightBtn" runat="server" ImageUrl="~/Data/SiteImages/rt.gif"
-                                                                    CommandName="right"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="LeftDownBtn" runat="server" ImageUrl="~/Data/SiteImages/dn.gif"
-                                                                    CommandName="down" CommandArgument="LeftPane"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="LeftEditBtn" runat="server" I CommandName="edit" CommandArgument="LeftPane">
-                                                                </asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="LeftDeleteBtn" runat="server" CommandName="delete" CommandArgument="LeftPane">
-                                                                </asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td valign="top">
-                                        <table cellspacing="0" cellpadding="2" border="0" class="layoutcenter">
-                                            <tr>
-                                                <td align="center">
-                                                    <h2>
-                                                        <cy:SiteLabel ID="lblContentPane" runat="server" ConfigKey="PageLayoutContentPaneLabel"
-                                                            UseLabelTag="false"> </cy:SiteLabel>
-                                                    </h2>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td align="center">
-                                                    <table cellspacing="0" cellpadding="3" border="0">
-                                                        <tr valign="top">
-                                                            <td rowspan="8">
-                                                                <asp:ListBox ID="contentPane" runat="server" DataValueField="ModuleID" DataTextField="ModuleTitle"
-                                                                    Width="170" Rows="12" ></asp:ListBox>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="ContentUpBtn" runat="server" ImageUrl="~/Data/SiteImages/up.gif"
-                                                                    CommandName="up" CommandArgument="ContentPane"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="ContentLeftBtn" runat="server" ImageUrl="~/Data/SiteImages/lt.gif">
-                                                                </asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="ContentRightBtn" runat="server" ImageUrl="~/Data/SiteImages/rt.gif">
-                                                                </asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="ContentDownBtn" runat="server" ImageUrl="~/Data/SiteImages/dn.gif"
-                                                                    CommandName="down" CommandArgument="ContentPane"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="ContentEditBtn" runat="server" 
-                                                                    CommandName="edit" CommandArgument="ContentPane"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="ContentDeleteBtn" runat="server" 
-                                                                    CommandName="delete" CommandArgument="ContentPane"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="bottom">
-                                                                <asp:ImageButton ID="ContentDownToNextButton" runat="server" ImageUrl="~/Data/SiteImages/dn.gif"
-                                                                    CommandName="downtoalt1" CommandArgument="ContentPane"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td valign="top">
-                                        <table cellspacing="0" cellpadding="2" border="0" class="layoutright">
-                                            <tr>
-                                                <td align="center">
-                                                    <h2>
-                                                        <cy:SiteLabel ID="lblRightPane" runat="server" ConfigKey="PageLayoutRightPaneLabel"
-                                                            UseLabelTag="false"> </cy:SiteLabel>
-                                                    </h2>
-                                                </td>
-                                            </tr>
-                                            <tr valign="top">
-                                                <td>
-                                                    <table cellspacing="0" cellpadding="3" border="0">
-                                                        <tr valign="top">
-                                                            <td rowspan="6">
-                                                                <asp:ListBox ID="rightPane" runat="server" DataValueField="ModuleID" DataTextField="ModuleTitle"
-                                                                    Width="170" Rows="12" ></asp:ListBox>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="RightUpBtn" runat="server" ImageUrl="~/Data/SiteImages/up.gif"
-                                                                    CommandName="up" CommandArgument="RightPane"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="RightLeftBtn" runat="server" ImageUrl="~/Data/SiteImages/lt.gif">
-                                                                </asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="RightDownBtn" runat="server" ImageUrl="~/Data/SiteImages/dn.gif"
-                                                                    CommandName="down" CommandArgument="RightPane"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="RightEditBtn" runat="server" 
-                                                                    CommandName="edit" CommandArgument="RightPane"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="RightDeleteBtn" runat="server" 
-                                                                    CommandName="delete" CommandArgument="RightPane"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr id="trAltInfo" runat="server">
-                                    <td colspan="4">
-                                        <cy:SiteLabel ID="SiteLabel5" runat="server" ConfigKey="PageLayoutAltPanelInfo" UseLabelTag="false">
-                                        </cy:SiteLabel>
-                                    </td>
-                                </tr>
-                                <tr id="trAltPanel1" runat="server">
-                                    <td colspan="2">
-                                    </td>
-                                    <td colspan="2">
-                                        <table cellspacing="0" cellpadding="2" border="0">
-                                            <tr>
-                                                <td align="center">
-                                                    <h2>
-                                                        <cy:SiteLabel ID="SiteLabel3" runat="server" ConfigKey="PageLayoutAltPanel1Label"
-                                                            UseLabelTag="false"> </cy:SiteLabel>
-                                                    </h2>
-                                                </td>
-                                            </tr>
-                                            <tr valign="top">
-                                                <td>
-                                                    <table cellspacing="0" cellpadding="3" border="0">
-                                                        <tr valign="top">
-                                                            <td rowspan="7">
-                                                                <asp:ListBox ID="lbAltContent1" runat="server" DataValueField="ModuleID" DataTextField="ModuleTitle"
-                                                                    Width="170" Rows="10"></asp:ListBox>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="btnMoveAlt1ToCenter" runat="server" ImageUrl="~/Data/SiteImages/up.gif">
-                                                                </asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="btnAlt1MoveUp" runat="server" ImageUrl="~/Data/SiteImages/up.gif"
-                                                                    CommandName="up" CommandArgument="altcontent1"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="btnAlt1MoveDown" runat="server" ImageUrl="~/Data/SiteImages/dn.gif"
-                                                                    CommandName="down" CommandArgument="altcontent1"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="btnEditAlt1" runat="server" 
-                                                                    CommandName="edit" CommandArgument="lbAltContent1"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="btnDeleteAlt1" runat="server" 
-                                                                    CommandName="delete" CommandArgument="lbAltContent1"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="btnMoveAlt1ToAlt2" runat="server" ImageUrl="~/Data/SiteImages/dn.gif">
-                                                                </asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr id="trAltPanel2" runat="server">
-                                    <td colspan="2">
-                                    </td>
-                                    <td colspan="2">
-                                        <table cellspacing="0" cellpadding="2" border="0">
-                                            <tr>
-                                                <td align="center">
-                                                    <h2>
-                                                        <cy:SiteLabel ID="SiteLabel4" runat="server" ConfigKey="PageLayoutAltPanel2Label"
-                                                            UseLabelTag="false"> </cy:SiteLabel>
-                                                    </h2>
-                                                </td>
-                                            </tr>
-                                            <tr valign="top">
-                                                <td>
-                                                    <table cellspacing="0" cellpadding="3" border="0">
-                                                        <tr valign="top">
-                                                            <td rowspan="6">
-                                                                <asp:ListBox ID="lbAltContent2" runat="server" DataValueField="ModuleID" DataTextField="ModuleTitle"
-                                                                    Width="170" Rows="9"></asp:ListBox>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="btnMoveAlt2ToAlt1" runat="server" ImageUrl="~/Data/SiteImages/up.gif">
-                                                                </asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="btnAlt2MoveUp" runat="server" ImageUrl="~/Data/SiteImages/up.gif"
-                                                                    CommandName="up" CommandArgument="AltContent2"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="btnAlt2MoveDown" runat="server" ImageUrl="~/Data/SiteImages/dn.gif"
-                                                                    CommandName="down" CommandArgument="AltContent2"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="btnEditAlt2" runat="server" 
-                                                                    CommandName="edit" CommandArgument="lbAltContent2"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td valign="top">
-                                                                <asp:ImageButton ID="btnDeleteAlt2" runat="server" 
-                                                                    CommandName="delete" CommandArgument="lbAltContent2"></asp:ImageButton>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="settingrow sitetip" id="rAltInfo" runat="server">
+                            <cy:SiteLabel ID="SiteLabel5" runat="server" ConfigKey="PageLayoutAltPanelInfo" UseLabelTag="false"></cy:SiteLabel>
+                            </div>
+                            <dl id="panel_list" class="clearfix">
+								<dd>
+									<h2><cy:SiteLabel ID="lblLeftPane" runat="server" ConfigKey="PageLayoutLeftPaneLabel" UseLabelTag="false"> </cy:SiteLabel></h2>
+									<div class="actions">                                                                
+										<asp:ImageButton ID="LeftUpBtn" runat="server" ImageUrl="~/Data/SiteImages/up.gif" CommandName="up" CommandArgument="LeftPane"></asp:ImageButton>
+										<asp:ImageButton ID="LeftRightBtn" runat="server" ImageUrl="~/Data/SiteImages/rt.gif" CommandName="right"></asp:ImageButton>
+										<asp:ImageButton ID="LeftDownBtn" runat="server" ImageUrl="~/Data/SiteImages/dn.gif" CommandName="down" CommandArgument="LeftPane"></asp:ImageButton>
+										<asp:ImageButton ID="LeftEditBtn" runat="server" CommandName="edit" CommandArgument="LeftPane"></asp:ImageButton>
+									    <asp:ImageButton ID="LeftDeleteBtn" runat="server" CommandName="delete" CommandArgument="LeftPane"></asp:ImageButton>
+									</div>
+									<asp:ListBox ID="leftPane" runat="server" DataValueField="ModuleID" DataTextField="ModuleTitle" Width="170" Rows="12"></asp:ListBox>
+								</dd>
+								<dd>
+									<h2><cy:SiteLabel ID="lblContentPane" runat="server" ConfigKey="PageLayoutContentPaneLabel" UseLabelTag="false"> </cy:SiteLabel></h2>
+									<div class="actions">
+									<asp:ImageButton ID="ContentUpBtn" runat="server" ImageUrl="~/Data/SiteImages/up.gif" CommandName="up" CommandArgument="ContentPane"></asp:ImageButton>
+									<asp:ImageButton ID="ContentLeftBtn" runat="server" ImageUrl="~/Data/SiteImages/lt.gif"></asp:ImageButton>
+									<asp:ImageButton ID="ContentRightBtn" runat="server" ImageUrl="~/Data/SiteImages/rt.gif"></asp:ImageButton>
+									<asp:ImageButton ID="ContentDownBtn" runat="server" ImageUrl="~/Data/SiteImages/dn.gif" CommandName="down" CommandArgument="ContentPane"></asp:ImageButton>
+									<asp:ImageButton ID="ContentEditBtn" runat="server" CommandName="edit" CommandArgument="ContentPane"></asp:ImageButton>
+									<asp:ImageButton ID="ContentDeleteBtn" runat="server" CommandName="delete" CommandArgument="ContentPane"></asp:ImageButton>
+									<asp:ImageButton ID="ContentDownToNextButton" runat="server" ImageUrl="~/Data/SiteImages/dn.gif" CommandName="downtoalt1" CommandArgument="ContentPane"></asp:ImageButton>
+									</div>
+									<asp:ListBox ID="contentPane" runat="server" DataValueField="ModuleID" DataTextField="ModuleTitle" Width="170" Rows="12" ></asp:ListBox>
+								</dd>
+								<dd>
+									<h2><cy:SiteLabel ID="lblRightPane" runat="server" ConfigKey="PageLayoutRightPaneLabel" UseLabelTag="false"> </cy:SiteLabel></h2>
+									<div class="actions">
+									<asp:ImageButton ID="RightUpBtn" runat="server" ImageUrl="~/Data/SiteImages/up.gif" CommandName="up" CommandArgument="RightPane"></asp:ImageButton>
+									<asp:ImageButton ID="RightLeftBtn" runat="server" ImageUrl="~/Data/SiteImages/lt.gif"></asp:ImageButton>
+									<asp:ImageButton ID="RightDownBtn" runat="server" ImageUrl="~/Data/SiteImages/dn.gif" CommandName="down" CommandArgument="RightPane"></asp:ImageButton>
+									<asp:ImageButton ID="RightEditBtn" runat="server" CommandName="edit" CommandArgument="RightPane"></asp:ImageButton>
+									<asp:ImageButton ID="RightDeleteBtn" runat="server" CommandName="delete" CommandArgument="RightPane"></asp:ImageButton>
+									</div>
+									<asp:ListBox ID="rightPane" runat="server" DataValueField="ModuleID" DataTextField="ModuleTitle" Width="170" Rows="12" ></asp:ListBox>
+								</dd>
+								<dd id="rAltPanel1" runat="server">
+									<h2><cy:SiteLabel ID="SiteLabel3" runat="server" ConfigKey="PageLayoutAltPanel1Label" UseLabelTag="false"> </cy:SiteLabel></h2>
+									<div class="actions">
+									<asp:ImageButton ID="btnMoveAlt1ToCenter" runat="server" ImageUrl="~/Data/SiteImages/up.gif"></asp:ImageButton>
+									<asp:ImageButton ID="btnAlt1MoveUp" runat="server" ImageUrl="~/Data/SiteImages/up.gif" CommandName="up" CommandArgument="altcontent1"></asp:ImageButton>
+									<asp:ImageButton ID="btnAlt1MoveDown" runat="server" ImageUrl="~/Data/SiteImages/dn.gif" CommandName="down" CommandArgument="altcontent1"></asp:ImageButton>
+									<asp:ImageButton ID="btnEditAlt1" runat="server" CommandName="edit" CommandArgument="lbAltContent1"></asp:ImageButton>
+									<asp:ImageButton ID="btnDeleteAlt1" runat="server" CommandName="delete" CommandArgument="lbAltContent1"></asp:ImageButton>
+									<asp:ImageButton ID="btnMoveAlt1ToAlt2" runat="server" ImageUrl="~/Data/SiteImages/dn.gif"></asp:ImageButton>
+									</div>
+									 <asp:ListBox ID="lbAltContent1" runat="server" DataValueField="ModuleID" DataTextField="ModuleTitle" Width="170" Rows="12"></asp:ListBox>
+								</dd>
+								<dd id="rAltPanel2" runat="server">
+								    <h2><cy:SiteLabel ID="SiteLabel4" runat="server" ConfigKey="PageLayoutAltPanel2Label" UseLabelTag="false"> </cy:SiteLabel></h2>
+									<div class="actions">
+									<asp:ImageButton ID="btnMoveAlt2ToAlt1" runat="server" ImageUrl="~/Data/SiteImages/up.gif"></asp:ImageButton>
+									<asp:ImageButton ID="btnAlt2MoveUp" runat="server" ImageUrl="~/Data/SiteImages/up.gif" CommandName="up" CommandArgument="AltContent2"></asp:ImageButton>
+									<asp:ImageButton ID="btnAlt2MoveDown" runat="server" ImageUrl="~/Data/SiteImages/dn.gif" CommandName="down" CommandArgument="AltContent2"></asp:ImageButton>
+									<asp:ImageButton ID="btnEditAlt2" runat="server" CommandName="edit" CommandArgument="lbAltContent2"></asp:ImageButton>
+									<asp:ImageButton ID="btnDeleteAlt2" runat="server" CommandName="delete" CommandArgument="lbAltContent2"></asp:ImageButton>
+									</div>
+									<asp:ListBox ID="lbAltContent2" runat="server" DataValueField="ModuleID" DataTextField="ModuleTitle" Width="170" Rows="12"></asp:ListBox>
+								</dd>
+                            </dl>
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>

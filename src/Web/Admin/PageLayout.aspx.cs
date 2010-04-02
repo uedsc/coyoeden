@@ -1,14 +1,3 @@
-/// Author:                     Joe Audette
-/// Created:                    2004-08-22
-///	Last Modified:              2009-06-20
-/// 
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software. 
 
 using System;
 using System.Collections;
@@ -154,7 +143,7 @@ namespace Cynthia.Web.AdminUI
 			{
 				pnlContent.Visible = true;
 
-				lnkEditSettings.NavigateUrl = SiteRoot + "/Admin/PageSettings.aspx?pageid=" + pageID.ToString();
+				lnkEditSettings.NavigateUrl = String.Format("{0}/Admin/PageSettings.aspx?pageid={1}", SiteRoot, pageID);
 
                 if (CurrentPage != null)
                 {
@@ -575,8 +564,8 @@ namespace Cynthia.Web.AdminUI
 			if (_listbox.SelectedIndex != -1) 
 			{
 				int mid = Int32.Parse(_listbox.SelectedItem.Value,CultureInfo.InvariantCulture);
-            
-				WebUtils.SetupRedirect(this, SiteRoot + "/Admin/ModuleSettings.aspx?mid=" + mid + "&pageid=" + pageID);
+
+				WebUtils.SetupRedirect(this, String.Format("{0}/Admin/ModuleSettings.aspx?mid={1}&pageid={2}", SiteRoot, mid, pageID));
 			}
 		}
 
@@ -653,11 +642,11 @@ namespace Cynthia.Web.AdminUI
 
             LeftEditBtn.AlternateText = Resource.PageLayoutLeftEditAlternateText;
             LeftEditBtn.ToolTip = Resource.PageLayoutLeftEditAlternateText;
-            LeftEditBtn.ImageUrl = ImageSiteRoot + "/Data/SiteImages/" + EditSettingsImage;
+			LeftEditBtn.ImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, EditSettingsImage);
 
             LeftDeleteBtn.AlternateText = Resource.PageLayoutLeftDeleteAlternateText;
             LeftDeleteBtn.ToolTip = Resource.PageLayoutLeftDeleteAlternateText;
-            LeftDeleteBtn.ImageUrl = ImageSiteRoot + "/Data/SiteImages/" + DeleteLinkImage;
+			LeftDeleteBtn.ImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, DeleteLinkImage);
             UIHelper.AddConfirmationDialog(LeftDeleteBtn, Resource.PageLayoutRemoveContentWarning);
 
             ContentUpBtn.AlternateText = Resource.PageLayoutContentUpAlternateText;
@@ -674,11 +663,11 @@ namespace Cynthia.Web.AdminUI
 
             ContentEditBtn.AlternateText = Resource.PageLayoutContentEditAlternateText;
             ContentEditBtn.ToolTip = Resource.PageLayoutContentEditAlternateText;
-            ContentEditBtn.ImageUrl = ImageSiteRoot + "/Data/SiteImages/" + EditSettingsImage;
+			ContentEditBtn.ImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, EditSettingsImage);
 
             ContentDeleteBtn.AlternateText = Resource.PageLayoutContentDeleteAlternateText;
             ContentDeleteBtn.ToolTip = Resource.PageLayoutContentDeleteAlternateText;
-            ContentDeleteBtn.ImageUrl = ImageSiteRoot + "/Data/SiteImages/" + DeleteLinkImage;
+			ContentDeleteBtn.ImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, DeleteLinkImage);
             UIHelper.AddConfirmationDialog(ContentDeleteBtn, Resource.PageLayoutRemoveContentWarning);
 
             RightUpBtn.AlternateText = Resource.PageLayoutRightUpAlternateText;
@@ -692,11 +681,11 @@ namespace Cynthia.Web.AdminUI
 
             RightEditBtn.AlternateText = Resource.PageLayoutRightEditAlternateText;
             RightEditBtn.ToolTip = Resource.PageLayoutRightEditAlternateText;
-            RightEditBtn.ImageUrl = ImageSiteRoot + "/Data/SiteImages/" + EditSettingsImage;
+			RightEditBtn.ImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, EditSettingsImage);
 
             RightDeleteBtn.AlternateText = Resource.PageLayoutRightDeleteAlternateText;
             RightDeleteBtn.ToolTip = Resource.PageLayoutRightDeleteAlternateText;
-            RightDeleteBtn.ImageUrl = ImageSiteRoot + "/Data/SiteImages/" + DeleteLinkImage;
+			RightDeleteBtn.ImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, DeleteLinkImage);
             UIHelper.AddConfirmationDialog(RightDeleteBtn, Resource.PageLayoutRemoveContentWarning);
 
             litEditNotes.Text = string.Format(CultureInfo.InvariantCulture,
@@ -719,8 +708,8 @@ namespace Cynthia.Web.AdminUI
             lnkPageTree.ToolTip = Resource.AdminMenuPageTreeLink;
             lnkPageTree.NavigateUrl = SiteRoot + "/Admin/PageTree.aspx";
 
-            this.trAltPanel1.Visible = pageHasAltContent1;
-            this.trAltPanel2.Visible = pageHasAltContent2;
+            this.rAltPanel1.Visible = pageHasAltContent1;
+            this.rAltPanel2.Visible = pageHasAltContent2;
 
             ContentDownToNextButton.AlternateText = Resource.PageLayoutMoveCenterToAlt1Button;
             ContentDownToNextButton.ToolTip = Resource.PageLayoutMoveCenterToAlt1Button;
@@ -739,11 +728,11 @@ namespace Cynthia.Web.AdminUI
 
             btnEditAlt1.AlternateText = Resource.PageLayoutAlt1EditButton;
             btnEditAlt1.ToolTip = Resource.PageLayoutAlt1EditButton;
-            btnEditAlt1.ImageUrl = ImageSiteRoot + "/Data/SiteImages/" + EditSettingsImage;
+			btnEditAlt1.ImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, EditSettingsImage);
 
             btnDeleteAlt1.AlternateText = Resource.PageLayoutAlt1DeleteButton;
             btnDeleteAlt1.ToolTip = Resource.PageLayoutAlt1DeleteButton;
-            btnDeleteAlt1.ImageUrl = ImageSiteRoot + "/Data/SiteImages/" + DeleteLinkImage;
+			btnDeleteAlt1.ImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, DeleteLinkImage);
 
             btnMoveAlt2ToAlt1.AlternateText = Resource.PageLayoutMoveAlt2ToAlt1Button;
             btnMoveAlt2ToAlt1.ToolTip = Resource.PageLayoutMoveAlt2ToAlt1Button;
@@ -756,22 +745,22 @@ namespace Cynthia.Web.AdminUI
 
             btnEditAlt2.AlternateText = Resource.PageLayoutAlt2EditButton;
             btnEditAlt2.ToolTip = Resource.PageLayoutAlt2EditButton;
-            btnEditAlt2.ImageUrl = ImageSiteRoot + "/Data/SiteImages/" + EditSettingsImage;
+			btnEditAlt2.ImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, EditSettingsImage);
 
             btnDeleteAlt2.AlternateText = Resource.PageLayoutAlt2DeleteButton;
             btnDeleteAlt2.ToolTip = Resource.PageLayoutAlt2DeleteButton;
-            btnDeleteAlt2.ImageUrl = ImageSiteRoot + "/Data/SiteImages/" + DeleteLinkImage;
+			btnDeleteAlt2.ImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, DeleteLinkImage);
 
             if (pageHasAltContent1 || pageHasAltContent2)
             {
                 ContentDownToNextButton.Visible = true;
-                trAltInfo.Visible = true;
+                rAltInfo.Visible = true;
                 btnMoveAlt1ToAlt2.Visible = pageHasAltContent2;
             }
             else
             {
                 ContentDownToNextButton.Visible = false;
-                trAltInfo.Visible = false;
+                rAltInfo.Visible = false;
             }
 
             

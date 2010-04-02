@@ -1,14 +1,3 @@
-/// Author:				Joe Audette
-/// Created:			2004-08-22
-/// Last Modified:	    2009-12-03
-/// 
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software.
 
 using System;
 using System.Configuration;
@@ -520,56 +509,6 @@ namespace Cynthia.Web.UI
 
         private void SetupAdminLinks()
         {
-            //if (
-            //    (WebUser.IsAdminOrContentAdmin || isSiteEditor || WebUser.IsInRoles(CurrentPage.EditRoles))
-            //    ||(CurrentPage.IsPending && WebUser.IsInRoles(CurrentPage.DraftEditOnlyRoles))
-            //    )
-            //{
-            //    if (CurrentPage.PageId > -1)
-            //    {
-                    
-            //        lnkEditPageContent.Visible = true;
-            //        lnkEditPageContent.ToolTip = Resource.PageLayoutTooltip;
-            //        lnkEditPageContent.NavigateUrl = SiteRoot
-            //            + "/Admin/PageLayout.aspx?pageid=" + CurrentPage.PageId;
-                    
-            //        lnkEditPageSettings.Visible = true;
-            //        lnkEditPageSettings.CssClass = "ModuleEditLink adminlink";
-            //        lnkEditPageContent.CssClass = "ModuleEditLink adminlink";
-                    
-            //        lnkEditPageSettings.ToolTip = Resource.PageSettingsTooltip;
-            //        lnkEditPageSettings.NavigateUrl = SiteRoot
-            //            + "/Admin/PageSettings.aspx?pageid=" + CurrentPage.PageId;
-
-            //        this.MPPageEdit.Controls.Add(lnkEditPageContent);
-                    
-            //        if (UseIconsForAdminLinks)
-            //        {
-            //            lnkEditPageSettings.ImageUrl = Page.ResolveUrl("~/Data/SiteImages/"
-            //                + ConfigurationManager.AppSettings["EditPropertiesImage"]);
-
-            //            lnkEditPageSettings.Text = Resource.PagePropertiesEditText;
-
-            //            lnkEditPageContent.ImageUrl = WebUtils.GetSiteRoot() + "/Data/SiteImages/"
-            //            + ConfigurationManager.AppSettings["EditContentImage"];
-
-            //            lnkEditPageContent.Text = Resource.PageContentEditText;
-            //            this.MPPageEdit.Controls.Add(new LiteralControl("&nbsp;"));
-            //        }
-            //        else
-            //        {
-            //            lnkEditPageSettings.Text = Resource.PageConfigLink;
-            //            lnkEditPageContent.Text = Resource.PageEditLink;
-            //        }
-
-                    
-
-            //        this.MPPageEdit.Controls.Add(lnkEditPageSettings);
-                    
-                    
-            //    }
-
-            //}
 
             // 2010-01-04 made it possible to add these links directly in layout.master so they can be arranged and styled easier
             if (Page.Master.FindControl("lnkPageContent") == null)
@@ -585,13 +524,6 @@ namespace Cynthia.Web.UI
             SetupWorkflowControls();
             
         }
-
-        
-
-        
-
-       
-
 
     }
 }

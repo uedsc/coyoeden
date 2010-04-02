@@ -548,16 +548,6 @@ namespace Cynthia.Web
 
 
         }
-        
-
-        //public String SkinBaseUrl
-        //{
-        //    get
-        //    {
-        //        if (skinBaseUrl == null) skinBaseUrl = SiteUtils.GetSkinBaseUrl();
-        //        return skinBaseUrl;
-        //    }
-        //}
 
         public String SiteRoot
         {
@@ -904,125 +894,6 @@ namespace Cynthia.Web
 
         private void SetupAdminLinks()
         {
-            //if (
-            //    (WebUser.IsAdminOrContentAdminOrRoleAdmin)
-            //     || (
-            //        (WebConfigSettings.UseRelatedSiteMode)
-            //        && (WebUser.IsInRoles(siteSettings.SiteRootEditRoles))
-            //        )
-            //    )
-            //{
-            //    HyperLink lnkAdminMenu = new HyperLink();
-            //    lnkAdminMenu.CssClass = "ModuleEditLink adminlink";
-            //    lnkAdminMenu.ToolTip = Resource.AdminMenuLink;
-            //    lnkAdminMenu.NavigateUrl = SiteRoot + "/Admin/AdminMenu.aspx";
-            //    this.MPPageEdit.Controls.Add(lnkAdminMenu);
-
-            //    if (UseIconsForAdminLinks)
-            //    {
-            //        lnkAdminMenu.ImageUrl = WebUtils.GetSiteRoot() + "/Data/SiteImages/admin.png";
-            //        lnkAdminMenu.Text = Resource.AdminMenuLink;
-            //        this.MPPageEdit.Controls.Add(new LiteralControl("&nbsp;"));
-            //    }
-            //    else
-            //    {
-            //        lnkAdminMenu.Text = Resource.AdminLink;
-            //    }
-
-
-            //}
-            //else
-            //{
-            //    if ((CurrentPage != null) && (WebUser.IsInRoles(CurrentPage.CreateChildPageRoles)))
-            //    {
-            //        HyperLink lnkPageTree = new HyperLink();
-            //        lnkPageTree.CssClass = "ModuleEditLink adminlink";
-            //        lnkPageTree.ToolTip = Resource.PageTreeTitle;
-            //        lnkPageTree.NavigateUrl = SiteRoot + "/Admin/PageTree.aspx";
-            //        this.MPPageEdit.Controls.Add(lnkPageTree);
-            //        if (UseIconsForAdminLinks)
-            //        {
-            //            lnkPageTree.ImageUrl = ImageSiteRoot + "/Data/SiteImages/sitemap.png";
-            //            lnkPageTree.Text = Resource.PageTreeLink;
-            //            this.MPPageEdit.Controls.Add(new LiteralControl("&nbsp;"));
-            //        }
-            //        else
-            //        {
-            //            lnkPageTree.Text = Resource.PageListLink;
-            //        }
-
-
-            //    }
-
-            //}
-
-            
-            //this.MPPageEdit.Controls.Add(new LiteralControl("&nbsp;"));
-
-            //if (
-            //    WebConfigSettings.ShowFileManagerLink
-            //    && (!WebConfigSettings.DisableFileManager)
-            //    && (WebUser.IsInRoles(siteSettings.RolesThatCanDeleteFilesInEditor))
-            //    && (
-            //    (WebUser.IsInRoles(siteSettings.UserFilesBrowseAndUploadRoles))
-            //    || (WebUser.IsInRoles(siteSettings.GeneralBrowseAndUploadRoles))
-            //    )
-            //    )
-            //{
-            //    GreyBoxHyperlink lnkFileManager = new GreyBoxHyperlink();
-            //    lnkFileManager.Text = Resource.AdminMenuFileManagerLink;
-            //    lnkFileManager.ToolTip = Resource.AdminMenuFileManagerLink;
-            //    if (UseIconsForAdminLinks)
-            //    {
-            //        lnkFileManager.ImageUrl = ImageSiteRoot + "/Data/SiteImages/folder_explore.png";
-            //    }
-            //    lnkFileManager.CssClass = "ModuleEditLink adminlink";
-            //    lnkFileManager.NavigateUrl = SiteRoot + "/Dialog/FileManagerDialog.aspx";
-            //    lnkFileManager.ClientClick = "GB_showFullScreen(this.title, this.href); return false;";
-            //    lnkFileManager.DialogCloseText = Resource.CloseDialogButton;
-            //    this.MPPageEdit.Controls.Add(lnkFileManager);
-            //}
-
-            
-
-            //if (
-            //    (WebUser.IsAdminOrContentAdmin)
-            //    || (
-            //        (CurrentPage != null)
-            //        && (WebUser.IsInRoles(CurrentPage.CreateChildPageRoles))
-            //        )
-            //    || (
-            //        (WebConfigSettings.UseRelatedSiteMode)
-            //        && (WebUser.IsInRoles(siteSettings.SiteRootEditRoles))
-            //        )
-            //    )
-            //{
-            //    HyperLink lnkNewPage = new HyperLink();
-            //    lnkNewPage.ToolTip = Resource.AddPageTooltip;
-            //    lnkNewPage.CssClass = "ModuleEditLink adminlink";
-            //    if (CurrentPage != null)
-            //    {
-            //        lnkNewPage.NavigateUrl = SiteRoot + "/Admin/PageSettings.aspx?start=" + CurrentPage.PageId.ToString();
-            //    }
-            //    else
-            //    {
-            //        lnkNewPage.NavigateUrl = SiteRoot + "/Admin/PageSettings.aspx";
-            //    }
-            //    this.MPPageEdit.Controls.Add(lnkNewPage);
-
-            //    if (UseIconsForAdminLinks)
-            //    {
-            //        lnkNewPage.ImageUrl = WebUtils.GetSiteRoot() + "/Data/SiteImages/"
-            //            + ConfigurationManager.AppSettings["NewPageImage"];
-            //        lnkNewPage.Text = Resource.PagesAddButton;
-            //        this.MPPageEdit.Controls.Add(new LiteralControl("&nbsp;"));
-            //    }
-            //    else
-            //    {
-            //        lnkNewPage.Text = Resource.AddPageLink;
-            //    }
-
-            //}
 
             // 2010-01-04 made it possible to add these links directly in layout.master so they can be arranged and styled easier
             if (Page.Master.FindControl("lnkAdminMenu") == null)
@@ -1296,14 +1167,14 @@ namespace Cynthia.Web
             {
                 if (HttpContext.Current.Request != null)
                 {
-                    exceptionUrl = CultureInfo.CurrentCulture.ToString() + " - " + HttpContext.Current.Request.RawUrl;
+					exceptionUrl = String.Format("{0} - {1}", CultureInfo.CurrentCulture, HttpContext.Current.Request.RawUrl);
                     exceptionIpAddress = SiteUtils.GetIP4Address();
 
                 }
 
             }
 
-            if (lastError != null) log.Error(exceptionIpAddress + "-" + exceptionUrl, lastError);
+			if (lastError != null) log.Error(String.Format("{0}-{1}", exceptionIpAddress, exceptionUrl), lastError);
 
             
 
@@ -1318,7 +1189,7 @@ namespace Cynthia.Web
                 try
                 {
                     HttpContext.Current.Response.Clear();
-                    HttpContext.Current.Response.Redirect(WebUtils.GetSiteRoot() + "/Setup/Default.aspx");
+					HttpContext.Current.Response.Redirect(String.Format("{0}/Setup/Default.aspx", WebUtils.GetSiteRoot()));
                 }
                 catch (HttpException) { }
 
@@ -1334,7 +1205,7 @@ namespace Cynthia.Web
 
                     Server.ClearError();
                     HttpContext.Current.Response.Clear();
-                    HttpContext.Current.Response.Redirect(WebUtils.GetSiteRoot() + "/Setup/Default.aspx");
+					HttpContext.Current.Response.Redirect(String.Format("{0}/Setup/Default.aspx", WebUtils.GetSiteRoot()));
                 }
                 catch (HttpException) { }
             }
@@ -1390,32 +1261,6 @@ namespace Cynthia.Web
 
 
         }
-
-        // potentially we can compress viewstate
-        //http://www.codeproject.com/KB/viewstate/ViewStateCompression.aspx
-        // not sure about using this, we no longer have view state chunking when using this which can
-        // be a problem for mobile browsers where length of hidden fields is limited
-        //protected override object LoadPageStateFromPersistenceMedium()
-        //{
-        //    string viewState = Request.Form["__VSTATE"];
-        //    byte[] bytes = Convert.FromBase64String(viewState);
-        //    bytes = Compressor.Decompress(bytes);
-        //    LosFormatter formatter = new LosFormatter();
-        //    return formatter.Deserialize(Convert.ToBase64String(bytes));
-        //}
-
-        //protected override void SavePageStateToPersistenceMedium(object viewState)
-        //{
-        //    LosFormatter formatter = new LosFormatter();
-        //    StringWriter writer = new StringWriter();
-        //    formatter.Serialize(writer, viewState);
-        //    string viewStateString = writer.ToString();
-        //    byte[] bytes = Convert.FromBase64String(viewStateString);
-        //    bytes = Compressor.Compress(bytes);
-        //    ScriptManager.RegisterHiddenField(this, "__VSTATE", Convert.ToBase64String(bytes));
-        //}
-
-
         
     }
 }

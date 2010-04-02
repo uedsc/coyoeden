@@ -17,6 +17,7 @@ namespace Cynthia.Web
         private int leftModuleCount = 0;
         private int centerModuleCount = 0;
         private int rightModuleCount = 0;
+		private int topModuleCnt, bottomModuleCnt;
         private SiteSettings siteSettings;
         private PageSettings currentPage = null;
         private SiteMapDataSource siteMapDataSource = null;
@@ -112,24 +113,36 @@ namespace Cynthia.Web
             {
                 foreach (Module module in currentPage.Modules)
                 {
-                    if (ModuleIsVisible(module))
-                    {
-                        if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "leftpane"))
-                        {
-                            leftModuleCount++;
-                        }
+					if (!ModuleIsVisible(module)) continue;
+					if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "leftpane"))
+					{
+						leftModuleCount++;
+						break;
+					}
 
-                        if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "rightpane"))
-                        {
-                            rightModuleCount++;
-                        }
+					if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "rightpane"))
+					{
+						rightModuleCount++;
+						break;
+					}
 
-                        if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "contentpane"))
-                        {
-                            centerModuleCount++;
-                        }
-                    }
-                }
+					if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "contentpane"))
+					{
+						centerModuleCount++;
+						break;
+					}
+					if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "toppane"))
+					{
+						topModuleCnt++;
+						break;
+					}
+					if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "bottompane"))
+					{
+						bottomModuleCnt++;
+						break;
+					}
+
+                }//foreach
 
                 // this is to make room for ModuleWrapper or custom usercontrols if they exsits anywhere in left or right
                 foreach (Control c in divRight.Controls)

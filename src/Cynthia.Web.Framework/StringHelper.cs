@@ -36,91 +36,6 @@ namespace Cynthia.Web.Framework
             return new JavaScriptSerializer().Serialize(jsonObj);
         }
 
-        //private static string SafeJson(string sIn)
-        //{
-        //    StringBuilder sbOut = new StringBuilder(sIn.Length);
-        //    foreach (char ch in sIn)
-        //    {
-        //        if (Char.IsControl(ch) || ch == '\'')
-        //        {
-        //            int ich = (int)ch;
-        //            sbOut.Append(@"\u" + ich.ToString("x4"));
-        //            continue;
-        //        }
-        //        else if (ch == '\"' || ch == '\\' || ch == '/')
-        //        {
-        //            sbOut.Append('\\');
-        //        }
-        //        sbOut.Append(ch);
-        //    }
-        //    return sbOut.ToString();
-        //}
-
-        
-        /////  FUNCTION Enquote Public Domain 2002 JSON.org
-        /////  @author JSON.org
-        /////  @version 0.1
-        /////  Ported to C# by Are Bjolseth, teleplan.no
-        //public static string JsonEncode(this string s)
-        //{
-        //    if (s == null || s.Length == 0)
-        //    {
-        //        //return "\"\"";
-        //        return s;
-        //    }
-        //    char c;
-        //    int i;
-        //    int len = s.Length;
-        //    StringBuilder sb = new StringBuilder(len + 4);
-        //    string t;
-
-        //    sb.Append('"');
-        //    for (i = 0; i < len; i += 1)
-        //    {
-        //        c = s[i];
-        //        if ((c == '\\') || (c == '"') || (c == '>'))
-        //        {
-        //            sb.Append('\\');
-        //            sb.Append(c);
-        //        }
-        //        else if (c == '\b')
-        //            sb.Append("\\b");
-        //        else if (c == '\t')
-        //            sb.Append("\\t");
-        //        else if (c == '\n')
-        //            sb.Append("\\n");
-        //        else if (c == '\f')
-        //            sb.Append("\\f");
-        //        else if (c == '\r')
-        //            sb.Append("\\r");
-        //        else
-        //        {
-        //            if (c < ' ')
-        //            {
-        //                //t = "000" + Integer.toHexString(c);
-        //                string tmp = new string(c, 1);
-        //                t = "000" + int.Parse(tmp, System.Globalization.NumberStyles.HexNumber);
-        //                sb.Append("\\u" + t.Substring(t.Length - 4));
-        //            }
-        //            else
-        //            {
-        //                sb.Append(c);
-        //            }
-        //        }
-        //    }
-        //    sb.Append('"');
-        //    return sb.ToString();
-        //}
-
-
-        //private static string EscapHtmlToJson(string html)
-        //{
-        //    if(string.IsNullOrEmpty(html)){ return html;}
-
-        //    return "'" + html.Replace("</", "' + '</' + '").Replace("<", "' + '<' + '").Replace(">", "' + '>' + '").Replace("+ '\"}","}");
-
-        //}
-
         public static string DecodeBase64String(string base64String, Encoding encoding)
         {
             if (string.IsNullOrEmpty(base64String)) { return base64String; }
@@ -132,16 +47,6 @@ namespace Cynthia.Web.Framework
 
 
         #region string Extension Methods
-
-
-        //public static string JsonEscapeHtml(this string s)
-        //{
-        //    if (string.IsNullOrEmpty(s)) { return s; }
-
-        //    return EscapHtmlToJson(s);
-
-        //}
-
 
         public static string HtmlEscapeQuotes(this string s)
         {
@@ -192,19 +97,6 @@ namespace Cynthia.Web.Framework
                 string newString = ascii.GetString(encodedBytes);
 
                 return newString;
-
-                //Encoding ascii = Encoding.ASCII;
-                //Encoding unicode = Encoding.Unicode;
-                //byte[] unicodeBytes = unicode.GetBytes(s);
-                //byte[] asciiBytes = Encoding.Convert(unicode, ascii, unicodeBytes);
-
-                //// Convert the new byte[] into a char[] and then into a string.
-                //// This is a slightly different approach to converting to illustrate
-                //// the use of GetCharCount/GetChars.
-                //char[] asciiChars = new char[ascii.GetCharCount(asciiBytes, 0, asciiBytes.Length)];
-                //ascii.GetChars(asciiBytes, 0, asciiBytes.Length, asciiChars, 0);
-                //string asciiString = new string(asciiChars);
-                //return asciiString;
             }
             catch
             {
