@@ -419,6 +419,24 @@ namespace Cynthia.Web {
         protected global::Cynthia.Web.UI.WoopraScript woopra11;
         
         /// <summary>
+        /// divAlt2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel divAlt2;
+        
+        /// <summary>
+        /// altContent2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder altContent2;
+        
+        /// <summary>
         /// js_json control.
         /// </summary>
         /// <remarks>
@@ -462,23 +480,5 @@ namespace Cynthia.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::SystemX.WebControls.SiteJScript js_home;
-        
-        /// <summary>
-        /// divAlt2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel divAlt2;
-        
-        /// <summary>
-        /// altContent2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder altContent2;
     }
 }

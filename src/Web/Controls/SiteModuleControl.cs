@@ -1,5 +1,3 @@
-/// Created:			2004-12-26
-/// Last Modified:		2009-07-23
 
 using System;
 using System.Collections;

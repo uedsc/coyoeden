@@ -7,12 +7,6 @@ using Resources;
 
 namespace Cynthia.Web.ContentUI 
 {
-	/// <summary>
-	///	Author:				Joe Audette
-	/// Created:			2005-11-19
-	/// Last Modified:		2008-11-09
-	///		
-	/// </summary>
 	public partial class HtmlFragmentInclude : SiteModuleControl 
 	{
         
@@ -36,11 +30,10 @@ namespace Cynthia.Web.ContentUI
 
             }
 
-			string includePath = HttpContext.Current.Server.MapPath(WebUtils.GetApplicationRoot() 
-				+ "/Data/Sites/" + siteSettings.SiteId.ToString() + "/htmlfragments");
+			string includePath = HttpContext.Current.Server.MapPath(String.Format("{0}/Data/Sites/{1}/htmlfragments", WebUtils.GetApplicationRoot(), siteSettings.SiteId));
 
 			string includeFileName = (string) Settings["HtmlFragmentSourceSetting"];
-			string includeContentFile = includePath + Path.DirectorySeparatorChar + includeFileName;
+			string includeContentFile = String.Format("{0}{1}{2}", includePath, Path.DirectorySeparatorChar, includeFileName);
 			
 			if (includeFileName != null)
 			{
@@ -53,7 +46,7 @@ namespace Cynthia.Web.ContentUI
 				}
 				else 
 				{
-					Controls.Add(new LiteralControl("<br /><span class='txterror'>File " + includeContentFile + " not found.<br />"));
+					Controls.Add(new LiteralControl(String.Format("<br /><span class='txterror'>File {0} not found.<br />", includeContentFile)));
 				}
 			}
 		}
