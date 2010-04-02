@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE Project>
+<Project version="1.0.536.0" created="7/24/2006 1:46:24 PM" modified="1/1/2000">
+	<Test name="standard-install-click-each-page-anonymous" file="standard-install-click-each-page-anonymous.vbs" type="Dynamic" settings="testProperties-standard-install-click-each-page-anonymous.xml">
+		<UserGroup name="Default Users Group"/>
+		<ClientGroup name="Default Clients Group"/>
+		<Report name="report-standard-install-click-each-page-anonymous-Dec 07, 2006 12-34-34" file="report-standard-install-click-each-page-anonymous-Dec 07, 2006 12-34-34.xml"/>
+		<Report name="report-standard-install-click-each-page-anonymous-Jan 13, 2007 09-47-51" file="report-standard-install-click-each-page-anonymous-Jan 13, 2007 09-47-51.xml"/>
+		<PerfCounters file="perfCounters-standard-install-click-each-page-anonymous.xml"/>
+	</Test>
+	<UserGroupDef name="Default Users Group" file="userGroup-Default Users Group.xml"/>
+	<ClientGroupDef name="Default Clients Group" file="clientGroup-Default Clients Group.xml"/>
+	<DefaultValues file="properties.xml"/>
+</Project>

@@ -1,0 +1,234 @@
+body,.pagebody { margin:0; padding:0; }
+body { background:#656565; color:#D5D2D6; font-family:verdana, arial, sans-serif; font-size:.68em; }
+.pagebody { background-color:#656565; color:#D5D2D6; }
+html { height:100%; }
+
+/* These are ids for container divs in layout.master */
+#wrapwebsite { margin-left:auto; margin-right:auto; width:960px; background-color:#414141; background:url('main.png') repeat-y; }
+#wrapheader { width:942px; height:161px; color:#D5D2D6; background:#000 url('logo.jpg') no-repeat; border-top:solid 2px #8AAF55; border-bottom:solid 5px #8AAF55; margin:0 0 0 9px; }
+#wrapcenter { clear:left; min-height:300px; margin:0; }
+#wrapfooter { width:942px; text-align:center; height:20px; clear:both; background:#545454; color:#D5D2D6; border-top:solid 2px #8AAF55; margin:0 0 0 9px; padding:8px 0 0; }
+
+/* these are the main column layouts for supporting automatice column layout from 1 to 3 columns 
+   all columns are floated left, the system programmatically assigns on of the classes to the center column depending on whether content exists
+ in the left or right content sections
+*/
+.leftside { float:left; width:216px; margin:10px 0 0 12px; }
+.center-nomargins { float:left; width:920px; margin:10px 12px 0 18px; }
+.center-rightandleftmargins { float:left; width:484px; margin:10px 10px 0; }
+.center-rightmargin { float:left; width:705px; margin:10px 10px 0 15px; }
+.center-leftmargin { float:left; width:705px; margin:10px 0 0 10px; }
+.rightside { float:right; width:216px; margin:10px 12px 0 0; }
+
+/* Elements */
+code { text-align:left; display:block; overflow:auto; font:500 1em/1.5em 'Lucida Console', 'courier new', monospace; background:#FAFAFA; border:1px solid #EAEAEA; 
+       border-left:5px solid #72A545; margin:5px 0; padding:10px; }
+acronym { cursor:help; border-bottom:1px solid #777; }
+blockquote { border-left:5px solid #8AAF55; margin:15px; padding:0 0 0 7px; }
+hr { height:1px; background-color:#D1D7DC; color:#D1D7DC; border-width:0; }
+p { line-height:1.7em; margin:0; padding:0 0 16px; }
+img, abbr { border:0; }
+
+/* Headings */
+h1.siteheading { font-size:160%; letter-spacing:.2em; text-transform:none; margin:0; padding:28px 0 0 139px; }
+.siteheading { font-size:130%; text-decoration:none; }
+h1 { color:#8AAF55; font-family:arial, sans-serif; font-size:40px; letter-spacing:.1em; }
+h2 { color:#8AAF55; font-family:arial, sans-serif; font-size:30px; }
+h3 { color:#8AAF55; font-family:arial, sans-serif; font-size:16px;margin:0; }
+h4 { color:#8AAF55; font-family:arial, sans-serif; font-size:14px; margin:0;}
+h5 { color:#8AAF55; font-family:arial, sans-serif; font-size:13px;  margin:0;}
+h6 { color:#8AAF55; font-family:arial, sans-serif; font-size:12px; margin:0;}
+h2.moduletitle { clear:both; border-bottom:solid 1px #787878; margin:0; padding:0 0 5px 7px; 
+ color:#8AAF55; background:#545454; font-family:arial, sans-serif; font-size:140%; text-transform:uppercase; font-weight:400; }
+.modulesubtitle { height:23px; color:#FFF; background-color:#545454; font-weight:700; padding:4px 5px 0; }
+.pagelayout h2, .register h2, .sitesettings h3 { font-size:14px; }
+
+/* Form styles */
+fieldset { border:1px solid #787878; margin:0 7px; padding:1em; }
+fieldset,legend,.moduledefinitions,.moduledefinitionsettings,.modulesettings,.sitesettings,.contentmanagerpreview,.contentmanager,.pagesettings,.pagelayout,.modulecontent,.manageusers,.modulepager,.blogedit,.register,.login,.userprofile,.panelwrapper {
+background:#545454; }
+legend { font-size:larger; font-weight:700; }
+ol.formlist { list-style:none; margin: 0px; }
+li.settingrow  { list-style:none; }
+.settinglabel { float:left; clear:left; width:20em; padding:1px; }
+.settinglabelFixedHeight { float:left; clear:left; width:20em; height:77px; padding:1px; }
+.settingrow { clear:left; padding:4px 0; }
+.settinglabeltight { float:left; clear:left; width:8em; font-weight:700; padding:1px; }
+.settingrowtight { clear:left; padding:1px 0; }
+.settinglabel,.settinglabelFixedHeight { font-weight:700; font-size:smaller; }
+.modulebuttonrow { clear:left; text-align:center; }
+.watermarktextbox { width:9em; color:Gray; }
+.subscribeemail { color:Gray; width:14em; }
+.smalltextbox { width:4em; }
+.normaltextbox { width:10em; }
+.mediumtextbox { width:15em; }
+.widetextbox { width:25em; }
+.verywidetextbox { width:35em; }
+.txtcopyright { color:#444; font-size:80%; font-weight:400; }
+.txterror { color:red; font-weight:700; }
+input.openid_login { background:url('openidlogin.gif') no-repeat; background-color:#fff; background-position:0 50%; color:#000; padding-left:18px; }
+
+
+/* Lists */
+div.topnav { width:900px; height:20px; padding:8px 21px 0 19px; }
+.topnav ul { float:left; display:inline; margin:0; padding:0; }
+.topnav { text-align:right; }
+li.topnavitem { float:left; list-style-type:none; border-left:solid thin #D5D2D6; padding:0 7px; }
+li.firstnav { float:left; list-style-type:none; padding:0 7px 0 5px; }
+div.panelwrapper ul.simplelist { margin-bottom:0; }
+.simplelist,.simplelist li { list-style:none; padding:0 0 4px 10px; }
+ul.linkitem { position:relative; top:-6px; left:0; list-style:none; margin:10px; padding:0;}
+div.sitemap ul,div.sitemap ul li { list-style:none; font-size:100%; }
+.site-statistics { border-bottom:solid thin #ccc; margin:0 0 5px; padding:0 0 5px; }
+ul.userstats { list-style-type:none; margin:0 0 0 -40px; }
+ul.userstats ul { display:block; margin:0; padding:0; }
+ul.userstats li { position:relative; list-style:none; }
+ul.linkitem li { list-style:none; min-height:18px; background:url('arrow.png') no-repeat; background-position: 0px 5px; margin:0 0 1px; padding:2px 0; }
+div.AspNet-RadioButtonList ul,div.AspNet-CheckBoxList ul { list-style-type:none; margin:0; padding:0; }
+div.simplehorizontalmenu { clear:both; width:100%; height:27px; }
+ul.simplehorizontalmenu { float:left; list-style:none; margin:0; padding:0; }
+ul.simplehorizontalmenu li { display:inline; padding:0 10px; }
+ul.firstnav span.sitelink,li.topnavitem,li.firstnav,.WelcomeMessage,.sitelink { font-size:9px; }
+li.AspNet-RadioButtonList-Item,li.AspNet-CheckBoxList-Item,.ratingrow { white-space:nowrap; }
+ul.simplehorizontalmenu li.selecteditem { font-weight:700; }
+
+.tag-cloud { list-style-type:none; margin:15px 0 3px -30px; }
+.tag-cloud li { display:inline; list-style-type:none; }
+.tagcount { font-size:x-small; }
+.tag-cloud .weight1 { font-size:90%; }
+.tag-cloud .weight2 { font-size:110%; }
+.tag-cloud .weight3 { font-size:120%; }
+.tag-cloud .weight4 { font-size:130%; }
+.tag-cloud .weight5 { font-size:140%; }
+.tag-cloud .weight6 { font-size:150%; }
+.tag-cloud .weight7 { font-size:160%; }
+.tag-cloud .weight8 { font-size:180%; }
+.tag-cloud .weight9 { font-size:200%; }
+.tag-cloud .weight10 { font-size:210%; }
+
+/* Grids and Tables */
+div.memberlist table { width:100%; }
+table.editgrid { margin:10px; }
+table.editgrid th { font-weight:700; padding:7px; }
+.AspNet-GridView table thead tr th { padding:2px; }
+.AspNet-GridView table tbody tr td { color:#333; background:#FFF; border-bottom:solid 1px #CCC; border-right:solid 1px #CCC; text-align:left; padding:2px 20px 2px 2px; }
+.AspNet-GridView table tbody tr.AspNet-GridView-Alternate td { background:#F7F6F3; }
+table.editgrid td,.padded { padding:7px; }
+
+
+/* Links */
+ul.linkitem a { color:#D5D2D6; text-decoration:none; margin:0 0 0 7px; padding:2px 5px 2px 10px; }
+* html body ul.linkitem a { height:18px; }
+ul.linkitem a:hover { color:#8AAF55; padding:2px 5px 2px 10px; }
+a.ModuleEditLink:hover { color:#FFF; }
+.sitelink,a.sitelink:link,a.sitelink:visited,a.sitelink:hover,a.sitelink:active,#wrapfooter a,.accent { color:#D5D2D6; }
+a:hover { color:#FFF; text-decoration:underline; }
+legend a.ModuleEditLink:hover { color:#FFF; font-size:smaller; }
+#wrapfooter,#wrapfooter a { text-decoration:none; font-size:9px; }
+a.ModuleEditLink,a.ModuleEditLink:link,a.ModuleEditLink:visited,a.ModuleEditLink:hover,a.ModuleEditLink:active { font-size:10px; }
+a.ModuleEditLink,a.ModuleEditLink:link,a.ModuleEditLink:visited,a.ModuleEditLink:active,a.siteheading:link,a.siteheading:visited,a.siteheading:hover,a.siteheading:active,a:link,a:visited,a:active {
+color:#8AAF55; }
+legend a.ModuleEditLink,legend a.ModuleEditLink:link,legend a.ModuleEditLink:visited,legend a.ModuleEditLink:active { color:#8AAF55; font-size:smaller; }
+legend a,a.siteheading:link,a.siteheading:visited,a.siteheading:hover,a.siteheading:active,a.sitelink:link,a.sitelink:visited,a.sitelink:active,a.selectedcrumb:link,a.selectedcrumb:visited,a.selectedcrumb:active,a.unselectedcrumb:link,a.unselectedcrumb:visited,a.unselectedcrumb:active {
+text-decoration:none; }
+a.sitelink:hover,a.ModulePager:link,a.ModulePager:visited,a.ModulePager:hover,a.ModulePager:active,a.selectedcrumb:hover,a.unselectedcrumb:hover {
+text-decoration:underline; }
+.pageditlinks a { margin: 3px 7px 3px 0px; }
+a.adminlink ,
+a.adminlink:link ,
+a.adminlink:visited ,
+a.adminlink:hover ,
+a.adminlink:active { 
+font-size: 16px; 
+border-left: 1px solid #a4a4a4;
+  padding: 8px 8px 10px 8px;
+  line-height: 32px;
+  color: #555;
+  text-decoration:none;
+}
+a.adminlink:hover {  text-decoration:underline;}
+
+.AspNet-GridView td a:link,.AspNet-GridView td a:visited,.AspNet-GridView td a:active {color:#000000; }
+.AspNet-GridView td a:hover { color:#1775D5; }
+
+.accent { font-weight:700; }
+.linkdescription { padding:5px; }
+.buttonlink { background-color:transparent; color:#FFF; cursor:pointer; text-decoration:underline; font-size:13px; border-style:none; }
+.AspNet-GridView .buttonlink, .AspNet-GridView a { color: #000000; }
+
+.modulepager { vertical-align:top; padding:4px; }
+.selectedpage { color:#FFF; font-weight:700; }
+a.SelectedPage:hover { color:#FFF; font-weight:700; text-decoration:underline; }
+a.SelectedPage:link,a.SelectedPage:visited,a.SelectedPage:active { color:#FFF; font-weight:700; text-decoration:none; }
+.modulepager, .ModulePager, .PageInfo, .SelectedPage, .pageditlinks a { font-size: 16px; }
+
+.breadcrumbs { padding:4px 4px 10px; }
+.unselectedcrumb { font-weight:400; }
+.selectedcrumb { font-weight:700; }
+
+.modulecontent { vertical-align:top; text-align:left; padding:4px 4px 4px 7px; }
+.modulefooter { display:none; font-size:11px; text-align:center; }
+.modulerow { background-color:#414141; }
+.modulealtrow { background-color:#545454; }
+
+div.addthisbutton { float:right; margin:5px; }
+.moduleedit { height:28px; background-color:#C7D0D7; border:0; text-indent:4px; margin:0; padding:0; }
+.clearpanel { clear:left; padding-top:15px; }
+.minheightpanel { min-height:200px; }
+.center { text-align:center; }
+.clear { clear:both; }
+.whoson { float:left; padding:5px; }
+.searchterm { color:#000; background-color:#FF0; }
+.templatewrapper { border-bottom:solid 4px #000; }
+.logolist,.pageicons,.skiplink { display:none; }
+.vevent { border:0; padding:10px; }
+.yui-content,.yui-content .settinglabel,.yui-content .settingrow label,.yui-content h3,.gmap,.gmnoprint { color:#000; }
+.forumnotify { white-space:nowrap; vertical-align:middle; padding: 10px 0px 5px 0px; }
+.forumnotify img {float:left;}
+
+
+/* Corner Rounding - Nifty Corners */
+.rtop,.rbottom { display:block; background:#414141; }
+.rtop .r1,.rtop .r2,.rtop .r3,.rtop .r4,.rbottom .r1,.rbottom .r2,.rbottom .r3,.rbottom .r4 {
+background:#545454;
+display:block;
+height:1px;
+overflow:hidden;
+}
+.r1 { margin:0 5px; }
+.r2 { margin:0 3px; }
+.r3 { margin:0 2px; }
+.rtop .r4,.rbottom .r4 { height:2px; margin:0 1px; }
+.rbottom { margin-bottom:10px; }
+.ui-layout-container, .ui-layout-container .ModulePager, .ui-layout-container  .modulepager { color:#000000; background-color:#ffffff; }
+.gmaptextbox { width:27em; }
+.gmap { margin:0 0 10px; }
+
+.foldergallery h1 { font-size:large; margin-bottom:20px; }
+.albumFloat { float:left; text-align:center; margin-right:8px; margin-bottom:4px; }
+.albumMetaSectionHead { background-color:Gray; color:#FFF; font-weight:700; }
+.albumMetaName { font-weight:700; }
+
+.ratingcontainer { float:right; white-space:nowrap; margin:5px 5px 5px 5px;  }
+.ratingprompt { float: left; margin-right: 5px; }
+.leftside .ratingprompt , .rightside .ratingprompt{ display: none; }
+.voteswrap { margin-left: 5px; }
+.ratingcontainer div { float:left; white-space:nowrap; margin:0px 0px 0px 0px;  }
+.ratingrow { white-space:nowrap; }
+.ratingStar { white-space:nowrap; height:14px; margin:1em; }
+.ratingStar .ratingItem { font-size:0; width:13px; height:12px; display:block; background-repeat:no-repeat; cursor:pointer; margin:0; padding:0; }
+.ratingStar .Filled { background-image:url('ratingStarFilled.png'); }
+.ratingStar .Empty { background-image:url('ratingStarEmpty.png'); }
+.ratingStar .Saved { background-image:url('ratingStarSaved.png'); }
+.ratingbuttons {  margin: 0px 0px 0px 0px; padding: 2px 0px 0px 0px;  }
+.rcommentprompt { display:block;}
+.ratingcomments { border:#000 1px solid; background-color:#eee; color:#000; width:206px; height:200px; position:absolute; margin-top:15px; padding:5px; }
+.ratingcommentbox { width:200px; height:100px; }
+
+/* Content Styles */
+.floatrightimage { float:right; margin-right:15px; }
+.floatpanel,.floatleftimage { float:left; margin-right:15px; }
+.highlight1 { background-color:#FF0; }
+.highlight2 { background-color:lime; }
+
+

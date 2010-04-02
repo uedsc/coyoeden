@@ -1,0 +1,13 @@
+Joe Audette found this design here:
+http://www.mitchinson.net/designs/67_golden/index.html
+and created a Cynthia skin based on it
+
+Designer's site: http://www.mitchinson.net/
+
+This standards compliant website template is released as an 'open source' design
+(under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+Attribution 3.0</a> licence), which means that you are free to download and use it
+for anything you want (including modifying and amending it). 
+All images were created by mitchinsion so feel free to use them if you wish, so there are no issues with copyright
+there. All I ask is that you leave the 'design by' link in the footer of
+the template.

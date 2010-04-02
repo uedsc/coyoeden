@@ -1,0 +1,166 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4EAD30EC-4F97-4F38-8530-1B7EDDB8FC8E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cynthia.Business.WebHelpers</RootNamespace>
+    <AssemblyName>Cynthia.Business.WebHelpers</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Documents\xml\mojoPortal.Business.WebHelpers.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GCheckout, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\GCheckout1.3.2\GCheckout.dll</HintPath>
+    </Reference>
+    <Reference Include="Highlighter.Net, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\Highlighter.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net, Version=2.1.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="RSS.NET, Version=0.86.2790.16808, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\RSS.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CacheHelper.cs" />
+    <Compile Include="ContentDeleteHandlers\ContentDeleteHandlerProvider.cs" />
+    <Compile Include="ContentDeleteHandlers\ContentDeleteHandlerProviderCollection.cs" />
+    <Compile Include="ContentDeleteHandlers\ContentDeleteHandlerProviderConfig.cs" />
+    <Compile Include="ContentDeleteHandlers\ContentDeleteHandlerProviderManager.cs" />
+    <Compile Include="ContentDeleteHandlers\DoNothingContentDeleteHandler.cs" />
+    <Compile Include="Search\IndexBuilders\FakeIndexBuilderProvider.cs" />
+    <Compile Include="Search\IndexBuilders\HtmlContentIndexBuilderProvider.cs" />
+    <Compile Include="Search\IndexBuilders\IndexBuilderConfiguration.cs" />
+    <Compile Include="Search\IndexBuilders\IndexBuilderManager.cs" />
+    <Compile Include="Search\IndexBuilders\IndexBuilderProvider.cs" />
+    <Compile Include="Search\IndexBuilders\IndexBuilderProviderCollection.cs" />
+    <Compile Include="Search\IndexHelper.cs" />
+    <Compile Include="Search\IndexItem.cs" />
+    <Compile Include="Search\IndexItemCollection.cs" />
+    <Compile Include="Search\IndexWriterTask.cs" />
+    <Compile Include="PageEventHandlers\DoNothingPageCreatedEventHandler.cs" />
+    <Compile Include="PageEventHandlers\PageCreatedEventHandlerPovider.cs" />
+    <Compile Include="PageEventHandlers\PageCreatedEventHandlerPoviderCollection.cs" />
+    <Compile Include="PageEventHandlers\PageCreatedEventHandlerPoviderConfig.cs" />
+    <Compile Include="PageEventHandlers\PageCreatedEventHandlerPoviderManager.cs" />
+    <Compile Include="PaymentGateway\Authorize.NET\AuthorizeNETPaymentGateway.cs" />
+    <Compile Include="PaymentGateway\GoogleCheckout\GCheckoutNotificationConfiguration.cs" />
+    <Compile Include="PaymentGateway\GoogleCheckout\GCheckoutNotificationHandlerProvider.cs" />
+    <Compile Include="PaymentGateway\GoogleCheckout\GCheckoutNotificationHandlerProviderCollection.cs" />
+    <Compile Include="PaymentGateway\GoogleCheckout\GCheckoutNotificationManager.cs" />
+    <Compile Include="PaymentGateway\GoogleCheckout\GNotificationTester.cs" />
+    <Compile Include="PaymentGateway\GoogleCheckout\GoogleXmlApiPaymentGateway.cs" />
+    <Compile Include="PaymentGateway\GoogleCheckout\NotImplementedGCheckoutNotificationHandlerProvider.cs" />
+    <Compile Include="PaymentGateway\IPaymentGateway.cs" />
+    <Compile Include="PaymentGateway\NotImplementedPaymentGateway.cs" />
+    <Compile Include="PaymentGateway\PaymentGatewayResponse.cs" />
+    <Compile Include="PaymentGateway\PaymentGatewayTransactionType.cs" />
+    <Compile Include="PaymentGateway\PayPal\DoNothingPayPalIPNHandlerProvider.cs" />
+    <Compile Include="PaymentGateway\PayPal\DoNothingPayPalPDTHandlerProvider.cs" />
+    <Compile Include="PaymentGateway\PayPal\NotImplementedPayPalReturnHandler.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalDirectPaymentGateway.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalExpressCheckoutGateway.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalIPNHandlerProvider.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalIPNHandlerProviderCollection.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalIPNHandlerProviderConfig.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalIPNHandlerProviderManager.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalOrderItem.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalPDTHandlerProvider.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalPDTHandlerProviderCollection.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalPDTHandlerProviderConfig.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalPDTHandlerProviderManager.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalReturnHandlerConfig.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalReturnHandlerManager.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalReturnHandlerProvider.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalReturnHandlerProviderCollection.cs" />
+    <Compile Include="PaymentGateway\PayPal\PayPalStandardPaymentGateway.cs" />
+    <Compile Include="PaymentGateway\PlugNPay\PlugNPayPaymentGateway.cs" />
+    <Compile Include="PersonalizationHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceFile.cs" />
+    <Compile Include="SitePreDeleteHandlers\DoNothingSitePreDeleteHandler.cs" />
+    <Compile Include="SitePreDeleteHandlers\SitePreDeleteHandlerProvider.cs" />
+    <Compile Include="SitePreDeleteHandlers\SitePreDeleteHandlerProviderCollection.cs" />
+    <Compile Include="SitePreDeleteHandlers\SitePreDeleteHandlerProviderConfig.cs" />
+    <Compile Include="SitePreDeleteHandlers\SitePreDeleteHandlerProviderManager.cs" />
+    <Compile Include="UserRegisteredHandlers\DoNothingUserRegisteredHandler.cs" />
+    <Compile Include="UserRegisteredHandlers\UserRegisteredHandlerProvider.cs" />
+    <Compile Include="UserRegisteredHandlers\UserRegisteredHandlerProviderCollection.cs" />
+    <Compile Include="UserRegisteredHandlers\UserRegisteredHandlerProviderConfig.cs" />
+    <Compile Include="UserRegisteredHandlers\UserRegisteredHandlerProviderManager.cs" />
+    <Compile Include="UserSignInHandlers\UserSignInEventArgs.cs" />
+    <Compile Include="UserSignInHandlers\DoNothingUserSignInHandlerProvider.cs" />
+    <Compile Include="UserSignInHandlers\UserSignInHandlerProvider.cs" />
+    <Compile Include="UserSignInHandlers\UserSignInHandlerProviderCollection.cs" />
+    <Compile Include="UserSignInHandlers\UserSignInHandlerProviderConfig.cs" />
+    <Compile Include="UserSignInHandlers\UserSignInHandlerProviderManager.cs" />
+    <Compile Include="VirtualFolderEvaluator.cs" />
+    <Compile Include="WebPartHelper.cs" />
+    <Compile Include="WebUser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cynthia.Business\Cynthia.Business.csproj">
+      <Project>{8582D51E-126B-4D64-B080-07AD8245B38F}</Project>
+      <Name>Cynthia.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cynthia.Net\Cynthia.Net.csproj">
+      <Project>{30916752-1A97-49CA-95D6-81A5F784EEB5}</Project>
+      <Name>Cynthia.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cynthia.Web.Framework\Cynthia.Web.Framework.csproj">
+      <Project>{E0D12031-BFDD-4069-9024-8B00A2AA6DBC}</Project>
+      <Name>Cynthia.Web.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

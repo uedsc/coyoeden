@@ -1,0 +1,49 @@
+/* Headings */
+h1 { font-family:arial, sans-serif; font-size:30px;  }
+h2 { font-family:arial, sans-serif; font-size:22px; }
+h3 { font-family:arial, sans-serif; font-size:18px; margin:0; }
+h4 { font-family:arial, sans-serif; font-size:16px; margin:0; }
+h5 { font-family:arial, sans-serif; font-size:14px; margin:0;}
+h6 { font-family:arial, sans-serif; font-size:13px; margin:0;}
+.pagelayout h2, .register h2, .sitesettings h3 { font-size:14px; }
+.foldergallery h1 { font-size: large; margin-bottom: 20px;}
+.album {}
+.albumFloat { float: left; text-align: center; margin-right: 8px; margin-bottom: 4px; }
+.albumDetailsLink {}
+.albumMetaSectionHead {background-color: Gray;color: White;font-weight: bold; }
+.albumMetaName  { font-weight: bold; }
+.albumMetaValue {}
+.center{text-align: center;}
+div.simplehorizontalmenu {clear: both; width: 100%; height: 27px;}
+ul.simplehorizontalmenu { float: left;list-style: none; margin:0; padding: 0;}
+ul.simplehorizontalmenu li { display: inline; padding: 0px 10px 0px 10px; }	
+ul.simplehorizontalmenu li.selecteditem { font-weight: bold; }
+.vevent abbr{border:0}
+.vevent { padding: 10px 10px 10px 10px; }
+.smalltextbox { width: 4em; }
+.normaltextbox { width: 10em; }
+.mediumtextbox { width: 15em; }
+.widetextbox { width: 25em; }
+.verywidetextbox { width: 35em; }
+.whoson { float:left; padding: 5px 5px 5px 5px; }
+.buttonlink { background-color:transparent;border-style:none;color: #0033FF;cursor: pointer;text-decoration: underline; font-size: 9px;}
+.clear { clear:both; }
+.ratingcontainer { float:right; white-space:nowrap; margin:5px 5px 5px 5px;  }
+.ratingprompt { float: left; margin-right: 5px; }
+.leftside .ratingprompt , .rightside .ratingprompt{ display: none; }
+.voteswrap { margin-left: 5px; }
+.ratingcontainer div { float:left; white-space:nowrap; margin:0px 0px 0px 0px;  }
+.ratingrow { white-space:nowrap; }
+.ratingStar { white-space:nowrap; height:14px; margin:1em; }
+.ratingStar .ratingItem { font-size:0; width:13px; height:12px; display:block; background-repeat:no-repeat; cursor:pointer; margin:0; padding:0; }
+.ratingStar .Filled { background-image:url('ratingStarFilled.png'); }
+.ratingStar .Empty { background-image:url('ratingStarEmpty.png'); }
+.ratingStar .Saved { background-image:url('ratingStarSaved.png'); }
+.ratingbuttons {  margin: 0px 0px 0px 0px; padding: 2px 0px 0px 0px;  }
+.rcommentprompt { display:block;}
+.ratingcomments { border:#000 1px solid; background-color:#eee; color:#000; width:206px; height:200px; position:absolute; margin-top:15px; padding:5px; }
+.ratingcommentbox { width:200px; height:100px; }
+.searchterm { color:black; background-color:yellow; }
+.templatewrapper { border-bottom: solid 4px black;  }
+ol.formlist { list-style:none; margin: 0px; }
+li.settingrow  { list-style:none; }

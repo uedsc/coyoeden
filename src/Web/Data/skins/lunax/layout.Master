@@ -1,0 +1,215 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="~/App_MasterPages/layout.Master.cs" Inherits="Cynthia.Web.layout" %>
+<!DOCTYPE html>
+<html>
+<head id="Head1" runat="server"><title></title>
+    <portal:StyleSheetCombiner id="StyleSheetCombiner" runat="server" UseIconsForAdminLinks="false" />
+    <portal:IEStyleIncludes id="IEStyleIncludes1"  runat="server" IncludeHtml5Script="true" />
+    <portal:MetaContent id="MetaContent" runat="server" />
+	<!--[if IE]>
+	<meta http-equiv="Page-Enter" content="blendTrans(Duration=0)" /><meta http-equiv="Page-Exit" content="blendTrans(Duration=0)" />
+	<![endif]-->
+	<meta name="viewport" content="width=670, initial-scale=0.45, minimum-scale=0.45"/>
+	<portal:Favicon id="Favicon1"  runat="server" />
+	<portal:ScriptLoader id="ScriptLoader1" runat="server" />
+</head>
+<body id="pagex">
+<!--#site_title for SEO-->
+<%this.RenderView<XSiteTitle>(null); %>
+<div class="container sprite" id="header">
+<!--#topheader-->
+<div class="topheader">
+	<div id="header-rightcol">
+		<ul id="user-bar" class="clearfix">
+		    <portal:WelcomeMessage id="WelcomeMessage" runat="server" RenderAsListItem="true" ListItemCSS="firstnav" />
+			<portal:HomeLink id="HomeLink" runat="server" RenderAsListItem="true" />
+			<portal:SiteMapLink id="SiteMapLink2" runat="server" CssClass="sitelink" RenderAsListItem="true"  />
+			<portal:MyPageLink id="MyPageLink1" runat="server" RenderAsListItem="true" />
+			<portal:UserProfileLink id="UserProfileLink" runat="server" RenderAsListItem="true" />
+			<portal:MailboxLink id="MailboxLink1" runat="server" RenderAsListItem="true"  />
+			<portal:MemberListLink id="MemberListLink" runat="server" RenderAsListItem="true"  />
+			<%this.RenderView<XRegisterLink>("XRegisterLink",null); %>
+			<%this.RenderView<XLoginLink>("XLoginLink",null); %>
+		</ul>
+	</div>
+	<a href="/" class="logo" id="logo"><img src="<%=CurSettings.SkinBaseUrl %>img/logo-dark.png" alt="Vivasky.Com-CodeInMusic" title="Vivasky.Com-CodeInMusic"/></a>
+</div>
+<!--#bottomheader-->
+<div class="bottomheader clearfix">
+	<div id="search-bar">
+		<form action="searchresults.aspx" method="GET" class="active" id="searchfrm">
+		<div class="form-container" id="frmC">
+			<input type="text" class="text-input sprite" name="term" value="Start Searching ..." id="txtSearch">
+			<input type="submit" class="submit sprite" value="Search">
+			<div class="fancy-panel sprite clearfix" style="display: none;" id="search_cat">
+				<div class="categories">
+					<label class="main-cat"><input type="checkbox" name="type" value="files" class="all-cats" checked="checked" id="cbxscall"><span>All Contents</span></label>
+					<ul>
+						<li>
+						<label><input type="checkbox" disabled="disabled" name="s[articles]" value="1" checked="checked" class="sub-cat"><span>Articles</span></label></li>
+						<li>
+							<label><input type="checkbox" disabled="disabled" name="s[blogs]" value="1" checked="checked" class="sub-cat"><span>Blogs</span></label></li>
+						<li>
+							<label><input type="checkbox" disabled="disabled" name="s[forums]" value="1" checked="checked" class="sub-cat"><span>Forums</span></label></li>
+						<li>
+							<label><input type="checkbox" disabled="disabled" name="s[links]" value="1" checked="checked" class="sub-cat"><span>Links</span></label></li>
+					</ul>
+				</div>
+				<div class="misc">
+					<label><input type="checkbox" class="sub-cat" checked="checked" disabled="disabled" name="type" value="sharefile"><span>Shared Files</span></label>
+					<label><input type="checkbox" class="sub-cat" checked="checked" disabled="disabled" name="type" value="gallery"><span>Image galleries</span></label>
+					<label><input type="checkbox" class="sub-cat" checked="checked" disabled="disabled" name="type" value="calendar"><span>Calendars</span></label>
+				</div>
+			</div>
+		</div>
+		<div class="arrow arrow-up sprite" id="search_icon">&nbsp;</div>
+		</form>
+	</div><!--/#searchbar-->
+	<div id="breadcrumbs">
+		<a href="/" class="first">Home</a>
+	</div>
+	<h1 class="page-title"></h1>
+</div><!--/#bottomheader-->
+<div id="hd_unions">
+    <h3><a href="#" title="union sites"><img width="85" height="18" alt="Vivasky.Com-union" src="<%=CurSettings.SkinBaseUrl %>img/envato.png"/></a></h3>
+    <ul>
+      <li><a href="http://lizishop.cn" title="">LiziShop</a></li>
+      <li><a href="http://donystudio.com" title="">DonyStudio</a></li>
+      <li><a href="http://google.com" title="">Google</a></li>
+    </ul>
+</div>
+<!--#navigation-->
+<div id="navigation">
+	<div id="categories">
+		<h3 class="sprite"><a href="#" title="Categories">Categories</a></h3>
+		<ul>
+			<li><a href="live.aspx">All Content</a></li>
+			<li><a href="Blog/ViewCategory.aspx?cat=1&amp;mid=6&amp;pageid=3">Javascript</a></li>
+			<li><a href="Blog/ViewCategory.aspx?cat=2&amp;mid=6&amp;pageid=3">DotNET</a></li>
+			<li><a href="Blog/ViewCategory.aspx?cat=3&amp;mid=6&amp;pageid=3">SQL</a></li>
+			<li><a href="Blog/ViewCategory.aspx?cat=4&amp;mid=6&amp;pageid=3">Life</a></li>
+			<li><a href="Blog/ViewCategory.aspx?cat=5&amp;mid=6&amp;pageid=3">Music</a></li>
+			<li><a href="Blog/ViewCategory.aspx?cat=6&amp;mid=6&amp;pageid=3">Joky</a></li>
+			<li class="more-cats"><a href="live.aspx">(MORE CATEGORIES)</a></li>
+		</ul>
+	</div>
+    <portal:SiteMenu id="SiteMenu1" runat="server" 
+	            UseTreeView="false" UseSpanInLinks="false" HideMenuOnSiteMap="false"
+		        Direction="Horizontal" DynamicDisplayLevels="2"></portal:SiteMenu>
+</div><!--#navigation-->
+</div><!--#header-->
+<!--#home_slider-->
+<div class="container" id="home_slider">
+<div class="shadowed">
+	<div class="inner_boundary">
+		<div class="inner_border">
+			<!--imgSlider-->
+			<div id="home_slide" class="slides">
+				<ul class="slide_pic">
+					<li class="cur"><a href="http://vivasky.com" target="_blank">
+						<img alt="http://vivasky.com" src="<% =CurSettings.DataFolderUrl%>userfiles/imgSlide1.jpg"/></a></li>
+					<li><a href="http://vivasky.com" target="_blank">
+						<img alt="http://vivasky.com" src="<% =CurSettings.DataFolderUrl%>userfiles/imgSlide2.jpg"/></a></li>
+					<li><a href="http://vivasky.com" target="_blank">
+						<img alt="http://vivasky.com" src="<% =CurSettings.DataFolderUrl%>userfiles/imgSlide3.jpg"/></a></li>
+
+					<li><a href="http://vivasky.com" target="_blank">
+						<img alt="http://vivasky.com" src="<% =CurSettings.DataFolderUrl%>userfiles/imgSlide4.jpg"/></a></li>
+				</ul>
+				<ul class="slide_li op">
+					<li class="cur"></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<ul class="slide_li slide_txt">
+					<li class="cur"><a href="http://vivasky.com" target="_blank" title="Life=YouMeOthers">上帝的左眼</a></li>
+					<li><a target="_blank" href="http://vivasky.com" title="Web=Javascript+Html+Css">$(JS,CSS,HTML)</a></li>
+					<li><a href="http://vivasky.com" target="_blank" title="哥听的是歌">耳朵还没空</a></li>
+					<li><a href="http://vivasky.com" target="_blank" title="liziShop精品">栗子汀精选</a></li>
+				</ul>
+			</div>
+			<!--/imgSlider-->
+		</div>
+	</div>
+</div>
+</div>
+<!--/#home_slider-->
+
+<form id="frmMain" runat="server">
+<asp:SiteMapDataSource ID="SiteMapData" runat="server" ShowStartingNode="false" />
+<asp:SiteMapDataSource ID="PageMapDataSource" runat="server" ShowStartingNode="false" />
+<asp:SiteMapDataSource ID="ChildPageSiteMapData" runat="server" ShowStartingNode="false" />
+<asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" runat="server" />
+<div id="wrapwebsite">
+    <div id="wrapcenter">
+	    <asp:Panel id="divLeft" runat="server" cssclass="leftside" visible="True" SkinID="pnlPlain">
+		    <portal:PageMenu id="PageMenu1" runat="server" UseTreeView="true" TreeViewShowExpandCollapse="true"  />
+		    <asp:contentplaceholder ID="leftContent" runat="server"></asp:contentplaceholder>
+	    </asp:Panel>
+	    <asp:Panel id="divCenter" runat="server" visible="True" cssclass="center-rightandleftmargins" SkinID="pnlPlain">
+            <portal:Breadcrumbs id="Breadcrumbs1" runat="server"></portal:Breadcrumbs>
+	        <portal:ChildPageMenu id="ChildPageMenu" runat="server" CssClass="txtnormal"></portal:ChildPageMenu>
+	        <asp:ContentPlaceHolder ID="mainContent" runat="server"></asp:ContentPlaceHolder>
+	    </asp:Panel>
+	    <asp:Panel id="divRight" runat="server" visible="True" cssclass="rightside" SkinID="pnlPlain">
+			    <asp:contentplaceholder ID="rightContent" runat="server"></asp:contentplaceholder>
+	    </asp:Panel>		
+	</div>
+	<div id="wrapfooter">
+	    <br class="clear" />
+	    <portal:SiteMapLink id="SiteMapLink1" runat="server" CssClass="sitemaplink" /> |
+	    <portal:SkinPreview id="SkinPreview1" runat="server"></portal:SkinPreview> | 
+	    <portal:CopyrightLabel ID="cl1" runat="server"   ShowYear="true" BeginYear="2008" />
+	    <br /><br />
+		<portal:CynthiaLink id="lnkCynthia" UseImage="false" runat="server" /> |
+		<portal:XhtmlValidatorLink id="lnkw3cValidator" UseImage="false" runat="server" Html5="true" /> |
+		<portal:CSSValidatorLink id="lnkCSSVal1" UseImage="false" runat="server" />
+	</div>
+</div>
+<script type="text/javascript">
+function HideMenuToolbar(){ $("#toolbar").fadeOut(); $("#toolbarbut").fadeIn("slow");}
+function ShowMenuToolbar(){ $("#toolbar").fadeIn(); $("#toolbarbut").fadeOut("slow");}
+$(document).ready(function(){ 
+  $("span.downarr a").click(function() {HideMenuToolbar(); Set_Cookie('openstate', 'closed')});
+  $("span.showbar a").click(function() {ShowMenuToolbar(); Set_Cookie('openstate', 'open') });
+  $("span.downarr a, span.showbar a").click(function() { return false; });	
+	var openState = Get_Cookie('openstate');
+	if(openState != null){ if(openState == 'closed'){HideMenuToolbar();} if(openState == 'open'){ShowMenuToolbar();}}
+});	
+</script>
+<portal:AutoHidePanel ID="ah1" runat="server">
+<div id="toolbarbut"> 
+<span class="showbar"><a href="#">show bar</a></span>
+</div>
+<div id="toolbar"> 
+<div class="toolbarleft"> 
+  &nbsp;
+</div>
+<div class="toolbarright"> 
+  <span class="downarr"> 
+  <a href="#"></a>
+  </span>
+  <portal:AdminMenuLink id="lnkAdminMenu" runat="server" />
+  <portal:FileManagerLink id="lnkFileManager" runat="server" />
+  <portal:NewPageLink id="lnkNewPage" runat="server" />
+  <portal:PageEditFeaturesLink id="lnkPageContent" runat="server" />
+  <portal:PageEditSettingsLink id="lnkPageSettings" runat="server" />
+  <asp:ContentPlaceHolder ID="pageEditContent" runat="server"></asp:ContentPlaceHolder>
+</div>
+</div>
+</portal:AutoHidePanel>
+<portal:CGoogleAnalyticsScript ID="CGoogleAnalyticsScript1" runat="server" />
+<portal:Woopra ID="woopra11" runat="server" />
+</form>
+<vs:SiteJScript ID="js_json" ScriptRelativeToRoot="ClientScript/jqCynthia/jquery.json-1.3.min.js" runat="server"/>
+<vs:SiteJScript ID="js_str" ScriptRelativeToRoot="ClientScript/jqCynthia/jquery.string.1.0.js" runat="server"/>
+<vs:SiteJScript ID="js_levin" ScriptRelativeToRoot="ClientScript/jqCynthia/jquery.levin.js" runat="server"/>
+<vs:SiteJScript ID="js_imgSlider" ScriptRelativeToRoot="ClientScript/jqCynthia/jquery.imgSlide.js" runat="server"/>
+<vs:SiteJScript ID="js_home" ScriptRelativeToRoot="ClientScript/jqCynthia/cynthia.index.js" runat="server"/>
+<script type="text/javascript">
+    //<![CDATA[
+    this$.Init({});
+    //]]>
+</script> 
+</body>
+</html>

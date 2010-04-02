@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sets>	
+	<set name="initial">
+    
+    <url name="a">/WebResource.axd?d=wuHCulEJ7ItpvTZ6fgLBkA2&amp;amp;t=633527641956801634</url>
+   
+    <url name="b">/ClientScript/watermarktextbox.js</url>
+    <url name="c">/ClientScript/jquery126/jquery.min.js</url>
+    <url name="d">/ClientScript/oomph/oomph.min.js</url>
+		<url name="e">/ClientScript/CSSFriendly/AdapterUtils.js</url>
+		<url name="f">/ClientScript/CSSFriendly/MenuAdapter.js</url>
+    <url name="g">/ClientScript/yui-252/yahoo-dom-event/yahoo-dom-event.js</url>
+    <url name="h">/ClientScript/yui-252/element/element-beta-min.js</url>
+    <url name="i">/ClientScript/yui-252/tabview/tabview-min.js</url>
+		
+		<url name="j">/ScriptResource.axd?d=l53QigJd3KGiEVv-3KumAfKhogYnMijBZAO2X86QFBtSxrszyW1MIXnD6EBqvdCL0QLtTzxerPqmhg3CEGuYLlYBYTm0AKbd2m9-6404azI1&amp;amp;t=633588038847853254</url>
+		<url name="k">/ScriptResource.axd?d=l53QigJd3KGiEVv-3KumAfKhogYnMijBZAO2X86QFBtSxrszyW1MIXnD6EBqvdCL0QLtTzxerPqmhg3CEGuYLpRMm10B7P5EHA0kdsgkCO81l6zhEFGH8w0xgfrgrGal0&amp;amp;t=633588038847853254</url>
+		
+		<url name="l">/ClientScript/ibox.js.aspx</url>
+    <url name="m">/ClientScript/sarissa/sarissa.js</url>
+    <url name="n">/ClientScript/sarissa/sarissa_ieemu_xpath.js</url>
+    <url name="o">/ClientScript/SmartCombo.js</url>
+	
+	</set>
+	
+	<set name="post">
+	    	
+		
+	</set>
+	
+</sets>
+
+

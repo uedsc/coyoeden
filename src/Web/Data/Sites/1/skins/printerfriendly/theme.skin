@@ -1,0 +1,52 @@
+<%@ Register Namespace="Cynthia.Web.UI" Assembly="Cynthia.Web" TagPrefix="portal" %>
+<%@ Register Namespace="Cynthia.Web.Controls" Assembly="Cynthia.Web.Controls" TagPrefix="mp" %>
+
+<%--
+
+Note that the skin settings for Menu and Treeview do not work because we are over-riding 
+the rendering with custom CSSControlAdapters in order for the them to render 
+as ul and li instead of nasty nested tables.
+
+Style for the Menu and Treeview is now in the css file. 
+This actually makes it possible to use dynamic per user and per page skins again,
+which were broken if using skin because of global caching of skin.
+
+if for some weird reason you want to turn off the custom css adapter for your installation
+and use the skin settings instead,
+comment out the control adapter for asp.net menu in App_Browsers/CSSFriendlyAdapters.browser
+
+--%>
+
+<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+
+<asp:calendar  runat="server" 
+			         TitleFormat="Month" 
+			         CssClass="navCalendar" 
+			         CellPadding="3"
+				     DayNameFormat="FirstLetter">
+         
+    <TodayDayStyle CssClass="navTodayStyle"></TodayDayStyle>
+    <SelectorStyle CssClass="navSelectorStyle"></SelectorStyle>
+    <DayStyle CssClass="navDayStyle"></DayStyle>
+    <NextPrevStyle CssClass="navNextPrevStyle"></NextPrevStyle>
+    <DayHeaderStyle CssClass="navDayHeader"></DayHeaderStyle>
+    <SelectedDayStyle CssClass="navSelectedDayStyle"></SelectedDayStyle>
+    <TitleStyle CssClass="navTitleStyle"></TitleStyle>
+    <WeekendDayStyle CssClass="navWeekendDayStyle"></WeekendDayStyle>
+    <OtherMonthDayStyle CssClass="navOtherMonthDayStyle"></OtherMonthDayStyle>
+				
+</asp:calendar>

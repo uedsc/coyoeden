@@ -1,0 +1,192 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="viewport.master.cs" Inherits="Cynthia.Web.UI.ViewPortMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server"><title></title>
+    <portal:StyleSheet id="StyleSheet"  runat="server" />
+    <portal:IEStyleIncludes id="IEStyleIncludes1"  runat="server" />
+    <portal:MetaContent id="MetaContent" runat="server" />
+	<portal:Favicon id="Favicon1"  runat="server" />
+	
+</head>
+<body>
+    <form id="frmMain" runat="server" style="width:100%; height:100%;">
+    <asp:SiteMapDataSource ID="SiteMapData" runat="server" ShowStartingNode="false" />
+    <asp:SiteMapDataSource ID="ChildPageSiteMapData" runat="server" ShowStartingNode="false" />
+    <asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" runat="server" />
+    
+    <portal:CssIncludeExtJS id="ExtCss" runat="server" ExtJSDefaultTheme="resources/css/xtheme-slate.css"></portal:CssIncludeExtJS>
+    <ext:ViewPort id="vpMain" runat="server" UseFormViewport="true" DebugMode="true">
+    
+    <ext:SplitPanel ID="pnlTop" runat="server" 
+        FixedPixelHeight="100" 
+        MinSize="40" 
+        MaxSize="350" 
+        Title="" 
+        Region="north" 
+        Split="true" 
+        Collapsible="true"   >
+        
+        <div id="wrapheader">
+		<portal:SiteTitle id="SiteTitle" runat="server"></portal:SiteTitle>
+		<portal:SkipLink id="SkipLink1" runat="server" />
+		<portal:Breadcrumbs id="Breadcrumbs" runat="server"></portal:Breadcrumbs>
+        </div>
+        <div class="topnav">
+        <ul class="topnav">
+            <portal:WelcomeMessage id="WelcomeMessage" runat="server" RenderAsListItem="true" ListItemCSS="firstnav" />
+            <portal:HomeLink id="HomeLink" runat="server" RenderAsListItem="true" />
+            <portal:SiteMapLink id="SiteMapLink2" runat="server" CssClass="sitelink" RenderAsListItem="true"  />
+            <portal:MyPageLink id="MyPageLink1" runat="server" RenderAsListItem="true" />
+            <portal:UserProfileLink id="UserProfileLink" runat="server" RenderAsListItem="true" />
+            <portal:MailboxLink id="MailboxLink1" runat="server" RenderAsListItem="true"  />
+            <portal:MemberListLink id="MemberListLink" runat="server" RenderAsListItem="true"  />
+            <portal:RegisterLink id="RegisterLink" runat="server" RenderAsListItem="true" />
+            <portal:LoginLink id="LoginLink" runat="server" RenderAsListItem="true" />
+            <portal:LogoutLink id="LogoutLink" runat="server" RenderAsListItem="true" />
+            </ul>
+            <div class="searchpanel">
+            <portal:SearchInput id="SearchInput1" LinkOnly="False"  runat="server" />
+            </div>
+        </div>	
+        <div class="editpanel">
+        <asp:contentplaceholder ID="pageEditContent" runat="server"></asp:contentplaceholder>
+        </div>
+        <cy:InsecurePanel id="InsecurePanel1" runat="server" CssClass="addthisbutton">
+		    <cy:AddThisButton ID="at1" runat="server" 
+		        AccountId="joeaudette" 
+		        ButtonImageUrl="~/Data/SiteImages/addthisbookmarkbutton.gif"
+		        Text="Share This Using Popular Bookmarking Services"
+		        CustomBrand="Cynthia"
+		        CustomLogoUrl="http://www.vivasky.com/Data/Sites/1/GalleryImages/Cynthia_box_dropshadow.png"
+		        CustomLogoBackgroundColor="e8e8e8"
+		        
+		     />  
+		    
+		    </cy:InsecurePanel>
+    
+    </ext:SplitPanel>
+    
+    <ext:SplitPanel ID="pnlEast" runat="server" 
+        Title=" "
+        Region="east"
+        Split="true" 
+        FixedPixelWidth="225" 
+        MinSize="175" 
+        MaxSize="800"
+        Collapsible="true" 
+        Layout="fit" 
+        AutoScroll="true" CssClass="rightside"
+        >
+        
+        
+			    <asp:contentplaceholder ID="rightContent" runat="server"></asp:contentplaceholder>
+	    
+    
+    </ext:SplitPanel>
+    
+    <ext:SplitPanel ID="pnlWest" runat="server" 
+        Title=" "
+        Region="west"
+        Split="true" 
+        FixedPixelWidth="200" 
+        MinSize="175" 
+        MaxSize="800" 
+        Collapsible="true"
+        Layout="accordion"
+        AutoScroll="true"
+        AnimateLayout="true"
+        CssClass="leftside"
+        >
+        
+       
+		    <portal:SiteMenu id="SiteMenu1" runat="server" 
+		        UseTreeView="true"
+			    Direction="Vertical">
+		    </portal:SiteMenu>
+		    <br />
+		    <asp:contentplaceholder ID="leftContent" runat="server"></asp:contentplaceholder>
+		    
+	    
+    
+    </ext:SplitPanel>
+    
+    <ext:SplitPanel ID="pnlCenter" runat="server" 
+        Title=""
+        Region="center"
+        Split="false" 
+        AutoScroll="true"
+        CssClass="center-rightandleftmargins"
+        >
+         
+	        <portal:ChildPageMenu id="ChildPageMenu" runat="server" CssClass="txtnormal"></portal:ChildPageMenu>
+	        <a id="startcontent"></a>
+	        <asp:ContentPlaceHolder ID="mainContent" runat="server"></asp:ContentPlaceHolder>
+	   
+   
+    </ext:SplitPanel>
+    
+    <ext:SplitPanel ID="pnlSouth" runat="server" 
+        FixedPixelHeight="100" 
+        MinSize="100" 
+        MaxSize="600" 
+        Title="" 
+        Region="south"  
+        Collapsible="true"
+        Split="true" 
+        CssClass="extdiv"
+        >
+        
+        <div id="wrapfooter">
+	        <br class="clear" />
+	        <portal:SiteMapLink id="SiteMapLink1" runat="server" CssClass="sitemaplink" />
+	        <portal:SkinPreview id="SkinPreview1" runat="server"></portal:SkinPreview><br /><br />
+		    <portal:CynthiaLink id="lnkCynthia" runat="server" />
+		    <portal:XhtmlValidatorLink id="lnkw3cValidator" runat="server" />
+		    <portal:CSSValidatorLink id="lnkCSSVal1" runat="server" />
+            <portal:AccessibilityCynthiaValidatorLink ID="ac1" runat="server" />
+	    </div>
+        
+        
+    
+    </ext:SplitPanel>
+    
+    </ext:ViewPort>
+    <script type="text/javascript">
+    /* <![CDATA[ */
+    
+        // these class are needed when javascript is disabled
+        // so they need to be there by default, but if javascript is enabled remove them
+        // so ExtJs can do the layout
+        
+        function RemoveCss(findByCssClass, cssClassToRemove)
+        {
+            var elements = Ext.query("." + findByCssClass);
+            for(var x = 0 ; x < elements.length; x ++)
+            {
+                var el = Ext.get(elements[x]);
+                if (el) 
+                {
+                    if (el.hasClass(cssClassToRemove)) 
+                    {
+                        el.removeClass(cssClassToRemove);
+                    }
+                }  
+            }
+        
+        }
+        
+        RemoveCss("center-rightandleftmargins", "center-rightandleftmargins");
+        RemoveCss("leftside", "leftside");
+        RemoveCss("rightside","rightside");
+        
+        
+      /* ]]> */
+       
+      </script>
+    </form>
+  
+</body>
+</html>
+

@@ -1,0 +1,639 @@
+ifndef TARGET
+	TARGET=./Web/bin
+else
+	TARGET=./Web/bin/$(TARGET)
+endif
+
+MCS=mcs
+MONORESGEN=resgen
+ifndef (RELEASE)
+	MCSFLAGS=-debug --stacktrace
+endif
+LIBS=
+
+
+SKMMENU_DLL=$(TARGET)/skmMenu.dll
+SKMMENU_PDB=$(TARGET)/skmMenu.pdb
+SKMMENU_RESX=skmMenu/Menu.resx
+SKMMENU_RESOURCES=$(TARGET)/Menu.resources
+SKMMENU_SRC=skmMenu/AssemblyInfo.cs \
+	skmMenu/Enumerations.cs \
+	skmMenu/Menu.cs \
+	skmMenu/MenuDesigner.cs \
+	skmMenu/MenuItem.cs \
+	skmMenu/MenuItemClickEventArgs.cs \
+	skmMenu/MenuItemCollection.cs \
+	skmMenu/RoleCollection.cs
+SKMMENU_RES=-resource:$(SKMMENU_RESOURCES),skmMenu.Menu.resources
+
+ASSISTEDSOLUTIONS_SLICKUPLOAD_DLL=$(TARGET)/AssistedSolutions.SlickUpload.dll
+ASSISTEDSOLUTIONS_SLICKUPLOAD_PDB=$(TARGET)/AssistedSolutions.SlickUpload.pdb
+ASSISTEDSOLUTIONS_SLICKUPLOAD_SRC=AssistedSolutions.SlickUpload/AssemblyInfo.cs \
+	AssistedSolutions.SlickUpload/DisconnectedException.cs \
+	AssistedSolutions.SlickUpload/HttpUploadModule.cs \
+	AssistedSolutions.SlickUpload/IMimePushHandler.cs \
+	AssistedSolutions.SlickUpload/MimeHeaderReader.cs \
+	AssistedSolutions.SlickUpload/MimePushReader.cs \
+	AssistedSolutions.SlickUpload/MimeUploadHandler.cs \
+	AssistedSolutions.SlickUpload/RequestStream.cs \
+	AssistedSolutions.SlickUpload/UploadedFile.cs \
+	AssistedSolutions.SlickUpload/UploadedFileCollection.cs \
+	AssistedSolutions.SlickUpload/UploadStatus.cs
+ASSISTEDSOLUTIONS_SLICKUPLOAD_RES=
+
+RSS_NET_DLL=$(TARGET)/RSS.NET.dll
+RSS_NET_PDB=$(TARGET)/RSS.NET.pdb
+RSS_NET_SRC=RSS.NET/AssemblyInfo.cs \
+	RSS.NET/RssFeed.cs \
+	RSS.NET/RssModule.cs \
+	RSS.NET/RssModuleItem.cs \
+	RSS.NET/RssReader.cs \
+	RSS.NET/RssWriter.cs \
+	RSS.NET/Collections/ExceptionCollection.cs \
+	RSS.NET/Collections/RssCategoryCollection.cs \
+	RSS.NET/Collections/RssChannelCollection.cs \
+	RSS.NET/Collections/RssFeedCollection.cs \
+	RSS.NET/Collections/RssItemCollection.cs \
+	RSS.NET/Collections/RssModuleCollection.cs \
+	RSS.NET/Collections/RssModuleItemCollection.cs \
+	RSS.NET/Collections/RssModuleItemCollectionCollection.cs \
+	RSS.NET/RssChannel/RssChannel.cs \
+	RSS.NET/RssChannel/RssCloud.cs \
+	RSS.NET/RssChannel/RssImage.cs \
+	RSS.NET/RssChannel/RssTextInput.cs \
+	RSS.NET/RssItem/RssEnclosure.cs \
+	RSS.NET/RssItem/RssGuid.cs \
+	RSS.NET/RssItem/RssItem.cs \
+	RSS.NET/RssItem/RssSource.cs \
+	RSS.NET/RssModules/RssBlogChannel.cs \
+	RSS.NET/RssModules/RssCreativeCommon.cs \
+	RSS.NET/RssModules/RssPhotoAlbum.cs \
+	RSS.NET/Shared/DBBool.cs \
+	RSS.NET/Shared/RssCategory.cs \
+	RSS.NET/Shared/RssDefault.cs \
+	RSS.NET/Shared/RssElement.cs \
+	RSS.NET/Shared/RssEnumerators.cs
+RSS_NET_RES=
+
+POSTGRESQLDATA_DLL=$(TARGET)/mojoPortal.Data.dll
+POSTGRESQLDATA_PDB=$(TARGET)/mojoPortal.Data.pdb
+POSTGRESQLDATA_SRC=PostgreSQLData/AssemblyInfo.cs \
+	PostgreSQLData/dbPortal.cs \
+	PostgreSQLData/NpgsqlHelper.cs
+POSTGRESQLDATA_RES=
+
+FREDCK_FCKEDITORV2_DLL=$(TARGET)/FredCK.FCKeditorV2.dll
+FREDCK_FCKEDITORV2_PDB=$(TARGET)/FredCK.FCKeditorV2.pdb
+FREDCK_FCKEDITORV2_SRC=FCKeditor.Net_2.0/AssemblyInfo.cs \
+	FCKeditor.Net_2.0/FCKeditor.cs \
+	FCKeditor.Net_2.0/FCKeditorConfigurations.cs \
+	FCKeditor.Net_2.0/FCKeditorDesigner.cs \
+	FCKeditor.Net_2.0/FileBrowserConnector.cs \
+	FCKeditor.Net_2.0/Util.cs \
+	FCKeditor.Net_2.0/XmlUtil.cs
+FREDCK_FCKEDITORV2_RES=
+
+MOJOPORTAL_BUSINESS_DLL=$(TARGET)/mojoPortal.Business.dll
+MOJOPORTAL_BUSINESS_PDB=$(TARGET)/mojoPortal.Business.pdb
+MOJOPORTAL_BUSINESS_SRC=Business/AssemblyInfo.cs \
+	Business/Blog.cs \
+	Business/CalendarEvent.cs \
+	Business/Configuration.cs \
+	Business/CustomModuleSetting.cs \
+	Business/Email.cs \
+	Business/Forum.cs \
+	Business/ForumThread.cs \
+	Business/Gallery.cs \
+	Business/GalleryImage.cs \
+	Business/HtmlContent.cs \
+	Business/ImageHelper.cs \
+	Business/Links.cs \
+	Business/Module.cs \
+	Business/ModuleDefinition.cs \
+	Business/ModuleSettings.cs \
+	Business/Notification.cs \
+	Business/PageBreadcrumbs.cs \
+	Business/PageSettings.cs \
+	Business/RandomPassword.cs \
+	Business/Role.cs \
+	Business/RSSFeed.cs \
+	Business/Security.cs \
+	Business/SharedFile.cs \
+	Business/SharedFileFolder.cs \
+	Business/SiteSettings.cs \
+	Business/SiteUser.cs \
+	Business/XmlHelper.cs
+MOJOPORTAL_BUSINESS_RES=
+
+SHARPZIPLIB_DLL=$(TARGET)/sharpziplib.dll
+SHARPZIPLIB_PDB=$(TARGET)/sharpziplib.pdb
+SHARPZIPLIB_SRC=sharpziplib/AssemblyInfo.cs \
+	sharpziplib/Main.cs \
+	sharpziplib/SharpZipBaseException.cs \
+	sharpziplib/BZip2/BZip2.cs \
+	sharpziplib/BZip2/BZip2Constants.cs \
+	sharpziplib/BZip2/BZip2Exception.cs \
+	sharpziplib/BZip2/BZip2InputStream.cs \
+	sharpziplib/BZip2/BZip2OutputStream.cs \
+	sharpziplib/Checksums/Adler32.cs \
+	sharpziplib/Checksums/CRC32.cs \
+	sharpziplib/Checksums/IChecksum.cs \
+	sharpziplib/Checksums/StrangeCRC.cs \
+	sharpziplib/GZip/GZIPConstants.cs \
+	sharpziplib/GZip/GZipException.cs \
+	sharpziplib/GZip/GzipInputStream.cs \
+	sharpziplib/GZip/GzipOutputStream.cs \
+	sharpziplib/Tar/InvalidHeaderException.cs \
+	sharpziplib/Tar/TarArchive.cs \
+	sharpziplib/Tar/TarBuffer.cs \
+	sharpziplib/Tar/TarEntry.cs \
+	sharpziplib/Tar/TarException.cs \
+	sharpziplib/Tar/TarHeader.cs \
+	sharpziplib/Tar/TarInputStream.cs \
+	sharpziplib/Tar/TarOutputStream.cs \
+	sharpziplib/Zip/ZipConstants.cs \
+	sharpziplib/Zip/ZipEntry.cs \
+	sharpziplib/Zip/ZipException.cs \
+	sharpziplib/Zip/ZipFile.cs \
+	sharpziplib/Zip/ZipInputStream.cs \
+	sharpziplib/Zip/ZipOutputStream.cs \
+	sharpziplib/Zip/Compression/Deflater.cs \
+	sharpziplib/Zip/Compression/DeflaterConstants.cs \
+	sharpziplib/Zip/Compression/DeflaterEngine.cs \
+	sharpziplib/Zip/Compression/DeflaterHuffman.cs \
+	sharpziplib/Zip/Compression/DeflaterPending.cs \
+	sharpziplib/Zip/Compression/Inflater.cs \
+	sharpziplib/Zip/Compression/InflaterDynHeader.cs \
+	sharpziplib/Zip/Compression/InflaterHuffmanTree.cs \
+	sharpziplib/Zip/Compression/PendingBuffer.cs \
+	sharpziplib/Zip/Compression/Streams/DeflaterOutputStream.cs \
+	sharpziplib/Zip/Compression/Streams/InflaterInputStream.cs \
+	sharpziplib/Zip/Compression/Streams/OutputWindow.cs \
+	sharpziplib/Zip/Compression/Streams/StreamManipulator.cs
+SHARPZIPLIB_RES=
+
+LUCENE_NET_DLL=$(TARGET)/Lucene.Net.dll
+LUCENE_NET_PDB=$(TARGET)/Lucene.Net.pdb
+LUCENE_NET_SRC=Lucene.Net/AssemblyInfo.cs \
+	Lucene.Net/SupportClass.cs \
+	Lucene.Net/Analysis/Analyzer.cs \
+	Lucene.Net/Analysis/CharTokenizer.cs \
+	Lucene.Net/Analysis/LetterTokenizer.cs \
+	Lucene.Net/Analysis/LowerCaseFilter.cs \
+	Lucene.Net/Analysis/LowerCaseTokenizer.cs \
+	Lucene.Net/Analysis/PerFieldAnalyzerWrapper.cs \
+	Lucene.Net/Analysis/PorterStemFilter.cs \
+	Lucene.Net/Analysis/PorterStemmer.cs \
+	Lucene.Net/Analysis/SimpleAnalyzer.cs \
+	Lucene.Net/Analysis/StopAnalyzer.cs \
+	Lucene.Net/Analysis/StopFilter.cs \
+	Lucene.Net/Analysis/Token.cs \
+	Lucene.Net/Analysis/TokenFilter.cs \
+	Lucene.Net/Analysis/Tokenizer.cs \
+	Lucene.Net/Analysis/TokenStream.cs \
+	Lucene.Net/Analysis/WhitespaceAnalyzer.cs \
+	Lucene.Net/Analysis/WhitespaceTokenizer.cs \
+	Lucene.Net/Analysis/DE/GermanAnalyzer.cs \
+	Lucene.Net/Analysis/DE/GermanStemFilter.cs \
+	Lucene.Net/Analysis/DE/GermanStemmer.cs \
+	Lucene.Net/Analysis/DE/WordlistLoader.cs \
+	Lucene.Net/Analysis/RU/RussianAnalyzer.cs \
+	Lucene.Net/Analysis/RU/RussianCharsets.cs \
+	Lucene.Net/Analysis/RU/RussianLetterTokenizer.cs \
+	Lucene.Net/Analysis/RU/RussianLowerCaseFilter.cs \
+	Lucene.Net/Analysis/RU/RussianStemFilter.cs \
+	Lucene.Net/Analysis/RU/RussianStemmer.cs \
+	Lucene.Net/Analysis/Standard/CharStream.cs \
+	Lucene.Net/Analysis/Standard/FastCharStream.cs \
+	Lucene.Net/Analysis/Standard/ParseException.cs \
+	Lucene.Net/Analysis/Standard/StandardAnalyzer.cs \
+	Lucene.Net/Analysis/Standard/StandardFilter.cs \
+	Lucene.Net/Analysis/Standard/StandardTokenizer.cs \
+	Lucene.Net/Analysis/Standard/StandardTokenizerConstants.cs \
+	Lucene.Net/Analysis/Standard/StandardTokenizerTokenManager.cs \
+	Lucene.Net/Analysis/Standard/Token.cs \
+	Lucene.Net/Analysis/Standard/TokenMgrError.cs \
+	Lucene.Net/Document/DateField.cs \
+	Lucene.Net/Document/Document.cs \
+	Lucene.Net/Document/Field.cs \
+	Lucene.Net/Index/CompoundFileReader.cs \
+	Lucene.Net/Index/CompoundFileWriter.cs \
+	Lucene.Net/Index/DocumentWriter.cs \
+	Lucene.Net/Index/FieldInfo.cs \
+	Lucene.Net/Index/FieldInfos.cs \
+	Lucene.Net/Index/FieldsReader.cs \
+	Lucene.Net/Index/FieldsWriter.cs \
+	Lucene.Net/Index/FilterIndexReader.cs \
+	Lucene.Net/Index/IndexReader.cs \
+	Lucene.Net/Index/IndexWriter.cs \
+	Lucene.Net/Index/MultipleTermPositions.cs \
+	Lucene.Net/Index/MultiReader.cs \
+	Lucene.Net/Index/SegmentInfo.cs \
+	Lucene.Net/Index/SegmentInfos.cs \
+	Lucene.Net/Index/SegmentMergeInfo.cs \
+	Lucene.Net/Index/SegmentMergeQueue.cs \
+	Lucene.Net/Index/SegmentMerger.cs \
+	Lucene.Net/Index/SegmentReader.cs \
+	Lucene.Net/Index/SegmentTermDocs.cs \
+	Lucene.Net/Index/SegmentTermEnum.cs \
+	Lucene.Net/Index/SegmentTermPositions.cs \
+	Lucene.Net/Index/SegmentTermVector.cs \
+	Lucene.Net/Index/Term.cs \
+	Lucene.Net/Index/TermDocs.cs \
+	Lucene.Net/Index/TermEnum.cs \
+	Lucene.Net/Index/TermFreqVector.cs \
+	Lucene.Net/Index/TermInfo.cs \
+	Lucene.Net/Index/TermInfosReader.cs \
+	Lucene.Net/Index/TermInfosWriter.cs \
+	Lucene.Net/Index/TermPositions.cs \
+	Lucene.Net/Index/TermPositionVector.cs \
+	Lucene.Net/Index/TermVectorsReader.cs \
+	Lucene.Net/Index/TermVectorsWriter.cs \
+	Lucene.Net/QueryParser/CharStream.cs \
+	Lucene.Net/QueryParser/FastCharStream.cs \
+	Lucene.Net/QueryParser/MultiFieldQueryParser.cs \
+	Lucene.Net/QueryParser/ParseException.cs \
+	Lucene.Net/QueryParser/QueryParser.cs \
+	Lucene.Net/QueryParser/QueryParserConstants.cs \
+	Lucene.Net/QueryParser/QueryParserTokenManager.cs \
+	Lucene.Net/QueryParser/Token.cs \
+	Lucene.Net/QueryParser/TokenMgrError.cs \
+	Lucene.Net/Search/BooleanClause.cs \
+	Lucene.Net/Search/BooleanQuery.cs \
+	Lucene.Net/Search/BooleanScorer.cs \
+	Lucene.Net/Search/CachingWrapperFilter.cs \
+	Lucene.Net/Search/ConjunctionScorer.cs \
+	Lucene.Net/Search/DateFilter.cs \
+	Lucene.Net/Search/DefaultSimilarity.cs \
+	Lucene.Net/Search/ExactPhraseScorer.cs \
+	Lucene.Net/Search/Explanation.cs \
+	Lucene.Net/Search/FieldCache.cs \
+	Lucene.Net/Search/FieldCacheImpl.cs \
+	Lucene.Net/Search/FieldDoc.cs \
+	Lucene.Net/Search/FieldDocSortedHitQueue.cs \
+	Lucene.Net/Search/FieldSortedHitQueue.cs \
+	Lucene.Net/Search/Filter.cs \
+	Lucene.Net/Search/FilteredQuery.cs \
+	Lucene.Net/Search/FilteredTermEnum.cs \
+	Lucene.Net/Search/FuzzyQuery.cs \
+	Lucene.Net/Search/FuzzyTermEnum.cs \
+	Lucene.Net/Search/HitCollector.cs \
+	Lucene.Net/Search/HitQueue.cs \
+	Lucene.Net/Search/Hits.cs \
+	Lucene.Net/Search/IndexSearcher.cs \
+	Lucene.Net/Search/MultiSearcher.cs \
+	Lucene.Net/Search/MultiTermQuery.cs \
+	Lucene.Net/Search/ParallelMultiSearcher.cs \
+	Lucene.Net/Search/PhrasePositions.cs \
+	Lucene.Net/Search/PhrasePrefixQuery.cs \
+	Lucene.Net/Search/PhraseQuery.cs \
+	Lucene.Net/Search/PhraseQueue.cs \
+	Lucene.Net/Search/PhraseScorer.cs \
+	Lucene.Net/Search/PrefixQuery.cs \
+	Lucene.Net/Search/Query.cs \
+	Lucene.Net/Search/QueryFilter.cs \
+	Lucene.Net/Search/QueryTermVector.cs \
+	Lucene.Net/Search/RangeQuery.cs \
+	Lucene.Net/Search/RemoteSearchable.cs \
+	Lucene.Net/Search/ScoreDoc.cs \
+	Lucene.Net/Search/ScoreDocComparator.cs \
+	Lucene.Net/Search/Scorer.cs \
+	Lucene.Net/Search/Searchable.cs \
+	Lucene.Net/Search/Searcher.cs \
+	Lucene.Net/Search/Similarity.cs \
+	Lucene.Net/Search/SloppyPhraseScorer.cs \
+	Lucene.Net/Search/Sort.cs \
+	Lucene.Net/Search/SortComparator.cs \
+	Lucene.Net/Search/SortComparatorSource.cs \
+	Lucene.Net/Search/SortField.cs \
+	Lucene.Net/Search/TermQuery.cs \
+	Lucene.Net/Search/TermScorer.cs \
+	Lucene.Net/Search/TopDocs.cs \
+	Lucene.Net/Search/TopFieldDocs.cs \
+	Lucene.Net/Search/Weight.cs \
+	Lucene.Net/Search/WildcardQuery.cs \
+	Lucene.Net/Search/WildcardTermEnum.cs \
+	Lucene.Net/Search/Spans/NearSpans.cs \
+	Lucene.Net/Search/Spans/SpanFirstQuery.cs \
+	Lucene.Net/Search/Spans/SpanNearQuery.cs \
+	Lucene.Net/Search/Spans/SpanNotQuery.cs \
+	Lucene.Net/Search/Spans/SpanOrQuery.cs \
+	Lucene.Net/Search/Spans/SpanQuery.cs \
+	Lucene.Net/Search/Spans/Spans.cs \
+	Lucene.Net/Search/Spans/SpanScorer.cs \
+	Lucene.Net/Search/Spans/SpanTermQuery.cs \
+	Lucene.Net/Search/Spans/SpanWeight.cs \
+	Lucene.Net/Store/Directory.cs \
+	Lucene.Net/Store/FSDirectory.cs \
+	Lucene.Net/Store/InputStream.cs \
+	Lucene.Net/Store/Lock.cs \
+	Lucene.Net/Store/OutputStream.cs \
+	Lucene.Net/Store/RAMDirectory.cs \
+	Lucene.Net/Store/RAMFile.cs \
+	Lucene.Net/Store/RAMInputStream.cs \
+	Lucene.Net/Store/RAMOutputStream.cs \
+	Lucene.Net/Util/BitVector.cs \
+	Lucene.Net/Util/Constants.cs \
+	Lucene.Net/Util/PriorityQueue.cs \
+	Lucene.Net/Util/StringHelper.cs
+LUCENE_NET_RES=
+
+ZEDGRAPH_DLL=$(TARGET)/ZedGraph.dll
+ZEDGRAPH_PDB=$(TARGET)/ZedGraph.pdb
+ZEDGRAPH_SRC=ZedGraph/ZedGraph/ArrowItem.cs \
+	ZedGraph/ZedGraph/AssemblyInfo.cs \
+	ZedGraph/ZedGraph/Axis.cs \
+	ZedGraph/ZedGraph/Bar.cs \
+	ZedGraph/ZedGraph/BarItem.cs \
+	ZedGraph/ZedGraph/BarValueHandler.cs \
+	ZedGraph/ZedGraph/Border.cs \
+	ZedGraph/ZedGraph/BoxItem.cs \
+	ZedGraph/ZedGraph/CollectionPlus.cs \
+	ZedGraph/ZedGraph/ColorSymbolRotator.cs \
+	ZedGraph/ZedGraph/CurveItem.cs \
+	ZedGraph/ZedGraph/CurveList.cs \
+	ZedGraph/ZedGraph/EllipseItem.cs \
+	ZedGraph/ZedGraph/ErrorBar.cs \
+	ZedGraph/ZedGraph/ErrorBarItem.cs \
+	ZedGraph/ZedGraph/Fill.cs \
+	ZedGraph/ZedGraph/FontSpec.cs \
+	ZedGraph/ZedGraph/GraphItem.cs \
+	ZedGraph/ZedGraph/GraphItemList.cs \
+	ZedGraph/ZedGraph/GraphPane.cs \
+	ZedGraph/ZedGraph/HiLowBar.cs \
+	ZedGraph/ZedGraph/HiLowBarItem.cs \
+	ZedGraph/ZedGraph/ImageItem.cs \
+	ZedGraph/ZedGraph/Legend.cs \
+	ZedGraph/ZedGraph/Line.cs \
+	ZedGraph/ZedGraph/LineItem.cs \
+	ZedGraph/ZedGraph/Location.cs \
+	ZedGraph/ZedGraph/PointPair.cs \
+	ZedGraph/ZedGraph/PointPairList.cs \
+	ZedGraph/ZedGraph/Symbol.cs \
+	ZedGraph/ZedGraph/TextItem.cs \
+	ZedGraph/ZedGraph/Types.cs \
+	ZedGraph/ZedGraph/XAxis.cs \
+	ZedGraph/ZedGraph/XDate.cs \
+	ZedGraph/ZedGraph/Y2Axis.cs \
+	ZedGraph/ZedGraph/YAxis.cs \
+	ZedGraph/ZedGraph/ZedGraphControl.cs \
+	ZedGraph/ZedGraph/ZedGraphException.cs \
+	ZedGraph/ZedGraph/ZedGraphWeb.cs
+ZEDGRAPH_RES=-resource:ZedGraph/ZedGraph/ZedGraphControl.resx,.ZedGraph.ZedGraphControl.resx
+
+MOJOPORTAL_WEB_DLL=$(TARGET)/mojoPortal.Web.dll
+MOJOPORTAL_WEB_PDB=$(TARGET)/mojoPortal.Web.pdb
+MOJOPORTAL_WEB_SRC=Web/AccessDenied.aspx.cs \
+	Web/AssemblyInfo.cs \
+	Web/BlogArchiveView.aspx.cs \
+	Web/BlogEdit.aspx.cs \
+	Web/BlogView.aspx.cs \
+	Web/Default.aspx.cs \
+	Web/EditAccessDenied.aspx.cs \
+	Web/EventCalendarDayView.aspx.cs \
+	Web/EventCalendarEdit.aspx.cs \
+	Web/EventCalendarViewEvent.aspx.cs \
+	Web/ForumEdit.aspx.cs \
+	Web/ForumPostEdit.aspx.cs \
+	Web/ForumThreadView.aspx.cs \
+	Web/ForumView.aspx.cs \
+	Web/GalleryBrowse.aspx.cs \
+	Web/GalleryImageEdit.aspx.cs \
+	Web/Global.asax.cs \
+	Web/HtmlEdit.aspx.cs \
+	Web/HtmlView.aspx.cs \
+	Web/LinksEdit.aspx.cs \
+	Web/Logoff.aspx.cs \
+	Web/MemberList.aspx.cs \
+	Web/ProfileView.aspx.cs \
+	Web/RSS.aspx.cs \
+	Web/RSSAggregate.aspx.cs \
+	Web/RSSFeedEdit.aspx.cs \
+	Web/SharedFilesEdit.aspx.cs \
+	Web/UnsubscribeForumThread.aspx.cs \
+	Web/UploadProgress.aspx.cs \
+	Web/XmlEdit.aspx.cs \
+	Web/Admin/FileManager.ascx.cs \
+	Web/Admin/ManageUsers.aspx.cs \
+	Web/Admin/ModuleDefinitions.aspx.cs \
+	Web/Admin/ModuleDefs.ascx.cs \
+	Web/Admin/ModuleSettings.aspx.cs \
+	Web/Admin/PageLayout.aspx.cs \
+	Web/Admin/Pages.ascx.cs \
+	Web/Admin/PageSettings.aspx.cs \
+	Web/Admin/Roles.ascx.cs \
+	Web/Admin/SecurityRoles.aspx.cs \
+	Web/Admin/ServerAdmin.aspx.cs \
+	Web/Admin/SiteSettings.ascx.cs \
+	Web/Components/CachedSiteModuleControl.cs \
+	Web/Components/ContentRegion.cs \
+	Web/Components/MasterPage.cs \
+	Web/Components/SiteModuleControl.cs \
+	Web/Components/SiteSkin.cs \
+	Web/Components/SiteUtils.cs \
+	Web/Controls/BreadcrumbsControl.ascx.cs \
+	Web/Controls/DataCalendar.cs \
+	Web/Controls/DataCalendarItem.cs \
+	Web/Controls/HomeLink.ascx.cs \
+	Web/Controls/LoginLink.ascx.cs \
+	Web/Controls/LogoutLink.ascx.cs \
+	Web/Controls/MemberListLink.ascx.cs \
+	Web/Controls/MetaContent.ascx.cs \
+	Web/Controls/ModuleTitle.ascx.cs \
+	Web/Controls/RegisterLink.ascx.cs \
+	Web/Controls/SiteImage.ascx.cs \
+	Web/Controls/SiteLabel.ascx.cs \
+	Web/Controls/SiteLogo.ascx.cs \
+	Web/Controls/SiteMenu.ascx.cs \
+	Web/Controls/SitePageTitle.ascx.cs \
+	Web/Controls/SiteScript.ascx.cs \
+	Web/Controls/SiteTitle.ascx.cs \
+	Web/Controls/StyleSheet.ascx.cs \
+	Web/Controls/UserProfileLink.ascx.cs \
+	Web/Controls/WelcomeMenu.ascx.cs \
+	Web/Controls/WelcomeMessage.ascx.cs \
+	Web/FCKeditor/editor/filemanager/browser/default/connectors/aspx/connector.aspx.cs \
+	Web/Modules/BlogModule.ascx.cs \
+	Web/Modules/BlogRSS.aspx.cs \
+	Web/Modules/ContactForm.ascx.cs \
+	Web/Modules/EventCalendar.ascx.cs \
+	Web/Modules/ForumModule.ascx.cs \
+	Web/Modules/Gallery.ascx.cs \
+	Web/Modules/HtmlModule.ascx.cs \
+	Web/Modules/Links.ascx.cs \
+	Web/Modules/RSSAggregator.ascx.cs \
+	Web/Modules/SharedFiles.ascx.cs \
+	Web/Modules/Signin.ascx.cs \
+	Web/Modules/XmlModule.ascx.cs \
+	Web/Secure/Login.aspx.cs \
+	Web/Secure/Register.aspx.cs \
+	Web/Secure/UserProfile.aspx.cs
+MOJOPORTAL_WEB_RES=-resource:Web/AccessDenied.aspx.resx,mojoPortal.Web.AccessDenied.aspx.resx \
+	-resource:Web/BlogArchiveView.aspx.resx,mojoPortal.Web.BlogArchiveView.aspx.resx \
+	-resource:Web/BlogEdit.aspx.resx,mojoPortal.Web.BlogEdit.aspx.resx \
+	-resource:Web/BlogView.aspx.resx,mojoPortal.Web.BlogView.aspx.resx \
+	-resource:Web/Default.aspx.resx,mojoPortal.Web.Default.aspx.resx \
+	-resource:Web/EditAccessDenied.aspx.resx,mojoPortal.Web.EditAccessDenied.aspx.resx \
+	-resource:Web/EventCalendarDayView.aspx.resx,mojoPortal.Web.EventCalendarDayView.aspx.resx \
+	-resource:Web/EventCalendarEdit.aspx.resx,mojoPortal.Web.EventCalendarEdit.aspx.resx \
+	-resource:Web/EventCalendarViewEvent.aspx.resx,mojoPortal.Web.EventCalendarViewEvent.aspx.resx \
+	-resource:Web/ForumEdit.aspx.resx,mojoPortal.Web.ForumEdit.aspx.resx \
+	-resource:Web/ForumPostEdit.aspx.resx,mojoPortal.Web.ForumPostEdit.aspx.resx \
+	-resource:Web/ForumThreadView.aspx.resx,mojoPortal.Web.ForumThreadView.aspx.resx \
+	-resource:Web/ForumView.aspx.resx,mojoPortal.Web.ForumView.aspx.resx \
+	-resource:Web/GalleryBrowse.aspx.resx,mojoPortal.Web.GalleryBrowse.aspx.resx \
+	-resource:Web/GalleryImageEdit.aspx.resx,mojoPortal.Web.GalleryImageEdit.aspx.resx \
+	-resource:Web/Global.asax.resx,mojoPortal.Web.Global.asax.resx \
+	-resource:Web/HtmlEdit.aspx.resx,mojoPortal.Web.HtmlEdit.aspx.resx \
+	-resource:Web/HtmlView.aspx.resx,mojoPortal.Web.HtmlView.aspx.resx \
+	-resource:Web/LinksEdit.aspx.resx,mojoPortal.Web.LinksEdit.aspx.resx \
+	-resource:Web/Logoff.aspx.resx,mojoPortal.Web.Logoff.aspx.resx \
+	-resource:Web/MemberList.aspx.resx,mojoPortal.Web.MemberList.aspx.resx \
+	-resource:Web/ProfileView.aspx.resx,mojoPortal.Web.ProfileView.aspx.resx \
+	-resource:Web/RSS.aspx.resx,mojoPortal.Web.RSS.aspx.resx \
+	-resource:Web/RSSAggregate.aspx.resx,mojoPortal.Web.RSSAggregate.aspx.resx \
+	-resource:Web/RSSFeedEdit.aspx.resx,mojoPortal.Web.RSSFeedEdit.aspx.resx \
+	-resource:Web/SharedFilesEdit.aspx.resx,mojoPortal.Web.SharedFilesEdit.aspx.resx \
+	-resource:Web/UnsubscribeForumThread.aspx.resx,mojoPortal.Web.UnsubscribeForumThread.aspx.resx \
+	-resource:Web/UploadProgress.aspx.resx,mojoPortal.Web.UploadProgress.aspx.resx \
+	-resource:Web/XmlEdit.aspx.resx,mojoPortal.Web.XmlEdit.aspx.resx \
+	-resource:Web/Admin/FileManager.ascx.resx,mojoPortal.Web.Admin.FileManager.ascx.resx \
+	-resource:Web/Admin/ManageUsers.aspx.resx,mojoPortal.Web.Admin.ManageUsers.aspx.resx \
+	-resource:Web/Admin/ModuleDefinitions.aspx.resx,mojoPortal.Web.Admin.ModuleDefinitions.aspx.resx \
+	-resource:Web/Admin/ModuleDefs.ascx.resx,mojoPortal.Web.Admin.ModuleDefs.ascx.resx \
+	-resource:Web/Admin/ModuleSettings.aspx.resx,mojoPortal.Web.Admin.ModuleSettings.aspx.resx \
+	-resource:Web/Admin/PageLayout.aspx.resx,mojoPortal.Web.Admin.PageLayout.aspx.resx \
+	-resource:Web/Admin/Pages.ascx.resx,mojoPortal.Web.Admin.Pages.ascx.resx \
+	-resource:Web/Admin/PageSettings.aspx.resx,mojoPortal.Web.Admin.PageSettings.aspx.resx \
+	-resource:Web/Admin/Roles.ascx.resx,mojoPortal.Web.Admin.Roles.ascx.resx \
+	-resource:Web/Admin/SecurityRoles.aspx.resx,mojoPortal.Web.Admin.SecurityRoles.aspx.resx \
+	-resource:Web/Admin/ServerAdmin.aspx.resx,mojoPortal.Web.Admin.ServerAdmin.aspx.resx \
+	-resource:Web/Admin/SiteSettings.ascx.resx,mojoPortal.Web.Admin.SiteSettings.ascx.resx \
+	-resource:Web/Controls/BreadcrumbsControl.ascx.resx,mojoPortal.Web.Controls.BreadcrumbsControl.ascx.resx \
+	-resource:Web/Controls/HomeLink.ascx.resx,mojoPortal.Web.Controls.HomeLink.ascx.resx \
+	-resource:Web/Controls/LoginLink.ascx.resx,mojoPortal.Web.Controls.LoginLink.ascx.resx \
+	-resource:Web/Controls/LogoutLink.ascx.resx,mojoPortal.Web.Controls.LogoutLink.ascx.resx \
+	-resource:Web/Controls/MemberListLink.ascx.resx,mojoPortal.Web.Controls.MemberListLink.ascx.resx \
+	-resource:Web/Controls/MetaContent.ascx.resx,mojoPortal.Web.Controls.MetaContent.ascx.resx \
+	-resource:Web/Controls/ModuleTitle.ascx.resx,mojoPortal.Web.Controls.ModuleTitle.ascx.resx \
+	-resource:Web/Controls/RegisterLink.ascx.resx,mojoPortal.Web.Controls.RegisterLink.ascx.resx \
+	-resource:Web/Controls/SiteImage.ascx.resx,mojoPortal.Web.Controls.SiteImage.ascx.resx \
+	-resource:Web/Controls/SiteLabel.ascx.resx,mojoPortal.Web.Controls.SiteLabel.ascx.resx \
+	-resource:Web/Controls/SiteLogo.ascx.resx,mojoPortal.Web.Controls.SiteLogo.ascx.resx \
+	-resource:Web/Controls/SiteMenu.ascx.resx,mojoPortal.Web.Controls.SiteMenu.ascx.resx \
+	-resource:Web/Controls/SitePageTitle.ascx.resx,mojoPortal.Web.Controls.SitePageTitle.ascx.resx \
+	-resource:Web/Controls/SiteScript.ascx.resx,mojoPortal.Web.Controls.SiteScript.ascx.resx \
+	-resource:Web/Controls/SiteTitle.ascx.resx,mojoPortal.Web.Controls.SiteTitle.ascx.resx \
+	-resource:Web/Controls/StyleSheet.ascx.resx,mojoPortal.Web.Controls.StyleSheet.ascx.resx \
+	-resource:Web/Controls/UserProfileLink.ascx.resx,mojoPortal.Web.Controls.UserProfileLink.ascx.resx \
+	-resource:Web/Controls/WelcomeMenu.ascx.resx,mojoPortal.Web.Controls.WelcomeMenu.ascx.resx \
+	-resource:Web/Controls/WelcomeMessage.ascx.resx,mojoPortal.Web.Controls.WelcomeMessage.ascx.resx \
+	-resource:Web/FCKeditor/editor/filemanager/browser/default/connectors/aspx/connector.aspx.resx,mojoPortal.Web.FCKeditor.editor.filemanager.browser.default.connectors.aspx.connector.aspx.resx \
+	-resource:Web/Modules/BlogModule.ascx.resx,mojoPortal.Web.Modules.BlogModule.ascx.resx \
+	-resource:Web/Modules/BlogRSS.aspx.resx,mojoPortal.Web.Modules.BlogRSS.aspx.resx \
+	-resource:Web/Modules/ContactForm.ascx.resx,mojoPortal.Web.Modules.ContactForm.ascx.resx \
+	-resource:Web/Modules/EventCalendar.ascx.resx,mojoPortal.Web.Modules.EventCalendar.ascx.resx \
+	-resource:Web/Modules/ForumModule.ascx.resx,mojoPortal.Web.Modules.ForumModule.ascx.resx \
+	-resource:Web/Modules/Gallery.ascx.resx,mojoPortal.Web.Modules.Gallery.ascx.resx \
+	-resource:Web/Modules/HtmlModule.ascx.resx,mojoPortal.Web.Modules.HtmlModule.ascx.resx \
+	-resource:Web/Modules/Links.ascx.resx,mojoPortal.Web.Modules.Links.ascx.resx \
+	-resource:Web/Modules/RSSAggregator.ascx.resx,mojoPortal.Web.Modules.RSSAggregator.ascx.resx \
+	-resource:Web/Modules/SharedFiles.ascx.resx,mojoPortal.Web.Modules.SharedFiles.ascx.resx \
+	-resource:Web/Modules/Signin.ascx.resx,mojoPortal.Web.Modules.Signin.ascx.resx \
+	-resource:Web/Modules/XmlModule.ascx.resx,mojoPortal.Web.Modules.XmlModule.ascx.resx \
+	-resource:Web/Secure/Login.aspx.resx,mojoPortal.Web.Secure.Login.aspx.resx \
+	-resource:Web/Secure/Register.aspx.resx,mojoPortal.Web.Secure.Register.aspx.resx \
+	-resource:Web/Secure/UserProfile.aspx.resx,mojoPortal.Web.Secure.UserProfile.aspx.resx
+
+$(SKMMENU_DLL): $(SKMMENU_SRC) 
+	-mkdir -p $(TARGET)
+	$(MONORESGEN) $(SKMMENU_RESX) $(SKMMENU_RESOURCES)
+	$(MCS) $(MCSFLAGS) $(LIBS) -r:System.dll -r:System.Drawing.dll -r:System.Web.dll -r:System.Data.dll -r:System.Xml.dll -r:System.Design.dll -target:library -out:$(SKMMENU_DLL) $(SKMMENU_RES) $(SKMMENU_SRC)
+
+$(ASSISTEDSOLUTIONS_SLICKUPLOAD_DLL): $(ASSISTEDSOLUTIONS_SLICKUPLOAD_SRC) 
+	-mkdir -p $(TARGET)
+	$(MCS) $(MCSFLAGS) $(LIBS) -r:System.dll -r:System.Data.dll -r:System.Xml.dll -r:System.Web.dll -target:library -out:$(ASSISTEDSOLUTIONS_SLICKUPLOAD_DLL) $(ASSISTEDSOLUTIONS_SLICKUPLOAD_RES) $(ASSISTEDSOLUTIONS_SLICKUPLOAD_SRC)
+
+$(RSS_NET_DLL): $(RSS_NET_SRC) 
+	-mkdir -p $(TARGET)
+	$(MCS) $(MCSFLAGS) $(LIBS) -r:System.dll -r:System.Xml.dll -r:System.Data.dll -target:library -out:$(RSS_NET_DLL) $(RSS_NET_RES) $(RSS_NET_SRC)
+
+$(POSTGRESQLDATA_DLL): $(POSTGRESQLDATA_SRC) 
+	-mkdir -p $(TARGET)
+	$(MCS) $(MCSFLAGS) $(LIBS) -r:System.dll -r:System.Data.dll -r:System.Xml.dll -r:Npgsql.dll -target:library -out:$(POSTGRESQLDATA_DLL) $(POSTGRESQLDATA_RES) $(POSTGRESQLDATA_SRC)
+
+$(FREDCK_FCKEDITORV2_DLL): $(FREDCK_FCKEDITORV2_SRC) $(ASSISTEDSOLUTIONS_SLICKUPLOAD_DLL)
+	-mkdir -p $(TARGET)
+	$(MCS) $(MCSFLAGS) $(LIBS) -r:System.dll -r:System.Data.dll -r:System.Xml.dll -r:System.Design.dll -r:System.Drawing.dll -r:System.Web.dll -r:$(ASSISTEDSOLUTIONS_SLICKUPLOAD_DLL) -target:library -out:$(FREDCK_FCKEDITORV2_DLL) $(FREDCK_FCKEDITORV2_RES) $(FREDCK_FCKEDITORV2_SRC)
+
+$(MOJOPORTAL_BUSINESS_DLL): $(MOJOPORTAL_BUSINESS_SRC) $(RSS_NET_DLL) $(POSTGRESQLDATA_DLL)
+	-mkdir -p $(TARGET)
+	$(MCS) $(MCSFLAGS) $(LIBS) -r:System.dll -r:System.Data.dll -r:System.Xml.dll -r:System.Web.dll -r:System.Drawing.dll -r:$(RSS_NET_DLL) -r:$(POSTGRESQLDATA_DLL) -target:library -out:$(MOJOPORTAL_BUSINESS_DLL) $(MOJOPORTAL_BUSINESS_RES) $(MOJOPORTAL_BUSINESS_SRC)
+
+$(SHARPZIPLIB_DLL): $(SHARPZIPLIB_SRC) 
+	-mkdir -p $(TARGET)
+	$(MCS) $(MCSFLAGS) $(LIBS) -r:System.dll -r:System.Data.dll -r:System.Xml.dll -target:library -out:$(SHARPZIPLIB_DLL) $(SHARPZIPLIB_RES) $(SHARPZIPLIB_SRC)
+
+$(LUCENE_NET_DLL): $(LUCENE_NET_SRC) 
+	-mkdir -p $(TARGET)
+	$(MCS) $(MCSFLAGS) $(LIBS) -r:System.dll -r:System.Runtime.Remoting.dll -r:System.Data.dll -r:System.Xml.dll -target:library -out:$(LUCENE_NET_DLL) $(LUCENE_NET_RES) $(LUCENE_NET_SRC)
+
+$(ZEDGRAPH_DLL): $(ZEDGRAPH_SRC) 
+	-mkdir -p $(TARGET)
+	$(MCS) $(MCSFLAGS) $(LIBS) -r:System.dll -r:System.Data.dll -r:System.Web.dll -r:System.Xml.dll -r:System.Drawing.dll -r:System.Windows.Forms.dll -target:library -out:$(ZEDGRAPH_DLL) $(ZEDGRAPH_RES) $(ZEDGRAPH_SRC)
+
+$(MOJOPORTAL_WEB_DLL): $(MOJOPORTAL_WEB_SRC) $(MOJOPORTAL_BUSINESS_DLL) $(SKMMENU_DLL) $(FREDCK_FCKEDITORV2_DLL) $(ASSISTEDSOLUTIONS_SLICKUPLOAD_DLL) $(RSS_NET_DLL)
+	-mkdir -p $(TARGET)
+	$(MCS) $(MCSFLAGS) $(LIBS) -r:System.dll -r:System.Drawing.dll -r:System.Data.dll -r:System.Web.dll -r:System.Xml.dll -r:$(MOJOPORTAL_BUSINESS_DLL) -r:$(SKMMENU_DLL) -r:$(FREDCK_FCKEDITORV2_DLL) -r:$(ASSISTEDSOLUTIONS_SLICKUPLOAD_DLL) -r:$(RSS_NET_DLL) -target:library -out:$(MOJOPORTAL_WEB_DLL) $(MOJOPORTAL_WEB_RES) $(MOJOPORTAL_WEB_SRC)
+
+
+# common targets
+
+all:	$(SKMMENU_DLL) \
+	$(ASSISTEDSOLUTIONS_SLICKUPLOAD_DLL) \
+	$(RSS_NET_DLL) \
+	$(POSTGRESQLDATA_DLL) \
+	$(FREDCK_FCKEDITORV2_DLL) \
+	$(MOJOPORTAL_BUSINESS_DLL) \
+	$(SHARPZIPLIB_DLL) \
+	$(LUCENE_NET_DLL) \
+	$(ZEDGRAPH_DLL) \
+	$(MOJOPORTAL_WEB_DLL)
+
+clean:
+	-rm -f "$(SKMMENU_DLL)" 2> /dev/null
+	-rm -f "$(SKMMENU_PDB)" 2> /dev/null
+	-rm -f "$(SKMMENU_RESOURCES)" 2> /dev/null
+	-rm -f "$(ASSISTEDSOLUTIONS_SLICKUPLOAD_DLL)" 2> /dev/null
+	-rm -f "$(ASSISTEDSOLUTIONS_SLICKUPLOAD_PDB)" 2> /dev/null
+	-rm -f "$(RSS_NET_DLL)" 2> /dev/null
+	-rm -f "$(RSS_NET_PDB)" 2> /dev/null
+	-rm -f "$(POSTGRESQLDATA_DLL)" 2> /dev/null
+	-rm -f "$(POSTGRESQLDATA_PDB)" 2> /dev/null
+	-rm -f "$(FREDCK_FCKEDITORV2_DLL)" 2> /dev/null
+	-rm -f "$(FREDCK_FCKEDITORV2_PDB)" 2> /dev/null
+	-rm -f "$(MOJOPORTAL_BUSINESS_DLL)" 2> /dev/null
+	-rm -f "$(MOJOPORTAL_BUSINESS_PDB)" 2> /dev/null
+	-rm -f "$(SHARPZIPLIB_DLL)" 2> /dev/null
+	-rm -f "$(SHARPZIPLIB_PDB)" 2> /dev/null
+	-rm -f "$(LUCENE_NET_DLL)" 2> /dev/null
+	-rm -f "$(LUCENE_NET_PDB)" 2> /dev/null
+	-rm -f "$(ZEDGRAPH_DLL)" 2> /dev/null
+	-rm -f "$(ZEDGRAPH_PDB)" 2> /dev/null
+	-rm -f "$(MOJOPORTAL_WEB_DLL)" 2> /dev/null
+	-rm -f "$(MOJOPORTAL_WEB_PDB)" 2> /dev/null
+
+
+# project names as targets
+
+mojoPortal.Web: $(MOJOPORTAL_WEB_DLL)
+skmMenu: $(SKMMENU_DLL)
+AssistedSolutions.SlickUpload: $(ASSISTEDSOLUTIONS_SLICKUPLOAD_DLL)
+RSS.NET: $(RSS_NET_DLL)
+PostgreSQLData: $(POSTGRESQLDATA_DLL)
+FredCK.FCKeditorV2: $(FREDCK_FCKEDITORV2_DLL)
+mojoPortal.Business: $(MOJOPORTAL_BUSINESS_DLL)
+sharpziplib: $(SHARPZIPLIB_DLL)
+Lucene.Net: $(LUCENE_NET_DLL)
+ZedGraph: $(ZEDGRAPH_DLL)
+

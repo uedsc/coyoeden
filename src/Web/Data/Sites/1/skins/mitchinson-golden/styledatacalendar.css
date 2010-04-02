@@ -1,0 +1,24 @@
+.mpcalendarmain {  padding:3px; margin:0; 
+	color: #414141; background:  #B5B9A7; font-size:small; width: 100%;}
+.mpcalendardayheader { font-weight:bold; font-size:8pt;  border:solid thin #B5B9A7;
+	color: #414141; background:  #B5B9A7; text-align:center; }
+.mpcalendarday { border: solid 1px black;  font-size:8pt; 
+	color:Black; text-align:center; }
+.mpcalendarnextprevious { border:solid thin #B5B9A7; color: white; background:  #B5B9A7; text-align:center; }
+.mpcalendarnextprevious a 
+{font-weight:bold; font-size:small; 
+	color: white; background:  #B5B9A7; text-align:center;  }
+.mpcalendarothermonth { border: solid 1px black; 
+	background-color:#f3f3f3;  font-size:8pt; color:Black; text-align:center; 
+	 }
+.mpcalendarselectedday { border: solid 1px black; 
+	background-color:#FFFFE0;  font-size:8pt; color:Black; text-align:center;  }
+.mpcalendarselector { color: #414141; background:  #B5B9A7; border:solid thin #B5B9A7;
+	font-size:8pt; font-weight:bold; text-align:center;  }
+.mpcalendartitle { font-size:8pt; font-weight:bold; text-align:center; 
+	 color: #414141; background:  #B5B9A7; border:solid thin #B5B9A7;}
+table.mpcalendartitle { border:solid thin #B5B9A7;}	
+.mpcalendartoday { border: solid 1px black; background-color:#FFFFE0; 
+	color:Black; font-size:8pt; text-align:center; }
+.mpcalendarweekendday { border: solid 1px black; background-color:#D3D3D3; 
+	color:Black; font-size:8pt; text-align:center; }

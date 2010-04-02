@@ -1,0 +1,2287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccessDeniedLabel" xml:space="preserve">
+    <value>访问拒绝</value>
+  </data>
+  <data name="AdminMenuBannedIPAddressesLabel" xml:space="preserve">
+    <value>封IP</value>
+  </data>
+  <data name="AdminMenuContentManagerLink" xml:space="preserve">
+    <value>内容管理</value>
+  </data>
+  <data name="AdminMenuFeatureModulesLink" xml:space="preserve">
+    <value>特色模块</value>
+  </data>
+  <data name="AdminMenuFileManagerLink" xml:space="preserve">
+    <value>文件管理</value>
+  </data>
+  <data name="AdminMenuHeading" xml:space="preserve">
+    <value>欢迎您来到管理页面</value>
+  </data>
+  <data name="AdminMenuLink" xml:space="preserve">
+    <value>管理菜单</value>
+  </data>
+  <data name="AdminMenuNewsletterAdminLabel" xml:space="preserve">
+    <value>时事通讯管理</value>
+  </data>
+  <data name="AdminMenuPageTreeLink" xml:space="preserve">
+    <value>添加/编辑页面</value>
+  </data>
+  <data name="AdminMenuRoleAdminLink" xml:space="preserve">
+    <value>角色管理</value>
+  </data>
+  <data name="AdminMenuServerCurrentGMTTimeLabel" xml:space="preserve">
+    <value>格林威治时间</value>
+  </data>
+  <data name="AdminMenuServerInfoLabel" xml:space="preserve">
+    <value>系统信息</value>
+  </data>
+  <data name="AdminMenuServerLocalTimeLabel" xml:space="preserve">
+    <value>服务器本地时间</value>
+  </data>
+  <data name="AdminMenuServerLogLabel" xml:space="preserve">
+    <value>系统日志</value>
+  </data>
+  <data name="AdminMenuServerPrefferedGMTOffsetLabel" xml:space="preserve">
+    <value>喜欢的 GMT Offset Web.config 设置:</value>
+  </data>
+  <data name="AdminMenuServerTimeZoneLabel" xml:space="preserve">
+    <value>服务器时区</value>
+  </data>
+  <data name="AdminMenuServerUtcOffsetLabel" xml:space="preserve">
+    <value>服务器 GMT偏移:</value>
+  </data>
+  <data name="AdminMenuSiteSettingsLink" xml:space="preserve">
+    <value>站点设置</value>
+  </data>
+  <data name="AdminMenuUrlManagerLink" xml:space="preserve">
+    <value>网址管理</value>
+  </data>
+  <data name="AdminMenuVersionLabel" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="AdminMenuWebPartAdminLink" xml:space="preserve">
+    <value>Web Part 安装</value>
+  </data>
+  <data name="AllowAnonymousPostsLabel" xml:space="preserve">
+    <value>允许匿名回复?</value>
+  </data>
+  <data name="AlphaPagerChars" xml:space="preserve">
+    <value>ABCDEFGHIJKLMNOPQRSTUVWXYZ</value>
+  </data>
+  <data name="ApplicationStartEventMessage" xml:space="preserve">
+    <value>程序已开始运行</value>
+  </data>
+  <data name="BannedIPAddressDeleteConfirmMessage" xml:space="preserve">
+    <value> 是否从封杀列表中删除此IP地址？</value>
+  </data>
+  <data name="BannedIPAddressesAddNewButton" xml:space="preserve">
+    <value>封杀一个新的IP</value>
+  </data>
+  <data name="BannedIPAddressesGridCancelButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="BannedIPAddressesGridDeleteButton" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="BannedIPAddressesGridEditButton" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="BannedIPAddressesGridUpdateButton" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="BannedIPAddressesHeading" xml:space="preserve">
+    <value>封杀的IP地址列表</value>
+  </data>
+  <data name="BannedIPAddressLabel" xml:space="preserve">
+    <value>封杀的IP</value>
+  </data>
+  <data name="BannedIPAddressReasonLabel" xml:space="preserve">
+    <value>原因</value>
+  </data>
+  <data name="BannedIPAddressUTCLabel" xml:space="preserve">
+    <value>UTC 时间戳</value>
+  </data>
+  <data name="CalendarUseFillerOnEmptyDays" xml:space="preserve">
+    <value>便签为空的日期:</value>
+  </data>
+  <data name="CancelUploadAltText" xml:space="preserve">
+    <value>取消上传</value>
+  </data>
+  <data name="ChangePasswordButton" xml:space="preserve">
+    <value>更改密码</value>
+  </data>
+  <data name="ChangePasswordCancelButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ChangePasswordConfirmNewPasswordLabel" xml:space="preserve">
+    <value>确认新密码</value>
+  </data>
+  <data name="ChangePasswordConfirmPasswordRequiredMessage" xml:space="preserve">
+    <value>验证密码不能为空</value>
+  </data>
+  <data name="ChangePasswordCurrentPasswordIncorrectWarning" xml:space="preserve">
+    <value>密码不正确</value>
+  </data>
+  <data name="ChangePasswordCurrentPasswordLabel" xml:space="preserve">
+    <value>原密码</value>
+  </data>
+  <data name="ChangePasswordCurrentPasswordRequiredWarning" xml:space="preserve">
+    <value>密码不能为空</value>
+  </data>
+  <data name="ChangePasswordFailureText" xml:space="preserve">
+    <value>抱歉,您的密码没有被更改</value>
+  </data>
+  <data name="ChangePasswordLabel" xml:space="preserve">
+    <value>更改密码</value>
+  </data>
+  <data name="ChangePasswordLink" xml:space="preserve">
+    <value>更改密码</value>
+  </data>
+  <data name="ChangePasswordMinimumLengthWarning" xml:space="preserve">
+    <value>新密码最小长度是</value>
+  </data>
+  <data name="ChangePasswordMinNonAlphanumericCharsWarning" xml:space="preserve">
+    <value>新密码最小的非数字字符是:</value>
+  </data>
+  <data name="ChangePasswordMustMatchConfirmMessage" xml:space="preserve">
+    <value>密码不匹配</value>
+  </data>
+  <data name="ChangePasswordNewMatchesOldWarning" xml:space="preserve">
+    <value>新密码不能与原密码相同</value>
+  </data>
+  <data name="ChangePasswordNewPasswordLabel" xml:space="preserve">
+    <value>新密码</value>
+  </data>
+  <data name="ChangePasswordNewPasswordRequired" xml:space="preserve">
+    <value>新密码不能为空</value>
+  </data>
+  <data name="ChangePasswordPasswordRegexFailureMessage" xml:space="preserve">
+    <value>密码不够强壮</value>
+  </data>
+  <data name="ChangePasswordSuccessText" xml:space="preserve">
+    <value>您的密码已经更新</value>
+  </data>
+  <data name="CheckProgressText" xml:space="preserve">
+    <value>检查上传过程</value>
+  </data>
+  <data name="ChooseContentAddToMyPageLink" xml:space="preserve">
+    <value>添加到我的页面</value>
+  </data>
+  <data name="ContentListPageSize" xml:space="preserve">
+    <value>内容列表的页大小</value>
+  </data>
+  <data name="ContentManagerAuthorColumnHeader" xml:space="preserve">
+    <value>作者</value>
+  </data>
+  <data name="ContentManagerBackToListLink" xml:space="preserve">
+    <value>回到内容列表</value>
+  </data>
+  <data name="ContentManagerCancelButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ContentManagerCenterColumnLabel" xml:space="preserve">
+    <value>中间</value>
+  </data>
+  <data name="ContentManagerColumnColumnHeader" xml:space="preserve">
+    <value>列</value>
+  </data>
+  <data name="ContentManagerContentTitleColumnHeader" xml:space="preserve">
+    <value>题目</value>
+  </data>
+  <data name="ContentManagerCreateNewContentButton" xml:space="preserve">
+    <value>建立新内容</value>
+  </data>
+  <data name="ContentManagerDeleteContentWarning" xml:space="preserve">
+    <value> 确认从内容系统中删除此项?</value>
+  </data>
+  <data name="ContentManagerFeatureTypeColumnHeader" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="ContentManagerLeftColumnLabel" xml:space="preserve">
+    <value>左</value>
+  </data>
+  <data name="ContentManagerNotPublishedAltText" xml:space="preserve">
+    <value>在本页上发布内容</value>
+  </data>
+  <data name="ContentManagerOrderColumnHeader" xml:space="preserve">
+    <value>次序</value>
+  </data>
+  <data name="ContentManagerPageColumnHeader" xml:space="preserve">
+    <value>页面</value>
+  </data>
+  <data name="ContentManagerPreviewContentLabel" xml:space="preserve">
+    <value>预览</value>
+  </data>
+  <data name="ContentManagerPublishBeginDateColumnHeader" xml:space="preserve">
+    <value>开始发布</value>
+  </data>
+  <data name="ContentManagerPublishContentLabel" xml:space="preserve">
+    <value>发布者</value>
+  </data>
+  <data name="ContentManagerPublishContentLink" xml:space="preserve">
+    <value>发布</value>
+  </data>
+  <data name="ContentManagerPublishDeleteLabel" xml:space="preserve">
+    <value> 发布/删除...</value>
+  </data>
+  <data name="ContentManagerPublishedAltText" xml:space="preserve">
+    <value> 编辑本页的发布</value>
+  </data>
+  <data name="ContentManagerPublishedColumnHeader" xml:space="preserve">
+    <value>已经发布</value>
+  </data>
+  <data name="ContentManagerPublishEndDateColumnHeader" xml:space="preserve">
+    <value>发布完成</value>
+  </data>
+  <data name="ContentManagerPublishingContentLink" xml:space="preserve">
+    <value>发布中</value>
+  </data>
+  <data name="ContentManagerRightColumnLabel" xml:space="preserve">
+    <value>右</value>
+  </data>
+  <data name="ContentManagerUpdateButton" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="ContentManagerViewEditContentLabel" xml:space="preserve">
+    <value> 查看/编辑</value>
+  </data>
+  <data name="ContentManagerViewEditLabel" xml:space="preserve">
+    <value>查看/编辑...</value>
+  </data>
+  <data name="ContentNotifyOnComment" xml:space="preserve">
+    <value>有人评论时通知我</value>
+  </data>
+  <data name="CouldNotReadLogException" xml:space="preserve">
+    <value>不能读取log文件.文件可能锁定中,请稍后重试</value>
+  </data>
+  <data name="CutePagerBackToFirstClause" xml:space="preserve">
+    <value>导航到第一页</value>
+  </data>
+  <data name="CutePagerBackToPageClause" xml:space="preserve">
+    <value>回到页面</value>
+  </data>
+  <data name="CutePagerGoToLastClause" xml:space="preserve">
+    <value>导航到最后一页</value>
+  </data>
+  <data name="CutePagerNavigateToPageText" xml:space="preserve">
+    <value>导航到页</value>
+  </data>
+  <data name="CutePagerNextToPageClause" xml:space="preserve">
+    <value>下一页</value>
+  </data>
+  <data name="CutePagerOfClause" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="CutePagerPageClause" xml:space="preserve">
+    <value>页</value>
+  </data>
+  <data name="DeleteButton" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="DeleteImageAltText" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="DuplicateEmailMessage" xml:space="preserve">
+    <value>邮件地址已经被使用</value>
+  </data>
+  <data name="DuplicateUserNameMessage" xml:space="preserve">
+    <value>用户名已经存在</value>
+  </data>
+  <data name="EditAccessDeniedLabel" xml:space="preserve">
+    <value>编辑访问拒绝</value>
+  </data>
+  <data name="EditHtmlBodyLabel" xml:space="preserve">
+    <value>内容:</value>
+  </data>
+  <data name="EditHtmlCancelButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="EditHtmlDeleteButton" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="EditHtmlSettingsLabel" xml:space="preserve">
+    <value>Html 内容</value>
+  </data>
+  <data name="EditHtmlUpdateButton" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="EditImageAltText" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="EnterEmailLabel" xml:space="preserve">
+    <value>请输入你的邮件地址:</value>
+  </data>
+  <data name="EnterUserNameLabel" xml:space="preserve">
+    <value>请输入你的用户名:</value>
+  </data>
+  <data name="FileManagerCreateDirectoryButton" xml:space="preserve">
+    <value>建立新目录 :</value>
+  </data>
+  <data name="FileManagerDelete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="FileManagerDeleteConfirm" xml:space="preserve">
+    <value>确认要删除选中的文件?</value>
+  </data>
+  <data name="FileManagerDisabledMessage" xml:space="preserve">
+    <value>抱歉,此功能被禁用</value>
+  </data>
+  <data name="FileManagerFileNameLabel" xml:space="preserve">
+    <value>文件名</value>
+  </data>
+  <data name="FileManagerFolderDeleteConfirm" xml:space="preserve">
+    <value>确认删除选中的文件夹和文件?</value>
+  </data>
+  <data name="FileManagerGoUp" xml:space="preserve">
+    <value>到上一层</value>
+  </data>
+  <data name="FileManagerModifiedLabel" xml:space="preserve">
+    <value>已经修改</value>
+  </data>
+  <data name="FileManagerNewFolderButton" xml:space="preserve">
+    <value>创建新文件夹</value>
+  </data>
+  <data name="FileManagerObjectsLabel" xml:space="preserve">
+    <value>对象</value>
+  </data>
+  <data name="FileManagerRename" xml:space="preserve">
+    <value>重命名</value>
+  </data>
+  <data name="FileManagerRootDirectoryReached" xml:space="preserve">
+    <value>到达根目录</value>
+  </data>
+  <data name="FileManagerSizeLabel" xml:space="preserve">
+    <value>大小KB)</value>
+  </data>
+  <data name="FileManagerUploadButton" xml:space="preserve">
+    <value>上传</value>
+  </data>
+  <data name="FileManagerUploadLabel" xml:space="preserve">
+    <value>上传文件(可以同时上传四个文件)</value>
+  </data>
+  <data name="ForgotPasswordLabel" xml:space="preserve">
+    <value>忘记密码?</value>
+  </data>
+  <data name="FriendlyUrlAddNewLabel" xml:space="preserve">
+    <value>添加新的网址映射</value>
+  </data>
+  <data name="FriendlyUrlCancelButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="FriendlyUrlDeleteConfirmWarning" xml:space="preserve">
+    <value>确认删除此网址?</value>
+  </data>
+  <data name="FriendlyUrlDeleteLabel" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="FriendlyUrlDuplicateWarning" xml:space="preserve">
+    <value>抱歉,此网址映射已被使用</value>
+  </data>
+  <data name="FriendlyUrlEditLabel" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="FriendlyUrlExpertEntryLabel" xml:space="preserve">
+    <value>或是使用简介</value>
+  </data>
+  <data name="FriendlyUrlHelp" xml:space="preserve">
+    <value>在Windows服务器上，如果你的友好网址不以.aspx结尾,你必须建立一个同名文件夹并在其中添加一个空的txt文件并以Default.aspx命名.</value>
+  </data>
+  <data name="FriendlyUrlInvalidEntryMessage" xml:space="preserve">
+    <value>友好网址和实际网址都必须输入</value>
+  </data>
+  <data name="FriendlyUrlInvalidFriendlyUrlMessage" xml:space="preserve">
+    <value>必须输入一个友好网址</value>
+  </data>
+  <data name="FriendlyUrlLabel" xml:space="preserve">
+    <value>友好网址</value>
+  </data>
+  <data name="FriendlyUrlMapsToLabel" xml:space="preserve">
+    <value>映射到</value>
+  </data>
+  <data name="FriendlyUrlRealUrlLabel" xml:space="preserve">
+    <value>阅读网址</value>
+  </data>
+  <data name="FriendlyUrlSaveLabel" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="FriendlyUrlSelectFromDropdownLabel" xml:space="preserve">
+    <value>从下拉列表中选择页</value>
+  </data>
+  <data name="FriendlyUrlViewLink" xml:space="preserve">
+    <value>访问友好网址</value>
+  </data>
+  <data name="FriendlyUrlWouldMaskPhysicalPageWarning" xml:space="preserve">
+    <value>由于可能掩盖一个已存在的页面所以不能创建当前网址 </value>
+  </data>
+  <data name="HelloLabel" xml:space="preserve">
+    <value>你好</value>
+  </data>
+  <data name="HelpEditCancelButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="HelpEditLink" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="HelpEditSaveButton" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="HelpNoHelpAvailable" xml:space="preserve">
+    <value>抱歉,此项的帮助不可用</value>
+  </data>
+  <data name="HelpNoHelpAvailableAdminUser" xml:space="preserve">
+    <value>此项暂时没有帮助文件,如果你创建了帮助文件,可以贡献给大家,联系邮件joe_audette@yahoo.com</value>
+  </data>
+  <data name="HomePageLink" xml:space="preserve">
+    <value>首页</value>
+  </data>
+  <data name="HtmlAddItemLabel" xml:space="preserve">
+    <value>添加项目</value>
+  </data>
+  <data name="HtmlBeginDateLabel" xml:space="preserve">
+    <value>开始日期:</value>
+  </data>
+  <data name="HtmlBeginDateRequiredHelp" xml:space="preserve">
+    <value>必须输入一个有效的开始日期</value>
+  </data>
+  <data name="HtmlContentFeatureName" xml:space="preserve">
+    <value>Html 内容</value>
+  </data>
+  <data name="HtmlDeleteContentWarning" xml:space="preserve">
+    <value>确认删除此内容?</value>
+  </data>
+  <data name="HtmlEditorHeightSetting" xml:space="preserve">
+    <value>编辑器高度</value>
+  </data>
+  <data name="HtmlEndDateLabel" xml:space="preserve">
+    <value>结束日期:</value>
+  </data>
+  <data name="HtmlEndDateRequiredHelp" xml:space="preserve">
+    <value>必须输入有效的结束日期</value>
+  </data>
+  <data name="HtmlExcerptLabel" xml:space="preserve">
+    <value>摘录:</value>
+  </data>
+  <data name="HtmlMoreLinkLabel" xml:space="preserve">
+    <value>更多链接:</value>
+  </data>
+  <data name="HtmlMoreLinkNewWindowSetting" xml:space="preserve">
+    <value>更多链接在新窗口中打开?</value>
+  </data>
+  <data name="HtmlMoreLinkText" xml:space="preserve">
+    <value>...更多</value>
+  </data>
+  <data name="HtmlMultipleItemsSetting" xml:space="preserve">
+    <value>使用多个项目?</value>
+  </data>
+  <data name="HtmlShowDateSetting" xml:space="preserve">
+    <value>显示日期?</value>
+  </data>
+  <data name="HtmlTitleLabel" xml:space="preserve">
+    <value>题目:</value>
+  </data>
+  <data name="HtmlUseExcerptSetting" xml:space="preserve">
+    <value>使用摘录?</value>
+  </data>
+  <data name="HtmlUseMoreLinkSetting" xml:space="preserve">
+    <value>使用 更多 链接?</value>
+  </data>
+  <data name="iboxCloseWindow" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="iboxLoading" xml:space="preserve">
+    <value>加载...</value>
+  </data>
+  <data name="LargeTextLabel" xml:space="preserve">
+    <value>大文本</value>
+  </data>
+  <data name="LetterInfoAllowAnonFeedbackLabel" xml:space="preserve">
+    <value>允许匿名回复?:</value>
+  </data>
+  <data name="LetterInfoAllowUserFeedbackLabel" xml:space="preserve">
+    <value>允许用户回复?:</value>
+  </data>
+  <data name="LetterInfoAvailableToRolesLabel" xml:space="preserve">
+    <value>可以订阅的用户:</value>
+  </data>
+  <data name="LetterInfoDescriptionLabel" xml:space="preserve">
+    <value>描述:</value>
+  </data>
+  <data name="LetterInfoEnabledLabel" xml:space="preserve">
+    <value>允许?:</value>
+  </data>
+  <data name="LetterInfoEnableSendLogLabel" xml:space="preserve">
+    <value>允许发送日志?:</value>
+  </data>
+  <data name="LetterInfoEnableViewAsWebPageLabel" xml:space="preserve">
+    <value>允许作为网页访问?:</value>
+  </data>
+  <data name="LetterInfoFromAddressLabel" xml:space="preserve">
+    <value>邮件的地址:</value>
+  </data>
+  <data name="LetterInfoFromNameLabel" xml:space="preserve">
+    <value>邮件中的姓名:</value>
+  </data>
+  <data name="LetterInfoLastModifiedLabel" xml:space="preserve">
+    <value>最后修改:</value>
+  </data>
+  <data name="LetterInfoReplyToAddressLabel" xml:space="preserve">
+    <value>收件地址:</value>
+  </data>
+  <data name="LetterInfoRolesThatCanApproveLabel" xml:space="preserve">
+    <value>可以批准发送的角色:</value>
+  </data>
+  <data name="LetterInfoRolesThatCanEditLabel" xml:space="preserve">
+    <value>可以 编辑/创作 的角色:</value>
+  </data>
+  <data name="LetterInfoRolesThatCanSendLabel" xml:space="preserve">
+    <value>可以发送的角色:</value>
+  </data>
+  <data name="LetterInfoSendModeLabel" xml:space="preserve">
+    <value>发送模式:</value>
+  </data>
+  <data name="LetterInfoTitleLabel" xml:space="preserve">
+    <value>标题:</value>
+  </data>
+  <data name="LoginAccountLockedMessage" xml:space="preserve">
+    <value>抱歉.帐号已经被锁定</value>
+  </data>
+  <data name="LoginLink" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="LoginUnconfirmedEmailMessage" xml:space="preserve">
+    <value>此帐户还没有被验证,在你验证邮件地址之前不能登录,如果没有收到邮件,请与管理员联系</value>
+  </data>
+  <data name="LogoutLink" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="MailboxLink" xml:space="preserve">
+    <value>站点办公室</value>
+  </data>
+  <data name="ManageUsersAddToRoleButton" xml:space="preserve">
+    <value>添加用户到本角色</value>
+  </data>
+  <data name="ManageUsersAddUserLabel" xml:space="preserve">
+    <value>添加用户</value>
+  </data>
+  <data name="ManageUsersApprovedForForumsLabel" xml:space="preserve">
+    <value>批准的（论坛）</value>
+  </data>
+  <data name="ManageUsersConfirmEmailButton" xml:space="preserve">
+    <value>认可此邮件有效</value>
+  </data>
+  <data name="ManageUsersConfirmPasswordLabel" xml:space="preserve">
+    <value>确认密码:</value>
+  </data>
+  <data name="ManageUsersCreateButton" xml:space="preserve">
+    <value>创建用户</value>
+  </data>
+  <data name="ManageUsersCreatedDateLabel" xml:space="preserve">
+    <value>创建日期:</value>
+  </data>
+  <data name="ManageUsersDefaultSecurityAnswer" xml:space="preserve">
+    <value>蓝色</value>
+  </data>
+  <data name="ManageUsersDefaultSecurityQuestion" xml:space="preserve">
+    <value>什么是蓝色?</value>
+  </data>
+  <data name="ManageUsersDeleteButton" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="ManageUsersDeleteUserWarning" xml:space="preserve">
+    <value>确认删除此用户?</value>
+  </data>
+  <data name="ManageUsersDisplayInMemberListLabel" xml:space="preserve">
+    <value>在用户列表中显示:</value>
+  </data>
+  <data name="ManageUsersEmailLabel" xml:space="preserve">
+    <value>Email 地址:</value>
+  </data>
+  <data name="ManageUsersLoginNameLabel" xml:space="preserve">
+    <value>用户 ID:</value>
+  </data>
+  <data name="ManageUsersOpenIDURILabel" xml:space="preserve">
+    <value>开放 ID URI:</value>
+  </data>
+  <data name="ManageUsersPageTitle" xml:space="preserve">
+    <value>管理用户</value>
+  </data>
+  <data name="ManageUsersPasswordLabel" xml:space="preserve">
+    <value>密码:</value>
+  </data>
+  <data name="ManageUsersProfileApprovedLabel" xml:space="preserve">
+    <value>通过的资料:</value>
+  </data>
+  <data name="ManageUsersRemoveFromRoleButton" xml:space="preserve">
+    <value>从此角色中删除用户</value>
+  </data>
+  <data name="ManageUsersRemoveRoleWarning" xml:space="preserve">
+    <value>确认从此角色中删除用户?</value>
+  </data>
+  <data name="ManageUsersSaveButton" xml:space="preserve">
+    <value>保存用户的改动</value>
+  </data>
+  <data name="ManageUsersTitleLabel" xml:space="preserve">
+    <value>管理用户:</value>
+  </data>
+  <data name="ManageUsersTotalPostsLabel" xml:space="preserve">
+    <value>发文总数:</value>
+  </data>
+  <data name="ManageUsersTrustedLabel" xml:space="preserve">
+    <value>信任的:</value>
+  </data>
+  <data name="ManageUsersUpdateButton" xml:space="preserve">
+    <value>更新用户</value>
+  </data>
+  <data name="ManageUsersUserGuidLabel" xml:space="preserve">
+    <value>用户的 Guid:</value>
+  </data>
+  <data name="ManageUsersUserIsInAllRolesMessage" xml:space="preserve">
+    <value> 用户存在于所有的角色中</value>
+  </data>
+  <data name="ManageUsersUserNameLabel" xml:space="preserve">
+    <value>全名:</value>
+  </data>
+  <data name="ManageUsersWindowsLiveIDLabel" xml:space="preserve">
+    <value>Windows Live ID:</value>
+  </data>
+  <data name="MediumTextLabel" xml:space="preserve">
+    <value>中等文本</value>
+  </data>
+  <data name="MemberListAddUserLabel" xml:space="preserve">
+    <value>添加新用户</value>
+  </data>
+  <data name="MemberListAllUsersLink" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="MemberListDateCreatedLabel" xml:space="preserve">
+    <value>加入</value>
+  </data>
+  <data name="MemberListLink" xml:space="preserve">
+    <value>成员列表</value>
+  </data>
+  <data name="MemberListPagesLabel" xml:space="preserve">
+    <value>页:</value>
+  </data>
+  <data name="MemberListSearchButton" xml:space="preserve">
+    <value>查找</value>
+  </data>
+  <data name="MemberListShowAllLabel" xml:space="preserve">
+    <value>显示全部</value>
+  </data>
+  <data name="MemberListTitleLabel" xml:space="preserve">
+    <value>成员列表</value>
+  </data>
+  <data name="MemberListUserNameLabel" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="MemberListUserTotalPostsLabel" xml:space="preserve">
+    <value>发帖总数</value>
+  </data>
+  <data name="MemberListUserWebSiteLabel" xml:space="preserve">
+    <value>网站</value>
+  </data>
+  <data name="MemberListViewProfileLabel" xml:space="preserve">
+    <value>查看资料</value>
+  </data>
+  <data name="ModuleAdminEditLink" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="ModuleAdminSettingsLink" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="ModuleDefinitionDefaultCacheRegexWarning" xml:space="preserve">
+    <value>默认缓存数在0- 99999999之间</value>
+  </data>
+  <data name="ModuleDefinitionDefaultCacheRequiredMessage" xml:space="preserve">
+    <value>需要输入默认缓存数,0代表不使用</value>
+  </data>
+  <data name="ModuleDefinitionDeleteSettingWarning" xml:space="preserve">
+    <value>要删除此设置?</value>
+  </data>
+  <data name="ModuleDefinitionsAddSettingButton" xml:space="preserve">
+    <value>添加新设置</value>
+  </data>
+  <data name="ModuleDefinitionsAddSettingHeader" xml:space="preserve">
+    <value>添加新设置</value>
+  </data>
+  <data name="ModuleDefinitionsBackLink" xml:space="preserve">
+    <value>回到特色模块列表</value>
+  </data>
+  <data name="ModuleDefinitionsCancelButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ModuleDefinitionsConfigureLink" xml:space="preserve">
+    <value>配置设置</value>
+  </data>
+  <data name="ModuleDefinitionsControlSourceRequiredHelp" xml:space="preserve">
+    <value>必须输入相对路径到特色模块</value>
+  </data>
+  <data name="ModuleDefinitionsDefaultCacheDurationLabel" xml:space="preserve">
+    <value>默认缓存 (秒):</value>
+  </data>
+  <data name="ModuleDefinitionsDefaultControlSource" xml:space="preserve">
+    <value>Modules/SomeModule.ascx</value>
+  </data>
+  <data name="ModuleDefinitionsDefaultModuleName" xml:space="preserve">
+    <value>新的定义</value>
+  </data>
+  <data name="ModuleDefinitionsDeleteButton" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="ModuleDefinitionsDeleteInstancesBeforeModuleDefinitionMessage" xml:space="preserve">
+    <value>此特色模块已经被使用,必须在使用的页面中先删除使用项</value>
+  </data>
+  <data name="ModuleDefinitionsDeleteWarning" xml:space="preserve">
+    <value>确认删除此特色模块?</value>
+  </data>
+  <data name="ModuleDefinitionsDesktopSourceLabel" xml:space="preserve">
+    <value>控件源:</value>
+  </data>
+  <data name="ModuleDefinitionsEditButton" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="ModuleDefinitionSettingsBackLink" xml:space="preserve">
+    <value>回到特色模块定义页面</value>
+  </data>
+  <data name="ModuleDefinitionSettingsCancelButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ModuleDefinitionSettingsDeleteButton" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="ModuleDefinitionSettingsEditButton" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="ModuleDefinitionSettingsUpdateButton" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="ModuleDefinitionsFeatureGuidLabel" xml:space="preserve">
+    <value>特色模块 Guid:</value>
+  </data>
+  <data name="ModuleDefinitionsFeatureNameRequiredHelp" xml:space="preserve">
+    <value>必须输入一个特殊模块名称</value>
+  </data>
+  <data name="ModuleDefinitionsIsAdminLabel" xml:space="preserve">
+    <value>从特色模块列表中去掉:</value>
+  </data>
+  <data name="ModuleDefinitionsModuleDefinitionLabel" xml:space="preserve">
+    <value>特色模块定义</value>
+  </data>
+  <data name="ModuleDefinitionSortRegexWarning" xml:space="preserve">
+    <value>排序序号必须是从0-999之间的序号</value>
+  </data>
+  <data name="ModuleDefinitionSortRequiredMessage" xml:space="preserve">
+    <value>必须输入排序序号，且应在0-999之间</value>
+  </data>
+  <data name="ModuleDefinitionsResourceFileLabel" xml:space="preserve">
+    <value>资源文件:</value>
+  </data>
+  <data name="ModuleDefinitionsResourceKeyLabel" xml:space="preserve">
+    <value>特色模块名称资源密匙:</value>
+  </data>
+  <data name="ModuleDefinitionsSettingControlTypeLabel" xml:space="preserve">
+    <value>控件类型</value>
+  </data>
+  <data name="ModuleDefinitionsSettingNameLabel" xml:space="preserve">
+    <value>设置密码 (不为空), 在资源文件中使用相同的密匙</value>
+  </data>
+  <data name="ModuleDefinitionsSettingRegexExpressionLabel" xml:space="preserve">
+    <value>正则表达式</value>
+  </data>
+  <data name="ModuleDefinitionsSettingsLabel" xml:space="preserve">
+    <value>特色模块设置</value>
+  </data>
+  <data name="ModuleDefinitionsSettingValueLabel" xml:space="preserve">
+    <value>设定的值</value>
+  </data>
+  <data name="ModuleDefinitionsSortOrderLabel" xml:space="preserve">
+    <value>排序序号:</value>
+  </data>
+  <data name="ModuleDefinitionsUpdateButton" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="ModuleDefsAddButton" xml:space="preserve">
+    <value>添加新的特色模块</value>
+  </data>
+  <data name="ModuleEditSettings" xml:space="preserve">
+    <value>编辑设置</value>
+  </data>
+  <data name="ModuleSettingsAllowMultipleInstancesOnMyPageLabel" xml:space="preserve">
+    <value>允许多项在“我的页面”</value>
+  </data>
+  <data name="ModuleSettingsApplyButton" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="ModuleSettingsAvailableForMyPageLabel" xml:space="preserve">
+    <value>对“我的页面”有效?:</value>
+  </data>
+  <data name="ModuleSettingsCacheRegexWarning" xml:space="preserve">
+    <value>缓存时间必须在 0到99999999之间</value>
+  </data>
+  <data name="ModuleSettingsCacheRequiredMessage" xml:space="preserve">
+    <value> 需要设置缓存时间,0代表不使用缓存</value>
+  </data>
+  <data name="ModuleSettingsCacheTimeLabel" xml:space="preserve">
+    <value>缓存时间 (秒):</value>
+  </data>
+  <data name="ModuleSettingsDeleteButton" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="ModuleSettingsDeleteConfirm" xml:space="preserve">
+    <value>确认从所有页面中删除内容?</value>
+  </data>
+  <data name="ModuleSettingsEditRolesLabel" xml:space="preserve">
+    <value>可以编辑内容的角色:</value>
+  </data>
+  <data name="ModuleSettingsEditUserIDLabel" xml:space="preserve">
+    <value>UserID:</value>
+  </data>
+  <data name="ModuleSettingsEditUserLabel" xml:space="preserve">
+    <value>可以编辑内容的用户:</value>
+  </data>
+  <data name="ModuleSettingsFeatureNameLabel" xml:space="preserve">
+    <value>特色模块:</value>
+  </data>
+  <data name="ModuleSettingsIconLabel" xml:space="preserve">
+    <value>图标:</value>
+  </data>
+  <data name="ModuleSettingsModuleNameLabel" xml:space="preserve">
+    <value>特色模块实例标题:</value>
+  </data>
+  <data name="ModuleSettingsNoIconLabel" xml:space="preserve">
+    <value>没有</value>
+  </data>
+  <data name="ModuleSettingsPageTitle" xml:space="preserve">
+    <value>内容设置</value>
+  </data>
+  <data name="ModuleSettingsSettingsLabel" xml:space="preserve">
+    <value>特色模块实例设置</value>
+  </data>
+  <data name="ModuleSettingsShowTitleLabel" xml:space="preserve">
+    <value>显示标题?:</value>
+  </data>
+  <data name="CUserCatalogPartTitle" xml:space="preserve">
+    <value>有效内容</value>
+  </data>
+  <data name="MyPageAddContentLabel" xml:space="preserve">
+    <value>添加内容</value>
+  </data>
+  <data name="MyPageAnonymousMessage" xml:space="preserve">
+    <value>当你登录后，可以自定义此页面</value>
+  </data>
+  <data name="MyPageCancelNewPageButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="MyPageCancelRenamePageButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="MyPageCenterLabel" xml:space="preserve">
+    <value>中间</value>
+  </data>
+  <data name="MyPageChangeNameText" xml:space="preserve">
+    <value>更改姓名</value>
+  </data>
+  <data name="MyPageDefaultUserPageName" xml:space="preserve">
+    <value>欢迎</value>
+  </data>
+  <data name="MyPageDeleteWarning" xml:space="preserve">
+    <value>确认删除此内容?</value>
+  </data>
+  <data name="MyPageLeftSideLabel" xml:space="preserve">
+    <value>左边</value>
+  </data>
+  <data name="MyPageLink" xml:space="preserve">
+    <value>我的页面</value>
+  </data>
+  <data name="MyPageMoveLeftText" xml:space="preserve">
+    <value>移动到左边</value>
+  </data>
+  <data name="MyPageMoveRightText" xml:space="preserve">
+    <value>移动到右边</value>
+  </data>
+  <data name="MyPageNewPageButton" xml:space="preserve">
+    <value>添加页面</value>
+  </data>
+  <data name="MyPageRemoveText" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="MyPageRenamePageButton" xml:space="preserve">
+    <value>更改姓名</value>
+  </data>
+  <data name="MyPageRightSideLabel" xml:space="preserve">
+    <value>右边</value>
+  </data>
+  <data name="MyPageToggleScopeLabel" xml:space="preserve">
+    <value>链接范围</value>
+  </data>
+  <data name="NewsLetterAddNewLink" xml:space="preserve">
+    <value>添加新的时事通讯</value>
+  </data>
+  <data name="NewsLetterTitleLabel" xml:space="preserve">
+    <value>时事通讯标题</value>
+  </data>
+  <data name="NormalTextLabel" xml:space="preserve">
+    <value>正常文本</value>
+  </data>
+  <data name="OnlineMemberListProfileLinkPrefix" xml:space="preserve">
+    <value>查看资料</value>
+  </data>
+  <data name="OnlineMembersLabel" xml:space="preserve">
+    <value>在线成员</value>
+  </data>
+  <data name="OpenIDAdditionalInfoNeededMessage" xml:space="preserve">
+    <value>你的OpenID帐户可以通过验证,但注册时还需要一些附加信息</value>
+  </data>
+  <data name="OpenIDExamplePrefix" xml:space="preserve">
+    <value>示例:</value>
+  </data>
+  <data name="OpenIDExampleUrl" xml:space="preserve">
+    <value>http://your.name.myopenid.com</value>
+  </data>
+  <data name="OpenIDLabel" xml:space="preserve">
+    <value>Open ID:</value>
+  </data>
+  <data name="OpenIDLoginButton" xml:space="preserve">
+    <value>用 Open ID 帐号登录</value>
+  </data>
+  <data name="OpenIDLoginCanceledMessage" xml:space="preserve">
+    <value>登录取消</value>
+  </data>
+  <data name="OpenIDLoginFailedMessage" xml:space="preserve">
+    <value>登录失败</value>
+  </data>
+  <data name="OpenIDMustRegisterBeforeLoginMesage" xml:space="preserve">
+    <value>登录前必须注册.点击 &lt;a href='{0}' title='Open ID Registration Page'&gt;here&lt;/a&gt;来注册</value>
+  </data>
+  <data name="OpenIDRegisterButton" xml:space="preserve">
+    <value>用你的Open ID 帐号注册</value>
+  </data>
+  <data name="OpenIDRegisterUserEmailExistsMessage" xml:space="preserve">
+    <value>一个使用此邮件的站点用户已经存在，如果你要关联OpenID帐号，可以先登录，然后更新你的资料文件</value>
+  </data>
+  <data name="OpenIDRegistrationCanceledMessage" xml:space="preserve">
+    <value>注册取消</value>
+  </data>
+  <data name="OpenIDRegistrationFailedMessage" xml:space="preserve">
+    <value>注册失败</value>
+  </data>
+  <data name="OpenIDRegistrationHeading" xml:space="preserve">
+    <value>使用你的 Open ID 帐号在本站注册</value>
+  </data>
+  <data name="OpenIDRegistrationLink" xml:space="preserve">
+    <value>点击这里用你的OpenID 帐号注册</value>
+  </data>
+  <data name="OpenIDUpdateButton" xml:space="preserve">
+    <value>更新你的 OpenID</value>
+  </data>
+  <data name="OpenIDUpdateCancelledMessage" xml:space="preserve">
+    <value>更新取消</value>
+  </data>
+  <data name="OpenIDUpdateFailedMessage" xml:space="preserve">
+    <value>更新失败</value>
+  </data>
+  <data name="PageChangeFrequencyAlways" xml:space="preserve">
+    <value>Always</value>
+  </data>
+  <data name="PageChangeFrequencyDaily" xml:space="preserve">
+    <value>每天</value>
+  </data>
+  <data name="PageChangeFrequencyHourly" xml:space="preserve">
+    <value>每小时</value>
+  </data>
+  <data name="PageChangeFrequencyMonthly" xml:space="preserve">
+    <value>每月</value>
+  </data>
+  <data name="PageChangeFrequencyNever" xml:space="preserve">
+    <value>从不</value>
+  </data>
+  <data name="PageChangeFrequencyWeekly" xml:space="preserve">
+    <value>每周</value>
+  </data>
+  <data name="PageChangeFrequencyYearly" xml:space="preserve">
+    <value>每年</value>
+  </data>
+  <data name="PageContentEditText" xml:space="preserve">
+    <value>添加/删除/排列 本页的内容</value>
+  </data>
+  <data name="PageDeleteConfirmMessage" xml:space="preserve">
+    <value>确认删除此页?</value>
+  </data>
+  <data name="PageLayoutAddModuleLabel" xml:space="preserve">
+    <value>添加内容:</value>
+  </data>
+  <data name="PageLayoutAuthorizedRolesLabel" xml:space="preserve">
+    <value>能访问此页面的角色:</value>
+  </data>
+  <data name="PageLayoutContentDeleteAlternateText" xml:space="preserve">
+    <value>删除此项</value>
+  </data>
+  <data name="PageLayoutContentDownAlternateText" xml:space="preserve">
+    <value>把选择的模块下移</value>
+  </data>
+  <data name="PageLayoutContentEditAlternateText" xml:space="preserve">
+    <value>编辑此项</value>
+  </data>
+  <data name="PageLayoutContentLabel" xml:space="preserve">
+    <value>页面内容:</value>
+  </data>
+  <data name="PageLayoutContentLeftAlternateText" xml:space="preserve">
+    <value>把选中的模块移到左框中</value>
+  </data>
+  <data name="PageLayoutContentPaneLabel" xml:space="preserve">
+    <value>中间</value>
+  </data>
+  <data name="PageLayoutContentRightAlternateText" xml:space="preserve">
+    <value>把选中的模块移到右框中</value>
+  </data>
+  <data name="PageLayoutContentUpAlternateText" xml:space="preserve">
+    <value>把选中的模块上移</value>
+  </data>
+  <data name="PageLayoutCreateChildPageRolesLabel" xml:space="preserve">
+    <value>在本页中可以创建页面的角色:</value>
+  </data>
+  <data name="PageLayoutDefaultNewModuleName" xml:space="preserve">
+    <value>新内容标题</value>
+  </data>
+  <data name="PageLayoutDefaultSkinLabel" xml:space="preserve">
+    <value>站点默认</value>
+  </data>
+  <data name="PageLayoutEditRolesLabel" xml:space="preserve">
+    <value>可以编辑此页的角色:</value>
+  </data>
+  <data name="PageLayoutEditSettingsLink" xml:space="preserve">
+    <value>编辑此页设置</value>
+  </data>
+  <data name="PageLayoutHideMenuLabel" xml:space="preserve">
+    <value>隐藏主菜单?:</value>
+  </data>
+  <data name="PageLayoutLeftDeleteAlternateText" xml:space="preserve">
+    <value>删除此项</value>
+  </data>
+  <data name="PageLayoutLeftDownAlternateText" xml:space="preserve">
+    <value>下移选中的模块</value>
+  </data>
+  <data name="PageLayoutLeftEditAlternateText" xml:space="preserve">
+    <value>编辑此项</value>
+  </data>
+  <data name="PageLayoutLeftPaneLabel" xml:space="preserve">
+    <value>左边</value>
+  </data>
+  <data name="PageLayoutLeftRightAlternateText" xml:space="preserve">
+    <value>把选中的模块移动中间</value>
+  </data>
+  <data name="PageLayoutLeftUpAlternateText" xml:space="preserve">
+    <value>把选中模块上移</value>
+  </data>
+  <data name="PageLayoutLocationLabel" xml:space="preserve">
+    <value>位置:</value>
+  </data>
+  <data name="PageLayoutMetaAdditionalLabel" xml:space="preserve">
+    <value>页面附加的 Meta 标签:</value>
+  </data>
+  <data name="PageLayoutMetaDescriptionLabel" xml:space="preserve">
+    <value>页面描述:</value>
+  </data>
+  <data name="PageLayoutMetaEncodingLabel" xml:space="preserve">
+    <value>页面编码:</value>
+  </data>
+  <data name="PageLayoutMetaKeyWordsLabel" xml:space="preserve">
+    <value>页面关键字:</value>
+  </data>
+  <data name="PageLayoutModuleNameLabel" xml:space="preserve">
+    <value>标题:</value>
+  </data>
+  <data name="PageLayoutModuleTypeLabel" xml:space="preserve">
+    <value>特色</value>
+  </data>
+  <data name="PageLayoutNewPageLabel" xml:space="preserve">
+    <value>新页面</value>
+  </data>
+  <data name="PageLayoutOpenInNewWindowLabel" xml:space="preserve">
+    <value>在新窗口打开?:</value>
+  </data>
+  <data name="PageLayoutOrganizeModulesLabel" xml:space="preserve">
+    <value>组织内容:</value>
+  </data>
+  <data name="PageLayoutPageLayoutLabel" xml:space="preserve">
+    <value>页面内容:</value>
+  </data>
+  <data name="PageLayoutPageSettingsLabel" xml:space="preserve">
+    <value>页面设置:</value>
+  </data>
+  <data name="PageLayoutParentPageLabel" xml:space="preserve">
+    <value>父页面:</value>
+  </data>
+  <data name="PageLayoutRemoveContentWarning" xml:space="preserve">
+    <value>确认从页面中删除此内容?</value>
+  </data>
+  <data name="PageLayoutRequireSSLLabel" xml:space="preserve">
+    <value>需要 SSL?:</value>
+  </data>
+  <data name="PageLayoutRightDeleteAlternateText" xml:space="preserve">
+    <value>删除此项</value>
+  </data>
+  <data name="PageLayoutRightDownAlternateText" xml:space="preserve">
+    <value>把选中的模块下移</value>
+  </data>
+  <data name="PageLayoutRightEditAlternateText" xml:space="preserve">
+    <value>编辑此项</value>
+  </data>
+  <data name="PageLayoutRightLeftAlternateText" xml:space="preserve">
+    <value>把选中的模块移动中间</value>
+  </data>
+  <data name="PageLayoutRightPaneLabel" xml:space="preserve">
+    <value>右边</value>
+  </data>
+  <data name="PageLayoutRightUpAlternateText" xml:space="preserve">
+    <value>把选中的模块上移</value>
+  </data>
+  <data name="PageLayoutShowBreadcrumbsLabel" xml:space="preserve">
+    <value>显示导航路径?:</value>
+  </data>
+  <data name="PageLayoutShowChildBreadcrumbsLabel" xml:space="preserve">
+    <value>显示子页面的导航路径?:</value>
+  </data>
+  <data name="PageLayoutShowChildMenuLabel" xml:space="preserve">
+    <value>显示子页面索引?:</value>
+  </data>
+  <data name="PageLayoutUrlLabel" xml:space="preserve">
+    <value>网址:</value>
+  </data>
+  <data name="PageLayoutUseUrlLabel" xml:space="preserve">
+    <value>使用网址?:</value>
+  </data>
+  <data name="PagePropertiesEditText" xml:space="preserve">
+    <value>编辑本页设置</value>
+  </data>
+  <data name="PagesAddButton" xml:space="preserve">
+    <value>添加新页面</value>
+  </data>
+  <data name="PagesDeleteAlternateText" xml:space="preserve">
+    <value>删除选中的页</value>
+  </data>
+  <data name="PagesDownButtonAlternateText" xml:space="preserve">
+    <value>把选中页下移</value>
+  </data>
+  <data name="PagesEditAlternateText" xml:space="preserve">
+    <value>编辑页面内容.</value>
+  </data>
+  <data name="PagesEditSettingsAlternateText" xml:space="preserve">
+    <value>编辑页面设置</value>
+  </data>
+  <data name="PageSettingsAllowBrowserCacheLabel" xml:space="preserve">
+    <value>允许浏览器缓存?:</value>
+  </data>
+  <data name="PageSettingsChangeFrequencyLabel" xml:space="preserve">
+    <value>改动频率:</value>
+  </data>
+  <data name="PageSettingsCreateNewPageButton" xml:space="preserve">
+    <value>创建新页面</value>
+  </data>
+  <data name="PageSettingsCreateNewPageLabel" xml:space="preserve">
+    <value>创建新页面</value>
+  </data>
+  <data name="PageSettingsDeleteButton" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="PageSettingsDeleteWarning" xml:space="preserve">
+    <value>确认删除此页?</value>
+  </data>
+  <data name="PageSettingsEditContentLink" xml:space="preserve">
+    <value>编辑当前页内容</value>
+  </data>
+  <data name="PageSettingsHideSearchEngineOptimization" xml:space="preserve">
+    <value>隐藏搜索引擎设置</value>
+  </data>
+  <data name="PageSettingsIconLabel" xml:space="preserve">
+    <value>菜单图标:</value>
+  </data>
+  <data name="PageSettingsIncludeInMenuLabel" xml:space="preserve">
+    <value>出现在菜单中?:</value>
+  </data>
+  <data name="PageSettingsLabel" xml:space="preserve">
+    <value>页面设置:</value>
+  </data>
+  <data name="PageSettingsMetaSettingsLabel" xml:space="preserve">
+    <value>Meta 设置---默认为空</value>
+  </data>
+  <data name="PageSettingsNewPageTitle" xml:space="preserve">
+    <value>新页面</value>
+  </data>
+  <data name="PageSettingsPageNameLabel" xml:space="preserve">
+    <value>页面名称:</value>
+  </data>
+  <data name="PageSettingsPageTitleOverrideLabel" xml:space="preserve">
+    <value>页面标题:</value>
+  </data>
+  <data name="PageSettingsPhysicalUrlWarning" xml:space="preserve">
+    <value>警告:网址连接到了一个已经存在的页面上.请确认您的操作</value>
+  </data>
+  <data name="PageSettingsPriorityLabel" xml:space="preserve">
+    <value>优先:</value>
+  </data>
+  <data name="PageSettingsRootLabel" xml:space="preserve">
+    <value>根</value>
+  </data>
+  <data name="PageSettingsSaveButton" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="PageSettingsSearchEngineOptimizationSettingsLabel" xml:space="preserve">
+    <value>搜索引擎优化设置</value>
+  </data>
+  <data name="PageSettingsShowSearchEngineOptimization" xml:space="preserve">
+    <value>显示搜索引擎设置</value>
+  </data>
+  <data name="PagesLabel" xml:space="preserve">
+    <value>页面:</value>
+  </data>
+  <data name="PagesNoSelectionWarning" xml:space="preserve">
+    <value> 没有页面被选择,必须选择一个</value>
+  </data>
+  <data name="PagesUpButtonAlternateText" xml:space="preserve">
+    <value>把所选页上移</value>
+  </data>
+  <data name="PageUrlInUseErrorMessage" xml:space="preserve">
+    <value>网址已经被使用,不能为不同的页使用相同的网址,不然多个菜单将映射到同一个页面上</value>
+  </data>
+  <data name="PageViewPageLink" xml:space="preserve">
+    <value>访问此页</value>
+  </data>
+  <data name="PasswordQuestionLabel" xml:space="preserve">
+    <value>请输入你的密码问题:</value>
+  </data>
+  <data name="PasswordRecoveryAnswerRequired" xml:space="preserve">
+    <value>必须输入安全问题的答案</value>
+  </data>
+  <data name="PasswordRecoveryGeneralFailureText" xml:space="preserve">
+    <value>不能访问你的信息,请重试</value>
+  </data>
+  <data name="PasswordRecoveryMailFailureMessage" xml:space="preserve">
+    <value>抱歉,由于服务器不能发送消息你的密码没有发送成功,请稍后重试,如果问题依旧,请与管理员联系</value>
+  </data>
+  <data name="PasswordRecoveryNextButton" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="PasswordRecoveryQuestionFailureText" xml:space="preserve">
+    <value>答案不正确r.</value>
+  </data>
+  <data name="PasswordRecoverySuccessMessage" xml:space="preserve">
+    <value>密码已经发到你的邮箱中.</value>
+  </data>
+  <data name="PasswordRecoveryUserNameFailureText" xml:space="preserve">
+    <value>用户名不存在.</value>
+  </data>
+  <data name="PasswordRecoveryUserNameRequiredWarning" xml:space="preserve">
+    <value>必须输入用户名.</value>
+  </data>
+  <data name="PrinterFriendlyLink" xml:space="preserve">
+    <value>打印视图</value>
+  </data>
+  <data name="ProfileLink" xml:space="preserve">
+    <value>我的资料</value>
+  </data>
+  <data name="RefreshAltText" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="RefreshLogViewerLink" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="RegisterButton" xml:space="preserve">
+    <value>创建帐号</value>
+  </data>
+  <data name="RegisterCancelButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="RegisterComparePasswordWarning" xml:space="preserve">
+    <value>验证密码必须与密码匹配.</value>
+  </data>
+  <data name="RegisterCompleteMessage" xml:space="preserve">
+    <value>你的帐户已经创建.</value>
+  </data>
+  <data name="RegisterConfirmMessage" xml:space="preserve">
+    <value>注册已确认,请单击登录按钮登录</value>
+  </data>
+  <data name="RegisterConfirmPasswordLabel" xml:space="preserve">
+    <value>确认密码:</value>
+  </data>
+  <data name="RegisterConfirmPasswordRequiredMessage" xml:space="preserve">
+    <value>确认密码不能为空.</value>
+  </data>
+  <data name="RegisterContinueButton" xml:space="preserve">
+    <value>继续</value>
+  </data>
+  <data name="RegisterDuplicateEmailMessage" xml:space="preserve">
+    <value>抱歉.邮件地址已经被使用</value>
+  </data>
+  <data name="RegisterDuplicateUserNameMessage" xml:space="preserve">
+    <value> User ID 已经被占用</value>
+  </data>
+  <data name="RegisterEmailLabel" xml:space="preserve">
+    <value>邮件地址:</value>
+  </data>
+  <data name="RegisterEmailRegexMessage" xml:space="preserve">
+    <value>必须使用一个有效的邮件地址.</value>
+  </data>
+  <data name="RegisterEmailRequiredMessage" xml:space="preserve">
+    <value>邮件地址不能为空.</value>
+  </data>
+  <data name="RegisterInvalidAnswerErrorMessage" xml:space="preserve">
+    <value>请出入一个不同的答案r.</value>
+  </data>
+  <data name="RegisterInvalidQuestionErrorMessage" xml:space="preserve">
+    <value>请输入一个不同的安全问题.</value>
+  </data>
+  <data name="RegisterLabel" xml:space="preserve">
+    <value>创建一个新帐号</value>
+  </data>
+  <data name="RegisterLink" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="RegisterLoginNameLabel" xml:space="preserve">
+    <value>用户 ID:</value>
+  </data>
+  <data name="RegisterLoginNameRequiredMessage" xml:space="preserve">
+    <value>用户ID不能为空.</value>
+  </data>
+  <data name="RegisterNameLabel" xml:space="preserve">
+    <value>姓名:</value>
+  </data>
+  <data name="RegisterNameRequiredMessage" xml:space="preserve">
+    <value>姓名不能为空.</value>
+  </data>
+  <data name="RegisterPasswordLabel" xml:space="preserve">
+    <value>密码:</value>
+  </data>
+  <data name="RegisterPasswordMinLengthWarning" xml:space="preserve">
+    <value>密码最小长度</value>
+  </data>
+  <data name="RegisterPasswordMinNonAlphaCharsWarning" xml:space="preserve">
+    <value>最少的非字母数据数</value>
+  </data>
+  <data name="RegisterPasswordRegexWarning" xml:space="preserve">
+    <value>请增加密码的强度.</value>
+  </data>
+  <data name="RegisterPasswordRequiredMessage" xml:space="preserve">
+    <value>密码不能为空.</value>
+  </data>
+  <data name="RegisterSecurityAnswer" xml:space="preserve">
+    <value>安全问题:</value>
+  </data>
+  <data name="RegisterSecurityAnswerRequiredMessage" xml:space="preserve">
+    <value>必须为安全问题提供答案.</value>
+  </data>
+  <data name="RegisterSecurityQuestion" xml:space="preserve">
+    <value>安全问题:</value>
+  </data>
+  <data name="RegisterSecurityQuestionRequiredMessage" xml:space="preserve">
+    <value>必须提供安全问题.</value>
+  </data>
+  <data name="RegistrationRequiresEmailConfirmationMessage" xml:space="preserve">
+    <value> 本站需要邮件确认注册,一封电子邮件已经发送到你的注册邮箱中,请单击邮件中的链接确认注册,确认后,您将可以登录</value>
+  </data>
+  <data name="ReturnHomeLabel" xml:space="preserve">
+    <value>返回首页面</value>
+  </data>
+  <data name="RoleExistsError" xml:space="preserve">
+    <value>抱歉,角色名已经被使用</value>
+  </data>
+  <data name="RoleManagerAllUsersInRole" xml:space="preserve">
+    <value>此角色包含所有用户</value>
+  </data>
+  <data name="RoleManagerCancelButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="RolesAddButton" xml:space="preserve">
+    <value>添加新角色</value>
+  </data>
+  <data name="RolesAllUsersRole" xml:space="preserve">
+    <value>所有用户</value>
+  </data>
+  <data name="RolesApplyLabel" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="RolesChangeMemberLabel" xml:space="preserve">
+    <value>访问/编辑 成员</value>
+  </data>
+  <data name="RolesDeleteLabel" xml:space="preserve">
+    <value>删除此项</value>
+  </data>
+  <data name="RolesDeleteWarning" xml:space="preserve">
+    <value>确认删除此角色?</value>
+  </data>
+  <data name="RolesEditLabel" xml:space="preserve">
+    <value>编辑此项</value>
+  </data>
+  <data name="RolesRemoveUserWarning" xml:space="preserve">
+    <value>确认从角色中删除此用户?</value>
+  </data>
+  <data name="SearchButtonText" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="SearchInputWatermark" xml:space="preserve">
+    <value>输入关键字</value>
+  </data>
+  <data name="SearchPageTitle" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="SearchResultsBuildingIndexMessage" xml:space="preserve">
+    <value>查询索引已经建立,请等待几分钟后再查询</value>
+  </data>
+  <data name="SearchResultsForLabel" xml:space="preserve">
+    <value>为</value>
+  </data>
+  <data name="SearchResultsLabel" xml:space="preserve">
+    <value>显示结果</value>
+  </data>
+  <data name="SearchResultsOfLabel" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="SearchResultsSecondsLabel" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="SecurityAddExistingButton" xml:space="preserve">
+    <value>添加用户到角色</value>
+  </data>
+  <data name="SecurityAddNewButton" xml:space="preserve">
+    <value>建立新用户并添加到角色</value>
+  </data>
+  <data name="SecurityFinishedEditingButton" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="SecurityRolesTitle" xml:space="preserve">
+    <value>角色成员人数</value>
+  </data>
+  <data name="ServerLogClearLogButton" xml:space="preserve">
+    <value>清除日志</value>
+  </data>
+  <data name="SignInEmailLabel" xml:space="preserve">
+    <value>电子邮件:</value>
+  </data>
+  <data name="SignInLabel" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="SignInLinkText" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="SignInPasswordLabel" xml:space="preserve">
+    <value>密码:</value>
+  </data>
+  <data name="SignInRegisterLinkText" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="SignInSendPasswordButton" xml:space="preserve">
+    <value>找回密码</value>
+  </data>
+  <data name="SignInSendRememberMeLabel" xml:space="preserve">
+    <value>记住登录</value>
+  </data>
+  <data name="SimpleMatchCaptchaControlInstructions" xml:space="preserve">
+    <value>解决问题  通过验证</value>
+  </data>
+  <data name="SiteMapLink" xml:space="preserve">
+    <value>站点地图</value>
+  </data>
+  <data name="SiteOfficeNewEmailAccount" xml:space="preserve">
+    <value>新邮件帐号</value>
+  </data>
+  <data name="SiteOfficeTitle" xml:space="preserve">
+    <value>Site Office</value>
+  </data>
+  <data name="SiteSearchHeading" xml:space="preserve">
+    <value>站点查找</value>
+  </data>
+  <data name="SiteSettingsAddFolderMappingButton" xml:space="preserve">
+    <value>添加文件夹映射</value>
+  </data>
+  <data name="SiteSettingsAddHostButtonLabel" xml:space="preserve">
+    <value>添加主机名</value>
+  </data>
+  <data name="SiteSettingsAllowHideMainMenuLabel" xml:space="preserve">
+    <value>允许隐藏主菜单?:</value>
+  </data>
+  <data name="SiteSettingsAllowOpenIDAuthenticationLabel" xml:space="preserve">
+    <value>允许 Open ID认证?:</value>
+  </data>
+  <data name="SiteSettingsAllowPageSkinsLabel" xml:space="preserve">
+    <value>允许为页面设置皮肤?:</value>
+  </data>
+  <data name="SiteSettingsAllowPasswordResetLabel" xml:space="preserve">
+    <value>允许密码重设?:</value>
+  </data>
+  <data name="SiteSettingsAllowPasswordRetrievalLabel" xml:space="preserve">
+    <value>允许找回密码l?:</value>
+  </data>
+  <data name="SiteSettingsAllowRegistrationLabel" xml:space="preserve">
+    <value>允许新用户注册?:</value>
+  </data>
+  <data name="SiteSettingsAllowUserSkinsLabel" xml:space="preserve">
+    <value>允许用户选择皮肤?:</value>
+  </data>
+  <data name="SiteSettingsAllowUsersToChangeNameLabel" xml:space="preserve">
+    <value>允许用户更改姓名?:</value>
+  </data>
+  <data name="SiteSettingsAllowWindowsLiveAuthLabel" xml:space="preserve">
+    <value>允许Windows Live 认证?:</value>
+  </data>
+  <data name="SiteSettingsApplyChangesButton" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="SiteSettingsAutoCreateLdapUserOnFirstLoginLabel" xml:space="preserve">
+    <value>首次登录时自动天津爱 LDAP 用户?:</value>
+  </data>
+  <data name="SiteSettingsCaptchaProviderLabel" xml:space="preserve">
+    <value>Anti-SPAM 标题:</value>
+  </data>
+  <data name="SiteSettingsClearTextPasswordLabel" xml:space="preserve">
+    <value>明文存储</value>
+  </data>
+  <data name="SiteSettingsDefaultFriendlyUrlPatternLabel" xml:space="preserve">
+    <value>默认的友好地址模式(linux下可用):</value>
+  </data>
+  <data name="SiteSettingsDeleteFolderMappingWarning" xml:space="preserve">
+    <value>要删除文件夹映射么?</value>
+  </data>
+  <data name="SiteSettingsDeleteHostLabel" xml:space="preserve">
+    <value>删除主机</value>
+  </data>
+  <data name="SiteSettingsDeleteSiteButton" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="SiteSettingsDeleteWarning" xml:space="preserve">
+    <value>确定要删除此站点及其内容么?操作不可恢复</value>
+  </data>
+  <data name="SiteSettingsDuplicateHostsWarning" xml:space="preserve">
+    <value>主机名必须唯一</value>
+  </data>
+  <data name="SiteSettingsEditHostLabel" xml:space="preserve">
+    <value>编辑主机</value>
+  </data>
+  <data name="SiteSettingsEditorProviderLabel" xml:space="preserve">
+    <value>默认的文本编辑器</value>
+  </data>
+  <data name="SiteSettingsEditorSkinLabel" xml:space="preserve">
+    <value>文本编辑器的皮肤:</value>
+  </data>
+  <data name="SiteSettingsEnableMyPageFeatureLabel" xml:space="preserve">
+    <value>允许使用“我的页面"?:</value>
+  </data>
+  <data name="SiteSettingsEncryptedPasswordLabel" xml:space="preserve">
+    <value>在数据库中加密</value>
+  </data>
+  <data name="SiteSettingsEncryptPasswordsLabel" xml:space="preserve">
+    <value>加密密码?:</value>
+  </data>
+  <data name="SiteSettingsExistingFolderMappingsLabel" xml:space="preserve">
+    <value>当前文件夹映射到站点</value>
+  </data>
+  <data name="SiteSettingsExistingHostsLabel" xml:space="preserve">
+    <value>当前主机名</value>
+  </data>
+  <data name="SiteSettingsFeaturesAllowedLabel" xml:space="preserve">
+    <value>本站的特色模块</value>
+  </data>
+  <data name="SiteSettingsFolderMappingLabel" xml:space="preserve">
+    <value>映射到本站的文件夹</value>
+  </data>
+  <data name="SiteSettingsFolderNameAlreadyInUseWarning" xml:space="preserve">
+    <value>文件夹名被使用.</value>
+  </data>
+  <data name="SiteSettingsFolderNameBlankWarning" xml:space="preserve">
+    <value>必须输入一个文件夹名</value>
+  </data>
+  <data name="SiteSettingsFolderNameInvalidCharsWarning" xml:space="preserve">
+    <value>只有文字和数字可以做文件夹名</value>
+  </data>
+  <data name="SiteSettingsFolderNameNotAllowedWarning" xml:space="preserve">
+    <value>抱歉 ,文件名与系统文件名冲突</value>
+  </data>
+  <data name="SiteSettingsHashedPasswordLabel" xml:space="preserve">
+    <value> 用哈希算法存储在数据库中/不能恢复</value>
+  </data>
+  <data name="SiteSettingsHideLdapsSettings" xml:space="preserve">
+    <value>隐藏 LDAP 设置</value>
+  </data>
+  <data name="SiteSettingsHideMetaSettings" xml:space="preserve">
+    <value>隐藏 Meta 设置</value>
+  </data>
+  <data name="SiteSettingsHideUserSecurity" xml:space="preserve">
+    <value>隐藏用户安全设置</value>
+  </data>
+  <data name="SiteSettingsHostDeleteWarning" xml:space="preserve">
+    <value>确认删除此主机映射?</value>
+  </data>
+  <data name="SiteSettingsHostNameMappingLabel" xml:space="preserve">
+    <value>映射到本站的主机名</value>
+  </data>
+  <data name="SiteSettingsHostNameRequiredMessage" xml:space="preserve">
+    <value>必须输入一个主机名</value>
+  </data>
+  <data name="SiteSettingsIndexNotUpdatedMessage" xml:space="preserve">
+    <value>查询索引的更新不能被启动</value>
+  </data>
+  <data name="SiteSettingsIndexUpdatedMessage" xml:space="preserve">
+    <value>搜索索引升级开始，可能需要花费几分钟，具体取决于你的网站内容</value>
+  </data>
+  <data name="SiteSettingsLdapAdminEmail" xml:space="preserve">
+    <value>网站管理员的电子邮件 :</value>
+  </data>
+  <data name="SiteSettingsLDAPAdminUserNotFound" xml:space="preserve">
+    <value>不能绑定到LDAP设置或者不能绑定到LDAP目录，请确保LDAP服务器可以被访问并编辑你的用户资料确保用户名密码正确</value>
+  </data>
+  <data name="SiteSettingsLdapBindDN" xml:space="preserve">
+    <value>输入新人DN来绑定:</value>
+  </data>
+  <data name="SiteSettingsLDAPBindError" xml:space="preserve">
+    <value>不能绑定到LDAP设置，请检查设置并保证LDAP用户密码正确，除非把本站绑定到LDAP服务器，否则不能使用LDAP,不然下次登录将被拒绝</value>
+  </data>
+  <data name="SiteSettingsLdapBindPWD" xml:space="preserve">
+    <value>输入信任密码来绑定:</value>
+  </data>
+  <data name="SiteSettingsLdapDomain" xml:space="preserve">
+    <value>LDAP 域:</value>
+  </data>
+  <data name="SiteSettingsLdapPort" xml:space="preserve">
+    <value>输入 LDAP 服务器的端口号:</value>
+  </data>
+  <data name="SiteSettingsLdapRootDN" xml:space="preserve">
+    <value>输入根 DN 用于用户验证:</value>
+  </data>
+  <data name="SiteSettingsLdapServer" xml:space="preserve">
+    <value>输入 LDAP 服务器的主机名:</value>
+  </data>
+  <data name="SiteSettingsLdapSettingsLabel" xml:space="preserve">
+    <value>LDAP 设置</value>
+  </data>
+  <data name="SiteSettingsLdapTestPassword" xml:space="preserve">
+    <value>你的LDAP 用户密码.(用于测试,不存储):</value>
+  </data>
+  <data name="SiteSettingsLdapUserDNKey" xml:space="preserve">
+    <value>LDAP User DN Key:</value>
+  </data>
+  <data name="SiteSettingsMaxInvalidPasswordAttemptsLabel" xml:space="preserve">
+    <value>错误密码的最多尝试次数:</value>
+  </data>
+  <data name="SiteSettingsMetaSettingsLabel" xml:space="preserve">
+    <value>Meta 设置</value>
+  </data>
+  <data name="SiteSettingsMinimumPasswordLengthLabel" xml:space="preserve">
+    <value>密码的最小长度:</value>
+  </data>
+  <data name="SiteSettingsMinRequiredNonAlphaNumericCharactersLabel" xml:space="preserve">
+    <value>需要的最少的非字母数字字符数:</value>
+  </data>
+  <data name="SiteSettingsNewSiteLabel" xml:space="preserve">
+    <value>新站点</value>
+  </data>
+  <data name="SiteSettingsNoFolderNames" xml:space="preserve">
+    <value>没有文件夹名映射到此站点</value>
+  </data>
+  <data name="SiteSettingsNoHostsFound" xml:space="preserve">
+    <value>没有主机名映射到此站点</value>
+  </data>
+  <data name="SiteSettingsPasswordAttemptWindowMinutesLabel" xml:space="preserve">
+    <value>密码尝试时间(分钟):</value>
+  </data>
+  <data name="SiteSettingsPasswordFormatLabel" xml:space="preserve">
+    <value>密码格式</value>
+  </data>
+  <data name="SiteSettingsPasswordStrengthExpressionLabel" xml:space="preserve">
+    <value>密码长度正则表达式:</value>
+  </data>
+  <data name="SiteSettingsReallyDeleteUsersExplainLabel" xml:space="preserve">
+    <value>没有注明时,删除用户标志而不是用户本身.</value>
+  </data>
+  <data name="SiteSettingsReallyDeleteUsersLabel" xml:space="preserve">
+    <value>确实要删除用户?:</value>
+  </data>
+  <data name="SiteSettingsRebuildIndexButton" xml:space="preserve">
+    <value>为查询重建索引</value>
+  </data>
+  <data name="SiteSettingsRebuildIndexButtonPrompt" xml:space="preserve">
+    <value>是否确认为所有网站内容重新建立搜索索引?
+只在网站从没有搜索索引的版本升级时推荐</value>
+  </data>
+  <data name="SiteSettingsRequiresQuestionAndAnswerLabel" xml:space="preserve">
+    <value>需要问题和答案?:</value>
+  </data>
+  <data name="SiteSettingsRequireSSLLabel" xml:space="preserve">
+    <value>在所有的页面需要SSL?:</value>
+  </data>
+  <data name="SiteSettingsSaveHostLabel" xml:space="preserve">
+    <value>保存主机</value>
+  </data>
+  <data name="SiteSettingsSecureRegistrationLabel" xml:space="preserve">
+    <value>注册时需要邮件验证?:</value>
+  </data>
+  <data name="SiteSettingsSelectFeatureToAddWarning" xml:space="preserve">
+    <value>在选中的特色模块列表中选择一项添加</value>
+  </data>
+  <data name="SiteSettingsSelectFeatureToRemoveWarning" xml:space="preserve">
+    <value>在选中的特色模块列表中选择一项删除</value>
+  </data>
+  <data name="SiteSettingsSelectWebPartToAddWarning" xml:space="preserve">
+    <value>从所有的WebParts 列表中选择一项添加</value>
+  </data>
+  <data name="SiteSettingsSelectWebPartToRemoveWarning" xml:space="preserve">
+    <value>从选中的 WebParts列表中选择一项删除</value>
+  </data>
+  <data name="SiteSettingsShowLdapSettigs" xml:space="preserve">
+    <value>显示LDAP 设置</value>
+  </data>
+  <data name="SiteSettingsShowMetaSettings" xml:space="preserve">
+    <value>显示Meta 设置</value>
+  </data>
+  <data name="SiteSettingsShowUserSecurity" xml:space="preserve">
+    <value>显示用户安全设置</value>
+  </data>
+  <data name="SiteSettingsSiteAliasLabel" xml:space="preserve">
+    <value>站点别名:</value>
+  </data>
+  <data name="SiteSettingsSiteAvailableFeaturesLabel" xml:space="preserve">
+    <value>所有特色模块</value>
+  </data>
+  <data name="SiteSettingsSiteEmailFromAddressLabel" xml:space="preserve">
+    <value>站点邮件地址:</value>
+  </data>
+  <data name="SiteSettingsSiteIconLabel" xml:space="preserve">
+    <value>图标:</value>
+  </data>
+  <data name="SiteSettingsSiteLogoLabel" xml:space="preserve">
+    <value>徽标:</value>
+  </data>
+  <data name="SiteSettingsSiteMetaAdditionalLabel" xml:space="preserve">
+    <value>默认页面的附加 Meta 标签:</value>
+  </data>
+  <data name="SiteSettingsSiteMetaDescriptionLabel" xml:space="preserve">
+    <value>默认页面描述:</value>
+  </data>
+  <data name="SiteSettingsSiteMetaEncodingLabel" xml:space="preserve">
+    <value>默认页面编码:</value>
+  </data>
+  <data name="SiteSettingsSiteMetaKeyWordsLabel" xml:space="preserve">
+    <value>默认页面关键字:</value>
+  </data>
+  <data name="SiteSettingsSiteRecaptchaPrivateKeyLabel" xml:space="preserve">
+    <value>取回私有密匙:</value>
+  </data>
+  <data name="SiteSettingsSiteRecaptchaPublicKeyLabel" xml:space="preserve">
+    <value>取回共有密匙:</value>
+  </data>
+  <data name="SiteSettingsSiteSelectedFeaturesLabel" xml:space="preserve">
+    <value>选择的特色模快</value>
+  </data>
+  <data name="SiteSettingsSiteSkinLabel" xml:space="preserve">
+    <value>皮肤:</value>
+  </data>
+  <data name="SiteSettingsSiteTitleLabel" xml:space="preserve">
+    <value>站点名称:</value>
+  </data>
+  <data name="SiteSettingsUseEmailForLoginLabel" xml:space="preserve">
+    <value>登录时使用邮件地址?:</value>
+  </data>
+  <data name="SiteSettingsUseLdapAuth" xml:space="preserve">
+    <value>认证时使用LDAP?:</value>
+  </data>
+  <data name="SiteSettingsUserSecuritySettingsLabel" xml:space="preserve">
+    <value>用户安全设置</value>
+  </data>
+  <data name="SiteSettingsWindowsLiveAppIDLabel" xml:space="preserve">
+    <value>Windows Live程序 ID:</value>
+  </data>
+  <data name="SiteSettingsWindowsLiveKeyLabel" xml:space="preserve">
+    <value>Windows Live 关键字:</value>
+  </data>
+  <data name="SiteStatistics_ShowMemberStatisitics" xml:space="preserve">
+    <value>显示成员统计</value>
+  </data>
+  <data name="SiteStatistics_ShowOnlineMembers" xml:space="preserve">
+    <value>显示在线成员列表</value>
+  </data>
+  <data name="SiteStatistics_ShowOnlineStatistics" xml:space="preserve">
+    <value>显示在线统计</value>
+  </data>
+  <data name="SiteStatisticsFeatureName" xml:space="preserve">
+    <value>站点统计</value>
+  </data>
+  <data name="SiteStatisticsMembershipLabel" xml:space="preserve">
+    <value>成员资格:</value>
+  </data>
+  <data name="SiteStatisticsMembersLabel" xml:space="preserve">
+    <value>成员:</value>
+  </data>
+  <data name="SiteStatisticsNewestMemberLabel" xml:space="preserve">
+    <value>最新成员:</value>
+  </data>
+  <data name="SiteStatisticsNewTodayLabel" xml:space="preserve">
+    <value>今天:</value>
+  </data>
+  <data name="SiteStatisticsNewYesterdayLabel" xml:space="preserve">
+    <value>昨天:</value>
+  </data>
+  <data name="SiteStatisticsPeopleOnlineLabel" xml:space="preserve">
+    <value>在线用户:</value>
+  </data>
+  <data name="SiteStatisticsTotalOnlineLabel" xml:space="preserve">
+    <value>总数:</value>
+  </data>
+  <data name="SiteStatisticsTotalUsersLabel" xml:space="preserve">
+    <value>总数</value>
+  </data>
+  <data name="SiteStatisticsVisitorsLabel" xml:space="preserve">
+    <value>游客:</value>
+  </data>
+  <data name="SkipLink" xml:space="preserve">
+    <value>略过导航</value>
+  </data>
+  <data name="StopRefreshAltText" xml:space="preserve">
+    <value>停止刷新</value>
+  </data>
+  <data name="SubkismetCaptchaInstructions" xml:space="preserve">
+    <value>进入代码显示模式:</value>
+  </data>
+  <data name="SubkismetCaptchFailureMessage" xml:space="preserve">
+    <value>错误,请重试</value>
+  </data>
+  <data name="TreeMenuCollapseTooltip" xml:space="preserve">
+    <value>收缩节点.</value>
+  </data>
+  <data name="TreeMenuExpandTooltip" xml:space="preserve">
+    <value>扩展节点.</value>
+  </data>
+  <data name="UploadCancelledLabel" xml:space="preserve">
+    <value>上传已被取消!</value>
+  </data>
+  <data name="UploadChunkedInProgressFormat" xml:space="preserve">
+    <value>{0} {2} at {4} - {6} 逝去</value>
+  </data>
+  <data name="UploadCompleteFormat" xml:space="preserve">
+    <value>完成: {0} {2} 在 {4}拿走 {6}</value>
+  </data>
+  <data name="UploadCompleteLabel" xml:space="preserve">
+    <value>上传完成</value>
+  </data>
+  <data name="UploadFailedLabel" xml:space="preserve">
+    <value>错误:</value>
+  </data>
+  <data name="UploadNormalInProgressFormat" xml:space="preserve">
+    <value>{0}/{1} {2} ({3:0%}) at {4} - {5} left</value>
+  </data>
+  <data name="UploadProgressLabel" xml:space="preserve">
+    <value>上传进度...</value>
+  </data>
+  <data name="UploadRejectedLabel" xml:space="preserve">
+    <value>被拒:</value>
+  </data>
+  <data name="UploadRemainingTimeLabel" xml:space="preserve">
+    <value>剩余时间:</value>
+  </data>
+  <data name="UserChangePasswordLabel" xml:space="preserve">
+    <value>更改密码</value>
+  </data>
+  <data name="UserCommentsLabel" xml:space="preserve">
+    <value>管理建议:</value>
+  </data>
+  <data name="UserEmailIsConfirmedLabel" xml:space="preserve">
+    <value>邮件验证过?:</value>
+  </data>
+  <data name="UserFailedPasswordAnswerAttemptCountLabel" xml:space="preserve">
+    <value>错误密码答案尝试次数:</value>
+  </data>
+  <data name="UserFailedPasswordAttemptCountLabel" xml:space="preserve">
+    <value>错误密码尝试次数:</value>
+  </data>
+  <data name="UserIsLockedOutLabel" xml:space="preserve">
+    <value>锁定中?:</value>
+  </data>
+  <data name="UserLastActivityDateLabel" xml:space="preserve">
+    <value>最近的有效登录:</value>
+  </data>
+  <data name="UserLastLockoutDateLabel" xml:space="preserve">
+    <value>最后登出时间:</value>
+  </data>
+  <data name="UserLastLoginDateLabel" xml:space="preserve">
+    <value>最后登录:</value>
+  </data>
+  <data name="UserLastPasswordChangeDateLabel" xml:space="preserve">
+    <value>最近更改密码时间:</value>
+  </data>
+  <data name="UserLockUserButton" xml:space="preserve">
+    <value>锁定用户</value>
+  </data>
+  <data name="UserProfileAvatarLabel" xml:space="preserve">
+    <value>头像</value>
+  </data>
+  <data name="UserProfileConfirmPasswordRequired" xml:space="preserve">
+    <value>验证密码不能为空.</value>
+  </data>
+  <data name="UserProfileEmailRequired" xml:space="preserve">
+    <value>邮件地址不能为空.</value>
+  </data>
+  <data name="UserProfileEmailValidation" xml:space="preserve">
+    <value>必须使用一个有效的邮件地址.</value>
+  </data>
+  <data name="UserProfileLoginNameExists" xml:space="preserve">
+    <value>用户ID已存在,请另选.</value>
+  </data>
+  <data name="UserProfileLoginNameRequired" xml:space="preserve">
+    <value>用户ID不能为空.</value>
+  </data>
+  <data name="UserProfileMyProfileLabel" xml:space="preserve">
+    <value>我的资料</value>
+  </data>
+  <data name="UserProfileNameRequired" xml:space="preserve">
+    <value>名字不能为空.</value>
+  </data>
+  <data name="UserProfileNoAvatarLabel" xml:space="preserve">
+    <value>没有</value>
+  </data>
+  <data name="UserProfilePasswordCompare" xml:space="preserve">
+    <value>密码不匹配.</value>
+  </data>
+  <data name="UserProfilePasswordRequired" xml:space="preserve">
+    <value>密码不能为空.</value>
+  </data>
+  <data name="UserProfileUpdateButton" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="UserRolesLabel" xml:space="preserve">
+    <value>用户角色</value>
+  </data>
+  <data name="UsersRegisteredUsersLabel" xml:space="preserve">
+    <value>注册用户:</value>
+  </data>
+  <data name="UsersSecurityAnswerLabel" xml:space="preserve">
+    <value>安全问题的答案:</value>
+  </data>
+  <data name="UsersSecurityQuestionLabel" xml:space="preserve">
+    <value>安全问题:</value>
+  </data>
+  <data name="UserUnlockUserButton" xml:space="preserve">
+    <value>解锁用户</value>
+  </data>
+  <data name="WebPartAddVerbDescription" xml:space="preserve">
+    <value>添加内容到选定的列</value>
+  </data>
+  <data name="WebPartAddVerbText" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="WebPartAdminAllWebParts" xml:space="preserve">
+    <value>所有的 WebParts</value>
+  </data>
+  <data name="WebPartAdminEditButton" xml:space="preserve">
+    <value>安装...</value>
+  </data>
+  <data name="WebPartAdminMediumTrustMessage" xml:space="preserve">
+    <value>抱歉，本站运行在安全级别为中等的环境中，此时第三方程序集文件不被支持，所以你不能从第三方程序集文件中直接加载WebPart.更多的信息看http://www.vivasky.com/mediumtrust.aspx</value>
+  </data>
+  <data name="WebPartAdminSelectedWebParts" xml:space="preserve">
+    <value>选择的 WebParts</value>
+  </data>
+  <data name="WebPartAdminUpdateButton" xml:space="preserve">
+    <value>安装</value>
+  </data>
+  <data name="WebPartAllInstalledMessage" xml:space="preserve">
+    <value>所有有效的WebParts已经被安装,要添加新的WebPart,请把程序集文件添加到Bin文件夹中</value>
+  </data>
+  <data name="WebPartAllowMultipleInstancesOnMyPageLabel" xml:space="preserve">
+    <value>在 “我的页面” 中允许多个实例?</value>
+  </data>
+  <data name="WebPartAppearanceEditorTitle" xml:space="preserve">
+    <value>外观</value>
+  </data>
+  <data name="WebPartAssemblyNameLabel" xml:space="preserve">
+    <value>程序集名</value>
+  </data>
+  <data name="WebPartAvailableForContentSystemLabel" xml:space="preserve">
+    <value>对内容系统有效</value>
+  </data>
+  <data name="WebPartAvailableForMyPageLabel" xml:space="preserve">
+    <value>使用 “我的页面”?</value>
+  </data>
+  <data name="WebPartAvailableNameLabel" xml:space="preserve">
+    <value>WebParts Available For Installation</value>
+  </data>
+  <data name="WebPartBehaviorEditorTitle" xml:space="preserve">
+    <value>行为</value>
+  </data>
+  <data name="WebPartCatalogMoreLink" xml:space="preserve">
+    <value>更多...</value>
+  </data>
+  <data name="WebPartClassNameLabel" xml:space="preserve">
+    <value>类名</value>
+  </data>
+  <data name="WebPartCloseVerbDescription" xml:space="preserve">
+    <value>关闭内容</value>
+  </data>
+  <data name="WebPartCloseVerbText" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="WebPartDeleteVerbDescription" xml:space="preserve">
+    <value>删除内容</value>
+  </data>
+  <data name="WebPartDeleteVerbText" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="WebPartDescriptionLabel" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="WebPartEditCancelButton" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="WebPartEditDeleteButton" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="WebPartEditDeleteWarning" xml:space="preserve">
+    <value>确认删除此WebPart?</value>
+  </data>
+  <data name="WebPartEditLabel" xml:space="preserve">
+    <value>编辑 WebPart</value>
+  </data>
+  <data name="WebPartEditorApplyVerbDescription" xml:space="preserve">
+    <value>应用变动</value>
+  </data>
+  <data name="WebPartEditorApplyVerbText" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="WebPartEditorCancelVerbDescription" xml:space="preserve">
+    <value>取消变动并关闭编辑器.</value>
+  </data>
+  <data name="WebPartEditorCancelVerbText" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="WebPartEditorHeaderCloseVerbDescription" xml:space="preserve">
+    <value>关闭编辑器</value>
+  </data>
+  <data name="WebPartEditorHeaderCloseVerbText" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="WebPartEditorHeaderText" xml:space="preserve">
+    <value>Web Part 编辑器</value>
+  </data>
+  <data name="WebPartEditorInstructionsText" xml:space="preserve">
+    <value>更新Web Part的属性, 点ok或应用来应用属性s. 一些 Web Parts 没有编辑属性</value>
+  </data>
+  <data name="WebPartEditorOKVerbDescription" xml:space="preserve">
+    <value>应用改动并关闭编辑器</value>
+  </data>
+  <data name="WebPartEditorOKVerbText" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="WebPartEditUpdateButton" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="WebPartEditVerbDescription" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="WebPartEditVerbText" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="WebPartEmptyCatalogZoneText" xml:space="preserve">
+    <value>抱歉,无有效内容</value>
+  </data>
+  <data name="WebPartEmptyZoneText" xml:space="preserve">
+    <value>你可以从别处拖动内容到这里,也可以点绿色按钮添加内容</value>
+  </data>
+  <data name="WebPartExportVerbDescription" xml:space="preserve">
+    <value>输出</value>
+  </data>
+  <data name="WebPartExportVerbText" xml:space="preserve">
+    <value>输出</value>
+  </data>
+  <data name="WebPartFeatureName" xml:space="preserve">
+    <value>Web Part</value>
+  </data>
+  <data name="WebPartHelpVerbDescription" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="WebPartHelpVerbText" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="WebPartIconLabel" xml:space="preserve">
+    <value>图标</value>
+  </data>
+  <data name="WebPartInstalledWebPartsLabel" xml:space="preserve">
+    <value>已经安装的 WebParts</value>
+  </data>
+  <data name="WebPartLayoutEditorPartTitle" xml:space="preserve">
+    <value>布局</value>
+  </data>
+  <data name="WebPartManagerCatalogTooltip" xml:space="preserve">
+    <value>点击此处访问有效内容.</value>
+  </data>
+  <data name="WebPartManagerCloseCatalogTooltip" xml:space="preserve">
+    <value>点击这里来关闭目录.</value>
+  </data>
+  <data name="WebPartManagerToggleFromUserModeTooltip" xml:space="preserve">
+    <value>你当前在用户范围里,点击这里进入共享范围</value>
+  </data>
+  <data name="WebPartManagerToggleToUserModeTooltip" xml:space="preserve">
+    <value>你当前在共享范围里,点击这里进入用户范围</value>
+  </data>
+  <data name="WebPartMinimizeVerbDescription" xml:space="preserve">
+    <value>最小化内容</value>
+  </data>
+  <data name="WebPartMinimizeVerbText" xml:space="preserve">
+    <value>最小化</value>
+  </data>
+  <data name="WebPartModuleWebPartSetting" xml:space="preserve">
+    <value>选择 Web Part:</value>
+  </data>
+  <data name="WebPartPageCatalogDescription" xml:space="preserve">
+    <value>隐藏内容</value>
+  </data>
+  <data name="WebPartPageCatalogTitle" xml:space="preserve">
+    <value>隐藏内容</value>
+  </data>
+  <data name="WebPartPropertyGridEditorTitle" xml:space="preserve">
+    <value>Web Part 属性</value>
+  </data>
+  <data name="WebPartRestoreVerbDescription" xml:space="preserve">
+    <value>恢复内容</value>
+  </data>
+  <data name="WebPartRestoreVerbText" xml:space="preserve">
+    <value>恢复</value>
+  </data>
+  <data name="WebPartTitleLabel" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="WebSiteUrlRegexWarning" xml:space="preserve">
+    <value>必须是以 http:// 或 https:// 打头的网址</value>
+  </data>
+  <data name="WelcomeLabel" xml:space="preserve">
+    <value>欢迎您:</value>
+  </data>
+  <data name="WindowsLiveIDRegistrationHeading" xml:space="preserve">
+    <value>在本站使用你的  Windows Live ID 帐户注册</value>
+  </data>
+  <data name="WindowsLiveIDRegistrationLink" xml:space="preserve">
+    <value>点击这里用你的 Windows Live ID注册</value>
+  </data>
+  <data name="WindowsLiveRegistrationRequiresAdditionalInfo" xml:space="preserve">
+    <value>注册需要填写更多的信息</value>
+  </data>
+  <data name="WindowsLiveSignInAddendum" xml:space="preserve">
+    <value>你的 Windows Live ID</value>
+  </data>
+  <data name="WindowsLiveSignInBeforeRegisterMessage" xml:space="preserve">
+    <value>注册前须登录你的Windows Live 帐户</value>
+  </data>
+</root>

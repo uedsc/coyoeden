@@ -1,0 +1,13 @@
+body { }
+div.AspNet-Menu-Horizontal {height: 100px;margin : 0;padding : 0;list-style-type : none;list-style-image : none;
+text-transform : lowercase;background: #fff url(menubg2.jpg) no-repeat; } 
+div.AspNet-Menu-Horizontal ul.AspNet-Menu{ list-style : none; margin : 0;padding : 0;}
+div.AspNet-Menu-Horizontal ul.AspNet-Menu li {float : left;width :7.9em;border-right : 1px solid #eee; list-style: none;}
+div.AspNet-Menu-Horizontal ul.AspNet-Menu li img { display:none; }
+div.AspNet-Menu-Horizontal ul li a.AspNet-Menu 
+{display : block;height : 70px;width : 7.9em;padding : 30px 0 0 0;font-weight : bold;line-height : 30px;
+letter-spacing: 3px;text-align : center; text-decoration: none;color : #000;background : #D85B00;}
+div.AspNet-Menu-Horizontal ul.AspNet-Menu li a.AspNet-Menu:hover,
+div.AspNet-Menu-Horizontal ul.AspNet-Menu li.AspNet-Menu-SelectedWithChildren a.AspNet-Menu,
+div.AspNet-Menu-Horizontal ul.AspNet-Menu li.AspNet-Menu-SelectedLeaf a.AspNet-Menu
+{ color : #fff;background : #C53500 url(menu.jpg) no-repeat; }

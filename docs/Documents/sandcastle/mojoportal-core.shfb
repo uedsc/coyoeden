@@ -1,0 +1,117 @@
+﻿<project schemaVersion="1.6.0.7">
+    <assemblies>
+        <assembly assemblyPath="..\..\Web\bin\mojoPortal.Business.dll" xmlCommentsPath="..\..\Web\bin\mojoPortal.Business.xml" commentsOnly="False" />
+        <assembly assemblyPath="..\..\Web\bin\mojoPortal.Business.WebHelpers.dll" xmlCommentsPath="..\..\Web\bin\mojoPortal.Business.WebHelpers.xml" commentsOnly="False" />
+        <assembly assemblyPath="..\..\Web\bin\mojoPortal.Net.dll" xmlCommentsPath="..\..\Web\bin\mojoPortal.Net.xml" commentsOnly="False" />
+        <assembly assemblyPath="..\..\Web\bin\mojoPortal.Web.Controls.dll" xmlCommentsPath="..\..\Web\bin\mojoPortal.Web.Controls.xml" commentsOnly="False" />
+        <assembly assemblyPath="..\..\Web\bin\mojoPortal.Web.dll" xmlCommentsPath="" commentsOnly="False" />
+        <assembly assemblyPath="..\..\Web\bin\mojoPortal.Web.Editor.dll" xmlCommentsPath="..\..\Web\bin\mojoPortal.Web.Editor.xml" commentsOnly="False" />
+        <assembly assemblyPath="..\..\Web\bin\mojoPortal.Web.Framework.dll" xmlCommentsPath="..\..\Web\bin\mojoPortal.Web.Framework.xml" commentsOnly="False" />
+    </assemblies>
+    <namespaceSummaries>
+        <namespaceSummaryItem name="" isDocumented="False">this is the global summary</namespaceSummaryItem>
+        <namespaceSummaryItem name="mojoPortal.Business" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Business.Commerce" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Business.Statistics" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Business.WebHelpers" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Business.WebHelpers.PageEventHandlers" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Business.WebHelpers.PaymentGateway" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Business.WebHelpers.Statistics" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Business.WebHelpers.UserRegisteredHandlers" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Business.WebHelpers.UserSignInHandlers" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Net" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Admin" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.AdminUI" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Components" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Configuration" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.ContentUI" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Controls" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Controls.Captcha" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Controls.DatePicker" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Controls.ExtJs" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Controls.FolderGallery" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Controls.google" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Dialog" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Editor" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.ELetterUI" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Framework" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.OfficeUI" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Security" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.Services" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.SiteOffice" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.StatisticsUI" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.UI" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.UI.Pages" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.WebParts" isDocumented="True" />
+        <namespaceSummaryItem name="mojoPortal.Web.WebPartUI" isDocumented="True" />
+    </namespaceSummaries>
+    <dependencies>
+        <dependencyItem depPath="..\..\Web\bin\log4net.dll" />
+        <dependencyItem depPath="..\..\Web\bin\AjaxControlToolkit.dll" />
+        <dependencyItem depPath="..\..\Web\bin\Argotic.Common.dll" />
+        <dependencyItem depPath="..\..\Web\bin\Argotic.Core.dll" />
+        <dependencyItem depPath="..\..\Web\bin\Brettle.Web.NeatHtml.dll" />
+        <dependencyItem depPath="..\..\Web\bin\Brettle.Web.NeatHtmlTools.dll" />
+        <dependencyItem depPath="..\..\Web\bin\Brettle.Web.NeatUpload.dll" />
+        <dependencyItem depPath="..\..\Web\bin\CSSFriendly.dll" />
+        <dependencyItem depPath="..\..\Web\bin\DotNetOpenMail.dll" />
+        <dependencyItem depPath="..\..\Web\bin\GCheckout.dll" />
+        <dependencyItem depPath="..\..\Web\bin\Lucene.Net.dll" />
+        <dependencyItem depPath="..\..\Web\bin\MetaDataExtractor.dll" />
+        <dependencyItem depPath="..\..\Web\bin\Newtonsoft.Json.dll" />
+        <dependencyItem depPath="..\..\Web\bin\Novell.Directory.Ldap.dll" />
+        <dependencyItem depPath="..\..\Web\bin\OpenPOP.dll" />
+        <dependencyItem depPath="..\..\Web\bin\Org.Mentalis.Security.dll" />
+        <dependencyItem depPath="..\..\Web\bin\SharpMimeTools.dll" />
+        <dependencyItem depPath="..\..\Web\bin\Subkismet.dll" />
+        <dependencyItem depPath="..\..\Web\bin\ZedGraph.dll" />
+        <dependencyItem depPath="..\..\Web\bin\ZedGraph.Web.dll" />
+        <dependencyItem depPath="..\..\Web\bin\Brettle.Web.NeatUpload.GreyBoxProgressBar.dll" />
+        <dependencyItem depPath="..\..\Web\bin\DotNetOpenAuth.dll" />
+        <dependencyItem depPath="..\..\_libs\Microsoft.Web.Preview.dll" />
+        <dependencyItem depPath="..\..\_libs\System.Web.Extensions.dll" />
+        <dependencyItem depPath="..\..\_libs\Recaptcha.dll" />
+    </dependencies>
+    <ProjectSummary>For conceptual documentation, see http://www.mojoportal.com/documentation.aspx &lt;a href="http://www.mojoportal.com/developerdocs.aspx"&gt;Developer Docs&lt;/a&gt;</ProjectSummary>
+    <MissingTags>Parameter, Returns, AutoDocumentCtors, Namespace, TypeParameter</MissingTags>
+    <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Protected, SealedProtected</VisibleItems>
+    <HtmlHelp1xCompilerPath path="C:\Program Files (x86)\HTML Help Workshop\" />
+    <HtmlHelp2xCompilerPath path="" />
+    <OutputPath>.\Help\</OutputPath>
+    <SandcastlePath path="" />
+    <WorkingPath path="" />
+    <CleanIntermediates>True</CleanIntermediates>
+    <KeepLogFile>True</KeepLogFile>
+    <BuildLogFile path="" />
+    <HelpFileFormat>Website</HelpFileFormat>
+    <CppCommentsFixup>False</CppCommentsFixup>
+    <FrameworkVersion>3.5</FrameworkVersion>
+    <IndentHtml>False</IndentHtml>
+    <Preliminary>False</Preliminary>
+    <RootNamespaceContainer>True</RootNamespaceContainer>
+    <RootNamespaceTitle>mojoPortal</RootNamespaceTitle>
+    <HelpTitle>mojoPortal API Documentation</HelpTitle>
+    <HtmlHelpName>mojoPortal-API-Documentation</HtmlHelpName>
+    <Language>en-US</Language>
+    <CopyrightHref>http://www.mojoportal.com</CopyrightHref>
+    <CopyrightText>Visit www.mojoportal.com for more information.</CopyrightText>
+    <FeedbackEMailAddress />
+    <FeedbackEMailLinkText />
+    <HeaderText />
+    <FooterText />
+    <ProjectLinkType>Local</ProjectLinkType>
+    <SdkLinkType>Msdn</SdkLinkType>
+    <SdkLinkTarget>Self</SdkLinkTarget>
+    <PresentationStyle>Prototype</PresentationStyle>
+    <NamingMethod>MemberName</NamingMethod>
+    <SyntaxFilters>CSharp</SyntaxFilters>
+    <ShowFeedbackControl>False</ShowFeedbackControl>
+    <BinaryTOC>True</BinaryTOC>
+    <IncludeFavorites>False</IncludeFavorites>
+    <CollectionTocStyle>Hierarchical</CollectionTocStyle>
+    <IncludeStopWordList>True</IncludeStopWordList>
+    <PlugInNamespaces>ms.vsipcc+, ms.vsexpresscc+</PlugInNamespaces>
+    <HelpFileVersion>1.0.0.0</HelpFileVersion>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+</project>

@@ -1,0 +1,13 @@
+Joe Audette found this design by d carter here:
+http://www.opendesigns.org/designs/786/index_green.html
+and created a Cynthia skin base don it
+
+Designer's site: http://www.dcarter.co.uk/
+
+This standards compliant website template is released as an 'open source' design
+(under the <a href="http://creativecommons.org/licenses/by/2.5">Creative Commons
+  Attribution 2.5</a> licence), which means that you are free to download and use it
+  for anything you want (including modifying and amending it). The logo image
+  is from a digital photograph taken by me, so there are no issues with copyright
+  there. All I ask is that you leave the 'design by dcarter' link in the footer of
+  the template, but other than that...
