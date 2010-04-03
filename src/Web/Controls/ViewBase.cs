@@ -21,11 +21,13 @@ namespace Cynthia.Web.Controls
 		/// <summary>
 		/// short hand for Page.Request.IsAuthenticated
 		/// </summary>
-		protected bool IsAuthenticated {
-			get {
-				return Page.Request.IsAuthenticated;
-			}
-		}
+        protected bool IsAuthenticated
+        {
+            get
+            {
+                return Page.Request.IsAuthenticated;
+            }
+        }
 		/// <summary>
 		/// shorthand for Context.User.Identity.AuthenticationType
 		/// </summary>
@@ -37,6 +39,7 @@ namespace Cynthia.Web.Controls
 		#endregion
 		protected override void OnInit(EventArgs e)
 		{
+
 			base.OnInit(e);
 			CurSettings = CacheHelper.GetCurrentSiteSettings();
 			CurPageSettings = CacheHelper.GetCurrentPage();

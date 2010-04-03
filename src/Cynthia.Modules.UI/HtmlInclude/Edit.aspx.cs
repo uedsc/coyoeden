@@ -9,12 +9,6 @@ using Resources;
 
 namespace Cynthia.Web.ContentUI
 {
-	/// <summary>
-	/// Author:                     Joe Audette
-	/// Created:                    2005-11-19
-    ///	Last Modified:              2008-11-21
-    /// 
-	/// </summary>
     public partial class HtmlIncludeEdit : CBasePage
 	{
         
@@ -103,8 +97,8 @@ namespace Cynthia.Web.ContentUI
 		protected  FileInfo[] GetFragmentList()
 		{
 			string filePath = string.Empty;
-			
-			string p = WebUtils.GetApplicationRoot() + "/Data/Sites/" + siteSettings.SiteId.ToString() + "/htmlfragments";
+
+            string p = String.Format("{0}/Data/Sites/{1}/htmlfragments", WebUtils.GetApplicationRoot(), siteSettings.SiteId);
 			filePath = HttpContext.Current.Server.MapPath(p);
 			
 			if(Directory.Exists(filePath))

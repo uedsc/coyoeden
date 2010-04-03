@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="XLoginLink.ascx.cs" Inherits="Cynthia.Web.Controls.XLoginLink" %>
+﻿<%@ Control Language="C#" CodeBehind="XLoginLink.ascx.cs" Inherits="Cynthia.Web.Controls.XLoginLink" %>
 <%@ Import Namespace="Resources" %>
 <li>
 <% if(IsAuthenticated){%>

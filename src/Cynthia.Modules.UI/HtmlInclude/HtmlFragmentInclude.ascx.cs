@@ -14,7 +14,7 @@ namespace Cynthia.Web.ContentUI
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-            this.Load += new EventHandler(Page_Load);
+            this.Load += Page_Load;
         }
         
 

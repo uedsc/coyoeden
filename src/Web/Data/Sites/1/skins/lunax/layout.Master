@@ -14,7 +14,7 @@
 </head>
 <body id="pagex">
 <!--#site_title for SEO-->
-<%this.RenderView<XSiteTitle>(null); %>
+<%this.RenderView<XSiteTitle>(null,true); %>
 <div class="container sprite" id="header">
 <!--#topheader-->
 <div class="topheader">
@@ -27,8 +27,8 @@
 			<portal:UserProfileLink id="UserProfileLink" runat="server" RenderAsListItem="true" />
 			<portal:MailboxLink id="MailboxLink1" runat="server" RenderAsListItem="true"  />
 			<portal:MemberListLink id="MemberListLink" runat="server" RenderAsListItem="true"  />
-			<%this.RenderView<XRegisterLink>("XRegisterLink",null); %>
-			<%this.RenderView<XLoginLink>("XLoginLink",null); %>
+			<%this.RenderView<XRegisterLink>(null); %>
+			<%this.RenderView<XLoginLink>(null,true); %>
 		</ul>
 	</div>
 	<a href="/" class="logo" id="logo"><img src="<%=CurSettings.SkinBaseUrl %>img/logo-dark.png" alt="Vivasky.Com-CodeInMusic" title="Vivasky.Com-CodeInMusic"/></a>

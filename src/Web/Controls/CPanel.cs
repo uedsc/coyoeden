@@ -1,17 +1,5 @@
-﻿//	Created:			    2009-08-07
-//	Last Modified:		    2010-02-22
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software.	
-
+﻿
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Web;
 using System.Web.UI.WebControls;
 using Cynthia.Web.Framework;
@@ -151,27 +139,27 @@ namespace Cynthia.Web.UI
         {
             if (HttpContext.Current == null)
             {
-                writer.Write("[" + this.ID + "]");
+                writer.Write(String.Format("[{0}]", this.ID));
                 return;
             }
 
 
             if (renderArtisteer)
             {
-                writer.Write("<div class='" + artisteerCssClass + "'>\n");
+                writer.Write(String.Format("<div class='{0}'>\n", artisteerCssClass));
                 
                 if (renderArtisteerBlockContentDivs)
                 {
-                    writer.Write("<div class=\"" + artisteerCssClass + "-tl\"></div>\n");
-                    writer.Write("<div class=\"" + artisteerCssClass + "-tr\"></div>\n");
-                    writer.Write("<div class=\"" + artisteerCssClass + "-bl\"></div>\n");
-                    writer.Write("<div class=\"" + artisteerCssClass + "-br\"></div>\n");
-                    writer.Write("<div class=\"" + artisteerCssClass + "-tc\"></div>\n");
-                    writer.Write("<div class=\"" + artisteerCssClass + "-bc\"></div>\n");
-                    writer.Write("<div class=\"" + artisteerCssClass + "-cl\"></div>\n");
-                    writer.Write("<div class=\"" + artisteerCssClass + "-cr\"></div>\n");
-                    writer.Write("<div class=\"" + artisteerCssClass + "-cc\"></div>\n");
-                    writer.Write("<div class=\"" + artisteerCssClass + "-body\">");
+                    writer.Write(String.Format("<div class=\"{0}-tl\"></div>\n", artisteerCssClass));
+                    writer.Write(String.Format("<div class=\"{0}-tr\"></div>\n", artisteerCssClass));
+                    writer.Write(String.Format("<div class=\"{0}-bl\"></div>\n", artisteerCssClass));
+                    writer.Write(String.Format("<div class=\"{0}-br\"></div>\n", artisteerCssClass));
+                    writer.Write(String.Format("<div class=\"{0}-tc\"></div>\n", artisteerCssClass));
+                    writer.Write(String.Format("<div class=\"{0}-bc\"></div>\n", artisteerCssClass));
+                    writer.Write(String.Format("<div class=\"{0}-cl\"></div>\n", artisteerCssClass));
+                    writer.Write(String.Format("<div class=\"{0}-cr\"></div>\n", artisteerCssClass));
+                    writer.Write(String.Format("<div class=\"{0}-cc\"></div>\n", artisteerCssClass));
+                    writer.Write(String.Format("<div class=\"{0}-body\">", artisteerCssClass));
                 }
 
                 base.RenderContents(writer);
@@ -191,11 +179,11 @@ namespace Cynthia.Web.UI
 
             if ((overrideTag.Length > 0))
             {
-                writer.Write("<" + overrideTag + " class='" + CssClass + "'>\n");
+                writer.Write(String.Format("<{0} class='{1}'>\n", overrideTag, CssClass));
 
                 base.RenderContents(writer);
 
-                writer.Write("\n</" + overrideTag + "'>");
+                writer.Write(String.Format("\n</{0}'>", overrideTag));
                 return;
             }
 
