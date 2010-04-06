@@ -1,6 +1,3 @@
-/// Author:             Joe Audette
-/// Created:            2006-01-07
-/// Last Modified:      2010-03-20
 
 
 using System;
@@ -1065,19 +1062,8 @@ namespace Cynthia.Web
             // this removes the action attribute from the form
             // so that it posts back correctly when using url re-writing
 
-            
-            //string rawUrl = Request.RawUrl;
             string action = Request.RawUrl;
-            //if (Request.RawUrl.IndexOf(".aspx") > -1)
-            //{
-            //    action = Path.GetFileName(Request.RawUrl.Substring(0, Request.RawUrl.IndexOf(".aspx") + 5));
-            //}
-            //else
-            //{
-            //    action = Path.GetFileName(Request.RawUrl);
-            //}
 
-            
             // we need to append the query string to the form action
             // otherwise the params won't be available when the form posts back
             // example if editing an event ~/EventCalendarEdit.aspx??mid=4&pageid=3

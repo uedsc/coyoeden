@@ -1,14 +1,8 @@
-/// Author:					Joe Audette
-/// Created:				2007-09-10
-/// Last Modified:		    2009-07-20
 
 using System;
 using System.ComponentModel;
-using System.Drawing;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
 
 
 namespace Cynthia.Web.Controls

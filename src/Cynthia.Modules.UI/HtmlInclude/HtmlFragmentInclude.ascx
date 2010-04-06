@@ -5,7 +5,7 @@
 <asp:Panel ID="pnlWrapper" runat="server"  CssClass="art-Post-inner panelwrapper htmlfraginclude">
 <portal:ModuleTitleControl id="Title1" runat="server" />
 <portal:CPanel ID="CynPanel1" runat="server" ArtisteerCssClass="art-PostContent">
-<div class="modulecontent">
+<div class="modulecontent" id="<%=string.Format("module{0}",ModuleId) %>">
 <asp:Literal ID="lblInclude" Runat="server" />
 </div>
 </portal:CPanel>
@@ -16,5 +16,7 @@
 </asp:PlaceHolder>
 <asp:PlaceHolder ID="ph2" runat="server" Visible="false">
 <portal:ModuleTitleControl id="Title2" runat="server" />
+<div class="modulecontent" id="<%=string.Format("module{0}",ModuleId) %>">
 <asp:Literal ID="lblInclude1" Runat="server" />
+</div>
 </asp:PlaceHolder>		

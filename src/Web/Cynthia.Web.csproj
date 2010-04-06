@@ -818,7 +818,7 @@
     <Compile Include="Controls\Artisteer\MenuAdapterArtisteer.cs" />
     <Compile Include="Controls\AdminMenuLink.cs" />
     <Compile Include="Controls\Artisteer\MenuAdapterArtisteerVertical.cs" />
-    <Compile Include="Controls\Artisteer\mojoMenuArtisteerVertical.cs" />
+    <Compile Include="Controls\Artisteer\CMenuArtisteerVertical.cs" />
     <Compile Include="Controls\AutoHidePanel.cs" />
     <Compile Include="Controls\FileManagerLink.cs" />
     <Compile Include="Controls\GoogleTranslatePanel.cs" />
@@ -826,7 +826,7 @@
     <Compile Include="Controls\CButton.cs" />
     <Compile Include="Controls\CCutePager.cs" />
     <Compile Include="Controls\CLabel.cs" />
-    <Compile Include="Controls\Artisteer\mojoMenuArtisteer.cs" />
+    <Compile Include="Controls\Artisteer\CMenuArtisteer.cs" />
     <Compile Include="Controls\NewPageLink.cs" />
     <Compile Include="Controls\ObjectX.page.cs" />
     <Compile Include="Controls\PageEditFeaturesLink.cs" />

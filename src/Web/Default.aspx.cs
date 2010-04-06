@@ -128,13 +128,10 @@ namespace Cynthia.Web.UI
                 {
                     urlToUse = CurrentPage.CanonicalOverride;
                 }
-                Literal link = new Literal();
-                link.ID = "pageurl";
-                link.Text = "\n<link rel='canonical' href='"
-                    + urlToUse
-                    + "' />";
-
-                Page.Header.Controls.Add(link);
+                using (Literal link = new Literal { ID = "pageurl", Text = String.Format("\n<link rel='canonical' href='{0}' />", urlToUse) })
+                {
+                    Page.Header.Controls.Add(link);
+                }
                 
             }
 
@@ -235,11 +232,10 @@ namespace Cynthia.Web.UI
                 }
                 else
                 {
-                    CachedSiteModuleControl siteModule = new CachedSiteModuleControl();
-
-                    siteModule.SiteId = siteSettings.SiteId;
-                    siteModule.ModuleConfiguration = module;
-                    parent.Controls.Add(siteModule);
+                    using (CachedSiteModuleControl siteModule = new CachedSiteModuleControl { SiteId = siteSettings.SiteId, ModuleConfiguration = module })
+                    {
+                        parent.Controls.Add(siteModule);
+                    }
                 }
 
                 parent.Visible = true;
@@ -256,11 +252,13 @@ namespace Cynthia.Web.UI
 
                         if (siteSettings.DisqusSiteShortName.Length > 0)
                         {
-                            DisqusWidget disqus = new DisqusWidget();
-                            disqus.SiteShortName = siteSettings.DisqusSiteShortName;
-                            disqus.WidgetPageUrl = SiteUtils.GetCurrentPageUrl();
-                            disqus.RenderWidget = true;
-                            MPContent.Controls.Add(disqus);
+                            using (DisqusWidget disqus = new DisqusWidget())
+                            {
+                                disqus.SiteShortName = siteSettings.DisqusSiteShortName;
+                                disqus.WidgetPageUrl = SiteUtils.GetCurrentPageUrl();
+                                disqus.RenderWidget = true;
+                                MPContent.Controls.Add(disqus);
+                            }
                         }
 
                         break;
@@ -269,20 +267,18 @@ namespace Cynthia.Web.UI
 
                         if (siteSettings.IntenseDebateAccountId.Length > 0)
                         {
-                            IntenseDebateDiscussion d = new IntenseDebateDiscussion();
-                            d.AccountId = siteSettings.IntenseDebateAccountId;
-                            d.PostUrl = SiteUtils.GetCurrentPageUrl();
-                            MPContent.Controls.Add(d);
+                            using (IntenseDebateDiscussion d = new IntenseDebateDiscussion())
+                            {
+                                d.AccountId = siteSettings.IntenseDebateAccountId;
+                                d.PostUrl = SiteUtils.GetCurrentPageUrl();
+                                MPContent.Controls.Add(d);
+                            }
 
                         }
 
                         break;
 
                 }
-
-                
-
-
             }
 
             if (WebConfigSettings.HidePageViewModeIfNoWorkflowItems && (countOfIWorkflow == 0))
@@ -306,12 +302,6 @@ namespace Cynthia.Web.UI
             isSiteEditor = SiteUtils.UserIsSiteEditor();
 
             userCanEditPage = WebUser.IsInRoles(CurrentPage.EditRoles);
-
-            //if ((userCanEditPage) && (WebConfigSettings.EnableDragDropPageLayout))
-            //{
-            //    ScriptConfig.IncludeInterface = true;
-            //    SetupDragDropScript();
-            //}
 
             if (WebConfigSettings.DisablePageViewStateByDefault)
             {

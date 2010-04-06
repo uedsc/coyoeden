@@ -1,7 +1,3 @@
-/// Author:					Joe Audette
-/// Created:				2007-09-10
-/// Last Modified:		    2009-07-20
-
 
 using System;
 using System.Drawing;

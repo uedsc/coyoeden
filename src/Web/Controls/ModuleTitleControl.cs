@@ -1,6 +1,3 @@
-///	Author:					Joe Audette
-///	Created:				2006-12-14
-/// Last Modified:			2010-03-20
 
 using System;
 using System.Globalization;
@@ -20,11 +17,6 @@ namespace Cynthia.Web.UI
 
         public ModuleTitleControl()
 		{
-            //if (this.Site != null && this.Site.DesignMode) 
-            //{
-            //    this.Visible = false;
-            //    return; 
-            //}
             if (HttpContext.Current == null) { return; }
 
 			EnsureChildControls();
@@ -178,15 +170,15 @@ namespace Cynthia.Web.UI
            
             if (HttpContext.Current == null) 
             {
-                writer.Write("[" + this.ID + "]");
+                writer.Write(String.Format("[{0}]", ID));
                 return;
             }
             else
             {
                 if ((useHeading)&&(renderArtisteer))
                 {
-     
-                    writer.Write("<div class=\"" + artHeader + "\">\n");
+
+                    writer.Write(String.Format("<div class=\"{0}\">\n", artHeader));
 
                     if ((artHeader == UIHelper.ArtisteerBlockHeader)||(artHeader == UIHelper.ArtisteerBlockHeaderLower))
                     {
@@ -197,11 +189,12 @@ namespace Cynthia.Web.UI
                     }
 
                 }
-
+                /*
                 if (module != null)
                 {
-                    writer.Write("<a id='module" + module.ModuleId.ToString(CultureInfo.InvariantCulture) + "'></a>");
+                    writer.Write(String.Format("<a id='module{0}'></a>", module.ModuleId.ToString(CultureInfo.InvariantCulture)));
                 }
+                 */ 
 
                 string headingTag = WebConfigSettings.ModuleTitleTag;
 
@@ -427,7 +420,7 @@ namespace Cynthia.Web.UI
 
                         if (!useTextLinksForFeatureSettings)
                         {
-                            lnkModuleSettings.ImageUrl = Page.ResolveUrl("~/Data/SiteImages/" + WebConfigSettings.EditPropertiesImage);
+                            lnkModuleSettings.ImageUrl = Page.ResolveUrl(String.Format("~/Data/SiteImages/{0}", WebConfigSettings.EditPropertiesImage));
                         }
                         else
                         {
@@ -437,9 +430,7 @@ namespace Cynthia.Web.UI
 
                         siteRoot = SiteUtils.GetNavigationSiteRoot();
 
-                        lnkModuleSettings.NavigateUrl = siteRoot
-                            + "/Admin/ModuleSettings.aspx?mid=" + module.ModuleId.ToInvariantString()
-                            + "&pageid=" + module.PageId.ToInvariantString();
+                        lnkModuleSettings.NavigateUrl = String.Format("{0}/Admin/ModuleSettings.aspx?mid={1}&pageid={2}", siteRoot, module.ModuleId.ToInvariantString(), module.PageId.ToInvariantString());
 
                         if ((enableWorkflow) && (siteModule != null) && (siteModule is IWorkflow))
                         {
@@ -465,15 +456,16 @@ namespace Cynthia.Web.UI
                     {
                         lnkModuleEdit.ToolTip = EditText;
                     }
-                    lnkModuleEdit.NavigateUrl = EditUrl
-                        + "?mid=" + module.ModuleId.ToInvariantString()
-                        + "&pageid=" + module.PageId.ToInvariantString();
+                    lnkModuleEdit.NavigateUrl = String.Format("{0}?mid={1}&pageid={2}", EditUrl, module.ModuleId.ToInvariantString(), module.PageId.ToInvariantString());
 
                     if (!useTextLinksForFeatureSettings)
                     {
-                        lnkModuleEdit.ImageUrl = Page.ResolveUrl("~/Data/SiteImages/" + WebConfigSettings.EditContentImage);
+                        lnkModuleEdit.ImageUrl = Page.ResolveUrl(String.Format("~/Data/SiteImages/{0}", WebConfigSettings.EditContentImage));
                     }
 
+                }
+                else {
+                    lnkModuleEdit.Visible = false;
                 }
 
             }
@@ -516,9 +508,7 @@ namespace Cynthia.Web.UI
                             ibApproveContent.ToolTip = Resource.ApproveContentToolTip;
 
                             lnkRejectContent.NavigateUrl =
-                                siteRoot
-                                + "/Admin/RejectContent.aspx?mid=" + module.ModuleId.ToInvariantString()
-                                + "&pageid=" + module.PageId.ToInvariantString();
+                                String.Format("{0}/Admin/RejectContent.aspx?mid={1}&pageid={2}", siteRoot, module.ModuleId.ToInvariantString(), module.PageId.ToInvariantString());
 
                             lnkRejectContent.ImageUrl = Page.ResolveUrl(WebConfigSettings.RejectContentImage);
                             lnkRejectContent.ToolTip = Resource.RejectContentToolTip;
@@ -557,13 +547,10 @@ namespace Cynthia.Web.UI
             if (HttpContext.Current == null) { return; }
 
             litModuleTitle = new Literal();
-            //this.Controls.Add(litModuleTitle);
             lnkModuleSettings = new HyperLink();
             lnkModuleSettings.CssClass = "modulesettingslink";
-            //this.Controls.Add(lnkModuleSettings);
-            
             lnkModuleEdit = new HyperLink();
-            //this.Controls.Add(lnkModuleEdit);
+            
             lnkModuleEdit.CssClass = "ModuleEditLink";
             lnkModuleEdit.SkinID = "plain";
 
