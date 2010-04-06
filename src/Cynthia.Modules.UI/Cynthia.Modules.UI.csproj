@@ -598,15 +598,15 @@
       <DependentUpon>HtmlFragmentInclude.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="HtmlInclude\HtmlFragmentInclude.ascx.designer.cs">
-      <DependentUpon>HtmlFragmentInclude.ascx</DependentUpon>
-    </Compile>
     <Compile Include="HtmlInclude\Edit.aspx.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HtmlInclude\Edit.aspx.designer.cs">
       <DependentUpon>Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlInclude\HtmlFragmentInclude.ascx.designer.cs">
+      <DependentUpon>HtmlFragmentInclude.ascx</DependentUpon>
     </Compile>
     <Compile Include="IFrame\IframeModule.ascx.cs">
       <DependentUpon>IframeModule.ascx</DependentUpon>
