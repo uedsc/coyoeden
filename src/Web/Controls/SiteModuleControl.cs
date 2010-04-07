@@ -20,7 +20,8 @@ namespace Cynthia.Web
 	public abstract class SiteModuleControl : UserControl
 	#endif
 	{
-        private Module moduleConfiguration;
+		#region member variables
+		private Module moduleConfiguration;
         private bool isEditable = false;
         private bool forbidModuleSettings = false;
         private int siteID = -1;
@@ -34,11 +35,21 @@ namespace Cynthia.Web
 	    protected PageSettings currentPage;
 	    protected SiteSettings siteSettings;
         protected ScriptManager ScriptController;
-        
-        
 
-	    
-        protected override void OnInit(EventArgs e)
+		/// <summary>
+		/// data folder url path of current site
+		/// </summary>
+		protected string DataFolderUrl {
+			get
+			{
+				if (siteSettings == null) return null;
+				return siteSettings.DataFolderUrl;
+			}
+		}
+		#endregion
+
+
+		protected override void OnInit(EventArgs e)
         {
             // Alexander Yushchenko: workaround to make old custom modules work
             // Before 03.19.2007 this method was "new" and called from descendant classes
@@ -108,6 +119,7 @@ namespace Cynthia.Web
             {
                 this.m_title = moduleConfiguration.ModuleTitle;
                 this.m_description = moduleConfiguration.FeatureName;
+				CssClass = moduleConfiguration.FeatureName.Replace(" ", "_").Trim();
             }
         }
 

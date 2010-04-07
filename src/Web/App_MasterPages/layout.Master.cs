@@ -18,7 +18,6 @@ namespace Cynthia.Web
         private int centerModuleCount = 0;
         private int rightModuleCount = 0;
 		private int topModuleCnt, bottomModuleCnt;
-        private SiteSettings siteSettings;
         private PageSettings currentPage = null;
         private SiteMapDataSource siteMapDataSource = null;
         private SiteMapNode rootNode = null;
@@ -26,17 +25,16 @@ namespace Cynthia.Web
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            siteSettings = CacheHelper.GetCurrentSiteSettings();
 
             if (Page is CmsPage) { currentPage = CacheHelper.GetCurrentPage(); }
             
-            if (siteSettings == null) return;
+            if (CurSettings == null) return;
 
             siteMapDataSource = (SiteMapDataSource)this.FindControl("SiteMapData");
             if(siteMapDataSource == null){ return;}
 
             siteMapDataSource.SiteMapProvider
-                    = "Csite" + siteSettings.SiteId.ToInvariantString();
+					= String.Format("Csite{0}", CurSettings.SiteId.ToInvariantString());
 
             try
             {
@@ -65,6 +63,8 @@ namespace Cynthia.Web
             // Set css classes based on count of items in each column panel
             divLeft.Visible = (leftModuleCount > 0);
             divRight.Visible = (rightModuleCount > 0);
+			divAlt1.Visible = (topModuleCnt > 0);
+			divAlt2.Visible = (bottomModuleCnt > 0);
 
             if((divLeft.Visible)&&(!divRight.Visible))
             {

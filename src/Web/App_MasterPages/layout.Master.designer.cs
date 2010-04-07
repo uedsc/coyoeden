@@ -284,60 +284,6 @@ namespace Cynthia.Web {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder rightContent;
         
         /// <summary>
-        /// SiteMapLink1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Cynthia.Web.UI.SiteMapLink SiteMapLink1;
-        
-        /// <summary>
-        /// SkinPreview1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Cynthia.Web.UI.SkinPreview SkinPreview1;
-        
-        /// <summary>
-        /// cl1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Cynthia.Web.UI.CopyrightLabel cl1;
-        
-        /// <summary>
-        /// lnkCynthia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Cynthia.Web.UI.CynthiaLink lnkCynthia;
-        
-        /// <summary>
-        /// lnkw3cValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Cynthia.Web.UI.XhtmlValidatorLink lnkw3cValidator;
-        
-        /// <summary>
-        /// lnkCSSVal1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Cynthia.Web.UI.CssValidatorLink lnkCSSVal1;
-        
-        /// <summary>
         /// ah1 control.
         /// </summary>
         /// <remarks>
@@ -435,6 +381,60 @@ namespace Cynthia.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder altContent2;
+        
+        /// <summary>
+        /// SiteMapLink1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Cynthia.Web.UI.SiteMapLink SiteMapLink1;
+        
+        /// <summary>
+        /// SkinPreview1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Cynthia.Web.UI.SkinPreview SkinPreview1;
+        
+        /// <summary>
+        /// cl1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Cynthia.Web.UI.CopyrightLabel cl1;
+        
+        /// <summary>
+        /// lnkCynthia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Cynthia.Web.UI.CynthiaLink lnkCynthia;
+        
+        /// <summary>
+        /// lnkw3cValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Cynthia.Web.UI.XhtmlValidatorLink lnkw3cValidator;
+        
+        /// <summary>
+        /// lnkCSSVal1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Cynthia.Web.UI.CssValidatorLink lnkCSSVal1;
         
         /// <summary>
         /// js_json control.

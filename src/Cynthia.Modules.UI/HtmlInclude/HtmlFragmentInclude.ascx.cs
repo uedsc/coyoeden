@@ -6,7 +6,7 @@ using Cynthia.Web.Framework;
 using Resources;
 using System.Web.UI.WebControls;
 using Cynthia.Web.UI;
-
+using SystemX;
 namespace Cynthia.Web.ContentUI 
 {
 	public partial class HtmlFragmentInclude : SiteModuleControl
@@ -71,7 +71,7 @@ namespace Cynthia.Web.ContentUI
 				HtmlData = sr.ReadToEnd();
 				sr.Close();
 				//parsing htmldata
-				HtmlData = HtmlData.Replace("%siteroot%", SiteRoot);
+				HtmlData = HtmlData.Replace("%siteroot%", SiteRoot).Replace("%datafolder%",DataFolderUrl).RemoveHtmlWhitespace();
 
 				lbl.Text = HtmlData;		
 			}

@@ -1,9 +1,9 @@
 /*common*/
 .sitetip,.pageditnotes{background:#FEFFF3;border:1px solid #ccc;font-size:11px;padding-left:3.62px;padding-right:3.62px;}
-.container { margin: 0 auto; width: 984px; }
+.container{ margin: 0 auto; width: 984px; }
 .sprite { background: transparent url(img/sprite_themeforest.png) no-repeat top left; }
-.shadowed{border:1px solid #BBBBBB;}
-.inner_boundary
+.shadowed,.panelwrapper{border:1px solid #BBBBBB;}
+.inner_boundary,modulecontent
 {
 background-color:#F4F4F4;
 background-image:url("img/white_line.png");
@@ -109,9 +109,10 @@ body#pagex {line-height:normal; background: #d2d1d0 url('img/background_slice.pn
 #navigation #categories ul li { padding-left: 10px; padding: 6px 10px; font-size: 15px; color: #3b3b3a; }
 #navigation #categories ul li a { font-size: 15px; color: #3b3b3a; }
 #navigation #categories ul li a:hover { color: #3f6c18; text-decoration: none; }
+/*topside*/
 /*#home_slider*/
-#home_slider{padding-top: 50px;position:relative;}
-#home_slider .inner_border
+.topside{padding-top: 50px;position:relative;}
+.topside .inner_border
 {
 	height: auto !important; 
 	height:304px;
@@ -121,27 +122,34 @@ body#pagex {line-height:normal; background: #d2d1d0 url('img/background_slice.pn
 	padding:10px;
 }
 /*slider*/
-#home_slider .slides{overflow:hidden;position:relative;height:302px;}
-#home_slider .slide_pic{width:960px;overflow:hidden;}
-#home_slider .slide_pic li{display:none;}
-#home_slider .slide_pic img { width:960px; height:302px; border:1px solid #E4E4E4; }
-#home_slider .slide_pic li.cur { display:block; }
-#home_slider .slide_li { position:absolute; left:0; bottom:0; }
-#home_slider .slide_li li { float:left; width:175px; height:30px; line-height:30px; margin-right:1px; text-align:center; }
-#home_slider .slide_li a { display:block; width:174px; height:30px; font-size:14px; color:#FFF; text-decoration:none;}
-#home_slider .slide_li .cur a, #home_slider .slide_li a:hover { color:#333; text-decoration:none; }
-#home_slider .op li { background:#666; opacity: 0.6; filter:alpha(opacity=60); }
-#home_slider .op li.cur { background:#FFF; }
-#home_slider .slide_txt span { display:none; }
+#home_slide{overflow:hidden;position:relative;height:302px;}
+#home_slide .slide_pic{width:960px;overflow:hidden;}
+#home_slide .slide_pic li{display:none;}
+#home_slide .slide_pic img { width:960px; height:302px; border:1px solid #E4E4E4; }
+#home_slide .slide_pic li.cur { display:block; }
+#home_slide .slide_li { position:absolute; left:0; bottom:0; }
+#home_slide .slide_li li { float:left; width:175px; height:30px; line-height:30px; margin-right:1px; text-align:center; }
+#home_slide .slide_li a { display:block; width:174px; height:30px; font-size:14px; color:#FFF; text-decoration:none;}
+#home_slide .slide_li .cur a, #home_slider .slide_li a:hover { color:#333; text-decoration:none; }
+#home_slide .op li { background:#666; opacity: 0.6; filter:alpha(opacity=60); }
+#home_slide .op li.cur { background:#FFF; }
+#home_slide .slide_txt span { display:none; }
 /* /#home_slider*/
-
+/*#main*/
+#main{margin-top:20px;}
+/* /#main*/
+#footer
+{
+	background:#293227;
+	border-bottom:1px solid #4E4A44;
+	color:#70806D;
+	font-family:tahoma,Geneva,sans-serif;
+	font-size:12px;
+	line-height:20px;
+	margin-top:32px;
+	padding-top:25px;
+}
 /*------===================================old styles======================================================*/
-
-/* These are ids for container divs in layout.master */
-#wrapwebsite { width:960px; background-color:#FFF; text-align:left; margin:15px auto; }
-#wrapheader { position:relative; clear:left; width:960px; height:135px; background:#000 url('headerbg.jpg') no-repeat left bottom; margin:0; padding:0; }
-#wrapcenter { clear:left; min-height:300px; margin:0 5px; }
-#wrapfooter { clear:both; height:40px; color:#CCC; background:#000; text-align:center; font-size:92%; margin:0; }
 
 /* these are the main column layouts for supporting automatice column layout from 1 to 3 columns 
    all columns are floated left, the system programmatically assigns on of the classes to the center column depending on whether content exists
@@ -288,8 +296,6 @@ a.adminlink:hover {  text-decoration:underline;}
 .breadcrumbs { padding:4px 4px 10px; }
 .unselectedcrumb { font-weight:400; }
 .selectedcrumb { font-weight:700; }
-
-.modulecontent { vertical-align:top; text-align:left; padding:4px; }
 .modulefooter { display:none; font-size:11px; text-align:center; }
 
 .modulepager { vertical-align:top; padding:4px; }

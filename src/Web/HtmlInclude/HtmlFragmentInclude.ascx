@@ -16,7 +16,5 @@
 </asp:PlaceHolder>
 <asp:PlaceHolder ID="ph2" runat="server" Visible="false">
 <portal:ModuleTitleControl id="Title2" runat="server" />
-<div class="modulecontent" id="<%=string.Format("module{0}",ModuleId) %>">
 <asp:Literal ID="lblInclude1" Runat="server" />
-</div>
 </asp:PlaceHolder>		
