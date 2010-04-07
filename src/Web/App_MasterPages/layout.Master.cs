@@ -117,29 +117,29 @@ namespace Cynthia.Web
 					if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "leftpane"))
 					{
 						leftModuleCount++;
-						break;
+						continue;
 					}
 
 					if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "rightpane"))
 					{
 						rightModuleCount++;
-						break;
+						continue;
 					}
 
 					if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "contentpane"))
 					{
 						centerModuleCount++;
-						break;
+						continue;
 					}
-					if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "toppane"))
+					if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "altcontent1"))
 					{
 						topModuleCnt++;
-						break;
+						continue;
 					}
-					if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "bottompane"))
+					if (StringHelper.IsCaseInsensitiveMatch(module.PaneName, "altcontent2"))
 					{
 						bottomModuleCnt++;
-						break;
+						continue;
 					}
 
                 }//foreach

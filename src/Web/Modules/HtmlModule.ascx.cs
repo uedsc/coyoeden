@@ -1,14 +1,4 @@
-/// Author:					Joe Audette
-/// Created:				2004-10-21
-/// Last Modified:		    2009-09-18
-/// 
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software.
+
 
 using System;
 using System.Configuration;
@@ -19,7 +9,6 @@ using Cynthia.Business.WebHelpers;
 using Cynthia.Web.Framework;
 using Cynthia.Web.UI;
 using Resources;
-
 namespace Cynthia.Web.ContentUI
 {
 
@@ -141,9 +130,7 @@ namespace Cynthia.Web.ContentUI
 
             if (IsEditable)
             {
-                TitleUrl = SiteRoot + "/HtmlEdit.aspx"
-                    + "?mid=" + ModuleId.ToString()
-                        + "&pageid=" + currentPage.PageId.ToString();
+				TitleUrl = String.Format("{0}/HtmlEdit.aspx?mid={1}&pageid={2}", SiteRoot, ModuleId, currentPage.PageId);
             }
 
             TimeOffset = SiteUtils.GetUserTimeOffset();

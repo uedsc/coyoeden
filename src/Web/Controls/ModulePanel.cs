@@ -1,15 +1,4 @@
-﻿// Author:					Joe Audette
-// Created:				    2009-06-27
-// Last Modified:			2009-06-27
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)  
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software.
-
+﻿
 using System;
 using System.Globalization;
 using System.Web;
@@ -39,11 +28,11 @@ namespace Cynthia.Web.UI
             {
                 if (CssClass.Length == 0)
                 {
-                    CssClass = "module" + moduleId.ToString(CultureInfo.InvariantCulture);
+					CssClass = String.Format("module{0}", moduleId.ToString(CultureInfo.InvariantCulture));
                 }
                 else
                 {
-                    CssClass += " module" + moduleId.ToString(CultureInfo.InvariantCulture);
+					CssClass += String.Format(" module{0}", moduleId.ToString(CultureInfo.InvariantCulture));
                 }
             }
 
@@ -54,7 +43,7 @@ namespace Cynthia.Web.UI
         {
             if (HttpContext.Current == null)
             {
-                writer.Write("[" + this.ID + "]");
+				writer.Write(String.Format("[{0}]", this.ID));
                 return;
             }
             

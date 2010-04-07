@@ -2,8 +2,8 @@
 .sitetip,.pageditnotes{background:#FEFFF3;border:1px solid #ccc;font-size:11px;padding-left:3.62px;padding-right:3.62px;}
 .container{ margin: 0 auto; width: 984px; }
 .sprite { background: transparent url(img/sprite_themeforest.png) no-repeat top left; }
-.shadowed,.panelwrapper{border:1px solid #BBBBBB;}
-.inner_boundary,modulecontent
+.shadowed,.module{border:1px solid #BBBBBB;}
+.inner_boundary,.module_inner
 {
 background-color:#F4F4F4;
 background-image:url("img/white_line.png");
