@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="~/App_MasterPages/layout.Master.cs" Inherits="Cynthia.Web.layout" %>
+<%@ Import Namespace="Resources" %>
 <!DOCTYPE html>
 <html>
 <head id="Head1" runat="server"><title></title>
@@ -35,35 +36,7 @@
 </div>
 <!--#bottomheader-->
 <div class="bottomheader clearfix">
-	<div id="search-bar">
-		<form action="searchresults.aspx" method="GET" class="active" id="searchfrm">
-		<div class="form-container" id="frmC">
-			<input type="text" class="text-input sprite" name="term" value="Start Searching ..." id="txtSearch">
-			<input type="submit" class="submit sprite" value="Search">
-			<div class="fancy-panel sprite clearfix" style="display: none;" id="search_cat">
-				<div class="categories">
-					<label class="main-cat"><input type="checkbox" name="type" value="files" class="all-cats" checked="checked" id="cbxscall"><span>All Contents</span></label>
-					<ul>
-						<li>
-						<label><input type="checkbox" disabled="disabled" name="s[articles]" value="1" checked="checked" class="sub-cat"><span>Articles</span></label></li>
-						<li>
-							<label><input type="checkbox" disabled="disabled" name="s[blogs]" value="1" checked="checked" class="sub-cat"><span>Blogs</span></label></li>
-						<li>
-							<label><input type="checkbox" disabled="disabled" name="s[forums]" value="1" checked="checked" class="sub-cat"><span>Forums</span></label></li>
-						<li>
-							<label><input type="checkbox" disabled="disabled" name="s[links]" value="1" checked="checked" class="sub-cat"><span>Links</span></label></li>
-					</ul>
-				</div>
-				<div class="misc">
-					<label><input type="checkbox" class="sub-cat" checked="checked" disabled="disabled" name="type" value="sharefile"><span>Shared Files</span></label>
-					<label><input type="checkbox" class="sub-cat" checked="checked" disabled="disabled" name="type" value="gallery"><span>Image galleries</span></label>
-					<label><input type="checkbox" class="sub-cat" checked="checked" disabled="disabled" name="type" value="calendar"><span>Calendars</span></label>
-				</div>
-			</div>
-		</div>
-		<div class="arrow arrow-up sprite" id="search_icon">&nbsp;</div>
-		</form>
-	</div><!--/#searchbar-->
+	<%this.RenderView<SearchInput>(x => x.LinkOnly = false,true); %>
 	<div id="breadcrumbs">
 		<a href="/" class="first">Home</a>
 	</div>
@@ -100,7 +73,7 @@
 <asp:Panel ID="divAlt1" runat="server" CssClass="topside container" Visible="True">
 <asp:ContentPlaceHolder ID="altContent1" runat="server"></asp:ContentPlaceHolder>
 </asp:Panel>
-<form id="frmMain" runat="server">
+<form id="frmMain" runat="server" class="<%=CssClass??main %>">
 <asp:SiteMapDataSource ID="SiteMapData" runat="server" ShowStartingNode="false" />
 <asp:SiteMapDataSource ID="PageMapDataSource" runat="server" ShowStartingNode="false" />
 <asp:SiteMapDataSource ID="ChildPageSiteMapData" runat="server" ShowStartingNode="false" />
@@ -158,7 +131,9 @@
 <vs:SiteJScript ID="js_home" ScriptRelativeToRoot="ClientScript/jqCynthia/cynthia.index.js" runat="server"/>
 <script type="text/javascript">
     //<![CDATA[
-    this$.Init({});
+	this$.Init({
+	searchMask: '<%=Resource.SearchInputWatermark %>'
+    });
     //]]>
 </script>
 </body>

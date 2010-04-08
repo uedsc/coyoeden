@@ -1,16 +1,6 @@
-// Author:					    Joe Audette
-// Created:				        2005-06-26
-//	Last Modified:              2010-01-28
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software. 
 
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -26,16 +16,15 @@ using Cynthia.Business.WebHelpers;
 using Resources;
 using Cynthia.Web.Controls;
 using Cynthia.Web.Framework;
+using SystemX.Web;
 
 namespace Cynthia.Web.UI.Pages
 {
 	
-    public partial class SearchResults : CBasePage
+    public partial class SearchResults : CBasePage,IHtmlWriterControl
 	{
        
 		private static readonly ILog log = LogManager.GetLogger(typeof(SearchResults));
-
-        private string query = string.Empty;
         private int pageNumber = 1;
         private int pageSize = WebConfigSettings.SearchResultsPageSize;
         private int totalHits = 0;
@@ -43,23 +32,29 @@ namespace Cynthia.Web.UI.Pages
 		private bool indexVerified = false;
         private bool showModuleTitleInResultLink = WebConfigSettings.ShowModuleTitleInSearchResultLink;
         private bool isSiteEditor = false;
-        private Guid featureGuid = Guid.Empty;
+        private List<Guid> featureGuids;
         private bool queryErrorOccurred = false;
-
+		/// <summary>
+		/// search term
+		/// </summary>
+		protected string SearchTerm { get; private set; }
   
-        #region OnInit
+        #region base overrides
         override protected void OnInit(EventArgs e)
         {
             base.OnInit(e);
             this.Load += new EventHandler(this.Page_Load);
-            this.btnDoSearch.Click += new EventHandler(btnDoSearch_Click);
             btnRebuildSearchIndex.Click += new EventHandler(btnRebuildSearchIndex_Click);
            
             SuppressMenuSelection();
             SuppressPageMenu();
         }
 
-        
+		protected override void Render(HtmlTextWriter writer)
+		{
+			HtmlWriter = writer;
+			base.Render(writer);
+		}
 
         
         #endregion
@@ -74,7 +69,7 @@ namespace Cynthia.Web.UI.Pages
 
             isSiteEditor = WebUser.IsAdminOrContentAdmin || (SiteUtils.UserIsSiteEditor());
 
-			this.query = string.Empty;
+			SearchTerm= string.Empty;
 
             if (siteSettings == null)
             {
@@ -85,37 +80,7 @@ namespace Cynthia.Web.UI.Pages
             SetupScript();
             ShowNoResults();
 
-            if (!WebConfigSettings.DisableSearchFeatureFilters)
-            {
-                featureGuid = WebUtils.ParseGuidFromQueryString("f", featureGuid);
-                
-                if (!Page.IsPostBack)
-                {
-                    BindFeatureList();
-                    ddFeatureList.Items.Insert(0, new ListItem(Resource.SearchAllContentItem, Guid.Empty.ToString()));
-                    if (ddFeatureList.Items.Count > 0)
-                    {
-                        ListItem item = ddFeatureList.Items.FindByValue(featureGuid.ToString());
-                        if (item != null)
-                        {
-                            ddFeatureList.ClearSelection();
-                            item.Selected = true;
-
-                        }
-                    }
-                    else
-                    {
-                        ddFeatureList.Visible = false;
-                    }
-                }
-
-            }
-            else
-            {
-                ddFeatureList.Visible = false;
-            }
-
-            
+			featureGuids = WebUtils.ParseGuidsFromQueryString("f", Guid.Empty);            
             
             //got here by a cross page postback from another page if Page.PreviousPage is not null
             // this occurs when the seach input is used in the skin rather than the search link
@@ -144,7 +109,7 @@ namespace Cynthia.Web.UI.Pages
                 if ((prevSearchTextBox != null)&&(prevSearchTextBox.Text.Length > 0))
                 {
                     //this.txtSearchInput.Text = prevSearchTextBox.Text;
-                    WebUtils.SetupRedirect(this, SiteRoot + "/SearchResults.aspx?q=" + Server.UrlEncode(prevSearchTextBox.Text));
+					WebUtils.SetupRedirect(this, String.Format("{0}/SearchResults.aspx?q={1}", SiteRoot, Server.UrlEncode(prevSearchTextBox.Text)));
                     return;
                 }
             }
@@ -189,14 +154,12 @@ namespace Cynthia.Web.UI.Pages
 
             if (Request.QueryString.Get("q") == null) { return; }
 
-            query = Request.QueryString.Get("q");
+            SearchTerm = Request.QueryString.Get("q");
 
-            if (this.query.Length == 0) { return; }
+			if (SearchTerm.Length == 0) { return; }
+			SearchTerm = SecurityHelper.SanitizeHtml(SearchTerm);
 
             pageNumber = WebUtils.ParseInt32FromQueryString("p", true, 1);
-
-            //txtSearchInput.Text = Server.HtmlEncode(query).Replace("&quot;", "\"") ;
-            txtSearchInput.Text = SecurityHelper.SanitizeHtml(query);
 
             // this is only to make sure its initialized
             // before indexing is queued on a thread
@@ -212,14 +175,13 @@ namespace Cynthia.Web.UI.Pages
                 siteSettings.SiteId,
                 isSiteEditor,
                 GetUserRoles(),
-                featureGuid,
-                query,
+                SearchTerm,
                 WebConfigSettings.EnableSearchResultsHighlighting,
                 WebConfigSettings.SearchResultsFragmentSize,
                 pageNumber,
                 pageSize,
                 out totalHits,
-                out queryErrorOccurred);
+                out queryErrorOccurred,featureGuids.ToArray());
 
             if (searchResults.Count == 0)
             {
@@ -251,7 +213,7 @@ namespace Cynthia.Web.UI.Pages
             this.lblFrom.Text = (start).ToString();
             this.lblTo.Text = end.ToString(CultureInfo.InvariantCulture);
             this.lblTotal.Text = totalHits.ToString(CultureInfo.InvariantCulture);
-            this.lblQueryText.Text = Server.HtmlEncode(query);
+            this.lblQueryText.Text = Server.HtmlEncode(SearchTerm);
             float duration = searchResults.ExecutionTime*0.0000001F;
             this.lblDuration.Text = duration.ToString();
             divResults.Visible = true;
@@ -278,9 +240,7 @@ namespace Cynthia.Web.UI.Pages
             //totalPages always seems 1 more than it should be not sure why
             //if (totalPages > 1) { totalPages -= 1; }
 
-            string searchUrl = SiteRoot
-                + "/SearchResults.aspx?q=" + Server.UrlEncode(query)
-                + "&amp;p={0}&amp;f=" + featureGuid.ToString();
+			string searchUrl = String.Format("{0}/SearchResults.aspx?q={1}&amp;p={{0}}&amp;f={2}", SiteRoot, Server.UrlEncode(SearchTerm), arrayToStr(",", featureGuids));
 
             pgrTop.PageURLFormat = searchUrl;
             pgrTop.ShowFirstLast = true;
@@ -304,42 +264,6 @@ namespace Cynthia.Web.UI.Pages
             
             
         }
-
-        private void BindFeatureList()
-        {
-            using (IDataReader reader = ModuleDefinition.GetSearchableModules(siteSettings.SiteId))
-            {
-                ListItem listItem;
-
-                // this flag tells it to look first for a web config setting for the resource string
-                // corresponding to SearchListName value
-                // it allows you to customize searchlist names wheeas by default they are just localized
-                bool useConfigOverrides = true;
-
-                while (reader.Read())
-                {
-                    string featureid = reader["Guid"].ToString();
-
-                    if (!WebConfigSettings.SearchableFeatureGuidsToExclude.Contains(featureid))
-                    {
-                        listItem = new ListItem(
-                            ResourceHelper.GetResourceString(
-                            reader["ResourceFile"].ToString(),
-                            reader["SearchListName"].ToString(),
-                            useConfigOverrides),
-                            featureid);
-
-                        ddFeatureList.Items.Add(listItem);
-                    }
-                    
-                }
-
-            }
-
-        }
-
-        
-
         private void InitIndexIfNeeded()
         {
             if (indexVerified) { return; }
@@ -351,18 +275,7 @@ namespace Cynthia.Web.UI.Pages
                 Thread.Sleep(5000); //wait 5 seconds
                 SiteUtils.QueueIndexing();
             }
-            
-            //lblDuration.Visible = false;
-            //lblSeconds.Visible = false;
-            //pnlSearchResults.Visible = false;
-            //pnlNoResults.Visible = true;
-           
-
         }
-
-        
-
-
 	    private void ShowNoResults()
         {
             if (queryErrorOccurred)
@@ -370,18 +283,7 @@ namespace Cynthia.Web.UI.Pages
                 lblNoResults.Text = Resource.SearchQueryInvalid;
             }
             divResults.Visible = false;
-            pnlNoResults.Visible = (txtSearchInput.Text.Length > 0);
-            
-
-            //this.lblFrom.Text = "0";
-            //this.lblTo.Text = "0";
-            //this.lblTotal.Text = "0";
-            //this.lblQueryText.Text = Server.HtmlEncode(query);
-            
-
-            //divResults.Visible = (txtSearchInput.Text.Length > 0);
-
-            
+            pnlNoResults.Visible = (SearchTerm.Length > 0);
             
         }
 
@@ -391,37 +293,20 @@ namespace Cynthia.Web.UI.Pages
             {
                 if (itemTitle.Length > 0)
                 {
-                    return pageName + " &gt; " + moduleTtile + " &gt; " + itemTitle;
+					return String.Format("{0} &gt; {1} &gt; {2}", pageName, moduleTtile, itemTitle);
                 }
 
             }
 
             if (itemTitle.Length > 0)
             {
-                return pageName +  " &gt; " + itemTitle;
+				return String.Format("{0} &gt; {1}", pageName, itemTitle);
             }
 
 
             return pageName;
 
   
-        }
-
-        private void btnDoSearch_Click(object sender, EventArgs e)
-        {
-            
-            if (ddFeatureList.SelectedValue.Length == 36)
-            {
-                WebUtils.SetupRedirect(this, SiteRoot + "/SearchResults.aspx?q=" 
-                    + Server.UrlEncode(this.txtSearchInput.Text)
-                    + "&f=" + ddFeatureList.SelectedValue
-                    );
-
-                return;
-            }
-
-            WebUtils.SetupRedirect(this, SiteRoot + "/SearchResults.aspx?q=" + Server.UrlEncode(this.txtSearchInput.Text));
-
         }
 
         void btnRebuildSearchIndex_Click(object sender, EventArgs e)
@@ -447,7 +332,6 @@ namespace Cynthia.Web.UI.Pages
             script.Append("\n<script type=\"text/javascript\">");
 
             script.Append("$('a[href*=Download.aspx]')");
-            //script.Append(".bind('click', function(){return confirm('sure you want to download ?')});");
             script.Append(".bind('click', function(){window.open(this.href,'_blank');return false;}); ");
 
             script.Append("\n</script>");
@@ -472,9 +356,6 @@ namespace Cynthia.Web.UI.Pages
 			lblMessage.Text = string.Empty;
             divResults.Visible = true;
 
-            btnDoSearch.Text = Resource.SearchButtonText;
-            SiteUtils.SetButtonAccessKey(btnDoSearch, AccessKeys.SearchButtonTextAccessKey);
-
             btnRebuildSearchIndex.Text = Resource.SearchRebuildIndexButton;
             UIHelper.AddConfirmationDialog(btnRebuildSearchIndex, Resource.SearchRebuildIndexWarning);
 
@@ -490,21 +371,46 @@ namespace Cynthia.Web.UI.Pages
         {
             if (indexItem.UseQueryStringParams)
             {
-                return SiteRoot + "/" + indexItem.ViewPage
-                    + "?pageid="
-                    + indexItem.PageId.ToString(CultureInfo.InvariantCulture)
-                    + "&mid="
-                    + indexItem.ModuleId.ToString(CultureInfo.InvariantCulture)
-                    + "&ItemID="
-                    + indexItem.ItemId.ToString(CultureInfo.InvariantCulture)
-                    + indexItem.QueryStringAddendum;
+				return String.Format("{0}/{1}?pageid={2}&mid={3}&ItemID={4}{5}", SiteRoot, indexItem.ViewPage, indexItem.PageId.ToString(CultureInfo.InvariantCulture), indexItem.ModuleId.ToString(CultureInfo.InvariantCulture), indexItem.ItemId.ToString(CultureInfo.InvariantCulture), indexItem.QueryStringAddendum);
                     
             }
             else
             {
-                return SiteRoot + "/" + indexItem.ViewPage;
+				return String.Format("{0}/{1}", SiteRoot, indexItem.ViewPage);
             }
 
         }
+
+		#region IHtmlWriterControl Members
+
+		public Page CurPage
+		{
+			get { return this.Page; }
+		}
+
+		public HtmlTextWriter HtmlWriter
+		{
+			get;
+			private set;
+		}
+
+		#endregion
+
+		#region helper methods
+		/// <summary>
+		/// JOIN a collection of items into a string with specified separator.TODO:Remove this method to SystemX.Utils
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="separator"></param>
+		/// <param name="items"></param>
+		/// <returns></returns>
+		static string arrayToStr<T>(string separator, IEnumerable<T> items) {
+			var sb = new StringBuilder();
+			items.ToList().ForEach(x => {
+				sb.AppendFormat("{0}{1}",x,separator??" ");
+			});
+			return sb.ToString();
+		}
+		#endregion
 	}
 }

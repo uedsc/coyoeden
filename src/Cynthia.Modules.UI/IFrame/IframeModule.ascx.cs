@@ -28,7 +28,7 @@ using Cynthia.Web.Framework;
 using Cynthia.Web.UI;
 using Resources;
 
-namespace Cynthia.Features.UI
+namespace Cynthia.Modules.UI
 {
 
     public partial class IframeModule : SiteModuleControl

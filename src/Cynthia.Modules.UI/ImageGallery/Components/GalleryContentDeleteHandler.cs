@@ -16,7 +16,7 @@ using System.Text;
 using Cynthia.Business;
 using Cynthia.Business.WebHelpers;
 
-namespace Cynthia.Features
+namespace Cynthia.Modules
 {
     public class GalleryContentDeleteHandler : ContentDeleteHandlerProvider
     {

@@ -39,10 +39,9 @@ namespace Cynthia.Web.Controls
 		#endregion
 		protected override void OnInit(EventArgs e)
 		{
-
-			base.OnInit(e);
 			CurSettings = CacheHelper.GetCurrentSiteSettings();
 			CurPageSettings = CacheHelper.GetCurrentPage();
+			base.OnInit(e);
 		}
 
 	}

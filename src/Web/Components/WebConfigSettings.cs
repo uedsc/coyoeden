@@ -18,7 +18,7 @@ namespace Cynthia.Web
                 {
                     return ConfigurationManager.AppSettings["AssembliesNotSearchedForWebParts"];
                 }
-                return "AjaxControlToolkit.dll Argotic.Common.dll Argotic.Core.dll Argotic.Extensions.dll Blacklight.Silverlight.Controls.dll Brettle.Web.NeatHtml.dll Brettle.Web.NeatHtmlTools.dll Brettle.Web.NeatUpload.dll Brettle.Web.NeatUpload.GreyBoxProgressBar.dll CookComputing.XmlRpcV2.dll CSSFriendly.dll DayPilot.dll DotNetOpenAuth.dll DotNetOpenMail.dll GCheckout.dll Jayrock.dll Jayrock.Json.dll log4net.dll Lucene.Net.dll MetaDataExtractor.dll Microsoft.Web.Preview.dll Cynthia.Business.dll Cynthia.Business.WebHelpers.dll Cynthia.Data.dll Cynthia.Net.dll Cynthia.Web.Controls.dll Cynthia.Web.dll Cynthia.Web.Editor.dll Cynthia.Web.Framework.dll MySql.Data.dll Newtonsoft.Json.dll Novell.Directory.Ldap.dll OpenPOP.dll Org.Mentalis.Security.dll Cynthia.Features.Business.dll Cynthia.Features.Data.dll Cynthia.Features.UI.dll Recaptcha.dll RSS.NET.dll SharpMimeTools.dll SiteOffice.Business.dll SiteOffice.Data.dll SiteOffice.ExternalMail.dll SiteOffice.UI.dll sqlite3.dll Subkismet.dll System.Web.Extensions.dll WebStore.Business.dll WebStore.Data.dll WebStore.UI.dll FirebirdSql.Data.FirebirdClient.dll Mono.Data.Sqlite.dll Mono.Security.dll Npgsql.dll TimelineNet.dll ZedGraph.dll ZedGraph.Web.dll";
+                return "AjaxControlToolkit.dll Argotic.Common.dll Argotic.Core.dll Argotic.Extensions.dll Blacklight.Silverlight.Controls.dll Brettle.Web.NeatHtml.dll Brettle.Web.NeatHtmlTools.dll Brettle.Web.NeatUpload.dll Brettle.Web.NeatUpload.GreyBoxProgressBar.dll CookComputing.XmlRpcV2.dll CSSFriendly.dll DayPilot.dll DotNetOpenAuth.dll DotNetOpenMail.dll GCheckout.dll Jayrock.dll Jayrock.Json.dll log4net.dll Lucene.Net.dll MetaDataExtractor.dll Microsoft.Web.Preview.dll Cynthia.Business.dll Cynthia.Business.WebHelpers.dll Cynthia.Data.dll Cynthia.Net.dll Cynthia.Web.Controls.dll Cynthia.Web.dll Cynthia.Web.Editor.dll Cynthia.Web.Framework.dll MySql.Data.dll Newtonsoft.Json.dll Novell.Directory.Ldap.dll OpenPOP.dll Org.Mentalis.Security.dll Cynthia.Modules.Business.dll Cynthia.Modules.Data.dll Cynthia.Modules.UI.dll Recaptcha.dll RSS.NET.dll SharpMimeTools.dll SiteOffice.Business.dll SiteOffice.Data.dll SiteOffice.ExternalMail.dll SiteOffice.UI.dll sqlite3.dll Subkismet.dll System.Web.Extensions.dll WebStore.Business.dll WebStore.Data.dll WebStore.UI.dll FirebirdSql.Data.FirebirdClient.dll Mono.Data.Sqlite.dll Mono.Security.dll Npgsql.dll TimelineNet.dll ZedGraph.dll ZedGraph.Web.dll";
             }
         }
 
@@ -1258,6 +1258,7 @@ namespace Cynthia.Web
             get { return ConfigHelper.GetBoolProperty("EnableSearchResultsHighlighting", false); }
         }
 
+		[Obsolete("No longer in use in the future.")]
         /// <summary>
         /// disabled by default for backawards compatibility with existing indexes.
         /// if you set this to false in Web.config/user.config you should rebuild the index
@@ -2256,46 +2257,20 @@ namespace Cynthia.Web
                 return string.Empty;
             }
         }
+		/// <summary>
+		/// pages that don't show the search input box
+		/// </summary>
+		public static string NOSearchBoxUrls {
+			get
+			{
+				if (ConfigurationManager.AppSettings["NOSearchBoxUrls"] != null)
+				{
+					return ConfigurationManager.AppSettings["NOSearchBoxUrls"];
+				}
 
-
-        //
-        //// This setting is used only in CacheHelper.cs in another project (not referencing this one)!
-        //public static int SiteSettingsCacheDurationInSeconds
-        //{
-        //    get { return GetIntProperty("SiteSettingsCacheDurationInSeconds", 360); }
-        //}
-
-        //// This setting is used only in CacheHelper.cs in another project (not referencing this one)!
-        //public static int MenuCacheDurationInSeconds
-        //{
-        //    get { return GetIntProperty("MenuCacheDurationInSeconds", 360); }
-        //}
-
-        //// This setting is used only in CacheHelper.cs in another project (not referencing this one)!
-        //public static int DefaultModuleCacheDurationInSeconds
-        //{
-        //    get { return GetIntProperty("DefaultModuleCacheDurationInSeconds", 360); }
-        //}
-
-        //public static Unit ExtJsDefaultWindowHeight
-        //{
-        //    get { return ConfigHelper.GetUnit("ExtJsDefaultWindowHeight", Unit.Parse("700")); }
-        //}
-
-        //public static Unit ExtJsDefaultWindowWidth
-        //{
-        //    get { return ConfigHelper.GetUnit("ExtJsDefaultWindowWidth", Unit.Parse("100%")); }
-        //}
-
-        //public static int ExtJsDefaultWindowTop
-        //{
-        //    get { return ConfigHelper.GetIntProperty("ExtJsDefaultWindowTop", 200); }
-        //}
-
-        //public static int ExtJsDefaultWindowLeft
-        //{
-        //    get { return ConfigHelper.GetIntProperty("ExtJsDefaultWindowLeft", 0); }
-        //}
+				return string.Empty;
+			}
+		}
 
     }
 }

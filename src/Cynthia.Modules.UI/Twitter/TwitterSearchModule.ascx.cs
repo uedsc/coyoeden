@@ -28,7 +28,7 @@ using Cynthia.Web.UI;
 using log4net;
 using Resources;
 
-namespace Cynthia.Features.UI
+namespace Cynthia.Modules.UI
 {
 
     public partial class TwitterSearchModule : SiteModuleControl

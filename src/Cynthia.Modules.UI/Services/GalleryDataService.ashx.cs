@@ -24,7 +24,7 @@ using Cynthia.Web.Framework;
 using Cynthia.Business;
 using Cynthia.Business.WebHelpers;
 
-namespace Cynthia.Features.UI.Services
+namespace Cynthia.Modules.UI.Services
 {
     /// <summary>
     /// Provides xml data in a format that can be consumed using the Vertigo Slideshow Silverlight control

@@ -21,7 +21,7 @@ using Cynthia.Business.WebHelpers;
 using Cynthia.Web;
 using Cynthia.Web.Framework;
 
-namespace Cynthia.Features
+namespace Cynthia.Modules
 {
     public class SharedFilesIndexBuilderProvider : IndexBuilderProvider
     {

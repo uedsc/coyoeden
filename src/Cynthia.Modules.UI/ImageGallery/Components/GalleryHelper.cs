@@ -16,7 +16,7 @@ using System.IO;
 using Cynthia.Business;
 using Cynthia.Web.Framework;
 
-namespace Cynthia.Features.UI.ImageGallery
+namespace Cynthia.Modules.UI.ImageGallery
 {
     public static class GalleryHelper
     {

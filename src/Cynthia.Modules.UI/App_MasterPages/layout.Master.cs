@@ -11,7 +11,7 @@ using System.Web.UI.HtmlControls;
 using Cynthia.Business;
 using Cynthia.Web.UI;
 
-namespace Cynthia.Features.UI
+namespace Cynthia.Modules.UI
 {
     /// <summary>
     /// Author:             Joe Audette

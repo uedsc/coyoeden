@@ -3,13 +3,15 @@
 using System;
 using System.Data;
 using Cynthia.Data;
+using Cynthia.Business.DataContracts;
+using System.Collections.Generic;
 
 namespace Cynthia.Business
 {
 	/// <summary>
 	/// Represents a feature that can plug into the content management system.
 	/// </summary>
-	public class ModuleDefinition
+	public class ModuleDefinition : IModuleInfo
 	{
 
 		#region Constructors
@@ -166,43 +168,43 @@ namespace Cynthia.Business
 
         private void GetModuleDefinition(IDataReader reader)
         {
-            if (reader.Read())
-            {
-                this.moduleDefID = Convert.ToInt32(reader["ModuleDefID"]);
-                //this.siteID = Convert.ToInt32(reader["SiteID"]);
-
-                this.featureName = reader["FeatureName"].ToString();
-                this.controlSrc = reader["ControlSrc"].ToString();
-                this.sortOrder = Convert.ToInt32(reader["SortOrder"]);
-                this.defaultCacheTime = Convert.ToInt32(reader["DefaultCacheTime"]);
-                this.isAdmin = Convert.ToBoolean(reader["IsAdmin"]);
-                this.icon = reader["Icon"].ToString();
-                this.featureGuid = new Guid(reader["Guid"].ToString());
-                this.resourceFile = reader["ResourceFile"].ToString();
-
-                this.searchListName = reader["SearchListName"].ToString();
-                if(reader["IsCacheable"] != DBNull.Value)
-                {
-                    this.isCacheable = Convert.ToBoolean(reader["IsCacheable"]);
-                }
-
-                if (reader["IsSearchable"] != DBNull.Value)
-                {
-                    this.isSearchable = Convert.ToBoolean(reader["IsSearchable"]);
-                }
-
-                if (reader["SupportsPageReuse"] != DBNull.Value)
-                {
-                    this.supportsPageReuse = Convert.ToBoolean(reader["SupportsPageReuse"]);
-                }
-
-                this.deleteProvider = reader["DeleteProvider"].ToString();
-
-            }
-
-            
-
+			if (reader.Read())
+			{
+				loadFromDataReader(this, reader);
+			}
         }
+
+		static void loadFromDataReader(ModuleDefinition m,IDataReader reader) {
+			m.moduleDefID = Convert.ToInt32(reader["ModuleDefID"]);
+			//this.siteID = Convert.ToInt32(reader["SiteID"]);
+
+			m.featureName = reader["FeatureName"].ToString();
+			m.controlSrc = reader["ControlSrc"].ToString();
+			m.sortOrder = Convert.ToInt32(reader["SortOrder"]);
+			m.defaultCacheTime = Convert.ToInt32(reader["DefaultCacheTime"]);
+			m.isAdmin = Convert.ToBoolean(reader["IsAdmin"]);
+			m.icon = reader["Icon"].ToString();
+			m.featureGuid = new Guid(reader["Guid"].ToString());
+			m.resourceFile = reader["ResourceFile"].ToString();
+
+			m.searchListName = reader["SearchListName"].ToString();
+			if (reader["IsCacheable"] != DBNull.Value)
+			{
+				m.isCacheable = Convert.ToBoolean(reader["IsCacheable"]);
+			}
+
+			if (reader["IsSearchable"] != DBNull.Value)
+			{
+				m.isSearchable = Convert.ToBoolean(reader["IsSearchable"]);
+			}
+
+			if (reader["SupportsPageReuse"] != DBNull.Value)
+			{
+				m.supportsPageReuse = Convert.ToBoolean(reader["SupportsPageReuse"]);
+			}
+
+			m.deleteProvider = reader["DeleteProvider"].ToString();
+		}
 
 		private bool Create()
 		{ 
@@ -309,6 +311,23 @@ namespace Cynthia.Business
         {
             return DBModuleDefinition.GetSearchableModules(siteId);
         }
+
+		public static List<ModuleDefinition> GetModules(int siteID,string excludeModuleIDs) {
+			var retVal = new List<ModuleDefinition>();
+			using (var reader = ModuleDefinition.GetSearchableModules(siteID))
+			{
+				while (reader.Read())
+				{
+					if (!excludeModuleIDs.Contains(reader["Guid"].ToString())) {
+						var tempObj=new ModuleDefinition();
+						loadFromDataReader(tempObj,reader);
+						retVal.Add(tempObj);
+					}
+				}
+
+			}
+			return retVal;
+		}
 
         public static bool UpdateModuleDefinitionSetting(
             Guid featureGuid,

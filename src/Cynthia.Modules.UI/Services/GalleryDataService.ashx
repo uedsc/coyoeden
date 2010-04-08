@@ -1,1 +1,1 @@
-﻿<%@ WebHandler Language="C#" CodeBehind="GalleryDataService.ashx.cs" Class="Cynthia.Features.UI.Services.GalleryDataService" %>
+﻿<%@ WebHandler Language="C#" CodeBehind="GalleryDataService.ashx.cs" Class="Cynthia.Modules.UI.Services.GalleryDataService" %>

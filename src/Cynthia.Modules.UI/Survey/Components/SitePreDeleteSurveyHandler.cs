@@ -8,7 +8,7 @@ using Cynthia.Business.WebHelpers;
 using SurveyFeature.Business;
 using log4net;
 
-namespace Cynthia.Features
+namespace Cynthia.Modules
 {
     /// <summary>
     /// Author:                     Joe Audette

@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MessengerThemeSetting.ascx.cs" Inherits="Cynthia.Features.UI.LiveMessenger.MessengerThemeSetting" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MessengerThemeSetting.ascx.cs" Inherits="Cynthia.Modules.UI.LiveMessenger.MessengerThemeSetting" %>
 <asp:DropDownList ID="ddTheme" runat="server" >
     <asp:ListItem Value="" Text="<%$ Resources:LiveResources, MessengerNoTheme %>" />
     <asp:ListItem Value="blue" Text="<%$ Resources:LiveResources, MessengerBlueTheme %>" />

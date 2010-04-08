@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="GoogleTranslateModule.ascx.cs" Inherits="Cynthia.Features.UI.GoogleTranslateModule" %>
+﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="GoogleTranslateModule.ascx.cs" Inherits="Cynthia.Modules.UI.GoogleTranslateModule" %>
 
 
 <asp:Panel ID="pnlWrapper" runat="server" cssclass="panelwrapper GoogleTranslateModule">

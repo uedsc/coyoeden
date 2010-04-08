@@ -19,7 +19,7 @@ using Cynthia.Business;
 using Cynthia.Business.WebHelpers;
 using Cynthia.Web;
 
-namespace Cynthia.Features
+namespace Cynthia.Modules
 {
     public class LinksIndexBuilderProvider : IndexBuilderProvider
     {

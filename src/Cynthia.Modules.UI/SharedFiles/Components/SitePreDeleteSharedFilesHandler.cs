@@ -7,7 +7,7 @@ using Cynthia.Business;
 using Cynthia.Business.WebHelpers;
 using log4net;
 
-namespace Cynthia.Features
+namespace Cynthia.Modules
 {
     /// <summary>
     /// Author:                     Joe Audette

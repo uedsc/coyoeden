@@ -16,7 +16,7 @@ using Cynthia.Web.Framework;
 using Cynthia.Business;
 using Resources;
 
-namespace Cynthia.Features.UI
+namespace Cynthia.Modules.UI
 {
 
     public partial class LiveMessengerModule : SiteModuleControl

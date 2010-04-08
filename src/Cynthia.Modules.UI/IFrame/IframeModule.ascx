@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="IframeModule.ascx.cs" Inherits="Cynthia.Features.UI.IframeModule" %>
+﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="IframeModule.ascx.cs" Inherits="Cynthia.Modules.UI.IframeModule" %>
 
 <asp:Panel ID="pnlWrapper" runat="server" cssclass="panelwrapper IframeModule">
 <portal:ModuleTitleControl  runat="server" id="TitleControl" UseHeading="false" />

@@ -15,7 +15,7 @@ using Cynthia.Web;
 using Cynthia.Web.Framework;
 
 
-namespace Cynthia.Features.UI
+namespace Cynthia.Modules.UI
 {
 
     public partial class TwitterProfileModule : SiteModuleControl

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cynthia.Features.UI {
+namespace Cynthia.Modules.UI {
     
     
     public partial class IframeModule {

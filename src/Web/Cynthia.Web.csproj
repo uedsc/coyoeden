@@ -833,6 +833,9 @@
     <Compile Include="Controls\PageEditSettingsLink.cs" />
     <Compile Include="Controls\Rating\Rating.cs" />
     <Compile Include="Controls\Rating\RatingExtender.cs" />
+    <Compile Include="Controls\SearchInput.ascx.designer.cs">
+      <DependentUpon>SearchInput.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Sharing\DeliciousLink.cs" />
     <Compile Include="Controls\Sharing\DiggLink.cs" />
     <Compile Include="Controls\Sharing\StumbleUponLink.cs" />
@@ -1596,9 +1599,6 @@
     <Compile Include="Controls\RegisterLink.cs">
     </Compile>
     <Compile Include="Controls\ScriptLoader.cs" />
-    <Compile Include="Controls\SearchInput.ascx.designer.cs">
-      <DependentUpon>SearchInput.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Controls\SessionKeepAliveControl.cs" />
     <Compile Include="Controls\SignInOrRegisterPrompt.ascx.cs">
       <DependentUpon>SignInOrRegisterPrompt.ascx</DependentUpon>
@@ -4000,6 +4000,8 @@
     <Content Include="bin\Subkismet.dll" />
     <Content Include="bin\Subkismet.pdb" />
     <Content Include="bin\Subkismet.xml" />
+    <Content Include="bin\SystemX.dll" />
+    <Content Include="bin\SystemX.pdb" />
     <Content Include="ClientScript\ckeditor32\adapters\jquery.js" />
     <Content Include="ClientScript\ckeditor32\CHANGES.html" />
     <Content Include="ClientScript\ckeditor32\ckeditor.js" />

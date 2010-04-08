@@ -1,21 +1,18 @@
 <%@ Page language="c#"  ValidateRequest="false" MaintainScrollPositionOnPostback="true" EnableViewStateMac="false" Codebehind="SearchResults.aspx.cs" MasterPageFile="~/App_MasterPages/layout.Master" AutoEventWireup="false" Inherits="Cynthia.Web.UI.Pages.SearchResults" %>
-
+<%@ MasterType TypeName="Cynthia.Web.layout" %>
+<asp:Content ContentPlaceHolderID="altContent1" ID="cphAlt1" runat="server">
+<%this.Master.CssClass = "searchfrm"; %>
+</asp:Content>
 <asp:Content ContentPlaceHolderID="leftContent" ID="MPLeftPane" runat="server" />
 <asp:Content ContentPlaceHolderID="mainContent" ID="MPContent" runat="server">
-<portal:CPanel ID="mp1" runat="server" ArtisteerCssClass="art-Post" RenderArtisteerBlockContentDivs="true">
-<cy:CornerRounderTop id="ctop1" runat="server" />
-<asp:Panel ID="pnlMain" runat="server" CssClass="art-Post-inner panelwrapper searchresults" DefaultButton="btnDoSearch">
+<asp:Panel ID="pnlMain" runat="server" CssClass="panelwrapper searchresults clearfix">
     <h2 class="moduletitle"><cy:SiteLabel id="SiteLabel3" runat="server" ConfigKey="SearchPageTitle" UseLabelTag="false" > </cy:SiteLabel></h2>
-    <portal:CPanel ID="CynPanel1" runat="server" ArtisteerCssClass="art-PostContent">
     <div class="modulecontent">
     <div id="divDelete" runat="server" visible="false" class="settingrow">
     <asp:Button ID="btnRebuildSearchIndex" runat="server" />
     </div>
     <div class="settingrow">
         <portal:CHelpLink ID="CynHelpLink1" runat="server" HelpKey="search-help" />
-        <asp:TextBox ID="txtSearchInput" runat="server" Columns="50" MaxLength="255" CssClass="widetextbox"></asp:TextBox>
-        <asp:DropDownList id="ddFeatureList" runat="server" ></asp:DropDownList>
-		<portal:CButton ID="btnDoSearch" runat="server" CausesValidation="false" UseSubmitBehavior="true" />
 		<asp:label id="lblDuration" runat="server" visible="False" ></asp:label> 
 		<cy:SiteLabel id="lblSeconds" runat="server" Visible="False" ConfigKey="SearchResultsSecondsLabel" UseLabelTag="false"> </cy:SiteLabel>
 		<asp:label id="lblMessage" runat="server" ></asp:label> 
@@ -49,11 +46,7 @@
 	    <asp:Label ID="lblNoResults" runat="server"></asp:Label>
     </asp:Panel>
     </div>
-    </portal:CPanel>
-    <div class="cleared"></div>
 </asp:Panel>
-<cy:CornerRounderBottom id="cbottom1" runat="server" />
-</portal:CPanel>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="rightContent" ID="MPRightPane" runat="server" />
 <asp:Content ContentPlaceHolderID="pageEditContent" ID="MPPageEdit" runat="server" />

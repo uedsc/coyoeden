@@ -1,20 +1,6 @@
-/// Author:					Joe Audette
-/// Created:				2004-07-14
-/// Last Modified:			2010-02-17
-/// 
-/// 4/30/2005	Dean Brettle Provided a better handling of proxy settings
-///				in generating the base path for site links
-/// 02/05/2007  Alexander Yushchenko added TryLoadRequestParam functions
-///				
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software.
 
 using System;
+using System.Linq;
 using System.Collections;
 using System.Configuration;
 using System.Globalization;
@@ -24,6 +10,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using log4net;
+using System.Collections.Generic;
+using SystemX;
 
 namespace Cynthia.Web.Framework
 {
@@ -451,57 +439,6 @@ namespace Cynthia.Web.Framework
 
         }
 
-
-        //public static string RemoveQueryStringParam(string leaveOutParam)
-        //{
-        //    if (String.IsNullOrEmpty(leaveOutParam)) return String.Empty;
-
-        //    string queryString = HttpContext.Current.Request.Url.ToString();
-        //    queryString = queryString.Remove(0, queryString.IndexOf(".aspx") + 5);
-        //    if (queryString.Length > 0)
-        //    {
-        //        if (queryString.StartsWith("?"))
-        //        {
-        //            queryString = queryString.Remove(0, 1);
-        //        }
-        //        if (!queryString.StartsWith("&"))
-        //        {
-        //            queryString = "&" + queryString;
-        //        }
-        //        int indexOfLeaveOutParam = queryString.IndexOf("&" + leaveOutParam);
-        //        if (indexOfLeaveOutParam > -1)
-        //        {
-        //            string stringBeforeLeaveOutParam = queryString.Substring(0, indexOfLeaveOutParam);
-        //            string stringAfterLeaveOutParam = queryString.Substring(indexOfLeaveOutParam + leaveOutParam.Length);
-        //            if (stringAfterLeaveOutParam.Length > 0)
-        //            {
-        //                if (!stringAfterLeaveOutParam.StartsWith("&"))
-        //                {
-        //                    if (stringAfterLeaveOutParam.IndexOf("&") > -1)
-        //                    {
-        //                        stringAfterLeaveOutParam =
-        //                            stringAfterLeaveOutParam.Substring(stringAfterLeaveOutParam.IndexOf("&"));
-        //                    }
-        //                    else
-        //                    {
-        //                        stringAfterLeaveOutParam = "";
-        //                    }
-        //                }
-        //            }
-        //            queryString = stringBeforeLeaveOutParam + stringAfterLeaveOutParam;
-        //        }
-
-        //        if (queryString.StartsWith("&"))
-        //        {
-        //            queryString = queryString.Remove(0, 1);
-        //        }
-        //    }
-        //    return queryString;
-        //}
-
-        
-
-
         public static void SetupRedirect(Control control, string redirectUrl)
         {
             // the reason for using this overload of Response.Redirect:
@@ -691,7 +628,32 @@ namespace Cynthia.Web.Framework
             if (TryLoadRequestParam(paramName, out paramValue)) return paramValue;
             return defaultIfNotFoundOrInvalid;
         }
-
+		public static List<Guid> ParseGuidsFromQueryString(string paramName, params Guid[] defaults) {
+			var retVal = new List<Guid>();
+			var tempStr = default(string);
+			if (TryLoadRequestParam(paramName, out tempStr))
+			{
+				try
+				{
+					tempStr.Split(',').ToList().ForEach(x =>
+					{
+						retVal.Add(x.As<Guid>());
+					});
+				}
+				catch (Exception ex) {
+					if (defaults != null && defaults.Length > 0)
+					{
+						retVal.AddRange(defaults);
+					}
+				}
+			}
+			else {
+				if (defaults != null && defaults.Length > 0) {
+					retVal.AddRange(defaults);
+				}
+			}
+			return retVal;
+		}
         /// <summary>
         /// Loads parameter of a given type from query string.
         /// Returns the given value if operation failed.

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cynthia.Features.UI.LiveMessenger {
+namespace Cynthia.Modules.UI.LiveMessenger {
     
     
     public partial class MessengerThemeSetting {

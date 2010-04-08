@@ -21,7 +21,10 @@ namespace Cynthia.Web
         private PageSettings currentPage = null;
         private SiteMapDataSource siteMapDataSource = null;
         private SiteMapNode rootNode = null;
-        
+		/// <summary>
+		/// page css class
+		/// </summary>
+		public string CssClass { get; set; }
         
         protected void Page_Load(object sender, EventArgs e)
         {

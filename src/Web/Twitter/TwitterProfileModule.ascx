@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="TwitterProfileModule.ascx.cs" Inherits="Cynthia.Features.UI.TwitterProfileModule" %>
+﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="TwitterProfileModule.ascx.cs" Inherits="Cynthia.Modules.UI.TwitterProfileModule" %>
 
 <portal:CPanel ID="mp1" runat="server" ArtisteerCssClass="art-Post" RenderArtisteerBlockContentDivs="true">
 <cy:CornerRounderTop id="ctop1" runat="server" />

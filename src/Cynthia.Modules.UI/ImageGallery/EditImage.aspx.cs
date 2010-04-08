@@ -15,7 +15,7 @@ using Cynthia.Business;
 using Cynthia.Business.WebHelpers;
 using Cynthia.Web.Editor;
 using Cynthia.Web.Framework;
-using Cynthia.Features.UI.ImageGallery;
+using Cynthia.Modules.UI.ImageGallery;
 using Resources;
 
 namespace Cynthia.Web.GalleryUI

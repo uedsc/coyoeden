@@ -17,7 +17,7 @@ using System.Web;
 using Brettle.Web.NeatUpload;
 using Cynthia.Business;
 using Cynthia.Web.Framework;
-using Cynthia.Features.UI.ImageGallery;
+using Cynthia.Modules.UI.ImageGallery;
 using Resources;
 
 

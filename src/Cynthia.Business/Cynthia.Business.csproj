@@ -135,6 +135,7 @@
     <Compile Include="ContentWorkflow.cs" />
     <Compile Include="ContentWorkflowStatus.cs" />
     <Compile Include="Currency.cs" />
+    <Compile Include="DataContracts\IModuleInfo.cs" />
     <Compile Include="ELetter\Letter.cs" />
     <Compile Include="ELetter\LetterHtmlTemplate.cs" />
     <Compile Include="ELetter\LetterInfo.cs" />

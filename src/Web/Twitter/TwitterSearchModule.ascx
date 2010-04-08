@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="TwitterSearchModule.ascx.cs" Inherits="Cynthia.Features.UI.TwitterSearchModule" %>
+﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="TwitterSearchModule.ascx.cs" Inherits="Cynthia.Modules.UI.TwitterSearchModule" %>
 <portal:CPanel ID="mp1" runat="server" ArtisteerCssClass="art-Post" RenderArtisteerBlockContentDivs="true">
 <cy:CornerRounderTop id="ctop1" runat="server" />
 <asp:Panel ID="pnlWrapper" runat="server" cssclass="art-Post-inner panelwrapper TwitterSearch">

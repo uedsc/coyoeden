@@ -1,14 +1,3 @@
-// Author:					    Joe Audette
-// Created:				        2007-08-30
-// Last Modified:			    2009-09-15
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)  
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software.
 
 //http://www.codeproject.com/KB/cs/lucene_analysis.aspx
 //http://www.ifdefined.com/blog/post/2009/02/Full-Text-Search-in-ASPNET-using-LuceneNET.aspx
@@ -24,6 +13,7 @@
 //http://lucene.apache.org/solr/
 
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
@@ -72,250 +62,277 @@ namespace Cynthia.Business.WebHelpers
             out int totalHits,
             out bool invalidQuery)
         {
-            invalidQuery = false;
-            totalHits = 0;
-            string indexPath = GetIndexPath(siteId);
-            IndexItemCollection results = new IndexItemCollection();
-
-            if (string.IsNullOrEmpty(queryText))
-            {
-                return results;
-            }
-
-            bool useBackwardCompatibilityMode = true;
-            if (
-                (ConfigurationManager.AppSettings["SearchUseBackwardCompatibilityMode"] != null)
-                && (ConfigurationManager.AppSettings["SearchUseBackwardCompatibilityMode"] == "false")
-              )
-            {
-                useBackwardCompatibilityMode = false;
-            }
-
-            bool DisableSearchFeatureFilters = true;
-
-            if (
-                (ConfigurationManager.AppSettings["DisableSearchFeatureFilters"] != null)
-                && (ConfigurationManager.AppSettings["DisableSearchFeatureFilters"] == "false")
-              )
-            {
-                DisableSearchFeatureFilters = false;
-            }
-
-            bool IncludeModuleRoleFilters = false;
-
-            if (
-                (ConfigurationManager.AppSettings["SearchIncludeModuleRoleFilters"] != null)
-                && (ConfigurationManager.AppSettings["SearchIncludeModuleRoleFilters"] == "true")
-              )
-            {
-                IncludeModuleRoleFilters = true;
-            }
-
-          
-            if (IndexReader.IndexExists(indexPath))
-            {
-
-                if (log.IsDebugEnabled)
-                {
-                    log.Debug("Entered Search, indexPath = " + indexPath);
-                }
-
-                long startTicks = DateTime.Now.Ticks;
-
-                try
-                {
-
-                    BooleanQuery mainQuery = new BooleanQuery();
-
-                    if ((!isAdmin) && (!useBackwardCompatibilityMode))
-                    {
-                        AddRoleQueries(userRoles, mainQuery);
-                    }
-
-                    if ((!isAdmin) && (IncludeModuleRoleFilters))
-                    {
-                        AddModuleRoleQueries(userRoles, mainQuery);
-                    }
-
-
-                    Query multiQuery = MultiFieldQueryParser.Parse(
-                        new string[] { queryText, queryText, queryText, queryText, queryText, queryText.Replace("*", string.Empty) },
-                        new string[] { "Title", "ModuleTitle", "contents", "PageName", "PageMetaDesc", "Keyword" },
-                        new StandardAnalyzer());
-
-                    mainQuery.Add(multiQuery, BooleanClause.Occur.MUST);
-
-
-                    if (!useBackwardCompatibilityMode)
-                    {
-                        Term beginDateStart = new Term("PublishBeginDate", DateTime.MinValue.ToString("s"));
-                        Term beginDateEnd = new Term("PublishBeginDate", DateTime.UtcNow.ToString("s"));
-                        RangeQuery beginDateQuery = new RangeQuery(beginDateStart, beginDateEnd, true);
-                        mainQuery.Add(beginDateQuery, BooleanClause.Occur.MUST);
-
-                        Term endDateStart = new Term("PublishEndDate", DateTime.UtcNow.ToString("s"));
-                        Term endDateEnd = new Term("PublishEndDate", DateTime.MaxValue.ToString("s"));
-                        RangeQuery endDateQuery = new RangeQuery(endDateStart, endDateEnd, true);
-                        mainQuery.Add(endDateQuery, BooleanClause.Occur.MUST);
-                    }
-
-                    if ((!DisableSearchFeatureFilters) && (featureGuid != Guid.Empty))
-                    {
-                        BooleanQuery featureFilter = new BooleanQuery();
-                        featureFilter.Add(new TermQuery(new Term("FeatureId", featureGuid.ToString())), BooleanClause.Occur.MUST);
-                        mainQuery.Add(featureFilter, BooleanClause.Occur.MUST);
-                    }
-
-
-                    IndexSearcher searcher = new IndexSearcher(indexPath);
-                    // a 0 based colection
-                    Hits hits = searcher.Search(mainQuery);
-                    
-                    int startHit = 0;
-
-                    if (pageNumber > 1)
-                    {
-                        startHit = ((pageNumber - 1) * pageSize);
-                    }
-
-
-                    totalHits = hits.Length();
-                    int end = startHit + pageSize;
-                    if (totalHits <= end)
-                    {
-                        end = totalHits;
-                    }
-                    int itemsAdded = 0;
-                    int itemsToAdd = end;
-
-                    // in backward compatibility mode if multiple pages of results are found we amy not be showing every user the correct
-                    // number of hits they can see as we only filter out the current page
-                    //we may decrement total hits if filtering results so keep the original count
-                    int actualHits = totalHits;
-
-                    if (!useBackwardCompatibilityMode)
-                    {
-                        // this new way is much cleaner
-                        //all filtering is done by query so the hitcount is true
-                        //whereas with the old way it could be wrong since there
-                        // were possibly results filtered out after the query returned.
-
-                        QueryScorer scorer = new QueryScorer(multiQuery);
-                        Formatter formatter = new SimpleHTMLFormatter("<span class='searchterm'>", "</span>");
-                        Highlighter highlighter = new Highlighter(formatter, scorer);
-                        highlighter.SetTextFragmenter(new SimpleFragmenter(highlightedFragmentSize));
-
-
-                        for (int i = startHit; i < itemsToAdd; i++)
-                        {
-                            IndexItem indexItem = new IndexItem(hits.Doc(i), hits.Score(i));
-
-                            if (highlightResults)
-                            {
-                                try
-                                {
-                                    TokenStream stream = new StandardAnalyzer().TokenStream("contents", new StringReader(hits.Doc(i).Get("contents")));
-                                    
-                                    string highlightedResult = highlighter.GetBestFragment(stream, hits.Doc(i).Get("contents"));
-                                    if (highlightedResult != null) { indexItem.Intro = highlightedResult; }
-                                }
-                                catch (NullReferenceException) { }
-
-                            }
-
-                            results.Add(indexItem);
-                            itemsAdded += 1;
-
-                        }
-
-
-                    }
-                    else
-                    {
-                        //backward compatible with old indexes
-                        int filteredItems = 0;
-                        for (int i = startHit; i < itemsToAdd; i++)
-                        {
-
-                            bool needToDecrementTotalHits = false;
-                            if (
-                                (isAdmin)
-                                || (WebUser.IsContentAdmin)
-                                || (WebUser.IsInRoles(hits.Doc(i).Get("ViewRoles")))
-                                )
-                            {
-                                IndexItem indexItem = new IndexItem(hits.Doc(i), hits.Score(i));
-
-                                if (
-                                (DateTime.UtcNow > indexItem.PublishBeginDate)
-                                && (DateTime.UtcNow < indexItem.PublishEndDate)
-                                )
-                                {
-                                    results.Add(indexItem);
-                                }
-                                else
-                                {
-                                    needToDecrementTotalHits = true;
-                                }
-
-                            }
-                            else
-                            {
-                                needToDecrementTotalHits = true;
-                            }
-
-                            //filtered out a result so need to decrement
-                            if (needToDecrementTotalHits)
-                            {
-                                filteredItems += 1;
-                                totalHits -= 1;
-
-                                //we also are not getting as many results as the page size so if there are more items
-                                //we should increment itemsToAdd
-                                if ((itemsAdded + filteredItems) < actualHits)
-                                {
-                                    itemsToAdd += 1;
-                                }
-                            }
-
-                        }
-                    }
-
-
-
-                    searcher.Close();
-
-                    results.ItemCount = itemsAdded;
-                    results.PageIndex = pageNumber;
-
-                    results.ExecutionTime = DateTime.Now.Ticks - startTicks;
-                }
-                catch (ParseException ex)
-                {
-                    invalidQuery = true;
-                    log.Error("handled error for search terms " + queryText, ex);
-                    // these parser exceptions are generally caused by
-                    // spambots posting too much junk into the search form
-                    // heres an option to automatically ban the ip address
-                    HandleSpam(queryText, ex);
-
-
-                    return results;
-                }
-                catch (BooleanQuery.TooManyClauses ex)
-                {
-                    invalidQuery = true;
-                    log.Error("handled error for search terms " + queryText, ex);
-                    return results;
-
-                }
-
-            }
-
-            return results;
+			return Search(siteId, isAdmin, userRoles, queryText, highlightResults, highlightedFragmentSize, pageNumber, pageSize, out totalHits, out invalidQuery, featureGuid);
         }
+		/// <summary>
+		/// search support multiple modules 
+		/// </summary>
+		/// <param name="siteId"></param>
+		/// <param name="isAdmin"></param>
+		/// <param name="userRoles"></param>
+		/// <param name="queryText"></param>
+		/// <param name="highlightResults"></param>
+		/// <param name="highlightedFragmentSize"></param>
+		/// <param name="pageNumber"></param>
+		/// <param name="pageSize"></param>
+		/// <param name="totalHits"></param>
+		/// <param name="invalidQuery"></param>
+		/// <param name="moduleIDs"></param>
+		/// <returns></returns>
+		public static IndexItemCollection Search(
+			 int siteId,
+			 bool isAdmin,
+			 List<string> userRoles,
+			 string queryText,
+			 bool highlightResults,
+			 int highlightedFragmentSize,
+			 int pageNumber,
+			 int pageSize,
+			 out int totalHits,
+			 out bool invalidQuery,
+			 params Guid[] moduleIDs
+			)
+		{
+			invalidQuery = false;
+			totalHits = 0;
+			string indexPath = GetIndexPath(siteId);
+			IndexItemCollection results = new IndexItemCollection();
 
-       
+			if (string.IsNullOrEmpty(queryText))
+			{
+				return results;
+			}
+
+			bool useBackwardCompatibilityMode = true;
+			if (
+				(ConfigurationManager.AppSettings["SearchUseBackwardCompatibilityMode"] != null)
+				&& (ConfigurationManager.AppSettings["SearchUseBackwardCompatibilityMode"] == "false")
+			  )
+			{
+				useBackwardCompatibilityMode = false;
+			}
+
+			bool IncludeModuleRoleFilters = false;
+
+			if (
+				(ConfigurationManager.AppSettings["SearchIncludeModuleRoleFilters"] != null)
+				&& (ConfigurationManager.AppSettings["SearchIncludeModuleRoleFilters"] == "true")
+			  )
+			{
+				IncludeModuleRoleFilters = true;
+			}
+
+
+			if (IndexReader.IndexExists(indexPath))
+			{
+
+				if (log.IsDebugEnabled)
+				{
+					log.Debug("Entered Search, indexPath = " + indexPath);
+				}
+
+				long startTicks = DateTime.Now.Ticks;
+
+				try
+				{
+
+					BooleanQuery mainQuery = new BooleanQuery();
+
+					if ((!isAdmin) && (!useBackwardCompatibilityMode))
+					{
+						AddRoleQueries(userRoles, mainQuery);
+					}
+
+					if ((!isAdmin) && (IncludeModuleRoleFilters))
+					{
+						AddModuleRoleQueries(userRoles, mainQuery);
+					}
+
+
+					Query multiQuery = MultiFieldQueryParser.Parse(
+						new string[] { queryText, queryText, queryText, queryText, queryText, queryText.Replace("*", string.Empty) },
+						new string[] { "Title", "ModuleTitle", "contents", "PageName", "PageMetaDesc", "Keyword" },
+						new StandardAnalyzer());
+
+					mainQuery.Add(multiQuery, BooleanClause.Occur.MUST);
+
+
+					if (!useBackwardCompatibilityMode)
+					{
+						Term beginDateStart = new Term("PublishBeginDate", DateTime.MinValue.ToString("s"));
+						Term beginDateEnd = new Term("PublishBeginDate", DateTime.UtcNow.ToString("s"));
+						RangeQuery beginDateQuery = new RangeQuery(beginDateStart, beginDateEnd, true);
+						mainQuery.Add(beginDateQuery, BooleanClause.Occur.MUST);
+
+						Term endDateStart = new Term("PublishEndDate", DateTime.UtcNow.ToString("s"));
+						Term endDateEnd = new Term("PublishEndDate", DateTime.MaxValue.ToString("s"));
+						RangeQuery endDateQuery = new RangeQuery(endDateStart, endDateEnd, true);
+						mainQuery.Add(endDateQuery, BooleanClause.Occur.MUST);
+					}
+
+					if (moduleIDs!=null&&moduleIDs.Length>0)
+					{
+						BooleanQuery featureFilter = new BooleanQuery();
+						moduleIDs.ToList().ForEach(x => {
+							if (x != Guid.Empty)
+							{
+								featureFilter.Add(new TermQuery(new Term("FeatureId", x.ToString())), BooleanClause.Occur.SHOULD);
+							}
+						});
+						if (featureFilter.Clauses().Count > 0)
+						{
+							mainQuery.Add(featureFilter, BooleanClause.Occur.MUST);
+						}
+					}
+
+
+					IndexSearcher searcher = new IndexSearcher(indexPath);
+					// a 0 based colection
+					Hits hits = searcher.Search(mainQuery);
+
+					int startHit = 0;
+
+					if (pageNumber > 1)
+					{
+						startHit = ((pageNumber - 1) * pageSize);
+					}
+
+
+					totalHits = hits.Length();
+					int end = startHit + pageSize;
+					if (totalHits <= end)
+					{
+						end = totalHits;
+					}
+					int itemsAdded = 0;
+					int itemsToAdd = end;
+
+					// in backward compatibility mode if multiple pages of results are found we amy not be showing every user the correct
+					// number of hits they can see as we only filter out the current page
+					//we may decrement total hits if filtering results so keep the original count
+					int actualHits = totalHits;
+
+					if (!useBackwardCompatibilityMode)
+					{
+						// this new way is much cleaner
+						//all filtering is done by query so the hitcount is true
+						//whereas with the old way it could be wrong since there
+						// were possibly results filtered out after the query returned.
+
+						QueryScorer scorer = new QueryScorer(multiQuery);
+						Formatter formatter = new SimpleHTMLFormatter("<span class='searchterm'>", "</span>");
+						Highlighter highlighter = new Highlighter(formatter, scorer);
+						highlighter.SetTextFragmenter(new SimpleFragmenter(highlightedFragmentSize));
+
+
+						for (int i = startHit; i < itemsToAdd; i++)
+						{
+							IndexItem indexItem = new IndexItem(hits.Doc(i), hits.Score(i));
+
+							if (highlightResults)
+							{
+								try
+								{
+									TokenStream stream = new StandardAnalyzer().TokenStream("contents", new StringReader(hits.Doc(i).Get("contents")));
+
+									string highlightedResult = highlighter.GetBestFragment(stream, hits.Doc(i).Get("contents"));
+									if (highlightedResult != null) { indexItem.Intro = highlightedResult; }
+								}
+								catch (NullReferenceException) { }
+
+							}
+
+							results.Add(indexItem);
+							itemsAdded += 1;
+
+						}
+
+
+					}
+					else
+					{
+						//backward compatible with old indexes
+						int filteredItems = 0;
+						for (int i = startHit; i < itemsToAdd; i++)
+						{
+
+							bool needToDecrementTotalHits = false;
+							if (
+								(isAdmin)
+								|| (WebUser.IsContentAdmin)
+								|| (WebUser.IsInRoles(hits.Doc(i).Get("ViewRoles")))
+								)
+							{
+								IndexItem indexItem = new IndexItem(hits.Doc(i), hits.Score(i));
+
+								if (
+								(DateTime.UtcNow > indexItem.PublishBeginDate)
+								&& (DateTime.UtcNow < indexItem.PublishEndDate)
+								)
+								{
+									results.Add(indexItem);
+								}
+								else
+								{
+									needToDecrementTotalHits = true;
+								}
+
+							}
+							else
+							{
+								needToDecrementTotalHits = true;
+							}
+
+							//filtered out a result so need to decrement
+							if (needToDecrementTotalHits)
+							{
+								filteredItems += 1;
+								totalHits -= 1;
+
+								//we also are not getting as many results as the page size so if there are more items
+								//we should increment itemsToAdd
+								if ((itemsAdded + filteredItems) < actualHits)
+								{
+									itemsToAdd += 1;
+								}
+							}
+
+						}
+					}
+
+
+
+					searcher.Close();
+
+					results.ItemCount = itemsAdded;
+					results.PageIndex = pageNumber;
+
+					results.ExecutionTime = DateTime.Now.Ticks - startTicks;
+				}
+				catch (ParseException ex)
+				{
+					invalidQuery = true;
+					log.Error("handled error for search terms " + queryText, ex);
+					// these parser exceptions are generally caused by
+					// spambots posting too much junk into the search form
+					// heres an option to automatically ban the ip address
+					HandleSpam(queryText, ex);
+
+
+					return results;
+				}
+				catch (BooleanQuery.TooManyClauses ex)
+				{
+					invalidQuery = true;
+					log.Error("handled error for search terms " + queryText, ex);
+					return results;
+
+				}
+
+			}
+
+			return results;
+		}
 
         private static void HandleSpam(string queryText, Exception ex)
         {
@@ -348,9 +365,6 @@ namespace Cynthia.Business.WebHelpers
             
             }
 
-           
-
-
         }
 
         private static bool IsSpam(string queryText)
@@ -378,7 +392,7 @@ namespace Cynthia.Business.WebHelpers
 
         public static string GetDataFolder(int siteId)
         {
-            return "~/Data/Sites/" + siteId.ToString(CultureInfo.InvariantCulture) + "/";
+			return String.Format("~/Data/Sites/{0}/", siteId.ToString(CultureInfo.InvariantCulture));
         }
 
         public static string GetSearchIndexPath(int siteId)
@@ -799,8 +813,6 @@ namespace Cynthia.Business.WebHelpers
             return true;
         }
 
-
-       
         #endregion
 
 
@@ -876,67 +888,62 @@ namespace Cynthia.Business.WebHelpers
             RebuildSiteIndex(indexPath, menuPages);
         }
 
-        private static bool RebuildSiteIndex(
-            string indexPath,
-            IEnumerable<PageSettings> menuPages)
-        {
-            // clean out index entirely
-            if (IndexReader.IndexExists(indexPath))
-            {
-                IndexReader reader = IndexReader.Open(indexPath);
-                for (int i = 0; i < reader.NumDocs(); i++)
-                {
-                    reader.DeleteDocument(i);
-                }
-                reader.Close();
-            }
+		private static bool RebuildSiteIndex(
+			string indexPath,
+			IEnumerable<PageSettings> menuPages)
+		{
+			// clean out index entirely
+			if (IndexReader.IndexExists(indexPath))
+			{
+				IndexReader reader = IndexReader.Open(indexPath);
+				for (int i = 0; i < reader.NumDocs(); i++)
+				{
+					reader.DeleteDocument(i);
+				}
+				reader.Close();
+			}
 
-            log.Info("Rebuilding Search index.");
+			log.Info("Rebuilding Search index.");
 
-            if (IndexBuilderManager.Providers == null)
-            {
-                log.Info("No IndexBuilderProviders found");
-                return false;
-            }
+			if (IndexBuilderManager.Providers == null)
+			{
+				log.Info("No IndexBuilderProviders found");
+				return false;
+			}
 
-            // forums can potentially take  long time to index
-            // and possibly even time out so index forums after everything else
-            foreach (PageSettings pageSettings in menuPages)
-            {
-                foreach (IndexBuilderProvider indexBuilder in IndexBuilderManager.Providers)
-                {
-                    if (indexBuilder.Name != "ForumThreadIndexBuilderProvider")
-                    {
-                        indexBuilder.RebuildIndex(pageSettings, indexPath);
-                    }
-                }
+			// forums can potentially take  long time to index
+			// and possibly even time out so index forums after everything else
+			foreach (PageSettings pageSettings in menuPages)
+			{
+				foreach (IndexBuilderProvider indexBuilder in IndexBuilderManager.Providers)
+				{
+					if (indexBuilder.Name != "ForumThreadIndexBuilderProvider")
+					{
+						indexBuilder.RebuildIndex(pageSettings, indexPath);
+					}
+				}
 
-            }
+			}
 
-            log.Info("Finished indexing main features.");
+			log.Info("Finished indexing main features.");
 
-            // now that other modules are don index forums
-            foreach (PageSettings pageSettings in menuPages)
-            {
-                foreach (IndexBuilderProvider indexBuilder in IndexBuilderManager.Providers)
-                {
-                    if (indexBuilder.Name == "ForumThreadIndexBuilderProvider")
-                    {
-                        indexBuilder.RebuildIndex(pageSettings, indexPath);
-                    }
-                }
+			// now that other modules are don index forums
+			foreach (PageSettings pageSettings in menuPages)
+			{
+				foreach (IndexBuilderProvider indexBuilder in IndexBuilderManager.Providers)
+				{
+					if (indexBuilder.Name == "ForumThreadIndexBuilderProvider")
+					{
+						indexBuilder.RebuildIndex(pageSettings, indexPath);
+					}
+				}
 
-            }
+			}
 
-            log.Info("Finished indexing Forums.");
-                    
-            return true;
-        }
+			log.Info("Finished indexing Forums.");
 
-
-        
-
-
+			return true;
+		}
         #endregion
     }
 }

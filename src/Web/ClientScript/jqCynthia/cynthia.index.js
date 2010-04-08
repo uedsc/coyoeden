@@ -15,7 +15,7 @@
 		});
 	};
 	p.onSubmitSearch = function() {
-		if (p._txtSearch.val() === "Start Searching ..." || p._txtSearch.val() === "") {
+		if (p._txtSearch.val() === p._searchMask || p._txtSearch.val() === "") {
 			p.showSearches(); return false;
 		};
 		return true;
@@ -38,15 +38,16 @@
 		p._search_cat = $("#search_cat");
 		p._search_icon = $("#search_icon");
 		p._txtSearch = $("#txtSearch");
+		p._searchMask = opts.searchMask;
 	};
 	p.onLoaded = function() {
-		p._txtSearch.preInput({ val: 'Start Searching ...', afterfocus: p.showSearches }).click(p.showSearches);
+		p._txtSearch.preInput({ val:p._searchMask, afterfocus: p.showSearches }).click(p.showSearches);
 		p.initNav();
 		p.initMenuBar();
 	};
 	p.initEvents = function(opts) {
 		$(document).ready(p.onLoaded);
-		$("#searchfrm").submit(p.onSubmitSearch);
+		$(".searchfrm").submit(p.onSubmitSearch);
 		$("#frmC").mouseleave(p.hideSearches);
 		$("#cbxscall").click(function(evt) {
 			if ($(this).is(":checked")) { p.toggleSearchC(1); } else { p.toggleSearchC(0); };

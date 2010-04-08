@@ -16,7 +16,7 @@ using Cynthia.Business;
 using Cynthia.Business.WebHelpers;
 using Cynthia.Web.Framework;
 using Resources;
-using Cynthia.Features;
+using Cynthia.Modules;
 
 namespace Cynthia.Web.ForumUI
 {

@@ -21,7 +21,7 @@ using Cynthia.Business;
 using Cynthia.Business.WebHelpers;
 using Cynthia.Web;
 
-namespace Cynthia.Features
+namespace Cynthia.Modules
 {
     /// <summary>
     /// updates the search index when CalendarEvent data is changed.

@@ -56,29 +56,6 @@ namespace Cynthia.Web.Controls
             set { scriptDirectory = value; }
         }
 
-        
-
-        //protected override void OnInit(System.EventArgs e)
-        //{
-        //    //if (!Page.ClientScript.IsClientScriptBlockRegistered(FUNCTIONBLOCKKEY))
-        //    //{
-
-        //        //Page.ClientScript.RegisterClientScriptBlock(this.GetType(), FUNCTIONBLOCKKEY, "<script src=\""
-        //        //+ ResolveUrl(this.ScriptDirectory + "/watermarktextbox.js") + "\" type=\"text/javascript\" ></script>");
-
-        //        Page.ClientScript.RegisterClientScriptInclude(typeof(Page), "Cynthiacombined", Page.ResolveUrl(this.ScriptDirectory + "/Cynthiacombined.js"));
-
-
-
-               
-        //    //}
-
-            
-
-        //    base.OnInit(e);
-
-        //}
-
         protected override void OnPreRender(EventArgs e)
         {
             base.OnPreRender(e);
@@ -87,10 +64,10 @@ namespace Cynthia.Web.Controls
             StringBuilder dbScript = new StringBuilder();
             dbScript.Append("<script type='text/javascript'>\n<!--\n");
 
-            dbScript.Append("\n  var wm" + this.ClientID + " = document.getElementById('" + this.ClientID + "'); ");
-            dbScript.Append("if(wm" + this.ClientID + "){");
+			dbScript.Append(String.Format("\n  var wm{0} = document.getElementById('{0}'); ", this.ClientID));
+			dbScript.Append(String.Format("if(wm{0}){{", this.ClientID));
 
-            dbScript.Append("wm" + this.ClientID + ".value = '" + _watermark + "';");
+			dbScript.Append(String.Format("wm{0}.value = '{1}';", this.ClientID, _watermark));
 
             dbScript.Append("}");
 
@@ -109,14 +86,14 @@ namespace Cynthia.Web.Controls
         {
             if (HttpContext.Current == null)
             {
-                output.Write("[" + this.ID + "]");
+				output.Write(String.Format("[{0}]", this.ID));
                 return;
             }
 
             //_rendering = true;
 
-            output.AddAttribute("onfocus", "javascript:watermarkEnter(this, '" + _watermark + "');");
-            output.AddAttribute("onblur", "javascript:watermarkLeave(this, '" + _watermark + "');");
+			output.AddAttribute("onfocus", String.Format("javascript:watermarkEnter(this, '{0}');", _watermark));
+			output.AddAttribute("onblur", String.Format("javascript:watermarkLeave(this, '{0}');", _watermark));
 
             base.Render(output);
 

@@ -1,28 +1,16 @@
-/// Author:					Joe Audette
-/// Created:				2005-06-26
-/// Last Modified:		    2010-02-17
-/// 
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software. 
 
 using System;
+using System.Linq;
 using System.Web.UI.WebControls;
+using Cynthia.Web.Controls;
 using Cynthia.Business;
-using Cynthia.Business.WebHelpers;
-using Cynthia.Web.Framework;
-using Resources;
+using System.Collections.Generic;
 
 namespace Cynthia.Web.UI
 {
-	public partial class SearchInput : System.Web.UI.UserControl
+	public partial class SearchInput : ViewBase
 	{
-		protected Literal searchLink = new Literal();
-
+		#region member variables
         // these separator properties are deprecated
         // it is recommended not to use these properties
         // but instead to use Cynthia.Web.Controls.SeparatorControl
@@ -42,27 +30,6 @@ namespace Cynthia.Web.UI
 			get {return linkOnly;}
 			set {linkOnly = value;}
 		}
-
-        private bool useHeading = true;
-        public bool UseHeading
-        {
-            get { return useHeading; }
-            set { useHeading = value; }
-        }
-
-        private bool useWatermark = true;
-        public bool UseWatermark
-        {
-            get { return useWatermark; }
-            set { useWatermark = value; }
-        }
-
-        private string imageUrl = string.Empty;
-        public string ImageUrl
-        {
-            get { return imageUrl; }
-            set { imageUrl = value; }
-        }
 
         private string buttonCssClass = string.Empty;
         public string ButtonCssClass
@@ -92,156 +59,88 @@ namespace Cynthia.Web.UI
             set { listItemCSS = value; }
         }
 
-        private SiteSettings siteSettings = null;
+		/// <summary>
+		/// search url
+		/// </summary>
+		protected string SearchUrl { get; private set; }
+		/// <summary>
+		/// whether hide the control
+		/// </summary>
+		protected bool Hide { get; private set; }
+		/// <summary>
+		/// whether hide the form tag
+		/// </summary>
+		public bool HideFormTag { get; set; }
 
-        
-		protected void Page_Load(object sender, System.EventArgs e)
+		private static readonly object _SynHelper = new object();
+		private static List<ModuleDefinition> _SearchableModules;
+		/// <summary>
+		/// searchable modules
+		/// </summary>
+		public List<ModuleDefinition> SearchableModules
 		{
-            if (WebConfigSettings.DisableSearchIndex)
-            {
-                this.Visible = false;
-                return;
-            }
-            
-            lblSearchHeading.Text = Resource.SiteSearchHeading;
-            String searchButtonText = Resources.Resource.SearchButtonText;
-            string urlToUse = SiteUtils.GetNavigationSiteRoot() + "/SearchResults.aspx";
-
-            if (Request.IsSecureConnection)
-            {
-                siteSettings = CacheHelper.GetCurrentSiteSettings();
-                if ((siteSettings != null) && (!siteSettings.UseSslOnAllPages)) { urlToUse = urlToUse.Replace("https", "http"); }
-
-            }
-			
-            if(linkOnly)
+			get
 			{
-                pnlSearch.Visible = false;
-                heading.Visible = false;
-                this.txtSearch.Visible = false;
-                this.btnSearch.Visible = false;
-                
-
-
-				if(UseLeftSeparator)
+				if (_SearchableModules == null)
 				{
-					searchLink.Text = "<" + "span class='accent'>|</span>" 
-						+ " <" + "a href='" 
-						+ urlToUse + "' class='sitelink'>"
-                        + searchButtonText + "<" + "/a>";
+					lock (_SynHelper)
+					{
+						if (_SearchableModules == null)
+						{
+							_SearchableModules = ModuleDefinition.GetModules(CurSettings.SiteId, WebConfigSettings.SearchableFeatureGuidsToExclude);
+						}
+					}
 				}
-				else
-				{
-                    if (renderAsListItem)
-                    {
-                        searchLink.Text = "<li class='" + listItemCSS + "'><" + "a href='"
-                            + urlToUse + "' class='sitelink'>"
-                            + searchButtonText + "<" + "/a></li>";
-                    }
-                    else
-                    {
-                        searchLink.Text = " <" + "a href='"
-                            + urlToUse + "' class='sitelink'>"
-                            + searchButtonText + "<" + "/a>";
-                    }
-					
-				}
-				this.Controls.Add(searchLink);
-                
-
+				return _SearchableModules;
 			}
-			else
-			{
-                heading.Visible = useHeading;
-                //btnSearch.PostBackUrl = urlToUse;
-                //btnSearch2.PostBackUrl = btnSearch.PostBackUrl;
+		} 
+		#endregion
 
-                if ((Request.CurrentExecutionFilePath.IndexOf("SearchResults.aspx", StringComparison.InvariantCultureIgnoreCase) == -1)
-                    && (Request.CurrentExecutionFilePath.IndexOf("Login.aspx", StringComparison.InvariantCultureIgnoreCase) == -1)
-                    && (Request.CurrentExecutionFilePath.IndexOf("Register.aspx", StringComparison.InvariantCultureIgnoreCase) == -1)
-                    && (Request.CurrentExecutionFilePath.IndexOf("RecoverPassword.aspx", StringComparison.InvariantCultureIgnoreCase) == -1)
-                    )
-                {
 
-                    this.btnSearch.Text = searchButtonText;
-                    if (useWatermark)
-                    {
-                        this.txtSearch.Watermark = Resource.SearchInputWatermark;
-                    }
-                    else
-                    {
-                        this.txtSearch.Watermark = string.Empty;
-                    }
-
-                    if (buttonCssClass.Length > 0)
-                    {
-                        btnSearch2.CssClass = buttonCssClass;
-                        btnSearch.CssClass = buttonCssClass;
-                    }
-
-                    if (textBoxCssClass.Length > 0)
-                    {
-                        txtSearch.CssClass = textBoxCssClass;
-                    }
-
-                    pnlSearch.Style.Add("display", "inline");
-
-                    if (imageUrl.Length > 0)
-                    {
-                        if (imageUrl.Contains("skinbase_"))
-                            imageUrl = imageUrl.Replace("skinbase_", SiteUtils.GetSkinBaseUrl(Page));
-
-                        pnlSearch.DefaultButton = btnSearch2.ID;
-                        btnSearch.Visible = false;
-                        btnSearch2.Visible = true;
-                        btnSearch2.ImageUrl = imageUrl;
-                        btnSearch2.AlternateText = searchButtonText;
-
-                    }
-                    else
-                    {
-                        pnlSearch.DefaultButton = btnSearch.ID;
-                    }
-                    
-                }
-                else
-                {
-                    this.pnlSearch.Visible = false;
-                    this.txtSearch.Visible = false;
-                    this.btnSearch.Visible = false;
-                }
+		protected void Page_Load(object sender, System.EventArgs e)
+		{            
+            setVisibility();
+			if (Hide) {
+				this.Visible = false;
+				return;
 			}
-			
+			setSearchUrl();
+		}
+
+		private void setVisibility()
+		{
+			if (WebConfigSettings.DisableSearchIndex) { Hide = true; return; }
+
+			if (LinkOnly) { Hide = false; return; }
+
+			Hide = WebConfigSettings.NOSearchBoxUrls.Split(',').ToList().Exists(x => Request.CurrentExecutionFilePath.IndexOf(x,StringComparison.InvariantCultureIgnoreCase)>-1);
 
 		}
 
-        protected void btnSearch2_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-        {
-            //if (Page.IsCrossPagePostBack) return;
-            DoRedirectToSearchResults();
-        }
+		private void setSearchUrl()
+		{
+			SearchUrl = String.Format("{0}/SearchResults.aspx", SiteUtils.GetNavigationSiteRoot());
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            //if (Page.IsCrossPagePostBack) return;
-            DoRedirectToSearchResults();
-        }
+			if (Request.IsSecureConnection)
+			{
+				if ((CurSettings != null) && (!CurSettings.UseSslOnAllPages)) { SearchUrl = SearchUrl.Replace("https", "http"); }
 
+			}
+		}
+		//private void DoRedirectToSearchResults()
+		//{
+		//    if (
+		//        (txtSearch.Text.Length > 0)
+		//        && (txtSearch.Text != Resource.SearchInputWatermark)
+		//        )
+		//    {
+		//        string redirectUrl = String.Format("{0}/SearchResults.aspx?q={1}", SiteUtils.GetNavigationSiteRoot(), Server.UrlEncode(txtSearch.Text));
 
-        private void DoRedirectToSearchResults()
-        {
-            if (
-                (txtSearch.Text.Length > 0)
-                && (txtSearch.Text != Resource.SearchInputWatermark)
-                )
-            {
-                string redirectUrl = SiteUtils.GetNavigationSiteRoot() + "/SearchResults.aspx?q=" + Server.UrlEncode(txtSearch.Text);
-
-                WebUtils.SetupRedirect(this, redirectUrl);
-            }
+		//        WebUtils.SetupRedirect(this, redirectUrl);
+		//    }
 
 
-        }
+		//}
 
 
 		

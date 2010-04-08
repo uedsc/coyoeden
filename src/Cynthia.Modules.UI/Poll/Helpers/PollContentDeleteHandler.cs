@@ -17,7 +17,7 @@ using Cynthia.Business;
 using Cynthia.Business.WebHelpers;
 using PollFeature.Business;
 
-namespace Cynthia.Features
+namespace Cynthia.Modules
 {
     public class PollContentDeleteHandler : ContentDeleteHandlerProvider
     {

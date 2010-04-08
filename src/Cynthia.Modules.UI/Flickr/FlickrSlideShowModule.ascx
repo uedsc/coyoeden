@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="FlickrSlideShowModule.ascx.cs" Inherits="Cynthia.Features.UI.FlickrSlideShowModule" %>
+﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="FlickrSlideShowModule.ascx.cs" Inherits="Cynthia.Modules.UI.FlickrSlideShowModule" %>
 
 <portal:CPanel ID="mp1" runat="server" ArtisteerCssClass="art-Post" RenderArtisteerBlockContentDivs="true">
 <cy:CornerRounderTop id="ctop1" runat="server" />
