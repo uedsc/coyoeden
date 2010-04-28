@@ -71,18 +71,18 @@ namespace Cynthia.Web
 
             if((divLeft.Visible)&&(!divRight.Visible))
             {
-                divLeft.CssClass = "art-layout-cell art-sidebar1 leftside left2column";
+                divLeft.CssClass = "leftside left2column";
             }
 
             if ((divRight.Visible) && (!divLeft.Visible))
             {
-                divRight.CssClass = "art-layout-cell art-sidebar2 rightside right2column";
+                divRight.CssClass = "rightside right2column";
             }
 
             divCenter.CssClass =
                 divLeft.Visible
-                    ? (divRight.Visible ? "art-layout-cell art-content-narrow center-rightandleftmargins cmszone" : "art-layout-cell art-content center-leftmargin cmszone")
-                    : (divRight.Visible ? "art-layout-cell art-content center-rightmargin cmszone" : "art-layout-cell art-content-wide center-nomargins cmszone");
+                    ? (divRight.Visible ? "center-rightandleftmargins cmszone" : "center-leftmargin cmszone")
+                    : (divRight.Visible ? "center-rightmargin cmszone" : "center-nomargins cmszone");
 
             divLeft.CssClass += " cmszone";
             divRight.CssClass += " cmszone";

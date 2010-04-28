@@ -5,8 +5,26 @@
 .rsscenter-leftnav {margin: 0px 0px 0px 245px; padding: 5px 0px 0px 5px; font-size: 105%;   }
 .rsscenter-rightnav {margin:0px 245px 0px 0px; padding: 5px 0px 0px 5px; font-size: 105%;   }
 .rsstitle { margin: 5px 0px 0px 0px;  font-weight: bold;   }
-div.rsstitle h2 { font-family: arial, sans-serif;font-size: 140%;font-weight: normal; }
-.rssdate {  padding: 0px 5px 0px 0px; text-align:right;    }
+h2.rsstitle  { font-family: arial, sans-serif;font-size: 140%;font-weight: normal; }
+.rssdate  
+{
+	background-color:#060606;
+	color:#4E4E4E;
+	font-family:"museo-sans-1","museo-sans-2",sans-serif;
+	font-size:16px;
+	left:-65px;
+	padding:6px;
+	position:absolute;
+	text-align:center;
+	text-shadow:1px 1px 2px #000000;
+	top:20px;	
+}
+.rssdate .date
+{
+	color:#8A8A8A;
+	font-size:20px;
+	padding:5px 0;
+}
 .rsstext {   }
 .rssauthor {  padding: 0px 0px 5px 5px; font-family: Trebuchet MS;  border-bottom: solid 1px #ccc;   }
 .FeedHead {  border-bottom-color: #CAB693; border-bottom-style: solid;

@@ -1,4 +1,6 @@
 /*common*/
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
 .sitetip,.pageditnotes{background:#FEFFF3;border:1px solid #ccc;font-size:11px;padding-left:3.62px;padding-right:3.62px;}
 .container{ margin: 0 auto; width: 984px; }
 .sprite { background: transparent url(img/sprite_themeforest.png) no-repeat top left; }
@@ -11,6 +13,7 @@ background-repeat:repeat-x;
 border:1px solid #BBBBBB;
 margin:-2px 0 0 -2px;
 }
+.rounded{-moz-border-radius:5px 5px 5px 5px;}
 
 span.img { padding-left: 25px; padding-right: 13px; } 
 #breadcrumbs { padding-top: 20px; font-size: 9px; text-transform: uppercase; color: #424e40; height: 18px; }
@@ -154,11 +157,11 @@ body#pagex {line-height:normal; background: #d2d1d0 url('img/background_slice.pn
    all columns are floated left, the system programmatically assigns on of the classes to the center column depending on whether content exists
  in the left or right content sections
 */
-.leftside { float:left; width:28%; margin:10px 5px 0 0; }
+.leftside { float:left; width:28%; }
 .center-nomargins { float:left; width:100%; }
-.center-rightandleftmargins { float:left; width:40%; margin:10px 5px 0; }
-.rightside { float:right; width:28%; margin:10px 0 0; }
-.center-rightmargin,.center-leftmargin { float:left; width:70%; margin:10px 0 0 5px; }
+.center-rightandleftmargins { float:left; width:40%;}
+.rightside { float:right; width:28%; }
+.center-rightmargin,.center-leftmargin { float:left; width:70%;}
 
 
 /* Elements */
@@ -180,7 +183,7 @@ h6 { font-family: 'Trebuchet MS', Arial, sans-serif; font-size:12px; margin:0; c
 .sitelogo { float:left; margin:0; }
 .siteheading { font-size:130%; text-decoration:none; margin:0; padding:20px 0 0; }
 h1.siteheading { float:left; font:bolder 30px 'Trebuchet MS', Arial, Sans-serif; letter-spacing:-2px; text-transform:none; margin:0; padding:56px 0 0 40px;}
-h2.moduletitle { clear:both; background:url('square_arrow.gif') no-repeat; background-position:left; border-bottom:2px solid #f2f2f2; margin:0; padding:0 0 3px 25px; color:#390; font-size:1.5em; font-weight:700; text-transform:none; }
+h2.moduletitle {margin:0; padding:0 0 3px 25px; color:#390; font-size:1.5em; font-weight:700; text-transform:none; }
 .modulesubtitle { height:23px; color:#FFF; background-color:#EAEAEA; font-weight:700; padding:4px 5px 0; }
 .pagelayout h2, .register h2, .sitesettings h3 { font-size:14px; }
 

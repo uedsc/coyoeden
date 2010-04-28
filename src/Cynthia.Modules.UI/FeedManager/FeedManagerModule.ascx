@@ -1,16 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="false" CodeBehind="FeedManagerModule.ascx.cs" Inherits="Cynthia.Web.FeedUI.FeedManagerModule" %>
-
 <%@ Register TagPrefix="NeatHtml" Namespace="Brettle.Web.NeatHtml" Assembly="Brettle.Web.NeatHtml" %>
-
-<portal:ModulePanel ID="pnlContainer" runat="server">
-<portal:CPanel ID="mp1" runat="server" ArtisteerCssClass="art-Post" RenderArtisteerBlockContentDivs="true">
-<cy:CornerRounderTop ID="ctop1" runat="server" />
-<asp:Panel ID="pnlWrapper" runat="server" CssClass="art-Post-inner panelwrapper rssfeedmodule">
+<portal:ModulePanel ID="pnlContainer" runat="server" CssClass="module">
+<asp:Panel ID="pnlWrapper" runat="server" CssClass="module_inner panelwrapper rssfeedmodule">
 <portal:ModuleTitleControl ID="Title1" runat="server" />
-<portal:CPanel ID="CynPanel1" runat="server" ArtisteerCssClass="art-PostContent">
 <asp:UpdatePanel ID="updPnlRSSA" UpdateMode="Conditional" runat="server">
 <ContentTemplate>
-    <div class="modulecontent rsswrapper">
+    <div class="modulecontent rsswrapper clearfix">
         <asp:Panel ID="divNav" runat="server" CssClass="rssnavright" SkinID="plain">
             <asp:Label ID="lblFeedListName" Font-Bold="True" runat="server"></asp:Label>
             <a id="lnkAggregateRSS" href="~/FeedManager/FeedAggregate.aspx" runat="server">
@@ -25,7 +20,7 @@
                     <asp:HyperLink ID="Hyperlink2" runat="server" Visible="<%# LinkToAuthorSite %>" NavigateUrl='<%# DataBinder.Eval(Container, "DataItem.Url")%>'>
 						<%# DataBinder.Eval(Container, "DataItem.Author")%>
                     </asp:HyperLink>
-                    <asp:Button runat="server" Visible="<%# UseFeedListAsFilter %>" 
+                    <asp:Button ID="Button1" runat="server" Visible="<%# UseFeedListAsFilter %>" 
                         CommandName="filter" CommandArgument='<%# DataBinder.Eval(Container, "DataItem.ItemID")%>' Text='<%# DataBinder.Eval(Container, "DataItem.Author")%>' CssClass="buttonlink" />
                     <asp:HyperLink ID="Hyperlink3" runat="server" Visible="<%# ShowIndividualFeedLinks %>"
                         ImageUrl='<%# this.ImageSiteRoot + "/Data/SiteImages/" + RssImageFile %>' NavigateUrl='<%# DataBinder.Eval(Container, "DataItem.RssUrl")%>'>
@@ -35,7 +30,6 @@
         </asp:Panel>
         <asp:Panel ID="divFeedEntries" runat="server" CssClass="rsscenter-rightnav" SkinID="plain">
             <asp:Literal ID="lblFeedHeading" runat="server" Visible="false" />
-            
             <asp:Repeater ID="rptEntries" runat="server" 
                 onitemcommand="rptEntries_ItemCommand">
                 <ItemTemplate>
@@ -44,14 +38,15 @@
                 visible='<%# EnableInPlaceEditing %>' AlternateText='<%# Convert.ToBoolean(DataBinder.Eval(Container, "DataItem.Confirmed"))?Resources.FeedResources.EntryPublishTrueAlternateText:Resources.FeedResources.EntryPublishFalseAlternateText %>' 
                 />
                     <div class='<%#"rssfeedentry" + DataBinder.Eval(Container, "DataItem.Confirmed") %>' id="divFeedEntry" runat="server" >
-                    <div class="rsstitle">
-                        <h3>
-                            <asp:HyperLink ID="Hyperlink4" runat="server" NavigateUrl='<%# DataBinder.Eval(Container, "DataItem.Link")%>'>
-												<%# Server.HtmlEncode(DataBinder.Eval(Container, "DataItem.Title").ToString())%>
-                            </asp:HyperLink></h3>
-                    </div>
-                    <div class="rssdate">
-                        <%# GetDateHeader((DateTime)DataBinder.Eval(Container, "DataItem.PubDate"))%>
+                    <h3 class="rsstitle">
+                       <asp:HyperLink ID="Hyperlink4" runat="server" NavigateUrl='<%# DataBinder.Eval(Container, "DataItem.Link")%>'>
+						<%# Server.HtmlEncode(DataBinder.Eval(Container, "DataItem.Title").ToString())%>
+                       </asp:HyperLink>
+                    </h3>
+                    <div class="rssdate rounded">
+						<span class="date"><%# GetDateHeader((DateTime)DataBinder.Eval(Container, "DataItem.PubDate"),"dd")%>th</span>
+						<br />
+						<%# GetDateHeader((DateTime)DataBinder.Eval(Container, "DataItem.PubDate"),"MMM")%>
                     </div>
                     <div class="rssfeedname" id="div2" runat="server" visible='<%# RSSAggregatorShowFeedNameBeforeContent %>'>
                         <asp:HyperLink ID="Hyperlink6" runat="server"  NavigateUrl='<%# DataBinder.Eval(Container, "DataItem.BlogUrl")%>'>
@@ -119,9 +114,5 @@
     </div>
 </ContentTemplate>
 </asp:UpdatePanel>
-</portal:CPanel>
-<div class="cleared"></div>
 </asp:Panel>
-<cy:CornerRounderBottom ID="cbottom1" runat="server" />
-</portal:CPanel>
 </portal:ModulePanel>

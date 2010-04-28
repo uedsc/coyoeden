@@ -374,14 +374,13 @@ namespace Cynthia.Web.FeedUI
         {
             // adjust from GMT to user time zone
             return pubDate.AddHours(timeZoneOffset).ToString(dateFormat);
-            //string retVal = string.Empty;
-            //if (previousPubDate != pubDate.AddHours(timeZoneOffset).ToString(dateFormat))
-            //{
-            //    previousPubDate = pubDate.AddHours(timeZoneOffset).ToString(dateFormat);
-            //    retVal = previousPubDate;
-            //}
-            //return retVal;
         }
+		protected string GetDateHeader(DateTime pubDate, string dateFormatOverriade)
+		{
+			var d = pubDate.AddHours(timeZoneOffset);
+			var retVal = d.ToString(dateFormatOverriade);
+			return retVal;
+		}
 
         private void PopulateLabels()
         {

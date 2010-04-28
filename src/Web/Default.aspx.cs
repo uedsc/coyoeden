@@ -45,15 +45,9 @@ namespace Cynthia.Web.UI
             }
             catch (HttpException ex)
             {
-                log.Error(SiteUtils.GetIP4Address() + " - Error setting master page. Will try settingto default skin", ex);
+				log.Error(String.Format("{0} - Error setting master page. Will try settingto default skin", SiteUtils.GetIP4Address()), ex);
                 SetupFailsafeMasterPage();
             }
-            
-            //if (StyleSheetControl != null)
-            //{
-            //    StyleSheetControl.LiteralStyleSheetLink.Text
-            //        = SiteUtils.GetStyleSheetLinks(allowPageOverride);
-            //}
 
             StyleSheetCombiner styleCombiner = (StyleSheetCombiner)Master.FindControl("StyleSheetCombiner");
             if (styleCombiner != null) { styleCombiner.AllowPageOverride = allowPageOverride; }
@@ -307,84 +301,6 @@ namespace Cynthia.Web.UI
             {
                 this.EnableViewState = false;
             }
-        }
-
-
-        /// <summary>
-        /// this is just an experiment looking into possibilities of drag drop page re-arrangement
-        /// </summary>
-        private void SetupDragDropScript()
-        {
-            StringBuilder script = new StringBuilder();
-
-            script.Append("$(document).ready(");
-            script.Append("function()");
-            script.Append("{");
-
-            script.Append("$('div.panelwrapper').each(function(){");
-            script.Append("$(this).Draggable();");
-            script.Append("});");
-
-            script.Append("$('div.cmszone').each(function(){");
-            //script.Append("$(this).Sortable(");
-            script.Append("$(this).Droppable(");
-            script.Append("{");
-            script.Append("accept:'panelwrapper'");
-            script.Append(",helperclass:'sortHelper'");
-            script.Append(",activeclass:'cmsdropactive'");
-            script.Append(",hoverclass:'cmsdrophover'");
-            script.Append(",tolerance:'intersect'");
-            
-
-            // Droppable
-            script.Append(",ondrop:	function (drag)");
-            script.Append("{");
-            script.Append("ModuleDrop(this,drag);");
-            script.Append("}");
-
-            // sortable
-            ////script.Append(",handle:'div.panelwrapper'");
-            //script.Append(",onChange:function (drag)");
-            //script.Append("{");
-            //script.Append("ModuleDrop(this,drag);");
-            //script.Append("}");
-            //script.Append(",onStart:function ()");
-            //script.Append("{");
-            //script.Append("$.iAutoscroller.start(this, document.getElementsByTagName('body'));");
-            //script.Append("}");
-            //script.Append(",onStop:function ()");
-            //script.Append("{");
-            //script.Append("$.iAutoscroller.stop();");
-            //script.Append("}");
-            
-
-
-            script.Append("}");
-            script.Append(");");//end sortable
-
-
-            script.Append("}");
-            script.Append(");");//end each
-
-            script.Append("});");//end document.ready
-
-           
-
-            script.Append("function ModuleDrop(droppable, dragable)");
-            script.Append("{");
-
-            script.Append("alert(droppable);");
-            script.Append("alert(dragable);");
-
-            script.Append("}");
-
-            
-
-
-            Page.ClientScript.RegisterStartupScript(typeof(Page),
-                   "droppanels", "\n<script type=\"text/javascript\">"
-                   + script.ToString() + "</script>");
-
         }
 
 
