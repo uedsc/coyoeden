@@ -19,7 +19,31 @@ span.img { padding-left: 25px; padding-right: 13px; }
 #breadcrumbs { padding-top: 20px; font-size: 9px; text-transform: uppercase; color: #424e40; height: 18px; }
 #breadcrumbs a { color: #70806d; margin-left: 6px; margin-right: 6px; }
 #breadcrumbs a.first { margin-left: 0px; }
-
+.htmlmodule{padding:10px;}
+/*common .postmetadata*/
+.postmetadata
+{
+background:url("images/post-meta.png") no-repeat scroll 0 0 #EDEDED;
+border-bottom:1px solid #D5D5D5;
+border-top:1px solid #D5D5D5;
+display:block;
+font-size:11px;
+line-height:18px;
+padding:11px 40px 10px 6.18px;
+position:relative;	
+}
+.the_author{line-height:20px;position:absolute;right:40px;top:10px;}
+.the_author .avatar{float:left;margin-right:7px;}
+.the_author h4
+{
+	color:#656565;
+float:left;
+font-size:16px;
+line-height:22px;
+padding-top:0;
+text-transform:none;
+}
+.the_author h4 a{color:#656565;}
 /*common-buttons*/
 .input-link, .input-link-activated, .input-link-dark { float: left; display: block; height: 22px; background-position: 0px -358px; padding-left: 5px; font-size: 0.75em; color: #ffffff; text-decoration: none; line-height: 22px; overflow: hidden; margin: 0px 0px; }
 .input-link span, .input-link-activated span, .input-link-dark span { background-position: right -358px; padding: 0px 10px 0px 5px; display: block; float: left; position: relative; text-transform: uppercase; color: #ffffff; }
@@ -173,17 +197,18 @@ img,.vevent abbr { border:0; }
 
 
 /* Headings */
-h1 { font-family: 'Trebuchet MS', Arial, sans-serif; font-size:40px;  }
-h2 { font-family: 'Trebuchet MS', Arial, sans-serif; font-size:36px;  }
-h3 { font-family: 'Trebuchet MS', Arial, sans-serif; font-size:16px; margin:0; color:#390; }
-h4 { font-family: 'Trebuchet MS', Arial, sans-serif; font-size:14px;  margin:0; color:#390;}
-h5 { font-family: 'Trebuchet MS', Arial, sans-serif; font-size:13px; margin:0; color:#390;}
-h6 { font-family: 'Trebuchet MS', Arial, sans-serif; font-size:12px; margin:0; color:#390;}
+h1,h2,h3,h4,h5,h6{color:#151515;/*color:#390;*/font-family: 'Trebuchet MS', Arial, sans-serif; }
+h1 { font-size:40px;  }
+h2 {font-size:36px;  }
+h3 {font-size:16px;color:#390; }
+h4 {font-size:14px;color:#390;}
+h5 {font-size:13px;color:#390;}
+h6 {font-size:12px;color:#390;}
 
 .sitelogo { float:left; margin:0; }
 .siteheading { font-size:130%; text-decoration:none; margin:0; padding:20px 0 0; }
 h1.siteheading { float:left; font:bolder 30px 'Trebuchet MS', Arial, Sans-serif; letter-spacing:-2px; text-transform:none; margin:0; padding:56px 0 0 40px;}
-h2.moduletitle {margin:0; padding:0 0 3px 25px; color:#390; font-size:1.5em; font-weight:700; text-transform:none; }
+h2.moduletitle {padding:6.18px 0 3px 6.18px;font-size:1.5em; font-weight:700; text-transform:none;line-height:30px;text-shadow:1px 1px 2px #828282; }
 .modulesubtitle { height:23px; color:#FFF; background-color:#EAEAEA; font-weight:700; padding:4px 5px 0; }
 .pagelayout h2, .register h2, .sitesettings h3 { font-size:14px; }
 

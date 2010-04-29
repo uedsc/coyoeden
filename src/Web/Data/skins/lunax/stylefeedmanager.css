@@ -4,8 +4,14 @@
 .rsscenter-nonav {margin: 0px 0px 0px 0px; padding: 5px 0px 0px 5px; font-size: 105%;  }
 .rsscenter-leftnav {margin: 0px 0px 0px 245px; padding: 5px 0px 0px 5px; font-size: 105%;   }
 .rsscenter-rightnav {margin:0px 245px 0px 0px; padding: 5px 0px 0px 5px; font-size: 105%;   }
-.rsstitle { margin: 5px 0px 0px 0px;  font-weight: bold;   }
-h2.rsstitle  { font-family: arial, sans-serif;font-size: 140%;font-weight: normal; }
+.rssentry{position:relative;padding:10px;}
+.rsstitle  
+{
+	margin: 5px 0px 0px 0px;  font-weight: bold; font-family: arial, sans-serif;font-size: 140%;
+	background:url("img/h1-border.jpg") repeat-x scroll left bottom transparent; 
+	padding-bottom:6.18px;
+	margin-bottom:3.82px;           
+}
 .rssdate  
 {
 	background-color:#060606;
@@ -17,7 +23,7 @@ h2.rsstitle  { font-family: arial, sans-serif;font-size: 140%;font-weight: norma
 	position:absolute;
 	text-align:center;
 	text-shadow:1px 1px 2px #000000;
-	top:20px;	
+	top:8px;	
 }
 .rssdate .date
 {
@@ -25,7 +31,7 @@ h2.rsstitle  { font-family: arial, sans-serif;font-size: 140%;font-weight: norma
 	font-size:20px;
 	padding:5px 0;
 }
-.rsstext {   }
+.rsstext { line-height:1.6em;  }
 .rssauthor {  padding: 0px 0px 5px 5px; font-family: Trebuchet MS;  border-bottom: solid 1px #ccc;   }
 .FeedHead {  border-bottom-color: #CAB693; border-bottom-style: solid;
 	border-bottom-width: 1px; padding: 0.5em; }

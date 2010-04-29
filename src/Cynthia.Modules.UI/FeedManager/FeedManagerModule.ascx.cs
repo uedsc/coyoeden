@@ -1,23 +1,4 @@
-﻿/// Author:				Joe Audette
-/// Created:			2005-03-27
-///	Last Modified:		2010-01-06
-///	
-///	Based on code example by Joseph Hill
-///	
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software.
-/// 
-/// 2008-09-08 Walter Ferrari added support for excerpt, paging, show author
-/// 2008-09-30 Joe Audette moved this feature from main projects into Cynthia.Modules projects
-/// 2008-10-01 integrated selective publishing option from Walter Ferrari
-/// 2010-01-09 implemented alternate calendar view to allow showing a minio calendar consuming feeds from Event Calendar Pro for example
-
-using System;
+﻿using System;
 using System.Configuration;
 using System.Data;
 using System.Globalization;
@@ -145,14 +126,13 @@ namespace Cynthia.Web.FeedUI
                 BindSelectedFeed();
 
             }
-            
-            String rssFriendlyUrl = SiteRoot
-                    + "/aggregator" + this.ModuleId.ToString() + "rss.aspx";
+
+			String rssFriendlyUrl = String.Format("{0}/aggregator{1}rss.aspx", SiteRoot, this.ModuleId);
 
             if (ShowAggregateFeedLink)
             {
                 lnkAggregateRSS.HRef = rssFriendlyUrl;
-                imgAggregateRSS.Src = ImageSiteRoot + "/Data/SiteImages/" + RssImageFile;
+				imgAggregateRSS.Src = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, RssImageFile);
             }
             else
             {
@@ -188,7 +168,7 @@ namespace Cynthia.Web.FeedUI
         {
             RssFeed feed = new RssFeed(ModuleId, ItemID);
             this.lblFeedHeading.Visible = true;
-            this.lblFeedHeading.Text = "<h2>" + feed.Author + "</h2>";
+			this.lblFeedHeading.Text = String.Format("<h2>{0}</h2>", feed.Author);
         }
 
         private DataTable GetEntriesTable()
@@ -395,11 +375,7 @@ namespace Cynthia.Web.FeedUI
 
             if ((IsEditable)&&(EnableSelectivePublishing)&&(!EnableInPlaceEditing))
             {
-                Title1.LiteralExtraMarkup = "&nbsp;<a href='"
-                    + SiteRoot
-                    + "/FeedManager/FeedManager.aspx?pageid=" + PageId.ToInvariantString()
-                    + "&amp;mid=" + ModuleId.ToInvariantString()
-                    + "' class='ModuleEditLink' title='" + FeedResources.ManagePublishingLink + "'>" + FeedResources.ManagePublishingLink + "</a>";
+				Title1.LiteralExtraMarkup = String.Format("&nbsp;<a href='{0}/FeedManager/FeedManager.aspx?pageid={1}&amp;mid={2}' class='ModuleEditLink' title='{3}'>{3}</a>", SiteRoot, PageId.ToInvariantString(), ModuleId.ToInvariantString(), FeedResources.ManagePublishingLink);
             }
 
         }
@@ -559,9 +535,7 @@ namespace Cynthia.Web.FeedUI
                 {
                     Literal cssLink = new Literal();
                     cssLink.ID = "rsscss";
-                    cssLink.Text = "\n<link href='"
-                    + SiteUtils.GetSkinBaseUrl()
-                    + "rssmodule.css' type='text/css' rel='stylesheet' media='screen' />";
+					cssLink.Text = String.Format("\n<link href='{0}rssmodule.css' type='text/css' rel='stylesheet' media='screen' />", SiteUtils.GetSkinBaseUrl());
 
                     stylesheet.Controls.Add(cssLink);
                 }

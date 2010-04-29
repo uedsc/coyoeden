@@ -559,8 +559,8 @@ namespace Cynthia.Web
 
         public static void RedirectToLoginPage(Control pageOrControl)
         {
-            string redirectUrl 
-                = string.Format(CultureInfo.InvariantCulture,"{0}" + GetLoginRelativeUrl() + "?returnurl={1}",
+            string redirectUrl
+				= string.Format(CultureInfo.InvariantCulture, String.Format("{{0}}{0}?returnurl={{1}}", GetLoginRelativeUrl()),
                                GetNavigationSiteRoot(),
                                HttpUtility.UrlEncode(HttpContext.Current.Request.RawUrl));
             
@@ -570,7 +570,7 @@ namespace Cynthia.Web
         public static void RedirectToLoginPage(Control pageOrControl, string returnUrl)
         {
             string redirectUrl
-                = string.Format(CultureInfo.InvariantCulture, "{0}" + GetLoginRelativeUrl() + "?returnurl={1}",
+				= string.Format(CultureInfo.InvariantCulture, String.Format("{{0}}{0}?returnurl={{1}}", GetLoginRelativeUrl()),
                                GetNavigationSiteRoot(),
                                HttpUtility.UrlEncode(returnUrl));
 
@@ -586,7 +586,7 @@ namespace Cynthia.Web
             }
 
             string redirectUrl
-                = string.Format(CultureInfo.InvariantCulture, "{0}" + GetLoginRelativeUrl() + "?returnurl={1}",
+				= string.Format(CultureInfo.InvariantCulture, String.Format("{{0}}{0}?returnurl={{1}}", GetLoginRelativeUrl()),
                                GetNavigationSiteRoot(),
                                HttpUtility.UrlEncode(HttpContext.Current.Request.RawUrl));
 
@@ -692,7 +692,7 @@ namespace Cynthia.Web
                     if (CookieHelper.CookieExists(skinCookieName))
                     {
                         string cookieValue = CookieHelper.GetCookieValue(skinCookieName);
-                        if (File.Exists(HttpContext.Current.Server.MapPath(skinFolder + cookieValue.Replace(".ascx", "") + "/layout.Master")))
+						if (File.Exists(HttpContext.Current.Server.MapPath(String.Format("{0}{1}/layout.Master", skinFolder, cookieValue.Replace(".ascx", "")))))
                         {
                             skinName = cookieValue.Replace(".ascx", "") + "/layout.Master";
 
@@ -1134,8 +1134,7 @@ namespace Cynthia.Web
                     }
                 }
 
-                skinFolder = siteRoot + "/Data/Sites/"
-                    + siteSettings.SiteId.ToString(CultureInfo.InvariantCulture) + "/skins/";
+				skinFolder = String.Format("{0}/Data/Sites/{1}/skins/", siteRoot, siteSettings.SiteId.ToString(CultureInfo.InvariantCulture));
 
 
                 if (HttpContext.Current.Request.Params.Get("skin") != null)

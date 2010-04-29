@@ -5999,10 +5999,12 @@
     <Content Include="Data\skins\lunax\IESpecific.css" />
     <Content Include="Data\skins\lunax\img\background_slice.png" />
     <Content Include="Data\skins\lunax\img\envato.png" />
+    <Content Include="Data\skins\lunax\img\h1-border.jpg" />
     <Content Include="Data\skins\lunax\img\left-normal.png" />
     <Content Include="Data\skins\lunax\img\logo-dark.png" />
     <Content Include="Data\skins\lunax\img\marketplace-switcher-help.png" />
     <Content Include="Data\skins\lunax\img\nav-background.png" />
+    <Content Include="Data\skins\lunax\img\post-meta.png" />
     <Content Include="Data\skins\lunax\img\right-normal.png" />
     <Content Include="Data\skins\lunax\img\sprite_themeforest.png" />
     <Content Include="Data\skins\lunax\img\white_line.png" />
@@ -6022,7 +6024,6 @@
     <Content Include="Data\skins\lunax\slider_h_rail.gif" />
     <Content Include="Data\skins\lunax\slider_v_handle.gif" />
     <Content Include="Data\skins\lunax\slider_v_rail.gif" />
-    <Content Include="Data\skins\lunax\square_arrow.gif" />
     <Content Include="Data\skins\lunax\style.css" />
     <Content Include="Data\skins\lunax\styleaspcalendar.css" />
     <Content Include="Data\skins\lunax\styleblog.css" />

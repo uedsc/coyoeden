@@ -37,7 +37,7 @@
                 ID="ConfirmBtn" runat="server" ImageUrl='<%# ConfirmImage + DataBinder.Eval(Container, "DataItem.Confirmed") + ".png"%>'
                 visible='<%# EnableInPlaceEditing %>' AlternateText='<%# Convert.ToBoolean(DataBinder.Eval(Container, "DataItem.Confirmed"))?Resources.FeedResources.EntryPublishTrueAlternateText:Resources.FeedResources.EntryPublishFalseAlternateText %>' 
                 />
-                    <div class='<%#"rssfeedentry" + DataBinder.Eval(Container, "DataItem.Confirmed") %>' id="divFeedEntry" runat="server" >
+                    <div class='rssentry <%#"rssfeedentry" + DataBinder.Eval(Container, "DataItem.Confirmed") %>' id="divFeedEntry" runat="server" >
                     <h3 class="rsstitle">
                        <asp:HyperLink ID="Hyperlink4" runat="server" NavigateUrl='<%# DataBinder.Eval(Container, "DataItem.Link")%>'>
 						<%# Server.HtmlEncode(DataBinder.Eval(Container, "DataItem.Title").ToString())%>
@@ -74,6 +74,15 @@
 												<%# Server.HtmlEncode(DataBinder.Eval(Container, "DataItem.FeedName").ToString())%>
                         </asp:HyperLink>
                     </div>
+                    <div class="postmetadata">
+    				  <span>
+    					<%# GetDateHeader((DateTime)DataBinder.Eval(Container, "DataItem.PubDate"),"tt")%><%# GetDateHeader((DateTime)DataBinder.Eval(Container, "DataItem.PubDate"),"hh:mm:ss")%> @<%# GetDateHeader((DateTime)DataBinder.Eval(Container, "DataItem.PubDate"),"yyyy")%> | 
+    				  </span>
+    				  <span><a href="<%# DataBinder.Eval(Container, "DataItem.Link")%>">0 Comments</a> </span>
+    				  <div class="the_author">
+    				    <img height="20" width="20" class="avatar avatar-20 photo" src="<%= SkinBaseUrl%>/avatar20.jpeg" alt="">    				    <h4><a rel="external" title="Visit Jeffrey’s website" href="http://www.jeffrey-way.com">Jeffrey</a></h4>
+    				  </div>
+    				</div>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>

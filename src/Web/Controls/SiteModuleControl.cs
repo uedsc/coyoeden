@@ -46,6 +46,15 @@ namespace Cynthia.Web
 				return siteSettings.DataFolderUrl;
 			}
 		}
+		/// <summary>
+		/// skin folder url of current site 
+		/// </summary>
+		protected string SkinBaseUrl {
+			get {
+				if (siteSettings == null) return null;
+				return siteSettings.SkinBaseUrl;
+			}
+		}
 		#endregion
 
 

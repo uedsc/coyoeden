@@ -8,7 +8,7 @@ ul.AspNet-Menu ul li a { line-height: 18px; display: inline; padding-top: 0px; p
 ul.AspNet-Menu li a{color: #404040; font-size: 14px; line-height: 18px; display: block; padding-top: 10px; height: 22px; padding-right: 10px; padding-left: 10px;}
 ul.AspNet-Menu li.notfirst:hover { background: #69472a; background-image: url(img/nav-background.png); background-color: #69472a; background-repeat: repeat-x; border: 1px solid #f0f0f0; border-color: #69472a; margin-right: 13px; line-height: 34px; position: relative; top: 1px; }
 ul.AspNet-Menu li.AspNet-Menu-WithChildren:hover ul li a, ul.AspNet-Menu li.AspNet-Menu-Leaf:hover ul li a { padding-top: 0px; }
-ul.AspNet-Menu li.AspNet-Menu-WithChildren:hover a,ul.AspNet-Menuli.AspNet-Menu-Leaf:hover a { color: #ffffff; text-decoration: none; padding-top: 8px; height: 24px; }
+ul.AspNet-Menu li.AspNet-Menu-WithChildren:hover a,ul.AspNet-Menu li.AspNet-Menu-Leaf:hover a { color: #ffffff; text-decoration: none; padding-top: 8px; height: 24px; }
 ul.AspNet-Menu li.AspNet-Menu-WithChildren:hover ul, ul.AspNet-Menu li.AspNet-Menu-Leaf:hover ul { display: block; margin-top: -1px; }
 ul.AspNet-Menu li.AspNet-Menu-WithChildren:hover ul li a, ul.AspNet-Menu li.AspNet-Menu-Leaf:hover ul li a { color: #3b3b3a; }
 ul.AspNet-Menu li.AspNet-Menu-WithChildren { background-repeat: no-repeat; background-position: right 13px; position: relative; }
@@ -18,7 +18,7 @@ ul.AspNet-Menu li.AspNet-Menu-WithChildren ul { list-style: none; padding: 10px 
 ul.AspNet-Menu li.AspNet-Menu-WithChildren ul li { padding: 5px; padding-left: 10px; font-size: 13px; line-height: 20px; }
 ul.AspNet-Menu li.AspNet-Menu-WithChildren ul li a { color: #3b3b3a; }
 ul.AspNet-Menu li.AspNet-Menu-WithChildren ul li a:hover { color: #3f6c18; text-decoration: none; }
-ul.AspNet-Menu li.first a { display: block; height: 14px; width: 25px; text-indent: -9999px; padding-right: 0px; margin-right: 0px; margin-top: 11px; background-position: -463px -24px; }
+ul.AspNet-Menu li.first a { display: block; height: 14px; width: 25px; text-indent: -9999px; padding-right: 0px;padding-top:0px; margin-right: 0px; margin-top: 11px; background-position: -463px -24px; }
 ul.AspNet-Menu li.first a:hover { background-position: -463px -1px; }
 /* vertical menu */
 
