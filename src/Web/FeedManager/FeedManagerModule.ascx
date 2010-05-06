@@ -76,11 +76,12 @@
                     </div>
                     <div class="postmetadata">
     				  <span>
-    					<%# GetDateHeader((DateTime)DataBinder.Eval(Container, "DataItem.PubDate"),"tt")%><%# GetDateHeader((DateTime)DataBinder.Eval(Container, "DataItem.PubDate"),"hh:mm:ss")%> @<%# GetDateHeader((DateTime)DataBinder.Eval(Container, "DataItem.PubDate"),"yyyy")%> | 
+    					<%# GetDateHeader((DateTime)DataBinder.Eval(Container, "DataItem.PubDate"),"tt")%>&nbsp;<%# GetDateHeader((DateTime)DataBinder.Eval(Container, "DataItem.PubDate"),"hh:mm:ss")%> @<%# GetDateHeader((DateTime)DataBinder.Eval(Container, "DataItem.PubDate"),"yyyy")%> | 
     				  </span>
     				  <span><a href="<%# DataBinder.Eval(Container, "DataItem.Link")%>">0 Comments</a> </span>
     				  <div class="the_author">
-    				    <img height="20" width="20" class="avatar avatar-20 photo" src="<%= SkinBaseUrl%>/avatar20.jpeg" alt="">    				    <h4><a rel="external" title="Visit Jeffrey’s website" href="http://www.jeffrey-way.com">Jeffrey</a></h4>
+    				    <img height="20" width="20" class="avatar avatar-20 photo" src="<%= SkinBaseUrl%>img/avatar20.jpeg" alt=""/>    				    
+    				    <h4><a rel="external" title="" href="<%# DataBinder.Eval(Container, "DataItem.BlogUrl")%>"><%# Server.HtmlEncode(DataBinder.Eval(Container, "DataItem.Author").ToString())%></a></h4>
     				  </div>
     				</div>
                     </div>

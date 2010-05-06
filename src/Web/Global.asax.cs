@@ -1,30 +1,4 @@
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software.
-/// 
-/// 
-/// 3/13/2005 Joe Audette added handler in Application_BeginRequest 
-/// for db404 error which is raised if pageid doesn't exist for siteid	
-/// 
-/// 6/22/2005 Joe Audette added log4net error logging	
-/// 11/30/2005
-/// 1/16/2006 JA added VirtualPathProvider
-/// 1/29/2006 added Windows Auth support from Haluk Eryuksel
-/// 2/4/2006 Joe Audette added CSetup 
-/// 11/8/2006 Joe Audette added tracking user activity time in Application_EndRequest
-/// 12/3/2006 added tracking of session count
-/// 1/29/2007 added upgrade check to error handling
-/// 2/9/2007 added rethrow unhandled error
-/// 3/15/2007 refactor usercount increment
-/// 2007/04/26 swap Principal in authenticate request
-/// 2007-08-04 removed upgrade logic, its all done in Setup/Default.aspx now
-/// 2007-09-20 added option to force a specific culture
-/// 2009-06-24 some cleanup
-/// 2009-11-20 use config settings for keepalivetask settings
+
 
 using System;
 using System.Configuration;
@@ -237,7 +211,7 @@ namespace Cynthia.Web
             {
                 if (HttpContext.Current.Request != null)
                 {
-                    exceptionUrl = CultureInfo.CurrentCulture.ToString() + " - " + HttpContext.Current.Request.RawUrl;
+					exceptionUrl = String.Format("{0} - {1}", CultureInfo.CurrentCulture, HttpContext.Current.Request.RawUrl);
                     exceptionIpAddress = SiteUtils.GetIP4Address();
                     
                 }
@@ -251,18 +225,18 @@ namespace Cynthia.Web
                 if (ex is UnauthorizedAccessException)
                 {
                     // swallow this for medium trust?
-                    log.Error(exceptionIpAddress + "-" + exceptionUrl, ex);
+					log.Error(String.Format("{0}-{1}", exceptionIpAddress, exceptionUrl), ex);
                     return;
                 }
 
                 if (ex.Message == "File does not exist.")
                 {
 
-                    log.Error(exceptionIpAddress + "-" + exceptionUrl, ex);
+					log.Error(String.Format("{0}-{1}", exceptionIpAddress, exceptionUrl), ex);
                     return;
                 }
 
-                log.Error(exceptionIpAddress + "-" + exceptionUrl, ex);
+				log.Error(String.Format("{0}-{1}", exceptionIpAddress, exceptionUrl), ex);
 
                 
                 

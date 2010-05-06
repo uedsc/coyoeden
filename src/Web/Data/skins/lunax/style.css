@@ -19,7 +19,7 @@ span.img { padding-left: 25px; padding-right: 13px; }
 #breadcrumbs { padding-top: 20px; font-size: 9px; text-transform: uppercase; color: #424e40; height: 18px; }
 #breadcrumbs a { color: #70806d; margin-left: 6px; margin-right: 6px; }
 #breadcrumbs a.first { margin-left: 0px; }
-.htmlmodule{padding:10px;}
+.slidecontainer{padding:10px;}
 /*common .postmetadata*/
 .postmetadata
 {
@@ -174,6 +174,63 @@ body#pagex {line-height:normal; background: #d2d1d0 url('img/background_slice.pn
 	line-height:20px;
 	margin-top:32px;
 	padding-top:25px;
+}
+#footer a{color:#CAC8C0;}
+#footer .fleft
+{
+	float:left;
+	padding-left:5px;
+	padding-right:35px;
+	width:600px;
+		min-height:100px;
+	height:auto !important;
+	height:100px;
+}
+#footer .fleft p
+{
+	padding-bottom:30px;
+	padding-top:6px;
+}
+#footer .fleft h4{color:#E4DFD7;}
+#footer .fright
+{
+	background-position:-49px 7px;
+	float:left;
+	padding-left:35px;
+	width:299px;
+	min-height:100px;
+	height:auto !important;
+	height:100px;
+}
+#updates{margin:10px 0 35px;}
+#updates h3{color:#E4DFD7;
+height:37px;
+}
+#updates p{
+padding:10px 0;
+}
+#updates img
+{
+	float:right;
+height:100px;
+margin-left:10px;
+}
+
+#flinks{background-color:#2C2A28;
+border-top:1px solid #232220;
+min-width:984px;
+padding-top:10px;
+}
+#flinks a{color:#CDA869;}
+#flinks p{color:#837E76;
+font-size:9px;
+font-variant:small-caps;
+padding:10px 0;
+}
+#flinks p.last
+{
+	padding-bottom:38px;
+	font-style:italic;	
 }
 /*------===================================old styles======================================================*/
 

@@ -1,14 +1,4 @@
-﻿// Author:				        Joe Audette
-// Created:			            2009-05-04
-//	Last Modified:              2010-01-05
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)  
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software.
+﻿
 
 using System;
 using System.Collections;
@@ -35,7 +25,6 @@ namespace Cynthia.Web.BlogUI
         protected string feedburnerFeedUrl = string.Empty;
         protected string OdiogoFeedIDSetting = string.Empty;
         protected string OdiogoPodcastUrlSetting = string.Empty;
-        //protected string addThisButtonImageUrl = "~/Data/SiteImages/addthissharebutton.gif";
         protected string addThisRssButtonImageUrl = "~/Data/SiteImages/addthisrss.gif";
         protected string RssImageFile = WebConfigSettings.RSSImageFileName;
 
@@ -76,13 +65,6 @@ namespace Cynthia.Web.BlogUI
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!this.Visible) { return; }
-            //if (pageId == -1) { return; }
-            //if (moduleId == -1) { return; }
-            //if (moduleSettings == null) { return; }
-
-            //LoadSettings();
-            //PopulateLabels();
             
         }
 
@@ -109,37 +91,33 @@ namespace Cynthia.Web.BlogUI
             if (siteSettings == null) { return; }
 
             lnkRSS.HRef = GetRssUrl();
-            imgRSS.Src = ImageSiteRoot + "/Data/SiteImages/" + RssImageFile;
+			imgRSS.Src = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, RssImageFile);
 
 
-            lnkAddThisRss.HRef = "http://www.addthis.com/feed.php?pub="
-                + addThisAccountId + "&amp;h1=" + Server.UrlEncode(GetRssUrl())
-                + "&amp;t1=";
+			lnkAddThisRss.HRef = String.Format("http://www.addthis.com/feed.php?pub={0}&amp;h1={1}&amp;t1=", addThisAccountId, Server.UrlEncode(GetRssUrl()));
 
             imgAddThisRss.Src = addThisRssButtonImageUrl;
 
-            lnkAddMSN.HRef = "http://my.msn.com/addtomymsn.armx?id=rss&amp;ut=" + GetRssUrl();
+			lnkAddMSN.HRef = String.Format("http://my.msn.com/addtomymsn.armx?id=rss&amp;ut={0}", GetRssUrl());
 
-            imgMSNRSS.Src = ImageSiteRoot + "/Data/SiteImages/rss_mymsn.gif";
+			imgMSNRSS.Src = String.Format("{0}/Data/SiteImages/rss_mymsn.gif", ImageSiteRoot);
 
-            lnkAddToLive.HRef = "http://www.live.com/?add=" + Server.UrlEncode(GetRssUrl());
+			lnkAddToLive.HRef = String.Format("http://www.live.com/?add={0}", Server.UrlEncode(GetRssUrl()));
 
-            imgAddToLive.Src = ImageSiteRoot + "/Data/SiteImages/addtolive.gif";
+			imgAddToLive.Src = String.Format("{0}/Data/SiteImages/addtolive.gif", ImageSiteRoot);
 
-            lnkAddYahoo.HRef = "http://e.my.yahoo.com/config/promo_content?.module=ycontent&amp;.url="
-                + GetRssUrl();
+			lnkAddYahoo.HRef = String.Format("http://e.my.yahoo.com/config/promo_content?.module=ycontent&amp;.url={0}", GetRssUrl());
 
-            imgYahooRSS.Src = ImageSiteRoot + "/Data/SiteImages/addtomyyahoo2.gif";
+			imgYahooRSS.Src = String.Format("{0}/Data/SiteImages/addtomyyahoo2.gif", ImageSiteRoot);
 
-            lnkAddGoogle.HRef = "http://fusion.google.com/add?feedurl="
-                + GetRssUrl();
+			lnkAddGoogle.HRef = String.Format("http://fusion.google.com/add?feedurl={0}", GetRssUrl());
 
-            imgGoogleRSS.Src = ImageSiteRoot + "/Data/SiteImages/googleaddrss.gif";
+			imgGoogleRSS.Src = String.Format("{0}/Data/SiteImages/googleaddrss.gif", ImageSiteRoot);
 
             liOdiogoPodcast.Visible = (OdiogoPodcastUrlSetting.Length > 0);
             lnkOdiogoPodcast.HRef = OdiogoPodcastUrlSetting;
             lnkOdiogoPodcastTextLink.NavigateUrl = OdiogoPodcastUrlSetting;
-            imgOdiogoPodcast.Src = ImageSiteRoot + "/Data/SiteImages/podcast.png";
+			imgOdiogoPodcast.Src = String.Format("{0}/Data/SiteImages/podcast.png", ImageSiteRoot);
 
             
 
@@ -150,7 +128,7 @@ namespace Cynthia.Web.BlogUI
         {
             if (feedburnerFeedUrl.Length > 0) return feedburnerFeedUrl;
 
-            return SiteRoot + "/blog" + ModuleId.ToString(CultureInfo.InvariantCulture) + "rss.aspx";
+			return String.Format("{0}/blog{1}rss.aspx", SiteRoot, ModuleId.ToString(CultureInfo.InvariantCulture));
 
         }
 

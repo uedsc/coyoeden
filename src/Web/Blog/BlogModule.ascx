@@ -5,9 +5,7 @@
 <%@ Register TagPrefix="blog" TagName="StatsControl" Src="~/Blog/Controls/StatsControl.ascx" %>
 
 <portal:ModulePanel ID="pnlContainer" runat="server">
-<portal:CPanel ID="mp1" runat="server" ArtisteerCssClass="art-Post" RenderArtisteerBlockContentDivs="true">
-<cy:CornerRounderTop id="ctop1" runat="server" />
-<asp:Panel ID="pnlWrapper" runat="server" cssclass="art-Post-inner panelwrapper blogmodule">
+<asp:Panel ID="pnlWrapper" runat="server" cssclass="clearfix panelwrapper blogmodule">
 <portal:ModuleTitleControl id="Title1" runat="server" />
 <portal:CPanel ID="CynPanel1" runat="server" ArtisteerCssClass="art-PostContent">
 <asp:UpdatePanel ID="updBlog" UpdateMode="Conditional" runat="server">
@@ -133,8 +131,5 @@
 </ContentTemplate>
 </asp:UpdatePanel>
 </portal:CPanel>
-<div class="cleared"></div>
 </asp:Panel>
-<cy:CornerRounderBottom id="cbottom1" runat="server" />
-</portal:CPanel>
 </portal:ModulePanel>

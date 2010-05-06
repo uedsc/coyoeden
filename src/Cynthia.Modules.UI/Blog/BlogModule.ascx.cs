@@ -1,14 +1,4 @@
-//	Author:				Joe Audette
-//	Created:			2004-08-15
-//	Last Modified:		2010-01-14
-//		
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software.
+
 
 using System;
 using System.Configuration;
@@ -269,7 +259,7 @@ namespace Cynthia.Web.BlogUI
             {
                 if (!basePage.UseTextLinksForFeatureSettings)
                 {
-                    EditLinkImageUrl = ImageSiteRoot + "/Data/SiteImages/" + EditContentImage;
+					EditLinkImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, EditContentImage);
                 }
                 
             }
@@ -300,7 +290,7 @@ namespace Cynthia.Web.BlogUI
             {
                 if ((excerpt.Length > 0)&&(excerpt != "<p>&#160;</p>"))
                 {
-                    return excerpt + ExcerptSuffix + " <a href='" + FormatBlogUrl(url, itemId) + "'>" + MoreLinkText + "</a><div>&nbsp;</div>";
+					return String.Format("{0}{1} <a href='{2}'>{3}</a><div>&nbsp;</div>", excerpt, ExcerptSuffix, FormatBlogUrl(url, itemId), MoreLinkText);
                 }
                 
                 string result = string.Empty;
@@ -308,7 +298,7 @@ namespace Cynthia.Web.BlogUI
                 {
 
                     result = UIHelper.CreateExcerpt(blogHtml, ExcerptLength, ExcerptSuffix);
-                    result += " <a href='" + FormatBlogTitleUrl(url, itemId) + "'>" + MoreLinkText + "</a><div>&nbsp;</div>";
+					result += String.Format(" <a href='{0}'>{1}</a><div>&nbsp;</div>", FormatBlogTitleUrl(url, itemId), MoreLinkText);
                     return result;
                 }
                 
@@ -322,10 +312,7 @@ namespace Cynthia.Web.BlogUI
             if (itemUrl.Length > 0)
                 return SiteRoot + itemUrl.Replace("~", string.Empty) + disqusFlag;
 
-            return SiteRoot + "/Blog/ViewPost.aspx?pageid=" + PageId.ToInvariantString()
-                + "&ItemID=" + itemId.ToInvariantString()
-                + "&mid=" + ModuleId.ToInvariantString()
-                + disqusFlag;
+			return String.Format("{0}/Blog/ViewPost.aspx?pageid={1}&ItemID={2}&mid={3}{4}", SiteRoot, PageId.ToInvariantString(), itemId.ToInvariantString(), ModuleId.ToInvariantString(), disqusFlag);
 
         }
 
@@ -334,9 +321,7 @@ namespace Cynthia.Web.BlogUI
             if (itemUrl.Length > 0)
                 return SiteRoot + itemUrl.Replace("~", string.Empty);
 
-            return SiteRoot + "/Blog/ViewPost.aspx?pageid=" + PageId.ToInvariantString()
-                + "&ItemID=" + itemId.ToInvariantString()
-                + "&mid=" + ModuleId.ToInvariantString();
+			return String.Format("{0}/Blog/ViewPost.aspx?pageid={1}&ItemID={2}&mid={3}", SiteRoot, PageId.ToInvariantString(), itemId.ToInvariantString(), ModuleId.ToInvariantString());
 
         }
 
@@ -344,7 +329,7 @@ namespace Cynthia.Web.BlogUI
         {
             if (feedburnerFeedUrl.Length > 0) return feedburnerFeedUrl;
 
-            return SiteRoot + "/blog" + ModuleId.ToInvariantString() + "rss.aspx";
+			return String.Format("{0}/blog{1}rss.aspx", SiteRoot, ModuleId.ToInvariantString());
 
         }
 
@@ -359,9 +344,7 @@ namespace Cynthia.Web.BlogUI
                     {
                         
                         Literal rssLink = new Literal();
-                        rssLink.Text = "<link rel=\"alternate\" type=\"application/rss+xml\" title=\""
-                                + this.ModuleConfiguration.ModuleTitle + "\" href=\""
-                                + GetRssUrl() + "\" />";
+						rssLink.Text = String.Format("<link rel=\"alternate\" type=\"application/rss+xml\" title=\"{0}\" href=\"{1}\" />", this.ModuleConfiguration.ModuleTitle, GetRssUrl());
 
                         head.Controls.Add(rssLink);
 
@@ -383,9 +366,7 @@ namespace Cynthia.Web.BlogUI
                 {
                     Literal cssLink = new Literal();
                     cssLink.ID = "blogcss";
-                    cssLink.Text = "\n<link href='"
-                    + SiteUtils.GetSkinBaseUrl()
-                    + "blogmodule.css' type='text/css' rel='stylesheet' media='screen' />";
+					cssLink.Text = String.Format("\n<link href='{0}blogmodule.css' type='text/css' rel='stylesheet' media='screen' />", SiteUtils.GetSkinBaseUrl());
 
                     stylesheet.Controls.Add(cssLink);
                 }
@@ -394,9 +375,7 @@ namespace Cynthia.Web.BlogUI
                 {
                     Literal cssLink = new Literal();
                     cssLink.ID = "aspcalendar";
-                    cssLink.Text = "\n<link href='"
-                    + SiteUtils.GetSkinBaseUrl()
-                    + "aspcalendar.css' type='text/css' rel='stylesheet' media='screen' />";
+					cssLink.Text = String.Format("\n<link href='{0}aspcalendar.css' type='text/css' rel='stylesheet' media='screen' />", SiteUtils.GetSkinBaseUrl());
 
                     stylesheet.Controls.Add(cssLink);
                 }

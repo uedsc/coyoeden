@@ -1,14 +1,4 @@
-// Author:				Joe Audette
-// Created:			    2005-06-01
-// Last Modified:		2009-11-15
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software.
+
 
 using System;
 using System.Data;
@@ -75,10 +65,6 @@ namespace Cynthia.Web
                 {
                     log.Error(ex);
                 }
-                //catch (System.IO.DirectoryNotFoundException ex)
-                //{
-                //    log.Error(ex);
-                //}
 
             }
 		}
@@ -145,15 +131,7 @@ namespace Cynthia.Web
             {
                 if (targetUrl.StartsWith(virtualFolderName + "/"))
                 {
-                    // 2009-03-01 Kris reported a bug where folder site using /er for the folder
-                    // was making an incorrect targetUrl 
-                    // this url from an edit link in feed manager http://localhost/er/FeedManager/FeedEdit.aspx?mid=54&pageid=34
-                    // was getting changed to http://localhost/er/FeedManagFeedEdit.aspx?mid=54&pageid=34 causig a 404
-                    // caused by this commented line
-                    //targetUrl = targetUrl.Replace(virtualFolderName + "/", string.Empty);
-                    //fixed by changing to this
                     targetUrl = targetUrl.Remove(0, virtualFolderName.Length + 1);
-
                 }
             }
 
@@ -348,7 +326,7 @@ namespace Cynthia.Web
             string siteRoot = SiteUtils.GetNavigationSiteRoot();
 
             app.Context.Response.Status = "301 Moved Permanently";
-            app.Context.Response.AddHeader("Location", siteRoot + "/" + newUrl);
+			app.Context.Response.AddHeader("Location", String.Format("{0}/{1}", siteRoot, newUrl));
 
         }
 
