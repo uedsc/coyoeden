@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.Common;
@@ -9,6 +10,7 @@ using System.Globalization;
 using System.IO;
 using System.Web;
 using Mono.Data.Sqlite;
+using System.Collections.Generic;
 
 namespace Cynthia.Data
 {
@@ -36,90 +38,102 @@ namespace Cynthia.Data
             return connectionString;
         }
 
+		public static IDataReader GetBlogs(int moduleId,DateTime beginDate,DateTime currentTime, params int[] categoryIds)
+		{
+			var categorySpecified = categoryIds != null && categoryIds.Length > 0;
+			StringBuilder sqlCommand = new StringBuilder();
 
+			sqlCommand.Append("SELECT SettingValue ");
+			sqlCommand.Append("FROM cy_ModuleSettings ");
+			sqlCommand.Append("WHERE SettingName = 'BlogEntriesToShowSetting' ");
+			sqlCommand.Append("AND ModuleID = :ModuleID ;");
 
-        public static IDataReader GetBlogs(
-            int moduleId,
-            DateTime beginDate,
-            DateTime currentTime)
-        {
-            StringBuilder sqlCommand = new StringBuilder();
+			SqliteParameter[] arParams = new SqliteParameter[1];
 
-            sqlCommand.Append("SELECT SettingValue ");
-            sqlCommand.Append("FROM cy_ModuleSettings ");
-            sqlCommand.Append("WHERE SettingName = 'BlogEntriesToShowSetting' ");
-            sqlCommand.Append("AND ModuleID = :ModuleID ;");
+			arParams[0] = new SqliteParameter(":ModuleID", DbType.Int32);
+			arParams[0].Direction = ParameterDirection.Input;
+			arParams[0].Value = moduleId;
 
-            SqliteParameter[] arParams = new SqliteParameter[1];
+			int rowsToShow = int.Parse(ConfigurationManager.AppSettings["DefaultBlogPageSize"]);
 
-            arParams[0] = new SqliteParameter(":ModuleID", DbType.Int32);
-            arParams[0].Direction = ParameterDirection.Input;
-            arParams[0].Value = moduleId;
+			using (IDataReader reader = SqliteHelper.ExecuteReader(
+				GetConnectionString(),
+				sqlCommand.ToString(),
+				arParams))
+			{
+				if (reader.Read())
+				{
+					if (reader["SettingValue"] != DBNull.Value)
+					{
+						try
+						{
+							rowsToShow = Convert.ToInt32(reader["SettingValue"]);
+						}
+						catch (ArgumentException) { }
+						catch (FormatException) { }
+						catch (OverflowException) { }
 
-            int rowsToShow = int.Parse(ConfigurationManager.AppSettings["DefaultBlogPageSize"]);
+					}
 
-            using (IDataReader reader = SqliteHelper.ExecuteReader(
-                GetConnectionString(),
-                sqlCommand.ToString(),
-                arParams))
-            {
-                if (reader.Read())
-                {
-                    if (reader["SettingValue"] != DBNull.Value)
-                    {
-                        try
-                        {
-                            rowsToShow = Convert.ToInt32(reader["SettingValue"]);
-                        }
-                        catch (ArgumentException) { }
-                        catch (FormatException) { }
-                        catch (OverflowException) { }
+				}
+			}
 
-                    }
+			sqlCommand = new StringBuilder();
+			sqlCommand.Append("SELECT b.*, ");
+			sqlCommand.Append("u.Name, ");
+			sqlCommand.Append("u.LoginName, ");
+			sqlCommand.Append("u.Email ");
 
-                }
-            }
+			sqlCommand.Append("FROM	cy_Blogs b ");
+			sqlCommand.Append("LEFT OUTER JOIN	cy_Users u ");
+			sqlCommand.Append("ON b.UserGuid = u.UserGuid ");
 
-            sqlCommand = new StringBuilder();
-            sqlCommand.Append("SELECT b.*, ");
-            sqlCommand.Append("u.Name, ");
-            sqlCommand.Append("u.LoginName, ");
-            sqlCommand.Append("u.Email ");
+			if (categorySpecified) {
+				sqlCommand.Append("LEFT OUTER JOIN cy_BlogItemCategories c ");
+				sqlCommand.Append("ON b.ItemID=c.ItemID ");
+			}
 
-            sqlCommand.Append("FROM	cy_Blogs b ");
-            sqlCommand.Append("LEFT OUTER JOIN	cy_Users u ");
-            sqlCommand.Append("ON b.UserGuid = u.UserGuid ");
+			sqlCommand.Append("WHERE b.ModuleID = :ModuleID  ");
+			sqlCommand.Append("AND :BeginDate >= b.StartDate  ");
+			sqlCommand.Append("AND b.IsPublished = 1 ");
+			sqlCommand.Append("AND b.StartDate <= :CurrentTime  ");
 
-            sqlCommand.Append("WHERE b.ModuleID = :ModuleID  ");
-            sqlCommand.Append("AND :BeginDate >= b.StartDate  ");
-            sqlCommand.Append("AND b.IsPublished = 1 ");
-            sqlCommand.Append("AND b.StartDate <= :CurrentTime  ");
+			if (categorySpecified) {
+				sqlCommand.Append("AND c.CategoryID IN(:CategoryIDs) ");
+			}
 
+			sqlCommand.Append("ORDER BY b.StartDate DESC  ");
+			sqlCommand.Append(String.Format("LIMIT {0};", rowsToShow));
 
-            sqlCommand.Append("ORDER BY b.StartDate DESC  ");
-            sqlCommand.Append("LIMIT " + rowsToShow.ToString() + ";");
+			arParams =categorySpecified? new SqliteParameter[4]:new SqliteParameter[3];
 
-            arParams = new SqliteParameter[3];
+			arParams[0] = new SqliteParameter(":ModuleID", DbType.Int32);
+			arParams[0].Direction = ParameterDirection.Input;
+			arParams[0].Value = moduleId;
 
-            arParams[0] = new SqliteParameter(":ModuleID", DbType.Int32);
-            arParams[0].Direction = ParameterDirection.Input;
-            arParams[0].Value = moduleId;
+			arParams[1] = new SqliteParameter(":BeginDate", DbType.DateTime);
+			arParams[1].Direction = ParameterDirection.Input;
+			arParams[1].Value = beginDate;
 
-            arParams[1] = new SqliteParameter(":BeginDate", DbType.DateTime);
-            arParams[1].Direction = ParameterDirection.Input;
-            arParams[1].Value = beginDate;
+			arParams[2] = new SqliteParameter(":CurrentTime", DbType.DateTime);
+			arParams[2].Direction = ParameterDirection.Input;
+			arParams[2].Value = currentTime;
 
-            arParams[2] = new SqliteParameter(":CurrentTime", DbType.DateTime);
-            arParams[2].Direction = ParameterDirection.Input;
-            arParams[2].Value = currentTime;
+			if (categorySpecified) {
+				arParams[3] = new SqliteParameter(":CategoryIDs");
+				var cIds=new List<string>();
+				categoryIds.ToList().ForEach(x=>{
+					cIds.Add(x.ToString());
+				});
+				arParams[3].Value = string.Join(",",cIds.ToArray() );
+			}
 
-            return SqliteHelper.ExecuteReader(
-                GetConnectionString(),
-                sqlCommand.ToString(),
-                arParams);
+			return SqliteHelper.ExecuteReader(
+				GetConnectionString(),
+				sqlCommand.ToString(),
+				arParams);
 
-        }
-
+		}
         public static int GetCount(
             int moduleId,
             DateTime beginDate,

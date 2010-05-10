@@ -1,19 +1,4 @@
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software.
-/// 
-/// Created:			        2007-06-06
-///	Last Modified:              2009-04-17
-/// 
-/// 2007/06/06  Alexander Yushchenko: created this control from part of /Secure/Login.aspx.cs refactoring
-/// 2007-08-24  Joe Audette fixed bug where message was not displayed if
-/// email confirmation needed or account locked. Also added logic to
-/// send another confirmation email if user tries to login and
-/// confirmation is needed.
+
 
 using System;
 using System.Web;

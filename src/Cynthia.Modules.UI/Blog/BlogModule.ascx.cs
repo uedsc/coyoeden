@@ -84,8 +84,8 @@ namespace Cynthia.Web.BlogUI
         protected string EditLinkText = BlogResources.BlogEditEntryLink;
         protected string EditLinkTooltip = BlogResources.BlogEditEntryLink;
         protected string EditLinkImageUrl = string.Empty;
-       
-        
+
+		public string BlogCopyright { get; set; }
         
         #endregion
 
@@ -680,7 +680,7 @@ namespace Cynthia.Web.BlogUI
 
             if (Settings.Contains("BlogCopyrightSetting"))
             {
-                lblCopyright.Text = Settings["BlogCopyrightSetting"].ToString();
+				BlogCopyright = Settings["BlogCopyrightSetting"].ToString();
             }
 
             pnlStatistics.Visible = ShowStatistics;

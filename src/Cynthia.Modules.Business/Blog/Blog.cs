@@ -504,26 +504,18 @@ namespace Cynthia.Business
 
 
         #region Static Methods
-
-        /// <summary>
-        /// Gets the posts for this blog instance.
-        /// </summary>
-        /// <param name="moduleID">The module ID.</param>
-        /// <returns></returns>
-        //public static IDataReader GetBlogs(int moduleID)
-        //{
-        //    return dbBlog.Blog_GetBlogs(moduleID);
-        //}
-
         /// <summary>
         /// Gets the blogs.
         /// </summary>
         /// <param name="moduleID">The module ID.</param>
         /// <param name="endDate">The end date.</param>
+		/// <param name="categoryIds">categories specified</param>
         /// <returns></returns>
-        public static IDataReader GetBlogs(int moduleId, DateTime beginDate)
+		public static IDataReader GetBlogs(int moduleId, DateTime beginDate, params int[] categoryIds)
         {
-            return DBBlog.GetBlogs(moduleId, beginDate, DateTime.UtcNow);
+			if (categoryIds != null && categoryIds.Length > 0 && categoryIds[0] == -1)
+				return DBBlog.GetBlogs(moduleId, beginDate, DateTime.UtcNow);
+            return DBBlog.GetBlogs(moduleId, beginDate, DateTime.UtcNow,categoryIds);
         }
 
         public static IDataReader GetPage(

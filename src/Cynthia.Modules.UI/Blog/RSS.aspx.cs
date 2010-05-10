@@ -39,6 +39,7 @@ namespace Cynthia.Web.FeedUI
         private bool ShowPostAuthorSetting = false;
         private bool bypassPageSecurity = false;
         private Guid securityBypassGuid = Guid.Empty;
+		private int _categoryId;
 
 
 		protected void Page_Load(object sender, System.EventArgs e)
@@ -65,6 +66,7 @@ namespace Cynthia.Web.FeedUI
         {
             pageID = WebUtils.ParseInt32FromQueryString("pageid", -1);
             moduleId = WebUtils.ParseInt32FromQueryString("mid", -1);
+			_categoryId = WebUtils.ParseInt32FromQueryString("cid",-1);
             securityBypassGuid = WebUtils.ParseGuidFromQueryString("g", securityBypassGuid);
             currentPage = CacheHelper.GetCurrentPage();
 
@@ -184,16 +186,9 @@ namespace Cynthia.Web.FeedUI
                 MoreLinkText = moduleSettings["BlogMoreLinkText"].ToString();
             }
 
+			Response.ContentEncoding = Encoding.UTF8;
 
-            //
-
-           
-            //siteRoot = WebUtils.GetSiteRoot();
-
-			Encoding encoding = new UTF8Encoding();
-			Response.ContentEncoding = encoding;
-
-            using (XmlTextWriter xmlTextWriter = new XmlTextWriter(Response.OutputStream, encoding))
+            using (XmlTextWriter xmlTextWriter = new XmlTextWriter(Response.OutputStream, Encoding.UTF8))
             {
                 xmlTextWriter.Formatting = Formatting.Indented;
 
@@ -320,7 +315,7 @@ namespace Cynthia.Web.FeedUI
         {
             string blogCommentLabel = ConfigurationManager.AppSettings["BlogCommentCountLabel"];
 
-            using (IDataReader dr = Blog.GetBlogs(moduleId, DateTime.UtcNow))
+            using (IDataReader dr = Blog.GetBlogs(moduleId, DateTime.UtcNow,_categoryId))
             {
                 //write channel items
                 while (dr.Read())

@@ -4,14 +4,12 @@
 <%@ Register TagPrefix="blog" TagName="FeedLinks" Src="~/Blog/Controls/FeedLinksControl.ascx" %>
 <%@ Register TagPrefix="blog" TagName="StatsControl" Src="~/Blog/Controls/StatsControl.ascx" %>
 
-<portal:ModulePanel ID="pnlContainer" runat="server">
-<asp:Panel ID="pnlWrapper" runat="server" cssclass="clearfix panelwrapper blogmodule">
+<portal:ModulePanel ID="pnlContainer" runat="server" CssClass="module">
+<asp:Panel ID="pnlWrapper" runat="server" cssclass="module_inner panelwrapper blogmodule">
 <portal:ModuleTitleControl id="Title1" runat="server" />
 <portal:CPanel ID="CynPanel1" runat="server" ArtisteerCssClass="art-PostContent">
-<asp:UpdatePanel ID="updBlog" UpdateMode="Conditional" runat="server">
+<portal:UpdatePanelX ID="updBlog" UpdateMode="Conditional" runat="server" CssClass="modulecontent blogwrapper clearfix">
 <ContentTemplate>
-<div class="modulecontent">
-<div class="blogwrapper">
     <asp:Panel id="divNav" runat="server" cssclass="blognavright" SkinID="plain">
         <asp:calendar id="calBlogNav" runat="server" EnableViewState="false"
          CaptionAlign="Top"
@@ -121,15 +119,13 @@
         </asp:repeater>
         <portal:CCutePager ID="pgr" runat="server" />
     </asp:Panel>
-    <div class="blogcopyright">
-    <asp:label id="lblCopyright" Runat="server" />
-    </div>
+    <%if (!string.IsNullOrEmpty(BlogCopyright))
+	  { %>
+    <div class="blogcopyright"><%=BlogCopyright %></div>
+    <%} %>
     <portal:DisqusWidget ID="disqus" runat="server" />
-</div>
-<div class="modulefooter"></div>
-</div>
 </ContentTemplate>
-</asp:UpdatePanel>
+</portal:UpdatePanelX>
 </portal:CPanel>
 </asp:Panel>
 </portal:ModulePanel>

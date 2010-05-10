@@ -37,7 +37,7 @@
                 ID="ConfirmBtn" runat="server" ImageUrl='<%# ConfirmImage + DataBinder.Eval(Container, "DataItem.Confirmed") + ".png"%>'
                 visible='<%# EnableInPlaceEditing %>' AlternateText='<%# Convert.ToBoolean(DataBinder.Eval(Container, "DataItem.Confirmed"))?Resources.FeedResources.EntryPublishTrueAlternateText:Resources.FeedResources.EntryPublishFalseAlternateText %>' 
                 />
-                    <div class='rssentry <%#"rssfeedentry" + DataBinder.Eval(Container, "DataItem.Confirmed") %>' id="divFeedEntry" runat="server" >
+                    <div class='<%#string.Format("rssentry rssfeedentry{0}",DataBinder.Eval(Container, "DataItem.Confirmed")) %>' id="divFeedEntry" runat="server" >
                     <h3 class="rsstitle">
                        <asp:HyperLink ID="Hyperlink4" runat="server" NavigateUrl='<%# DataBinder.Eval(Container, "DataItem.Link")%>'>
 						<%# Server.HtmlEncode(DataBinder.Eval(Container, "DataItem.Title").ToString())%>

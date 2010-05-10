@@ -56,7 +56,7 @@ namespace Cynthia.Web.BlogUI {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updBlog;
+        protected global::Cynthia.Web.UI.UpdatePanelX updBlog;
         
         /// <summary>
         /// divNav control.
@@ -165,15 +165,6 @@ namespace Cynthia.Web.BlogUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Cynthia.Web.UI.CCutePager pgr;
-        
-        /// <summary>
-        /// lblCopyright control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCopyright;
         
         /// <summary>
         /// disqus control.

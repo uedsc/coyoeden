@@ -848,6 +848,7 @@
     <Compile Include="Controls\SortSetting.ascx.designer.cs">
       <DependentUpon>SortSetting.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UpdatePanelX.cs" />
     <Compile Include="Controls\ViewBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
