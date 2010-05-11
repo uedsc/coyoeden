@@ -389,11 +389,11 @@ namespace Cynthia.Web.GalleryUI
 
             if (WebConfigSettings.ImageGalleryUseMediaFolder)
             {
-                baseUrl = "/Data/Sites/" + siteSettings.SiteId.ToInvariantString() + "/media/GalleryImages/" + ModuleId.ToInvariantString() + "/"; 
+                baseUrl = "/Data/Sites/" + SiteSettings.SiteId.ToInvariantString() + "/media/GalleryImages/" + ModuleId.ToInvariantString() + "/"; 
             }
             else
             {
-                baseUrl = "/Data/Sites/" + siteSettings.SiteId.ToInvariantString() + "/GalleryImages/" + ModuleId.ToInvariantString() + "/"; 
+                baseUrl = "/Data/Sites/" + SiteSettings.SiteId.ToInvariantString() + "/GalleryImages/" + ModuleId.ToInvariantString() + "/"; 
             }
 
             thumnailBaseUrl = baseUrl + "Thumbnails/";

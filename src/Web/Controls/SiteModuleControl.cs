@@ -10,6 +10,7 @@ using System.Web.UI.WebControls.WebParts;
 using Cynthia.Business;
 using Cynthia.Business.WebHelpers;
 using Cynthia.Web.Framework;
+using System.Globalization;
 
 namespace Cynthia.Web 
 {
@@ -32,29 +33,9 @@ namespace Cynthia.Web
         private bool enableWorkflow = false;
         private bool IsOnInitExecuted = false;
 
-	    protected PageSettings currentPage;
-	    protected SiteSettings siteSettings;
+
         protected ScriptManager ScriptController;
 
-		/// <summary>
-		/// data folder url path of current site
-		/// </summary>
-		protected string DataFolderUrl {
-			get
-			{
-				if (siteSettings == null) return null;
-				return siteSettings.DataFolderUrl;
-			}
-		}
-		/// <summary>
-		/// skin folder url of current site 
-		/// </summary>
-		protected string SkinBaseUrl {
-			get {
-				if (siteSettings == null) return null;
-				return siteSettings.SkinBaseUrl;
-			}
-		}
 		#endregion
 
 
@@ -70,17 +51,16 @@ namespace Cynthia.Web
 
             if (HttpContext.Current == null) { return; }
 
-            siteSettings = CacheHelper.GetCurrentSiteSettings();
-            
-            currentPage = CacheHelper.GetCurrentPage();
+			LoadSettings();
+
             ScriptController = (ScriptManager)Page.Master.FindControl("ScriptManager1");
 
-            if (siteSettings != null)
+            if (SiteSettings != null)
             {
-                this.siteID = siteSettings.SiteId;
+                this.siteID = SiteSettings.SiteId;
                 if (!WebUser.IsAdminOrContentAdmin)
                 {
-                    forbidModuleSettings = WebUser.IsInRoles(siteSettings.RolesNotAllowedToEditModuleSettings);
+                    forbidModuleSettings = WebUser.IsInRoles(SiteSettings.RolesNotAllowedToEditModuleSettings);
                 }
             }
 
@@ -88,7 +68,7 @@ namespace Cynthia.Web
             {
                 isSiteEditor = SiteUtils.UserIsSiteEditor();
 
-                if (WebUser.IsAdminOrContentAdmin || isSiteEditor || WebUser.IsInRoles(currentPage.EditRoles)
+                if (WebUser.IsAdminOrContentAdmin || isSiteEditor || WebUser.IsInRoles(CurPageSettings.EditRoles)
                     || ((moduleConfiguration != null)
                            && (WebUser.IsInRoles(moduleConfiguration.AuthorizedEditRoles))
                        )
@@ -97,12 +77,12 @@ namespace Cynthia.Web
                     isEditable = true;
                 }
 
-                if (WebConfigSettings.EnableContentWorkflow && siteSettings.EnableContentWorkflow && (this is IWorkflow))
+                if (WebConfigSettings.EnableContentWorkflow && SiteSettings.EnableContentWorkflow && (this is IWorkflow))
                 {
                     enableWorkflow = true;
                     if (!isEditable) 
                     {
-                        if ((WebUser.IsInRoles(currentPage.DraftEditOnlyRoles)) || (WebUser.IsInRoles(moduleConfiguration.DraftEditRoles)))
+                        if ((WebUser.IsInRoles(CurPageSettings.DraftEditOnlyRoles)) || (WebUser.IsInRoles(moduleConfiguration.DraftEditRoles)))
                         {
                             isEditable = true;
                             
@@ -131,6 +111,34 @@ namespace Cynthia.Web
 				CssClass = moduleConfiguration.FeatureName.Replace(" ", "_").Trim();
             }
         }
+
+		private void LoadSettings()
+		{
+			//date format string
+			if (Settings.Contains("FeedDateFormatSetting"))
+			{
+				DateFormat = Settings["FeedDateFormatSetting"].ToString().Trim();
+			}
+			else if (settings.Contains("BlogDateTimeFormat"))
+			{
+				DateFormat = Settings["BlogDateTimeFormat"].ToString().Trim();
+			}
+			if (DateFormat.Length > 0)
+			{
+				try
+				{
+					string d = DateTime.Now.ToString(DateFormat, CultureInfo.CurrentCulture);
+				}
+				catch (FormatException)
+				{
+					DateFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
+				}
+			}
+			else
+			{
+				DateFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
+			}
+		}
 
 #if !MONO
         [Personalizable(PersonalizationScope.Shared)] 
@@ -177,10 +185,10 @@ namespace Cynthia.Web
 		{
 			get 
             {
-                if ((siteSettings != null)
-                    &&(siteSettings.SiteFolderName.Length > 0))
+                if ((SiteSettings != null)
+                    &&(SiteSettings.SiteFolderName.Length > 0))
                 {
-                    return siteSettings.SiteRoot;
+                    return SiteSettings.SiteRoot;
                 }
                 return WebUtils.GetSiteRoot(); 
             }

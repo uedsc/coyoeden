@@ -116,7 +116,7 @@ namespace Cynthia.Web.ContactUI
                 {
                     ContactFormMessage contact = new ContactFormMessage();
                     contact.ModuleGuid = m.ModuleGuid;
-                    contact.SiteGuid = siteSettings.SiteGuid;
+                    contact.SiteGuid = SiteSettings.SiteGuid;
                     contact.Message = message.ToString();
                     contact.Subject = subjectPrefix + ": " + txtSubject.Text;
                     contact.UserName = txtName.Text;
@@ -136,7 +136,7 @@ namespace Cynthia.Web.ContactUI
 
                 }
 
-                string fromAddress = siteSettings.DefaultEmailFromAddress;
+                string fromAddress = SiteSettings.DefaultEmailFromAddress;
                 if (useInputAsFromAddress) { fromAddress = txtEmail.Text; }
 
                 if (emailAddresses != null)
@@ -367,10 +367,10 @@ namespace Cynthia.Web.ContactUI
             }
             else
             {
-                captcha.ProviderName = siteSettings.CaptchaProvider;
+                captcha.ProviderName = SiteSettings.CaptchaProvider;
                 captcha.Captcha.ControlID = "captcha" + ModuleId;
-                captcha.RecaptchaPrivateKey = siteSettings.RecaptchaPrivateKey;
-                captcha.RecaptchaPublicKey = siteSettings.RecaptchaPublicKey;
+                captcha.RecaptchaPrivateKey = SiteSettings.RecaptchaPrivateKey;
+                captcha.RecaptchaPublicKey = SiteSettings.RecaptchaPublicKey;
 
             }
 

@@ -3,7 +3,8 @@
 <%@ Register TagPrefix="blog" TagName="Archives" Src="~/Blog/Controls/ArchiveListControl.ascx" %>
 <%@ Register TagPrefix="blog" TagName="FeedLinks" Src="~/Blog/Controls/FeedLinksControl.ascx" %>
 <%@ Register TagPrefix="blog" TagName="StatsControl" Src="~/Blog/Controls/StatsControl.ascx" %>
-<asp:Panel id="pnlBlog" runat="server" CssClass="panelwrapper blogwrapper blogview">
+<%@ Import Namespace="Resources" %>
+<asp:Panel id="pnlBlog" runat="server" CssClass="module_inner blogview">
 <portal:CPanel ID="CynPanel1" runat="server" ArtisteerCssClass="art-PostContent">
 <div class="modulecontent">
  <asp:Panel id="divNav" runat="server" cssclass="blognavright" EnableViewState="false" >
@@ -22,11 +23,17 @@
     <h2 class="blogtitle"><asp:Literal id="litTitle" runat="server" EnableViewState="false" />&nbsp;
 	    <asp:HyperLink ID="lnkEdit" runat="server" EnableViewState="false" CssClass="ModuleEditLink"></asp:HyperLink>
 	    </h2>
-    <div class="blogdate" >
-        <asp:Literal ID="litAuthor" runat="server" EnableViewState="false" Visible="false" />
-	    <asp:Literal id="litStartDate" runat="server" EnableViewState="false" />
-    </div>
-    <div class="blogpager blogdate">
+    <div class="postmetadata rounded">
+	  <span><%=DateTimeHelper.LocalizeToCalendar(ThePost.StartDate.AddHours(TimeZoneOffset).ToString(DateFormat))%></span>
+	  <%if (ShowPostAuthorSetting)
+	 {%>
+	  <div class="the_author">
+	    <img height="20" width="20" class="avatar avatar-20 photo" src="<%= SkinBaseUrl%>img/avatar20.jpeg" alt=""/>    				    
+	    <h4><a rel="external" title="" href="#"><%=String.Format(CultureInfo.CurrentCulture,BlogResources.PostAuthorFormat,BlogAuthor) %></a></h4>
+	  </div>
+	  <%} %>
+	</div>
+    <div class="blogpager">
     <asp:HyperLink ID="lnkPreviousPostTop" runat="server" Visible="false" EnableViewState="false"></asp:HyperLink>
     <asp:HyperLink ID="lnkNextPostTop" runat="server" Visible="false" EnableViewState="false"></asp:HyperLink>
     </div>
@@ -73,7 +80,7 @@
 			        <div >
 				        <asp:Label id="Label2" Visible="True" runat="server" EnableViewState="false"
 				            CssClass="blogdate" 
-				            Text='<%# DateTimeHelper.GetTimeZoneAdjustedDateTimeString(((System.Data.Common.DbDataRecord)Container.DataItem),"DateCreated", TimeOffset, CommentDateTimeFormat) %>' />
+				            Text='<%# DateTimeHelper.GetTimeZoneAdjustedDateTimeString(((System.Data.Common.DbDataRecord)Container.DataItem),"DateCreated", TimeZoneOffset, CommentDateTimeFormat) %>' />
 				        <asp:Label id="Label3" runat="server" EnableViewState="false"
 				            Visible='<%# (bool) (DataBinder.Eval(Container.DataItem, "URL").ToString().Length == 0) %>' 
 				            CssClass="blogcommentposter">

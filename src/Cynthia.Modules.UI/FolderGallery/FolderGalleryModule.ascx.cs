@@ -133,9 +133,9 @@ namespace Cynthia.Web.GalleryUI
 
         private string GetDefaultGalleryPath()
         {
-            if (siteSettings == null) return string.Empty;
+            if (SiteSettings == null) return string.Empty;
 
-            return "~/Data/Sites/" + siteSettings.SiteId.ToString(CultureInfo.InvariantCulture)
+            return "~/Data/Sites/" + SiteSettings.SiteId.ToString(CultureInfo.InvariantCulture)
                 + "/FolderGalleries/";
         }
 
@@ -148,7 +148,7 @@ namespace Cynthia.Web.GalleryUI
 
         private void LoadSettings()
         {
-            CSetup.EnsureFolderGalleryFolder(siteSettings);
+            CSetup.EnsureFolderGalleryFolder(SiteSettings);
 
         }
 

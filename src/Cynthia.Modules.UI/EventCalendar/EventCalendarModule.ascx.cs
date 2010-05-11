@@ -131,7 +131,7 @@ namespace Cynthia.Web.EventCalendarUI
             if (!this.RenderInWebPartMode)
             {
                
-                string baseUrl = currentPage.ResolveUrl(siteSettings);
+                string baseUrl = CurPageSettings.ResolveUrl(SiteSettings);
                 if (baseUrl.EndsWith(".aspx"))
                 {
                     baseUrl += "?";

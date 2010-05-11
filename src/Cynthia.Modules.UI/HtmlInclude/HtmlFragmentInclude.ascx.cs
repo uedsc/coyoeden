@@ -35,7 +35,7 @@ namespace Cynthia.Web.ContentUI
 			//load module settings
 			includeFileName = (string)Settings["HtmlFragmentSourceSetting"];
 			NOExtraMarkUp = Convert.ToBoolean(Settings["HtmlFragmentNOExtraMarkUp"]);
-			includePath = HttpContext.Current.Server.MapPath(String.Format("{0}/Data/Sites/{1}/htmlfragments", WebUtils.GetApplicationRoot(), siteSettings.SiteId));
+			includePath = HttpContext.Current.Server.MapPath(String.Format("{0}/Data/Sites/{1}/htmlfragments", WebUtils.GetApplicationRoot(), SiteSettings.SiteId));
 			includeContentFile = String.Format("{0}{1}{2}", includePath, Path.DirectorySeparatorChar, includeFileName);
 
 

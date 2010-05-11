@@ -29,6 +29,7 @@ border-top:1px solid #D5D5D5;
 display:block;
 font-size:11px;
 line-height:18px;
+margin-top:6.18px;
 padding:11px 40px 10px 6.18px;
 position:relative;	
 }
@@ -438,8 +439,3 @@ div.addthisbutton { position:absolute; top:60px; right:10px; }
 /* admin/pagelayout.aspx*/
 #panel_list dd{float:left;margin-right:6.18px;margin-bottom:6.18px;}
 /*/admin/pagelayout.aspx*/
-
-
-
-
-

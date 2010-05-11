@@ -28,7 +28,6 @@ namespace Cynthia.Web.FeedUI
         // added by Walter
         private int totalPages = 1;
         private int pageSize = 10;
-        private string dateFormat;
         private DataTable dtFeedList = null;
 
         protected string allowedImageUrlRegexPattern = SecurityHelper.RegexRelativeImageUrlPatern;
@@ -51,7 +50,6 @@ namespace Cynthia.Web.FeedUI
         protected bool RemoveMarkupFromInvalidPosts = true;
         protected string ErrorMessage = string.Empty;
         protected bool useNeatHtml = true;
-        protected Double timeZoneOffset = 0;
         protected bool UseFillerOnEmptyDays = false;
         private bool useCalendar = false;
 
@@ -198,11 +196,11 @@ namespace Cynthia.Web.FeedUI
 
         private void LocalizeTimes(DataTable dt)
         {
-            if (timeZoneOffset == 0) { return; }
+            if (TimeZoneOffset == 0) { return; }
 
             foreach (DataRow RowNotInTableException in dt.Rows)
             {
-                RowNotInTableException["PubDate"] = Convert.ToDateTime(RowNotInTableException["PubDate"]).AddHours(timeZoneOffset);
+                RowNotInTableException["PubDate"] = Convert.ToDateTime(RowNotInTableException["PubDate"]).AddHours(TimeZoneOffset);
             }
 
         }
@@ -350,18 +348,6 @@ namespace Cynthia.Web.FeedUI
             
         }
 
-        protected string GetDateHeader(DateTime pubDate)
-        {
-            // adjust from GMT to user time zone
-            return pubDate.AddHours(timeZoneOffset).ToString(dateFormat);
-        }
-		protected string GetDateHeader(DateTime pubDate, string dateFormatOverriade)
-		{
-			var d = pubDate.AddHours(timeZoneOffset);
-			var retVal = d.ToString(dateFormatOverriade);
-			return retVal;
-		}
-
         private void PopulateLabels()
         {
             Title1.EditUrl = SiteRoot + "/FeedManager/FeedEdit.aspx";
@@ -382,7 +368,6 @@ namespace Cynthia.Web.FeedUI
 
         private void LoadSettings()
         {
-            timeZoneOffset = SiteUtils.GetUserTimeOffset();
             Page.EnableViewState = true;
             try
             {
@@ -394,30 +379,7 @@ namespace Cynthia.Web.FeedUI
                 //this method was introduced in .NET 3.5 SP1
             }
 
-            pnlContainer.ModuleId = ModuleId;
-
-            dateFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
-            if (Settings.Contains("FeedDateFormatSetting"))
-            {
-                dateFormat = Settings["FeedDateFormatSetting"].ToString().Trim();
-                if (dateFormat.Length > 0)
-                {
-                    try
-                    {
-                        string d = DateTime.Now.ToString(dateFormat, CultureInfo.CurrentCulture);
-                    }
-                    catch (FormatException)
-                    {
-                        dateFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
-                    }
-                }
-                else
-                {
-                    dateFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
-                }
-            }
-
-            
+            pnlContainer.ModuleId = ModuleId;            
 
             ConfirmImage = this.ImageSiteRoot + "/Data/SiteImages/confirmed";
 

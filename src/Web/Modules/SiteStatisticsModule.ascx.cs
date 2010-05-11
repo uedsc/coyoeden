@@ -30,7 +30,7 @@ namespace Cynthia.Web.StatisticsUI
             this.Load += new EventHandler(Page_Load);
             this.zgMembershipGrowth.RenderGraph += new ZedGraph.Web.ZedGraphWebControlEventHandler(this.OnRenderUserChart);
 
-            this.zgMembershipGrowth.RenderedImagePath = "~/Data/Sites/" + siteSettings.SiteId.ToString()
+            this.zgMembershipGrowth.RenderedImagePath = "~/Data/Sites/" + SiteSettings.SiteId.ToString()
             + "/systemfiles/";
         }
 

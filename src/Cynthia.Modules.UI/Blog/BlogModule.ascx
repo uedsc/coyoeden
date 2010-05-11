@@ -3,7 +3,7 @@
 <%@ Register TagPrefix="blog" TagName="Archives" Src="~/Blog/Controls/ArchiveListControl.ascx" %>
 <%@ Register TagPrefix="blog" TagName="FeedLinks" Src="~/Blog/Controls/FeedLinksControl.ascx" %>
 <%@ Register TagPrefix="blog" TagName="StatsControl" Src="~/Blog/Controls/StatsControl.ascx" %>
-
+<%@ Import Namespace="Resources" %>
 <portal:ModulePanel ID="pnlContainer" runat="server" CssClass="module">
 <asp:Panel ID="pnlWrapper" runat="server" cssclass="module_inner panelwrapper blogmodule">
 <portal:ModuleTitleControl id="Title1" runat="server" />
@@ -33,7 +33,7 @@
          TitleStyle-CssClass="aspcalendartitle"
          TodayDayStyle-CssClass="aspcalendartoday"
          WeekendDayStyle-CssClass="aspcalendarweekendday"
-        ></asp:calendar><br />
+        ></asp:calendar>
         <blog:FeedLinks id="Feeds" runat="server" />
         <asp:Panel ID="pnlStatistics" runat="server">
         <blog:StatsControl id="stats" runat="server" />
@@ -43,13 +43,12 @@
         </asp:Panel>
         <asp:Panel ID="pnlArchives" Runat="server" SkinID="plain">
 	        <blog:Archives id="archive" runat="server" />
-	        <br class="clear" />
-        </asp:Panel>
-        		
+        </asp:Panel>  		
     </asp:Panel>
     <asp:Panel id="divblog" runat="server" cssclass="blogcenter-rightnav" SkinID="plain">
         <asp:repeater id="rptBlogs" runat="server"  SkinID="Blog" EnableViewState="False" >
 	        <ItemTemplate>
+				<div class="postentry">
 	            <h3 class="blogtitle">
 		        <asp:HyperLink SkinID="BlogTitle" id="lnkTitle" runat="server" 
 		            EnableViewState="false"
@@ -62,11 +61,8 @@
 				    Tooltip="<%# EditLinkTooltip %>"  
 		            ImageUrl='<%# EditLinkImageUrl %>' 
 		            NavigateUrl='<%# this.SiteRoot + "/Blog/EditPost.aspx?pageid=" + PageId.ToString() + "&amp;ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&amp;mid=" + ModuleId.ToString() %>' 
-		            Visible="<%# IsEditable %>" CssClass="ModuleEditLink" /></h3>
-		        <div class="blogdate">
-		            <%# FormatPostAuthor(DataBinder.Eval(Container.DataItem, "Name").ToString())%>
-			        <%# DateTimeHelper.GetTimeZoneAdjustedDateTimeString(((System.Data.Common.DbDataRecord)Container.DataItem),"StartDate", TimeOffset, BlogDateTimeFormat) %>
-		        </div>
+		            Visible="<%# IsEditable %>" CssClass="ModuleEditLink" />
+		        </h3>
 		        <asp:Panel ID="pnlPost" runat="server" Visible='<%# !TitleOnly %>'>
 		        <portal:CRating runat="server" ID="Rating" Enabled='<%# EnableContentRatingSetting %>' ContentGuid='<%# new Guid(Eval("BlogGuid").ToString()) %>' AllowFeedback='false' />
 		        <cy:OdiogoItem id="od1" runat="server" OdiogoFeedId='<%# OdiogoFeedIDSetting %>' ItemId='<%# DataBinder.Eval(Container.DataItem,"ItemID") %>' ItemTitle = '<%# Eval("Heading") %>' />
@@ -100,21 +96,22 @@
 		         ButtonImageUrl='<%# addThisButtonImageUrl %>'
 		         UrlToShare='<%# this.SiteRoot + DataBinder.Eval(Container.DataItem,"ItemUrl").ToString().Replace("~", string.Empty)  %>'
 		        />
-		        
-		        <div  class="blogcommentlink">
-			        <asp:HyperLink id="Hyperlink2" runat="server" EnableViewState="false" 
-			            Text='<%# FeedBackLabel + "(" + DataBinder.Eval(Container.DataItem,"CommentCount") + ")" %>' 
-			            Visible='<%# AllowComments && ShowCommentCounts %>' 
-			            NavigateUrl='<%# FormatBlogUrl(DataBinder.Eval(Container.DataItem,"ItemUrl").ToString(), Convert.ToInt32(DataBinder.Eval(Container.DataItem,"ItemID")))  %>' 
-			            CssClass="blogcommentlink"></asp:HyperLink>
-			            <asp:HyperLink id="Hyperlink1" runat="server" EnableViewState="false" 
-			            Text='<%# FeedBackLabel %>' 
-			            Visible='<%# AllowComments && !ShowCommentCounts %>' 
-			            NavigateUrl='<%# FormatBlogUrl(DataBinder.Eval(Container.DataItem,"ItemUrl").ToString(), Convert.ToInt32(DataBinder.Eval(Container.DataItem,"ItemID")))  %>' 
-			            CssClass="blogcommentlink"></asp:HyperLink>&#160;
-			        
-		        </div>
 		        </asp:Panel>
+		        <div class="postmetadata">
+				  <span><%# DateTimeHelper.GetTimeZoneAdjustedDateTimeString(((System.Data.Common.DbDataRecord)Container.DataItem),"StartDate", TimeZoneOffset, DateFormat) %></span>
+				  <%if (AllowComments){%>
+				  <span> | <a href="<%# FormatBlogTitleUrl(DataBinder.Eval(Container.DataItem,"ItemUrl").ToString(), Convert.ToInt32(DataBinder.Eval(Container.DataItem,"ItemID")))  %>">
+					<%=BlogResources.BlogCommentCountLabel%>
+					<%if (ShowCommentCounts){ %>(<%#DataBinder.Eval(Container.DataItem,"CommentCount") %> )<%} %>
+					</a> 
+				  </span>
+				  <%} %>
+				  <div class="the_author">
+				    <img height="20" width="20" class="avatar avatar-20 photo" src="<%= SkinBaseUrl%>img/avatar20.jpeg" alt=""/>    				    
+				    <h4><a rel="external" title="" href="#"><%# FormatPostAuthor(DataBinder.Eval(Container.DataItem, "Name").ToString())%></a></h4>
+				  </div>
+				</div>
+				</div>
 	        </ItemTemplate>
         </asp:repeater>
         <portal:CCutePager ID="pgr" runat="server" />

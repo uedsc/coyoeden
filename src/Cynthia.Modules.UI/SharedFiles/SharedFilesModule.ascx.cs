@@ -575,7 +575,7 @@ namespace Cynthia.Web.SharedFilesUI
             lblError.Text = String.Empty;
 
             TimeOffset = SiteUtils.GetUserTimeOffset();
-            filePath = Page.Server.MapPath("~/Data/Sites/" + siteSettings.SiteId.ToInvariantString() + "/SharedFiles/");
+            filePath = Page.Server.MapPath("~/Data/Sites/" + SiteSettings.SiteId.ToInvariantString() + "/SharedFiles/");
 
             if (WebConfigSettings.UseGreyBoxProgressForNeatUpload)
             {

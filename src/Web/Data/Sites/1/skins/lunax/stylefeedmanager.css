@@ -5,14 +5,14 @@
 .rsscenter-leftnav {margin: 0px 0px 0px 245px; padding: 5px 0px 0px 5px; font-size: 105%;   }
 .rsscenter-rightnav {margin:0px 245px 0px 0px; padding: 5px 0px 0px 5px; font-size: 105%;   }
 .rssentry{position:relative;padding:10px;}
-.rsstitle  
+.rsstitle,.blogtitle  
 {
 	margin: 5px 0px 0px 0px;  font-weight: bold; font-family: arial, sans-serif;font-size: 140%;
 	background:url("img/h1-border.jpg") repeat-x scroll left bottom transparent; 
 	padding-bottom:6.18px;
 	margin-bottom:3.82px;           
 }
-.rssdate  
+.rssdate,.postdate  
 {
 	background-color:#060606;
 	color:#4E4E4E;
@@ -25,7 +25,7 @@
 	text-shadow:1px 1px 2px #000000;
 	top:8px;	
 }
-.rssdate .date
+.rssdate .date,.postdate .date
 {
 	color:#8A8A8A;
 	font-size:20px;

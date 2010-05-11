@@ -301,7 +301,7 @@
     <value>Blog</value>
   </data>
   <data name="BlogFeedbackLabel" xml:space="preserve">
-    <value>Feedback</value>
+    <value>Comments</value>
   </data>
   <data name="BlogFeedburnerFeedUrl" xml:space="preserve">
     <value>Feedburner Feed Url</value>

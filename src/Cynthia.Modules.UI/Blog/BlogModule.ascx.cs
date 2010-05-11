@@ -39,8 +39,6 @@ namespace Cynthia.Web.BlogUI
         protected string feedburnerFeedUrl = string.Empty;
         protected string EditContentImage = WebConfigSettings.EditContentImage;
         protected string EditBlogAltText = "Edit";
-        protected string BlogDateTimeFormat;
-        protected string FeedBackLabel;
         protected bool ShowCalendar = false;
         protected DateTime CalendarDate;
         protected bool ShowCategories = false;
@@ -51,7 +49,6 @@ namespace Cynthia.Web.BlogUI
         protected bool ShowFeedLinks = true;
         protected bool ShowAddFeedLinks = true;
         protected bool BlogUseLinkForHeading = true;
-        protected Double TimeOffset = 0; 
         protected string GmapApiKey = string.Empty;
         protected int GoogleMapHeightSetting = 300;
         protected int GoogleMapWidthSetting = 500;
@@ -252,7 +249,6 @@ namespace Cynthia.Web.BlogUI
             calBlogNav.UseAccessibleHeader = true;
 
             EditBlogAltText = BlogResources.EditImageAltText;
-            FeedBackLabel = BlogResources.BlogFeedbackLabel;
 
             CBasePage basePage = Page as CBasePage;
             if (basePage != null)
@@ -387,9 +383,8 @@ namespace Cynthia.Web.BlogUI
        
         protected virtual void LoadSettings()
         {
-            TimeOffset = SiteUtils.GetUserTimeOffset();
             GmapApiKey = SiteUtils.GetGmapApiKey();
-            addThisAccountId = siteSettings.AddThisDotComUsername;
+            addThisAccountId = SiteSettings.AddThisDotComUsername;
 
             try
             {
@@ -474,30 +469,7 @@ namespace Cynthia.Web.BlogUI
             if (Settings.Contains("BlogAuthorSetting"))
             {
                 blogAuthor = Settings["BlogAuthorSetting"].ToString();
-            }
-
-            BlogDateTimeFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
-            if (Settings.Contains("BlogDateTimeFormat"))
-            {
-                BlogDateTimeFormat = Settings["BlogDateTimeFormat"].ToString().Trim();
-                if (BlogDateTimeFormat.Length > 0)
-                {
-                    try
-                    {
-                        string d = DateTime.Now.ToString(BlogDateTimeFormat, CultureInfo.CurrentCulture);
-                    }
-                    catch (FormatException)
-                    {
-                        BlogDateTimeFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
-                    }
-                }
-                else
-                {
-                    BlogDateTimeFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
-                }
-            }
-
-            
+            }        
 
             ShowCalendar = WebUtils.ParseBoolFromHashtable(
                 Settings, "BlogShowCalendarSetting", false);
@@ -597,7 +569,7 @@ namespace Cynthia.Web.BlogUI
                 addThisCustomBrand = Settings["BlogAddThisCustomBrandSetting"].ToString().Trim();
 
             if (addThisCustomBrand.Length == 0)
-                addThisCustomBrand = siteSettings.SiteName;
+                addThisCustomBrand = SiteSettings.SiteName;
 
             if (Settings.Contains("BlogAddThisCustomOptionsSetting"))
                 addThisCustomOptions = Settings["BlogAddThisCustomOptionsSetting"].ToString().Trim();
@@ -629,24 +601,23 @@ namespace Cynthia.Web.BlogUI
                 IntenseDebateAccountId = Settings["IntenseDebateAccountId"].ToString();
             }
 
-            if (AllowComments)
-            {
-                if ((DisqusSiteShortName.Length > 0) && (CommentSystem == "disqus"))
-                {
-                    disqusFlag = "#disqus_thread";
-                    disqus.SiteShortName = DisqusSiteShortName;
-                    disqus.RenderCommentCountScript = true;
-                    stats.ShowCommentCount = false;
+			if (AllowComments)
+			{
+				if ((DisqusSiteShortName.Length > 0) && (CommentSystem == "disqus"))
+				{
+					disqusFlag = "#disqus_thread";
+					disqus.SiteShortName = DisqusSiteShortName;
+					disqus.RenderCommentCountScript = true;
+					stats.ShowCommentCount = false;
 
-                }
+				}
 
-                if ((IntenseDebateAccountId.Length > 0) && (CommentSystem == "intensedebate"))
-                {
-                    ShowCommentCounts = false;
-                    stats.ShowCommentCount = false;
-                }
-            }
-
+				if ((IntenseDebateAccountId.Length > 0) && (CommentSystem == "intensedebate"))
+				{
+					ShowCommentCounts = false;
+					stats.ShowCommentCount = false;
+				}
+			}
             
             if (!this.NavigationOnRight)
             {

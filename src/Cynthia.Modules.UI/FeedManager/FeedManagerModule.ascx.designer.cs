@@ -47,7 +47,7 @@ namespace Cynthia.Web.FeedUI {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updPnlRSSA;
+        protected global::Cynthia.Web.UI.UpdatePanelX updPnlRSSA;
         
         /// <summary>
         /// divNav control.

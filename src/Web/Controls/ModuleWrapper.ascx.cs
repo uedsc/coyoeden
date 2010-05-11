@@ -70,7 +70,7 @@ namespace Cynthia.Web
                 if (c is SiteModuleControl)
                 {
                     SiteModuleControl siteModule = (SiteModuleControl)c;
-                    siteModule.SiteId = siteSettings.SiteId;
+                    siteModule.SiteId = SiteSettings.SiteId;
                     siteModule.ModuleConfiguration = module;
                     this.Title = module.ModuleTitle;
                     

@@ -1,15 +1,4 @@
-﻿// Author:				        Joe Audette
-// Created:			            2004-08-15
-//	Last Modified:              2010-01-25
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)  
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software.
-
+﻿
 using System;
 using System.Collections;
 using System.Configuration;
@@ -31,7 +20,7 @@ using Resources;
 
 namespace Cynthia.Web.BlogUI
 {
-    public partial class BlogViewControl : UserControl
+    public partial class BlogViewControl : CUserControl
     {
         #region Private Properties
 
@@ -40,11 +29,11 @@ namespace Cynthia.Web.BlogUI
         private string virtualRoot;
         private string addThisAccountId = string.Empty;
         private bool useAddThisMouseOverWidget = true;
-        private Blog blog = null;
+		protected Blog ThePost { get; set; }
         private Module module;
         private bool HideDetailsFromUnauthencticated = false;
         private SiteSettings siteSettings = null;
-        protected string DeleteLinkImage = "~/Data/SiteImages/" + WebConfigSettings.DeleteLinkImage;
+		protected string DeleteLinkImage = String.Format("~/Data/SiteImages/{0}", WebConfigSettings.DeleteLinkImage);
 
         #endregion
 
@@ -55,10 +44,8 @@ namespace Cynthia.Web.BlogUI
         protected int ItemId = -1;
         protected bool AllowComments = false;
         protected bool AllowWebSiteUrlForComments = true;
-        protected string BlogDateTimeFormat;
         protected string CommentDateTimeFormat;
         protected bool parametersAreInvalid = false;
-        protected Double TimeOffset = 0;
         protected bool ShowCategories = false;
         protected bool BlogUseTagCloudForCategoriesSetting = false;
         protected bool ShowArchives = false;
@@ -90,7 +77,7 @@ namespace Cynthia.Web.BlogUI
         protected bool EnableContentRatingSetting = false;
         protected bool EnableRatingCommentsSetting = false;
         protected bool ShowPostAuthorSetting = false;
-        protected string blogAuthor = string.Empty;
+		protected string BlogAuthor { get; set; }
         protected string SiteRoot = string.Empty;
         protected string ImageSiteRoot = string.Empty;
         private CBasePage basePage;
@@ -188,7 +175,7 @@ namespace Cynthia.Web.BlogUI
 
             // if not published only the editor can see it
             if (
-                ((!blog.IsPublished) || (blog.StartDate > DateTime.UtcNow))
+                ((!ThePost.IsPublished) || (ThePost.StartDate > DateTime.UtcNow))
                 &&(!basePage.UserCanEditModule(ModuleId))
                 )
             {
@@ -203,7 +190,7 @@ namespace Cynthia.Web.BlogUI
                 this.lnkEdit.Visible = true;
                 if (!basePage.UseTextLinksForFeatureSettings)
                 {
-                    lnkEdit.ImageUrl = basePage.ImageSiteRoot + "/Data/SiteImages/" + EditContentImage;
+					lnkEdit.ImageUrl = String.Format("{0}/Data/SiteImages/{1}", basePage.ImageSiteRoot, EditContentImage);
                     lnkEdit.Text = BlogResources.EditImageAltText;
                 }
                 else
@@ -220,11 +207,11 @@ namespace Cynthia.Web.BlogUI
                 
             }
 
-            basePage.Title = SiteUtils.FormatPageTitle(basePage.SiteInfo, blog.Title);
-            basePage.MetaDescription = blog.MetaDescription;
-            basePage.MetaKeywordCsv = blog.MetaKeywords;
-            basePage.AdditionalMetaMarkup = blog.CompiledMeta;
-            litTitle.Text = Server.HtmlEncode(blog.Title);
+            basePage.Title = SiteUtils.FormatPageTitle(basePage.SiteInfo, ThePost.Title);
+            basePage.MetaDescription = ThePost.MetaDescription;
+            basePage.MetaKeywordCsv = ThePost.MetaKeywords;
+            basePage.AdditionalMetaMarkup = ThePost.CompiledMeta;
+            litTitle.Text = Server.HtmlEncode(ThePost.Title);
             addThis1.TitleOfUrlToShare = litTitle.Text;
             addThis1.AccountId = addThisAccountId;
             addThis1.CustomBrand = addThisCustomBrand;
@@ -235,46 +222,43 @@ namespace Cynthia.Web.BlogUI
             addThis1.CustomLogoUrl = addThisCustomLogoUrl;
             addThis1.CustomOptions = addThisCustomOptions;
 
-            txtCommentTitle.Text = "re: " + blog.Title;
-            litStartDate.Text = DateTimeHelper.LocalizeToCalendar(
-                blog.StartDate.AddHours(TimeOffset).ToString(BlogDateTimeFormat));
+            txtCommentTitle.Text = "re: " + ThePost.Title;
 
             odiogoPlayer.OdiogoFeedId = OdiogoFeedIDSetting;
-            odiogoPlayer.ItemId = blog.ItemId.ToString(CultureInfo.InvariantCulture);
-            odiogoPlayer.ItemTitle = blog.Title;
-            if (blogAuthor.Length == 0) { blogAuthor = blog.UserName; }
-            litAuthor.Text = string.Format(CultureInfo.InvariantCulture, BlogResources.PostAuthorFormat, blogAuthor);
-            litDescription.Text = blog.Description;
-            litExcerpt.Text = GetExcerpt(blog);
+            odiogoPlayer.ItemId = ThePost.ItemId.ToString(CultureInfo.InvariantCulture);
+            odiogoPlayer.ItemTitle = ThePost.Title;
+            if (BlogAuthor.Length == 0) { BlogAuthor = ThePost.UserName; }
+            litDescription.Text = ThePost.Description;
+            litExcerpt.Text = GetExcerpt(ThePost);
 
-            if (blog.PreviousPostUrl.Length > 0)
+            if (ThePost.PreviousPostUrl.Length > 0)
             {
                 lnkPreviousPostTop.Visible = true;
                 lnkPreviousPost.Visible = true;
-                lnkPreviousPostTop.NavigateUrl = basePage.SiteRoot + blog.PreviousPostUrl.Replace("~", string.Empty);
-                lnkPreviousPostTop.ToolTip = blog.PreviousPostTitle;
+                lnkPreviousPostTop.NavigateUrl = basePage.SiteRoot + ThePost.PreviousPostUrl.Replace("~", string.Empty);
+                lnkPreviousPostTop.ToolTip = ThePost.PreviousPostTitle;
 
-                lnkPreviousPost.NavigateUrl = basePage.SiteRoot + blog.PreviousPostUrl.Replace("~", string.Empty);
-                lnkPreviousPost.ToolTip = blog.PreviousPostTitle;
+                lnkPreviousPost.NavigateUrl = basePage.SiteRoot + ThePost.PreviousPostUrl.Replace("~", string.Empty);
+                lnkPreviousPost.ToolTip = ThePost.PreviousPostTitle;
 
             }
             
-            if (blog.NextPostUrl.Length > 0)
+            if (ThePost.NextPostUrl.Length > 0)
             {
                 lnkNextPostTop.Visible = true;
                 lnkNextPost.Visible = true;
-                lnkNextPostTop.NavigateUrl = basePage.SiteRoot + blog.NextPostUrl.Replace("~", string.Empty);
-                lnkNextPostTop.ToolTip = blog.NextPostTitle;
+                lnkNextPostTop.NavigateUrl = basePage.SiteRoot + ThePost.NextPostUrl.Replace("~", string.Empty);
+                lnkNextPostTop.ToolTip = ThePost.NextPostTitle;
 
-                lnkNextPost.NavigateUrl = basePage.SiteRoot + blog.NextPostUrl.Replace("~", string.Empty);
-                lnkNextPost.ToolTip = blog.NextPostTitle;
+                lnkNextPost.NavigateUrl = basePage.SiteRoot + ThePost.NextPostUrl.Replace("~", string.Empty);
+                lnkNextPost.ToolTip = ThePost.NextPostTitle;
             }
             
-            if (blog.Location.Length > 0)
+            if (ThePost.Location.Length > 0)
             {
                 gmap.Visible = true;
                 gmap.GMapApiKey = GmapApiKey;
-                gmap.Location = blog.Location;
+                gmap.Location = ThePost.Location;
                 gmap.EnableMapType = GoogleMapEnableMapTypeSetting;
                 gmap.EnableZoom = GoogleMapEnableZoomSetting;
                 gmap.ShowInfoWindow = GoogleMapShowInfoWindowSetting;
@@ -304,7 +288,7 @@ namespace Cynthia.Web.BlogUI
             link.ID = "blogurl";
             link.Text = "\n<link rel='canonical' href='"
                 + SiteRoot
-                + blog.ItemUrl.Replace("~/", "/")
+                + ThePost.ItemUrl.Replace("~/", "/")
                 + "' />";
 
             Page.Header.Controls.Add(link);
@@ -366,17 +350,17 @@ namespace Cynthia.Web.BlogUI
                 PopulateControls();
                 return;
             }
-            if (blog == null) { return; }
+            if (ThePost == null) { return; }
             if (moduleSettings == null) { return; }
-            if (blog.AllowCommentsForDays < 0)
+            if (ThePost.AllowCommentsForDays < 0)
             {
                 WebUtils.SetupRedirect(this, Request.RawUrl);
                 return;
             }
 
-            DateTime endDate = blog.StartDate.AddDays((double)blog.AllowCommentsForDays);
+            DateTime endDate = ThePost.StartDate.AddDays((double)ThePost.AllowCommentsForDays);
 
-            if ((endDate < DateTime.UtcNow) && (blog.AllowCommentsForDays > 0)) return;
+            if ((endDate < DateTime.UtcNow) && (ThePost.AllowCommentsForDays > 0)) return;
 
             if (this.chkRememberMe.Checked)
             {
@@ -400,7 +384,7 @@ namespace Cynthia.Web.BlogUI
                 {
                     //added this 2008-08-07 due to blog coment spam and need to be able to ban the ip of the spammer
                     StringBuilder message = new StringBuilder();
-                    message.Append(basePage.SiteRoot + blog.ItemUrl.Replace("~", string.Empty));
+                    message.Append(basePage.SiteRoot + ThePost.ItemUrl.Replace("~", string.Empty));
 
                     message.Append("\n\nHTTP_USER_AGENT: " + Page.Request.ServerVariables["HTTP_USER_AGENT"] + "\n");
                     message.Append("HTTP_HOST: " + Page.Request.ServerVariables["HTTP_HOST"] + "\n");
@@ -473,15 +457,15 @@ namespace Cynthia.Web.BlogUI
 
         private void LoadSettings()
         {
-            blog = new Blog(ItemId);
+            ThePost = new Blog(ItemId);
             module = new Module(ModuleId, basePage.CurrentPage.PageId);
 
             siteSettings = CacheHelper.GetCurrentSiteSettings();
 
             if (
                 (module.ModuleId == -1)
-                || (blog.ModuleId == -1)
-                || (blog.ModuleId != module.ModuleId)
+                || (ThePost.ModuleId == -1)
+                || (ThePost.ModuleId != module.ModuleId)
                 ||(siteSettings == null)
                 )
             {
@@ -566,26 +550,24 @@ namespace Cynthia.Web.BlogUI
                 IntenseDebateAccountId = moduleSettings["IntenseDebateAccountId"].ToString();
             }
 
-            
-            BlogDateTimeFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
-            CommentDateTimeFormat = BlogDateTimeFormat;
+			CommentDateTimeFormat = DateFormat;
             if (moduleSettings.Contains("BlogDateTimeFormat"))
             {
-                BlogDateTimeFormat = moduleSettings["BlogDateTimeFormat"].ToString().Trim();
-                if (BlogDateTimeFormat.Length > 0)
+				DateFormat = moduleSettings["BlogDateTimeFormat"].ToString().Trim();
+				if (DateFormat.Length > 0)
                 {
                     try
                     {
-                        string d = DateTime.Now.ToString(BlogDateTimeFormat, CultureInfo.CurrentCulture);
+						string d = DateTime.Now.ToString(DateFormat, CultureInfo.CurrentCulture);
                     }
                     catch (FormatException)
                     {
-                        BlogDateTimeFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
+						DateFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
                     }
                 }
                 else
                 {
-                    BlogDateTimeFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
+					DateFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
                 }
             }
 
@@ -593,7 +575,7 @@ namespace Cynthia.Web.BlogUI
 
             ((CRating)Rating).Enabled = EnableContentRatingSetting;
             ((CRating)Rating).AllowFeedback = EnableRatingCommentsSetting;
-            ((CRating)Rating).ContentGuid = blog.BlogGuid;
+            ((CRating)Rating).ContentGuid = ThePost.BlogGuid;
 
             if (moduleSettings.Contains("GoogleMapInitialMapTypeSetting"))
             {
@@ -677,10 +659,9 @@ namespace Cynthia.Web.BlogUI
 
             if (moduleSettings.Contains("BlogAuthorSetting"))
             {
-                blogAuthor = moduleSettings["BlogAuthorSetting"].ToString().Trim();
+                BlogAuthor = moduleSettings["BlogAuthorSetting"].ToString().Trim();
             }
-
-            litAuthor.Visible = ShowPostAuthorSetting;
+			BlogAuthor = BlogAuthor ?? "";
 
             pnlStatistics.Visible = ShowStatistics;
             pnlFeedback.Visible = AllowComments;
@@ -706,23 +687,23 @@ namespace Cynthia.Web.BlogUI
             showRightContent = WebUtils.ParseBoolFromHashtable(
                 moduleSettings, "ShowPageRightContentSetting", showRightContent);
 
-            if (blog.AllowCommentsForDays < 0)
+            if (ThePost.AllowCommentsForDays < 0)
             {
                 pnlNewComment.Visible = false;
                 pnlCommentsClosed.Visible = true;
                 AllowComments = false;
             }
 
-            if (blog.AllowCommentsForDays == 0)
+            if (ThePost.AllowCommentsForDays == 0)
             {
                 pnlNewComment.Visible = true;
                 pnlCommentsClosed.Visible = false;
                 AllowComments = true;
             }
 
-            if (blog.AllowCommentsForDays > 0)
+            if (ThePost.AllowCommentsForDays > 0)
             {
-                DateTime endDate = blog.StartDate.AddDays((double)blog.AllowCommentsForDays);
+                DateTime endDate = ThePost.StartDate.AddDays((double)ThePost.AllowCommentsForDays);
 
 
                 if (endDate > DateTime.UtcNow)
@@ -765,11 +746,11 @@ namespace Cynthia.Web.BlogUI
                 {
                    
                     // don't use new external comment system for existing posts that already have comments
-                    if (blog.CommentCount == 0)
+                    if (ThePost.CommentCount == 0)
                     {
                         disqus.SiteShortName = DisqusSiteShortName;
                         disqus.RenderWidget = true;
-                        disqus.WidgetPageUrl = FormatBlogUrl(blog.ItemUrl, blog.ItemId);
+                        disqus.WidgetPageUrl = FormatBlogUrl(ThePost.ItemUrl, ThePost.ItemId);
                         //disqus.WidgetPageId = blog.BlogGuid.ToString();
                         pnlFeedback.Visible = false;
                         if (UseCommentSpamBlocker) { this.Controls.Remove(pnlAntiSpam); }
@@ -781,10 +762,10 @@ namespace Cynthia.Web.BlogUI
 
                 if ((CommentSystem == "intensedebate") && (IntenseDebateAccountId.Length > 0))
                 {
-                    if (blog.CommentCount == 0)
+                    if (ThePost.CommentCount == 0)
                     {
                         intenseDebate.AccountId = IntenseDebateAccountId;
-                        intenseDebate.PostUrl = FormatBlogUrl(blog.ItemUrl, blog.ItemId);
+                        intenseDebate.PostUrl = FormatBlogUrl(ThePost.ItemUrl, ThePost.ItemId);
                         pnlFeedback.Visible = false;
                         if (UseCommentSpamBlocker) { this.Controls.Remove(pnlAntiSpam); }
                     }
@@ -812,7 +793,7 @@ namespace Cynthia.Web.BlogUI
             }
             else
             {
-                if ((HideDetailsFromUnauthencticated)&&(blog.Description.Length > ExcerptLength))
+                if ((HideDetailsFromUnauthencticated)&&(ThePost.Description.Length > ExcerptLength))
                 {
                     pnlDetails.Visible = false;
                     pnlExcerpt.Visible = true;
@@ -869,7 +850,7 @@ namespace Cynthia.Web.BlogUI
 
             if (!AllowComments) { return false; }
 
-            if ((CommentSystem != "internal")&&(blog.CommentCount == 0)) { return false; }
+            if ((CommentSystem != "internal")&&(ThePost.CommentCount == 0)) { return false; }
 
             if (edComment.Text.Length == 0) { return false; }
             if (edComment.Text == "<p>&#160;</p>") { return false; }
@@ -972,7 +953,6 @@ namespace Cynthia.Web.BlogUI
         private void LoadParams()
         {
             virtualRoot = WebUtils.GetApplicationRoot();
-            TimeOffset = SiteUtils.GetUserTimeOffset();
             PageId = WebUtils.ParseInt32FromQueryString("pageid", -1);
             ModuleId = WebUtils.ParseInt32FromQueryString("mid", -1);
             ItemId = WebUtils.ParseInt32FromQueryString("ItemID", -1);

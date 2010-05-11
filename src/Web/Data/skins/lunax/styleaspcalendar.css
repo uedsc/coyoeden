@@ -1,4 +1,4 @@
-.aspcalendarmain { margin: 0px 0px 0px 5px; background-color: #e6efdb; color:Black; font-size:10px; }
+.aspcalendarmain {color:Black; font-size:10px; margin-bottom:25px;}
 .aspcalendardayheader { font-weight:bold; font-size:10px; color:#08619a; text-align:center; white-space:nowrap;}
 .aspcalendarday { border: solid 1px black;  font-size:10px; color:Black; text-align:center; white-space:nowrap;}
 .aspcalendarnextprevious {  font-weight:bold; font-size:small; color:Black; text-align:center; white-space:nowrap; }

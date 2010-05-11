@@ -130,7 +130,7 @@ namespace Cynthia.Web.ContentUI
 
             if (IsEditable)
             {
-				TitleUrl = String.Format("{0}/HtmlEdit.aspx?mid={1}&pageid={2}", SiteRoot, ModuleId, currentPage.PageId);
+				TitleUrl = String.Format("{0}/HtmlEdit.aspx?mid={1}&pageid={2}", SiteRoot, ModuleId, CurPageSettings.PageId);
             }
 
             TimeOffset = SiteUtils.GetUserTimeOffset();
@@ -232,7 +232,7 @@ namespace Cynthia.Web.ContentUI
 
         public void SubmitForApproval()
         {
-            if (currentPage == null) { return; }
+            if (CurPageSettings == null) { return; }
 
             SiteUser currentUser = SiteUtils.GetCurrentSiteUser();
             if (currentUser == null) { return; }
@@ -249,11 +249,11 @@ namespace Cynthia.Web.ContentUI
 
             if (!WebConfigSettings.DisableWorkflowNotification)
             {
-                string approverRoles = currentPage.EditRoles + module.AuthorizedEditRoles;
+                string approverRoles = CurPageSettings.EditRoles + module.AuthorizedEditRoles;
 
                 WorkflowHelper.SendApprovalRequestNotification(
                     SiteUtils.GetSmtpSettings(),
-                    siteSettings,
+                    SiteSettings,
                     currentUser,
                     workInProgress,
                     approverRoles,
@@ -292,7 +292,7 @@ namespace Cynthia.Web.ContentUI
             if (html != null)
             {
                 html.ContentChanged += new ContentChangedEventHandler(html_ContentChanged);
-                html.ApproveContent(siteSettings.SiteGuid, currentUser.UserGuid);
+                html.ApproveContent(SiteSettings.SiteGuid, currentUser.UserGuid);
             }
 
             WebUtils.SetupRedirect(this, Request.RawUrl);

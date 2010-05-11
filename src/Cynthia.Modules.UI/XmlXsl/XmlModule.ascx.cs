@@ -40,12 +40,12 @@ namespace Cynthia.Web.XmlUI
                 )
             {
                 string xmlPath =
-                    "~/Data/Sites/" + siteSettings.SiteId.ToString()
+                    "~/Data/Sites/" + SiteSettings.SiteId.ToString()
                     + "/xml/"
                     + Settings["XmlModuleXmlSourceSetting"].ToString();
 
                 string xslPath =
-                    "~/Data/Sites/" + siteSettings.SiteId.ToString()
+                    "~/Data/Sites/" + SiteSettings.SiteId.ToString()
                     + "/xsl/"
                     + Settings["XmlModuleXslSourceSetting"].ToString();
 

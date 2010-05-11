@@ -105,7 +105,7 @@ namespace Cynthia.Web.ForumUI
 
             lnkModuleRSS.NavigateUrl = SiteRoot
                 + "/Forums/RSS.aspx?mid=" + this.ModuleId.ToString()
-                + "&pageid=" + currentPage.PageId.ToString();
+                + "&pageid=" + CurPageSettings.PageId.ToString();
 
             lnkModuleRSS.ImageUrl = ImageSiteRoot + "/Data/SiteImages/" + RssImageFile;
 
