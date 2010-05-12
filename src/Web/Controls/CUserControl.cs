@@ -3,6 +3,7 @@ using System.Web.UI;
 using System.Globalization;
 using Cynthia.Business.WebHelpers;
 using Cynthia.Business;
+using System.Configuration;
 
 namespace Cynthia.Web
 {
@@ -14,6 +15,11 @@ namespace Cynthia.Web
 		protected string DateFormat { get; set; }
 		protected PageSettings CurPageSettings { get; private set; }
 		protected SiteSettings SiteSettings { get; private set; }
+		protected string EditContentImage { get; set; }
+		protected string EditImageUrl { get; set; }
+		protected CBasePage BasePage { get; set; }
+		protected string SiteRoot { get; set; }
+		protected string ImageSiteRoot { get; set; }
 		/// <summary>
 		/// data folder url path of current site
 		/// </summary>
@@ -56,8 +62,16 @@ namespace Cynthia.Web
 			SiteSettings = CacheHelper.GetCurrentSiteSettings();
 			CurPageSettings = CacheHelper.GetCurrentPage();
 			TimeZoneOffset = SiteUtils.GetUserTimeOffset();
+			BasePage = Page as CBasePage;
+			if (null != BasePage)
+			{
+				SiteRoot = BasePage.SiteRoot;
+				ImageSiteRoot = BasePage.ImageSiteRoot;
+			}
 			//Date format string
 			DateFormat = CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern;
+			EditContentImage = ConfigurationManager.AppSettings["EditContentImage"];
+			EditImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, EditContentImage);
 		}
     }
 }

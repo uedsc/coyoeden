@@ -1,20 +1,10 @@
-﻿// Author:					Joe Audette
-// Created:				    2004-08-14
-// Last Modified:			2010-01-05
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software.
-
+﻿
 using System;
 using System.Data;
 using System.Globalization;
 using log4net;
 using Cynthia.Data;
+using SystemX;
 
 namespace Cynthia.Business
 {
@@ -498,8 +488,17 @@ namespace Cynthia.Business
         }
 
 
-
-
+		/// <summary>
+		/// Get excerpt of the post
+		/// </summary>
+		/// <param name="length"></param>
+		/// <param name="suffix"></param>
+		/// <returns></returns>
+		public string GetExcerpt(int length,string suffix) {
+			if (Excerpt.Length > 0 && (Excerpt != "<p>&#160;</p>")) return Excerpt;
+			if (Description.Length <= length) return Description;
+			return Description.StripHtml().TailStr(length, suffix ?? "");
+		}
         #endregion
 
 

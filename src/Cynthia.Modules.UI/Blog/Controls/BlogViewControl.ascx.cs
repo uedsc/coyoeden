@@ -31,7 +31,7 @@ namespace Cynthia.Web.BlogUI
         private bool useAddThisMouseOverWidget = true;
 		protected Blog ThePost { get; set; }
         private Module module;
-        private bool HideDetailsFromUnauthencticated = false;
+		protected bool HideDetailsFromUnauthencticated { get; set; }
         private SiteSettings siteSettings = null;
 		protected string DeleteLinkImage = String.Format("~/Data/SiteImages/{0}", WebConfigSettings.DeleteLinkImage);
 
@@ -55,14 +55,13 @@ namespace Cynthia.Web.BlogUI
         protected bool ShowAddFeedLinks = true;
         protected bool UseCommentSpamBlocker = true;
         protected bool RequireAuthenticationForComments = false;
-        protected bool IsEditable = false;
+		protected bool IsEditable { get; set; }
         protected string addThisCustomBrand = string.Empty;
         protected string addThisButtonImageUrl = "~/Data/SiteImages/addthissharebutton.gif";
         protected string addThisCustomOptions = string.Empty;
         protected string addThisCustomLogoUrl = string.Empty;
         protected string addThisCustomLogoBackColor = string.Empty;
         protected string addThisCustomLogoForeColor = string.Empty;
-        protected string EditContentImage = ConfigurationManager.AppSettings["EditContentImage"];
         protected string GmapApiKey = string.Empty;
         protected int GoogleMapHeightSetting = 300;
         protected int GoogleMapWidthSetting = 500;
@@ -78,9 +77,7 @@ namespace Cynthia.Web.BlogUI
         protected bool EnableRatingCommentsSetting = false;
         protected bool ShowPostAuthorSetting = false;
 		protected string BlogAuthor { get; set; }
-        protected string SiteRoot = string.Empty;
-        protected string ImageSiteRoot = string.Empty;
-        private CBasePage basePage;
+
         protected int ExcerptLength = 250;
         protected string ExcerptSuffix = "...";
         private string CommentSystem = "internal";
@@ -91,7 +88,31 @@ namespace Cynthia.Web.BlogUI
         private bool showRightContent = false;
 
         protected string RegexRelativeImageUrlPatern = @"^/.*[_a-zA-Z0-9]+\.(png|jpg|jpeg|gif|PNG|JPG|JPEG|GIF)$";
-
+		/// <summary>
+		/// url of Previous Post 
+		/// </summary>
+		protected string PreviousPostUrl { get; set; }
+		/// <summary>
+		/// whether has previous post
+		/// </summary>
+		protected bool HasPrevious { get { return !string.IsNullOrEmpty(PreviousPostUrl); } }
+		/// <summary>
+		/// Url of Next post
+		/// </summary>
+		protected string NextPostUrl { get; set; }
+		/// <summary>
+		/// whether has next post
+		/// </summary>
+		protected bool HasNext { get { return !string.IsNullOrEmpty(NextPostUrl); } }
+		protected string PostEditUrl { get; set; }
+		/// <summary>
+		/// Show excerpt only
+		/// </summary>
+		protected bool ShowExcerptOnly { get; set; }
+		/// <summary>
+		/// blog copyright text
+		/// </summary>
+		protected string BlogCopyright { get; set; }
         #endregion
 
         #region OnInit
@@ -103,10 +124,6 @@ namespace Cynthia.Web.BlogUI
             this.dlComments.ItemCommand += new RepeaterCommandEventHandler(dlComments_ItemCommand);
             this.dlComments.ItemDataBound += new RepeaterItemEventHandler(dlComments_ItemDataBound);
             base.OnInit(e);
-            //this.EnableViewState = this.UserCanEditPage();
-            basePage = Page as CBasePage;
-            SiteRoot = basePage.SiteRoot;
-            ImageSiteRoot = basePage.ImageSiteRoot;
 
             SiteUtils.SetupEditor(this.edComment);
 
@@ -125,8 +142,8 @@ namespace Cynthia.Web.BlogUI
             LoadParams();
 
             if (
-                (basePage == null)
-                || (!basePage.UserCanViewPage())
+                (BasePage == null)
+                || (!BasePage.UserCanViewPage())
             )
             {
                 SiteUtils.RedirectToAccessDeniedPage();
@@ -149,7 +166,7 @@ namespace Cynthia.Web.BlogUI
 
                 if (Context.User.Identity.IsAuthenticated)
                 {
-                    if (WebUser.HasEditPermissions(basePage.SiteInfo.SiteId, ModuleId, basePage.CurrentPage.PageId))
+                    if (WebUser.HasEditPermissions(BasePage.SiteInfo.SiteId, ModuleId, BasePage.CurrentPage.PageId))
                     {
                         IsEditable = true;
                     }
@@ -158,7 +175,7 @@ namespace Cynthia.Web.BlogUI
                 PopulateControls();
             }
 
-            basePage.LoadSideContent(showLeftContent, showRightContent);
+            BasePage.LoadSideContent(showLeftContent, showRightContent);
 
         }
 
@@ -176,7 +193,7 @@ namespace Cynthia.Web.BlogUI
             // if not published only the editor can see it
             if (
                 ((!ThePost.IsPublished) || (ThePost.StartDate > DateTime.UtcNow))
-                &&(!basePage.UserCanEditModule(ModuleId))
+                &&(!BasePage.UserCanEditModule(ModuleId))
                 )
             {
                 AllowComments = false;
@@ -184,35 +201,14 @@ namespace Cynthia.Web.BlogUI
                 WebUtils.SetupRedirect(this, SiteUtils.GetCurrentPageUrl());
                 return;
             }
+			//set post edit url
+			PostEditUrl = String.Format("{0}/Blog/EditPost.aspx?pageid={1}&ItemID={2}&mid={3}", BasePage.SiteRoot, PageId, ItemId.ToString(CultureInfo.InvariantCulture), ModuleId.ToString(CultureInfo.InvariantCulture));
 
-            if (this.IsEditable)
-            {
-                this.lnkEdit.Visible = true;
-                if (!basePage.UseTextLinksForFeatureSettings)
-                {
-					lnkEdit.ImageUrl = String.Format("{0}/Data/SiteImages/{1}", basePage.ImageSiteRoot, EditContentImage);
-                    lnkEdit.Text = BlogResources.EditImageAltText;
-                }
-                else
-                {
-                    lnkEdit.Text = BlogResources.BlogEditEntryLink;
-                }
-               
-
-                this.lnkEdit.NavigateUrl = basePage.SiteRoot + "/Blog/EditPost.aspx?pageid="
-                    + PageId.ToString()
-                    + "&ItemID=" + ItemId.ToString(CultureInfo.InvariantCulture)
-                    + "&mid=" + ModuleId.ToString(CultureInfo.InvariantCulture);
-
-                
-            }
-
-            basePage.Title = SiteUtils.FormatPageTitle(basePage.SiteInfo, ThePost.Title);
-            basePage.MetaDescription = ThePost.MetaDescription;
-            basePage.MetaKeywordCsv = ThePost.MetaKeywords;
-            basePage.AdditionalMetaMarkup = ThePost.CompiledMeta;
-            litTitle.Text = Server.HtmlEncode(ThePost.Title);
-            addThis1.TitleOfUrlToShare = litTitle.Text;
+            BasePage.Title = SiteUtils.FormatPageTitle(BasePage.SiteInfo, ThePost.Title);
+            BasePage.MetaDescription = ThePost.MetaDescription;
+            BasePage.MetaKeywordCsv = ThePost.MetaKeywords;
+            BasePage.AdditionalMetaMarkup = ThePost.CompiledMeta;
+			addThis1.TitleOfUrlToShare = ThePost.Title;
             addThis1.AccountId = addThisAccountId;
             addThis1.CustomBrand = addThisCustomBrand;
             addThis1.UseMouseOverWidget = useAddThisMouseOverWidget;
@@ -228,30 +224,15 @@ namespace Cynthia.Web.BlogUI
             odiogoPlayer.ItemId = ThePost.ItemId.ToString(CultureInfo.InvariantCulture);
             odiogoPlayer.ItemTitle = ThePost.Title;
             if (BlogAuthor.Length == 0) { BlogAuthor = ThePost.UserName; }
-            litDescription.Text = ThePost.Description;
-            litExcerpt.Text = GetExcerpt(ThePost);
 
             if (ThePost.PreviousPostUrl.Length > 0)
             {
-                lnkPreviousPostTop.Visible = true;
-                lnkPreviousPost.Visible = true;
-                lnkPreviousPostTop.NavigateUrl = basePage.SiteRoot + ThePost.PreviousPostUrl.Replace("~", string.Empty);
-                lnkPreviousPostTop.ToolTip = ThePost.PreviousPostTitle;
-
-                lnkPreviousPost.NavigateUrl = basePage.SiteRoot + ThePost.PreviousPostUrl.Replace("~", string.Empty);
-                lnkPreviousPost.ToolTip = ThePost.PreviousPostTitle;
-
+				PreviousPostUrl = String.Format("{0}{1}", BasePage.SiteRoot, ThePost.PreviousPostUrl.Replace("~", string.Empty));
             }
             
             if (ThePost.NextPostUrl.Length > 0)
             {
-                lnkNextPostTop.Visible = true;
-                lnkNextPost.Visible = true;
-                lnkNextPostTop.NavigateUrl = basePage.SiteRoot + ThePost.NextPostUrl.Replace("~", string.Empty);
-                lnkNextPostTop.ToolTip = ThePost.NextPostTitle;
-
-                lnkNextPost.NavigateUrl = basePage.SiteRoot + ThePost.NextPostUrl.Replace("~", string.Empty);
-                lnkNextPost.ToolTip = ThePost.NextPostTitle;
+				NextPostUrl = String.Format("{0}{1}", BasePage.SiteRoot, ThePost.NextPostUrl.Replace("~", string.Empty));
             }
             
             if (ThePost.Location.Length > 0)
@@ -384,7 +365,7 @@ namespace Cynthia.Web.BlogUI
                 {
                     //added this 2008-08-07 due to blog coment spam and need to be able to ban the ip of the spammer
                     StringBuilder message = new StringBuilder();
-                    message.Append(basePage.SiteRoot + ThePost.ItemUrl.Replace("~", string.Empty));
+                    message.Append(BasePage.SiteRoot + ThePost.ItemUrl.Replace("~", string.Empty));
 
                     message.Append("\n\nHTTP_USER_AGENT: " + Page.Request.ServerVariables["HTTP_USER_AGENT"] + "\n");
                     message.Append("HTTP_HOST: " + Page.Request.ServerVariables["HTTP_HOST"] + "\n");
@@ -396,8 +377,8 @@ namespace Cynthia.Web.BlogUI
                     Notification.SendBlogCommentNotificationEmail(
                         SiteUtils.GetSmtpSettings(),
                         ResourceHelper.GetMessageTemplate(ResourceHelper.GetDefaultCulture(), "BlogCommentNotificationEmail.config"),
-                        basePage.SiteInfo.DefaultEmailFromAddress,
-                        basePage.SiteRoot,
+                        BasePage.SiteInfo.DefaultEmailFromAddress,
+                        BasePage.SiteRoot,
                         email,
                         message.ToString());
                     
@@ -411,54 +392,30 @@ namespace Cynthia.Web.BlogUI
         private void PopulateLabels()
         {
             
-            lnkEdit.ToolTip = BlogResources.BlogEditEntryLink;
-            
-           // edComment.WebEditor.ScriptBaseUrl = WebUtils.GetSiteRoot() + "/ClientScript";
-            //edComment.WebEditor.SiteRoot = basePage.SiteRoot;
-            //edComment.WebEditor.EditorCSSUrl = SiteUtils.GetEditorStyleSheetUrl();
             edComment.WebEditor.ToolBar = ToolBar.AnonymousUser;
-            //edComment.WebEditor.SkinName = basePage.SiteInfo.EditorSkin.ToString();
             edComment.WebEditor.Height = Unit.Pixel(170);
 
-            //CultureInfo defaultCulture = ResourceHelper.GetDefaultCulture();
-            //if (defaultCulture.TextInfo.IsRightToLeft)
-            //{
-            //    edComment.WebEditor.TextDirection = Direction.RightToLeft;
-            //}
-
-            captcha.ProviderName = basePage.SiteInfo.CaptchaProvider;
+            captcha.ProviderName = BasePage.SiteInfo.CaptchaProvider;
             captcha.Captcha.ControlID = "captcha" + ModuleId.ToInvariantString();
-            captcha.RecaptchaPrivateKey = basePage.SiteInfo.RecaptchaPrivateKey;
-            captcha.RecaptchaPublicKey = basePage.SiteInfo.RecaptchaPublicKey;
+            captcha.RecaptchaPrivateKey = BasePage.SiteInfo.RecaptchaPrivateKey;
+            captcha.RecaptchaPublicKey = BasePage.SiteInfo.RecaptchaPublicKey;
 
             regexUrl.ErrorMessage = BlogResources.WebSiteUrlRegexWarning;
 
             btnPostComment.Text = BlogResources.BlogCommentPostCommentButton;
             SiteUtils.SetButtonAccessKey(btnPostComment, BlogResources.BlogCommentPostCommentButtonAccessKey);
 
-            //UIHelper.DisableButtonAfterClick(
-            //    btnPostComment,
-            //    BlogResources.ButtonDisabledPleaseWait,
-            //    Page.ClientScript.GetPostBackEventReference(this.btnPostComment, string.Empty)
-            //    );
-
             litCommentsClosed.Text = BlogResources.BlogCommentsClosedMessage;
             litCommentsRequireAuthentication.Text = BlogResources.CommentsRequireAuthenticationMessage;
 
             addThis1.Text = BlogResources.AddThisButtonAltText;
-
-            lnkPreviousPostTop.Text = Server.HtmlEncode(BlogResources.BlogPreviousPostLink);
-            lnkNextPostTop.Text = Server.HtmlEncode(BlogResources.BlogNextPostLink);
-
-            lnkPreviousPost.Text = Server.HtmlEncode(BlogResources.BlogPreviousPostLink);
-            lnkNextPost.Text = Server.HtmlEncode(BlogResources.BlogNextPostLink);
 
         }
 
         private void LoadSettings()
         {
             ThePost = new Blog(ItemId);
-            module = new Module(ModuleId, basePage.CurrentPage.PageId);
+            module = new Module(ModuleId, BasePage.CurrentPage.PageId);
 
             siteSettings = CacheHelper.GetCurrentSiteSettings();
 
@@ -616,7 +573,7 @@ namespace Cynthia.Web.BlogUI
             if (moduleSettings.Contains("OdiogoFeedIDSetting"))
                 OdiogoFeedIDSetting = moduleSettings["OdiogoFeedIDSetting"].ToString();
 
-            addThisAccountId = basePage.SiteInfo.AddThisDotComUsername;
+            addThisAccountId = BasePage.SiteInfo.AddThisDotComUsername;
             string altAddThisAccount = string.Empty;
 
             if (moduleSettings.Contains("BlogAddThisDotComUsernameSetting"))
@@ -638,7 +595,7 @@ namespace Cynthia.Web.BlogUI
                 addThisCustomBrand = moduleSettings["BlogAddThisCustomBrandSetting"].ToString().Trim();
 
             if (addThisCustomBrand.Length == 0)
-                addThisCustomBrand = basePage.SiteInfo.SiteName;
+                addThisCustomBrand = BasePage.SiteInfo.SiteName;
 
             if (moduleSettings.Contains("BlogAddThisCustomOptionsSetting"))
                 addThisCustomOptions = moduleSettings["BlogAddThisCustomOptionsSetting"].ToString().Trim();
@@ -654,7 +611,7 @@ namespace Cynthia.Web.BlogUI
 
             if (moduleSettings.Contains("BlogCopyrightSetting"))
             {
-                lblCopyright.Text = moduleSettings["BlogCopyrightSetting"].ToString();
+				BlogCopyright = moduleSettings["BlogCopyrightSetting"].ToString();
             }
 
             if (moduleSettings.Contains("BlogAuthorSetting"))
@@ -789,7 +746,7 @@ namespace Cynthia.Web.BlogUI
                 SiteUser currentUser = SiteUtils.GetCurrentSiteUser();
                 this.txtName.Text = currentUser.Name;
                 txtURL.Text = currentUser.WebSiteUrl;
-
+				ShowExcerptOnly = false;
             }
             else
             {
@@ -797,6 +754,7 @@ namespace Cynthia.Web.BlogUI
                 {
                     pnlDetails.Visible = false;
                     pnlExcerpt.Visible = true;
+					ShowExcerptOnly = true;
                 }
 
                 if (CookieHelper.CookieExists("blogUser"))
@@ -811,33 +769,12 @@ namespace Cynthia.Web.BlogUI
 
         }
 
-        private string GetExcerpt(Blog blog)
-        {
-            if ((blog.Excerpt.Length > 0) && (blog.Excerpt != "<p>&#160;</p>"))
-            {
-                return blog.Excerpt;
-            }
-
-            string result = string.Empty;
-            if ((blog.Description.Length > ExcerptLength))
-            {
-
-                return UIHelper.CreateExcerpt(blog.Description, ExcerptLength, ExcerptSuffix);
-                
-            }
-
-            return blog.Description;
-
-        }
-
         protected string FormatBlogUrl(string itemUrl, int itemId)
         {
             if (itemUrl.Length > 0)
                 return SiteRoot + itemUrl.Replace("~", string.Empty);
 
-            return SiteRoot + "/Blog/ViewPost.aspx?pageid=" + PageId.ToInvariantString()
-                + "&ItemID=" + itemId.ToInvariantString()
-                + "&mid=" + ModuleId.ToInvariantString();
+			return String.Format("{0}/Blog/ViewPost.aspx?pageid={1}&ItemID={2}&mid={3}", SiteRoot, PageId.ToInvariantString(), itemId.ToInvariantString(), ModuleId.ToInvariantString());
 
         }
 
@@ -960,10 +897,10 @@ namespace Cynthia.Web.BlogUI
             if (PageId == -1) parametersAreInvalid = true;
             if (ModuleId == -1) parametersAreInvalid = true;
             if (ItemId == -1) parametersAreInvalid = true;
-            if (!basePage.UserCanViewPage(ModuleId)) { parametersAreInvalid = true; }
+            if (!BasePage.UserCanViewPage(ModuleId)) { parametersAreInvalid = true; }
 
-            addThisAccountId = basePage.SiteInfo.AddThisDotComUsername;
-            addThisCustomBrand = basePage.SiteInfo.SiteName;
+            addThisAccountId = BasePage.SiteInfo.AddThisDotComUsername;
+            addThisCustomBrand = BasePage.SiteInfo.SiteName;
 
 
         }

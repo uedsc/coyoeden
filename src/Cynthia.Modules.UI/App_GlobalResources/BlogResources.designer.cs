@@ -853,7 +853,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &gt;&gt; Next Post.
+        ///   Looks up a localized string similar to Next.
         /// </summary>
         internal static string BlogNextPostLink {
             get {
@@ -862,7 +862,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Previous Post &lt;&lt;.
+        ///   Looks up a localized string similar to Prev.
         /// </summary>
         internal static string BlogPreviousPostLink {
             get {

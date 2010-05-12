@@ -232,53 +232,6 @@ namespace Cynthia.Web.Framework
             //return null;
         }
 
-        
-
-
-        //private static XssFilter GetXssFilter()
-        //{
-
-        //    string cachekey = "xssfilter";
-
-           
-        //    if (HttpRuntime.Cache[cachekey] == null)
-        //    {
-        //        int cacheTimeout = 120;
-
-        //        RefreshSchemaFilterCache(cachekey, cacheTimeout);
-        //    }
-
-        //    // Return object from cache, or null if it is not there for some reason
-        //    return HttpRuntime.Cache[cachekey] as XssFilter;
-        //}
-
-        //private static void RefreshSchemaFilterCache(String cacheKey, int cacheTimeout)
-        //{
-        //    if (HttpContext.Current == null) return;
-
-        //    string schemaFolder = HttpContext.Current.Server.MapPath(WebUtils.GetApplicationRoot() + "/NeatHtml/schema");
-        //    string schemaFile = Path.Combine(schemaFolder, "NeatHtml.xsd");
-
-        //    XssFilter filter = XssFilter.GetForSchema(schemaFile);
-
-        //    CacheDependency cacheDependency = new CacheDependency(schemaFile);
-
-        //    DateTime absoluteExpiration = DateTime.Now.AddSeconds(cacheTimeout);
-        //    TimeSpan slidingExpiration = TimeSpan.Zero;
-        //    CacheItemPriority priority = CacheItemPriority.Default;
-        //    CacheItemRemovedCallback callback = null;
-
-        //    HttpRuntime.Cache.Insert(
-        //        cacheKey,
-        //        filter,
-        //        cacheDependency,
-        //        absoluteExpiration,
-        //        slidingExpiration,
-        //        priority,
-        //        callback);
-        //}
-
-
 
         public static string RemoveMarkup(string text)
         {

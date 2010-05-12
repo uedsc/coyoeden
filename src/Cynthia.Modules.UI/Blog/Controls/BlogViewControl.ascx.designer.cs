@@ -113,42 +113,6 @@ namespace Cynthia.Web.BlogUI {
         protected global::System.Web.UI.WebControls.Panel divblog;
         
         /// <summary>
-        /// litTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litTitle;
-        
-        /// <summary>
-        /// lnkEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkEdit;
-        
-        /// <summary>
-        /// lnkPreviousPostTop control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkPreviousPostTop;
-        
-        /// <summary>
-        /// lnkNextPostTop control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkNextPostTop;
-        
-        /// <summary>
         /// pnlDetails control.
         /// </summary>
         /// <remarks>
@@ -176,15 +140,6 @@ namespace Cynthia.Web.BlogUI {
         protected global::Cynthia.Web.Controls.OdiogoItem odiogoPlayer;
         
         /// <summary>
-        /// litDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litDescription;
-        
-        /// <summary>
         /// addThis1 control.
         /// </summary>
         /// <remarks>
@@ -201,33 +156,6 @@ namespace Cynthia.Web.BlogUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Cynthia.Web.Controls.google.LocationMap gmap;
-        
-        /// <summary>
-        /// lblCopyright control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCopyright;
-        
-        /// <summary>
-        /// lnkPreviousPost control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkPreviousPost;
-        
-        /// <summary>
-        /// lnkNextPost control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkNextPost;
         
         /// <summary>
         /// intenseDebate control.
@@ -471,15 +399,6 @@ namespace Cynthia.Web.BlogUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlExcerpt;
-        
-        /// <summary>
-        /// litExcerpt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litExcerpt;
         
         /// <summary>
         /// SiteLabel2 control.

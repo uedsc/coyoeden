@@ -328,10 +328,10 @@
     <value>Navigation on Right?</value>
   </data>
   <data name="BlogNextPostLink" xml:space="preserve">
-    <value>&gt;&gt; Next Post</value>
+    <value>Next</value>
   </data>
   <data name="BlogPreviousPostLink" xml:space="preserve">
-    <value>Previous Post &lt;&lt;</value>
+    <value>Prev</value>
   </data>
   <data name="BlogRSSCacheTimeSetting" xml:space="preserve">
     <value>RSS Feed Cache Time In Minutes</value>
