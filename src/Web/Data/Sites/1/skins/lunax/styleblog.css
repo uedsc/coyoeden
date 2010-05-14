@@ -65,3 +65,19 @@ width:50px;
 	color: #FFF;
 }
 .comment_cnt a:visited{color:#7A4648;}
+/*comment wrapper*/
+#w_comments{margin-top:10px;}
+.post_comment_l
+{
+float:left;
+padding:3px;
+position:relative;
+text-align:center;
+width:80px;
+}
+.post_comment_r
+{
+float:left;
+position:relative;
+width:80%;	
+}

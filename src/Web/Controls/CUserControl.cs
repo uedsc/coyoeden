@@ -73,5 +73,14 @@ namespace Cynthia.Web
 			EditContentImage = ConfigurationManager.AppSettings["EditContentImage"];
 			EditImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, EditContentImage);
 		}
+		protected string RenderIf<T>(T current, T shouldBe, string trueStr)
+		{
+			return RenderIf<T>(current, shouldBe, trueStr, "");
+		}
+		protected string RenderIf<T>(T current, T shouldBe, string trueStr, string falseStr)
+		{
+			if (current.Equals(shouldBe)) return trueStr;
+			return falseStr;
+		}
     }
 }

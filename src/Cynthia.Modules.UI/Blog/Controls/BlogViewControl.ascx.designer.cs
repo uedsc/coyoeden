@@ -176,24 +176,6 @@ namespace Cynthia.Web.BlogUI {
         protected global::Cynthia.Web.UI.DisqusWidget disqus;
         
         /// <summary>
-        /// pnlFeedback control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlFeedback;
-        
-        /// <summary>
-        /// lblFeedback control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Cynthia.Web.Controls.SiteLabel lblFeedback;
-        
-        /// <summary>
         /// dlComments control.
         /// </summary>
         /// <remarks>
@@ -201,6 +183,42 @@ namespace Cynthia.Web.BlogUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater dlComments;
+        
+        /// <summary>
+        /// pnlCommentsClosed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCommentsClosed;
+        
+        /// <summary>
+        /// litCommentsClosed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litCommentsClosed;
+        
+        /// <summary>
+        /// pnlCommentsRequireAuthentication control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCommentsRequireAuthentication;
+        
+        /// <summary>
+        /// litCommentsRequireAuthentication control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litCommentsRequireAuthentication;
         
         /// <summary>
         /// pnlNewComment control.
@@ -354,42 +372,6 @@ namespace Cynthia.Web.BlogUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Cynthia.Web.UI.CButton btnPostComment;
-        
-        /// <summary>
-        /// pnlCommentsClosed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCommentsClosed;
-        
-        /// <summary>
-        /// litCommentsClosed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litCommentsClosed;
-        
-        /// <summary>
-        /// pnlCommentsRequireAuthentication control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCommentsRequireAuthentication;
-        
-        /// <summary>
-        /// litCommentsRequireAuthentication control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litCommentsRequireAuthentication;
         
         /// <summary>
         /// pnlExcerpt control.
