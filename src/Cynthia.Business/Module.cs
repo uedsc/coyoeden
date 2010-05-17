@@ -1,17 +1,6 @@
-// Author:					Joe Audette
-// Created:				    2004-12-26
-// Last Modified:			2009-07-15
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)  
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software.
+
 
 using System;
-using System.Collections;
 using System.Data;
 using Cynthia.Data;
 
@@ -41,7 +30,7 @@ namespace Cynthia.Business
 
         public Module(int moduleId, int pageId)
         {
-            this.pageID = pageId;
+            this._pageId = pageId;
             GetModule(moduleId, pageId);
         }
 
@@ -49,32 +38,32 @@ namespace Cynthia.Business
 
 		#region Private Properties
 
-		private int moduleID = -1;
-        private Guid guid = Guid.Empty;
-        private Guid featureGuid = Guid.Empty;
-        private Guid siteGuid = Guid.Empty;
-        private int siteID = 0;
-		private int pageID = -1; 
-		private int moduleDefID; 
-		private int moduleOrder = 999; 
-		private string paneName = String.Empty; 
-		private string moduleTitle = String.Empty;
-        private string viewRoles = "All Users;";
-		private string authorizedEditRoles = String.Empty;
-        private string draftEditRoles = String.Empty;
-		private int cacheTime = 0; 
-		private bool showTitle = true; 
-		private string controlSource = string.Empty;
-		private int editUserID = -1;
-        private Guid editUserGuid = Guid.Empty;
-        private bool availableForMyPage = false;
-        private bool allowMultipleInstancesOnMyPage = true;
-        private String icon = String.Empty;
-        private int createdByUserID = -1;
-        private DateTime createdDate = DateTime.MinValue;
-        private String featureName = String.Empty;
-        private bool hideFromAuthenticated = false;
-        private bool hideFromUnauthenticated = false;
+		private int _moduleId = -1;
+        private Guid _guid = Guid.Empty;
+        private Guid _featureGuid = Guid.Empty;
+        private Guid _siteGuid = Guid.Empty;
+        private int _siteId = 0;
+		private int _pageId = -1; 
+		private int _moduleDefId; 
+		private int _moduleOrder = 999; 
+		private string _paneName = String.Empty; 
+		private string _moduleTitle = String.Empty;
+        private string _viewRoles = "All Users;";
+		private string _authorizedEditRoles = String.Empty;
+        private string _draftEditRoles = String.Empty;
+		private int _cacheTime = 0; 
+		private bool _showTitle = true; 
+		private string _controlSource = string.Empty;
+		private int _editUserId = -1;
+        private Guid _editUserGuid = Guid.Empty;
+        private bool _availableForMyPage = false;
+        private bool _allowMultipleInstancesOnMyPage = true;
+        private String _icon = String.Empty;
+        private int _createdByUserId = -1;
+        private DateTime _createdDate = DateTime.MinValue;
+        private String _featureName = String.Empty;
+        private bool _hideFromAuthenticated = false;
+        private bool _hideFromUnauthenticated = false;
 
         
         
@@ -85,153 +74,153 @@ namespace Cynthia.Business
 
         public Guid ModuleGuid
         {
-            get { return guid; }
-            set { guid = value; }
+            get { return _guid; }
+            set { _guid = value; }
         }
 
         public Guid SiteGuid
         {
-            get { return siteGuid; }
-            set { siteGuid = value; }
+            get { return _siteGuid; }
+            set { _siteGuid = value; }
         }
 
         public Guid FeatureGuid
         {
-            get { return featureGuid; }
-            set { featureGuid = value; }
+            get { return _featureGuid; }
+            set { _featureGuid = value; }
         }
 
 		public int ModuleId 
 		{
-			get { return moduleID; }
-			set { moduleID = value; }
+			get { return _moduleId; }
+			set { _moduleId = value; }
 		}
 
         public int SiteId
         {
-            get { return siteID; }
-            set { siteID = value; }
+            get { return _siteId; }
+            set { _siteId = value; }
         }
 
 		public int EditUserId 
 		{
-			get { return editUserID; }
-			set { editUserID = value; }
+			get { return _editUserId; }
+			set { _editUserId = value; }
 		}
 
         public Guid EditUserGuid
         {
-            get { return editUserGuid; }
-            set { editUserGuid = value; }
+            get { return _editUserGuid; }
+            set { _editUserGuid = value; }
         }
 
 		public int PageId 
 		{
-			get { return pageID; }
-			set { pageID = value; }
+			get { return _pageId; }
+			set { _pageId = value; }
 		}
 		public int ModuleDefId 
 		{
-			get { return moduleDefID; }
-			set { moduleDefID = value; }
+			get { return _moduleDefId; }
+			set { _moduleDefId = value; }
 		}
 		public int ModuleOrder 
 		{
-			get { return moduleOrder; }
-			set { moduleOrder = value; }
+			get { return _moduleOrder; }
+			set { _moduleOrder = value; }
 		}
 		public string PaneName 
 		{
-			get { return paneName; }
-			set { paneName = value; }
+			get { return _paneName; }
+			set { _paneName = value; }
 		}
 		public string ModuleTitle 
 		{
-			get { return moduleTitle; }
-			set { moduleTitle = value; }
+			get { return _moduleTitle; }
+			set { _moduleTitle = value; }
 		}
 
         public string ViewRoles
         {
-            get { return viewRoles; }
-            set { viewRoles = value; }
+            get { return _viewRoles; }
+            set { _viewRoles = value; }
         }
 
 		public string AuthorizedEditRoles 
 		{
-			get { return authorizedEditRoles; }
-			set { authorizedEditRoles = value; }
+			get { return _authorizedEditRoles; }
+			set { _authorizedEditRoles = value; }
 		}
 
         public string DraftEditRoles
         {
-            get { return draftEditRoles; }
-            set { draftEditRoles = value; }
+            get { return _draftEditRoles; }
+            set { _draftEditRoles = value; }
         }
 
 		public int CacheTime 
 		{
-			get { return cacheTime; }
-			set { cacheTime = value; }
+			get { return _cacheTime; }
+			set { _cacheTime = value; }
 		}
 		public bool ShowTitle 
 		{
-			get { return showTitle; }
-			set { showTitle = value; }
+			get { return _showTitle; }
+			set { _showTitle = value; }
 		}
 
 		public string ControlSource 
 		{
-			get {return controlSource;}
-			set {controlSource = value;}
+			get {return _controlSource;}
+			set {_controlSource = value;}
 		}
 
         public bool AvailableForMyPage
         {
-            get { return availableForMyPage; }
-            set { availableForMyPage = value; }
+            get { return _availableForMyPage; }
+            set { _availableForMyPage = value; }
         }
 
         public bool AllowMultipleInstancesOnMyPage
         {
-            get { return allowMultipleInstancesOnMyPage; }
-            set { allowMultipleInstancesOnMyPage = value; }
+            get { return _allowMultipleInstancesOnMyPage; }
+            set { _allowMultipleInstancesOnMyPage = value; }
         }
 
         public int CreatedByUserId
         {
-            get { return createdByUserID; }
-            set { createdByUserID = value; }
+            get { return _createdByUserId; }
+            set { _createdByUserId = value; }
         }
 
         public DateTime CreatedDate
         {
-            get { return createdDate; }
+            get { return _createdDate; }
            
         }
 
         public string FeatureName
         {
-            get { return this.featureName; }
+            get { return this._featureName; }
            
         }
 
         public string Icon
         {
-            get { return icon; }
-            set { icon = value; }
+            get { return _icon; }
+            set { _icon = value; }
         }
 
         public bool HideFromAuthenticated
         {
-            get { return hideFromAuthenticated; }
-            set { hideFromAuthenticated = value; }
+            get { return _hideFromAuthenticated; }
+            set { _hideFromAuthenticated = value; }
         }
 
         public bool HideFromUnauthenticated
         {
-            get { return hideFromUnauthenticated; }
-            set { hideFromUnauthenticated = value; }
+            get { return _hideFromUnauthenticated; }
+            set { _hideFromUnauthenticated = value; }
         }
 
 		#endregion
@@ -242,50 +231,50 @@ namespace Cynthia.Business
         {
             if (reader.Read())
             {
-                this.moduleID = Convert.ToInt32(reader["ModuleID"]);
-                this.siteID = Convert.ToInt32(reader["SiteID"]);
+                this._moduleId = Convert.ToInt32(reader["ModuleID"]);
+                this._siteId = Convert.ToInt32(reader["SiteID"]);
                 //this.pageID = Convert.ToInt32(reader["PageID"]);
-                this.moduleDefID = Convert.ToInt32(reader["ModuleDefID"]);
+                this._moduleDefId = Convert.ToInt32(reader["ModuleDefID"]);
                 //this.moduleOrder = Convert.ToInt32(reader["ModuleOrder"]);
                 //this.paneName = reader["PaneName"].ToString();
-                this.moduleTitle = reader["ModuleTitle"].ToString();
-                this.authorizedEditRoles = reader["AuthorizedEditRoles"].ToString();
-                this.draftEditRoles = reader["DraftEditRoles"].ToString();
-                this.cacheTime = Convert.ToInt32(reader["CacheTime"]);
-                this.showTitle = Convert.ToBoolean(reader["ShowTitle"]);
+                this._moduleTitle = reader["ModuleTitle"].ToString();
+                this._authorizedEditRoles = reader["AuthorizedEditRoles"].ToString();
+                this._draftEditRoles = reader["DraftEditRoles"].ToString();
+                this._cacheTime = Convert.ToInt32(reader["CacheTime"]);
+                this._showTitle = Convert.ToBoolean(reader["ShowTitle"]);
                 if (reader["EditUserID"] != DBNull.Value)
                 {
-                    this.editUserID = Convert.ToInt32(reader["EditUserID"]);
+                    this._editUserId = Convert.ToInt32(reader["EditUserID"]);
                 }
-                this.availableForMyPage = Convert.ToBoolean(reader["AvailableForMyPage"]);
-                this.allowMultipleInstancesOnMyPage = Convert.ToBoolean(reader["AllowMultipleInstancesOnMyPage"]);
+                this._availableForMyPage = Convert.ToBoolean(reader["AvailableForMyPage"]);
+                this._allowMultipleInstancesOnMyPage = Convert.ToBoolean(reader["AllowMultipleInstancesOnMyPage"]);
                 if (reader["CreatedByUserID"] != DBNull.Value)
                 {
-                    this.createdByUserID = Convert.ToInt32(reader["CreatedByUserID"]);
+                    this._createdByUserId = Convert.ToInt32(reader["CreatedByUserID"]);
                 }
                 if (reader["CreatedDate"] != DBNull.Value)
                 {
-                    this.createdDate = Convert.ToDateTime(reader["CreatedDate"]);
+                    this._createdDate = Convert.ToDateTime(reader["CreatedDate"]);
                 }
 
-                this.icon = reader["Icon"].ToString();
+                this._icon = reader["Icon"].ToString();
 
 
-                this.guid = new Guid(reader["Guid"].ToString());
-                this.featureGuid = new Guid(reader["FeatureGuid"].ToString());
-                this.siteGuid = new Guid(reader["SiteGuid"].ToString());
+                this._guid = new Guid(reader["Guid"].ToString());
+                this._featureGuid = new Guid(reader["FeatureGuid"].ToString());
+                this._siteGuid = new Guid(reader["SiteGuid"].ToString());
 
                 string edUserGuid = reader["EditUserGuid"].ToString();
-                if (edUserGuid.Length == 36) this.editUserGuid = new Guid(edUserGuid);
+                if (edUserGuid.Length == 36) this._editUserGuid = new Guid(edUserGuid);
 
-                this.hideFromAuthenticated = Convert.ToBoolean(reader["HideFromAuth"]);
-                this.hideFromUnauthenticated = Convert.ToBoolean(reader["HideFromUnAuth"]);
+                this._hideFromAuthenticated = Convert.ToBoolean(reader["HideFromAuth"]);
+                this._hideFromUnauthenticated = Convert.ToBoolean(reader["HideFromUnAuth"]);
 
-                this.viewRoles = reader["ViewRoles"].ToString();
+                this._viewRoles = reader["ViewRoles"].ToString();
 
-                ModuleDefinition moduleDef = new ModuleDefinition(this.moduleDefID);
-                this.controlSource = moduleDef.ControlSrc;
-                this.featureName = moduleDef.FeatureName;
+                ModuleDefinition moduleDef = new ModuleDefinition(this._moduleDefId);
+                this._controlSource = moduleDef.ControlSrc;
+                this._featureName = moduleDef.FeatureName;
 
             }
 
@@ -304,53 +293,7 @@ namespace Cynthia.Business
             using (IDataReader reader = DBModule.GetModule(moduleId))
             {
                 PopulateFromReader(reader);
-                //if (reader.Read())
-                //{
-                //    this.moduleID = Convert.ToInt32(reader["ModuleID"]);
-                //    this.siteID = Convert.ToInt32(reader["SiteID"]);
-                //    //this.pageID = Convert.ToInt32(reader["PageID"]);
-                //    this.moduleDefID = Convert.ToInt32(reader["ModuleDefID"]);
-                //    //this.moduleOrder = Convert.ToInt32(reader["ModuleOrder"]);
-                //    //this.paneName = reader["PaneName"].ToString();
-                //    this.moduleTitle = reader["ModuleTitle"].ToString();
-                //    this.authorizedEditRoles = reader["AuthorizedEditRoles"].ToString();
-                //    this.cacheTime = Convert.ToInt32(reader["CacheTime"]);
-                //    this.showTitle = Convert.ToBoolean(reader["ShowTitle"]);
-                //    if (reader["EditUserID"] != DBNull.Value)
-                //    {
-                //        this.editUserID = Convert.ToInt32(reader["EditUserID"]);
-                //    }
-                //    this.availableForMyPage = Convert.ToBoolean(reader["AvailableForMyPage"]);
-                //    this.allowMultipleInstancesOnMyPage = Convert.ToBoolean(reader["AllowMultipleInstancesOnMyPage"]);
-                //    if (reader["CreatedByUserID"] != DBNull.Value)
-                //    {
-                //        this.createdByUserID = Convert.ToInt32(reader["CreatedByUserID"]);
-                //    }
-                //    if (reader["CreatedDate"] != DBNull.Value)
-                //    {
-                //        this.createdDate = Convert.ToDateTime(reader["CreatedDate"]);
-                //    }
-
-                //    this.icon = reader["Icon"].ToString();
-
-
-                //    this.guid = new Guid(reader["Guid"].ToString());
-                //    this.featureGuid = new Guid(reader["FeatureGuid"].ToString());
-                //    this.siteGuid = new Guid(reader["SiteGuid"].ToString());
-
-                //    string edUserGuid = reader["EditUserGuid"].ToString();
-                //    if (edUserGuid.Length == 36) this.editUserGuid = new Guid(edUserGuid);
-
-                //    this.hideFromAuthenticated = Convert.ToBoolean(reader["HideFromAuth"]);
-                //    this.hideFromUnauthenticated = Convert.ToBoolean(reader["HideFromUnAuth"]);
-
-                //}
-
             }
-
-            //ModuleDefinition moduleDef = new ModuleDefinition(this.moduleDefID);
-            //this.controlSource = moduleDef.ControlSrc;
-            //this.featureName = moduleDef.FeatureName;
 		
 		}
 
@@ -360,53 +303,7 @@ namespace Cynthia.Business
             {
                 PopulateFromReader(reader);
 
-                //if (reader.Read())
-                //{
-                //    this.moduleID = Convert.ToInt32(reader["ModuleID"]);
-                //    this.pageID = Convert.ToInt32(reader["PageID"]);
-                //    this.siteID = Convert.ToInt32(reader["SiteID"]);
-                //    this.moduleDefID = Convert.ToInt32(reader["ModuleDefID"]);
-                //    this.moduleOrder = Convert.ToInt32(reader["ModuleOrder"]);
-                //    this.paneName = reader["PaneName"].ToString();
-                //    this.moduleTitle = reader["ModuleTitle"].ToString();
-                //    this.authorizedEditRoles = reader["AuthorizedEditRoles"].ToString();
-                //    this.cacheTime = Convert.ToInt32(reader["CacheTime"]);
-                //    this.showTitle = Convert.ToBoolean(reader["ShowTitle"]);
-                //    if (reader["EditUserID"] != DBNull.Value)
-                //    {
-                //        this.editUserID = Convert.ToInt32(reader["EditUserID"]);
-                //    }
-                //    this.availableForMyPage = Convert.ToBoolean(reader["AvailableForMyPage"]);
-                //    this.allowMultipleInstancesOnMyPage = Convert.ToBoolean(reader["AllowMultipleInstancesOnMyPage"]);
-                //    if (reader["CreatedByUserID"] != DBNull.Value)
-                //    {
-                //        this.createdByUserID = Convert.ToInt32(reader["CreatedByUserID"]);
-                //    }
-                //    if (reader["CreatedDate"] != DBNull.Value)
-                //    {
-                //        this.createdDate = Convert.ToDateTime(reader["CreatedDate"]);
-                //    }
-
-                //    this.icon = reader["Icon"].ToString();
-
-                //    this.guid = new Guid(reader["Guid"].ToString());
-                //    this.featureGuid = new Guid(reader["FeatureGuid"].ToString());
-                //    this.siteGuid = new Guid(reader["SiteGuid"].ToString());
-
-                //    string edUserGuid = reader["EditUserGuid"].ToString();
-                //    if (edUserGuid.Length == 36) this.editUserGuid = new Guid(edUserGuid);
-
-                //    this.hideFromAuthenticated = Convert.ToBoolean(reader["HideFromAuth"]);
-                //    this.hideFromUnauthenticated = Convert.ToBoolean(reader["HideFromUnAuth"]);
-
-                //}
-
             }
-
-            //ModuleDefinition moduleDef = new ModuleDefinition(this.moduleDefID);
-            //this.controlSource = moduleDef.ControlSrc;
-            //this.featureName = moduleDef.FeatureName;
-
         }
 
 
@@ -429,7 +326,7 @@ namespace Cynthia.Business
 
 		public bool Save()
 		{
-			if(this.moduleID > -1)
+			if(this._moduleId > -1)
 			{
 				return Update();
 			}
@@ -443,36 +340,36 @@ namespace Cynthia.Business
 		{ 
 			bool created = false;
 			int newID = -1;
-            this.guid = Guid.NewGuid();
+            this._guid = Guid.NewGuid();
 
 			newID = DBModule.AddModule(
-				this.pageID, 
-                this.siteID,
-                this.siteGuid,
-				this.moduleDefID, 
-				this.moduleOrder, 
-				this.paneName, 
-				this.moduleTitle, 
-                this.viewRoles,
-				this.authorizedEditRoles,
-                this.draftEditRoles,
-				this.cacheTime, 
-				this.showTitle,
-                this.availableForMyPage,
-                this.allowMultipleInstancesOnMyPage,
-                this.icon,
-                this.createdByUserID,
+				this._pageId, 
+                this._siteId,
+                this._siteGuid,
+				this._moduleDefId, 
+				this._moduleOrder, 
+				this._paneName, 
+				this._moduleTitle, 
+                this._viewRoles,
+				this._authorizedEditRoles,
+                this._draftEditRoles,
+				this._cacheTime, 
+				this._showTitle,
+                this._availableForMyPage,
+                this._allowMultipleInstancesOnMyPage,
+                this._icon,
+                this._createdByUserId,
                 DateTime.UtcNow,
-                this.guid,
-                this.featureGuid,
-                this.hideFromAuthenticated,
-                this.hideFromUnauthenticated); 
+                this._guid,
+                this._featureGuid,
+                this._hideFromAuthenticated,
+                this._hideFromUnauthenticated); 
 			
-			this.moduleID = newID;
+			this._moduleId = newID;
 			created = (newID > -1);
 			if(created)
 			{
-				ModuleSettings.CreateDefaultModuleSettings(this.moduleID);
+				ModuleSettings.CreateDefaultModuleSettings(this._moduleId);
 			}
 					
 			return created;
@@ -483,20 +380,20 @@ namespace Cynthia.Business
 		{
 
 			return DBModule.UpdateModule(
-				this.moduleID, 
-				this.moduleDefID, 
-				this.moduleTitle, 
-                this.viewRoles,
-				this.authorizedEditRoles, 
-                this.draftEditRoles,
-				this.cacheTime, 
-				this.showTitle,
-				this.editUserID,
-                this.availableForMyPage,
-                this.allowMultipleInstancesOnMyPage,
-                this.icon,
-                this.hideFromAuthenticated,
-                this.hideFromUnauthenticated); 
+				this._moduleId, 
+				this._moduleDefId, 
+				this._moduleTitle, 
+                this._viewRoles,
+				this._authorizedEditRoles, 
+                this._draftEditRoles,
+				this._cacheTime, 
+				this._showTitle,
+				this._editUserId,
+                this._availableForMyPage,
+                this._allowMultipleInstancesOnMyPage,
+                this._icon,
+                this._hideFromAuthenticated,
+                this._hideFromUnauthenticated); 
 				
 		}
 		
@@ -523,44 +420,6 @@ namespace Cynthia.Business
         public static void DeletePageModules(int pageId)
         {
             DBModule.PageModuleDeleteByPage(pageId);
-            //IDataReader result = GetPageModules(pageId);
-            //ArrayList modules = new ArrayList();
-
-            //while (result.Read())
-            //{
-            //    Module m = new Module();
-            //    m.ModuleId = Convert.ToInt32(result["ModuleID"]);
-            //    m.ModuleDefId = Convert.ToInt32(result["ModuleDefID"]);
-            //    m.PageId = Convert.ToInt32(result["PageID"]);
-            //    m.PaneName = result["PaneName"].ToString();
-            //    m.ModuleTitle = result["ModuleTitle"].ToString();
-            //    m.AuthorizedEditRoles = result["AuthorizedEditRoles"].ToString();
-            //    m.CacheTime = Convert.ToInt32(result["CacheTime"]);
-            //    m.ModuleOrder = Convert.ToInt32(result["ModuleOrder"]);
-            //    if (result["EditUserID"] != DBNull.Value)
-            //    {
-            //        m.EditUserId = Convert.ToInt32(result["EditUserID"]);
-            //    }
-
-
-            //    string showTitle = result["ShowTitle"].ToString();
-            //    m.ShowTitle = (showTitle == "True" || showTitle == "1");
-            //    m.ControlSource = result["ControlSrc"].ToString();
-
-
-            //    modules.Add(m);
-
-
-            //}
-            //result.Close();
-
-            //foreach (Module m in modules)
-            //{
-            //    DeleteModuleInstance(m.ModuleId, pageId);
-
-            //}
-
-
         }
 
         public static bool UpdateModuleOrder(int pageId, int moduleId, int moduleOrder, string paneName)

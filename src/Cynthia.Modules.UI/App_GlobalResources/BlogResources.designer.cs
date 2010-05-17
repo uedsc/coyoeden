@@ -772,7 +772,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comments.
+        ///   Looks up a localized string similar to Feedback.
         /// </summary>
         internal static string BlogFeedbackLabel {
             get {

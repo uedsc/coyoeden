@@ -1,15 +1,3 @@
-/// Author:                     Joe Audette
-/// Created:                    2004-08-14
-///	Last Modified:              2010-02-18
-/// 
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software.
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,16 +31,16 @@ namespace Cynthia.Web.BlogUI
         protected bool showCategories = false;
         protected string OdiogoFeedIDSetting = string.Empty;
         protected Hashtable moduleSettings;
-        private bool useExcerpt = false;
-        private int pageNumber = 1;
-        private int pageSize = 10;
-        private int totalPages = 1;
-        private Guid restoreGuid = Guid.Empty;
-        private Blog blog = null;
+        private bool _useExcerpt = false;
+        private int _pageNumber = 1;
+        private int _pageSize = 10;
+        private int _totalPages = 1;
+        private Guid _restoreGuid = Guid.Empty;
+        private Blog _blog = null;
         private bool BlogEnableVersioningSetting = false;
-        private bool enableContentVersioning = false;
+        private bool _enableContentVersioning = false;
         protected bool isAdmin = false;
-        private string defaultCommentDaysAllowed = "90";
+        private string _defaultCommentDaysAllowed = "90";
         ContentMetaRespository metaRepository = new ContentMetaRespository();
 
 
@@ -178,38 +166,38 @@ namespace Cynthia.Web.BlogUI
 
 		protected virtual void PopulateControls()
 		{
-            if (blog != null)
+            if (_blog != null)
             {
                 dpBeginDate.ShowTime = true;
-                dpBeginDate.Text = DateTimeHelper.LocalizeToCalendar(blog.StartDate.AddHours(timeOffset).ToString());
-                txtTitle.Text = blog.Title;
-                txtItemUrl.Text = blog.ItemUrl;
-                txtLocation.Text = blog.Location;
-                edContent.Text = blog.Description;
-                edExcerpt.Text = blog.Excerpt;
-                txtMetaDescription.Text = blog.MetaDescription;
-                txtMetaKeywords.Text = blog.MetaKeywords;
-                this.chkIncludeInFeed.Checked = blog.IncludeInFeed;
-                chkIsPublished.Checked = blog.IsPublished;
+                dpBeginDate.Text = DateTimeHelper.LocalizeToCalendar(_blog.StartDate.AddHours(timeOffset).ToString());
+                txtTitle.Text = _blog.Title;
+                txtItemUrl.Text = _blog.ItemUrl;
+                txtLocation.Text = _blog.Location;
+                edContent.Text = _blog.Description;
+                edExcerpt.Text = _blog.Excerpt;
+                txtMetaDescription.Text = _blog.MetaDescription;
+                txtMetaKeywords.Text = _blog.MetaKeywords;
+                this.chkIncludeInFeed.Checked = _blog.IncludeInFeed;
+                chkIsPublished.Checked = _blog.IsPublished;
                 ListItem item 
-                    = ddCommentAllowedForDays.Items.FindByValue(blog.AllowCommentsForDays.ToString(CultureInfo.InvariantCulture));
+                    = ddCommentAllowedForDays.Items.FindByValue(_blog.AllowCommentsForDays.ToString(CultureInfo.InvariantCulture));
                 if (item != null)
                 {
                     ddCommentAllowedForDays.ClearSelection();
                     item.Selected = true;
                 }
 
-                if (restoreGuid != Guid.Empty)
+                if (_restoreGuid != Guid.Empty)
                 {
-                    ContentHistory rHistory = new ContentHistory(restoreGuid);
-                    if (rHistory.ContentGuid == blog.BlogGuid)
+                    ContentHistory rHistory = new ContentHistory(_restoreGuid);
+                    if (rHistory.ContentGuid == _blog.BlogGuid)
                     {
                         edContent.Text = rHistory.ContentText;
                     }
 
                 }
                 // show preview button for saved drafts
-                if ((!blog.IsPublished) || (blog.StartDate > DateTime.UtcNow)) { btnSaveAndPreview.Visible = true; }
+                if ((!_blog.IsPublished) || (_blog.StartDate > DateTime.UtcNow)) { btnSaveAndPreview.Visible = true; }
 
                 BindHistory();
             }
@@ -227,17 +215,17 @@ namespace Cynthia.Web.BlogUI
 
                 if (WebConfigSettings.AppendDateToBlogUrls)
                 {
-                    friendlyUrl = SiteUtils.SuggestFriendlyUrl(txtTitle.Text + "-" + DateTime.UtcNow.AddHours(timeOffset).ToString("yyyy-MM-dd"), siteSettings);
+                    friendlyUrl = SiteUtils.SuggestFriendlyUrl(string.Format("{0}-{1}", txtTitle.Text, DateTime.UtcNow.AddHours(timeOffset).ToString("yyyy-MM-dd")), siteSettings);
                 }
                 else
                 {
                     friendlyUrl = SiteUtils.SuggestFriendlyUrl(txtTitle.Text, siteSettings);
                 }
 
-                txtItemUrl.Text = "~/" + friendlyUrl;
+                txtItemUrl.Text = string.Format("~/{0}", friendlyUrl);
             }
 
-            if (blog != null) 
+            if (_blog != null) 
             {
                 hdnTitle.Value = txtTitle.Text; 
             }
@@ -291,10 +279,13 @@ namespace Cynthia.Web.BlogUI
 
 		protected void btnAddCategory_Click(object sender, EventArgs e)
 		{
-            
+		    var pageGuid = Guid.Empty;
+            if (_blog != null) {
+                pageGuid = _blog.ModuleGuid; }
             if (this.txtCategory.Text.Length > 0)
             {
-                int newCategoryId = Blog.AddBlogCategory(this.moduleId, this.txtCategory.Text);
+                //int newCategoryId = Blog.AddBlogCategory(this.moduleId, this.txtCategory.Text);
+                int newCategoryId = Blog.AddBlogCategory(this.moduleId, this.txtCategory.Text,siteSettings.SiteId,siteSettings.SiteGuid,pageGuid,pageId);
                 if (this.itemId > -1)
                 {
                     Blog.AddItemCategory(this.itemId, newCategoryId);
@@ -340,43 +331,43 @@ namespace Cynthia.Web.BlogUI
                 Save();
 
         
-                WebUtils.SetupRedirect(this, SiteRoot + blog.ItemUrl.Replace("~/","/"));
+                WebUtils.SetupRedirect(this, SiteRoot + _blog.ItemUrl.Replace("~/","/"));
             }
 
         }
 
         private void Save()
         {
-            if (blog == null) { blog = new Blog(itemId); }
+            if (_blog == null) { _blog = new Blog(itemId); }
             Module module = new Module(moduleId);
             SiteUser siteUser = SiteUtils.GetCurrentSiteUser();
-            blog.UserGuid = siteUser.UserGuid;
-            blog.LastModUserGuid = siteUser.UserGuid;
-            blog.ContentChanged += new ContentChangedEventHandler(blog_ContentChanged);
+            _blog.UserGuid = siteUser.UserGuid;
+            _blog.LastModUserGuid = siteUser.UserGuid;
+            _blog.ContentChanged += new ContentChangedEventHandler(blog_ContentChanged);
 
-            blog.ModuleId = moduleId;
-            blog.ModuleGuid = module.ModuleGuid;
-            blog.StartDate = DateTime.Parse(dpBeginDate.Text).AddHours(-timeOffset);
-            blog.Title = txtTitle.Text;
-            blog.Location = txtLocation.Text;
-            blog.Description = edContent.Text;
-            blog.Excerpt = edExcerpt.Text;
-            blog.UserName = Context.User.Identity.Name;
-            blog.IncludeInFeed = this.chkIncludeInFeed.Checked;
-            blog.IsPublished = chkIsPublished.Checked;
+            _blog.ModuleId = moduleId;
+            _blog.ModuleGuid = module.ModuleGuid;
+            _blog.StartDate = DateTime.Parse(dpBeginDate.Text).AddHours(-timeOffset);
+            _blog.Title = txtTitle.Text;
+            _blog.Location = txtLocation.Text;
+            _blog.Description = edContent.Text;
+            _blog.Excerpt = edExcerpt.Text;
+            _blog.UserName = Context.User.Identity.Name;
+            _blog.IncludeInFeed = this.chkIncludeInFeed.Checked;
+            _blog.IsPublished = chkIsPublished.Checked;
             int allowComentsForDays = -1;
             int.TryParse(ddCommentAllowedForDays.SelectedValue, out allowComentsForDays);
-            blog.AllowCommentsForDays = allowComentsForDays;
-            blog.MetaDescription = txtMetaDescription.Text;
-            blog.MetaKeywords = txtMetaKeywords.Text;
+            _blog.AllowCommentsForDays = allowComentsForDays;
+            _blog.MetaDescription = txtMetaDescription.Text;
+            _blog.MetaKeywords = txtMetaKeywords.Text;
 
 
             String friendlyUrlString = txtItemUrl.Text.Replace("~/", String.Empty);
             FriendlyUrl friendlyUrl = new FriendlyUrl(siteSettings.SiteId, friendlyUrlString);
 
             if (
-                ((friendlyUrl.FoundFriendlyUrl) && (friendlyUrl.PageGuid != blog.BlogGuid))
-                && (blog.ItemUrl != txtItemUrl.Text)
+                ((friendlyUrl.FoundFriendlyUrl) && (friendlyUrl.PageGuid != _blog.BlogGuid))
+                && (_blog.ItemUrl != txtItemUrl.Text)
                 )
             {
                 lblError.Text = BlogResources.PageUrlInUseBlogErrorMessage;
@@ -392,31 +383,23 @@ namespace Cynthia.Web.BlogUI
                 }
             }
 
-            string oldUrl = blog.ItemUrl.Replace("~/", string.Empty);
+            string oldUrl = _blog.ItemUrl.Replace("~/", string.Empty);
             string newUrl = txtItemUrl.Text.Replace("~/", string.Empty);
 
-            blog.ItemUrl = txtItemUrl.Text;
-            if (enableContentVersioning)
+            _blog.ItemUrl = txtItemUrl.Text;
+            if (_enableContentVersioning)
             {
-                blog.CreateHistory(siteSettings.SiteGuid);
+                _blog.CreateHistory(siteSettings.SiteGuid);
             }
-            blog.Save();
+            _blog.Save();
 
             if (!friendlyUrl.FoundFriendlyUrl)
             {
                 if ((friendlyUrlString.Length > 0)&&(!WebPageInfo.IsPhysicalWebPage("~/" + friendlyUrlString)))
                 {
-                    FriendlyUrl newFriendlyUrl = new FriendlyUrl();
-                    newFriendlyUrl.SiteId = siteSettings.SiteId;
-                    newFriendlyUrl.SiteGuid = siteSettings.SiteGuid;
-                    newFriendlyUrl.PageGuid = blog.BlogGuid;
-                    newFriendlyUrl.Url = friendlyUrlString;
-                    newFriendlyUrl.RealUrl = "~/Blog/ViewPost.aspx?pageid="
-                        + pageId.ToString(CultureInfo.InvariantCulture)
-                        + "&mid=" + blog.ModuleId.ToString(CultureInfo.InvariantCulture)
-                        + "&ItemID=" + blog.ItemId.ToString(CultureInfo.InvariantCulture);
-
-                    newFriendlyUrl.Save();
+                    var realUrl=string.Format("~/Blog/ViewPost.aspx?pageid={0}&mid={1}&ItemID={2}", pageId.ToString(CultureInfo.InvariantCulture), _blog.ModuleId.ToString(CultureInfo.InvariantCulture), _blog.ItemId.ToString(CultureInfo.InvariantCulture));
+                    FriendlyUrl.AddNew(siteSettings.SiteId, siteSettings.SiteGuid, _blog.BlogGuid, friendlyUrlString,
+                                       realUrl,false);
                 }
 
                 //if post was renamed url will change, if url changes we need to redirect from the old url to the new with 301
@@ -438,7 +421,7 @@ namespace Cynthia.Web.BlogUI
                     }
                     // since we have created a redirect we don't need the old friendly url
                     FriendlyUrl oldFriendlyUrl = new FriendlyUrl(siteSettings.SiteId, oldUrl);
-                    if ((oldFriendlyUrl.FoundFriendlyUrl) && (oldFriendlyUrl.PageGuid == blog.BlogGuid))
+                    if ((oldFriendlyUrl.FoundFriendlyUrl) && (oldFriendlyUrl.PageGuid == _blog.BlogGuid))
                     {
                         FriendlyUrl.DeleteUrl(oldFriendlyUrl.UrlId);
                     }
@@ -447,27 +430,22 @@ namespace Cynthia.Web.BlogUI
             }
 
             // new item posted so ping services
-            if ((itemId == -1) && (blog.IsPublished) && (blog.StartDate <= DateTime.UtcNow))
+            if ((itemId == -1) && (_blog.IsPublished) && (_blog.StartDate <= DateTime.UtcNow))
             {
                 QueuePings();
             }
 
             CurrentPage.UpdateLastModifiedTime();
-
-            String blogFriendlyUrl = "blog" + blog.ModuleId.ToInvariantString() + "rss.aspx";
+            //TODO:Remove the rssUrl logic to the Blog business object
+            String blogFriendlyUrl = string.Format("blog{0}rss.aspx", _blog.ModuleId.ToInvariantString());
             if (!FriendlyUrl.Exists(siteSettings.SiteId, blogFriendlyUrl))
             {
-                FriendlyUrl rssUrl = new FriendlyUrl();
-                rssUrl.SiteId = siteSettings.SiteId;
-                rssUrl.SiteGuid = siteSettings.SiteGuid;
-                rssUrl.PageGuid = blog.ModuleGuid;
-                rssUrl.Url = blogFriendlyUrl;
-                rssUrl.RealUrl = "~/Blog/RSS.aspx?pageid=" + pageId.ToInvariantString()
-                    + "&mid=" + blog.ModuleId.ToInvariantString();
-                rssUrl.Save();
+                FriendlyUrl.AddNew(siteSettings.SiteId, siteSettings.SiteGuid, _blog.ModuleGuid, blogFriendlyUrl,
+                                   string.Format("~/Blog/RSS.aspx?pageid={0}&mid={1}", pageId.ToInvariantString(),
+                                                 _blog.ModuleId.ToInvariantString()), false);
             }
 
-            Blog.DeleteItemCategories(blog.ItemId);
+            Blog.DeleteItemCategories(_blog.ItemId);
 
             // Mono doesn't see this in update panel
             // so help find it
@@ -485,7 +463,7 @@ namespace Cynthia.Web.BlogUI
                     Int32 categoryId;
                     if (Int32.TryParse(listItem.Value, out categoryId))
                     {
-                        Blog.AddItemCategory(blog.ItemId, categoryId);
+                        Blog.AddItemCategory(_blog.ItemId, categoryId);
                     }
                 }
 
@@ -509,10 +487,10 @@ namespace Cynthia.Web.BlogUI
 
         private void BindMeta()
         {
-            if (blog == null) { return; }
-            if (blog.BlogGuid == Guid.Empty) { return; }
+            if (_blog == null) { return; }
+            if (_blog.BlogGuid == Guid.Empty) { return; }
 
-            List<ContentMeta> meta = metaRepository.FetchByContent(blog.BlogGuid);
+            List<ContentMeta> meta = metaRepository.FetchByContent(_blog.BlogGuid);
             grdContentMeta.DataSource = meta;
             grdContentMeta.DataBind();
 
@@ -521,8 +499,8 @@ namespace Cynthia.Web.BlogUI
 
         void grdContentMeta_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (blog == null) { return; }
-            if (blog.BlogGuid == Guid.Empty) { return; }
+            if (_blog == null) { return; }
+            if (_blog.BlogGuid == Guid.Empty) { return; }
 
             GridView grid = (GridView)sender;
             string sGuid = e.CommandArgument.ToString();
@@ -544,11 +522,11 @@ namespace Cynthia.Web.BlogUI
             }
 
             metaRepository.Save(meta);
-            List<ContentMeta> metaList = metaRepository.FetchByContent(blog.BlogGuid);
+            List<ContentMeta> metaList = metaRepository.FetchByContent(_blog.BlogGuid);
             metaRepository.ResortMeta(metaList);
 
-            blog.CompiledMeta = metaRepository.GetMetaString(blog.BlogGuid);
-            blog.Save();
+            _blog.CompiledMeta = metaRepository.GetMetaString(_blog.BlogGuid);
+            _blog.Save();
 
             BindMeta();
             upMeta.Update();
@@ -558,15 +536,15 @@ namespace Cynthia.Web.BlogUI
 
         void grdContentMeta_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            if (blog == null) { return; }
-            if (blog.BlogGuid == Guid.Empty) { return; }
+            if (_blog == null) { return; }
+            if (_blog.BlogGuid == Guid.Empty) { return; }
 
             GridView grid = (GridView)sender;
             Guid guid = new Guid(grid.DataKeys[e.RowIndex].Value.ToString());
             metaRepository.Delete(guid);
 
-            blog.CompiledMeta = metaRepository.GetMetaString(blog.BlogGuid);
-            blog.Save();
+            _blog.CompiledMeta = metaRepository.GetMetaString(_blog.BlogGuid);
+            _blog.Save();
             grdContentMeta.Columns[2].Visible = true;
             BindMeta();
             upMeta.Update();
@@ -622,8 +600,8 @@ namespace Cynthia.Web.BlogUI
 
         void grdContentMeta_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            if (blog == null) { return; }
-            if (blog.BlogGuid == Guid.Empty) { return; }
+            if (_blog == null) { return; }
+            if (_blog.BlogGuid == Guid.Empty) { return; }
 
             GridView grid = (GridView)sender;
 
@@ -645,13 +623,13 @@ namespace Cynthia.Web.BlogUI
                 Module module = new Module(moduleId);
                 meta.ModuleGuid = module.ModuleGuid;
                 if (siteUser != null) { meta.CreatedBy = siteUser.UserGuid; }
-                meta.SortRank = metaRepository.GetNextSortRank(blog.BlogGuid);
+                meta.SortRank = metaRepository.GetNextSortRank(_blog.BlogGuid);
             }
 
             if (meta != null)
             {
                 meta.SiteGuid = siteSettings.SiteGuid;
-                meta.ContentGuid = blog.BlogGuid;
+                meta.ContentGuid = _blog.BlogGuid;
                 meta.Dir = ddDirection.SelectedValue;
                 meta.LangCode = txtLangCode.Text;
                 meta.MetaContent = txtMetaContent.Text;
@@ -660,8 +638,8 @@ namespace Cynthia.Web.BlogUI
                 if (siteUser != null) { meta.LastModBy = siteUser.UserGuid; }
                 metaRepository.Save(meta);
 
-                blog.CompiledMeta = metaRepository.GetMetaString(blog.BlogGuid);
-                blog.Save();
+                _blog.CompiledMeta = metaRepository.GetMetaString(_blog.BlogGuid);
+                _blog.Save();
 
             }
 
@@ -720,10 +698,10 @@ namespace Cynthia.Web.BlogUI
 
         private void BindMetaLinks()
         {
-            if (blog == null) { return; }
-            if (blog.BlogGuid == Guid.Empty) { return; }
+            if (_blog == null) { return; }
+            if (_blog.BlogGuid == Guid.Empty) { return; }
 
-            List<ContentMetaLink> meta = metaRepository.FetchLinksByContent(blog.BlogGuid);
+            List<ContentMetaLink> meta = metaRepository.FetchLinksByContent(_blog.BlogGuid);
 
             grdMetaLinks.DataSource = meta;
             grdMetaLinks.DataBind();
@@ -786,15 +764,15 @@ namespace Cynthia.Web.BlogUI
 
         void grdMetaLinks_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            if (blog == null) { return; }
-            if (blog.BlogGuid == Guid.Empty) { return; }
+            if (_blog == null) { return; }
+            if (_blog.BlogGuid == Guid.Empty) { return; }
 
             GridView grid = (GridView)sender;
             Guid guid = new Guid(grid.DataKeys[e.RowIndex].Value.ToString());
             metaRepository.DeleteLink(guid);
 
-            blog.CompiledMeta = metaRepository.GetMetaString(blog.BlogGuid);
-            blog.Save();
+            _blog.CompiledMeta = metaRepository.GetMetaString(_blog.BlogGuid);
+            _blog.Save();
 
             grid.Columns[2].Visible = true;
             BindMetaLinks();
@@ -812,8 +790,8 @@ namespace Cynthia.Web.BlogUI
 
         void grdMetaLinks_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            if (blog == null) { return; }
-            if (blog.BlogGuid == Guid.Empty) { return; }
+            if (_blog == null) { return; }
+            if (_blog.BlogGuid == Guid.Empty) { return; }
 
             GridView grid = (GridView)sender;
 
@@ -833,13 +811,13 @@ namespace Cynthia.Web.BlogUI
                 Module module = new Module(moduleId);
                 meta.ModuleGuid = module.ModuleGuid;
                 if (currentUser != null) { meta.CreatedBy = currentUser.UserGuid; }
-                meta.SortRank = metaRepository.GetNextLinkSortRank(blog.BlogGuid);
+                meta.SortRank = metaRepository.GetNextLinkSortRank(_blog.BlogGuid);
             }
 
             if (meta != null)
             {
                 meta.SiteGuid = siteSettings.SiteGuid;
-                meta.ContentGuid = blog.BlogGuid;
+                meta.ContentGuid = _blog.BlogGuid;
                 meta.Rel = txtRel.Text;
                 meta.Href = txtHref.Text;
                 meta.HrefLang = txtHrefLang.Text;
@@ -847,8 +825,8 @@ namespace Cynthia.Web.BlogUI
                 if (currentUser != null) { meta.LastModBy = currentUser.UserGuid; }
                 metaRepository.Save(meta);
 
-                blog.CompiledMeta = metaRepository.GetMetaString(blog.BlogGuid);
-                blog.Save();
+                _blog.CompiledMeta = metaRepository.GetMetaString(_blog.BlogGuid);
+                _blog.Save();
 
             }
 
@@ -881,8 +859,8 @@ namespace Cynthia.Web.BlogUI
 
         void grdMetaLinks_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (blog == null) { return; }
-            if (blog.BlogGuid == Guid.Empty) { return; }
+            if (_blog == null) { return; }
+            if (_blog.BlogGuid == Guid.Empty) { return; }
 
             GridView grid = (GridView)sender;
             string sGuid = e.CommandArgument.ToString();
@@ -905,11 +883,11 @@ namespace Cynthia.Web.BlogUI
             }
 
             metaRepository.Save(meta);
-            List<ContentMetaLink> metaList = metaRepository.FetchLinksByContent(blog.BlogGuid);
+            List<ContentMetaLink> metaList = metaRepository.FetchLinksByContent(_blog.BlogGuid);
             metaRepository.ResortMeta(metaList);
 
-            blog.CompiledMeta = metaRepository.GetMetaString(blog.BlogGuid);
-            blog.Save();
+            _blog.CompiledMeta = metaRepository.GetMetaString(_blog.BlogGuid);
+            _blog.Save();
 
             BindMetaLinks();
             updMetaLinks.Update();
@@ -922,20 +900,20 @@ namespace Cynthia.Web.BlogUI
 
         private void BindHistory()
         {
-            if (!enableContentVersioning) { return; }
+            if (!_enableContentVersioning) { return; }
 
-            if ((blog == null)||(blog.ItemId == -1))
+            if ((_blog == null)||(_blog.ItemId == -1))
             {
                 pnlHistory.Visible = false;
                 return;
             }
 
-            List<ContentHistory> history = ContentHistory.GetPage(blog.BlogGuid, pageNumber, pageSize, out totalPages);
+            List<ContentHistory> history = ContentHistory.GetPage(_blog.BlogGuid, _pageNumber, _pageSize, out _totalPages);
 
             pgrHistory.ShowFirstLast = true;
-            pgrHistory.PageSize = pageSize;
-            pgrHistory.PageCount = totalPages;
-            pgrHistory.Visible = (this.totalPages > 1);
+            pgrHistory.PageSize = _pageSize;
+            pgrHistory.PageCount = _totalPages;
+            pgrHistory.Visible = (this._totalPages > 1);
            
             grdHistory.DataSource = history;
             grdHistory.DataBind();
@@ -947,8 +925,8 @@ namespace Cynthia.Web.BlogUI
 
         void pgrHistory_Command(object sender, CommandEventArgs e)
         {
-            pageNumber = Convert.ToInt32(e.CommandArgument);
-            pgrHistory.CurrentIndex = pageNumber;
+            _pageNumber = Convert.ToInt32(e.CommandArgument);
+            pgrHistory.CurrentIndex = _pageNumber;
             BindHistory();
         }
 
@@ -1011,9 +989,9 @@ namespace Cynthia.Web.BlogUI
 
         void btnDeleteHistory_Click(object sender, EventArgs e)
         {
-            if (blog == null) { return; }
+            if (_blog == null) { return; }
 
-            ContentHistory.DeleteByContent(blog.BlogGuid);
+            ContentHistory.DeleteByContent(_blog.BlogGuid);
             BindHistory();
 
         }
@@ -1075,12 +1053,12 @@ namespace Cynthia.Web.BlogUI
 
         protected void btnDelete_Click(object sender, EventArgs e)
 		{
-			if(blog != null)
+			if(_blog != null)
 			{
                 //Blog blog = new Blog(itemId);
-                blog.ContentChanged += new ContentChangedEventHandler(blog_ContentChanged);
-                blog.Delete();
-                FriendlyUrl.DeleteByPageGuid(blog.BlogGuid);
+                _blog.ContentChanged += new ContentChangedEventHandler(blog_ContentChanged);
+                _blog.Delete();
+                FriendlyUrl.DeleteByPageGuid(_blog.BlogGuid);
                 CurrentPage.UpdateLastModifiedTime();
                 SiteUtils.QueueIndexing();
 			}
@@ -1098,7 +1076,7 @@ namespace Cynthia.Web.BlogUI
 
         private void PopulateCommentDaysDropdown()
         {
-            ListItem item = ddCommentAllowedForDays.Items.FindByValue(defaultCommentDaysAllowed);
+            ListItem item = ddCommentAllowedForDays.Items.FindByValue(_defaultCommentDaysAllowed);
             if (item != null)
             {
                 ddCommentAllowedForDays.ClearSelection();
@@ -1116,8 +1094,8 @@ namespace Cynthia.Web.BlogUI
 
             lnkExcerpt.HRef = "#" + tabExcerpt.ClientID;
 
-            liExcerpt.Visible = useExcerpt;
-            tabExcerpt.Visible = useExcerpt;
+            liExcerpt.Visible = _useExcerpt;
+            tabExcerpt.Visible = _useExcerpt;
 
             if (!Page.IsPostBack)
             {
@@ -1227,37 +1205,37 @@ namespace Cynthia.Web.BlogUI
             showCategories = WebUtils.ParseBoolFromHashtable(
                 moduleSettings, "BlogShowCategoriesSetting", false);
 
-            useExcerpt = WebUtils.ParseBoolFromHashtable(
-                moduleSettings, "BlogUseExcerptSetting", useExcerpt);
+            _useExcerpt = WebUtils.ParseBoolFromHashtable(
+                moduleSettings, "BlogUseExcerptSetting", _useExcerpt);
 
             if (moduleSettings.Contains("BlogCommentForDaysDefault"))
             {
-                defaultCommentDaysAllowed = moduleSettings["BlogCommentForDaysDefault"].ToString();
+                _defaultCommentDaysAllowed = moduleSettings["BlogCommentForDaysDefault"].ToString();
             }
 
-            pageSize = WebUtils.ParseInt32FromHashtable(moduleSettings, "BlogVersionPageSizeSetting", pageSize);
-            enableContentVersioning = WebUtils.ParseBoolFromHashtable(moduleSettings, "BlogEnableVersioningSetting", BlogEnableVersioningSetting);
+            _pageSize = WebUtils.ParseInt32FromHashtable(moduleSettings, "BlogVersionPageSizeSetting", _pageSize);
+            _enableContentVersioning = WebUtils.ParseBoolFromHashtable(moduleSettings, "BlogEnableVersioningSetting", BlogEnableVersioningSetting);
 
             if ((siteSettings.ForceContentVersioning) || (WebConfigSettings.EnforceContentVersioningGlobally))
             {
-                enableContentVersioning = true;
+                _enableContentVersioning = true;
             }
 
             if (itemId > -1)
             {
-                blog = new Blog(itemId);
-                if (blog.ModuleId != moduleId) { blog = null; }
+                _blog = new Blog(itemId);
+                if (_blog.ModuleId != moduleId) { _blog = null; }
             }
 
 
-            pnlMetaData.Visible = (blog != null);
+            pnlMetaData.Visible = (_blog != null);
             
 
-            divHistoryDelete.Visible = (enableContentVersioning && isAdmin);
+            divHistoryDelete.Visible = (_enableContentVersioning && isAdmin);
 
-            pnlHistory.Visible = enableContentVersioning;
+            pnlHistory.Visible = _enableContentVersioning;
 
-            if (enableContentVersioning)
+            if (_enableContentVersioning)
             {
                 SetupHistoryRestoreScript();
             }
@@ -1301,7 +1279,7 @@ namespace Cynthia.Web.BlogUI
             pageId = WebUtils.ParseInt32FromQueryString("pageid", -1);
             moduleId = WebUtils.ParseInt32FromQueryString("mid", -1);
             itemId = WebUtils.ParseInt32FromQueryString("ItemID", -1);
-            restoreGuid = WebUtils.ParseGuidFromQueryString("r", restoreGuid);
+            _restoreGuid = WebUtils.ParseGuidFromQueryString("r", _restoreGuid);
             cacheDependencyKey = "Module-" + moduleId.ToString(CultureInfo.InvariantCulture);
             virtualRoot = WebUtils.GetApplicationRoot();
 

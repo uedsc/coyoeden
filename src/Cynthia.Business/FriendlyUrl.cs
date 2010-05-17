@@ -1,14 +1,3 @@
-// Author:					Joe Audette
-// Created:				    2005-06-01
-// Last Modified:			2010-02-16
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)  
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software.
 
 using System;
 using System.Configuration;
@@ -49,15 +38,15 @@ namespace Cynthia.Business
 
 		#region Private Properties
 
-        private Guid itemGuid = Guid.Empty;
-        private Guid siteGuid = Guid.Empty;
-        private Guid pageGuid = Guid.Empty;
-		private int urlID = -1; 
-		private int siteID = -1; 
-		private string friendlyUrl = string.Empty; 
-		private string realUrl = string.Empty; 
-		private bool isPattern; 
-		private bool foundFriendlyUrl = false;
+        private Guid _itemGuid = Guid.Empty;
+        private Guid _siteGuid = Guid.Empty;
+        private Guid _pageGuid = Guid.Empty;
+		private int _urlId = -1; 
+		private int _siteId = -1; 
+		private string _friendlyUrl = string.Empty; 
+		private string _realUrl = string.Empty; 
+		private bool _isPattern; 
+		private bool _foundFriendlyUrl = false;
 
         
 		
@@ -67,59 +56,59 @@ namespace Cynthia.Business
 
         public Guid ItemGuid
         {
-            get { return itemGuid; }
+            get { return _itemGuid; }
 
         }
 
         public Guid SiteGuid
         {
-            get { return siteGuid; }
-            set { siteGuid = value; }
+            get { return _siteGuid; }
+            set { _siteGuid = value; }
         }
 
         public Guid PageGuid
         {
-            get { return pageGuid; }
-            set { pageGuid = value; }
+            get { return _pageGuid; }
+            set { _pageGuid = value; }
         }
 
 		public bool FoundFriendlyUrl 
 		{
-			get { return foundFriendlyUrl; }
+			get { return _foundFriendlyUrl; }
 			
 		}
 
 		public int UrlId 
 		{
-			get { return urlID; }
-			set { urlID = value; }
+			get { return _urlId; }
+			set { _urlId = value; }
 		}
 		public int SiteId 
 		{
-			get { return siteID; }
-			set { siteID = value; }
+			get { return _siteId; }
+			set { _siteId = value; }
 		}
 		public string Url 
 		{
-			get { return friendlyUrl; }
-			set { friendlyUrl = value; }
+			get { return _friendlyUrl; }
+			set { _friendlyUrl = value; }
 		}
 		public string RealUrl 
 		{
-			get { return realUrl; }
+			get { return _realUrl; }
 			set 
 			{ 
 				if(!value.StartsWith("~/"))
 				{
 					value = "~/" + value;
 				}
-				realUrl = value; 
+				_realUrl = value; 
 			}
 		}
 		public bool IsPattern 
 		{
-			get { return isPattern; }
-			set { isPattern = value; }
+			get { return _isPattern; }
+			set { _isPattern = value; }
 		}
 
 		#endregion
@@ -157,16 +146,16 @@ namespace Cynthia.Business
         {
             if (reader.Read())
             {
-                this.foundFriendlyUrl = true;
-                this.urlID = Convert.ToInt32(reader["UrlID"]);
-                this.siteID = Convert.ToInt32(reader["SiteID"]);
-                this.friendlyUrl = reader["FriendlyUrl"].ToString();
-                this.realUrl = reader["RealUrl"].ToString();
-                this.isPattern = Convert.ToBoolean(reader["IsPattern"]);
+                this._foundFriendlyUrl = true;
+                this._urlId = Convert.ToInt32(reader["UrlID"]);
+                this._siteId = Convert.ToInt32(reader["SiteID"]);
+                this._friendlyUrl = reader["FriendlyUrl"].ToString();
+                this._realUrl = reader["RealUrl"].ToString();
+                this._isPattern = Convert.ToBoolean(reader["IsPattern"]);
                 string pg = reader["PageGuid"].ToString();
-                if (pg.Length == 36) this.pageGuid = new Guid(pg);
-                this.siteGuid = new Guid(reader["SiteGuid"].ToString());
-                this.itemGuid = new Guid(reader["ItemGuid"].ToString());
+                if (pg.Length == 36) this._pageGuid = new Guid(pg);
+                this._siteGuid = new Guid(reader["SiteGuid"].ToString());
+                this._itemGuid = new Guid(reader["ItemGuid"].ToString());
 
             }
         }
@@ -174,18 +163,18 @@ namespace Cynthia.Business
 		private bool Create()
 		{ 
 			int newID = 0;
-            this.itemGuid = Guid.NewGuid();
+            this._itemGuid = Guid.NewGuid();
 
 			newID = DBFriendlyUrl.AddFriendlyUrl(
-                this.itemGuid,
-                this.siteGuid,
-                this.pageGuid,
-				this.siteID, 
-				this.friendlyUrl, 
-				this.realUrl, 
-				this.isPattern); 
+                this._itemGuid,
+                this._siteGuid,
+                this._pageGuid,
+				this._siteId, 
+				this._friendlyUrl, 
+				this._realUrl, 
+				this._isPattern); 
 			
-			this.urlID = newID;
+			this._urlId = newID;
 	
 			return (newID > 0);
 
@@ -195,12 +184,12 @@ namespace Cynthia.Business
 		{
 
 			return DBFriendlyUrl.UpdateFriendlyUrl(
-				this.urlID, 
-				this.siteID, 
+				this._urlId, 
+				this._siteId, 
                 this.PageGuid,
-				this.friendlyUrl, 
-				this.realUrl, 
-				this.isPattern); 
+				this._friendlyUrl, 
+				this._realUrl, 
+				this._isPattern); 
 				
 		}
 
@@ -211,10 +200,10 @@ namespace Cynthia.Business
 
 		public bool Save()
 		{
-            if (friendlyUrl.Length == 0) { return false; }
-            if (realUrl.Length == 0) { return false; }
+            if (_friendlyUrl.Length == 0) { return false; }
+            if (_realUrl.Length == 0) { return false; }
 
-			if( this.urlID > 0)
+			if( this._urlId > 0)
 			{
 				return Update();
 			}
@@ -376,8 +365,22 @@ namespace Cynthia.Business
 
         }
 
+        public static  bool AddNew(int siteId,Guid siteGuid,Guid pageGuid,string url,string realUrl,bool isPattern)
+        {
+            var boUrl = new FriendlyUrl()
+                          {
+                              
+                              SiteId = siteId,
+                              SiteGuid = siteGuid,
+                              PageGuid = pageGuid,
+                              Url = url,
+                              RealUrl = realUrl,
+                              IsPattern = isPattern
+                          };
+            return boUrl.Save();
+        }
 
-		#endregion
+	    #endregion
 
 
 	}

@@ -1,16 +1,4 @@
-﻿// Author:					Joe Audette
-// Created:				    2005-03-27
-// Last Modified:			2009-10-20
-// 
-// Based on code example by Joseph Hill
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software.
+﻿
 
 using System;
 using System.Data;
@@ -298,43 +286,46 @@ namespace Cynthia.Business
 
         public static DataTable GetFeeds(int moduleId)
         {
-            DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("ItemID", typeof(int));
-            dataTable.Columns.Add("ItemGuid", typeof(Guid));
-            dataTable.Columns.Add("ModuleID", typeof(int));
-            dataTable.Columns.Add("ModuleGuid", typeof(Guid));
-            dataTable.Columns.Add("Author", typeof(string));
-            dataTable.Columns.Add("Url", typeof(string));
-            dataTable.Columns.Add("RssUrl", typeof(string));
-            dataTable.Columns.Add("ImageUrl", typeof(string));
-            dataTable.Columns.Add("FeedType", typeof(string));
-            dataTable.Columns.Add("PublishByDefault", typeof(bool));
-            dataTable.Columns.Add("TotalEntries", typeof(int));
-
-
-            using (IDataReader reader = DBRssFeed.GetFeeds(moduleId))
+            using (var dataTable=new DataTable())
             {
-                while (reader.Read())
+                dataTable.Columns.Add("ItemID", typeof(int));
+                dataTable.Columns.Add("ItemGuid", typeof(Guid));
+                dataTable.Columns.Add("ModuleID", typeof(int));
+                dataTable.Columns.Add("ModuleGuid", typeof(Guid));
+                dataTable.Columns.Add("Author", typeof(string));
+                dataTable.Columns.Add("Url", typeof(string));
+                dataTable.Columns.Add("RssUrl", typeof(string));
+                dataTable.Columns.Add("ImageUrl", typeof(string));
+                dataTable.Columns.Add("FeedType", typeof(string));
+                dataTable.Columns.Add("PublishByDefault", typeof(bool));
+                dataTable.Columns.Add("TotalEntries", typeof(int));
+
+
+                using (IDataReader reader = DBRssFeed.GetFeeds(moduleId))
                 {
-                    DataRow row = dataTable.NewRow();
-                    row["ItemID"] = reader["ItemID"];
-                    row["ItemGuid"] = new Guid(reader["ItemGuid"].ToString());
-                    row["ModuleID"] = reader["ModuleID"];
-                    row["ModuleGuid"] = new Guid(reader["ModuleGuid"].ToString());
-                    row["Author"] = reader["Author"];
-                    row["Url"] = reader["Url"];
-                    row["RssUrl"] = reader["RssUrl"];
-                    row["ImageUrl"] = reader["ImageUrl"];
-                    row["FeedType"] = reader["FeedType"];
-                    row["PublishByDefault"] = Convert.ToBoolean(reader["PublishByDefault"]);
-                    row["TotalEntries"] = Convert.ToInt32(reader["TotalEntries"]);
+                    while (reader.Read())
+                    {
+                        DataRow row = dataTable.NewRow();
+                        row["ItemID"] = reader["ItemID"];
+                        row["ItemGuid"] = new Guid(reader["ItemGuid"].ToString());
+                        row["ModuleID"] = reader["ModuleID"];
+                        row["ModuleGuid"] = new Guid(reader["ModuleGuid"].ToString());
+                        row["Author"] = reader["Author"];
+                        row["Url"] = reader["Url"];
+                        row["RssUrl"] = reader["RssUrl"];
+                        row["ImageUrl"] = reader["ImageUrl"];
+                        row["FeedType"] = reader["FeedType"];
+                        row["PublishByDefault"] = Convert.ToBoolean(reader["PublishByDefault"]);
+                        row["TotalEntries"] = Convert.ToInt32(reader["TotalEntries"]);
 
-                    dataTable.Rows.Add(row);
+                        dataTable.Rows.Add(row);
 
-                }
-            }
+                    }
+                }//using
 
-            return dataTable;
+                return dataTable;   
+            }//using
+            
         }
 
 

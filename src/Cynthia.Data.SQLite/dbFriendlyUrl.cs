@@ -1,14 +1,3 @@
-/// Author:					Joe Audette
-/// Created:				2007-11-03
-/// Last Modified:			2010-02-16
-/// 
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)  
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software.
 
 using System;
 using System.Text;
@@ -137,7 +126,100 @@ namespace Cynthia.Data
             return newID;
 
         }
+        /// <summary>
+        /// Inserts a row in the cy_FriendlyUrls table. Returns new integer id.
+        /// </summary>
+        /// <param name="itemGuid"> itemGuid </param>
+        /// <param name="siteGuid"> siteGuid </param>
+        /// <param name="pageGuid"> pageGuid </param>
+        /// <param name="siteID"> siteID </param>
+        /// <param name="friendlyUrl"> friendlyUrl </param>
+        /// <param name="realUrl"> realUrl </param>
+        /// <param name="isPattern"> isPattern </param>
+        /// <param name="connection">connection</param>
+        /// <returns>int</returns>
+        public static int AddFriendlyUrl(
+            Guid itemGuid,
+            Guid siteGuid,
+            Guid pageGuid,
+            int siteId,
+            string friendlyUrl,
+            string realUrl,
+            bool isPattern,IDbConnection connection)
+        {
 
+            int intIsPattern;
+            if (isPattern)
+            {
+                intIsPattern = 1;
+            }
+            else
+            {
+                intIsPattern = 0;
+            }
+
+
+            StringBuilder sqlCommand = new StringBuilder();
+            sqlCommand.Append("INSERT INTO cy_FriendlyUrls ( ");
+            sqlCommand.Append("SiteID, ");
+            sqlCommand.Append("FriendlyUrl, ");
+            sqlCommand.Append("RealUrl, ");
+            sqlCommand.Append("IsPattern, ");
+            sqlCommand.Append("PageGuid, ");
+            sqlCommand.Append("SiteGuid, ");
+            sqlCommand.Append("ItemGuid )");
+
+            sqlCommand.Append(" VALUES ( ");
+            sqlCommand.Append(":SiteID, ");
+            sqlCommand.Append(":FriendlyUrl, ");
+            sqlCommand.Append(":RealUrl, ");
+            sqlCommand.Append(":IsPattern, ");
+            sqlCommand.Append(":PageGuid, ");
+            sqlCommand.Append(":SiteGuid, ");
+            sqlCommand.Append(":ItemGuid )");
+            sqlCommand.Append(";");
+
+            sqlCommand.Append("SELECT LAST_INSERT_ROWID();");
+
+            SqliteParameter[] arParams = new SqliteParameter[7];
+
+            arParams[0] = new SqliteParameter(":SiteID", DbType.Int32);
+            arParams[0].Direction = ParameterDirection.Input;
+            arParams[0].Value = siteId;
+
+            arParams[1] = new SqliteParameter(":FriendlyUrl", DbType.String, 255);
+            arParams[1].Direction = ParameterDirection.Input;
+            arParams[1].Value = friendlyUrl;
+
+            arParams[2] = new SqliteParameter(":RealUrl", DbType.String, 255);
+            arParams[2].Direction = ParameterDirection.Input;
+            arParams[2].Value = realUrl;
+
+            arParams[3] = new SqliteParameter(":IsPattern", DbType.Int32);
+            arParams[3].Direction = ParameterDirection.Input;
+            arParams[3].Value = intIsPattern;
+
+            arParams[4] = new SqliteParameter(":PageGuid", DbType.String, 36);
+            arParams[4].Direction = ParameterDirection.Input;
+            arParams[4].Value = pageGuid.ToString();
+
+            arParams[5] = new SqliteParameter(":SiteGuid", DbType.String, 36);
+            arParams[5].Direction = ParameterDirection.Input;
+            arParams[5].Value = siteGuid.ToString();
+
+            arParams[6] = new SqliteParameter(":ItemGuid", DbType.String, 36);
+            arParams[6].Direction = ParameterDirection.Input;
+            arParams[6].Value = itemGuid.ToString();
+
+            int newID = 0;
+
+            newID = Convert.ToInt32(connection.ExecuteScalar(
+                sqlCommand.ToString(),
+                arParams).ToString());
+
+            return newID;
+
+        }
         public static bool UpdateFriendlyUrl(
             int urlId,
             int siteId,

@@ -13,9 +13,6 @@
 // Forked From Enterprise Library licensed under Ms-Pl http://www.codeplex.com/entlib
 // but implementing a sub set of the API from the 2.0 Application Blocks SqlHelper
 // using implementation from the newer Ms-Pl version
-// Modifications and adaptation for SQLite by Joe Audette
-// Last Modified 2010-01-28
-
 using System;
 using System.Data;
 using Mono.Data.Sqlite;
@@ -26,11 +23,9 @@ namespace Cynthia.Data
 	/// <summary>
 	/// Helper class that makes it easier to work with the provider.
 	/// </summary>
-	public sealed class SqliteHelper
+	public static class SqliteHelper
 	{
-		private SqliteHelper(){}
-
-        public static int ExecuteNonQuery(IDbConnection connection, string commandText, params IDataParameter[] parameters)
+	    public static int ExecuteNonQuery(this IDbConnection connection, string commandText, params IDataParameter[] parameters)
 		{
             using (SqliteCommand cmd = new SqliteCommand())
             {
@@ -95,46 +90,56 @@ namespace Cynthia.Data
             using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
-                using (SqliteCommand command = new SqliteCommand())
+                return ExecuteScalar(connection, commandText, commandParameters);
+            }
+        }
+        public static object ExecuteScalar(this IDbConnection connection, string commandText, params IDataParameter[] commandParameters)
+        {
+            using (SqliteCommand command = new SqliteCommand())
+            {
+                command.Connection = (SqliteConnection)connection;
+                command.CommandText = commandText;
+                command.CommandType = CommandType.Text;
+
+                if (commandParameters != null)
                 {
-                    command.Connection = connection;
-                    command.CommandText = commandText;
-                    command.CommandType = CommandType.Text;
-
-                    if (commandParameters != null)
+                    foreach (IDataParameter p in commandParameters)
                     {
-                        foreach (IDataParameter p in commandParameters)
-                        {
-                            command.Parameters.Add(p);
-                        }
+                        command.Parameters.Add(p);
                     }
-
-                    return command.ExecuteScalar();
                 }
+
+                return command.ExecuteScalar();
             }
         }
 
-		public static DataSet ExecuteDataset(string connectionString, string commandText, params IDataParameter[] commandParameters)
+	    public static DataSet ExecuteDataset(string connectionString, string commandText, params IDataParameter[] commandParameters)
 		{
             using (SqliteConnection connection = new SqliteConnection(connectionString))
 			{
                 connection.Open();
-                using (SqliteCommand command = new SqliteCommand())
+                return ExecuteDataset(connection, commandText, commandParameters);
+			}
+		}
+        public static DataSet ExecuteDataset(this IDbConnection connection, string commandText, params IDataParameter[] commandParameters)
+        {
+            using (SqliteCommand command = new SqliteCommand())
+            {
+                command.Connection = (SqliteConnection)connection;
+                command.CommandText = commandText;
+                command.CommandType = CommandType.Text;
+
+                if (commandParameters != null)
                 {
-                    command.Connection = connection;
-                    command.CommandText = commandText;
-                    command.CommandType = CommandType.Text;
-
-                    if (commandParameters != null)
+                    foreach (IDataParameter p in commandParameters)
                     {
-                        foreach (IDataParameter p in commandParameters)
-                        {
-                            command.Parameters.Add(p);
-                        }
+                        command.Parameters.Add(p);
                     }
+                }
 
-                    SqliteDataAdapter adapter = new SqliteDataAdapter(command);
-                    DataSet dataSet = new DataSet();
+                SqliteDataAdapter adapter = new SqliteDataAdapter(command);
+                using (DataSet dataSet = new DataSet())
+                {
                     adapter.Fill(dataSet);
                     if (dataSet.Tables.Count == 0)
                     {
@@ -143,8 +148,7 @@ namespace Cynthia.Data
 
                     return dataSet;
                 }
-			}
-		}
-
+            }
+        }
 	}
 }

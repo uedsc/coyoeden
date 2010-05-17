@@ -1,14 +1,4 @@
-/// Author:					Joe Audette
-/// Created:				2004-07-21
-/// Last Modified:			2009-06-07
-/// 
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software.
+
 
 using System;
 using System.Data;
@@ -71,8 +61,7 @@ namespace Cynthia.Web.AdminUI
 
             int moduleDefID = (int)defsList.DataKeys[e.Item.ItemIndex];
             string redirectUrl
-                = SiteRoot + "/Admin/ModuleDefinitions.aspx?defId="
-                + moduleDefID.ToString(CultureInfo.InvariantCulture);
+                = string.Format("{0}/Admin/ModuleDefinitions.aspx?defId={1}", SiteRoot, moduleDefID.ToString(CultureInfo.InvariantCulture));
 
             WebUtils.SetupRedirect(this, redirectUrl);
 

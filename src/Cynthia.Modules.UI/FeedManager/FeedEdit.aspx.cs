@@ -1,22 +1,8 @@
-﻿/// Author:				        Joe Audette
-/// Created:			        2005-03-27
-///	Last Modified:              2009-05-06
-/// 
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software.
-
-using System;
+﻿using System;
 using System.Collections;
-using System.Configuration;
 using System.Globalization;
 using System.Data;
 using Cynthia.Business;
-using Cynthia.Business.WebHelpers;
 using Cynthia.Web.Framework;
 using Resources;
 
@@ -27,12 +13,12 @@ namespace Cynthia.Web.FeedUI
         protected int PageId = -1;
         protected int ModuleId = -1;
         protected int ItemId = -1;
-        private int maxDaysOld = 90;
-        private int maxEntriesPerFeed = 90;
+        private int _maxDaysOld = 90;
+        private int _maxEntriesPerFeed = 90;
         protected bool EnableSelectivePublishing = false;
         protected Module module = null;
-        private Hashtable moduleSettings = null;
-        private DataTable dtFeedList = null;
+        private Hashtable _moduleSettings = null;
+        private DataTable _dtFeedList = null;
         protected string EditContentImage = WebConfigSettings.EditContentImage;
         protected string RssImageFile = WebConfigSettings.RSSImageFileName;
 
@@ -42,7 +28,6 @@ namespace Cynthia.Web.FeedUI
         {
             Load += new EventHandler(Page_Load);
             btnUpdate.Click += new EventHandler(btnUpdate_Click);
-            //btnCancel.Click += new EventHandler(btnCancel_Click);
             btnDelete.Click += new EventHandler(btnDelete_Click);
             btnClearCache.Click += new EventHandler(btnClearCache_Click);
             base.OnInit(e);
@@ -103,20 +88,21 @@ namespace Cynthia.Web.FeedUI
             txtRssUrl.Text = feed.RssUrl;
             txtImageUrl.Text = feed.ImageUrl;
             txtSortRank.Text = feed.SortRank.ToInvariantString();
-            //FeedType.SetValue(feed.FeedType);
             chkPublishByDefault.Checked = feed.PublishByDefault;
 
         }
 
         private void BindFeedList()
         {
-            if (dtFeedList == null) { dtFeedList = RssFeed.GetFeeds(ModuleId); }
+            if (_dtFeedList == null) { _dtFeedList = RssFeed.GetFeeds(ModuleId); }
 
-            DataView members = dtFeedList.DefaultView;
-            members.Sort = "Author";
+            using (DataView members = _dtFeedList.DefaultView)
+            {
+                members.Sort = "Author";
 
-            dlstFeedList.DataSource = members;
-            dlstFeedList.DataBind();
+                dlstFeedList.DataSource = members;
+                dlstFeedList.DataBind();
+            }
 
         }
 
@@ -159,8 +145,8 @@ namespace Cynthia.Web.FeedUI
                     feed, 
                     ModuleId, 
                     module.ModuleGuid, 
-                    maxDaysOld, 
-                    maxEntriesPerFeed, 
+                    _maxDaysOld, 
+                    _maxEntriesPerFeed, 
                     EnableSelectivePublishing);
 
 
@@ -185,17 +171,6 @@ namespace Cynthia.Web.FeedUI
             }
 
         }
-
-        //private void btnCancel_Click(object sender, EventArgs e)
-        //{
-        //    if (hdnReturnUrl.Value.Length > 0)
-        //    {
-        //        WebUtils.SetupRedirect(this, hdnReturnUrl.Value);
-        //        return;
-        //    }
-
-        //    WebUtils.SetupRedirect(this, SiteUtils.GetCurrentPageUrl());
-        //}
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -248,10 +223,7 @@ namespace Cynthia.Web.FeedUI
             UIHelper.AddConfirmationDialog(btnClearCache, FeedResources.ClearCacheWarning);
 
             lnkNewFeed.Text = FeedResources.AddNewFeedLink;
-            lnkNewFeed.NavigateUrl = SiteRoot + "/FeedManager/FeedEdit.aspx?pageid="
-                + PageId.ToString(CultureInfo.InvariantCulture)
-                + "&mid=" + ModuleId.ToString(CultureInfo.InvariantCulture)
-                + "&ItemID=-1";
+            lnkNewFeed.NavigateUrl = string.Format("{0}/FeedManager/FeedEdit.aspx?pageid={1}&mid={2}&ItemID=-1", SiteRoot, PageId.ToString(CultureInfo.InvariantCulture), ModuleId.ToString(CultureInfo.InvariantCulture));
 
             lnkNewFeed.Visible = (ItemId != -1);
 
@@ -284,17 +256,17 @@ namespace Cynthia.Web.FeedUI
             if (ModuleId == -1) { return; }
 
             module = new Module(ModuleId, CurrentPage.PageId);
-            moduleSettings = ModuleSettings.GetModuleSettings(ModuleId);
-            if (moduleSettings == null) { return; }
+            _moduleSettings = ModuleSettings.GetModuleSettings(ModuleId);
+            if (_moduleSettings == null) { return; }
 
-            maxDaysOld = WebUtils.ParseInt32FromHashtable(
-                moduleSettings, "RSSFeedMaxDayCountSetting", 90);
+            _maxDaysOld = WebUtils.ParseInt32FromHashtable(
+                _moduleSettings, "RSSFeedMaxDayCountSetting", 90);
 
-            maxEntriesPerFeed = WebUtils.ParseInt32FromHashtable(
-                moduleSettings, "RSSFeedMaxPostsPerFeedSetting", 90);
+            _maxEntriesPerFeed = WebUtils.ParseInt32FromHashtable(
+                _moduleSettings, "RSSFeedMaxPostsPerFeedSetting", 90);
 
             EnableSelectivePublishing = WebUtils.ParseBoolFromHashtable(
-                moduleSettings, "EnableSelectivePublishing", EnableSelectivePublishing);
+                _moduleSettings, "EnableSelectivePublishing", EnableSelectivePublishing);
 
             divPublish.Visible = EnableSelectivePublishing;
 

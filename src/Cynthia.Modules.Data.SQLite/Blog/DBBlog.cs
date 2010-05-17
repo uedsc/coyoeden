@@ -1445,6 +1445,60 @@ namespace Cynthia.Data
             return newID;
 
         }
+        public static int AddBlogCategory(int moduleId,string category,int siteId,Guid siteGuid,Guid pageGuid,int pageId)
+        {
+
+            StringBuilder sqlCommand = new StringBuilder();
+            sqlCommand.Append("INSERT INTO cy_BlogCategories (ModuleID, Category)");
+            sqlCommand.Append(" VALUES (");
+
+            sqlCommand.Append(" :ModuleID , ");
+            sqlCommand.Append(" :Category   ");
+
+            sqlCommand.Append(");    ");
+            sqlCommand.Append("SELECT LAST_INSERT_ROWID();");
+
+
+            SqliteParameter[] arParams = new SqliteParameter[2];
+
+            arParams[0] = new SqliteParameter(":ModuleID", DbType.Int32);
+            arParams[0].Direction = ParameterDirection.Input;
+            arParams[0].Value = moduleId;
+
+            arParams[1] = new SqliteParameter(":Category", DbType.String, 255);
+            arParams[1].Direction = ParameterDirection.Input;
+            arParams[1].Value = category;
+
+            int newID = 0;
+            
+            using (var connection=new SqliteConnection(GetConnectionString()))
+            {
+                connection.Open();
+                using(var trans=connection.BeginTransaction())
+                {
+                    try
+                    {
+                        //add to cy_BlogCategories table
+                        newID = Convert.ToInt32(connection.ExecuteScalar(sqlCommand.ToString(), arParams).ToString());
+                        //add blog category rss url
+                        var friendlyUrl = string.Format("blog{0}rss{1}.aspx", moduleId,newID);
+                        var realUrl = string.Format("~/Blog/RSS.aspx?pageid={0}&mid={1}&cid={2}", pageId,
+                                                    moduleId,newID);
+                        DBFriendlyUrl.AddFriendlyUrl(Guid.NewGuid(), siteGuid, pageGuid, siteId, friendlyUrl, realUrl,
+                                                     false, connection);
+                        trans.Commit();
+                    }
+                    catch
+                    {
+                        trans.Rollback();
+                        throw;
+                    }
+                }
+            }
+
+            return newID;
+
+        }
 
         public static bool UpdateBlogCategory(
             int categoryId,

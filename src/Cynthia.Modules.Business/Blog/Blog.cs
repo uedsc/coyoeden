@@ -694,6 +694,10 @@ namespace Cynthia.Business
         {
             return DBBlog.AddBlogCategory(moduleId, category);
         }
+        public static int AddBlogCategory(int moduleId, string category, int siteId, Guid siteGuid, Guid pageGuid,int pageId)
+        {
+            return DBBlog.AddBlogCategory(moduleId, category,siteId,siteGuid,pageGuid,pageId);
+        }
 
         public static bool UpdateBlogCategory(
             int categoryId,
