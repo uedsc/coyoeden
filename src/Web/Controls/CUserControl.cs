@@ -4,6 +4,7 @@ using System.Globalization;
 using Cynthia.Business.WebHelpers;
 using Cynthia.Business;
 using System.Configuration;
+using SystemX;
 
 namespace Cynthia.Web
 {
@@ -56,7 +57,44 @@ namespace Cynthia.Web
 			return retVal;
 		}
 
-		protected override void OnInit(EventArgs e)
+        /// <summary>
+        /// convert datetime to the "xx days ago..." format
+        /// </summary>
+        /// <param name="pubDate"></param>
+        /// <param name="formatStrHour"></param>
+        /// <param name="formatStrMinutes"></param>
+        /// <param name="formatStrDay"></param>
+        /// <param name="formatStrSeconds"></param>
+        /// <param name="rightNow"></param>
+        /// <returns></returns>
+        protected string GetDateStr(object pubDate,string formatStrDay,string formatStrHour,string formatStrMinutes,string formatStrSeconds,string rightNow)
+        {
+            var dateTemp = pubDate.As<DateTime>();
+            dateTemp = dateTemp.AddHours(TimeZoneOffset);
+
+            var tsTemp = TimeSpan.FromTicks(dateTemp.Ticks);
+            var tsNow = TimeSpan.FromTicks(DateTime.Now.Ticks);
+            var diff = tsNow - tsTemp;
+            if (diff.Days>0)
+            {
+                return string.Format(formatStrDay, diff.Days);
+            }
+            if(diff.Hours>0)
+            {
+                return string.Format(formatStrHour, diff.Hours);
+            }
+            if(diff.Minutes>0)
+            {
+                return string.Format(formatStrMinutes, diff.Hours);
+            }
+            if(diff.Seconds>0)
+            {
+                return string.Format(formatStrSeconds, diff.Hours);
+            }
+            return rightNow;
+        }
+
+        protected override void OnInit(EventArgs e)
 		{
 			base.OnInit(e);
 			SiteSettings = CacheHelper.GetCurrentSiteSettings();
@@ -73,7 +111,8 @@ namespace Cynthia.Web
 			EditContentImage = ConfigurationManager.AppSettings["EditContentImage"];
 			EditImageUrl = String.Format("{0}/Data/SiteImages/{1}", ImageSiteRoot, EditContentImage);
 		}
-		protected string RenderIf<T>(T current, T shouldBe, string trueStr)
+		
+        protected string RenderIf<T>(T current, T shouldBe, string trueStr)
 		{
 			return RenderIf<T>(current, shouldBe, trueStr, "");
 		}

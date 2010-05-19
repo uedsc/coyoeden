@@ -502,12 +502,6 @@ namespace Cynthia.Web.Framework
                         if (dataRecord[fieldName] != DBNull.Value)
                         {
                             result = Convert.ToDateTime(dataRecord[fieldName]).AddHours(timeZoneOffset).ToString(formatPattern);
-                            //if (CultureInfo.CurrentCulture.Name == "fa-IR")
-                            //{
-                            //    PersianDateHelper dc = new PersianDateHelper();
-                            //    result = dc.MtoSh(Convert.ToDateTime(result));
-                            //}
-
                         }
                     }
                 }

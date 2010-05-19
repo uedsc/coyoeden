@@ -772,7 +772,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feedback.
+        ///   Looks up a localized string similar to Comments.
         /// </summary>
         internal static string BlogFeedbackLabel {
             get {
@@ -1308,6 +1308,51 @@ namespace Resources {
         internal static string CurrentVersionHeadingFormat {
             get {
                 return ResourceManager.GetString("CurrentVersionHeadingFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Days ago.
+        /// </summary>
+        internal static string DateDayFormatStr {
+            get {
+                return ResourceManager.GetString("DateDayFormatStr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Hours ago.
+        /// </summary>
+        internal static string DateHourFormatStr {
+            get {
+                return ResourceManager.GetString("DateHourFormatStr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Minutes ago.
+        /// </summary>
+        internal static string DateMinuteFormatStr {
+            get {
+                return ResourceManager.GetString("DateMinuteFormatStr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Few seconds ago.
+        /// </summary>
+        internal static string DateRightNowFormatStr {
+            get {
+                return ResourceManager.GetString("DateRightNowFormatStr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Seconds ago.
+        /// </summary>
+        internal static string DateSecondFormatStr {
+            get {
+                return ResourceManager.GetString("DateSecondFormatStr", resourceCulture);
             }
         }
         

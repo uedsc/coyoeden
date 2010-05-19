@@ -9,7 +9,7 @@
 .blogcommentlink 
 { font-size:11px; text-align:right; padding: 0px 5px 3px 0px; font-family: Trebuchet MS;    }
 div.blogcommentlink{ border-bottom: 1px solid #EAEAEA; }
-div.blogcommenttext { border-bottom: 1px solid #EAEAEA;   }
+
 .blogcommenttitle { font-family: Trebuchet MS;    }
 
 .blogcommentposter { font-size:11px;   }
@@ -65,8 +65,10 @@ width:50px;
 	color: #FFF;
 }
 .comment_cnt a:visited{color:#7A4648;}
-/*comment wrapper*/
-#w_comments{margin-top:10px;}
+/*comment_wrapper*/
+#w_comments{margin:10px 0px;}
+#w_comments h3{margin-bottom:6.18px;}
+/*comment_left_part*/
 .post_comment_l
 {
 float:left;
@@ -75,9 +77,42 @@ position:relative;
 text-align:center;
 width:80px;
 }
+.post_comment_l img.avatar
+{
+background:none repeat scroll 0 0 #FFFFFF;
+border:1px solid #E2E2E2;
+margin-bottom:3px;
+padding:2px;  
+}
+/*/comment_left_part*/
+/*comment right part*/
 .post_comment_r
 {
 float:left;
 position:relative;
 width:80%;	
 }
+.post_comment_r h4{margin-left:10px;}
+.post_comment{padding:6px 3px 6px 6px;position:relative;}
+.comment_odd
+{
+    background:#F1F4FB;
+    border-bottom:1px solid #D5D8E0;
+    border-top:1px solid #D5D8E0;
+}
+.comment_even
+{
+    
+}
+.comment_text 
+{
+font-size:12px;
+margin:10px 0 3px 10px;
+min-height:40px;
+height:auto !important;
+height:40px;
+overflow:hidden;
+}
+.comment_author{font-weight:bold;}
+.comment_date{float:right;}
+/*/comment right part*/

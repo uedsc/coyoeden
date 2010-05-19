@@ -684,4 +684,19 @@
   <data name="BlogShowPagerInListSetting" xml:space="preserve">
     <value>Show Pager In List?</value>
   </data>
+  <data name="DateDayFormatStr" xml:space="preserve">
+    <value>{0} Days ago</value>
+  </data>
+  <data name="DateHourFormatStr" xml:space="preserve">
+    <value>{0} Hours ago</value>
+  </data>
+  <data name="DateMinuteFormatStr" xml:space="preserve">
+    <value>{0} Minutes ago</value>
+  </data>
+  <data name="DateRightNowFormatStr" xml:space="preserve">
+    <value>Few seconds ago</value>
+  </data>
+  <data name="DateSecondFormatStr" xml:space="preserve">
+    <value>{0} Seconds ago</value>
+  </data>
 </root>

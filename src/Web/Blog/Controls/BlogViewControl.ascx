@@ -73,15 +73,9 @@
 		<h3><%=BlogResources.BlogFeedbackLabel%></h3>
 		<asp:Repeater id="dlComments" runat="server" EnableViewState="true" OnItemCommand="dlComments_ItemCommand">
 			<ItemTemplate>
-				<div class="post_comment clearfix">
-				<div class="avatar post_comment_l">
-				<span class="comment_date"><%# DateTimeHelper.GetTimeZoneAdjustedDateTimeString(((System.Data.Common.DbDataRecord)Container.DataItem),"DateCreated", TimeZoneOffset, CommentDateTimeFormat) %></span>
-				
-				<%#RenderIf((bool)(DataBinder.Eval(Container.DataItem, "URL").ToString().Length == 0), 
-					true, 
-					string.Format("<span class=\"comment_author\">{0}</span>", Server.HtmlEncode(DataBinder.Eval(Container.DataItem, "Name").ToString())),
-					string.Format("<a href=\"{0}\" title=\"{1}\" class=\"comment_author\">{1}</a>", Server.HtmlEncode(DataBinder.Eval(Container.DataItem, "URL").ToString()), Server.HtmlEncode(DataBinder.Eval(Container.DataItem, "Name").ToString()))
-				)%>
+				<div class="post_comment comment_odd clearfix">
+				<div class="post_comment_l">
+			        <a href="http://vivasky.com" title="Vivasky.Com"><img class="avatar" src="<%=SystemX.Utils.GetGravatar("cocoayoyo@gmail.com",80,"G") %>" alt="Vivasky.Com"></a>
 				</div>
 				<div class="post_comment_r">
 					<h4>
@@ -92,9 +86,15 @@
 						CommandName="DeleteComment" 
 						CommandArgument='<%# DataBinder.Eval(Container.DataItem,"BlogCommentID")%>' 
 						Visible="<%# IsEditable%>" />
-					<%# Server.HtmlEncode(DataBinder.Eval(Container.DataItem,"Title").ToString()) %>
+                    <%#RenderIf((bool)(DataBinder.Eval(Container.DataItem, "URL").ToString().Length == 0), 
+					    true, 
+					    string.Format("<span class=\"comment_author\">{0}</span>", Server.HtmlEncode(DataBinder.Eval(Container.DataItem, "Name").ToString())),
+					    string.Format("<a href=\"{0}\" title=\"{1}\" class=\"comment_author\">{1}</a>", Server.HtmlEncode(DataBinder.Eval(Container.DataItem, "URL").ToString()), Server.HtmlEncode(DataBinder.Eval(Container.DataItem, "Name").ToString()))
+				    )%>
+					&nbsp;&nbsp;<%# Server.HtmlEncode(DataBinder.Eval(Container.DataItem,"Title").ToString()) %>
+                    <span class="comment_date"><%# GetDateStr(DataBinder.Eval(Container.DataItem,"DateCreated"),BlogResources.DateDayFormatStr,BlogResources.DateHourFormatStr,BlogResources.DateMinuteFormatStr,BlogResources.DateSecondFormatStr,BlogResources.DateRightNowFormatStr) %></span>
 					</h4>
-					<div class="blogcommenttext">
+					<div class="comment_text">
 					<NeatHtml:UntrustedContent ID="UntrustedContent1" runat="server" EnableViewState="false"  TrustedImageUrlPattern='<%# RegexRelativeImageUrlPatern %>' ClientScriptUrl="~/ClientScript/NeatHtml.js">
 					<asp:Literal ID="litComment" runat="server" EnableViewState="false" Text='<%# DataBinder.Eval(Container.DataItem, "Comment").ToString() %>' />
 					</NeatHtml:UntrustedContent>
@@ -102,6 +102,36 @@
 				</div>
 				</div>
 			</ItemTemplate>
+            <AlternatingItemTemplate>
+            	<div class="post_comment comment_even clearfix">
+				<div class="avatar post_comment_l">
+                <a href="http://vivasky.com" title="Vivasky.Com"><img class="avatar" src="<%=SystemX.Utils.GetGravatar("mamboer@live.com",80,"R") %>" alt="Vivasky.Com"></a>
+				</div>
+				<div class="post_comment_r">
+					<h4>
+					<asp:ImageButton id="btnDelete" runat="server"  
+						AlternateText="<%# Resources.BlogResources.DeleteImageAltText %>" 
+						Tooltip="<%# Resources.BlogResources.DeleteImageAltText %>"   
+						ImageUrl='<%# DeleteLinkImage %>'
+						CommandName="DeleteComment" 
+						CommandArgument='<%# DataBinder.Eval(Container.DataItem,"BlogCommentID")%>' 
+						Visible="<%# IsEditable%>" />
+					<%#RenderIf((bool)(DataBinder.Eval(Container.DataItem, "URL").ToString().Length == 0), 
+					    true, 
+					    string.Format("<span class=\"comment_author\">{0}</span>", Server.HtmlEncode(DataBinder.Eval(Container.DataItem, "Name").ToString())),
+					    string.Format("<a href=\"{0}\" title=\"{1}\" class=\"comment_author\">{1}</a>", Server.HtmlEncode(DataBinder.Eval(Container.DataItem, "URL").ToString()), Server.HtmlEncode(DataBinder.Eval(Container.DataItem, "Name").ToString()))
+				    )%>
+					&nbsp;&nbsp;<%# Server.HtmlEncode(DataBinder.Eval(Container.DataItem,"Title").ToString()) %>
+                    <span class="comment_date"><%# GetDateStr(DataBinder.Eval(Container.DataItem,"DateCreated"),BlogResources.DateDayFormatStr,BlogResources.DateHourFormatStr,BlogResources.DateMinuteFormatStr,BlogResources.DateSecondFormatStr,BlogResources.DateRightNowFormatStr) %></span>
+					</h4>
+					<div class="comment_text">
+					<NeatHtml:UntrustedContent ID="UntrustedContent1" runat="server" EnableViewState="false"  TrustedImageUrlPattern='<%# RegexRelativeImageUrlPatern %>' ClientScriptUrl="~/ClientScript/NeatHtml.js">
+					<asp:Literal ID="litComment" runat="server" EnableViewState="false" Text='<%# DataBinder.Eval(Container.DataItem, "Comment").ToString() %>' />
+					</NeatHtml:UntrustedContent>
+					</div>
+				</div>
+				</div>
+            </AlternatingItemTemplate>
 		</asp:Repeater>
 		<asp:Panel ID="pnlCommentsClosed" runat="server" EnableViewState="false">
 		<asp:Literal ID="litCommentsClosed" runat="server" EnableViewState="false" />
