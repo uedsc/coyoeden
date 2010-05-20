@@ -178,7 +178,7 @@
     <%} %>
 	<%if (AllowComments){ %>
 	<div class="comment_cnt">
-		<a href="#blogcomments" title="<%=BlogResources.BlogFeedbackLabel %>"><%=ThePost.CommentCount %></a> 
+		<a href="#w_comments" title="<%=BlogResources.BlogFeedbackLabel %>"><%=ThePost.CommentCount %></a> 
 	</div>
 	<%} %>
 	</asp:Panel>
