@@ -1,3 +1,0 @@
---GRANT ALL PRIVILEGES ON mojoPortal.* TO 'mojo'@'localhost' IDENTIFIED BY 'mojo' WITH GRANT OPTION;
-
-GRANT ALL PRIVILEGES ON mojoportal.* TO 'mojo'@'%' IDENTIFIED BY 'mojo' WITH GRANT OPTION;
