@@ -115,7 +115,7 @@
                                 </cy:SiteLabel>
                                 <div class="forminput">
                                 <asp:Label ID="lblTotalPosts" runat="server"></asp:Label>
-                                <portal:ForumUserThreadLink ID="lnkUserPosts" runat="server" />
+                                <portal:GroupUserThreadLink ID="lnkUserPosts" runat="server" />
                                 </div>
                             </div>
                             <div class="settingrow">

@@ -74,7 +74,7 @@
     <Compile Include="ContactForm\DBContactFormMessage.cs" />
     <Compile Include="EventCalendar\DBEvents.cs" />
     <Compile Include="FeedManager\DBRssFeed.cs" />
-    <Compile Include="Forums\DBForums.cs" />
+    <Compile Include="Forums\DBGroups.cs" />
     <Compile Include="ImageGallery\DBGallery.cs" />
     <Compile Include="LinkModule\DBLinks.cs" />
     <Compile Include="Poll\DBPoll.cs" />

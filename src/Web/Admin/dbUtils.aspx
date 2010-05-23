@@ -111,16 +111,16 @@
 							</tr>
 							<tr>
 								<th align="left">
-									Forums Module:
+									Groups Module:
 								</th>
 								<td>
 									Has always been stored raw but has been HtmlEncoded on the way in and 
 									HtmlDecoded on the way out since the 1.0/2.0 release
 								</td>
 								<td>
-									<asp:Button ID="btnDecodeForums" Runat="server" Text="Decode All Content In This Module" onclick="btnDecodeForums_Click"></asp:Button>
+									<asp:Button ID="btnDecodeGroups" Runat="server" Text="Decode All Content In This Module" onclick="btnDecodeGroups_Click"></asp:Button>
 									<br>
-									<asp:Label ID="lblForumResults" Runat="server"></asp:Label>
+									<asp:Label ID="lblGroupResults" Runat="server"></asp:Label>
 								</td>
 							</tr>
 							<tr>

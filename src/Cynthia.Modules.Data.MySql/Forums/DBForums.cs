@@ -23,7 +23,7 @@ using MySql.Data.MySqlClient;
 
 namespace Cynthia.Data
 {
-    public static class DBForums
+    public static class DBGroups
     {
         public static String DBPlatform()
         {
@@ -89,7 +89,7 @@ namespace Cynthia.Data
             sqlCommand.Append("IsActive , ");
             sqlCommand.Append("SortOrder , ");
             sqlCommand.Append("PostsPerPage , ");
-            sqlCommand.Append("ThreadsPerPage , ");
+            sqlCommand.Append("TopicsPerPage , ");
             sqlCommand.Append("AllowAnonymousPosts  ");
             sqlCommand.Append(" ) ");
 
@@ -104,7 +104,7 @@ namespace Cynthia.Data
             sqlCommand.Append(" ?IsActive , ");
             sqlCommand.Append(" ?SortOrder , ");
             sqlCommand.Append(" ?PostsPerPage , ");
-            sqlCommand.Append(" ?ThreadsPerPage , ");
+            sqlCommand.Append(" ?TopicsPerPage , ");
             sqlCommand.Append(" ?AllowAnonymousPosts  ");
 
             sqlCommand.Append(");");
@@ -144,7 +144,7 @@ namespace Cynthia.Data
             arParams[7].Direction = ParameterDirection.Input;
             arParams[7].Value = postsPerPage;
 
-            arParams[8] = new MySqlParameter("?ThreadsPerPage", MySqlDbType.Int32);
+            arParams[8] = new MySqlParameter("?TopicsPerPage", MySqlDbType.Int32);
             arParams[8].Direction = ParameterDirection.Input;
             arParams[8].Value = threadsPerPage;
 
@@ -201,7 +201,7 @@ namespace Cynthia.Data
             sqlCommand.Append("IsActive = ?IsActive, ");
             sqlCommand.Append("SortOrder = ?SortOrder, ");
             sqlCommand.Append("PostsPerPage = ?PostsPerPage, ");
-            sqlCommand.Append("ThreadsPerPage = ?ThreadsPerPage, ");
+            sqlCommand.Append("TopicsPerPage = ?TopicsPerPage, ");
             sqlCommand.Append("AllowAnonymousPosts = ?AllowAnonymousPosts ");
 
             sqlCommand.Append("WHERE ItemID = ?ItemID ;");
@@ -237,7 +237,7 @@ namespace Cynthia.Data
             arParams[6].Direction = ParameterDirection.Input;
             arParams[6].Value = postsPerPage;
 
-            arParams[7] = new MySqlParameter("?ThreadsPerPage", MySqlDbType.Int32);
+            arParams[7] = new MySqlParameter("?TopicsPerPage", MySqlDbType.Int32);
             arParams[7].Direction = ParameterDirection.Input;
             arParams[7].Value = threadsPerPage;
 
@@ -278,10 +278,10 @@ namespace Cynthia.Data
         public static bool DeleteByModule(int moduleId)
         {
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("DELETE FROM cy_ForumPosts WHERE ThreadID IN (SELECT ThreadID FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID = ?ModuleID) );");
-            sqlCommand.Append("DELETE FROM cy_ForumThreadSubscriptions WHERE ThreadID IN (SELECT ThreadID FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID = ?ModuleID) );");
-            sqlCommand.Append("DELETE FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID = ?ModuleID);");
-            sqlCommand.Append("DELETE FROM cy_GroupSubscriptions WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID = ?ModuleID) ;");
+            sqlCommand.Append("DELETE FROM cy_GroupPosts WHERE TopicID IN (SELECT TopicID FROM cy_GroupTopics WHERE GroupID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID = ?ModuleID) );");
+            sqlCommand.Append("DELETE FROM cy_GroupTopicSubscriptions WHERE TopicID IN (SELECT TopicID FROM cy_GroupTopics WHERE GroupID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID = ?ModuleID) );");
+            sqlCommand.Append("DELETE FROM cy_GroupTopics WHERE GroupID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID = ?ModuleID);");
+            sqlCommand.Append("DELETE FROM cy_GroupSubscriptions WHERE GroupID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID = ?ModuleID) ;");
             sqlCommand.Append("DELETE FROM cy_Groups WHERE ModuleID = ?ModuleID;");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
@@ -302,10 +302,10 @@ namespace Cynthia.Data
         public static bool DeleteBySite(int siteId)
         {
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("DELETE FROM cy_ForumPosts WHERE ThreadID IN (SELECT ThreadID FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = ?SiteID)) );");
-            sqlCommand.Append("DELETE FROM cy_ForumThreadSubscriptions WHERE ThreadID IN (SELECT ThreadID FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = ?SiteID)) );");
-            sqlCommand.Append("DELETE FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = ?SiteID));");
-            sqlCommand.Append("DELETE FROM cy_GroupSubscriptions WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = ?SiteID)) ;");
+            sqlCommand.Append("DELETE FROM cy_GroupPosts WHERE TopicID IN (SELECT TopicID FROM cy_GroupTopics WHERE GroupID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = ?SiteID)) );");
+            sqlCommand.Append("DELETE FROM cy_GroupTopicSubscriptions WHERE TopicID IN (SELECT TopicID FROM cy_GroupTopics WHERE GroupID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = ?SiteID)) );");
+            sqlCommand.Append("DELETE FROM cy_GroupTopics WHERE GroupID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = ?SiteID));");
+            sqlCommand.Append("DELETE FROM cy_GroupSubscriptions WHERE GroupID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = ?SiteID)) ;");
             sqlCommand.Append("DELETE FROM cy_Groups WHERE ModuleID IN (SELECT ModuleID FROM cy_Modules WHERE SiteID = ?SiteID);");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
@@ -325,14 +325,14 @@ namespace Cynthia.Data
 
 
 
-        public static IDataReader GetForums(int moduleId, int userId)
+        public static IDataReader GetGroups(int moduleId, int userId)
         {
 
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("SELECT f.*, ");
             sqlCommand.Append("u.Name As MostRecentPostUser, ");
             sqlCommand.Append("s.SubscribeDate IS NOT NULL AND s.UnSubscribeDate IS NULL As Subscribed, ");
-            sqlCommand.Append("(SELECT COUNT(*) FROM cy_GroupSubscriptions fs WHERE fs.ForumID = f.ItemID AND fs.UnSubscribeDate IS NULL) As SubscriberCount  ");
+            sqlCommand.Append("(SELECT COUNT(*) FROM cy_GroupSubscriptions fs WHERE fs.GroupID = f.ItemID AND fs.UnSubscribeDate IS NULL) As SubscriberCount  ");
 
             sqlCommand.Append("FROM	cy_Groups f ");
 
@@ -340,7 +340,7 @@ namespace Cynthia.Data
             sqlCommand.Append("ON f.MostRecentPostUserID = u.UserID ");
 
             sqlCommand.Append("LEFT OUTER JOIN	cy_GroupSubscriptions s ");
-            sqlCommand.Append("ON f.ItemID = s.ForumID AND s.UserID = ?UserID ");
+            sqlCommand.Append("ON f.ItemID = s.GroupID AND s.UserID = ?UserID ");
 
             sqlCommand.Append("WHERE f.ModuleID	= ?ModuleID ");
             sqlCommand.Append("AND f.IsActive = 1 ");
@@ -364,7 +364,7 @@ namespace Cynthia.Data
 
         }
 
-        public static IDataReader GetForum(int itemId)
+        public static IDataReader GetGroup(int itemId)
         {
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("SELECT f.*, ");
@@ -430,7 +430,7 @@ namespace Cynthia.Data
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("UPDATE cy_Users ");
             sqlCommand.Append("SET  ");
-            sqlCommand.Append("TotalPosts = (SELECT COUNT(*) FROM cy_ForumPosts WHERE cy_ForumPosts.UserID = cy_Users.UserID) ");
+            sqlCommand.Append("TotalPosts = (SELECT COUNT(*) FROM cy_GroupPosts WHERE cy_GroupPosts.UserID = cy_Users.UserID) ");
             if (userId > -1)
             {
                 sqlCommand.Append("WHERE UserID = ?UserID ");
@@ -510,15 +510,15 @@ namespace Cynthia.Data
             StringBuilder sqlCommand = new StringBuilder();
             MySqlParameter[] arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = forumId;
 
             sqlCommand.Append("SELECT ");
             sqlCommand.Append("MostRecentPostDate, ");
             sqlCommand.Append("MostRecentPostUserID ");
-            sqlCommand.Append("FROM cy_ForumThreads ");
-            sqlCommand.Append("WHERE ForumID = ?ForumID ");
+            sqlCommand.Append("FROM cy_GroupTopics ");
+            sqlCommand.Append("WHERE GroupID = ?GroupID ");
             sqlCommand.Append("ORDER BY MostRecentPostDate DESC ");
             sqlCommand.Append("LIMIT 1 ;");
 
@@ -538,8 +538,8 @@ namespace Cynthia.Data
             sqlCommand = new StringBuilder();
             sqlCommand.Append("SELECT ");
             sqlCommand.Append("SUM(TotalReplies) + COUNT(*) As PostCount ");
-            sqlCommand.Append("FROM cy_ForumThreads ");
-            sqlCommand.Append("WHERE ForumID = ?ForumID ;");
+            sqlCommand.Append("FROM cy_GroupTopics ");
+            sqlCommand.Append("WHERE GroupID = ?GroupID ;");
 
             using (IDataReader reader = MySqlHelper.ExecuteReader(
                 GetReadConnectionString(),
@@ -559,11 +559,11 @@ namespace Cynthia.Data
             sqlCommand.Append("MostRecentPostDate = ?MostRecentPostDate,	 ");
             sqlCommand.Append("MostRecentPostUserID = ?MostRecentPostUserID,	 ");
             sqlCommand.Append("PostCount = ?PostCount	 ");
-            sqlCommand.Append("WHERE ItemID = ?ForumID ;");
+            sqlCommand.Append("WHERE ItemID = ?GroupID ;");
 
             arParams = new MySqlParameter[4];
 
-            arParams[0] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = forumId;
 
@@ -589,11 +589,11 @@ namespace Cynthia.Data
         }
 
 
-        public static bool IncrementThreadCount(int forumId)
+        public static bool IncrementTopicCount(int forumId)
         {
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("UPDATE	cy_Groups ");
-            sqlCommand.Append("SET	ThreadCount = ThreadCount + 1 ");
+            sqlCommand.Append("SET	TopicCount = TopicCount + 1 ");
             sqlCommand.Append("WHERE ItemID = ?ItemID ;");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
@@ -611,12 +611,12 @@ namespace Cynthia.Data
 
         }
 
-        public static bool DecrementThreadCount(int forumId)
+        public static bool DecrementTopicCount(int forumId)
         {
 
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("UPDATE cy_Groups ");
-            sqlCommand.Append("SET ThreadCount = ThreadCount - 1 ");
+            sqlCommand.Append("SET TopicCount = TopicCount - 1 ");
 
             sqlCommand.Append("WHERE ItemID = ?ItemID ;");
 
@@ -636,12 +636,12 @@ namespace Cynthia.Data
         }
 
 
-        public static int GetUserThreadCount(int userId)
+        public static int GetUserTopicCount(int userId)
         {
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("SELECT  Count(*) ");
-            sqlCommand.Append("FROM	cy_ForumThreads ");
-            sqlCommand.Append("WHERE ThreadID IN (Select DISTINCT ThreadID FROM cy_ForumPosts WHERE cy_ForumPosts.UserID = ?UserID) ");
+            sqlCommand.Append("FROM	cy_GroupTopics ");
+            sqlCommand.Append("WHERE TopicID IN (Select DISTINCT TopicID FROM cy_GroupPosts WHERE cy_GroupPosts.UserID = ?UserID) ");
             sqlCommand.Append(";");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
@@ -665,7 +665,7 @@ namespace Cynthia.Data
         {
             int pageLowerBound = (pageSize * pageNumber) - pageSize;
             totalPages = 1;
-            int totalRows = GetUserThreadCount(userId);
+            int totalRows = GetUserTopicCount(userId);
 
             if (pageSize > 0) totalPages = totalRows / pageSize;
 
@@ -686,16 +686,16 @@ namespace Cynthia.Data
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("SELECT	 ");
             sqlCommand.Append(" t.*, ");
-            sqlCommand.Append("f.Title As Forum, ");
+            sqlCommand.Append("f.Title As Group, ");
             sqlCommand.Append("f.ModuleID, ");
             sqlCommand.Append("(SELECT PageID FROM cy_PageModules WHERE cy_PageModules.ModuleID = f.ModuleID AND (PublishEndDate IS NULL OR PublishEndDate > ?CurrentDate) LIMIT 1) As PageID, ");
             sqlCommand.Append("COALESCE(u.Name, 'Guest') As MostRecentPostUser, ");
             sqlCommand.Append("s.Name As StartedBy ");
 
-            sqlCommand.Append("FROM	cy_ForumThreads t ");
+            sqlCommand.Append("FROM	cy_GroupTopics t ");
 
             sqlCommand.Append("JOIN	cy_Groups f ");
-            sqlCommand.Append("ON t.ForumID = f.ItemID ");
+            sqlCommand.Append("ON t.GroupID = f.ItemID ");
 
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users u ");
             sqlCommand.Append("ON t.MostRecentPostUserID = u.UserID ");
@@ -703,7 +703,7 @@ namespace Cynthia.Data
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users s ");
             sqlCommand.Append("ON t.StartedByUserID = s.UserID ");
 
-            sqlCommand.Append("WHERE t.ThreadID IN (Select DISTINCT ThreadID FROM cy_ForumPosts WHERE cy_ForumPosts.UserID = ?UserID) ");
+            sqlCommand.Append("WHERE t.TopicID IN (Select DISTINCT TopicID FROM cy_GroupPosts WHERE cy_GroupPosts.UserID = ?UserID) ");
 
             sqlCommand.Append("ORDER BY	t.MostRecentPostDate DESC  ");
 
@@ -742,11 +742,11 @@ namespace Cynthia.Data
 
         //    //int pageSize = 1;
         //    int totalRows = 0;
-        //    //IDataReader reader = GetForum(forumId);
+        //    //IDataReader reader = GetGroup(forumId);
         //    //if (reader.Read())
         //    //{
-        //    //    pageSize = Convert.ToInt32(reader["ThreadsPerPage"]);
-        //    //    totalRows = Convert.ToInt32(reader["ThreadCount"]);
+        //    //    pageSize = Convert.ToInt32(reader["TopicsPerPage"]);
+        //    //    totalRows = Convert.ToInt32(reader["TopicCount"]);
         //    //}
         //    //reader.Close();
 
@@ -773,12 +773,12 @@ namespace Cynthia.Data
         //    sqlCommand.Append(" t.*, ");
         //    sqlCommand.Append("COALESCE(u.Name, 'Guest') As MostRecentPostUser, ");
         //    sqlCommand.Append("s.Name As StartedBy ");
-        //    sqlCommand.Append("FROM	cy_ForumThreads t ");
+        //    sqlCommand.Append("FROM	cy_GroupTopics t ");
         //    sqlCommand.Append("LEFT OUTER JOIN	cy_Users u ");
         //    sqlCommand.Append("ON t.MostRecentPostUserID = u.UserID ");
         //    sqlCommand.Append("LEFT OUTER JOIN	cy_Users s ");
         //    sqlCommand.Append("ON t.StartedByUserID = s.UserID ");
-        //    sqlCommand.Append("WHERE t.ForumID = ?ForumID ");
+        //    sqlCommand.Append("WHERE t.GroupID = ?GroupID ");
 
         //    sqlCommand.Append("ORDER BY	t.MostRecentPostDate DESC  ");
 
@@ -797,7 +797,7 @@ namespace Cynthia.Data
 
         //    MySqlParameter[] arParams = new MySqlParameter[1];
 
-        //    arParams[0] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+        //    arParams[0] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
         //    arParams[0].Direction = ParameterDirection.Input;
         //    arParams[0].Value = forumId;
 
@@ -815,12 +815,12 @@ namespace Cynthia.Data
 
             int pageSize = 1;
             int totalRows = 0;
-            using (IDataReader reader = GetForum(forumId))
+            using (IDataReader reader = GetGroup(forumId))
             {
                 if (reader.Read())
                 {
-                    pageSize = Convert.ToInt32(reader["ThreadsPerPage"]);
-                    totalRows = Convert.ToInt32(reader["ThreadCount"]);
+                    pageSize = Convert.ToInt32(reader["TopicsPerPage"]);
+                    totalRows = Convert.ToInt32(reader["TopicCount"]);
                 }
             }
 
@@ -847,12 +847,12 @@ namespace Cynthia.Data
             sqlCommand.Append(" t.*, ");
             sqlCommand.Append("COALESCE(u.Name, 'Guest') As MostRecentPostUser, ");
             sqlCommand.Append("s.Name As StartedBy ");
-            sqlCommand.Append("FROM	cy_ForumThreads t ");
+            sqlCommand.Append("FROM	cy_GroupTopics t ");
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users u ");
             sqlCommand.Append("ON t.MostRecentPostUserID = u.UserID ");
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users s ");
             sqlCommand.Append("ON t.StartedByUserID = s.UserID ");
-            sqlCommand.Append("WHERE t.ForumID = ?ForumID ");
+            sqlCommand.Append("WHERE t.GroupID = ?GroupID ");
 
             sqlCommand.Append("ORDER BY	t.MostRecentPostDate DESC  ");
 
@@ -871,7 +871,7 @@ namespace Cynthia.Data
 
             MySqlParameter[] arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = forumId;
 
@@ -882,18 +882,18 @@ namespace Cynthia.Data
 
         }
 
-        public static int ForumThreadGetPostCount(int threadId)
+        public static int GroupThreadGetPostCount(int threadId)
         {
 
             StringBuilder sqlCommand = new StringBuilder();
 
             MySqlParameter[] arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
-            sqlCommand.Append("SELECT COUNT(*) FROM cy_ForumPosts WHERE ThreadID = ?ThreadID ");
+            sqlCommand.Append("SELECT COUNT(*) FROM cy_GroupPosts WHERE TopicID = ?TopicID ");
 
             int count = Convert.ToInt32(MySqlHelper.ExecuteScalar(
                 GetReadConnectionString(),
@@ -910,14 +910,14 @@ namespace Cynthia.Data
             sqlCommand.Append("SELECT  Count(*) ");
             sqlCommand.Append("FROM	cy_GroupSubscriptions ");
             sqlCommand.Append("WHERE ");
-            sqlCommand.Append("ForumID = ?ForumID ");
+            sqlCommand.Append("GroupID = ?GroupID ");
             sqlCommand.Append("AND ");
             sqlCommand.Append("UnSubscribeDate IS NULL");
             sqlCommand.Append(";");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = forumId;
 
@@ -971,7 +971,7 @@ namespace Cynthia.Data
             sqlCommand.Append("u.UserID = fs.UserID ");
 
             sqlCommand.Append("WHERE ");
-            sqlCommand.Append("fs.ForumID = ?ForumID ");
+            sqlCommand.Append("fs.GroupID = ?GroupID ");
             sqlCommand.Append("AND ");
             sqlCommand.Append("fs.UnSubscribeDate IS NULL ");
 
@@ -990,7 +990,7 @@ namespace Cynthia.Data
 
             MySqlParameter[] arParams = new MySqlParameter[3];
 
-            arParams[0] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = forumId;
 
@@ -1016,11 +1016,11 @@ namespace Cynthia.Data
 
             sqlCommand.Append("SELECT COUNT(*) As SubscriptionCount ");
             sqlCommand.Append("FROM cy_GroupSubscriptions  ");
-            sqlCommand.Append("WHERE ForumID = ?ForumID AND UserID = ?UserID ; ");
+            sqlCommand.Append("WHERE GroupID = ?GroupID AND UserID = ?UserID ; ");
 
             MySqlParameter[] arParams = new MySqlParameter[2];
 
-            arParams[0] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = forumId;
 
@@ -1049,19 +1049,19 @@ namespace Cynthia.Data
                 sqlCommand.Append("UPDATE cy_GroupSubscriptions ");
                 sqlCommand.Append("SET SubscribeDate = ?SubscribeDate, ");
                 sqlCommand.Append("UnSubscribeDate = Null ");
-                sqlCommand.Append("WHERE ForumID = ?ForumID AND UserID = ?UserID ;");
+                sqlCommand.Append("WHERE GroupID = ?GroupID AND UserID = ?UserID ;");
 
             }
             else
             {
 
                 sqlCommand.Append("INSERT INTO	cy_GroupSubscriptions ( ");
-                sqlCommand.Append("ForumID, ");
+                sqlCommand.Append("GroupID, ");
                 sqlCommand.Append("UserID, ");
                 sqlCommand.Append("SubscribeDate");
                 sqlCommand.Append(") ");
                 sqlCommand.Append("VALUES ( ");
-                sqlCommand.Append("?ForumID, ");
+                sqlCommand.Append("?GroupID, ");
                 sqlCommand.Append("?UserID, ");
                 sqlCommand.Append("?SubscribeDate");
                 sqlCommand.Append(") ;");
@@ -1070,7 +1070,7 @@ namespace Cynthia.Data
 
             arParams = new MySqlParameter[3];
 
-            arParams[0] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = forumId;
 
@@ -1120,11 +1120,11 @@ namespace Cynthia.Data
 
             sqlCommand.Append("UPDATE cy_GroupSubscriptions ");
             sqlCommand.Append("SET UnSubscribeDate = ?UnSubscribeDate ");
-            sqlCommand.Append("WHERE ForumID = ?ForumID AND UserID = ?UserID ;");
+            sqlCommand.Append("WHERE GroupID = ?GroupID AND UserID = ?UserID ;");
 
             MySqlParameter[] arParams = new MySqlParameter[3];
 
-            arParams[0] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = forumId;
 
@@ -1172,16 +1172,16 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumSubscriptionExists(int forumId, int userId)
+        public static bool GroupSubscriptionExists(int forumId, int userId)
         {
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("SELECT Count(*) ");
             sqlCommand.Append("FROM	cy_GroupSubscriptions ");
-            sqlCommand.Append("WHERE ForumID = ?ForumID AND UserID = ?UserID AND UnSubscribeDate IS NULL ; ");
+            sqlCommand.Append("WHERE GroupID = ?GroupID AND UserID = ?UserID AND UnSubscribeDate IS NULL ; ");
 
             MySqlParameter[] arParams = new MySqlParameter[2];
 
-            arParams[0] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = forumId;
 
@@ -1198,16 +1198,16 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumThreadSubscriptionExists(int threadId, int userId)
+        public static bool GroupThreadSubscriptionExists(int threadId, int userId)
         {
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("SELECT Count(*) ");
-            sqlCommand.Append("FROM	cy_ForumThreadSubscriptions ");
-            sqlCommand.Append("WHERE ThreadID = ?ThreadID AND UserID = ?UserID AND UnSubscribeDate IS NULL ; ");
+            sqlCommand.Append("FROM	cy_GroupTopicSubscriptions ");
+            sqlCommand.Append("WHERE TopicID = ?TopicID AND UserID = ?UserID AND UnSubscribeDate IS NULL ; ");
 
             MySqlParameter[] arParams = new MySqlParameter[2];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -1224,7 +1224,7 @@ namespace Cynthia.Data
 
         }
 
-        public static IDataReader ForumThreadGetThread(int threadId)
+        public static IDataReader GroupThreadGetThread(int threadId)
         {
 
             StringBuilder sqlCommand = new StringBuilder();
@@ -1232,18 +1232,18 @@ namespace Cynthia.Data
             sqlCommand.Append("COALESCE(u.Name, 'Guest') As MostRecentPostUser, ");
             sqlCommand.Append("COALESCE(s.Name, 'Guest') As StartedBy, ");
             sqlCommand.Append("f.PostsPerPage ");
-            sqlCommand.Append("FROM	cy_ForumThreads t ");
+            sqlCommand.Append("FROM	cy_GroupTopics t ");
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users u ");
             sqlCommand.Append("ON t.MostRecentPostUserID = u.UserID ");
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users s ");
             sqlCommand.Append("ON t.StartedByUserID = s.UserID ");
             sqlCommand.Append("JOIN	cy_Groups f ");
-            sqlCommand.Append("ON f.ItemID = t.ForumID ");
-            sqlCommand.Append("WHERE t.ThreadID = ?ThreadID ;");
+            sqlCommand.Append("ON f.ItemID = t.GroupID ");
+            sqlCommand.Append("WHERE t.TopicID = ?TopicID ;");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -1255,12 +1255,12 @@ namespace Cynthia.Data
 
         }
 
-        public static IDataReader ForumThreadGetPost(int postId)
+        public static IDataReader GroupThreadGetPost(int postId)
         {
 
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("SELECT	fp.* ");
-            sqlCommand.Append("FROM	cy_ForumPosts fp ");
+            sqlCommand.Append("FROM	cy_GroupPosts fp ");
             sqlCommand.Append("WHERE fp.PostID = ?PostID ;");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
@@ -1276,7 +1276,7 @@ namespace Cynthia.Data
 
         }
 
-        public static int ForumThreadCreate(
+        public static int GroupThreadCreate(
             int forumId,
             string threadSubject,
             int sortOrder,
@@ -1293,11 +1293,11 @@ namespace Cynthia.Data
 
             StringBuilder sqlCommand = new StringBuilder();
             int forumSequence = 1;
-            sqlCommand.Append("SELECT COALESCE(Max(ForumSequence) + 1,1) As ForumSequence FROM cy_ForumThreads WHERE ForumID = ?ForumID ; ");
+            sqlCommand.Append("SELECT COALESCE(Max(GroupSequence) + 1,1) As GroupSequence FROM cy_GroupTopics WHERE GroupID = ?GroupID ; ");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = forumId;
 
@@ -1308,45 +1308,45 @@ namespace Cynthia.Data
             {
                 if (reader.Read())
                 {
-                    forumSequence = Convert.ToInt32(reader["ForumSequence"]);
+                    forumSequence = Convert.ToInt32(reader["GroupSequence"]);
                 }
             }
 
 
             sqlCommand = new StringBuilder();
 
-            sqlCommand.Append("INSERT INTO cy_ForumThreads ( ");
-            sqlCommand.Append("ForumID, ");
-            sqlCommand.Append("ThreadSubject, ");
+            sqlCommand.Append("INSERT INTO cy_GroupTopics ( ");
+            sqlCommand.Append("GroupID, ");
+            sqlCommand.Append("TopicTitle, ");
             sqlCommand.Append("SortOrder, ");
-            sqlCommand.Append("ForumSequence, ");
+            sqlCommand.Append("GroupSequence, ");
             sqlCommand.Append("IsLocked, ");
             sqlCommand.Append("StartedByUserID, ");
-            sqlCommand.Append("ThreadDate, ");
+            sqlCommand.Append("TopicDate, ");
             sqlCommand.Append("MostRecentPostUserID, ");
             sqlCommand.Append("MostRecentPostDate ");
             sqlCommand.Append(" ) ");
 
             sqlCommand.Append("VALUES (");
-            sqlCommand.Append(" ?ForumID , ");
-            sqlCommand.Append(" ?ThreadSubject  , ");
+            sqlCommand.Append(" ?GroupID , ");
+            sqlCommand.Append(" ?TopicTitle  , ");
             sqlCommand.Append(" ?SortOrder, ");
-            sqlCommand.Append(" ?ForumSequence, ");
+            sqlCommand.Append(" ?GroupSequence, ");
             sqlCommand.Append(" ?IsLocked , ");
             sqlCommand.Append(" ?StartedByUserID , ");
-            sqlCommand.Append(" ?ThreadDate , ");
+            sqlCommand.Append(" ?TopicDate , ");
             sqlCommand.Append(" ?StartedByUserID , ");
-            sqlCommand.Append(" ?ThreadDate  ");
+            sqlCommand.Append(" ?TopicDate  ");
             sqlCommand.Append(");");
             sqlCommand.Append("SELECT LAST_INSERT_ID();");
 
             arParams = new MySqlParameter[7];
 
-            arParams[0] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = forumId;
 
-            arParams[1] = new MySqlParameter("?ThreadSubject", MySqlDbType.VarChar, 255);
+            arParams[1] = new MySqlParameter("?TopicTitle", MySqlDbType.VarChar, 255);
             arParams[1].Direction = ParameterDirection.Input;
             arParams[1].Value = threadSubject;
 
@@ -1362,11 +1362,11 @@ namespace Cynthia.Data
             arParams[4].Direction = ParameterDirection.Input;
             arParams[4].Value = startedByUserId;
 
-            arParams[5] = new MySqlParameter("?ThreadDate", MySqlDbType.DateTime);
+            arParams[5] = new MySqlParameter("?TopicDate", MySqlDbType.DateTime);
             arParams[5].Direction = ParameterDirection.Input;
             arParams[5].Value = threadDate;
 
-            arParams[6] = new MySqlParameter("?ForumSequence", MySqlDbType.Int32);
+            arParams[6] = new MySqlParameter("?GroupSequence", MySqlDbType.Int32);
             arParams[6].Direction = ParameterDirection.Input;
             arParams[6].Value = forumSequence;
 
@@ -1377,16 +1377,16 @@ namespace Cynthia.Data
                 arParams).ToString());
 
             sqlCommand = new StringBuilder();
-            sqlCommand.Append("INSERT INTO cy_ForumThreadSubscriptions (ThreadID, UserID) ");
-            sqlCommand.Append("    SELECT ?ThreadID as ThreadID, UserID from cy_GroupSubscriptions fs ");
-            sqlCommand.Append("        WHERE fs.ForumID = ?ForumID AND fs.SubscribeDate IS NOT NULL AND fs.UnSubscribeDate IS NULL;");
+            sqlCommand.Append("INSERT INTO cy_GroupTopicSubscriptions (TopicID, UserID) ");
+            sqlCommand.Append("    SELECT ?TopicID as TopicID, UserID from cy_GroupSubscriptions fs ");
+            sqlCommand.Append("        WHERE fs.GroupID = ?GroupID AND fs.SubscribeDate IS NOT NULL AND fs.UnSubscribeDate IS NULL;");
 
             arParams = new MySqlParameter[2];
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = newID;
 
-            arParams[1] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[1] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[1].Direction = ParameterDirection.Input;
             arParams[1].Value = forumId;
 
@@ -1399,18 +1399,18 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumThreadDelete(int threadId)
+        public static bool GroupThreadDelete(int threadId)
         {
-            ForumThreadDeletePosts(threadId);
-            ForumThreadDeleteSubscriptions(threadId);
+            GroupThreadDeletePosts(threadId);
+            GroupThreadDeleteSubscriptions(threadId);
 
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("DELETE FROM cy_ForumThreads ");
-            sqlCommand.Append("WHERE ThreadID = ?ThreadID ;");
+            sqlCommand.Append("DELETE FROM cy_GroupTopics ");
+            sqlCommand.Append("WHERE TopicID = ?TopicID ;");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -1423,16 +1423,16 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumThreadDeletePosts(int threadId)
+        public static bool GroupThreadDeletePosts(int threadId)
         {
 
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("DELETE FROM cy_ForumPosts ");
-            sqlCommand.Append("WHERE ThreadID = ?ThreadID ;");
+            sqlCommand.Append("DELETE FROM cy_GroupPosts ");
+            sqlCommand.Append("WHERE TopicID = ?TopicID ;");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -1445,16 +1445,16 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumThreadDeleteSubscriptions(int threadId)
+        public static bool GroupThreadDeleteSubscriptions(int threadId)
         {
 
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("DELETE FROM cy_ForumThreadSubscriptions ");
-            sqlCommand.Append("WHERE ThreadID = ?ThreadID ;");
+            sqlCommand.Append("DELETE FROM cy_GroupTopicSubscriptions ");
+            sqlCommand.Append("WHERE TopicID = ?TopicID ;");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -1467,7 +1467,7 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumThreadUpdate(
+        public static bool GroupThreadUpdate(
             int threadId,
             int forumId,
             string threadSubject,
@@ -1481,26 +1481,26 @@ namespace Cynthia.Data
             }
 
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("UPDATE	 cy_ForumThreads ");
-            sqlCommand.Append("SET	ForumID = ?ForumID, ");
-            sqlCommand.Append("ThreadSubject = ?ThreadSubject, ");
+            sqlCommand.Append("UPDATE	 cy_GroupTopics ");
+            sqlCommand.Append("SET	GroupID = ?GroupID, ");
+            sqlCommand.Append("TopicTitle = ?TopicTitle, ");
             sqlCommand.Append("SortOrder = ?SortOrder, ");
             sqlCommand.Append("IsLocked = ?IsLocked ");
 
 
-            sqlCommand.Append("WHERE ThreadID = ?ThreadID ;");
+            sqlCommand.Append("WHERE TopicID = ?TopicID ;");
 
             MySqlParameter[] arParams = new MySqlParameter[5];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
-            arParams[1] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[1] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[1].Direction = ParameterDirection.Input;
             arParams[1].Value = forumId;
 
-            arParams[2] = new MySqlParameter("?ThreadSubject", MySqlDbType.VarChar, 255);
+            arParams[2] = new MySqlParameter("?TopicTitle", MySqlDbType.VarChar, 255);
             arParams[2].Direction = ParameterDirection.Input;
             arParams[2].Value = threadSubject;
 
@@ -1521,21 +1521,21 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumThreadIncrementReplyStats(
+        public static bool GroupThreadIncrementReplyStats(
             int threadId,
             int mostRecentPostUserId,
             DateTime mostRecentPostDate)
         {
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("UPDATE cy_ForumThreads ");
+            sqlCommand.Append("UPDATE cy_GroupTopics ");
             sqlCommand.Append("SET MostRecentPostUserID = ?MostRecentPostUserID, ");
             sqlCommand.Append("TotalReplies = TotalReplies + 1, ");
             sqlCommand.Append("MostRecentPostDate = ?MostRecentPostDate ");
-            sqlCommand.Append("WHERE ThreadID = ?ThreadID ;");
+            sqlCommand.Append("WHERE TopicID = ?TopicID ;");
 
             MySqlParameter[] arParams = new MySqlParameter[3];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -1557,18 +1557,18 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumThreadDecrementReplyStats(int threadId)
+        public static bool GroupThreadDecrementReplyStats(int threadId)
         {
             StringBuilder sqlCommand = new StringBuilder();
 
             sqlCommand.Append("SELECT UserID, PostDate ");
-            sqlCommand.Append("FROM cy_ForumPosts ");
-            sqlCommand.Append("WHERE ThreadID = ?ThreadID ");
+            sqlCommand.Append("FROM cy_GroupPosts ");
+            sqlCommand.Append("WHERE TopicID = ?TopicID ");
             sqlCommand.Append("ORDER BY PostID DESC ");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -1590,15 +1590,15 @@ namespace Cynthia.Data
             sqlCommand = new StringBuilder();
 
 
-            sqlCommand.Append("UPDATE cy_ForumThreads ");
+            sqlCommand.Append("UPDATE cy_GroupTopics ");
             sqlCommand.Append("SET MostRecentPostUserID = ?MostRecentPostUserID, ");
             sqlCommand.Append("TotalReplies = TotalReplies - 1, ");
             sqlCommand.Append("MostRecentPostDate = ?MostRecentPostDate ");
-            sqlCommand.Append("WHERE ThreadID = ?ThreadID ;");
+            sqlCommand.Append("WHERE TopicID = ?TopicID ;");
 
             arParams = new MySqlParameter[3];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -1619,16 +1619,16 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumThreadUpdateViewStats(int threadId)
+        public static bool GroupThreadUpdateViewStats(int threadId)
         {
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("UPDATE cy_ForumThreads ");
+            sqlCommand.Append("UPDATE cy_GroupTopics ");
             sqlCommand.Append("SET TotalViews = TotalViews + 1 ");
-            sqlCommand.Append("WHERE ThreadID = ?ThreadID ;");
+            sqlCommand.Append("WHERE TopicID = ?TopicID ;");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -1641,24 +1641,24 @@ namespace Cynthia.Data
 
         }
 
-        public static IDataReader ForumThreadGetPosts(int threadId, int pageNumber)
+        public static IDataReader GroupThreadGetPosts(int threadId, int pageNumber)
         {
 
             StringBuilder sqlCommand = new StringBuilder();
 
             MySqlParameter[] arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
             int postsPerPage = 10;
 
             sqlCommand.Append("SELECT	f.PostsPerPage ");
-            sqlCommand.Append("FROM		cy_ForumThreads ft ");
+            sqlCommand.Append("FROM		cy_GroupTopics ft ");
             sqlCommand.Append("JOIN		cy_Groups f ");
-            sqlCommand.Append("ON		ft.ForumID = f.ItemID ");
-            sqlCommand.Append("WHERE	ft.ThreadID = ?ThreadID ;");
+            sqlCommand.Append("ON		ft.GroupID = f.ItemID ");
+            sqlCommand.Append("WHERE	ft.TopicID = ?TopicID ;");
 
             using (IDataReader reader = MySqlHelper.ExecuteReader(
                 GetReadConnectionString(),
@@ -1671,12 +1671,12 @@ namespace Cynthia.Data
                 }
             }
             sqlCommand = new StringBuilder();
-            int currentPageMaxThreadSequence = postsPerPage * pageNumber;
+            int currentPageMaxTopicSequence = postsPerPage * pageNumber;
             int beginSequence = 1;
             int endSequence;
-            if (currentPageMaxThreadSequence > postsPerPage)
+            if (currentPageMaxTopicSequence > postsPerPage)
             {
-                beginSequence = currentPageMaxThreadSequence - postsPerPage + 1;
+                beginSequence = currentPageMaxTopicSequence - postsPerPage + 1;
 
             }
 
@@ -1688,7 +1688,7 @@ namespace Cynthia.Data
             // sqlCommand.Append("SET @EndSequence = " + endSequence.ToString(CultureInfo.InvariantCulture) + " ;");
 
             sqlCommand.Append("SELECT	p.*, ");
-            sqlCommand.Append("ft.ForumID, ");
+            sqlCommand.Append("ft.GroupID, ");
             // TODO:
             //using 'Guest' here is not culture neutral, need to pass in a label
             sqlCommand.Append("COALESCE(u.Name, 'Guest') As MostRecentPostUser, ");
@@ -1702,10 +1702,10 @@ namespace Cynthia.Data
             sqlCommand.Append("up.WebSiteURL As PostAuthorWebSiteUrl, ");
             sqlCommand.Append("up.Signature As PostAuthorSignature ");
 
-            sqlCommand.Append("FROM	cy_ForumPosts p ");
+            sqlCommand.Append("FROM	cy_GroupPosts p ");
 
-            sqlCommand.Append("JOIN	cy_ForumThreads ft ");
-            sqlCommand.Append("ON p.ThreadID = ft.ThreadID ");
+            sqlCommand.Append("JOIN	cy_GroupTopics ft ");
+            sqlCommand.Append("ON p.TopicID = ft.TopicID ");
 
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users u ");
             sqlCommand.Append("ON ft.MostRecentPostUserID = u.UserID ");
@@ -1716,15 +1716,15 @@ namespace Cynthia.Data
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users up ");
             sqlCommand.Append("ON up.UserID = p.UserID ");
 
-            sqlCommand.Append("WHERE ft.ThreadID = ?ThreadID ");
-            sqlCommand.Append("AND p.ThreadSequence >= ?BeginSequence ");
-            sqlCommand.Append("AND p.ThreadSequence <= ?EndSequence ");
+            sqlCommand.Append("WHERE ft.TopicID = ?TopicID ");
+            sqlCommand.Append("AND p.TopicSequence >= ?BeginSequence ");
+            sqlCommand.Append("AND p.TopicSequence <= ?EndSequence ");
             //sqlCommand.Append("ORDER BY	p.SortOrder, p.PostID ;");
-            sqlCommand.Append("ORDER BY	p.ThreadSequence ;");
+            sqlCommand.Append("ORDER BY	p.TopicSequence ;");
 
             arParams = new MySqlParameter[4];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -1747,7 +1747,7 @@ namespace Cynthia.Data
 
         }
 
-        public static IDataReader ForumThreadGetPosts(int threadId)
+        public static IDataReader GroupThreadGetPosts(int threadId)
         {
 
             StringBuilder sqlCommand = new StringBuilder();
@@ -1755,7 +1755,7 @@ namespace Cynthia.Data
             MySqlParameter[] arParams;
 
             sqlCommand.Append("SELECT	p.*, ");
-            sqlCommand.Append("ft.ForumID, ");
+            sqlCommand.Append("ft.GroupID, ");
             // TODO:
             //using 'Guest' here is not culture neutral, need to pass in a label
             sqlCommand.Append("COALESCE(u.Name, 'Guest') As MostRecentPostUser, ");
@@ -1765,23 +1765,23 @@ namespace Cynthia.Data
             sqlCommand.Append("COALESCE(up.AvatarUrl, 'blank.gif') As PostAuthorAvatar, ");
             sqlCommand.Append("up.WebSiteURL As PostAuthorWebSiteUrl, ");
             sqlCommand.Append("up.Signature As PostAuthorSignature ");
-            sqlCommand.Append("FROM	cy_ForumPosts p ");
-            sqlCommand.Append("JOIN	cy_ForumThreads ft ");
-            sqlCommand.Append("ON p.ThreadID = ft.ThreadID ");
+            sqlCommand.Append("FROM	cy_GroupPosts p ");
+            sqlCommand.Append("JOIN	cy_GroupTopics ft ");
+            sqlCommand.Append("ON p.TopicID = ft.TopicID ");
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users u ");
             sqlCommand.Append("ON ft.MostRecentPostUserID = u.UserID ");
             sqlCommand.Append("LEFT OUTER JOIN cy_Users s ");
             sqlCommand.Append("ON ft.StartedByUserID = s.UserID ");
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users up ");
             sqlCommand.Append("ON up.UserID = p.UserID ");
-            sqlCommand.Append("WHERE ft.ThreadID = ?ThreadID ");
+            sqlCommand.Append("WHERE ft.TopicID = ?TopicID ");
 
             //sqlCommand.Append("ORDER BY	p.SortOrder, p.PostID DESC ;");
             sqlCommand.Append("ORDER BY p.PostID  ;");
 
             arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -1794,7 +1794,7 @@ namespace Cynthia.Data
 
         }
 
-        public static IDataReader ForumThreadGetPostsReverseSorted(int threadId)
+        public static IDataReader GroupThreadGetPostsReverseSorted(int threadId)
         {
 
             StringBuilder sqlCommand = new StringBuilder();
@@ -1803,8 +1803,8 @@ namespace Cynthia.Data
 
             sqlCommand.Append("SELECT ");
             sqlCommand.Append("p.PostID, ");
-            sqlCommand.Append("p.ThreadID, ");
-            sqlCommand.Append("p.ThreadSequence, ");
+            sqlCommand.Append("p.TopicID, ");
+            sqlCommand.Append("p.TopicSequence, ");
             sqlCommand.Append("p.Subject, ");
             sqlCommand.Append("p.PostDate, ");
             sqlCommand.Append("p.Approved, ");
@@ -1812,7 +1812,7 @@ namespace Cynthia.Data
             sqlCommand.Append("p.SortOrder, ");
             sqlCommand.Append("p.Post, ");
 
-            sqlCommand.Append("ft.ForumID, ");
+            sqlCommand.Append("ft.GroupID, ");
             // TODO:
             //using 'Guest' here is not culture neutral, need to pass in a label
             sqlCommand.Append("COALESCE(u.Name, 'Guest') As MostRecentPostUser, ");
@@ -1824,10 +1824,10 @@ namespace Cynthia.Data
             sqlCommand.Append("up.WebSiteURL As PostAuthorWebSiteUrl, ");
             sqlCommand.Append("up.Signature As PostAuthorSignature ");
 
-            sqlCommand.Append("FROM	cy_ForumPosts p ");
+            sqlCommand.Append("FROM	cy_GroupPosts p ");
 
-            sqlCommand.Append("JOIN	cy_ForumThreads ft ");
-            sqlCommand.Append("ON p.ThreadID = ft.ThreadID ");
+            sqlCommand.Append("JOIN	cy_GroupTopics ft ");
+            sqlCommand.Append("ON p.TopicID = ft.TopicID ");
 
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users u ");
             sqlCommand.Append("ON ft.MostRecentPostUserID = u.UserID ");
@@ -1838,14 +1838,14 @@ namespace Cynthia.Data
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users up ");
             sqlCommand.Append("ON up.UserID = p.UserID ");
 
-            sqlCommand.Append("WHERE ft.ThreadID = ?ThreadID ");
+            sqlCommand.Append("WHERE ft.TopicID = ?TopicID ");
 
             //sqlCommand.Append("ORDER BY	p.SortOrder, p.PostID DESC ;");
-            sqlCommand.Append("ORDER BY p.ThreadSequence DESC  ;");
+            sqlCommand.Append("ORDER BY p.TopicSequence DESC  ;");
 
             arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -1856,7 +1856,7 @@ namespace Cynthia.Data
 
         }
 
-        public static IDataReader ForumThreadGetPostsByPage(int siteId, int pageId)
+        public static IDataReader GroupThreadGetPostsByPage(int siteId, int pageId)
         {
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("SELECT  fp.*, ");
@@ -1868,13 +1868,13 @@ namespace Cynthia.Data
             sqlCommand.Append("m.ViewRoles, ");
             sqlCommand.Append("md.FeatureName ");
 
-            sqlCommand.Append("FROM	cy_ForumPosts fp ");
+            sqlCommand.Append("FROM	cy_GroupPosts fp ");
 
-            sqlCommand.Append("JOIN	cy_ForumThreads ft ");
-            sqlCommand.Append("ON fp.ThreadID = ft.ThreadID ");
+            sqlCommand.Append("JOIN	cy_GroupTopics ft ");
+            sqlCommand.Append("ON fp.TopicID = ft.TopicID ");
 
             sqlCommand.Append("JOIN	cy_Groups f ");
-            sqlCommand.Append("ON f.ItemID = ft.ForumID ");
+            sqlCommand.Append("ON f.ItemID = ft.GroupID ");
 
             sqlCommand.Append("JOIN	cy_Modules m ");
             sqlCommand.Append("ON f.ModuleID = m.ModuleID ");
@@ -1910,13 +1910,13 @@ namespace Cynthia.Data
 
         }
 
-        public static IDataReader ForumThreadGetPostsForRss(int siteId, int pageId, int moduleId, int itemId, int threadId, int maximumDays)
+        public static IDataReader GroupThreadGetPostsForRss(int siteId, int pageId, int moduleId, int itemId, int threadId, int maximumDays)
         {
             StringBuilder sqlCommand = new StringBuilder();
 
             sqlCommand.Append("SELECT		fp.*, ");
-            sqlCommand.Append("ft.ThreadSubject, ");
-            sqlCommand.Append("ft.ForumID, ");
+            sqlCommand.Append("ft.TopicTitle, ");
+            sqlCommand.Append("ft.GroupID, ");
             sqlCommand.Append("COALESCE(s.Name,'Guest') as StartedBy, ");
             sqlCommand.Append("COALESCE(up.Name, 'Guest') as PostAuthor, ");
             sqlCommand.Append("up.TotalPosts as PostAuthorTotalPosts, ");
@@ -1925,13 +1925,13 @@ namespace Cynthia.Data
             sqlCommand.Append("up.Signature as PostAuthorSignature ");
 
 
-            sqlCommand.Append("FROM		cy_ForumPosts fp ");
+            sqlCommand.Append("FROM		cy_GroupPosts fp ");
 
-            sqlCommand.Append("JOIN		cy_ForumThreads ft ");
-            sqlCommand.Append("ON		fp.ThreadID = ft.ThreadID ");
+            sqlCommand.Append("JOIN		cy_GroupTopics ft ");
+            sqlCommand.Append("ON		fp.TopicID = ft.TopicID ");
 
             sqlCommand.Append("JOIN		cy_Groups f ");
-            sqlCommand.Append("ON		ft.ForumID = f.ItemID ");
+            sqlCommand.Append("ON		ft.GroupID = f.ItemID ");
 
             sqlCommand.Append("JOIN		cy_Modules m ");
             sqlCommand.Append("ON		f.ModuleID = m.ModuleID ");
@@ -1955,7 +1955,7 @@ namespace Cynthia.Data
             sqlCommand.Append("AND	(?PageID = -1 OR p.PageID = ?PageID) ");
             sqlCommand.Append("AND	(?ModuleID = -1 OR m.ModuleID = ?ModuleID) ");
             sqlCommand.Append("AND	(?ItemID = -1 OR f.ItemID = ?ItemID) ");
-            sqlCommand.Append("AND	(?ThreadID = -1 OR ft.ThreadID = ?ThreadID) ");
+            sqlCommand.Append("AND	(?TopicID = -1 OR ft.TopicID = ?TopicID) ");
             //sqlCommand.Append("AND	(?MaximumDays = -1 OR datediff('dd', now(), fp.PostDate) <= ?MaximumDays) ");
 
             sqlCommand.Append("AND	( (?MaximumDays = -1) OR  ((now() - ?MaximumDays) >= fp.PostDate )) ");
@@ -1981,7 +1981,7 @@ namespace Cynthia.Data
             arParams[3].Direction = ParameterDirection.Input;
             arParams[3].Value = itemId;
 
-            arParams[4] = new MySqlParameter("?ThreadID", SqlDbType.Int);
+            arParams[4] = new MySqlParameter("?TopicID", SqlDbType.Int);
             arParams[4].Direction = ParameterDirection.Input;
             arParams[4].Value = threadId;
 
@@ -1998,7 +1998,7 @@ namespace Cynthia.Data
 
         }
 
-        public static DataSet ForumThreadGetSubscribers(int forumId, int threadId, int currentPostUserId)
+        public static DataSet GroupThreadGetSubscribers(int forumId, int threadId, int currentPostUserId)
         {
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("SELECT u.Email ");
@@ -2009,8 +2009,8 @@ namespace Cynthia.Data
             sqlCommand.Append("(");
 
             sqlCommand.Append("(");
-            sqlCommand.Append("u.UserID IN (SELECT UserID FROM cy_ForumThreadSubscriptions ");
-            sqlCommand.Append("WHERE ThreadID = ?ThreadID ");
+            sqlCommand.Append("u.UserID IN (SELECT UserID FROM cy_GroupTopicSubscriptions ");
+            sqlCommand.Append("WHERE TopicID = ?TopicID ");
             sqlCommand.Append("AND UnSubscribeDate IS NULL) ");
             sqlCommand.Append(")");
 
@@ -2018,7 +2018,7 @@ namespace Cynthia.Data
 
             sqlCommand.Append("(");
             sqlCommand.Append("u.UserID IN (SELECT UserID FROM cy_GroupSubscriptions ");
-            sqlCommand.Append("WHERE ForumID = ?ForumID ");
+            sqlCommand.Append("WHERE GroupID = ?GroupID ");
             sqlCommand.Append("AND UnSubscribeDate IS NULL) ");
             sqlCommand.Append(")");
 
@@ -2027,11 +2027,11 @@ namespace Cynthia.Data
 
             MySqlParameter[] arParams = new MySqlParameter[3];
 
-            arParams[0] = new MySqlParameter("?ForumID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?GroupID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = forumId;
 
-            arParams[1] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[1] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[1].Direction = ParameterDirection.Input;
             arParams[1].Value = threadId;
 
@@ -2046,17 +2046,17 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumThreadAddSubscriber(int threadId, int userId)
+        public static bool GroupThreadAddSubscriber(int threadId, int userId)
         {
             StringBuilder sqlCommand = new StringBuilder();
 
             sqlCommand.Append("SELECT COUNT(*) As SubscriptionCount ");
-            sqlCommand.Append("FROM cy_ForumThreadSubscriptions  ");
-            sqlCommand.Append("WHERE ThreadID = ?ThreadID AND UserID = ?UserID ; ");
+            sqlCommand.Append("FROM cy_GroupTopicSubscriptions  ");
+            sqlCommand.Append("WHERE TopicID = ?TopicID AND UserID = ?UserID ; ");
 
             MySqlParameter[] arParams = new MySqlParameter[2];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -2082,21 +2082,21 @@ namespace Cynthia.Data
 
             if (subscriptionCount > 0)
             {
-                sqlCommand.Append("UPDATE cy_ForumThreadSubscriptions ");
+                sqlCommand.Append("UPDATE cy_GroupTopicSubscriptions ");
                 sqlCommand.Append("SET SubscribeDate = now(), ");
                 sqlCommand.Append("UnSubscribeDate = Null ");
-                sqlCommand.Append("WHERE ThreadID = ?ThreadID AND UserID = ?UserID ;");
+                sqlCommand.Append("WHERE TopicID = ?TopicID AND UserID = ?UserID ;");
 
             }
             else
             {
 
-                sqlCommand.Append("INSERT INTO	cy_ForumThreadSubscriptions ( ");
-                sqlCommand.Append("ThreadID, ");
+                sqlCommand.Append("INSERT INTO	cy_GroupTopicSubscriptions ( ");
+                sqlCommand.Append("TopicID, ");
                 sqlCommand.Append("UserID ");
                 sqlCommand.Append(") ");
                 sqlCommand.Append("VALUES ( ");
-                sqlCommand.Append("?ThreadID, ");
+                sqlCommand.Append("?TopicID, ");
                 sqlCommand.Append("?UserID ");
                 sqlCommand.Append(") ;");
 
@@ -2104,7 +2104,7 @@ namespace Cynthia.Data
 
             arParams = new MySqlParameter[2];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -2121,17 +2121,17 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumThreadUNSubscribe(int threadId, int userId)
+        public static bool GroupThreadUNSubscribe(int threadId, int userId)
         {
             StringBuilder sqlCommand = new StringBuilder();
 
-            sqlCommand.Append("UPDATE cy_ForumThreadSubscriptions ");
+            sqlCommand.Append("UPDATE cy_GroupTopicSubscriptions ");
             sqlCommand.Append("SET UnSubscribeDate = now() ");
-            sqlCommand.Append("WHERE ThreadID = ?ThreadID AND UserID = ?UserID ;");
+            sqlCommand.Append("WHERE TopicID = ?TopicID AND UserID = ?UserID ;");
 
             MySqlParameter[] arParams = new MySqlParameter[2];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -2148,11 +2148,11 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumThreadUnsubscribeAll(int userId)
+        public static bool GroupThreadUnsubscribeAll(int userId)
         {
             StringBuilder sqlCommand = new StringBuilder();
 
-            sqlCommand.Append("UPDATE cy_ForumThreadSubscriptions ");
+            sqlCommand.Append("UPDATE cy_GroupTopicSubscriptions ");
             sqlCommand.Append("SET UnSubscribeDate = now() ");
             sqlCommand.Append("WHERE UserID = ?UserID ;");
 
@@ -2171,7 +2171,7 @@ namespace Cynthia.Data
 
         }
 
-        public static int ForumPostCreate(
+        public static int GroupPostCreate(
             int threadId,
             string subject,
             string post,
@@ -2188,11 +2188,11 @@ namespace Cynthia.Data
 
             StringBuilder sqlCommand = new StringBuilder();
 
-            sqlCommand.Append("SELECT COALESCE(Max(ThreadSequence) + 1,1) As ThreadSequence FROM cy_ForumPosts WHERE ThreadID = ?ThreadID ; ");
+            sqlCommand.Append("SELECT COALESCE(Max(TopicSequence) + 1,1) As TopicSequence FROM cy_GroupPosts WHERE TopicID = ?TopicID ; ");
 
             MySqlParameter[] arParams = new MySqlParameter[1];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -2205,39 +2205,39 @@ namespace Cynthia.Data
             {
                 if (reader.Read())
                 {
-                    threadSequence = Convert.ToInt32(reader["ThreadSequence"]);
+                    threadSequence = Convert.ToInt32(reader["TopicSequence"]);
                 }
             }
 
             sqlCommand = new StringBuilder();
-            //sqlCommand.Append("SET @ThreadSequence = " + threadSequence.ToString() + " ; ");
+            //sqlCommand.Append("SET @TopicSequence = " + threadSequence.ToString() + " ; ");
 
-            sqlCommand.Append("INSERT INTO cy_ForumPosts ( ");
-            sqlCommand.Append("ThreadID, ");
+            sqlCommand.Append("INSERT INTO cy_GroupPosts ( ");
+            sqlCommand.Append("TopicID, ");
             sqlCommand.Append("Subject, ");
             sqlCommand.Append("Post, ");
             sqlCommand.Append("PostDate, ");
             sqlCommand.Append("Approved, ");
             sqlCommand.Append("UserID, ");
-            sqlCommand.Append("ThreadSequence ");
+            sqlCommand.Append("TopicSequence ");
 
             sqlCommand.Append(" ) ");
 
             sqlCommand.Append("VALUES (");
-            sqlCommand.Append(" ?ThreadID , ");
+            sqlCommand.Append(" ?TopicID , ");
             sqlCommand.Append(" ?Subject  , ");
             sqlCommand.Append(" ?Post, ");
             sqlCommand.Append(" ?PostDate, ");
             sqlCommand.Append(" ?Approved , ");
             sqlCommand.Append(" ?UserID , ");
-            sqlCommand.Append(" ?ThreadSequence  ");
+            sqlCommand.Append(" ?TopicSequence  ");
 
             sqlCommand.Append(");");
             sqlCommand.Append("SELECT LAST_INSERT_ID();");
 
             arParams = new MySqlParameter[7];
 
-            arParams[0] = new MySqlParameter("?ThreadID", MySqlDbType.Int32);
+            arParams[0] = new MySqlParameter("?TopicID", MySqlDbType.Int32);
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = threadId;
 
@@ -2261,7 +2261,7 @@ namespace Cynthia.Data
             arParams[5].Direction = ParameterDirection.Input;
             arParams[5].Value = postDate;
 
-            arParams[6] = new MySqlParameter("?ThreadSequence", MySqlDbType.Int32);
+            arParams[6] = new MySqlParameter("?TopicSequence", MySqlDbType.Int32);
             arParams[6].Direction = ParameterDirection.Input;
             arParams[6].Value = threadSequence;
 
@@ -2276,7 +2276,7 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumPostUpdate(
+        public static bool GroupPostUpdate(
             int postId,
             string subject,
             string post,
@@ -2290,7 +2290,7 @@ namespace Cynthia.Data
             }
 
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("UPDATE cy_ForumPosts ");
+            sqlCommand.Append("UPDATE cy_GroupPosts ");
             sqlCommand.Append("SET Subject = ?Subject, ");
             sqlCommand.Append("Post = ?Post, ");
             sqlCommand.Append("SortOrder = ?SortOrder, ");
@@ -2328,13 +2328,13 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumPostUpdateThreadSequence(
+        public static bool GroupPostUpdateTopicSequence(
             int postId,
             int threadSequence)
         {
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("UPDATE cy_ForumPosts ");
-            sqlCommand.Append("SET ThreadSequence = ?ThreadSequence ");
+            sqlCommand.Append("UPDATE cy_GroupPosts ");
+            sqlCommand.Append("SET TopicSequence = ?TopicSequence ");
             sqlCommand.Append("WHERE PostID = ?PostID ;");
 
             MySqlParameter[] arParams = new MySqlParameter[2];
@@ -2343,7 +2343,7 @@ namespace Cynthia.Data
             arParams[0].Direction = ParameterDirection.Input;
             arParams[0].Value = postId;
 
-            arParams[1] = new MySqlParameter("?ThreadSequence", MySqlDbType.Int32);
+            arParams[1] = new MySqlParameter("?TopicSequence", MySqlDbType.Int32);
             arParams[1].Direction = ParameterDirection.Input;
             arParams[1].Value = threadSequence;
 
@@ -2356,11 +2356,11 @@ namespace Cynthia.Data
 
         }
 
-        public static bool ForumPostDelete(int postId)
+        public static bool GroupPostDelete(int postId)
         {
 
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("DELETE FROM cy_ForumPosts ");
+            sqlCommand.Append("DELETE FROM cy_GroupPosts ");
             sqlCommand.Append("WHERE PostID = ?PostID ;");
 
             MySqlParameter[] arParams = new MySqlParameter[1];

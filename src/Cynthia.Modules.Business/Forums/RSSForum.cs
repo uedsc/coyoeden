@@ -1,15 +1,4 @@
-﻿// Author:					Joseph Hill
-// Created:				    2006-01-09
-// Last Modified:			2007-11-03
-// 
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software.
+﻿
 
 using System;
 using System.Collections;
@@ -23,11 +12,11 @@ namespace Cynthia.Business
     /// Represents an rss feed for the forum
     /// </summary>
     /// 
-    public class RssForum
+    public class RssGroup
     {
         #region Constructors
 
-        public RssForum()
+        public RssGroup()
         { }
 
         #endregion
@@ -87,7 +76,7 @@ namespace Cynthia.Business
         #region Public Methods
         public IDataReader GetPostsForRss()
         {
-            return DBForums.ForumThreadGetPostsForRss(SiteId, PageId, ModuleId, ItemId, ThreadId, MaximumDays);
+            return DBGroups.GroupThreadGetPostsForRss(SiteId, PageId, ModuleId, ItemId, ThreadId, MaximumDays);
         }
         #endregion
 

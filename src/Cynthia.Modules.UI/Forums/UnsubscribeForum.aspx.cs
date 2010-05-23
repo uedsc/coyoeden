@@ -17,12 +17,12 @@ using Cynthia.Business.WebHelpers;
 using Cynthia.Web.Framework;
 using Cynthia.Net;
 
-namespace Cynthia.Web.ForumUI
+namespace Cynthia.Web.GroupUI
 {
 	
-    public partial class UnsubscribeForum : CBasePage
+    public partial class UnsubscribeGroup : CBasePage
 	{
-        private static readonly ILog log = LogManager.GetLogger(typeof(UnsubscribeForum));
+        private static readonly ILog log = LogManager.GetLogger(typeof(UnsubscribeGroup));
 
  
         #region OnInit
@@ -64,14 +64,14 @@ namespace Cynthia.Web.ForumUI
         {
             SiteUser siteUser = SiteUtils.GetCurrentSiteUser();
             if (siteUser == null) return;
-            Forum forum = new Forum(forumId);
+            Group forum = new Group(forumId);
             if (!forum.Unsubscribe(siteUser.UserId))
             {
-                log.ErrorFormat("Forum.UnSubscribe({0}, {1}, ) failed", forumId, siteUser.UserId);
-                lblUnsubscribe.Text = Resources.ForumResources.ForumUnsubscribeFailed;
+                log.ErrorFormat("Group.UnSubscribe({0}, {1}, ) failed", forumId, siteUser.UserId);
+                lblUnsubscribe.Text = Resources.GroupResources.GroupUnsubscribeFailed;
                 return;
             }
-            lblUnsubscribe.Text = Resources.ForumResources.ForumUnsubscribeCompleted;	
+            lblUnsubscribe.Text = Resources.GroupResources.GroupUnsubscribeCompleted;	
 
 
         }
@@ -86,10 +86,10 @@ namespace Cynthia.Web.ForumUI
             if(user == null) { return;}
             if(user.UserGuid == Guid.Empty){ return;}
 
-            ForumThread.UnsubscribeAll(user.UserId);
-            Forum.UnsubscribeAll(user.UserId);
+            GroupThread.UnsubscribeAll(user.UserId);
+            Group.UnsubscribeAll(user.UserId);
 
-            lblUnsubscribe.Text = Resources.ForumResources.AdminUnsubscribeUserComplete;	
+            lblUnsubscribe.Text = Resources.GroupResources.AdminUnsubscribeUserComplete;	
 
         }
 

@@ -121,7 +121,7 @@ namespace Cynthia.Web.UI.Pages
                 {
                     // this can't be used in related site mode
                     // because we can't assume forum posts were in this site.
-                    divForumPosts.Visible = false;
+                    divGroupPosts.Visible = false;
                 }
 
                 if (Request.IsAuthenticated)

@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cynthia.Web.ForumUI {
+namespace Cynthia.Web.GroupUI {
     
     
-    public partial class ForumModule {
+    public partial class GroupModule {
         
         /// <summary>
         /// mp1 control.
@@ -65,16 +65,16 @@ namespace Cynthia.Web.ForumUI {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.ForumUI.ForumSearchBox sb1;
+        protected global::Cynthia.Web.GroupUI.GroupSearchBox sb1;
         
         /// <summary>
-        /// pnlForumList control.
+        /// pnlGroupList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlForumList;
+        protected global::System.Web.UI.WebControls.Panel pnlGroupList;
         
         /// <summary>
         /// tdSubscribedHead control.
@@ -95,22 +95,22 @@ namespace Cynthia.Web.ForumUI {
         protected global::Cynthia.Web.Controls.SiteLabel lblSubscribed;
         
         /// <summary>
-        /// lblForumName control.
+        /// lblGroupName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.Controls.SiteLabel lblForumName;
+        protected global::Cynthia.Web.Controls.SiteLabel lblGroupName;
         
         /// <summary>
-        /// lblThreadCount control.
+        /// lblTopicCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.Controls.SiteLabel lblThreadCount;
+        protected global::Cynthia.Web.Controls.SiteLabel lblTopicCount;
         
         /// <summary>
         /// lblPostCount control.
@@ -131,13 +131,13 @@ namespace Cynthia.Web.ForumUI {
         protected global::Cynthia.Web.Controls.SiteLabel lblLastPost;
         
         /// <summary>
-        /// rptForums control.
+        /// rptGroups control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptForums;
+        protected global::System.Web.UI.WebControls.Repeater rptGroups;
         
         /// <summary>
         /// divEditSubscriptions control.

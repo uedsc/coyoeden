@@ -345,7 +345,7 @@ namespace Cynthia.Web.Editor
 
                     break;
 
-                case ToolBar.ForumWithImages:
+                case ToolBar.GroupWithImages:
 
                     //Editor.Plugins = "paste,print,searchreplace,fullscreen,emotions,directionality,table,advimage,inlinepopups";
 
@@ -355,19 +355,19 @@ namespace Cynthia.Web.Editor
 
                     //Editor.AdvancedRow3Buttons = "";
 
-                    Editor.Plugins = config.ForumWithImagesToolbarPlugins;
-                    Editor.AdvancedRow1Buttons = config.ForumWithImagesToolbarRow1Buttons;
-                    Editor.AdvancedRow2Buttons = config.ForumWithImagesToolbarRow2Buttons;
-                    Editor.AdvancedRow3Buttons = config.ForumWithImagesToolbarRow3Buttons;
-                    Editor.ExtendedValidElements = config.ForumWithImagesToolbarExtendedValidElements;
+                    Editor.Plugins = config.GroupWithImagesToolbarPlugins;
+                    Editor.AdvancedRow1Buttons = config.GroupWithImagesToolbarRow1Buttons;
+                    Editor.AdvancedRow2Buttons = config.GroupWithImagesToolbarRow2Buttons;
+                    Editor.AdvancedRow3Buttons = config.GroupWithImagesToolbarRow3Buttons;
+                    Editor.ExtendedValidElements = config.GroupWithImagesToolbarExtendedValidElements;
                     
                     Editor.FileManagerUrl = SiteUtils.GetNavigationSiteRoot() + "/Dialog/FileDialog.aspx";
                     Editor.EnableFileBrowser = true;
-                    Editor.ForcePasteAsPlainText = config.ForumWithImagesToolbarForcePasteAsPlainText;
+                    Editor.ForcePasteAsPlainText = config.GroupWithImagesToolbarForcePasteAsPlainText;
 
                     break;
 
-                case ToolBar.Forum:
+                case ToolBar.Group:
 
                     //Editor.Plugins = "paste,print,searchreplace,fullscreen,emotions,directionality,table,advimage,inlinepopups";
 
@@ -377,13 +377,13 @@ namespace Cynthia.Web.Editor
 
                     //Editor.AdvancedRow3Buttons = "";
 
-                    Editor.Plugins = config.ForumToolbarPlugins;
-                    Editor.AdvancedRow1Buttons = config.ForumToolbarRow1Buttons;
-                    Editor.AdvancedRow2Buttons = config.ForumToolbarRow2Buttons;
-                    Editor.AdvancedRow3Buttons = config.ForumToolbarRow3Buttons;
-                    Editor.ExtendedValidElements = config.ForumToolbarExtendedValidElements;
+                    Editor.Plugins = config.GroupToolbarPlugins;
+                    Editor.AdvancedRow1Buttons = config.GroupToolbarRow1Buttons;
+                    Editor.AdvancedRow2Buttons = config.GroupToolbarRow2Buttons;
+                    Editor.AdvancedRow3Buttons = config.GroupToolbarRow3Buttons;
+                    Editor.ExtendedValidElements = config.GroupToolbarExtendedValidElements;
 
-                    Editor.ForcePasteAsPlainText = config.ForumToolbarForcePasteAsPlainText;
+                    Editor.ForcePasteAsPlainText = config.GroupToolbarForcePasteAsPlainText;
                     
                     
                     break;

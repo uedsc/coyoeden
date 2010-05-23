@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cynthia.Web.ForumUI {
+namespace Cynthia.Web.GroupUI {
     
     
-    public partial class ForumThreadEdit {
+    public partial class GroupThreadEdit {
         
         /// <summary>
         /// ctop1 control.
@@ -41,22 +41,22 @@ namespace Cynthia.Web.ForumUI {
         protected global::System.Web.UI.WebControls.Panel pnlEdit;
         
         /// <summary>
-        /// lblForumThreadEditLabel control.
+        /// lblGroupThreadEditLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.Controls.SiteLabel lblForumThreadEditLabel;
+        protected global::Cynthia.Web.Controls.SiteLabel lblGroupThreadEditLabel;
         
         /// <summary>
-        /// lblThreadSubjectLabel control.
+        /// lblTopicTitleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.Controls.SiteLabel lblThreadSubjectLabel;
+        protected global::Cynthia.Web.Controls.SiteLabel lblTopicTitleLabel;
         
         /// <summary>
         /// txtSubject control.
@@ -68,22 +68,22 @@ namespace Cynthia.Web.ForumUI {
         protected global::System.Web.UI.WebControls.TextBox txtSubject;
         
         /// <summary>
-        /// lblThreadForumLabel control.
+        /// lblThreadGroupLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.Controls.SiteLabel lblThreadForumLabel;
+        protected global::Cynthia.Web.Controls.SiteLabel lblThreadGroupLabel;
         
         /// <summary>
-        /// ddForumList control.
+        /// ddGroupList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddForumList;
+        protected global::System.Web.UI.WebControls.DropDownList ddGroupList;
         
         /// <summary>
         /// lblError control.

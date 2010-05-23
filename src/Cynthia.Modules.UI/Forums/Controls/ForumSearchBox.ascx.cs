@@ -1,23 +1,13 @@
-﻿// Author:					    Joe Audette
-// Created:				        2010-02-16
-//	Last Modified:              2010-02-16
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software. 
+﻿
 
 using System;
 using Cynthia.Web;
 using Cynthia.Web.Framework;
 using Resources;
 
-namespace Cynthia.Web.ForumUI
+namespace Cynthia.Web.GroupUI
 {
-    public partial class ForumSearchBox : System.Web.UI.UserControl
+    public partial class GroupSearchBox : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,8 +17,8 @@ namespace Cynthia.Web.ForumUI
                 return;
             }
 
-            btnSearch.Text = ForumResources.Search;
-            reqSearchText.ErrorMessage = ForumResources.SearchTermRequiredWarning;
+            btnSearch.Text = GroupResources.Search;
+            reqSearchText.ErrorMessage = GroupResources.SearchTermRequiredWarning;
         }
 
         void btnSearch_Click(object sender, EventArgs e)

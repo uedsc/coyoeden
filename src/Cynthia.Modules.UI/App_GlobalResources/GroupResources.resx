@@ -147,211 +147,211 @@
   <data name="EditImageAltText" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="ForumDeletePostWarning" xml:space="preserve">
+  <data name="GroupDeletePostWarning" xml:space="preserve">
     <value>Are you sure you want to delete this post?</value>
   </data>
-  <data name="ForumDeleteThreadWarning" xml:space="preserve">
+  <data name="GroupDeleteThreadWarning" xml:space="preserve">
     <value>Are you sure you want to delete this thread?</value>
   </data>
-  <data name="ForumEditCancelButton" xml:space="preserve">
+  <data name="GroupEditCancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="ForumEditCancelButtonAccessKey" xml:space="preserve">
+  <data name="GroupEditCancelButtonAccessKey" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="ForumEditCreateButton" xml:space="preserve">
-    <value>Create New Forum</value>
+  <data name="GroupEditCreateButton" xml:space="preserve">
+    <value>Create New Group</value>
   </data>
-  <data name="ForumEditCreatedByLabel" xml:space="preserve">
+  <data name="GroupEditCreatedByLabel" xml:space="preserve">
     <value>Created By:</value>
   </data>
-  <data name="ForumEditCreatedDateLabel" xml:space="preserve">
+  <data name="GroupEditCreatedDateLabel" xml:space="preserve">
     <value>Created:</value>
   </data>
-  <data name="ForumEditDeleteButton" xml:space="preserve">
+  <data name="GroupEditDeleteButton" xml:space="preserve">
     <value>Delete this item</value>
   </data>
-  <data name="ForumEditDeleteButtonAccessKey" xml:space="preserve">
+  <data name="GroupEditDeleteButtonAccessKey" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="ForumEditDescriptionLabel" xml:space="preserve">
+  <data name="GroupEditDescriptionLabel" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="ForumEditForumLabel" xml:space="preserve">
-    <value>Edit Forum</value>
+  <data name="GroupEditGroupLabel" xml:space="preserve">
+    <value>Edit Group</value>
   </data>
-  <data name="ForumEditIsActiveLabel" xml:space="preserve">
+  <data name="GroupEditIsActiveLabel" xml:space="preserve">
     <value>Is Active?</value>
   </data>
-  <data name="ForumEditIsModeratedLabel" xml:space="preserve">
+  <data name="GroupEditIsModeratedLabel" xml:space="preserve">
     <value>Is Moderated?</value>
   </data>
-  <data name="ForumEditLabel" xml:space="preserve">
-    <value>Add Forum</value>
+  <data name="GroupEditLabel" xml:space="preserve">
+    <value>Add Group</value>
   </data>
-  <data name="ForumEditNewForumButton" xml:space="preserve">
-    <value>New Forum</value>
+  <data name="GroupEditNewGroupButton" xml:space="preserve">
+    <value>New Group</value>
   </data>
-  <data name="ForumEditPostLink" xml:space="preserve">
+  <data name="GroupEditPostLink" xml:space="preserve">
     <value>Edit Post</value>
   </data>
-  <data name="ForumEditPostsPerPageLabel" xml:space="preserve">
+  <data name="GroupEditPostsPerPageLabel" xml:space="preserve">
     <value>Posts Per Page:</value>
   </data>
-  <data name="ForumEditSortOrderLabel" xml:space="preserve">
+  <data name="GroupEditSortOrderLabel" xml:space="preserve">
     <value>Sort Order:</value>
   </data>
-  <data name="ForumEditSubjectRequiredHelp" xml:space="preserve">
+  <data name="GroupEditSubjectRequiredHelp" xml:space="preserve">
     <value>You Must Enter a Subject</value>
   </data>
-  <data name="ForumEditThreadsPerPageLabel" xml:space="preserve">
+  <data name="GroupEditTopicsPerPageLabel" xml:space="preserve">
     <value>Topics Per Page:</value>
   </data>
-  <data name="ForumEditTitleLabel" xml:space="preserve">
+  <data name="GroupEditTitleLabel" xml:space="preserve">
     <value>Title:</value>
   </data>
-  <data name="ForumEditUpdateButton" xml:space="preserve">
+  <data name="GroupEditUpdateButton" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="ForumEditUpdateButtonAccessKey" xml:space="preserve">
+  <data name="GroupEditUpdateButtonAccessKey" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="ForumEnableAntiSpamSetting" xml:space="preserve">
+  <data name="GroupEnableAntiSpamSetting" xml:space="preserve">
     <value>Enable SPAM Blocking?</value>
   </data>
-  <data name="ForumEnableRSSAtForumLevel" xml:space="preserve">
-    <value>Enable RSS At Forum Level?</value>
+  <data name="GroupEnableRSSAtGroupLevel" xml:space="preserve">
+    <value>Enable RSS At Group Level?</value>
   </data>
-  <data name="ForumEnableRSSAtModuleLevel" xml:space="preserve">
+  <data name="GroupEnableRSSAtModuleLevel" xml:space="preserve">
     <value>Enable RSS At Module Level?</value>
   </data>
-  <data name="ForumEnableRSSAtThreadLevel" xml:space="preserve">
+  <data name="GroupEnableRSSAtThreadLevel" xml:space="preserve">
     <value>Enable RSS At Thread Level?</value>
   </data>
-  <data name="ForumLabel" xml:space="preserve">
-    <value>Forum</value>
+  <data name="GroupLabel" xml:space="preserve">
+    <value>Group</value>
   </data>
-  <data name="ForumModuleEditSubscriptionsLabel" xml:space="preserve">
+  <data name="GroupModuleEditSubscriptionsLabel" xml:space="preserve">
     <value>Edit Email Subscriptions</value>
   </data>
-  <data name="ForumModuleForumLabel" xml:space="preserve">
-    <value>Forum</value>
+  <data name="GroupModuleGroupLabel" xml:space="preserve">
+    <value>Group</value>
   </data>
-  <data name="ForumModulePostCountLabel" xml:space="preserve">
+  <data name="GroupModulePostCountLabel" xml:space="preserve">
     <value>Total Posts</value>
   </data>
-  <data name="ForumModulePostLastPostLabel" xml:space="preserve">
+  <data name="GroupModulePostLastPostLabel" xml:space="preserve">
     <value>Last Post</value>
   </data>
-  <data name="ForumModuleSubscribedLabel" xml:space="preserve">
+  <data name="GroupModuleSubscribedLabel" xml:space="preserve">
     <value>Subscribe?</value>
   </data>
-  <data name="ForumModuleThreadCountLabel" xml:space="preserve">
+  <data name="GroupModuleTopicCountLabel" xml:space="preserve">
     <value>Total Threads</value>
   </data>
-  <data name="ForumMyPostsLink" xml:space="preserve">
+  <data name="GroupMyPostsLink" xml:space="preserve">
     <value>My Posts</value>
   </data>
-  <data name="ForumPostEditCancelButton" xml:space="preserve">
+  <data name="GroupPostEditCancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="ForumPostEditDeleteButton" xml:space="preserve">
+  <data name="GroupPostEditDeleteButton" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="ForumPostEditMessageLabel" xml:space="preserve">
+  <data name="GroupPostEditMessageLabel" xml:space="preserve">
     <value>Message:</value>
   </data>
-  <data name="ForumPostEditNotifyLabel" xml:space="preserve">
+  <data name="GroupPostEditNotifyLabel" xml:space="preserve">
     <value>Subscribe to replies on this thread?</value>
   </data>
-  <data name="ForumPostEditSubjectLabel" xml:space="preserve">
+  <data name="GroupPostEditSubjectLabel" xml:space="preserve">
     <value>Subject</value>
   </data>
-  <data name="ForumPostEditUpdateButton" xml:space="preserve">
+  <data name="GroupPostEditUpdateButton" xml:space="preserve">
     <value>Post</value>
   </data>
-  <data name="ForumPostEditUpdateButtonAccessKey" xml:space="preserve">
+  <data name="GroupPostEditUpdateButtonAccessKey" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="ForumsFeatureName" xml:space="preserve">
-    <value>Forums</value>
+  <data name="GroupsFeatureName" xml:space="preserve">
+    <value>Groups</value>
   </data>
-  <data name="ForumsLoginRequiredLink" xml:space="preserve">
+  <data name="GroupsLoginRequiredLink" xml:space="preserve">
     <value>You must sign in to post in the forums.</value>
   </data>
-  <data name="ForumsTableSummary" xml:space="preserve">
-    <value>This tables contains a list of Forums.</value>
+  <data name="GroupsTableSummary" xml:space="preserve">
+    <value>This tables contains a list of Groups.</value>
   </data>
-  <data name="ForumThreadCancelButton" xml:space="preserve">
+  <data name="GroupThreadCancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="ForumThreadDeleteButton" xml:space="preserve">
+  <data name="GroupThreadDeleteButton" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="ForumThreadEditForumLabel" xml:space="preserve">
-    <value>Forum</value>
+  <data name="GroupThreadEditGroupLabel" xml:space="preserve">
+    <value>Group</value>
   </data>
-  <data name="ForumThreadEditLabel" xml:space="preserve">
+  <data name="GroupThreadEditLabel" xml:space="preserve">
     <value>Edit Thread</value>
   </data>
-  <data name="ForumThreadEditSortOrderLabel" xml:space="preserve">
+  <data name="GroupThreadEditSortOrderLabel" xml:space="preserve">
     <value>Sort Order</value>
   </data>
-  <data name="ForumThreadEditSubjectLabel" xml:space="preserve">
+  <data name="GroupThreadEditSubjectLabel" xml:space="preserve">
     <value>Subject</value>
   </data>
-  <data name="ForumThreadUnsubscribeCompleted" xml:space="preserve">
+  <data name="GroupThreadUnsubscribeCompleted" xml:space="preserve">
     <value>Unsubscribe completed!  You should not receive any more notifications for messages in the requested thread.</value>
   </data>
-  <data name="ForumThreadUnsubscribeFailed" xml:space="preserve">
+  <data name="GroupThreadUnsubscribeFailed" xml:space="preserve">
     <value>Unsubscribe FAILED!  An error occurred when attempting to stop notifications for a thread.  Please contact the site administrator.</value>
   </data>
-  <data name="ForumThreadUpdateButton" xml:space="preserve">
+  <data name="GroupThreadUpdateButton" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="ForumThreadViewAuthorLabel" xml:space="preserve">
+  <data name="GroupThreadViewAuthorLabel" xml:space="preserve">
     <value>Author</value>
   </data>
-  <data name="ForumThreadViewPagesLabel" xml:space="preserve">
+  <data name="GroupThreadViewPagesLabel" xml:space="preserve">
     <value>Pages:</value>
   </data>
-  <data name="ForumThreadViewReplyLabel" xml:space="preserve">
+  <data name="GroupThreadViewReplyLabel" xml:space="preserve">
     <value>reply</value>
   </data>
-  <data name="ForumUnsubscribeCompleted" xml:space="preserve">
+  <data name="GroupUnsubscribeCompleted" xml:space="preserve">
     <value>Unsubscribe completed!  You should not receive any more notifications for new threads in the requested forum.</value>
   </data>
-  <data name="ForumUnsubscribeFailed" xml:space="preserve">
+  <data name="GroupUnsubscribeFailed" xml:space="preserve">
     <value>Unsubscribe FAILED!  An error occurred when attempting to stop notifications for new threads in a forum.  Please contact the site administrator.</value>
   </data>
-  <data name="ForumUserPostsLink" xml:space="preserve">
+  <data name="GroupUserPostsLink" xml:space="preserve">
     <value>View Posts</value>
   </data>
-  <data name="ForumUserThreadHeading" xml:space="preserve">
+  <data name="GroupUserThreadHeading" xml:space="preserve">
     <value>{0} participated in these discussions.</value>
   </data>
-  <data name="ForumViewNewThreadLabel" xml:space="preserve">
+  <data name="GroupViewNewThreadLabel" xml:space="preserve">
     <value>new topic</value>
   </data>
-  <data name="ForumViewPostLastPostLabel" xml:space="preserve">
+  <data name="GroupViewPostLastPostLabel" xml:space="preserve">
     <value>Last Post</value>
   </data>
-  <data name="ForumViewReplyCountLabel" xml:space="preserve">
+  <data name="GroupViewReplyCountLabel" xml:space="preserve">
     <value>Total Replies</value>
   </data>
-  <data name="ForumViewStartedByLabel" xml:space="preserve">
+  <data name="GroupViewStartedByLabel" xml:space="preserve">
     <value>Started by</value>
   </data>
-  <data name="ForumViewSubjectLabel" xml:space="preserve">
+  <data name="GroupViewSubjectLabel" xml:space="preserve">
     <value>Subject</value>
   </data>
-  <data name="ForumViewTableSummary" xml:space="preserve">
-    <value>This table contains a list of Forum Threads.</value>
+  <data name="GroupViewTableSummary" xml:space="preserve">
+    <value>This table contains a list of Group Threads.</value>
   </data>
-  <data name="ForumViewThreadCountLabel" xml:space="preserve">
+  <data name="GroupViewTopicCountLabel" xml:space="preserve">
     <value>Total Topics</value>
   </data>
-  <data name="ForumViewViewCountLabel" xml:space="preserve">
+  <data name="GroupViewViewCountLabel" xml:space="preserve">
     <value>Total Views</value>
   </data>
   <data name="IncludePostBodyInNotificationEmail" xml:space="preserve">
@@ -366,20 +366,20 @@
   <data name="AdminUnsubscribeUserComplete" xml:space="preserve">
     <value>Unsubscribe of user from forum notification completed.</value>
   </data>
-  <data name="ForumsSearchName" xml:space="preserve">
-    <value>Forums</value>
+  <data name="GroupsSearchName" xml:space="preserve">
+    <value>Groups</value>
   </data>
-  <data name="ForumThreadMetaDescriptionFormat" xml:space="preserve">
-    <value>Forum Thread - {0}</value>
+  <data name="GroupThreadMetaDescriptionFormat" xml:space="preserve">
+    <value>Group Thread - {0}</value>
   </data>
-  <data name="ForumMetaDescriptionFormat" xml:space="preserve">
+  <data name="GroupMetaDescriptionFormat" xml:space="preserve">
     <value>A discussion forum for {0}</value>
   </data>
   <data name="UserThreadMetaFormat" xml:space="preserve">
     <value>Site member {0} participated in these forum conversations.</value>
   </data>
   <data name="UserThreadTitleFormat" xml:space="preserve">
-    <value>Forum Threads for {0}</value>
+    <value>Group Threads for {0}</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Email</value>
@@ -411,13 +411,13 @@
   <data name="UserNameLabel" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="ForumSubscriptions" xml:space="preserve">
-    <value>Forum Subscriptions</value>
+  <data name="GroupSubscriptions" xml:space="preserve">
+    <value>Group Subscriptions</value>
   </data>
   <data name="SubscribeLongLink" xml:space="preserve">
     <value>Subscribe to notifications for this forum</value>
   </data>
-  <data name="SubscribeToAllOfThisForum" xml:space="preserve">
+  <data name="SubscribeToAllOfThisGroup" xml:space="preserve">
     <value>Subscribe to all posts in this forum?</value>
   </data>
   <data name="Search" xml:space="preserve">

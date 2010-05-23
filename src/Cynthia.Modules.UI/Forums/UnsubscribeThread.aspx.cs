@@ -13,12 +13,12 @@ using log4net;
 using Cynthia.Business;
 using Cynthia.Web.Framework;
 
-namespace Cynthia.Web.ForumUI
+namespace Cynthia.Web.GroupUI
 {
-    public partial class UnsubscribeForumThread : CBasePage
+    public partial class UnsubscribeGroupThread : CBasePage
 	{
 		// Create a logger for use in this class
-		private static readonly ILog log = LogManager.GetLogger(typeof(UnsubscribeForumThread));
+		private static readonly ILog log = LogManager.GetLogger(typeof(UnsubscribeGroupThread));
 
         #region OnInit
         override protected void OnInit(EventArgs e)
@@ -52,13 +52,13 @@ namespace Cynthia.Web.ForumUI
         {
             SiteUser siteUser = SiteUtils.GetCurrentSiteUser();
             if (siteUser == null) return;
-            if (!ForumThread.Unsubscribe(threadId, siteUser.UserId))
+            if (!GroupThread.Unsubscribe(threadId, siteUser.UserId))
             {
-                log.ErrorFormat("ForumThread.UnSubscribe({0}, {1}) failed", threadId, siteUser.UserId);
-                lblUnsubscribe.Text = Resources.ForumResources.ForumThreadUnsubscribeFailed;
+                log.ErrorFormat("GroupThread.UnSubscribe({0}, {1}) failed", threadId, siteUser.UserId);
+                lblUnsubscribe.Text = Resources.GroupResources.GroupThreadUnsubscribeFailed;
                 return;
             }
-            lblUnsubscribe.Text = Resources.ForumResources.ForumThreadUnsubscribeCompleted;	
+            lblUnsubscribe.Text = Resources.GroupResources.GroupThreadUnsubscribeCompleted;	
 
         }
 

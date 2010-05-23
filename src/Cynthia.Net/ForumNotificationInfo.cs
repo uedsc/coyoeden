@@ -19,9 +19,9 @@ namespace Cynthia.Net
     ///
     /// You must not remove this notice, or any other, from this software. 
     /// </summary>
-    public class ForumNotificationInfo
+    public class GroupNotificationInfo
     {
-        public ForumNotificationInfo()
+        public GroupNotificationInfo()
         { }
 
         private string subjectTemplate = string.Empty;
@@ -33,8 +33,8 @@ namespace Cynthia.Net
         private string subject = string.Empty;
         private DataSet subscribers = null;
         private string messageLink = string.Empty;
-        private string unsubscribeForumThreadLink = string.Empty;
-        private string unsubscribeForumLink = string.Empty;
+        private string unsubscribeGroupThreadLink = string.Empty;
+        private string unsubscribeGroupLink = string.Empty;
         private SmtpSettings smtpSettings = null;
 
         public SmtpSettings SmtpSettings
@@ -73,7 +73,7 @@ namespace Cynthia.Net
             set { moduleName = value; }
         }
 
-        public string ForumName
+        public string GroupName
         {
             get { return forumName; }
             set { forumName = value; }
@@ -97,16 +97,16 @@ namespace Cynthia.Net
             set { messageLink = value; }
         }
 
-        public string UnsubscribeForumThreadLink
+        public string UnsubscribeGroupThreadLink
         {
-            get { return unsubscribeForumThreadLink; }
-            set { unsubscribeForumThreadLink = value; }
+            get { return unsubscribeGroupThreadLink; }
+            set { unsubscribeGroupThreadLink = value; }
         }
 
-        public string UnsubscribeForumLink
+        public string UnsubscribeGroupLink
         {
-            get { return unsubscribeForumLink; }
-            set { unsubscribeForumLink = value; }
+            get { return unsubscribeGroupLink; }
+            set { unsubscribeGroupLink = value; }
         }
         
     }

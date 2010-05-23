@@ -8,16 +8,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cynthia.Web.ForumUI {
+namespace Cynthia.Web.GroupUI {
     
     
     /// <summary>
-    /// UnsubscribeForumThread class.
+    /// UnsubscribeGroupThread class.
     /// </summary>
     /// <remarks>
     /// Auto-generated class.
     /// </remarks>
-    public partial class UnsubscribeForumThread {
+    public partial class UnsubscribeGroupThread {
         
         /// <summary>
         /// pnlUnsubscribe control.

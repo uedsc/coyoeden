@@ -1,14 +1,4 @@
-﻿// Author:					Joe Audette
-// Created:				    2004-09-19
-// Last Modified:			2010-03-20
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software. 
+﻿
 
 using System;
 using System.Configuration;
@@ -21,22 +11,22 @@ namespace Cynthia.Business
     /// <summary>
     /// Encapsulates a thread and post
     /// </summary>
-    public class ForumThread : IIndexableContent
+    public class GroupThread : IIndexableContent
     {
 
         #region Constructors
 
-        public ForumThread()
+        public GroupThread()
         {
 
         }
 
-        public ForumThread(int threadId)
+        public GroupThread(int threadId)
         {
             GetThread(threadId);
         }
 
-        public ForumThread(int threadId, int postId)
+        public GroupThread(int threadId, int postId)
         {
             GetThread(threadId);
             GetPost(postId);
@@ -47,13 +37,13 @@ namespace Cynthia.Business
 
         #region Private Properties
 
-        private static readonly ILog log = LogManager.GetLogger(typeof(ForumThread));
+        private static readonly ILog log = LogManager.GetLogger(typeof(GroupThread));
 
 
         private int threadID = -1;
         private int forumID = -1;
         private int moduleID = -1;
-        private int origForumID = 0;
+        private int origGroupID = 0;
         private DateTime threadDate = DateTime.UtcNow;
         private string startedBy = string.Empty;
         private int startedByUserID = -1;
@@ -117,7 +107,7 @@ namespace Cynthia.Business
             get { return threadID; }
         }
 
-        public int ForumId
+        public int GroupId
         {
             get { return forumID; }
             set { forumID = value; }
@@ -129,7 +119,7 @@ namespace Cynthia.Business
 
         }
 
-        public DateTime ThreadDate
+        public DateTime TopicDate
         {
             get { return threadDate; }
         }
@@ -180,7 +170,7 @@ namespace Cynthia.Business
             set { sortOrder = value; }
         }
 
-        public int ForumSequence
+        public int GroupSequence
         {
             get { return forumSequence; }
         }
@@ -208,7 +198,7 @@ namespace Cynthia.Business
             get { return postID; }
         }
 
-        public int ThreadSequence
+        public int TopicSequence
         {
             get { return threadSequence; }
         }
@@ -268,19 +258,19 @@ namespace Cynthia.Business
 
         private void GetThread(int threadId)
         {
-            using (IDataReader reader = DBForums.ForumThreadGetThread(threadId))
+            using (IDataReader reader = DBGroups.GroupThreadGetThread(threadId))
             {
                 if (reader.Read())
                 {
 
-                    this.threadID = int.Parse(reader["ThreadID"].ToString());
-                    if (reader["ForumID"] != DBNull.Value)
+                    this.threadID = int.Parse(reader["TopicID"].ToString());
+                    if (reader["GroupID"] != DBNull.Value)
                     {
-                        this.forumID = this.origForumID = int.Parse(reader["ForumID"].ToString());
+                        this.forumID = this.origGroupID = int.Parse(reader["GroupID"].ToString());
                     }
-                    if (reader["ThreadDate"] != DBNull.Value)
+                    if (reader["TopicDate"] != DBNull.Value)
                     {
-                        this.threadDate = Convert.ToDateTime(reader["ThreadDate"].ToString());
+                        this.threadDate = Convert.ToDateTime(reader["TopicDate"].ToString());
                     }
                     this.startedBy = reader["StartedBy"].ToString();
                     if (reader["StartedByUserID"] != DBNull.Value)
@@ -288,7 +278,7 @@ namespace Cynthia.Business
                         this.startedByUserID = int.Parse(reader["StartedByUserID"].ToString());
                     }
 
-                    this.subject = reader["ThreadSubject"].ToString();
+                    this.subject = reader["TopicTitle"].ToString();
                     if (reader["TotalViews"] != DBNull.Value)
                     {
                         this.totalViews = Convert.ToInt32(reader["TotalViews"]);
@@ -303,9 +293,9 @@ namespace Cynthia.Business
                     {
                         this.sortOrder = Convert.ToInt32(reader["SortOrder"]);
                     }
-                    if (reader["ForumSequence"] != DBNull.Value)
+                    if (reader["GroupSequence"] != DBNull.Value)
                     {
-                        this.forumSequence = Convert.ToInt32(reader["ForumSequence"]);
+                        this.forumSequence = Convert.ToInt32(reader["GroupSequence"]);
                     }
 
                     if (reader["PostsPerPage"] != DBNull.Value)
@@ -353,7 +343,7 @@ namespace Cynthia.Business
 
         private void GetPost(int postId)
         {
-            using (IDataReader reader = DBForums.ForumThreadGetPost(postId))
+            using (IDataReader reader = DBGroups.GroupThreadGetPost(postId))
             {
                 if (reader.Read())
                 {
@@ -376,7 +366,7 @@ namespace Cynthia.Business
         {
             int newID = -1;
 
-            newID = DBForums.ForumThreadCreate(
+            newID = DBGroups.GroupThreadCreate(
                 this.forumID,
                 this.postSubject,
                 this.sortOrder,
@@ -386,7 +376,7 @@ namespace Cynthia.Business
 
 
             this.threadID = newID;
-            Forum.IncrementThreadCount(this.forumID);
+            Group.IncrementTopicCount(this.forumID);
 
             return (newID > -1);
 
@@ -405,7 +395,7 @@ namespace Cynthia.Business
             }
 
             this.mostRecentPostDate = DateTime.UtcNow;
-            newID = DBForums.ForumPostCreate(
+            newID = DBGroups.GroupPostCreate(
                 this.threadID,
                 this.postSubject,
                 this.postMessage,
@@ -414,7 +404,7 @@ namespace Cynthia.Business
                 this.mostRecentPostDate);
 
             this.postID = newID;
-            Forum.IncrementPostCount(this.forumID, this.postUserID, this.mostRecentPostDate);
+            Group.IncrementPostCount(this.forumID, this.postUserID, this.mostRecentPostDate);
             SiteUser.IncrementTotalPosts(this.postUserID);
             //IndexHelper.IndexItem(this);
 
@@ -434,7 +424,7 @@ namespace Cynthia.Business
         {
             bool result = false;
 
-            result = DBForums.ForumPostUpdate(
+            result = DBGroups.GroupPostUpdate(
                 this.postID,
                 this.postSubject,
                 this.postMessage,
@@ -456,19 +446,19 @@ namespace Cynthia.Business
 
         private bool IncrementReplyStats()
         {
-            return DBForums.ForumThreadIncrementReplyStats(
+            return DBGroups.GroupThreadIncrementReplyStats(
                 this.threadID,
                 this.postUserID,
                 this.mostRecentPostDate);
 
         }
 
-        private void ResetThreadSequences()
+        private void ResetTopicSequences()
         {
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("PostID", typeof(int));
 
-            using (IDataReader reader = DBForums.ForumThreadGetPosts(this.threadID))
+            using (IDataReader reader = DBGroups.GroupThreadGetPosts(this.threadID))
             {
                 while (reader.Read())
                 {
@@ -482,7 +472,7 @@ namespace Cynthia.Business
             int sequence = 1;
             foreach (DataRow row in dataTable.Rows)
             {
-                DBForums.ForumPostUpdateThreadSequence(
+                DBGroups.GroupPostUpdateTopicSequence(
                     Convert.ToInt32(row["PostID"]),
                     sequence);
                 sequence += 1;
@@ -519,7 +509,7 @@ namespace Cynthia.Business
 
             if (this.subscribeUserToThread)
             {
-                DBForums.ForumThreadAddSubscriber(this.threadID, this.postUserID);
+                DBGroups.GroupThreadAddSubscriber(this.threadID, this.postUserID);
 
             }
 
@@ -530,15 +520,15 @@ namespace Cynthia.Business
 
         public bool DeletePost(int postId)
         {
-            bool deleted = DBForums.ForumPostDelete(postId);
+            bool deleted = DBGroups.GroupPostDelete(postId);
             if (deleted)
             {
-                Forum.DecrementPostCount(this.forumID);
+                Group.DecrementPostCount(this.forumID);
                 if (this.totalReplies > 0)
                 {
-                    DBForums.ForumThreadDecrementReplyStats(this.threadID);
+                    DBGroups.GroupThreadDecrementReplyStats(this.threadID);
                 }
-                Forum forum = new Forum(this.forumID);
+                Group forum = new Group(this.forumID);
 
                 this.moduleID = forum.ModuleId;
                 this.postID = postId;
@@ -547,15 +537,15 @@ namespace Cynthia.Business
                 e.IsDeleted = true;
                 OnContentChanged(e);
 
-                int threadPostCount = ForumThread.GetPostCount(this.threadID);
+                int threadPostCount = GroupThread.GetPostCount(this.threadID);
                 if (threadPostCount == 0)
                 {
-                    ForumThread.Delete(this.threadID);
-                    Forum.DecrementThreadCount(this.forumID);
+                    GroupThread.Delete(this.threadID);
+                    Group.DecrementTopicCount(this.forumID);
 
                 }
 
-                ResetThreadSequences();
+                ResetTopicSequences();
             }
 
 
@@ -566,19 +556,19 @@ namespace Cynthia.Business
 
         public bool UpdateThreadViewStats()
         {
-            return DBForums.ForumThreadUpdateViewStats(this.threadID);
+            return DBGroups.GroupThreadUpdateViewStats(this.threadID);
 
 
         }
 
         public IDataReader GetPosts(int pageNumber)
         {
-            return DBForums.ForumThreadGetPosts(this.threadID, pageNumber);
+            return DBGroups.GroupThreadGetPosts(this.threadID, pageNumber);
         }
 
         public IDataReader GetPosts()
         {
-            return DBForums.ForumThreadGetPosts(this.threadID);
+            return DBGroups.GroupThreadGetPosts(this.threadID);
         }
 
         public DataTable GetPostIdList()
@@ -586,7 +576,7 @@ namespace Cynthia.Business
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("PostID", typeof(int));
 
-            using (IDataReader reader = DBForums.ForumThreadGetPosts(this.threadID))
+            using (IDataReader reader = DBGroups.GroupThreadGetPosts(this.threadID))
             {
                 while (reader.Read())
                 {
@@ -603,40 +593,40 @@ namespace Cynthia.Business
 
         public IDataReader GetPostsReverseSorted()
         {
-            return DBForums.ForumThreadGetPostsReverseSorted(this.threadID);
+            return DBGroups.GroupThreadGetPostsReverseSorted(this.threadID);
         }
 
 
         public DataSet GetThreadSubscribers()
         {
-            return DBForums.ForumThreadGetSubscribers(this.forumID, this.threadID, this.postUserID);
+            return DBGroups.GroupThreadGetSubscribers(this.forumID, this.threadID, this.postUserID);
         }
 
         public bool UpdateThread()
         {
             bool result = false;
 
-            result = DBForums.ForumThreadUpdate(
+            result = DBGroups.GroupThreadUpdate(
                 this.threadID,
                 this.forumID,
                 this.subject,
                 this.sortOrder,
                 this.isLocked);
 
-            if (this.forumID != this.origForumID)
+            if (this.forumID != this.origGroupID)
             {
 
-                Forum.DecrementThreadCount(this.origForumID);
-                Forum.IncrementThreadCount(this.forumID);
+                Group.DecrementTopicCount(this.origGroupID);
+                Group.IncrementTopicCount(this.forumID);
 
-                ForumThreadMovedArgs e = new ForumThreadMovedArgs();
-                e.ForumId = forumID;
-                e.OriginalForumId = origForumID;
+                GroupThreadMovedArgs e = new GroupThreadMovedArgs();
+                e.GroupId = forumID;
+                e.OriginalGroupId = origGroupID;
                 OnThreadMoved(e);
 
 
-                Forum.RecalculatePostStats(this.origForumID);
-                Forum.RecalculatePostStats(this.forumID);
+                Group.RecalculatePostStats(this.origGroupID);
+                Group.RecalculatePostStats(this.forumID);
             }
 
             return result;
@@ -652,12 +642,12 @@ namespace Cynthia.Business
 
         public static bool Unsubscribe(int threadId, int userId)
         {
-            return DBForums.ForumThreadUNSubscribe(threadId, userId);
+            return DBGroups.GroupThreadUNSubscribe(threadId, userId);
         }
 
         public static bool UnsubscribeAll(int userId)
         {
-            return DBForums.ForumThreadUnsubscribeAll(userId);
+            return DBGroups.GroupThreadUnsubscribeAll(userId);
         }
 
 
@@ -666,12 +656,12 @@ namespace Cynthia.Business
         {
             bool status = false;
 
-            ForumThread forumThread = new ForumThread(threadId);
+            GroupThread forumThread = new GroupThread(threadId);
 
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("PostID", typeof(int));
 
-            using (IDataReader reader = DBForums.ForumThreadGetPosts(threadId))
+            using (IDataReader reader = DBGroups.GroupThreadGetPosts(threadId))
             {
                 while (reader.Read())
                 {
@@ -686,14 +676,14 @@ namespace Cynthia.Business
                 forumThread.DeletePost(Convert.ToInt32(row["PostID"]));
             }
 
-            status = DBForums.ForumThreadDelete(threadId);
+            status = DBGroups.GroupThreadDelete(threadId);
 
             return status;
         }
 
         public static int GetPostCount(int threadId)
         {
-            return DBForums.ForumThreadGetPostCount(threadId);
+            return DBGroups.GroupThreadGetPostCount(threadId);
         }
 
 
@@ -702,14 +692,14 @@ namespace Cynthia.Business
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("PostID", typeof(int));
             dataTable.Columns.Add("ItemID", typeof(int));
-            dataTable.Columns.Add("ThreadID", typeof(int));
+            dataTable.Columns.Add("TopicID", typeof(int));
             dataTable.Columns.Add("ModuleID", typeof(int));
             dataTable.Columns.Add("ModuleTitle", typeof(string));
             dataTable.Columns.Add("Subject", typeof(string));
             dataTable.Columns.Add("Post", typeof(string));
             dataTable.Columns.Add("ViewRoles", typeof(string));
 
-            using (IDataReader reader = DBForums.ForumThreadGetPostsByPage(siteId, pageId))
+            using (IDataReader reader = DBGroups.GroupThreadGetPostsByPage(siteId, pageId))
             {
                 while (reader.Read())
                 {
@@ -717,7 +707,7 @@ namespace Cynthia.Business
                     row["PostID"] = reader["PostID"];
                     row["ItemID"] = reader["ItemID"];
                     row["ModuleID"] = reader["ModuleID"];
-                    row["ThreadID"] = reader["ThreadID"];
+                    row["TopicID"] = reader["TopicID"];
                     row["ModuleTitle"] = reader["ModuleTitle"];
                     row["Subject"] = reader["Subject"];
                     row["Post"] = reader["Post"];
@@ -739,7 +729,7 @@ namespace Cynthia.Business
             out int totalPages)
         {
 
-            return DBForums.GetThreadPageByUser(
+            return DBGroups.GetThreadPageByUser(
                 userId,
                 pageNumber,
                 pageSize,
@@ -751,7 +741,7 @@ namespace Cynthia.Business
 
         public static bool IsSubscribed(int threadId, int userId)
         {
-            return DBForums.ForumThreadSubscriptionExists(threadId, userId);
+            return DBGroups.GroupThreadSubscriptionExists(threadId, userId);
         }
 
 
@@ -772,11 +762,11 @@ namespace Cynthia.Business
 
         #endregion
 
-        public delegate void ThreadMovedEventHandler(object sender, ForumThreadMovedArgs e);
+        public delegate void ThreadMovedEventHandler(object sender, GroupThreadMovedArgs e);
 
         public event ThreadMovedEventHandler ThreadMoved;
 
-        protected void OnThreadMoved(ForumThreadMovedArgs e)
+        protected void OnThreadMoved(GroupThreadMovedArgs e)
         {
             if (ThreadMoved != null)
             {

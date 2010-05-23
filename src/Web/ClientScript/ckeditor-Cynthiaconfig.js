@@ -77,7 +77,7 @@
 	
     ];
 	
-	config.toolbar_Forum =
+	config.toolbar_Group =
     [
 		['Cut','Copy','PasteText','-'],
 		['Undo', 'Redo', '-', 'Find', 'Replace', 'SpellChecker', 'Scayt', '-', 'SelectAll', 'RemoveFormat'],
@@ -87,7 +87,7 @@
 		['SpecialChar','Smiley']
 	];
 	
-	config.toolbar_ForumWithImages =
+	config.toolbar_GroupWithImages =
     [
 		['Cut','Copy','PasteText','-'],
 		['Undo','Redo','-','Find','Replace','SpellChecker', 'Scayt','-','SelectAll','RemoveFormat'],

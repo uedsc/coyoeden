@@ -44,7 +44,7 @@ namespace Cynthia.Web.AdminUI
 				ShowInvalidContent("cy_CalendarEvents", "description", "/EventCalendarEdit.aspx?ItemID={0}&mid={1}", "ItemID", "ModuleID");
 				ShowInvalidContent("cy_Blogs", "description", "/BlogEdit.aspx?ItemID={0}&mid={1}", "ItemID", "ModuleID");
 				ShowInvalidContent("cy_BlogComments", "comment", "/BlogView.aspx?ItemID={0}&mid={1}", "ItemID", "ModuleID");
-				ShowInvalidContent("cy_ForumPosts", "post", "/ForumPostEdit.aspx?postid={0}&thread={1}", "PostID", "ThreadID");
+				ShowInvalidContent("cy_GroupPosts", "post", "/GroupPostEdit.aspx?postid={0}&thread={1}", "PostID", "TopicID");
 			}
 		}
 		

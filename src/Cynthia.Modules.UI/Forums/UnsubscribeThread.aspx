@@ -1,4 +1,4 @@
-<%@ Page CodeBehind="UnsubscribeThread.aspx.cs" Language="c#" MasterPageFile="~/App_MasterPages/layout.Master" AutoEventWireup="false" Inherits="Cynthia.Web.ForumUI.UnsubscribeForumThread" %>
+<%@ Page CodeBehind="UnsubscribeThread.aspx.cs" Language="c#" MasterPageFile="~/App_MasterPages/layout.Master" AutoEventWireup="false" Inherits="Cynthia.Web.GroupUI.UnsubscribeGroupThread" %>
 
 <asp:Content ContentPlaceHolderID="leftContent" ID="MPLeftPane" runat="server" />
 <asp:Content ContentPlaceHolderID="mainContent" ID="MPContent" runat="server">

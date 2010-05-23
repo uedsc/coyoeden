@@ -17,7 +17,7 @@ using Cynthia.Business;
 
 namespace Cynthia.Web.UI
 {
-    public class ForumMyThreadsLink : ForumUserThreadLink
+    public class GroupMyThreadsLink : GroupUserThreadLink
     {
         private bool renderAsListItem = false;
         public bool RenderAsListItem
@@ -49,7 +49,7 @@ namespace Cynthia.Web.UI
             }
 
             
-            this.Text = Resource.ForumMyPostsLink;
+            this.Text = Resource.GroupMyPostsLink;
 
             if (renderAsListItem)
                 if (CssClass.Length == 0) CssClass = "sitelink";

@@ -581,31 +581,31 @@ namespace Cynthia.Web.AdminUI {
         protected global::Cynthia.Web.UI.CHelpLink CynHelpLink11;
         
         /// <summary>
-        /// divApprovedForForums control.
+        /// divApprovedForGroups control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divApprovedForForums;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divApprovedForGroups;
         
         /// <summary>
-        /// lblApprovedForForums control.
+        /// lblApprovedForGroups control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.Controls.SiteLabel lblApprovedForForums;
+        protected global::Cynthia.Web.Controls.SiteLabel lblApprovedForGroups;
         
         /// <summary>
-        /// chkApprovedForForums control.
+        /// chkApprovedForGroups control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkApprovedForForums;
+        protected global::System.Web.UI.WebControls.CheckBox chkApprovedForGroups;
         
         /// <summary>
         /// CynHelpLink12 control.
@@ -1028,16 +1028,16 @@ namespace Cynthia.Web.AdminUI {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.UI.ForumUserThreadLink lnkUserPosts;
+        protected global::Cynthia.Web.UI.GroupUserThreadLink lnkUserPosts;
         
         /// <summary>
-        /// lnkUnsubscribeFromForums control.
+        /// lnkUnsubscribeFromGroups control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkUnsubscribeFromForums;
+        protected global::System.Web.UI.WebControls.HyperLink lnkUnsubscribeFromGroups;
         
         /// <summary>
         /// divUserGuid control.

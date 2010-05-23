@@ -24,7 +24,7 @@ using Resources;
 
 namespace Cynthia.Web.UI
 {
-    public class ForumUserThreadLink : HyperLink
+    public class GroupUserThreadLink : HyperLink
     {
         private int userId = -1;
         private int totalPosts = -1;
@@ -49,7 +49,7 @@ namespace Cynthia.Web.UI
         {
             base.OnInit(e);
             if (HttpContext.Current == null) { return; }
-            this.Text = Resource.ForumUserPostsLink;
+            this.Text = Resource.GroupUserPostsLink;
             
 
         }
@@ -62,7 +62,7 @@ namespace Cynthia.Web.UI
             this.Visible = (WebConfigSettings.AllowUserThreadBrowsing && (userId > -1) && (totalPosts > 0));
 
             this.NavigateUrl = SiteUtils.GetNavigationSiteRoot()
-                + "/Forums/UserThreads.aspx?"
+                + "/Groups/UserThreads.aspx?"
                 + "userid=" + userId.ToString(CultureInfo.InvariantCulture);
         }
 

@@ -681,7 +681,7 @@
   <data name="ManageUsersAddUserLabel" xml:space="preserve">
     <value>添加用户</value>
   </data>
-  <data name="ManageUsersApprovedForForumsLabel" xml:space="preserve">
+  <data name="ManageUsersApprovedForGroupsLabel" xml:space="preserve">
     <value>批准的（论坛）</value>
   </data>
   <data name="ManageUsersConfirmEmailButton" xml:space="preserve">

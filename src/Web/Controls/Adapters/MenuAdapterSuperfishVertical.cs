@@ -236,7 +236,7 @@ namespace Cynthia.Web
                     }
 
                     // put a switch here to satisfy this request
-                    // http://www.vivasky.com/Forums/Thread.aspx?thread=2824&mid=34&pageid=5&ItemID=4&pagenumber=1#post12578
+                    // http://www.vivasky.com/Groups/Thread.aspx?thread=2824&mid=34&pageid=5&ItemID=4&pagenumber=1#post12578
                     if (renderMenuText)
                     {
                         writer.Write(item.Text);

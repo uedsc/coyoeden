@@ -15,14 +15,14 @@ using Cynthia.Web.Framework;
 using Cynthia.Web.UI;
 using Resources;
 
-namespace Cynthia.Web.ForumUI
+namespace Cynthia.Web.GroupUI
 {
-    public partial class ForumView : CBasePage
+    public partial class GroupView : CBasePage
 	{
 
         protected string EditContentImage = WebConfigSettings.EditContentImage;
         protected string RSSImageFileName = WebConfigSettings.RSSImageFileName;
-        protected string ThreadImage = WebConfigSettings.ForumThreadImage;
+        protected string ThreadImage = WebConfigSettings.GroupThreadImage;
         private string NewThreadImage = WebConfigSettings.NewThreadImage;
         protected int PageId = -1;
         protected int ModuleId = -1;
@@ -32,7 +32,7 @@ namespace Cynthia.Web.ForumUI
         private Hashtable moduleSettings;
         protected Double TimeOffset = 0;
         protected string notificationUrl = string.Empty;
-        protected bool isSubscribedToForum = false;
+        protected bool isSubscribedToGroup = false;
         private SiteUser currentUser = null;
         
 
@@ -94,7 +94,7 @@ namespace Cynthia.Web.ForumUI
             
             GetModuleSettings();
 #if MONO
-            this.rptForums.DataBind();
+            this.rptGroups.DataBind();
 #else
             this.DataBind();
 #endif
@@ -106,17 +106,17 @@ namespace Cynthia.Web.ForumUI
 
 		private void PopulateControls()
 		{
-			Forum forum = new Forum(ItemId);
+			Group forum = new Group(ItemId);
 
             Title = SiteUtils.FormatPageTitle(siteSettings, forum.Title);
 
-            litForumTitle.Text = forum.Title;
-			litForumDescription.Text = forum.Description;
+            litGroupTitle.Text = forum.Title;
+			litGroupDescription.Text = forum.Description;
 
-            MetaDescription = string.Format(CultureInfo.InvariantCulture, ForumResources.ForumMetaDescriptionFormat, forum.Title);
+            MetaDescription = string.Format(CultureInfo.InvariantCulture, GroupResources.GroupMetaDescriptionFormat, forum.Title);
 
             string pageUrl = siteSettings.SiteRoot 
-				+ "/Forums/ForumView.aspx?"
+				+ "/Groups/GroupView.aspx?"
 				+ "ItemID=" + forum.ItemId.ToInvariantString()
                 + "&amp;mid=" + ModuleId.ToInvariantString()
                 + "&amp;pageid=" + PageId.ToInvariantString()
@@ -125,30 +125,30 @@ namespace Cynthia.Web.ForumUI
             pgrTop.PageURLFormat = pageUrl;
             pgrTop.ShowFirstLast = true;
             pgrTop.CurrentIndex = pageNumber;
-            pgrTop.PageSize = forum.ThreadsPerPage;
+            pgrTop.PageSize = forum.TopicsPerPage;
             pgrTop.PageCount = forum.TotalPages;
             pgrTop.Visible = (pgrTop.PageCount > 1);
 
             pgrBottom.PageURLFormat = pageUrl;
             pgrBottom.ShowFirstLast = true;
             pgrBottom.CurrentIndex = pageNumber;
-            pgrBottom.PageSize = forum.ThreadsPerPage;
+            pgrBottom.PageSize = forum.TopicsPerPage;
             pgrBottom.PageCount = forum.TotalPages;
             pgrBottom.Visible = (pgrBottom.PageCount > 1);
 
 			if((Request.IsAuthenticated)||(forum.AllowAnonymousPosts))
 			{
                 lnkNewThread.InnerHtml = "<img alt='' src='" + siteSettings.SiteRoot + "/Data/SiteImages/" + NewThreadImage + "'  />&nbsp;"
-                    + ForumResources.ForumViewNewThreadLabel;
+                    + GroupResources.GroupViewNewThreadLabel;
                 lnkNewThread.HRef = siteSettings.SiteRoot
-                    + "/Forums/EditPost.aspx?forumid=" + ItemId.ToString(CultureInfo.InvariantCulture)
+                    + "/Groups/EditPost.aspx?forumid=" + ItemId.ToString(CultureInfo.InvariantCulture)
                     + "&amp;pageid=" + PageId.ToString(CultureInfo.InvariantCulture);
 
                 lnkNewThreadBottom.InnerHtml = "<img alt='' src='" + siteSettings.SiteRoot + "/Data/SiteImages/" + NewThreadImage + "'  />&nbsp;"
-                    + ForumResources.ForumViewNewThreadLabel;
+                    + GroupResources.GroupViewNewThreadLabel;
 
                 lnkNewThreadBottom.HRef = siteSettings.SiteRoot
-                    + "/Forums/EditPost.aspx?forumid=" + ItemId.ToString(CultureInfo.InvariantCulture)
+                    + "/Groups/EditPost.aspx?forumid=" + ItemId.ToString(CultureInfo.InvariantCulture)
                     + "&amp;pageid=" + PageId.ToString(CultureInfo.InvariantCulture);
                 
                 lnkLogin.Visible = false;
@@ -156,7 +156,7 @@ namespace Cynthia.Web.ForumUI
 			}
 
             lnkLogin.NavigateUrl = SiteRoot + "/Secure/Login.aspx";
-            lnkLogin.Text = ForumResources.ForumsLoginRequiredLink;
+            lnkLogin.Text = GroupResources.GroupsLoginRequiredLink;
 
             if (Page.Header != null)
             {
@@ -165,7 +165,7 @@ namespace Cynthia.Web.ForumUI
                 link.ID = "forumurl";
 
                 string canonicalUrl = siteSettings.SiteRoot
-                    + "/Forums/ForumView.aspx?"
+                    + "/Groups/GroupView.aspx?"
                     + "ItemID=" + forum.ItemId.ToInvariantString()
                     + "&amp;mid=" + ModuleId.ToInvariantString()
                     + "&amp;pageid=" + PageId.ToInvariantString()
@@ -178,8 +178,8 @@ namespace Cynthia.Web.ForumUI
 
             using (IDataReader reader = forum.GetThreads(pageNumber))
             {
-                rptForums.DataSource = reader;
-                rptForums.DataBind();
+                rptGroups.DataSource = reader;
+                rptGroups.DataBind();
             }
 
 		}
@@ -197,7 +197,7 @@ namespace Cynthia.Web.ForumUI
             if (ModuleId > -1)
             {
                 moduleSettings = ModuleSettings.GetModuleSettings(ModuleId);
-                EnableRssAtThreadLevel = WebUtils.ParseBoolFromHashtable(moduleSettings, "ForumEnableRSSAtThreadLevel", false);
+                EnableRssAtThreadLevel = WebUtils.ParseBoolFromHashtable(moduleSettings, "GroupEnableRSSAtThreadLevel", false);
 
             }
 
@@ -210,21 +210,21 @@ namespace Cynthia.Web.ForumUI
             lnkPageCrumb.Text = CurrentPage.PageName;
             lnkPageCrumb.NavigateUrl = SiteUtils.GetCurrentPageUrl();
             //EditAltText = Resource.EditImageAltText;
-            pgrTop.NavigateToPageText = ForumResources.CutePagerNavigateToPageText;
-            pgrTop.BackToFirstClause = ForumResources.CutePagerBackToFirstClause;
-            pgrTop.GoToLastClause = ForumResources.CutePagerGoToLastClause;
-            pgrTop.BackToPageClause = ForumResources.CutePagerBackToPageClause;
-            pgrTop.NextToPageClause = ForumResources.CutePagerNextToPageClause;
-            pgrTop.PageClause = ForumResources.CutePagerPageClause;
-            pgrTop.OfClause = ForumResources.CutePagerOfClause;
+            pgrTop.NavigateToPageText = GroupResources.CutePagerNavigateToPageText;
+            pgrTop.BackToFirstClause = GroupResources.CutePagerBackToFirstClause;
+            pgrTop.GoToLastClause = GroupResources.CutePagerGoToLastClause;
+            pgrTop.BackToPageClause = GroupResources.CutePagerBackToPageClause;
+            pgrTop.NextToPageClause = GroupResources.CutePagerNextToPageClause;
+            pgrTop.PageClause = GroupResources.CutePagerPageClause;
+            pgrTop.OfClause = GroupResources.CutePagerOfClause;
 
-            pgrBottom.NavigateToPageText = ForumResources.CutePagerNavigateToPageText;
-            pgrBottom.BackToFirstClause = ForumResources.CutePagerBackToFirstClause;
-            pgrBottom.GoToLastClause = ForumResources.CutePagerGoToLastClause;
-            pgrBottom.BackToPageClause = ForumResources.CutePagerBackToPageClause;
-            pgrBottom.NextToPageClause = ForumResources.CutePagerNextToPageClause;
-            pgrBottom.PageClause = ForumResources.CutePagerPageClause;
-            pgrBottom.OfClause = ForumResources.CutePagerOfClause;
+            pgrBottom.NavigateToPageText = GroupResources.CutePagerNavigateToPageText;
+            pgrBottom.BackToFirstClause = GroupResources.CutePagerBackToFirstClause;
+            pgrBottom.GoToLastClause = GroupResources.CutePagerGoToLastClause;
+            pgrBottom.BackToPageClause = GroupResources.CutePagerBackToPageClause;
+            pgrBottom.NextToPageClause = GroupResources.CutePagerNextToPageClause;
+            pgrBottom.PageClause = GroupResources.CutePagerPageClause;
+            pgrBottom.OfClause = GroupResources.CutePagerOfClause;
 
             
 
@@ -258,7 +258,7 @@ namespace Cynthia.Web.ForumUI
             pageNumber = WebUtils.ParseInt32FromQueryString("pagenumber", 1);
             TimeOffset = SiteUtils.GetUserTimeOffset();
 
-            notificationUrl = SiteRoot + "/Forums/EditSubscriptions.aspx?mid="
+            notificationUrl = SiteRoot + "/Groups/EditSubscriptions.aspx?mid="
                 + ModuleId.ToInvariantString()
                 + "&pageid=" + PageId.ToInvariantString() +"#forum" + ItemId.ToInvariantString();
 
@@ -267,10 +267,10 @@ namespace Cynthia.Web.ForumUI
                 currentUser = SiteUtils.GetCurrentSiteUser();
                 if ((currentUser != null)&&(ItemId > -1))
                 {
-                    isSubscribedToForum = Forum.IsSubscribed(ItemId, currentUser.UserId);
+                    isSubscribedToGroup = Group.IsSubscribed(ItemId, currentUser.UserId);
                 }
 
-                if (!isSubscribedToForum) { pnlNotify.Visible = true; }
+                if (!isSubscribedToGroup) { pnlNotify.Visible = true; }
                 
             }
 

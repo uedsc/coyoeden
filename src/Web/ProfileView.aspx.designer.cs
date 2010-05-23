@@ -50,13 +50,13 @@ namespace Cynthia.Web.UI.Pages {
         protected global::System.Web.UI.WebControls.Label lblCreatedDate;
         
         /// <summary>
-        /// divForumPosts control.
+        /// divGroupPosts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divForumPosts;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGroupPosts;
         
         /// <summary>
         /// lblTotalPostsLabel control.
@@ -83,7 +83,7 @@ namespace Cynthia.Web.UI.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.UI.ForumUserThreadLink lnkUserPosts;
+        protected global::Cynthia.Web.UI.GroupUserThreadLink lnkUserPosts;
         
         /// <summary>
         /// lblUserNameLabel control.

@@ -306,7 +306,7 @@ namespace Cynthia.Data
             string password,
             string gender,
             bool profileApproved,
-            bool approvedForForums,
+            bool approvedForGroups,
             bool trusted,
             bool displayInMemberList,
             string webSiteUrl,
@@ -345,7 +345,7 @@ namespace Cynthia.Data
             sph.DefineSqlParameter("@Password", SqlDbType.NVarChar, 1000, ParameterDirection.Input, password);
             sph.DefineSqlParameter("@Gender", SqlDbType.NChar, 1, ParameterDirection.Input, gender);
             sph.DefineSqlParameter("@ProfileApproved", SqlDbType.Bit, ParameterDirection.Input, profileApproved);
-            sph.DefineSqlParameter("@ApprovedForForums", SqlDbType.Bit, ParameterDirection.Input, approvedForForums);
+            sph.DefineSqlParameter("@ApprovedForGroups", SqlDbType.Bit, ParameterDirection.Input, approvedForGroups);
             sph.DefineSqlParameter("@Trusted", SqlDbType.Bit, ParameterDirection.Input, trusted);
             sph.DefineSqlParameter("@DisplayInMemberList", SqlDbType.Bit, ParameterDirection.Input, displayInMemberList);
             sph.DefineSqlParameter("@WebSiteUrl", SqlDbType.NVarChar, 100, ParameterDirection.Input, webSiteUrl);

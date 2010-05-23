@@ -4,21 +4,21 @@ using System.Text;
 
 namespace Cynthia.Business
 {
-    public class ForumThreadMovedArgs
+    public class GroupThreadMovedArgs
     {
         private int forumID;
-        private int originalForumID;
+        private int originalGroupID;
 
-        public int ForumId
+        public int GroupId
         {
             get { return forumID; }
             set { forumID = value; }
         }
 
-        public int OriginalForumId
+        public int OriginalGroupId
         {
-            get { return originalForumID; }
-            set { originalForumID = value; }
+            get { return originalGroupID; }
+            set { originalGroupID = value; }
         }
 
     }

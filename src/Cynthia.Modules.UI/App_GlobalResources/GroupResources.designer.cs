@@ -22,14 +22,14 @@ namespace Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "10.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ForumResources {
+    internal class GroupResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ForumResources() {
+        internal GroupResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.ForumResources", global::System.Reflection.Assembly.Load("App_GlobalResources"));
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.GroupResources", global::System.Reflection.Assembly.Load("App_GlobalResources"));
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -171,657 +171,657 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this post?.
         /// </summary>
-        internal static string ForumDeletePostWarning {
+        internal static string GroupDeletePostWarning {
             get {
-                return ResourceManager.GetString("ForumDeletePostWarning", resourceCulture);
+                return ResourceManager.GetString("GroupDeletePostWarning", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this thread?.
         /// </summary>
-        internal static string ForumDeleteThreadWarning {
+        internal static string GroupDeleteThreadWarning {
             get {
-                return ResourceManager.GetString("ForumDeleteThreadWarning", resourceCulture);
+                return ResourceManager.GetString("GroupDeleteThreadWarning", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string ForumEditCancelButton {
+        internal static string GroupEditCancelButton {
             get {
-                return ResourceManager.GetString("ForumEditCancelButton", resourceCulture);
+                return ResourceManager.GetString("GroupEditCancelButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 2.
         /// </summary>
-        internal static string ForumEditCancelButtonAccessKey {
+        internal static string GroupEditCancelButtonAccessKey {
             get {
-                return ResourceManager.GetString("ForumEditCancelButtonAccessKey", resourceCulture);
+                return ResourceManager.GetString("GroupEditCancelButtonAccessKey", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create New Forum.
+        ///   Looks up a localized string similar to Create New Group.
         /// </summary>
-        internal static string ForumEditCreateButton {
+        internal static string GroupEditCreateButton {
             get {
-                return ResourceManager.GetString("ForumEditCreateButton", resourceCulture);
+                return ResourceManager.GetString("GroupEditCreateButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Created By:.
         /// </summary>
-        internal static string ForumEditCreatedByLabel {
+        internal static string GroupEditCreatedByLabel {
             get {
-                return ResourceManager.GetString("ForumEditCreatedByLabel", resourceCulture);
+                return ResourceManager.GetString("GroupEditCreatedByLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Created:.
         /// </summary>
-        internal static string ForumEditCreatedDateLabel {
+        internal static string GroupEditCreatedDateLabel {
             get {
-                return ResourceManager.GetString("ForumEditCreatedDateLabel", resourceCulture);
+                return ResourceManager.GetString("GroupEditCreatedDateLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Delete this item.
         /// </summary>
-        internal static string ForumEditDeleteButton {
+        internal static string GroupEditDeleteButton {
             get {
-                return ResourceManager.GetString("ForumEditDeleteButton", resourceCulture);
+                return ResourceManager.GetString("GroupEditDeleteButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 3.
         /// </summary>
-        internal static string ForumEditDeleteButtonAccessKey {
+        internal static string GroupEditDeleteButtonAccessKey {
             get {
-                return ResourceManager.GetString("ForumEditDeleteButtonAccessKey", resourceCulture);
+                return ResourceManager.GetString("GroupEditDeleteButtonAccessKey", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
-        internal static string ForumEditDescriptionLabel {
+        internal static string GroupEditDescriptionLabel {
             get {
-                return ResourceManager.GetString("ForumEditDescriptionLabel", resourceCulture);
+                return ResourceManager.GetString("GroupEditDescriptionLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Forum.
+        ///   Looks up a localized string similar to Edit Group.
         /// </summary>
-        internal static string ForumEditForumLabel {
+        internal static string GroupEditGroupLabel {
             get {
-                return ResourceManager.GetString("ForumEditForumLabel", resourceCulture);
+                return ResourceManager.GetString("GroupEditGroupLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Is Active?.
         /// </summary>
-        internal static string ForumEditIsActiveLabel {
+        internal static string GroupEditIsActiveLabel {
             get {
-                return ResourceManager.GetString("ForumEditIsActiveLabel", resourceCulture);
+                return ResourceManager.GetString("GroupEditIsActiveLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Is Moderated?.
         /// </summary>
-        internal static string ForumEditIsModeratedLabel {
+        internal static string GroupEditIsModeratedLabel {
             get {
-                return ResourceManager.GetString("ForumEditIsModeratedLabel", resourceCulture);
+                return ResourceManager.GetString("GroupEditIsModeratedLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Forum.
+        ///   Looks up a localized string similar to Add Group.
         /// </summary>
-        internal static string ForumEditLabel {
+        internal static string GroupEditLabel {
             get {
-                return ResourceManager.GetString("ForumEditLabel", resourceCulture);
+                return ResourceManager.GetString("GroupEditLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Forum.
+        ///   Looks up a localized string similar to New Group.
         /// </summary>
-        internal static string ForumEditNewForumButton {
+        internal static string GroupEditNewGroupButton {
             get {
-                return ResourceManager.GetString("ForumEditNewForumButton", resourceCulture);
+                return ResourceManager.GetString("GroupEditNewGroupButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Edit Post.
         /// </summary>
-        internal static string ForumEditPostLink {
+        internal static string GroupEditPostLink {
             get {
-                return ResourceManager.GetString("ForumEditPostLink", resourceCulture);
+                return ResourceManager.GetString("GroupEditPostLink", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Posts Per Page:.
         /// </summary>
-        internal static string ForumEditPostsPerPageLabel {
+        internal static string GroupEditPostsPerPageLabel {
             get {
-                return ResourceManager.GetString("ForumEditPostsPerPageLabel", resourceCulture);
+                return ResourceManager.GetString("GroupEditPostsPerPageLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Sort Order:.
         /// </summary>
-        internal static string ForumEditSortOrderLabel {
+        internal static string GroupEditSortOrderLabel {
             get {
-                return ResourceManager.GetString("ForumEditSortOrderLabel", resourceCulture);
+                return ResourceManager.GetString("GroupEditSortOrderLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to You Must Enter a Subject.
         /// </summary>
-        internal static string ForumEditSubjectRequiredHelp {
+        internal static string GroupEditSubjectRequiredHelp {
             get {
-                return ResourceManager.GetString("ForumEditSubjectRequiredHelp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Topics Per Page:.
-        /// </summary>
-        internal static string ForumEditThreadsPerPageLabel {
-            get {
-                return ResourceManager.GetString("ForumEditThreadsPerPageLabel", resourceCulture);
+                return ResourceManager.GetString("GroupEditSubjectRequiredHelp", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Title:.
         /// </summary>
-        internal static string ForumEditTitleLabel {
+        internal static string GroupEditTitleLabel {
             get {
-                return ResourceManager.GetString("ForumEditTitleLabel", resourceCulture);
+                return ResourceManager.GetString("GroupEditTitleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topics Per Page:.
+        /// </summary>
+        internal static string GroupEditTopicsPerPageLabel {
+            get {
+                return ResourceManager.GetString("GroupEditTopicsPerPageLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
-        internal static string ForumEditUpdateButton {
+        internal static string GroupEditUpdateButton {
             get {
-                return ResourceManager.GetString("ForumEditUpdateButton", resourceCulture);
+                return ResourceManager.GetString("GroupEditUpdateButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 1.
         /// </summary>
-        internal static string ForumEditUpdateButtonAccessKey {
+        internal static string GroupEditUpdateButtonAccessKey {
             get {
-                return ResourceManager.GetString("ForumEditUpdateButtonAccessKey", resourceCulture);
+                return ResourceManager.GetString("GroupEditUpdateButtonAccessKey", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Enable SPAM Blocking?.
         /// </summary>
-        internal static string ForumEnableAntiSpamSetting {
+        internal static string GroupEnableAntiSpamSetting {
             get {
-                return ResourceManager.GetString("ForumEnableAntiSpamSetting", resourceCulture);
+                return ResourceManager.GetString("GroupEnableAntiSpamSetting", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable RSS At Forum Level?.
+        ///   Looks up a localized string similar to Enable RSS At Group Level?.
         /// </summary>
-        internal static string ForumEnableRSSAtForumLevel {
+        internal static string GroupEnableRSSAtGroupLevel {
             get {
-                return ResourceManager.GetString("ForumEnableRSSAtForumLevel", resourceCulture);
+                return ResourceManager.GetString("GroupEnableRSSAtGroupLevel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Enable RSS At Module Level?.
         /// </summary>
-        internal static string ForumEnableRSSAtModuleLevel {
+        internal static string GroupEnableRSSAtModuleLevel {
             get {
-                return ResourceManager.GetString("ForumEnableRSSAtModuleLevel", resourceCulture);
+                return ResourceManager.GetString("GroupEnableRSSAtModuleLevel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Enable RSS At Thread Level?.
         /// </summary>
-        internal static string ForumEnableRSSAtThreadLevel {
+        internal static string GroupEnableRSSAtThreadLevel {
             get {
-                return ResourceManager.GetString("ForumEnableRSSAtThreadLevel", resourceCulture);
+                return ResourceManager.GetString("GroupEnableRSSAtThreadLevel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forum.
+        ///   Looks up a localized string similar to Group.
         /// </summary>
-        internal static string ForumLabel {
+        internal static string GroupLabel {
             get {
-                return ResourceManager.GetString("ForumLabel", resourceCulture);
+                return ResourceManager.GetString("GroupLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to A discussion forum for {0}.
         /// </summary>
-        internal static string ForumMetaDescriptionFormat {
+        internal static string GroupMetaDescriptionFormat {
             get {
-                return ResourceManager.GetString("ForumMetaDescriptionFormat", resourceCulture);
+                return ResourceManager.GetString("GroupMetaDescriptionFormat", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Edit Email Subscriptions.
         /// </summary>
-        internal static string ForumModuleEditSubscriptionsLabel {
+        internal static string GroupModuleEditSubscriptionsLabel {
             get {
-                return ResourceManager.GetString("ForumModuleEditSubscriptionsLabel", resourceCulture);
+                return ResourceManager.GetString("GroupModuleEditSubscriptionsLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forum.
+        ///   Looks up a localized string similar to Group.
         /// </summary>
-        internal static string ForumModuleForumLabel {
+        internal static string GroupModuleGroupLabel {
             get {
-                return ResourceManager.GetString("ForumModuleForumLabel", resourceCulture);
+                return ResourceManager.GetString("GroupModuleGroupLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Total Posts.
         /// </summary>
-        internal static string ForumModulePostCountLabel {
+        internal static string GroupModulePostCountLabel {
             get {
-                return ResourceManager.GetString("ForumModulePostCountLabel", resourceCulture);
+                return ResourceManager.GetString("GroupModulePostCountLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Last Post.
         /// </summary>
-        internal static string ForumModulePostLastPostLabel {
+        internal static string GroupModulePostLastPostLabel {
             get {
-                return ResourceManager.GetString("ForumModulePostLastPostLabel", resourceCulture);
+                return ResourceManager.GetString("GroupModulePostLastPostLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Subscribe?.
         /// </summary>
-        internal static string ForumModuleSubscribedLabel {
+        internal static string GroupModuleSubscribedLabel {
             get {
-                return ResourceManager.GetString("ForumModuleSubscribedLabel", resourceCulture);
+                return ResourceManager.GetString("GroupModuleSubscribedLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Total Threads.
         /// </summary>
-        internal static string ForumModuleThreadCountLabel {
+        internal static string GroupModuleTopicCountLabel {
             get {
-                return ResourceManager.GetString("ForumModuleThreadCountLabel", resourceCulture);
+                return ResourceManager.GetString("GroupModuleTopicCountLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to My Posts.
         /// </summary>
-        internal static string ForumMyPostsLink {
+        internal static string GroupMyPostsLink {
             get {
-                return ResourceManager.GetString("ForumMyPostsLink", resourceCulture);
+                return ResourceManager.GetString("GroupMyPostsLink", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string ForumPostEditCancelButton {
+        internal static string GroupPostEditCancelButton {
             get {
-                return ResourceManager.GetString("ForumPostEditCancelButton", resourceCulture);
+                return ResourceManager.GetString("GroupPostEditCancelButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
-        internal static string ForumPostEditDeleteButton {
+        internal static string GroupPostEditDeleteButton {
             get {
-                return ResourceManager.GetString("ForumPostEditDeleteButton", resourceCulture);
+                return ResourceManager.GetString("GroupPostEditDeleteButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Message:.
         /// </summary>
-        internal static string ForumPostEditMessageLabel {
+        internal static string GroupPostEditMessageLabel {
             get {
-                return ResourceManager.GetString("ForumPostEditMessageLabel", resourceCulture);
+                return ResourceManager.GetString("GroupPostEditMessageLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Subscribe to replies on this thread?.
         /// </summary>
-        internal static string ForumPostEditNotifyLabel {
+        internal static string GroupPostEditNotifyLabel {
             get {
-                return ResourceManager.GetString("ForumPostEditNotifyLabel", resourceCulture);
+                return ResourceManager.GetString("GroupPostEditNotifyLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Subject.
         /// </summary>
-        internal static string ForumPostEditSubjectLabel {
+        internal static string GroupPostEditSubjectLabel {
             get {
-                return ResourceManager.GetString("ForumPostEditSubjectLabel", resourceCulture);
+                return ResourceManager.GetString("GroupPostEditSubjectLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Post.
         /// </summary>
-        internal static string ForumPostEditUpdateButton {
+        internal static string GroupPostEditUpdateButton {
             get {
-                return ResourceManager.GetString("ForumPostEditUpdateButton", resourceCulture);
+                return ResourceManager.GetString("GroupPostEditUpdateButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 1.
         /// </summary>
-        internal static string ForumPostEditUpdateButtonAccessKey {
+        internal static string GroupPostEditUpdateButtonAccessKey {
             get {
-                return ResourceManager.GetString("ForumPostEditUpdateButtonAccessKey", resourceCulture);
+                return ResourceManager.GetString("GroupPostEditUpdateButtonAccessKey", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forums.
+        ///   Looks up a localized string similar to Groups.
         /// </summary>
-        internal static string ForumsFeatureName {
+        internal static string GroupsFeatureName {
             get {
-                return ResourceManager.GetString("ForumsFeatureName", resourceCulture);
+                return ResourceManager.GetString("GroupsFeatureName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to You must sign in to post in the forums..
         /// </summary>
-        internal static string ForumsLoginRequiredLink {
+        internal static string GroupsLoginRequiredLink {
             get {
-                return ResourceManager.GetString("ForumsLoginRequiredLink", resourceCulture);
+                return ResourceManager.GetString("GroupsLoginRequiredLink", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forums.
+        ///   Looks up a localized string similar to Groups.
         /// </summary>
-        internal static string ForumsSearchName {
+        internal static string GroupsSearchName {
             get {
-                return ResourceManager.GetString("ForumsSearchName", resourceCulture);
+                return ResourceManager.GetString("GroupsSearchName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This tables contains a list of Forums..
+        ///   Looks up a localized string similar to This tables contains a list of Groups..
         /// </summary>
-        internal static string ForumsTableSummary {
+        internal static string GroupsTableSummary {
             get {
-                return ResourceManager.GetString("ForumsTableSummary", resourceCulture);
+                return ResourceManager.GetString("GroupsTableSummary", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forum Subscriptions.
+        ///   Looks up a localized string similar to Group Subscriptions.
         /// </summary>
-        internal static string ForumSubscriptions {
+        internal static string GroupSubscriptions {
             get {
-                return ResourceManager.GetString("ForumSubscriptions", resourceCulture);
+                return ResourceManager.GetString("GroupSubscriptions", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        internal static string ForumThreadCancelButton {
+        internal static string GroupThreadCancelButton {
             get {
-                return ResourceManager.GetString("ForumThreadCancelButton", resourceCulture);
+                return ResourceManager.GetString("GroupThreadCancelButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
-        internal static string ForumThreadDeleteButton {
+        internal static string GroupThreadDeleteButton {
             get {
-                return ResourceManager.GetString("ForumThreadDeleteButton", resourceCulture);
+                return ResourceManager.GetString("GroupThreadDeleteButton", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forum.
+        ///   Looks up a localized string similar to Group.
         /// </summary>
-        internal static string ForumThreadEditForumLabel {
+        internal static string GroupThreadEditGroupLabel {
             get {
-                return ResourceManager.GetString("ForumThreadEditForumLabel", resourceCulture);
+                return ResourceManager.GetString("GroupThreadEditGroupLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Edit Thread.
         /// </summary>
-        internal static string ForumThreadEditLabel {
+        internal static string GroupThreadEditLabel {
             get {
-                return ResourceManager.GetString("ForumThreadEditLabel", resourceCulture);
+                return ResourceManager.GetString("GroupThreadEditLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Sort Order.
         /// </summary>
-        internal static string ForumThreadEditSortOrderLabel {
+        internal static string GroupThreadEditSortOrderLabel {
             get {
-                return ResourceManager.GetString("ForumThreadEditSortOrderLabel", resourceCulture);
+                return ResourceManager.GetString("GroupThreadEditSortOrderLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Subject.
         /// </summary>
-        internal static string ForumThreadEditSubjectLabel {
+        internal static string GroupThreadEditSubjectLabel {
             get {
-                return ResourceManager.GetString("ForumThreadEditSubjectLabel", resourceCulture);
+                return ResourceManager.GetString("GroupThreadEditSubjectLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forum Thread - {0}.
+        ///   Looks up a localized string similar to Group Thread - {0}.
         /// </summary>
-        internal static string ForumThreadMetaDescriptionFormat {
+        internal static string GroupThreadMetaDescriptionFormat {
             get {
-                return ResourceManager.GetString("ForumThreadMetaDescriptionFormat", resourceCulture);
+                return ResourceManager.GetString("GroupThreadMetaDescriptionFormat", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Unsubscribe completed!  You should not receive any more notifications for messages in the requested thread..
         /// </summary>
-        internal static string ForumThreadUnsubscribeCompleted {
+        internal static string GroupThreadUnsubscribeCompleted {
             get {
-                return ResourceManager.GetString("ForumThreadUnsubscribeCompleted", resourceCulture);
+                return ResourceManager.GetString("GroupThreadUnsubscribeCompleted", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Unsubscribe FAILED!  An error occurred when attempting to stop notifications for a thread.  Please contact the site administrator..
         /// </summary>
-        internal static string ForumThreadUnsubscribeFailed {
+        internal static string GroupThreadUnsubscribeFailed {
             get {
-                return ResourceManager.GetString("ForumThreadUnsubscribeFailed", resourceCulture);
+                return ResourceManager.GetString("GroupThreadUnsubscribeFailed", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
-        internal static string ForumThreadUpdateButton {
+        internal static string GroupThreadUpdateButton {
             get {
-                return ResourceManager.GetString("ForumThreadUpdateButton", resourceCulture);
+                return ResourceManager.GetString("GroupThreadUpdateButton", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Author.
         /// </summary>
-        internal static string ForumThreadViewAuthorLabel {
+        internal static string GroupThreadViewAuthorLabel {
             get {
-                return ResourceManager.GetString("ForumThreadViewAuthorLabel", resourceCulture);
+                return ResourceManager.GetString("GroupThreadViewAuthorLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Pages:.
         /// </summary>
-        internal static string ForumThreadViewPagesLabel {
+        internal static string GroupThreadViewPagesLabel {
             get {
-                return ResourceManager.GetString("ForumThreadViewPagesLabel", resourceCulture);
+                return ResourceManager.GetString("GroupThreadViewPagesLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to reply.
         /// </summary>
-        internal static string ForumThreadViewReplyLabel {
+        internal static string GroupThreadViewReplyLabel {
             get {
-                return ResourceManager.GetString("ForumThreadViewReplyLabel", resourceCulture);
+                return ResourceManager.GetString("GroupThreadViewReplyLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Unsubscribe completed!  You should not receive any more notifications for new threads in the requested forum..
         /// </summary>
-        internal static string ForumUnsubscribeCompleted {
+        internal static string GroupUnsubscribeCompleted {
             get {
-                return ResourceManager.GetString("ForumUnsubscribeCompleted", resourceCulture);
+                return ResourceManager.GetString("GroupUnsubscribeCompleted", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Unsubscribe FAILED!  An error occurred when attempting to stop notifications for new threads in a forum.  Please contact the site administrator..
         /// </summary>
-        internal static string ForumUnsubscribeFailed {
+        internal static string GroupUnsubscribeFailed {
             get {
-                return ResourceManager.GetString("ForumUnsubscribeFailed", resourceCulture);
+                return ResourceManager.GetString("GroupUnsubscribeFailed", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to View Posts.
         /// </summary>
-        internal static string ForumUserPostsLink {
+        internal static string GroupUserPostsLink {
             get {
-                return ResourceManager.GetString("ForumUserPostsLink", resourceCulture);
+                return ResourceManager.GetString("GroupUserPostsLink", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {0} participated in these discussions..
         /// </summary>
-        internal static string ForumUserThreadHeading {
+        internal static string GroupUserThreadHeading {
             get {
-                return ResourceManager.GetString("ForumUserThreadHeading", resourceCulture);
+                return ResourceManager.GetString("GroupUserThreadHeading", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to new topic.
         /// </summary>
-        internal static string ForumViewNewThreadLabel {
+        internal static string GroupViewNewThreadLabel {
             get {
-                return ResourceManager.GetString("ForumViewNewThreadLabel", resourceCulture);
+                return ResourceManager.GetString("GroupViewNewThreadLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Last Post.
         /// </summary>
-        internal static string ForumViewPostLastPostLabel {
+        internal static string GroupViewPostLastPostLabel {
             get {
-                return ResourceManager.GetString("ForumViewPostLastPostLabel", resourceCulture);
+                return ResourceManager.GetString("GroupViewPostLastPostLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Total Replies.
         /// </summary>
-        internal static string ForumViewReplyCountLabel {
+        internal static string GroupViewReplyCountLabel {
             get {
-                return ResourceManager.GetString("ForumViewReplyCountLabel", resourceCulture);
+                return ResourceManager.GetString("GroupViewReplyCountLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Started by.
         /// </summary>
-        internal static string ForumViewStartedByLabel {
+        internal static string GroupViewStartedByLabel {
             get {
-                return ResourceManager.GetString("ForumViewStartedByLabel", resourceCulture);
+                return ResourceManager.GetString("GroupViewStartedByLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Subject.
         /// </summary>
-        internal static string ForumViewSubjectLabel {
+        internal static string GroupViewSubjectLabel {
             get {
-                return ResourceManager.GetString("ForumViewSubjectLabel", resourceCulture);
+                return ResourceManager.GetString("GroupViewSubjectLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This table contains a list of Forum Threads..
+        ///   Looks up a localized string similar to This table contains a list of Group Threads..
         /// </summary>
-        internal static string ForumViewTableSummary {
+        internal static string GroupViewTableSummary {
             get {
-                return ResourceManager.GetString("ForumViewTableSummary", resourceCulture);
+                return ResourceManager.GetString("GroupViewTableSummary", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Total Topics.
         /// </summary>
-        internal static string ForumViewThreadCountLabel {
+        internal static string GroupViewTopicCountLabel {
             get {
-                return ResourceManager.GetString("ForumViewThreadCountLabel", resourceCulture);
+                return ResourceManager.GetString("GroupViewTopicCountLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Total Views.
         /// </summary>
-        internal static string ForumViewViewCountLabel {
+        internal static string GroupViewViewCountLabel {
             get {
-                return ResourceManager.GetString("ForumViewViewCountLabel", resourceCulture);
+                return ResourceManager.GetString("GroupViewViewCountLabel", resourceCulture);
             }
         }
         
@@ -927,9 +927,9 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Subscribe to all posts in this forum?.
         /// </summary>
-        internal static string SubscribeToAllOfThisForum {
+        internal static string SubscribeToAllOfThisGroup {
             get {
-                return ResourceManager.GetString("SubscribeToAllOfThisForum", resourceCulture);
+                return ResourceManager.GetString("SubscribeToAllOfThisGroup", resourceCulture);
             }
         }
         
@@ -979,7 +979,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forum Threads for {0}.
+        ///   Looks up a localized string similar to Group Threads for {0}.
         /// </summary>
         internal static string UserThreadTitleFormat {
             get {

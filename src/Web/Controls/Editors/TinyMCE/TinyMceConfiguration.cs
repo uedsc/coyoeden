@@ -100,73 +100,73 @@ namespace Cynthia.Web.Editor
         }
 
         private string forumWithImagesToolbarPlugins = "paste,print,searchreplace,fullscreen,emotions,directionality,table,advimage,inlinepopups";
-        public string ForumWithImagesToolbarPlugins
+        public string GroupWithImagesToolbarPlugins
         {
             get { return forumWithImagesToolbarPlugins; }
         }
 
         private string forumWithImagesToolbarRow1Buttons = "cut,copy,pastetext,separator,blockquote,bold,italic,underline,separator,bullist,numlist,separator,link,unlink,separator,charmap,emotions";
-        public string ForumWithImagesToolbarRow1Buttons
+        public string GroupWithImagesToolbarRow1Buttons
         {
             get { return forumWithImagesToolbarRow1Buttons; }
         }
 
         private string forumWithImagesToolbarRow2Buttons = string.Empty;
-        public string ForumWithImagesToolbarRow2Buttons
+        public string GroupWithImagesToolbarRow2Buttons
         {
             get { return forumWithImagesToolbarRow2Buttons; }
         }
 
         private string forumWithImagesToolbarRow3Buttons = string.Empty;
-        public string ForumWithImagesToolbarRow3Buttons
+        public string GroupWithImagesToolbarRow3Buttons
         {
             get { return forumWithImagesToolbarRow3Buttons; }
         }
 
         private string forumWithImagesToolbarExtendedValidElements = "";
-        public string ForumWithImagesToolbarExtendedValidElements
+        public string GroupWithImagesToolbarExtendedValidElements
         {
             get { return forumWithImagesToolbarExtendedValidElements; }
         }
 
         private bool forumWithImagesToolbarForcePasteAsPlainText = true;
-        public bool ForumWithImagesToolbarForcePasteAsPlainText
+        public bool GroupWithImagesToolbarForcePasteAsPlainText
         {
             get { return forumWithImagesToolbarForcePasteAsPlainText; }
         }
 
         private string forumToolbarPlugins = "paste,print,searchreplace,fullscreen,emotions,directionality,table,advimage,inlinepopups";
-        public string ForumToolbarPlugins
+        public string GroupToolbarPlugins
         {
             get { return forumToolbarPlugins; }
         }
 
         private string forumToolbarRow1Buttons = "cut,copy,pastetext,separator,blockquote,bold,italic,underline,separator,bullist,numlist,separator,link,unlink,separator,charmap,emotions";
-        public string ForumToolbarRow1Buttons
+        public string GroupToolbarRow1Buttons
         {
             get { return forumToolbarRow1Buttons; }
         }
 
         private string forumToolbarRow2Buttons = string.Empty;
-        public string ForumToolbarRow2Buttons
+        public string GroupToolbarRow2Buttons
         {
             get { return forumToolbarRow2Buttons; }
         }
 
         private string forumToolbarRow3Buttons = string.Empty;
-        public string ForumToolbarRow3Buttons
+        public string GroupToolbarRow3Buttons
         {
             get { return forumToolbarRow3Buttons; }
         }
 
         private string forumToolbarExtendedValidElements = "";
-        public string ForumToolbarExtendedValidElements
+        public string GroupToolbarExtendedValidElements
         {
             get { return forumToolbarExtendedValidElements; }
         }
 
         private bool forumToolbarForcePasteAsPlainText = true;
-        public bool ForumToolbarForcePasteAsPlainText
+        public bool GroupToolbarForcePasteAsPlainText
         {
             get { return forumToolbarForcePasteAsPlainText; }
         }
@@ -454,54 +454,54 @@ namespace Cynthia.Web.Editor
                 fullWithTemplatesToolbarExtendedValidElements = attributeCollection["FullWithTemplatesToolbarExtendedValidElements"].Value;
             }
 
-            if (attributeCollection["ForumWithImagesToolbarPlugins"] != null)
+            if (attributeCollection["GroupWithImagesToolbarPlugins"] != null)
             {
-                forumWithImagesToolbarPlugins = attributeCollection["ForumWithImagesToolbarPlugins"].Value;
+                forumWithImagesToolbarPlugins = attributeCollection["GroupWithImagesToolbarPlugins"].Value;
             }
 
-            if (attributeCollection["ForumWithImagesToolbarRow1Buttons"] != null)
+            if (attributeCollection["GroupWithImagesToolbarRow1Buttons"] != null)
             {
-                forumWithImagesToolbarRow1Buttons = attributeCollection["ForumWithImagesToolbarRow1Buttons"].Value;
+                forumWithImagesToolbarRow1Buttons = attributeCollection["GroupWithImagesToolbarRow1Buttons"].Value;
             }
 
-            if (attributeCollection["ForumWithImagesToolbarRow2Buttons"] != null)
+            if (attributeCollection["GroupWithImagesToolbarRow2Buttons"] != null)
             {
-                forumWithImagesToolbarRow2Buttons = attributeCollection["ForumWithImagesToolbarRow2Buttons"].Value;
+                forumWithImagesToolbarRow2Buttons = attributeCollection["GroupWithImagesToolbarRow2Buttons"].Value;
             }
 
-            if (attributeCollection["ForumWithImagesToolbarRow3Buttons"] != null)
+            if (attributeCollection["GroupWithImagesToolbarRow3Buttons"] != null)
             {
-                forumWithImagesToolbarRow3Buttons = attributeCollection["ForumWithImagesToolbarRow3Buttons"].Value;
+                forumWithImagesToolbarRow3Buttons = attributeCollection["GroupWithImagesToolbarRow3Buttons"].Value;
             }
 
-            if (attributeCollection["ForumWithImagesToolbarExtendedValidElements"] != null)
+            if (attributeCollection["GroupWithImagesToolbarExtendedValidElements"] != null)
             {
-                forumWithImagesToolbarExtendedValidElements = attributeCollection["ForumWithImagesToolbarExtendedValidElements"].Value;
+                forumWithImagesToolbarExtendedValidElements = attributeCollection["GroupWithImagesToolbarExtendedValidElements"].Value;
             }
 
-            if (attributeCollection["ForumToolbarPlugins"] != null)
+            if (attributeCollection["GroupToolbarPlugins"] != null)
             {
-                forumToolbarPlugins = attributeCollection["ForumToolbarPlugins"].Value;
+                forumToolbarPlugins = attributeCollection["GroupToolbarPlugins"].Value;
             }
 
-            if (attributeCollection["ForumToolbarRow1Buttons"] != null)
+            if (attributeCollection["GroupToolbarRow1Buttons"] != null)
             {
-                forumToolbarRow1Buttons = attributeCollection["ForumToolbarRow1Buttons"].Value;
+                forumToolbarRow1Buttons = attributeCollection["GroupToolbarRow1Buttons"].Value;
             }
 
-            if (attributeCollection["ForumToolbarRow2Buttons"] != null)
+            if (attributeCollection["GroupToolbarRow2Buttons"] != null)
             {
-                forumToolbarRow2Buttons = attributeCollection["ForumToolbarRow2Buttons"].Value;
+                forumToolbarRow2Buttons = attributeCollection["GroupToolbarRow2Buttons"].Value;
             }
 
-            if (attributeCollection["ForumToolbarRow3Buttons"] != null)
+            if (attributeCollection["GroupToolbarRow3Buttons"] != null)
             {
-                forumToolbarRow3Buttons = attributeCollection["ForumToolbarRow3Buttons"].Value;
+                forumToolbarRow3Buttons = attributeCollection["GroupToolbarRow3Buttons"].Value;
             }
 
-            if (attributeCollection["ForumToolbarExtendedValidElements"] != null)
+            if (attributeCollection["GroupToolbarExtendedValidElements"] != null)
             {
-                forumToolbarExtendedValidElements = attributeCollection["ForumToolbarExtendedValidElements"].Value;
+                forumToolbarExtendedValidElements = attributeCollection["GroupToolbarExtendedValidElements"].Value;
             }
 
             if (attributeCollection["AnonymousToolbarPlugins"] != null)
@@ -643,20 +643,20 @@ namespace Cynthia.Web.Editor
                 catch (FormatException) { }
             }
 
-            if (attributeCollection["ForumWithImagesToolbarForcePasteAsPlainText"] != null)
+            if (attributeCollection["GroupWithImagesToolbarForcePasteAsPlainText"] != null)
             {
                 try
                 {
-                    forumWithImagesToolbarForcePasteAsPlainText = Convert.ToBoolean(attributeCollection["ForumWithImagesToolbarForcePasteAsPlainText"].Value);
+                    forumWithImagesToolbarForcePasteAsPlainText = Convert.ToBoolean(attributeCollection["GroupWithImagesToolbarForcePasteAsPlainText"].Value);
                 }
                 catch (FormatException) { }
             }
 
-            if (attributeCollection["ForumToolbarForcePasteAsPlainText"] != null)
+            if (attributeCollection["GroupToolbarForcePasteAsPlainText"] != null)
             {
                 try
                 {
-                    forumToolbarForcePasteAsPlainText = Convert.ToBoolean(attributeCollection["ForumToolbarForcePasteAsPlainText"].Value);
+                    forumToolbarForcePasteAsPlainText = Convert.ToBoolean(attributeCollection["GroupToolbarForcePasteAsPlainText"].Value);
                 }
                 catch (FormatException) { }
             }

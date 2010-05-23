@@ -175,7 +175,7 @@ namespace Cynthia.Web
                     catch (System.Security.SecurityException) { }
                     // catch these errors because there can be other folders in the root that are not part of Cynthia
                     // don't fail to read the folders we can read just because we can't read others
-                    //http://www.vivasky.com/ForumThreadView.aspx?thread=1875&forumid=2&ItemID=2&pageid=5&pagenumber=1#post7654
+                    //http://www.vivasky.com/GroupThreadView.aspx?thread=1875&forumid=2&ItemID=2&pageid=5&pagenumber=1#post7654
                 }
 
                 foreach (DirectoryInfo firstLevelSubDirectory in firstLevelSubDirectories)

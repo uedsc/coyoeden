@@ -172,14 +172,14 @@ namespace Cynthia.Web
             get { return ConfigHelper.GetBoolProperty("ShowEmailInMemberList", false); }
         }
 
-        public static bool ShowForumUnsubscribeLinkInUserManagement
+        public static bool ShowGroupUnsubscribeLinkInUserManagement
         {
-            get { return ConfigHelper.GetBoolProperty("ShowForumUnsubscribeLinkInUserManagement", true); }
+            get { return ConfigHelper.GetBoolProperty("ShowGroupUnsubscribeLinkInUserManagement", true); }
         }
 
-        public static bool ShowRevenueInForums
+        public static bool ShowRevenueInGroups
         {
-            get { return ConfigHelper.GetBoolProperty("ShowRevenueInForums", false); }
+            get { return ConfigHelper.GetBoolProperty("ShowRevenueInGroups", false); }
         }
 
         public static bool GetAlphaPagerCharsFromResourceFile
@@ -247,9 +247,9 @@ namespace Cynthia.Web
             get { return ConfigHelper.GetBoolProperty("HidePageViewModeIfNoWorkflowItems", true); }
         }
 
-        public static bool ShowForumPostsInMemberList
+        public static bool ShowGroupPostsInMemberList
         {
-            get { return ConfigHelper.GetBoolProperty("ShowForumPostsInMemberList", true); }
+            get { return ConfigHelper.GetBoolProperty("ShowGroupPostsInMemberList", true); }
         }
 
         
@@ -552,7 +552,7 @@ namespace Cynthia.Web
 
         /// <summary>
         /// allows diabling the rendering of text in the menu for ths request:
-        /// http://www.vivasky.com/Forums/Thread.aspx?thread=2824&mid=34&pageid=5&ItemID=4&pagenumber=1#post12578
+        /// http://www.vivasky.com/Groups/Thread.aspx?thread=2824&mid=34&pageid=5&ItemID=4&pagenumber=1#post12578
         /// </summary>
         public static bool RenderMenuText
         {
@@ -693,7 +693,7 @@ namespace Cynthia.Web
         {
             //changed default to hashed 2009-02-25
             // changed default to encrypted 2009-05-08
-            //http://www.vivasky.com/Forums/Thread.aspx?thread=2902&mid=34&pageid=5&ItemID=5&pagenumber=1
+            //http://www.vivasky.com/Groups/Thread.aspx?thread=2902&mid=34&pageid=5&ItemID=5&pagenumber=1
             // changed back to clear text 2009-05-25 because of too many support requests where people end up
             // getting the admin user locked out
             get { return ConfigHelper.GetIntProperty("InitialSitePasswordFormat", 0); }
@@ -1100,9 +1100,9 @@ namespace Cynthia.Web
             get { return ConfigHelper.GetStringProperty("NewThreadImage", "folder_edit.png"); }
         }
 
-        public static string ForumThreadImage
+        public static string GroupThreadImage
         {
-            get { return ConfigHelper.GetStringProperty("ForumThreadImage", "folder.png"); }
+            get { return ConfigHelper.GetStringProperty("GroupThreadImage", "folder.png"); }
         }
 
         

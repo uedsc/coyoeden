@@ -690,8 +690,8 @@
   <data name="ManageUsersAddUserLabel" xml:space="preserve">
     <value>Add User</value>
   </data>
-  <data name="ManageUsersApprovedForForumsLabel" xml:space="preserve">
-    <value>Approved for Forums:</value>
+  <data name="ManageUsersApprovedForGroupsLabel" xml:space="preserve">
+    <value>Approved for Groups:</value>
   </data>
   <data name="ManageUsersConfirmEmailButton" xml:space="preserve">
     <value>Accept This Email Address as Valid</value>
@@ -3414,10 +3414,10 @@
   <data name="ShowMemberGraphSetting" xml:space="preserve">
     <value>Show Membership Graph?</value>
   </data>
-  <data name="ForumMyPostsLink" xml:space="preserve">
+  <data name="GroupMyPostsLink" xml:space="preserve">
     <value>My Posts</value>
   </data>
-  <data name="ForumUserPostsLink" xml:space="preserve">
+  <data name="GroupUserPostsLink" xml:space="preserve">
     <value>View Posts</value>
   </data>
   <data name="FileManagerCancelButton" xml:space="preserve">
@@ -3828,7 +3828,7 @@
   <data name="NewsletterTemplateTitleRequired" xml:space="preserve">
     <value>Title is required.</value>
   </data>
-  <data name="ManageUsersUnsubscribeForumsLink" xml:space="preserve">
+  <data name="ManageUsersUnsubscribeGroupsLink" xml:space="preserve">
     <value>Unsubscribe from all forums.</value>
   </data>
   <data name="HelpLink" xml:space="preserve">

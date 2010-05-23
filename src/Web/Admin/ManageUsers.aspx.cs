@@ -143,7 +143,7 @@ namespace Cynthia.Web.AdminUI
 
 			this.divUserGuid.Visible = false;
             divProfileApproved.Visible = false;
-            divApprovedForForums.Visible = false;
+            divApprovedForGroups.Visible = false;
             
             divOpenID.Visible = ((WebConfigSettings.EnableOpenIdAuthentication && siteSettings.AllowOpenIdAuth) || siteSettings.RpxNowApiKey.Length > 0);
 
@@ -273,10 +273,10 @@ namespace Cynthia.Web.AdminUI
                 lblTotalPosts.Text = siteUser.TotalPosts.ToString();
                 lnkUserPosts.UserId = siteUser.UserId;
                 lnkUserPosts.TotalPosts = siteUser.TotalPosts;
-                lnkUnsubscribeFromForums.NavigateUrl = SiteRoot + "/Forums/UnsubscribeForum.aspx?ue=" + Page.Server.UrlEncode(siteUser.Email);
+                lnkUnsubscribeFromGroups.NavigateUrl = SiteRoot + "/Groups/UnsubscribeGroup.aspx?ue=" + Page.Server.UrlEncode(siteUser.Email);
 
                 chkProfileApproved.Checked = siteUser.ProfileApproved;
-                chkApprovedForForums.Checked = siteUser.ApprovedForForums;
+                chkApprovedForGroups.Checked = siteUser.ApprovedForGroups;
                 chkTrusted.Checked = siteUser.Trusted;
                 chkDisplayInMemberList.Checked = siteUser.DisplayInMemberList;
 
@@ -512,7 +512,7 @@ namespace Cynthia.Web.AdminUI
             }
 
             siteUser.ProfileApproved = chkProfileApproved.Checked;
-            siteUser.ApprovedForForums = chkApprovedForForums.Checked;
+            siteUser.ApprovedForGroups = chkApprovedForGroups.Checked;
             siteUser.Trusted = chkTrusted.Checked;
             siteUser.DisplayInMemberList = chkDisplayInMemberList.Checked;
             //siteUser.AvatarUrl = ddAvatars.SelectedValue;
@@ -743,7 +743,7 @@ namespace Cynthia.Web.AdminUI
             addExisting.ToolTip = Resource.ManageUsersAddToRoleButton;
             SiteUtils.SetButtonAccessKey(addExisting, AccessKeys.ManageUsersAddToRoleButtonAccessKey);
 
-            lnkUnsubscribeFromForums.Text = Resource.ManageUsersUnsubscribeForumsLink;
+            lnkUnsubscribeFromGroups.Text = Resource.ManageUsersUnsubscribeGroupsLink;
 
             lnkAvatarUpload.Text = Resource.UploadAvatarLink;
 
@@ -873,7 +873,7 @@ namespace Cynthia.Web.AdminUI
             divUserGuid.Visible = false;
             divTotalPosts.Visible = false;
             divProfileApproved.Visible = false;
-            divApprovedForForums.Visible = false;
+            divApprovedForGroups.Visible = false;
             divTrusted.Visible = false;
             divDisplayInMemberList.Visible = false;
             divAvatarUrl.Visible = false;
@@ -933,7 +933,7 @@ namespace Cynthia.Web.AdminUI
             }
 
 
-            lnkUnsubscribeFromForums.Visible = WebConfigSettings.ShowForumUnsubscribeLinkInUserManagement;
+            lnkUnsubscribeFromGroups.Visible = WebConfigSettings.ShowGroupUnsubscribeLinkInUserManagement;
 
             if (WebConfigSettings.MaskPasswordsInUserAdmin)
             {

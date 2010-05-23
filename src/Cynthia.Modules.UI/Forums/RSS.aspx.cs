@@ -21,7 +21,7 @@ using Cynthia.Web.Framework;
 
 namespace Cynthia.Web.FeedUI
 {
-	public partial class RssForumFeed : Page
+	public partial class RssGroupFeed : Page
 	{
 		private int maxDaysOld = 90;
         private int moduleId = -1;
@@ -41,12 +41,12 @@ namespace Cynthia.Web.FeedUI
             if (Page.IsPostBack) return;
 
             siteSettings = CacheHelper.GetCurrentSiteSettings();
-			RssForum rssForum = new RssForum();
-			rssForum.ModuleId = -1;
-			rssForum.PageId = -1;
-			rssForum.ItemId = -1;
-			rssForum.ThreadId = -1;
-			rssForum.MaximumDays = maxDaysOld;
+			RssGroup rssGroup = new RssGroup();
+			rssGroup.ModuleId = -1;
+			rssGroup.PageId = -1;
+			rssGroup.ItemId = -1;
+			rssGroup.ThreadId = -1;
+			rssGroup.MaximumDays = maxDaysOld;
 
             pageId = WebUtils.ParseInt32FromQueryString("pageid", -1);
             moduleId = WebUtils.ParseInt32FromQueryString("mid", -1);
@@ -73,25 +73,25 @@ namespace Cynthia.Web.FeedUI
 
             if(siteSettings != null)
             {
-                rssForum.SiteId = siteSettings.SiteId;
+                rssGroup.SiteId = siteSettings.SiteId;
             }
-                rssForum.ModuleId = moduleId;
-                rssForum.PageId = pageId;
-                rssForum.ItemId = itemId;
-                rssForum.ThreadId = threadId;
+                rssGroup.ModuleId = moduleId;
+                rssGroup.PageId = pageId;
+                rssGroup.ItemId = itemId;
+                rssGroup.ThreadId = threadId;
 
-                RenderRss(rssForum);
+                RenderRss(rssGroup);
 			
 		}
 
-		private void RenderRss(RssForum rssForum)
+		private void RenderRss(RssGroup rssGroup)
 		{
 
             Response.ContentType = "application/xml";
 			Response.ContentEncoding = System.Text.Encoding.UTF8;
 			
-			Hashtable moduleSettings = ModuleSettings.GetModuleSettings(rssForum.ModuleId);
-            rssForum.MaximumDays = WebUtils.ParseInt32FromHashtable(
+			Hashtable moduleSettings = ModuleSettings.GetModuleSettings(rssGroup.ModuleId);
+            rssGroup.MaximumDays = WebUtils.ParseInt32FromHashtable(
                 moduleSettings, "RSSFeedMaxDaysOldSetting", 90);
 
             int entriesLimit = WebUtils.ParseInt32FromHashtable(
@@ -102,7 +102,7 @@ namespace Cynthia.Web.FeedUI
             Rss.RssChannel channel = new Rss.RssChannel();
             string baseUrl = Request.Url.ToString().Replace("RSS.aspx", "Thread.aspx");
 
-            using (IDataReader posts = rssForum.GetPostsForRss())
+            using (IDataReader posts = rssGroup.GetPostsForRss())
             {
                 while ((posts.Read())&&(entryCount <= entriesLimit))
                 {
@@ -118,11 +118,11 @@ namespace Cynthia.Web.FeedUI
                     {
                         if (target.IndexOf("?") < 0)
                         {
-                            target += "?thread=" + posts["ThreadID"].ToString() + "#post" + posts["PostID"].ToString();
+                            target += "?thread=" + posts["TopicID"].ToString() + "#post" + posts["PostID"].ToString();
                         }
                         else
                         {
-                            target += "&thread=" + posts["ThreadID"].ToString() + "#post" + posts["PostID"].ToString();
+                            target += "&thread=" + posts["TopicID"].ToString() + "#post" + posts["PostID"].ToString();
                         }
                     }
                     item.Link = new System.Uri(target);

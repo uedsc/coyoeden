@@ -1,5 +1,5 @@
 <%@ Page Language="c#" CodeBehind="EditPost.aspx.cs" MasterPageFile="~/App_MasterPages/layout.Master"
-    AutoEventWireup="false" Inherits="Cynthia.Web.ForumUI.ForumPostEdit" %>
+    AutoEventWireup="false" Inherits="Cynthia.Web.GroupUI.GroupPostEdit" %>
 
 <asp:Content ContentPlaceHolderID="leftContent" ID="MPLeftPane" runat="server" />
 <asp:Content ContentPlaceHolderID="mainContent" ID="MPContent" runat="server">
@@ -8,19 +8,19 @@
         <asp:Panel ID="pnlEdit" runat="server" CssClass="modulecontent" DefaultButton="btnUpdate">
             <h2 class="forumthreadcrumbs">
                 <asp:HyperLink ID="lnkPageCrumb" runat="server" CssClass="unselectedcrumb"></asp:HyperLink>
-                &gt; <a href="" id="lnkForum" runat="server"></a>&nbsp;&gt;
+                &gt; <a href="" id="lnkGroup" runat="server"></a>&nbsp;&gt;
                 <asp:Label ID="lblThreadDescription" runat="server"></asp:Label>
             </h2>
             <fieldset>
                 <legend>
-                    <asp:Literal ID="litForumPostLabel" runat="server" />
+                    <asp:Literal ID="litGroupPostLabel" runat="server" />
                 </legend>
                 <div class="settingrow forumdesc">
-                    <asp:Literal ID="litForumDescription" runat="server" />
+                    <asp:Literal ID="litGroupDescription" runat="server" />
                 </div>
                 <div class="settingrow">
                     <cy:SiteLabel ID="lblSubjectLabel" runat="server" ForControl="txtSubject" CssClass="settinglabel"
-                        ConfigKey="ForumPostEditSubjectLabel" ResourceFile="ForumResources"> </cy:SiteLabel>
+                        ConfigKey="GroupPostEditSubjectLabel" ResourceFile="GroupResources"> </cy:SiteLabel>
                     <asp:TextBox ID="txtSubject" runat="server" MaxLength="255" CssClass="verywidetextbox forminput"></asp:TextBox>
                 </div>
                 <div>&nbsp;</div>
@@ -31,18 +31,18 @@
                 <asp:Panel ID="pnlNotify" runat="server">
                 <div  class="settingrow">
                     <cy:SiteLabel ID="lblNotifyOnReply" runat="server" ForControl="chkNotifyOnReply"
-                        CssClass="settinglabel" ConfigKey="ForumPostEditNotifyLabel" ResourceFile="ForumResources"> </cy:SiteLabel>
+                        CssClass="settinglabel" ConfigKey="GroupPostEditNotifyLabel" ResourceFile="GroupResources"> </cy:SiteLabel>
                     <asp:CheckBox ID="chkNotifyOnReply" runat="server" CssClass="forminput"></asp:CheckBox>
                 </div>
                 <div  class="settingrow">
-                    <cy:SiteLabel ID="SiteLabel1" runat="server" ForControl="chkSubscribeToForum"
-                        CssClass="settinglabel" ConfigKey="SubscribeToAllOfThisForum" ResourceFile="ForumResources"> </cy:SiteLabel>
-                    <asp:CheckBox ID="chkSubscribeToForum" runat="server" CssClass="forminput"></asp:CheckBox>
+                    <cy:SiteLabel ID="SiteLabel1" runat="server" ForControl="chkSubscribeToGroup"
+                        CssClass="settinglabel" ConfigKey="SubscribeToAllOfThisGroup" ResourceFile="GroupResources"> </cy:SiteLabel>
+                    <asp:CheckBox ID="chkSubscribeToGroup" runat="server" CssClass="forminput"></asp:CheckBox>
                 </div>
                 </asp:Panel>
                 <div class="settingrow">
                     <asp:Label ID="lblError" runat="server" ForeColor="red"></asp:Label>
-                    <asp:RequiredFieldValidator ID="reqSubject" runat="server" ControlToValidate="txtSubject" ValidationGroup="Forum"
+                    <asp:RequiredFieldValidator ID="reqSubject" runat="server" ControlToValidate="txtSubject" ValidationGroup="Group"
                         Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
                 <asp:Panel ID="pnlAntiSpam" runat="server">
@@ -51,7 +51,7 @@
                 <div class="settingrow">
                     <cy:SiteLabel ID="SiteLabel35" runat="server" CssClass="settinglabel" ConfigKey="spacer" />
                     <div class="forminput">
-                    <portal:CButton ID="btnUpdate" runat="server" ValidationGroup="Forum" />&nbsp;
+                    <portal:CButton ID="btnUpdate" runat="server" ValidationGroup="Group" />&nbsp;
                     <portal:CButton ID="btnDelete" runat="server" CausesValidation="false" />&nbsp;
                     <asp:HyperLink ID="lnkCancel" runat="server" CssClass="cancellink" />&nbsp;
                     
@@ -84,7 +84,7 @@
                                     </NeatHtml:UntrustedContent>
                                 </div>
                                 <div class="forumpostuserattribute">
-                                    <portal:ForumUserThreadLink ID="lnkUserPosts" runat="server" UserId='<%# GetUserId(DataBinder.Eval(Container.DataItem,"UserID")) %>'
+                                    <portal:GroupUserThreadLink ID="lnkUserPosts" runat="server" UserId='<%# GetUserId(DataBinder.Eval(Container.DataItem,"UserID")) %>'
                                         TotalPosts='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem,"PostAuthorTotalPosts")) %>' />
                                 </div>
                             </div>

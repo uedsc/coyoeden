@@ -153,15 +153,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FolderGalleryResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\ForumResources.Designer.cs">
+    <Compile Include="App_GlobalResources\GroupResources.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ForumResources.resx</DependentUpon>
+      <DependentUpon>GroupResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\ForumResources.zh-CN.designer.cs">
+    <Compile Include="App_GlobalResources\GroupResources.zh-CN.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ForumResources.zh-CN.resx</DependentUpon>
+      <DependentUpon>GroupResources.zh-CN.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\GalleryResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1024,9 +1024,9 @@
     <Content Include="Forums\RSS.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\ForumResources.resx">
+    <Content Include="App_GlobalResources\GroupResources.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>ForumResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>GroupResources.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Forums\UnsubscribeForum.aspx" />
@@ -1039,9 +1039,9 @@
     <Content Include="Setup\ProviderConfig\indexbuilders\forumthreadindexbuilder.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\ForumResources.zh-CN.resx">
+    <Content Include="App_GlobalResources\GroupResources.zh-CN.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>ForumResources.zh-CN.designer.cs</LastGenOutput>
+      <LastGenOutput>GroupResources.zh-CN.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

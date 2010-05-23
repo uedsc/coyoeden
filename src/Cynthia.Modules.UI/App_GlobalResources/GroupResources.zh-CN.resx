@@ -138,181 +138,181 @@
   <data name="CutePagerPageClause" xml:space="preserve">
     <value>页</value>
   </data>
-  <data name="ForumDeletePostWarning" xml:space="preserve">
+  <data name="GroupDeletePostWarning" xml:space="preserve">
     <value>要删除这篇文章?</value>
   </data>
-  <data name="ForumDeleteThreadWarning" xml:space="preserve">
+  <data name="GroupDeleteThreadWarning" xml:space="preserve">
     <value>要删除这个主题?</value>
   </data>
-  <data name="ForumEditCancelButton" xml:space="preserve">
+  <data name="GroupEditCancelButton" xml:space="preserve">
     <value>取消</value>
   </data>
-  <data name="ForumEditCreateButton" xml:space="preserve">
+  <data name="GroupEditCreateButton" xml:space="preserve">
     <value>创建新论坛</value>
   </data>
-  <data name="ForumEditCreatedByLabel" xml:space="preserve">
+  <data name="GroupEditCreatedByLabel" xml:space="preserve">
     <value>创建者:</value>
   </data>
-  <data name="ForumEditCreatedDateLabel" xml:space="preserve">
+  <data name="GroupEditCreatedDateLabel" xml:space="preserve">
     <value>创建日期:</value>
   </data>
-  <data name="ForumEditDeleteButton" xml:space="preserve">
+  <data name="GroupEditDeleteButton" xml:space="preserve">
     <value>删除此项</value>
   </data>
-  <data name="ForumEditDescriptionLabel" xml:space="preserve">
+  <data name="GroupEditDescriptionLabel" xml:space="preserve">
     <value>描述:</value>
   </data>
-  <data name="ForumEditForumLabel" xml:space="preserve">
+  <data name="GroupEditGroupLabel" xml:space="preserve">
     <value>编辑论坛</value>
   </data>
-  <data name="ForumEditIsActiveLabel" xml:space="preserve">
+  <data name="GroupEditIsActiveLabel" xml:space="preserve">
     <value>活动?</value>
   </data>
-  <data name="ForumEditIsModeratedLabel" xml:space="preserve">
+  <data name="GroupEditIsModeratedLabel" xml:space="preserve">
     <value>适合的?</value>
   </data>
-  <data name="ForumEditLabel" xml:space="preserve">
+  <data name="GroupEditLabel" xml:space="preserve">
     <value>添加论坛</value>
   </data>
-  <data name="ForumEditNewForumButton" xml:space="preserve">
+  <data name="GroupEditNewGroupButton" xml:space="preserve">
     <value>新论坛</value>
   </data>
-  <data name="ForumEditPostLink" xml:space="preserve">
+  <data name="GroupEditPostLink" xml:space="preserve">
     <value>编辑发帖</value>
   </data>
-  <data name="ForumEditPostsPerPageLabel" xml:space="preserve">
+  <data name="GroupEditPostsPerPageLabel" xml:space="preserve">
     <value>每页的帖子数:</value>
   </data>
-  <data name="ForumEditSortOrderLabel" xml:space="preserve">
+  <data name="GroupEditSortOrderLabel" xml:space="preserve">
     <value>排序顺序:</value>
   </data>
-  <data name="ForumEditSubjectRequiredHelp" xml:space="preserve">
+  <data name="GroupEditSubjectRequiredHelp" xml:space="preserve">
     <value>必须输入一个主题</value>
   </data>
-  <data name="ForumEditThreadsPerPageLabel" xml:space="preserve">
+  <data name="GroupEditTopicsPerPageLabel" xml:space="preserve">
     <value>每页的主题:</value>
   </data>
-  <data name="ForumEditTitleLabel" xml:space="preserve">
+  <data name="GroupEditTitleLabel" xml:space="preserve">
     <value>标题:</value>
   </data>
-  <data name="ForumEditUpdateButton" xml:space="preserve">
+  <data name="GroupEditUpdateButton" xml:space="preserve">
     <value>保存</value>
   </data>
-  <data name="ForumEnableRSSAtForumLevel" xml:space="preserve">
+  <data name="GroupEnableRSSAtGroupLevel" xml:space="preserve">
     <value>在论坛上允许RSS?</value>
   </data>
-  <data name="ForumEnableRSSAtModuleLevel" xml:space="preserve">
+  <data name="GroupEnableRSSAtModuleLevel" xml:space="preserve">
     <value>在模块上允许RSS?</value>
   </data>
-  <data name="ForumEnableRSSAtThreadLevel" xml:space="preserve">
+  <data name="GroupEnableRSSAtThreadLevel" xml:space="preserve">
     <value>在主题上允许RSS?</value>
   </data>
-  <data name="ForumModuleEditSubscriptionsLabel" xml:space="preserve">
+  <data name="GroupModuleEditSubscriptionsLabel" xml:space="preserve">
     <value>编辑公告</value>
   </data>
-  <data name="ForumModuleForumLabel" xml:space="preserve">
+  <data name="GroupModuleGroupLabel" xml:space="preserve">
     <value>论坛</value>
   </data>
-  <data name="ForumModulePostCountLabel" xml:space="preserve">
+  <data name="GroupModulePostCountLabel" xml:space="preserve">
     <value>发帖总数</value>
   </data>
-  <data name="ForumModulePostLastPostLabel" xml:space="preserve">
+  <data name="GroupModulePostLastPostLabel" xml:space="preserve">
     <value>最近发帖</value>
   </data>
-  <data name="ForumModuleSubscribedLabel" xml:space="preserve">
+  <data name="GroupModuleSubscribedLabel" xml:space="preserve">
     <value>通知?</value>
   </data>
-  <data name="ForumModuleThreadCountLabel" xml:space="preserve">
+  <data name="GroupModuleTopicCountLabel" xml:space="preserve">
     <value>所有主题</value>
   </data>
-  <data name="ForumPostEditCancelButton" xml:space="preserve">
+  <data name="GroupPostEditCancelButton" xml:space="preserve">
     <value>取消</value>
   </data>
-  <data name="ForumPostEditDeleteButton" xml:space="preserve">
+  <data name="GroupPostEditDeleteButton" xml:space="preserve">
     <value>删除</value>
   </data>
-  <data name="ForumPostEditMessageLabel" xml:space="preserve">
+  <data name="GroupPostEditMessageLabel" xml:space="preserve">
     <value>消息:</value>
   </data>
-  <data name="ForumPostEditNotifyLabel" xml:space="preserve">
+  <data name="GroupPostEditNotifyLabel" xml:space="preserve">
     <value>回复通知:</value>
   </data>
-  <data name="ForumPostEditSubjectLabel" xml:space="preserve">
+  <data name="GroupPostEditSubjectLabel" xml:space="preserve">
     <value>主题:</value>
   </data>
-  <data name="ForumPostEditUpdateButton" xml:space="preserve">
+  <data name="GroupPostEditUpdateButton" xml:space="preserve">
     <value>发布</value>
   </data>
-  <data name="ForumsFeatureName" xml:space="preserve">
+  <data name="GroupsFeatureName" xml:space="preserve">
     <value>论坛</value>
   </data>
-  <data name="ForumsTableSummary" xml:space="preserve">
+  <data name="GroupsTableSummary" xml:space="preserve">
     <value>此表包含的论坛集.</value>
   </data>
-  <data name="ForumThreadCancelButton" xml:space="preserve">
+  <data name="GroupThreadCancelButton" xml:space="preserve">
     <value>取消</value>
   </data>
-  <data name="ForumThreadDeleteButton" xml:space="preserve">
+  <data name="GroupThreadDeleteButton" xml:space="preserve">
     <value>删除</value>
   </data>
-  <data name="ForumThreadEditForumLabel" xml:space="preserve">
+  <data name="GroupThreadEditGroupLabel" xml:space="preserve">
     <value>论坛</value>
   </data>
-  <data name="ForumThreadEditLabel" xml:space="preserve">
+  <data name="GroupThreadEditLabel" xml:space="preserve">
     <value>编辑</value>
   </data>
-  <data name="ForumThreadEditSortOrderLabel" xml:space="preserve">
+  <data name="GroupThreadEditSortOrderLabel" xml:space="preserve">
     <value>排序顺序</value>
   </data>
-  <data name="ForumThreadEditSubjectLabel" xml:space="preserve">
+  <data name="GroupThreadEditSubjectLabel" xml:space="preserve">
     <value>主题</value>
   </data>
-  <data name="ForumThreadUnsubscribeCompleted" xml:space="preserve">
+  <data name="GroupThreadUnsubscribeCompleted" xml:space="preserve">
     <value>取消订阅完成</value>
   </data>
-  <data name="ForumThreadUnsubscribeFailed" xml:space="preserve">
+  <data name="GroupThreadUnsubscribeFailed" xml:space="preserve">
     <value>取消订阅失败,请联系管理员</value>
   </data>
-  <data name="ForumThreadUpdateButton" xml:space="preserve">
+  <data name="GroupThreadUpdateButton" xml:space="preserve">
     <value>保存</value>
   </data>
-  <data name="ForumThreadViewAuthorLabel" xml:space="preserve">
+  <data name="GroupThreadViewAuthorLabel" xml:space="preserve">
     <value>作者</value>
   </data>
-  <data name="ForumThreadViewPagesLabel" xml:space="preserve">
+  <data name="GroupThreadViewPagesLabel" xml:space="preserve">
     <value>页:</value>
   </data>
-  <data name="ForumThreadViewReplyLabel" xml:space="preserve">
+  <data name="GroupThreadViewReplyLabel" xml:space="preserve">
     <value>回复</value>
   </data>
-  <data name="ForumUnsubscribeCompleted" xml:space="preserve">
+  <data name="GroupUnsubscribeCompleted" xml:space="preserve">
     <value>取消订阅完成</value>
   </data>
-  <data name="ForumUnsubscribeFailed" xml:space="preserve">
+  <data name="GroupUnsubscribeFailed" xml:space="preserve">
     <value>取消订阅失败,请联系管理员</value>
   </data>
-  <data name="ForumViewNewThreadLabel" xml:space="preserve">
+  <data name="GroupViewNewThreadLabel" xml:space="preserve">
     <value>您主题</value>
   </data>
-  <data name="ForumViewPostLastPostLabel" xml:space="preserve">
+  <data name="GroupViewPostLastPostLabel" xml:space="preserve">
     <value>最后发帖</value>
   </data>
-  <data name="ForumViewReplyCountLabel" xml:space="preserve">
+  <data name="GroupViewReplyCountLabel" xml:space="preserve">
     <value>所有回复</value>
   </data>
-  <data name="ForumViewStartedByLabel" xml:space="preserve">
+  <data name="GroupViewStartedByLabel" xml:space="preserve">
     <value>发起者</value>
   </data>
-  <data name="ForumViewSubjectLabel" xml:space="preserve">
+  <data name="GroupViewSubjectLabel" xml:space="preserve">
     <value>题目</value>
   </data>
-  <data name="ForumViewTableSummary" xml:space="preserve">
+  <data name="GroupViewTableSummary" xml:space="preserve">
     <value>此表包含的论坛主题</value>
   </data>
-  <data name="ForumViewThreadCountLabel" xml:space="preserve">
+  <data name="GroupViewTopicCountLabel" xml:space="preserve">
     <value>主题总数</value>
   </data>
-  <data name="ForumViewViewCountLabel" xml:space="preserve">
+  <data name="GroupViewViewCountLabel" xml:space="preserve">
     <value>视图总数</value>
   </data>
 </root>

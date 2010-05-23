@@ -23,12 +23,12 @@ using Cynthia.Web;
 namespace Cynthia.Modules
 {
     
-    public class ForumThreadIndexBuilderProvider : IndexBuilderProvider
+    public class GroupThreadIndexBuilderProvider : IndexBuilderProvider
     {
         private static readonly ILog log
-            = LogManager.GetLogger(typeof(ForumThreadIndexBuilderProvider));
+            = LogManager.GetLogger(typeof(GroupThreadIndexBuilderProvider));
 
-        public ForumThreadIndexBuilderProvider()
+        public GroupThreadIndexBuilderProvider()
         { }
 
         public override void RebuildIndex(
@@ -41,7 +41,7 @@ namespace Cynthia.Modules
             {
                 if (log.IsErrorEnabled)
                 {
-                    log.Error("pageSettings object or index path passed to ForumThreadIndexBuilderProvider.RebuildIndex was null");
+                    log.Error("pageSettings object or index path passed to GroupThreadIndexBuilderProvider.RebuildIndex was null");
                 }
                 return;
 
@@ -50,7 +50,7 @@ namespace Cynthia.Modules
             //don't index pending/unpublished pages
             if (pageSettings.IsPending) { return; }
 
-            log.Info("ForumThreadIndexBuilderProvider indexing page - "
+            log.Info("GroupThreadIndexBuilderProvider indexing page - "
                 + pageSettings.PageName);
 
             try
@@ -61,7 +61,7 @@ namespace Cynthia.Modules
                 Guid forumFeatureGuid = new Guid("E75BAF8C-7079-4d10-A122-1AA3624E26F2");
                 ModuleDefinition forumFeature = new ModuleDefinition(forumFeatureGuid);
 
-                DataTable dataTable = ForumThread.GetPostsByPage(
+                DataTable dataTable = GroupThread.GetPostsByPage(
                     pageSettings.SiteId,
                     pageSettings.PageId);
 
@@ -82,9 +82,9 @@ namespace Cynthia.Modules
                     indexItem.ModuleTitle = row["ModuleTitle"].ToString();
                     indexItem.Title = row["Subject"].ToString();
                     indexItem.Content = row["Post"].ToString();
-                    indexItem.ViewPage = "Forums/Thread.aspx";
+                    indexItem.ViewPage = "Groups/Thread.aspx";
                     indexItem.QueryStringAddendum = "&thread="
-                        + row["ThreadID"].ToString()
+                        + row["TopicID"].ToString()
                         + "&postid=" + row["PostID"].ToString();
 
                     // lookup publish dates
@@ -117,36 +117,36 @@ namespace Cynthia.Modules
         {
             if (WebConfigSettings.DisableSearchIndex) { return; }
             if (sender == null) return;
-            if (!(sender is ForumThread)) return;
+            if (!(sender is GroupThread)) return;
 
 
-            ForumThread forumThread = (ForumThread)sender;
+            GroupThread forumThread = (GroupThread)sender;
             SiteSettings siteSettings = CacheHelper.GetCurrentSiteSettings();
             forumThread.SiteId = siteSettings.SiteId;
             forumThread.SearchIndexPath = IndexHelper.GetSearchIndexPath(siteSettings.SiteId);
 
             if (e.IsDeleted)
             {
-                if (ThreadPool.QueueUserWorkItem(new WaitCallback(RemoveForumIndexItem), forumThread))
+                if (ThreadPool.QueueUserWorkItem(new WaitCallback(RemoveGroupIndexItem), forumThread))
                 {
-                    if (log.IsDebugEnabled) log.Debug("ForumThreadIndexBuilderProvider.RemoveForumIndexItem queued");
+                    if (log.IsDebugEnabled) log.Debug("GroupThreadIndexBuilderProvider.RemoveGroupIndexItem queued");
                 }
                 else
                 {
-                    if (log.IsErrorEnabled) log.Error("Failed to queue a thread for ForumThreadIndexBuilderProvider.RemoveForumIndexItem");
+                    if (log.IsErrorEnabled) log.Error("Failed to queue a thread for GroupThreadIndexBuilderProvider.RemoveGroupIndexItem");
                 }
 
-                //RemoveForumIndexItem(forumThread);
+                //RemoveGroupIndexItem(forumThread);
             }
             else
             {
                 if (ThreadPool.QueueUserWorkItem(new WaitCallback(IndexItem), forumThread))
                 {
-                    if (log.IsDebugEnabled) log.Debug("ForumThreadIndexBuilderProvider.IndexItem queued");
+                    if (log.IsDebugEnabled) log.Debug("GroupThreadIndexBuilderProvider.IndexItem queued");
                 }
                 else
                 {
-                    if (log.IsErrorEnabled) log.Error("Failed to queue a thread for ForumThreadIndexBuilderProvider.IndexItem");
+                    if (log.IsErrorEnabled) log.Error("Failed to queue a thread for GroupThreadIndexBuilderProvider.IndexItem");
                 }
 
                 //IndexItem(forumThread);
@@ -154,18 +154,18 @@ namespace Cynthia.Modules
 
         }
 
-        private static void IndexItem(object oForumThread)
+        private static void IndexItem(object oGroupThread)
         {
             if (WebConfigSettings.DisableSearchIndex) { return; }
-            if (oForumThread == null) return;
-            if (!(oForumThread is ForumThread)) return;
+            if (oGroupThread == null) return;
+            if (!(oGroupThread is GroupThread)) return;
 
-            ForumThread forumThread = oForumThread as ForumThread;
+            GroupThread forumThread = oGroupThread as GroupThread;
             IndexItem(forumThread);
 
         }
 
-        private static void IndexItem(ForumThread forumThread)
+        private static void IndexItem(GroupThread forumThread)
         {
             if (WebConfigSettings.DisableSearchIndex) { return; }
             //SiteSettings siteSettings = CacheHelper.GetCurrentSiteSettings();
@@ -174,7 +174,7 @@ namespace Cynthia.Modules
             //{
             //    if (log.IsErrorEnabled)
             //    {
-            //        log.Error("siteSettings object retrieved in ForumThreadIndexBuilderProvider.IndexItem was null");
+            //        log.Error("siteSettings object retrieved in GroupThreadIndexBuilderProvider.IndexItem was null");
             //    }
             //    return;
             //}
@@ -183,13 +183,13 @@ namespace Cynthia.Modules
             {
                 if (log.IsErrorEnabled)
                 {
-                    log.Error("forumThread object passed in ForumThreadIndexBuilderProvider.IndexItem was null");
+                    log.Error("forumThread object passed in GroupThreadIndexBuilderProvider.IndexItem was null");
                 }
                 return;
 
             }
 
-            Forum forum = new Forum(forumThread.ForumId);
+            Group forum = new Group(forumThread.GroupId);
             Module module = new Module(forum.ModuleId);
             Guid forumFeatureGuid = new Guid("E75BAF8C-7079-4d10-A122-1AA3624E26F2");
             ModuleDefinition forumFeature = new ModuleDefinition(forumFeatureGuid);
@@ -222,10 +222,10 @@ namespace Cynthia.Modules
                 // so that results are filtered by role correctly
                 indexItem.ViewRoles = pageSettings.AuthorizedRoles;
                 indexItem.ModuleViewRoles = module.ViewRoles;
-                indexItem.ItemId = forumThread.ForumId;
+                indexItem.ItemId = forumThread.GroupId;
                 indexItem.ModuleId = forum.ModuleId;
                 indexItem.ModuleTitle = module.ModuleTitle;
-                indexItem.ViewPage = "Forums/Thread.aspx";
+                indexItem.ViewPage = "Groups/Thread.aspx";
                 indexItem.QueryStringAddendum = "&thread="
                     + forumThread.ThreadId.ToString()
                     + "&postid=" + forumThread.PostId.ToString();
@@ -246,22 +246,22 @@ namespace Cynthia.Modules
 
         }
 
-        public void ThreadMovedHandler(object sender, ForumThreadMovedArgs e)
+        public void ThreadMovedHandler(object sender, GroupThreadMovedArgs e)
         {
             if (WebConfigSettings.DisableSearchIndex) { return; }
 
-            ForumThread forumThread = (ForumThread)sender;
+            GroupThread forumThread = (GroupThread)sender;
             DataTable postIDList = forumThread.GetPostIdList();
 
-            Forum origForum = new Forum(e.OriginalForumId);
+            Group origGroup = new Group(e.OriginalGroupId);
             foreach (DataRow row in postIDList.Rows)
             {
                 int postID = Convert.ToInt32(row["PostID"]);
-                ForumThread post = new ForumThread(forumThread.ThreadId, postID);
+                GroupThread post = new GroupThread(forumThread.ThreadId, postID);
 
-                RemoveForumIndexItem(
-                    origForum.ModuleId,
-                    e.OriginalForumId,
+                RemoveGroupIndexItem(
+                    origGroup.ModuleId,
+                    e.OriginalGroupId,
                     forumThread.ThreadId,
                     postID);
 
@@ -272,13 +272,13 @@ namespace Cynthia.Modules
 
         }
 
-        public static void RemoveForumIndexItem(object oForumThread)
+        public static void RemoveGroupIndexItem(object oGroupThread)
         {
             if (WebConfigSettings.DisableSearchIndex) { return; }
 
-            if (!(oForumThread is ForumThread)) return;
+            if (!(oGroupThread is GroupThread)) return;
 
-            ForumThread forumThread = oForumThread as ForumThread;
+            GroupThread forumThread = oGroupThread as GroupThread;
 
             //SiteSettings siteSettings = CacheHelper.GetCurrentSiteSettings();
 
@@ -286,7 +286,7 @@ namespace Cynthia.Modules
             //{
             //    if (log.IsErrorEnabled)
             //    {
-            //        log.Error("siteSettings object retrieved in ForumThreadIndexBuilderProvider.RemoveForumIndexItem was null");
+            //        log.Error("siteSettings object retrieved in GroupThreadIndexBuilderProvider.RemoveGroupIndexItem was null");
             //    }
             //    return;
             //}
@@ -306,7 +306,7 @@ namespace Cynthia.Modules
                 indexItem.SiteId = forumThread.SiteId;
                 indexItem.PageId = pageModule.PageId;
                 indexItem.ModuleId = forumThread.ModuleId;
-                indexItem.ItemId = forumThread.ForumId;
+                indexItem.ItemId = forumThread.GroupId;
                 indexItem.QueryStringAddendum = "&thread="
                     + forumThread.ThreadId.ToString(CultureInfo.InvariantCulture)
                     + "&postid=" + forumThread.PostId.ToString(CultureInfo.InvariantCulture);
@@ -318,7 +318,7 @@ namespace Cynthia.Modules
 
         }
 
-        public static void RemoveForumIndexItem(
+        public static void RemoveGroupIndexItem(
             int moduleId,
             int itemId,
             int threadId,
@@ -332,7 +332,7 @@ namespace Cynthia.Modules
             {
                 if (log.IsErrorEnabled)
                 {
-                    log.Error("siteSettings object retrieved in ForumThreadIndexBuilderProvider.RemoveForumIndexItem was null");
+                    log.Error("siteSettings object retrieved in GroupThreadIndexBuilderProvider.RemoveGroupIndexItem was null");
                 }
                 return;
             }

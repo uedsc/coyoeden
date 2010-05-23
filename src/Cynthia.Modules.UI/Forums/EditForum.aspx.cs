@@ -18,9 +18,9 @@ using Cynthia.Web.Editor;
 using Cynthia.Web.Framework;
 using Resources;
 
-namespace Cynthia.Web.ForumUI
+namespace Cynthia.Web.GroupUI
 {
-    public partial class ForumEdit : CBasePage
+    public partial class GroupEdit : CBasePage
 	{
 		private int moduleId = -1;
         private int itemId = -1;
@@ -80,7 +80,7 @@ namespace Cynthia.Web.ForumUI
 				}
 				else
 				{
-					ShowNewForumControls();
+					ShowNewGroupControls();
 				}
 
                 if ((Request.UrlReferrer != null) && (hdnReturnUrl.Value.Length == 0))
@@ -95,41 +95,41 @@ namespace Cynthia.Web.ForumUI
 
 		private void PopulateLabels()
 		{
-            Title = SiteUtils.FormatPageTitle(siteSettings, ForumResources.ForumEditForumLabel);
+            Title = SiteUtils.FormatPageTitle(siteSettings, GroupResources.GroupEditGroupLabel);
 
             // TODO: implement
             divIsModerated.Visible = false;
             divIsActive.Visible = false;
 
 
-            btnUpdate.Text = ForumResources.ForumEditUpdateButton;
-            SiteUtils.SetButtonAccessKey(btnUpdate, ForumResources.ForumEditUpdateButtonAccessKey);
+            btnUpdate.Text = GroupResources.GroupEditUpdateButton;
+            SiteUtils.SetButtonAccessKey(btnUpdate, GroupResources.GroupEditUpdateButtonAccessKey);
 
-            lnkCancel.Text = ForumResources.ForumEditCancelButton;
+            lnkCancel.Text = GroupResources.GroupEditCancelButton;
             lnkCancel.NavigateUrl = SiteUtils.GetCurrentPageUrl();
             
-            btnDelete.Text = ForumResources.ForumEditDeleteButton;
-            SiteUtils.SetButtonAccessKey(btnDelete, ForumResources.ForumEditDeleteButtonAccessKey);
+            btnDelete.Text = GroupResources.GroupEditDeleteButton;
+            SiteUtils.SetButtonAccessKey(btnDelete, GroupResources.GroupEditDeleteButtonAccessKey);
 
             
 	
 		}
 
-		private void ShowNewForumControls()
+		private void ShowNewGroupControls()
 		{
 			this.btnDelete.Visible = false;
-            this.btnUpdate.Text = ForumResources.ForumEditCreateButton;
+            this.btnUpdate.Text = GroupResources.GroupEditCreateButton;
 			this.chkIsActive.Checked = true;
 			this.txtSortOrder.Text = "100";
 			this.txtPostsPerPage.Text = "10";
-			this.txtThreadsPerPage.Text = "40";
+			this.txtTopicsPerPage.Text = "40";
 			
 
 		}
 
 		private void PopulateControls()
 		{
-			Forum forum = new Forum(itemId);
+			Group forum = new Group(itemId);
 			
 			this.lblCreatedDate.Text = forum.CreatedDate.AddHours(timeOffset).ToString();
             edContent.Text = forum.Description;
@@ -139,7 +139,7 @@ namespace Cynthia.Web.ForumUI
 			this.chkIsModerated.Checked = forum.IsModerated;
 			this.txtSortOrder.Text = forum.SortOrder.ToString();
 			this.txtPostsPerPage.Text = forum.PostsPerPage.ToString();
-			this.txtThreadsPerPage.Text = forum.ThreadsPerPage.ToString();
+			this.txtTopicsPerPage.Text = forum.TopicsPerPage.ToString();
 
 			
 		}
@@ -147,7 +147,7 @@ namespace Cynthia.Web.ForumUI
 
 		private void btnUpdate_Click(object sender, EventArgs e)
 		{
-			Forum forum = new Forum(itemId);
+			Group forum = new Group(itemId);
 			
             //SiteUser siteUser = new SiteUser(siteSettings, Context.User.Identity.Name);
             SiteUser siteUser = SiteUtils.GetCurrentSiteUser();
@@ -162,7 +162,7 @@ namespace Cynthia.Web.ForumUI
 			forum.IsModerated = this.chkIsModerated.Checked;
 			forum.SortOrder = int.Parse(this.txtSortOrder.Text);
 			forum.PostsPerPage = int.Parse(this.txtPostsPerPage.Text);
-			forum.ThreadsPerPage = int.Parse(this.txtThreadsPerPage.Text);
+			forum.TopicsPerPage = int.Parse(this.txtTopicsPerPage.Text);
 
 			if(forum.Save())
 			{
@@ -184,8 +184,8 @@ namespace Cynthia.Web.ForumUI
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-            Forum.Delete(itemId);
-            Forum.UpdateUserStats(-1); // updates all users
+            Group.Delete(itemId);
+            Group.UpdateUserStats(-1); // updates all users
             CurrentPage.UpdateLastModifiedTime();
 
             if (hdnReturnUrl.Value.Length > 0)

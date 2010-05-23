@@ -4,8 +4,8 @@ namespace Cynthia.Web.Editor
     {
         Full,
         FullWithTemplates,
-        Forum,
-        ForumWithImages,
+        Group,
+        GroupWithImages,
         AnonymousUser,
         SimpleWithSource,
         Newsletter

@@ -120,7 +120,7 @@ namespace Cynthia.Business
 		private string password = string.Empty;
 		private string gender = string.Empty;
 		private bool profileApproved = true;
-		private bool approvedForForums = true;
+		private bool approvedForGroups = true;
 		private bool trusted = false;
 		private bool displayInMemberList = true;
 		private string webSiteUrl = string.Empty;
@@ -341,10 +341,10 @@ namespace Cynthia.Business
 			set {profileApproved = value;}
 		}
 
-		public bool ApprovedForForums
+		public bool ApprovedForGroups
 		{	
-			get {return approvedForForums;}
-			set {approvedForForums = value;}
+			get {return approvedForGroups;}
+			set {approvedForGroups = value;}
 		}
 
 		public bool Trusted
@@ -681,8 +681,8 @@ namespace Cynthia.Business
                 // this is to support dbs that don't have bit data type
                 string pApproved = reader["ProfileApproved"].ToString();
                 this.profileApproved = (pApproved == "True" || pApproved == "1");
-                string fApproved = reader["ApprovedForForums"].ToString();
-                this.approvedForForums = (fApproved == "True" || fApproved == "1");
+                string fApproved = reader["ApprovedForGroups"].ToString();
+                this.approvedForGroups = (fApproved == "True" || fApproved == "1");
                 string t = reader["Trusted"].ToString();
                 this.trusted = (t == "True" || t == "1");
                 string display = reader["DisplayInMemberList"].ToString();
@@ -941,7 +941,7 @@ namespace Cynthia.Business
 				this.password,
 				this.gender,
 				this.profileApproved,
-				this.approvedForForums,
+				this.approvedForGroups,
 				this.trusted,
 				this.displayInMemberList,
 				this.webSiteUrl,
@@ -1269,7 +1269,7 @@ namespace Cynthia.Business
                     //no change allowed through profile
                     break;
 
-                case "ApprovedForForums":
+                case "ApprovedForGroups":
                     //no change allowed through profile
                     break;
 
@@ -1648,8 +1648,8 @@ namespace Cynthia.Business
                 case "ProfileApproved":
                     return this.ProfileApproved;
                     
-                case "ApprovedForForums":
-                    return this.ApprovedForForums;
+                case "ApprovedForGroups":
+                    return this.ApprovedForGroups;
                     
                 case "Trusted":
                     return this.Trusted;
@@ -2188,8 +2188,8 @@ namespace Cynthia.Business
             // this is to support dbs that don't have bit data type
             string pApproved = reader["ProfileApproved"].ToString();
             user.profileApproved = (pApproved == "True" || pApproved == "1");
-            string fApproved = reader["ApprovedForForums"].ToString();
-            user.approvedForForums = (fApproved == "True" || fApproved == "1");
+            string fApproved = reader["ApprovedForGroups"].ToString();
+            user.approvedForGroups = (fApproved == "True" || fApproved == "1");
             string t = reader["Trusted"].ToString();
             user.trusted = (t == "True" || t == "1");
             string display = reader["DisplayInMemberList"].ToString();

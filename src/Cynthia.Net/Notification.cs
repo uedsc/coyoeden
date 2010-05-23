@@ -89,17 +89,17 @@ namespace Cynthia.Net
 
         }
 
-        public static void SendForumNotificationEmail(
+        public static void SendGroupNotificationEmail(
             object oNotificationInfo)
         {
             if (oNotificationInfo == null) return;
-            if (!(oNotificationInfo is ForumNotificationInfo)) return;
+            if (!(oNotificationInfo is GroupNotificationInfo)) return;
 
-            ForumNotificationInfo notificationInfo = oNotificationInfo as ForumNotificationInfo;
+            GroupNotificationInfo notificationInfo = oNotificationInfo as GroupNotificationInfo;
 
             if (notificationInfo.Subscribers == null) return;
 
-            if (log.IsDebugEnabled) log.Debug("In SendForumNotificationEmail()");
+            if (log.IsDebugEnabled) log.Debug("In SendGroupNotificationEmail()");
             if (notificationInfo.Subscribers.Tables.Count > 0)
             {
                 if (notificationInfo.Subscribers.Tables[0].Rows.Count > 0)
@@ -112,20 +112,20 @@ namespace Cynthia.Net
                         body.Append(notificationInfo.BodyTemplate);
                         body.Replace("{SiteName}", notificationInfo.SiteName);
                         body.Replace("{ModuleName}", notificationInfo.ModuleName);
-                        body.Replace("{ForumName}", notificationInfo.ForumName);
+                        body.Replace("{GroupName}", notificationInfo.GroupName);
                         body.Replace("{AdminEmail}", notificationInfo.FromEmail);
                         body.Replace("{MessageLink}", notificationInfo.MessageLink);
-                        body.Replace("{UnsubscribeForumThreadLink}", notificationInfo.UnsubscribeForumThreadLink);
-                        body.Replace("{UnsubscribeForumLink}", notificationInfo.UnsubscribeForumLink);
+                        body.Replace("{UnsubscribeGroupThreadLink}", notificationInfo.UnsubscribeGroupThreadLink);
+                        body.Replace("{UnsubscribeGroupLink}", notificationInfo.UnsubscribeGroupLink);
                         StringBuilder emailSubject = new StringBuilder();
                         if (notificationInfo.SubjectTemplate.Length == 0)
                         {
-                            notificationInfo.SubjectTemplate = "[{SiteName} - {ForumName}] {Subject}";
+                            notificationInfo.SubjectTemplate = "[{SiteName} - {GroupName}] {Subject}";
                         }
                         emailSubject.Append(notificationInfo.SubjectTemplate);
                         emailSubject.Replace("{SiteName}", notificationInfo.SiteName);
                         emailSubject.Replace("{ModuleName}", notificationInfo.ModuleName);
-                        emailSubject.Replace("{ForumName}", notificationInfo.ForumName);
+                        emailSubject.Replace("{GroupName}", notificationInfo.GroupName);
                         emailSubject.Replace("{Subject}", notificationInfo.Subject);
 
                         Email.SendEmail(
@@ -143,7 +143,7 @@ namespace Cynthia.Net
         }
 
 
-        //public static void SendForumNotificationEmail(
+        //public static void SendGroupNotificationEmail(
         //    SmtpSettings smtpSettings,
         //    string subjectTemplate,
         //    string bodyTemplate,
@@ -154,10 +154,10 @@ namespace Cynthia.Net
         //    string subject,
         //    DataSet subscribers,
         //    string messageLink,
-        //    string unsubscribeForumThreadLink,
-        //    string unsubscribeForumLink)
+        //    string unsubscribeGroupThreadLink,
+        //    string unsubscribeGroupLink)
         //{
-        //    if (log.IsDebugEnabled) log.Debug("In SendForumNotificationEmail()");
+        //    if (log.IsDebugEnabled) log.Debug("In SendGroupNotificationEmail()");
         //    if (subscribers.Tables.Count > 0)
         //    {
         //        if (subscribers.Tables[0].Rows.Count > 0)
@@ -168,20 +168,20 @@ namespace Cynthia.Net
         //                body.Append(bodyTemplate);
         //                body.Replace("{SiteName}", siteName);
         //                body.Replace("{ModuleName}", moduleName);
-        //                body.Replace("{ForumName}", forumName);
+        //                body.Replace("{GroupName}", forumName);
         //                body.Replace("{AdminEmail}", fromEmail);
         //                body.Replace("{MessageLink}", messageLink);
-        //                body.Replace("{UnsubscribeForumThreadLink}", unsubscribeForumThreadLink);
-        //                body.Replace("{UnsubscribeForumLink}", unsubscribeForumLink);
+        //                body.Replace("{UnsubscribeGroupThreadLink}", unsubscribeGroupThreadLink);
+        //                body.Replace("{UnsubscribeGroupLink}", unsubscribeGroupLink);
         //                StringBuilder emailSubject = new StringBuilder();
         //                if (subjectTemplate == null)
         //                {
-        //                    subjectTemplate = "[{SiteName} - {ForumName}] {Subject}";
+        //                    subjectTemplate = "[{SiteName} - {GroupName}] {Subject}";
         //                }
         //                emailSubject.Append(subjectTemplate);
         //                emailSubject.Replace("{SiteName}", siteName);
         //                emailSubject.Replace("{ModuleName}", moduleName);
-        //                emailSubject.Replace("{ForumName}", forumName);
+        //                emailSubject.Replace("{GroupName}", forumName);
         //                emailSubject.Replace("{Subject}", subject);
 
         //                Email.SendEmail(

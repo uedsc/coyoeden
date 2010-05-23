@@ -12,11 +12,11 @@ namespace Cynthia.Web.FeedUI {
     
     
     /// <summary>
-    /// RssForumFeed class.
+    /// RssGroupFeed class.
     /// </summary>
     /// <remarks>
     /// Auto-generated class.
     /// </remarks>
-    public partial class RssForumFeed {
+    public partial class RssGroupFeed {
     }
 }

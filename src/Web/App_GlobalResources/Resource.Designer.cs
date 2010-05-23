@@ -3429,18 +3429,18 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to My Posts.
         /// </summary>
-        internal static string ForumMyPostsLink {
+        internal static string GroupMyPostsLink {
             get {
-                return ResourceManager.GetString("ForumMyPostsLink", resourceCulture);
+                return ResourceManager.GetString("GroupMyPostsLink", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to View Posts.
         /// </summary>
-        internal static string ForumUserPostsLink {
+        internal static string GroupUserPostsLink {
             get {
-                return ResourceManager.GetString("ForumUserPostsLink", resourceCulture);
+                return ResourceManager.GetString("GroupUserPostsLink", resourceCulture);
             }
         }
         
@@ -5236,11 +5236,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Approved for Forums:.
+        ///   Looks up a localized string similar to Approved for Groups:.
         /// </summary>
-        internal static string ManageUsersApprovedForForumsLabel {
+        internal static string ManageUsersApprovedForGroupsLabel {
             get {
-                return ResourceManager.GetString("ManageUsersApprovedForForumsLabel", resourceCulture);
+                return ResourceManager.GetString("ManageUsersApprovedForGroupsLabel", resourceCulture);
             }
         }
         
@@ -5580,9 +5580,9 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Unsubscribe from all forums..
         /// </summary>
-        internal static string ManageUsersUnsubscribeForumsLink {
+        internal static string ManageUsersUnsubscribeGroupsLink {
             get {
-                return ResourceManager.GetString("ManageUsersUnsubscribeForumsLink", resourceCulture);
+                return ResourceManager.GetString("ManageUsersUnsubscribeGroupsLink", resourceCulture);
             }
         }
         

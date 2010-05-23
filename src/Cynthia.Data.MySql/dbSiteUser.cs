@@ -873,7 +873,7 @@ namespace Cynthia.Data
             String password,
             String gender,
             bool profileApproved,
-            bool approvedForForums,
+            bool approvedForGroups,
             bool trusted,
             bool displayInMemberList,
             String webSiteUrl,
@@ -910,7 +910,7 @@ namespace Cynthia.Data
             }
 
             byte canPost = 1;
-            if (!approvedForForums)
+            if (!approvedForGroups)
             {
                 canPost = 0;
             }
@@ -947,7 +947,7 @@ namespace Cynthia.Data
             sqlCommand.Append("MustChangePwd = ?MustChangePwd,    ");
             sqlCommand.Append("Gender = ?Gender,    ");
             sqlCommand.Append("ProfileApproved = ?ProfileApproved,    ");
-            sqlCommand.Append("ApprovedForForums = ?ApprovedForForums,    ");
+            sqlCommand.Append("ApprovedForGroups = ?ApprovedForGroups,    ");
             sqlCommand.Append("Trusted = ?Trusted,    ");
             sqlCommand.Append("DisplayInMemberList = ?DisplayInMemberList,    ");
             sqlCommand.Append("WebSiteURL = ?WebSiteURL,    ");
@@ -996,7 +996,7 @@ namespace Cynthia.Data
             arParams[4].Direction = ParameterDirection.Input;
             arParams[4].Value = approved;
 
-            arParams[5] = new MySqlParameter("?ApprovedForForums", MySqlDbType.Int32);
+            arParams[5] = new MySqlParameter("?ApprovedForGroups", MySqlDbType.Int32);
             arParams[5].Direction = ParameterDirection.Input;
             arParams[5].Value = canPost;
 

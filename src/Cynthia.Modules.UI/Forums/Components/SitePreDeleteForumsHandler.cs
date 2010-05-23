@@ -23,17 +23,17 @@ namespace Cynthia.Modules
     /// You must not remove this notice, or any other, from this software.
     ///  
     /// </summary>
-    public class SitePreDeleteForumsHandler : SitePreDeleteHandlerProvider
+    public class SitePreDeleteGroupsHandler : SitePreDeleteHandlerProvider
     {
         private static readonly ILog log
-            = LogManager.GetLogger(typeof(SitePreDeleteForumsHandler));
+            = LogManager.GetLogger(typeof(SitePreDeleteGroupsHandler));
 
-        public SitePreDeleteForumsHandler()
+        public SitePreDeleteGroupsHandler()
         { }
 
         public override void DeleteSiteContent(int siteId)
         {
-            Forum.DeleteBySite(siteId);
+            Group.DeleteBySite(siteId);
 
         }
     }

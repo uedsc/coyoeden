@@ -447,9 +447,9 @@ namespace Cynthia.Web.Editor
 
                     break;
 
-                case ToolBar.Forum:
+                case ToolBar.Group:
 
-                    script.Append(",toolbar:'Forum'");
+                    script.Append(",toolbar:'Group'");
 
                     //script.Append(", plugins : '");
 
@@ -500,9 +500,9 @@ namespace Cynthia.Web.Editor
 
                     break;
 
-                case ToolBar.ForumWithImages:
+                case ToolBar.GroupWithImages:
 
-                    script.Append(",toolbar:'ForumWithImages'");
+                    script.Append(",toolbar:'GroupWithImages'");
 
                     //script.Append(", plugins : '");
 

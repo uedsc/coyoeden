@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cynthia.Web.ForumUI {
+namespace Cynthia.Web.GroupUI {
     
     
-    public partial class ForumPostEdit {
+    public partial class GroupPostEdit {
         
         /// <summary>
         /// ctop1 control.
@@ -50,13 +50,13 @@ namespace Cynthia.Web.ForumUI {
         protected global::System.Web.UI.WebControls.HyperLink lnkPageCrumb;
         
         /// <summary>
-        /// lnkForum control.
+        /// lnkGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkForum;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkGroup;
         
         /// <summary>
         /// lblThreadDescription control.
@@ -68,22 +68,22 @@ namespace Cynthia.Web.ForumUI {
         protected global::System.Web.UI.WebControls.Label lblThreadDescription;
         
         /// <summary>
-        /// litForumPostLabel control.
+        /// litGroupPostLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litForumPostLabel;
+        protected global::System.Web.UI.WebControls.Literal litGroupPostLabel;
         
         /// <summary>
-        /// litForumDescription control.
+        /// litGroupDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litForumDescription;
+        protected global::System.Web.UI.WebControls.Literal litGroupDescription;
         
         /// <summary>
         /// lblSubjectLabel control.
@@ -149,13 +149,13 @@ namespace Cynthia.Web.ForumUI {
         protected global::Cynthia.Web.Controls.SiteLabel SiteLabel1;
         
         /// <summary>
-        /// chkSubscribeToForum control.
+        /// chkSubscribeToGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkSubscribeToForum;
+        protected global::System.Web.UI.WebControls.CheckBox chkSubscribeToGroup;
         
         /// <summary>
         /// lblError control.

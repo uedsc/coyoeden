@@ -18,10 +18,10 @@ using Cynthia.Web.Framework;
 using Cynthia.Web.UI;
 using Resources;
 
-namespace Cynthia.Web.ForumUI
+namespace Cynthia.Web.GroupUI
 {
 	
-    public partial class ForumPostEdit : CBasePage
+    public partial class GroupPostEdit : CBasePage
 	{
         
 		private int moduleId = -1;
@@ -31,10 +31,10 @@ namespace Cynthia.Web.ForumUI
         private int pageId = -1;
         private int pageNumber = 1;
         private SiteUser theUser;
-        private Forum forum;
+        private Group forum;
         private string virtualRoot;
         private Double timeOffset = 0;
-        private bool isSubscribedToForum = false;
+        private bool isSubscribedToGroup = false;
         private bool isSubscribedToThread = false;
         protected string allowedImageUrlRegexPattern = SecurityHelper.RegexRelativeImageUrlPatern;
         //Gravatar public enum RatingType { G, PG, R, X }
@@ -94,7 +94,7 @@ namespace Cynthia.Web.ForumUI
 
             if (forumId > -1)
             {
-                forum = new Forum(forumId);
+                forum = new Group(forumId);
                 moduleId = forum.ModuleId;
                 if (forum.ItemId == -1)
                 {
@@ -157,19 +157,19 @@ namespace Cynthia.Web.ForumUI
 
 		private void PopulateControls()
 		{
-            ForumThread thread = null;
+            GroupThread thread = null;
 		    if(threadId == -1)
 			{
 				this.btnDelete.Visible = false;
 				this.rptMessages.Visible = false;
-                Title = SiteUtils.FormatPageTitle(siteSettings, CurrentPage.PageName + " - " + ForumResources.NewTopicLabel);
+                Title = SiteUtils.FormatPageTitle(siteSettings, CurrentPage.PageName + " - " + GroupResources.NewTopicLabel);
 			}
 			else
 			{
 			    
 			    if(postId > -1)
 				{
-					thread = new ForumThread(threadId, postId);
+					thread = new GroupThread(threadId, postId);
 					if (WebUser.IsAdmin
                         ||(isSiteEditor)
                         || (WebUser.IsInRoles(CurrentPage.EditRoles))
@@ -182,9 +182,9 @@ namespace Cynthia.Web.ForumUI
 				}
 				else
 				{  
-					thread = new ForumThread(threadId);
+					thread = new GroupThread(threadId);
                     this.txtSubject.Text
-                        = ResourceHelper.GetMessageTemplate(ResourceHelper.GetDefaultCulture(), "ForumPostReplyPrefix.config") 
+                        = ResourceHelper.GetMessageTemplate(ResourceHelper.GetDefaultCulture(), "GroupPostReplyPrefix.config") 
                         + thread.Subject;
                 }
 
@@ -195,7 +195,7 @@ namespace Cynthia.Web.ForumUI
 
                 if (forumId == -1)
                 {
-                    forumId = thread.ForumId;
+                    forumId = thread.GroupId;
                 }
 
                 using(IDataReader reader = thread.GetPostsReverseSorted())
@@ -208,8 +208,8 @@ namespace Cynthia.Web.ForumUI
 
             if (forum != null)
             {
-                litForumPostLabel.Text = forum.Title;
-                litForumDescription.Text = forum.Description;
+                litGroupPostLabel.Text = forum.Title;
+                litGroupDescription.Text = forum.Description;
                 
             }
 
@@ -230,19 +230,19 @@ namespace Cynthia.Web.ForumUI
 
             lnkPageCrumb.Text = CurrentPage.PageName;
             lnkPageCrumb.NavigateUrl = SiteUtils.GetCurrentPageUrl();
-            lnkForum.HRef = SiteRoot + "/Forums/ForumView.aspx?ItemID="
+            lnkGroup.HRef = SiteRoot + "/Groups/GroupView.aspx?ItemID="
                 + forum.ItemId.ToInvariantString()
                 + "&amp;pageid=" + pageId.ToInvariantString()
                 + "&amp;mid=" + forum.ModuleId.ToInvariantString();
 
-            lnkForum.InnerHtml = forum.Title;
+            lnkGroup.InnerHtml = forum.Title;
             if (thread != null) { lblThreadDescription.Text = Server.HtmlEncode(thread.Subject); }
 		}
 
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-			ForumThread thread = new ForumThread(threadId,postId);
+			GroupThread thread = new GroupThread(threadId,postId);
             thread.ContentChanged += new ContentChangedEventHandler(thread_ContentChanged);
             
             
@@ -258,7 +258,7 @@ namespace Cynthia.Web.ForumUI
                 //}
                 if (thread.PostUserId > -1)
                 {
-                    Forum.UpdateUserStats(thread.PostUserId);
+                    Group.UpdateUserStats(thread.PostUserId);
                 }
 
                 SiteUtils.QueueIndexing();
@@ -289,7 +289,7 @@ namespace Cynthia.Web.ForumUI
 
 		private void btnUpdate_Click(object sender, EventArgs e)
 		{
-            if (forum == null) { forum = new Forum(forumId); }
+            if (forum == null) { forum = new Group(forumId); }
 
             if (!forum.AllowAnonymousPosts)
             {
@@ -315,19 +315,19 @@ namespace Cynthia.Web.ForumUI
                     }
                 }
 
-				ForumThread thread;
+				GroupThread thread;
 				bool userIsAllowedToUpdateThisPost = false;
 				if(threadId == -1)
 				{
-					thread = new ForumThread();
-					thread.ForumId = forumId;
+					thread = new GroupThread();
+					thread.GroupId = forumId;
 				}
 				else
 				{
 
 					if(postId > -1)
 					{
-						thread = new ForumThread(threadId,postId);
+						thread = new GroupThread(threadId,postId);
 						if (WebUser.IsAdmin
                             || WebUser.IsInRoles(CurrentPage.EditRoles)
                             || (this.theUser.UserId == thread.PostUserId)
@@ -338,9 +338,9 @@ namespace Cynthia.Web.ForumUI
 					}
 					else
 					{
-						thread = new ForumThread(threadId);
+						thread = new GroupThread(threadId);
 					}
-					forumId = thread.ForumId;
+					forumId = thread.GroupId;
 
 				}
 
@@ -353,7 +353,7 @@ namespace Cynthia.Web.ForumUI
                     SiteUser siteUser = SiteUtils.GetCurrentSiteUser();
                     if (siteUser != null) 
 					thread.PostUserId = siteUser.UserId;
-                    if (chkSubscribeToForum.Checked)
+                    if (chkSubscribeToGroup.Checked)
                     {
                         forum.Subscribe(siteUser.UserId);
                     }
@@ -368,7 +368,7 @@ namespace Cynthia.Web.ForumUI
 					thread.PostUserId = 0; //guest
 				}
 
-				string threadViewUrl = SiteRoot + "/Forums/Thread.aspx?thread=" 
+				string threadViewUrl = SiteRoot + "/Groups/Thread.aspx?thread=" 
 					+ thread.ThreadId.ToInvariantString()
                     + "&mid=" + moduleId.ToInvariantString()
                     + "&pageid=" + pageId.ToInvariantString()
@@ -380,7 +380,7 @@ namespace Cynthia.Web.ForumUI
 					thread.Post();
                     CurrentPage.UpdateLastModifiedTime();
 
-                    threadViewUrl = SiteRoot + "/Forums/Thread.aspx?thread="
+                    threadViewUrl = SiteRoot + "/Groups/Thread.aspx?thread="
                         + thread.ThreadId.ToInvariantString()
                         + "&mid=" + moduleId.ToInvariantString()
                         + "&pageid=" + pageId.ToInvariantString()
@@ -393,13 +393,13 @@ namespace Cynthia.Web.ForumUI
 					DataSet dsThreadSubscribers = thread.GetThreadSubscribers();
 
                     //ConfigurationManager.AppSettings["DefaultEmailFrom"]
-                    ForumNotificationInfo notificationInfo = new ForumNotificationInfo();
+                    GroupNotificationInfo notificationInfo = new GroupNotificationInfo();
 
                     CultureInfo defaultCulture = SiteUtils.GetDefaultCulture();
 
                     notificationInfo.SubjectTemplate
                         = ResourceHelper.GetMessageTemplate(defaultCulture, 
-                        "ForumNotificationEmailSubject.config");
+                        "GroupNotificationEmailSubject.config");
 
                     if (includePostBodyInNotification)
                     {
@@ -408,20 +408,20 @@ namespace Cynthia.Web.ForumUI
 
                     notificationInfo.BodyTemplate
                         += ResourceHelper.GetMessageTemplate(defaultCulture, 
-                        "ForumNotificationEmail.config");
+                        "GroupNotificationEmail.config");
 
                     notificationInfo.FromEmail = siteSettings.DefaultEmailFromAddress;
                     notificationInfo.SiteName = siteSettings.SiteName;
                     notificationInfo.ModuleName = new Module(moduleId).ModuleTitle;
-                    notificationInfo.ForumName = new Forum(forumId).Title;
+                    notificationInfo.GroupName = new Group(forumId).Title;
                     notificationInfo.Subject = thread.PostSubject;
                     notificationInfo.Subscribers = dsThreadSubscribers;
                     notificationInfo.MessageLink = threadViewUrl;
-                    notificationInfo.UnsubscribeForumThreadLink = SiteRoot + "/Forums/UnsubscribeThread.aspx?threadid=" + thread.ThreadId;
-                    notificationInfo.UnsubscribeForumLink = SiteRoot + "/Forums/UnsubscribeForum.aspx?mid=" + moduleId + "&itemid=" + thread.ForumId;
+                    notificationInfo.UnsubscribeGroupThreadLink = SiteRoot + "/Groups/UnsubscribeThread.aspx?threadid=" + thread.ThreadId;
+                    notificationInfo.UnsubscribeGroupLink = SiteRoot + "/Groups/UnsubscribeGroup.aspx?mid=" + moduleId + "&itemid=" + thread.GroupId;
                     notificationInfo.SmtpSettings = SiteUtils.GetSmtpSettings();
 
-                    ThreadPool.QueueUserWorkItem(new WaitCallback(Notification.SendForumNotificationEmail), notificationInfo);
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(Notification.SendGroupNotificationEmail), notificationInfo);
                     
 
                     String cacheDependencyKey = "Module-" + moduleId.ToInvariantString();
@@ -437,7 +437,7 @@ namespace Cynthia.Web.ForumUI
 
         void thread_ContentChanged(object sender, ContentChangedEventArgs e)
         {
-            IndexBuilderProvider indexBuilder = IndexBuilderManager.Providers["ForumThreadIndexBuilderProvider"];
+            IndexBuilderProvider indexBuilder = IndexBuilderManager.Providers["GroupThreadIndexBuilderProvider"];
             if (indexBuilder != null)
             {
                 indexBuilder.ContentChangedHandler(sender, e);
@@ -467,25 +467,25 @@ namespace Cynthia.Web.ForumUI
 
         private void PopulateLabels()
         {
-            reqSubject.ErrorMessage = ForumResources.ForumEditSubjectRequiredHelp;
-            lblThreadDescription.Text = ForumResources.NewTopicLabel;
+            reqSubject.ErrorMessage = GroupResources.GroupEditSubjectRequiredHelp;
+            lblThreadDescription.Text = GroupResources.NewTopicLabel;
 
-            btnUpdate.Text = ForumResources.ForumPostEditUpdateButton;
-            SiteUtils.SetButtonAccessKey(btnUpdate, ForumResources.ForumPostEditUpdateButtonAccessKey);
+            btnUpdate.Text = GroupResources.GroupPostEditUpdateButton;
+            SiteUtils.SetButtonAccessKey(btnUpdate, GroupResources.GroupPostEditUpdateButtonAccessKey);
 
             UIHelper.DisableButtonAfterClick(
                 btnUpdate,
-                ForumResources.ButtonDisabledPleaseWait,
+                GroupResources.ButtonDisabledPleaseWait,
                 Page.ClientScript.GetPostBackEventReference(this.btnUpdate, string.Empty)
                 );
 
-            lnkCancel.Text = ForumResources.ForumPostEditCancelButton;
-            //btnCancel.Text = ForumResources.ForumPostEditCancelButton;
-            //SiteUtils.SetButtonAccessKey(btnCancel, ForumResources.ForumEditCancelButtonAccessKey);
+            lnkCancel.Text = GroupResources.GroupPostEditCancelButton;
+            //btnCancel.Text = GroupResources.GroupPostEditCancelButton;
+            //SiteUtils.SetButtonAccessKey(btnCancel, GroupResources.GroupEditCancelButtonAccessKey);
 
-            btnDelete.Text = ForumResources.ForumPostEditDeleteButton;
-            SiteUtils.SetButtonAccessKey(btnDelete, ForumResources.ForumEditDeleteButtonAccessKey);
-            UIHelper.AddConfirmationDialog(btnDelete, ForumResources.ForumDeletePostWarning);
+            btnDelete.Text = GroupResources.GroupPostEditDeleteButton;
+            SiteUtils.SetButtonAccessKey(btnDelete, GroupResources.GroupEditDeleteButtonAccessKey);
+            UIHelper.AddConfirmationDialog(btnDelete, GroupResources.GroupDeletePostWarning);
 
             if (postId == -1)
             {
@@ -493,7 +493,7 @@ namespace Cynthia.Web.ForumUI
             }
 
             if (!Request.IsAuthenticated) pnlNotify.Visible = false;
-            if (isSubscribedToForum) pnlNotify.Visible = false;
+            if (isSubscribedToGroup) pnlNotify.Visible = false;
 
             if (forumId == -1) pnlEdit.Visible = false;
         }
@@ -558,11 +558,11 @@ namespace Cynthia.Web.ForumUI
                 theUser = SiteUtils.GetCurrentSiteUser();
                 if (forumId > -1)
                 {
-                    isSubscribedToForum = Forum.IsSubscribed(forumId, theUser.UserId);
+                    isSubscribedToGroup = Group.IsSubscribed(forumId, theUser.UserId);
                 }
                 if (threadId > -1)
                 {
-                    isSubscribedToThread = ForumThread.IsSubscribed(threadId, theUser.UserId);
+                    isSubscribedToThread = GroupThread.IsSubscribed(threadId, theUser.UserId);
                 }
             }
 
@@ -572,11 +572,11 @@ namespace Cynthia.Web.ForumUI
             }
             else if ((Request.IsAuthenticated)&&(WebUser.IsInRoles(siteSettings.UserFilesBrowseAndUploadRoles)))
             {
-                edMessage.WebEditor.ToolBar = ToolBar.ForumWithImages;
+                edMessage.WebEditor.ToolBar = ToolBar.GroupWithImages;
             }
             else
             {
-                edMessage.WebEditor.ToolBar = ToolBar.Forum;
+                edMessage.WebEditor.ToolBar = ToolBar.Group;
             }
 
             edMessage.WebEditor.SetFocusOnStart = true;
@@ -585,7 +585,7 @@ namespace Cynthia.Web.ForumUI
             moduleSettings = ModuleSettings.GetModuleSettings(moduleId);
 
             useSpamBlockingForAnonymous = WebUtils.ParseBoolFromHashtable(
-                moduleSettings, "ForumEnableAntiSpamSetting", useSpamBlockingForAnonymous);
+                moduleSettings, "GroupEnableAntiSpamSetting", useSpamBlockingForAnonymous);
 
             includePostBodyInNotification = WebUtils.ParseBoolFromHashtable(
                 moduleSettings, "IncludePostBodyInNotificationEmail", includePostBodyInNotification);

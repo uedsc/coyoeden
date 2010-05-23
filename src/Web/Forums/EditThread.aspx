@@ -1,4 +1,4 @@
-<%@ Page language="c#" Codebehind="EditThread.aspx.cs" MasterPageFile="~/App_MasterPages/layout.Master" AutoEventWireup="false" Inherits="Cynthia.Web.ForumUI.ForumThreadEdit" %>
+<%@ Page language="c#" Codebehind="EditThread.aspx.cs" MasterPageFile="~/App_MasterPages/layout.Master" AutoEventWireup="false" Inherits="Cynthia.Web.GroupUI.GroupThreadEdit" %>
 
 <asp:Content ContentPlaceHolderID="leftContent" ID="MPLeftPane" runat="server" />
 <asp:Content ContentPlaceHolderID="mainContent" ID="MPContent" runat="server">
@@ -7,16 +7,16 @@
 <asp:Panel ID="pnlEdit" runat="server" CssClass="modulecontent" DefaultButton="btnUpdate">
 <fieldset>
     <legend>
-	    <cy:SiteLabel id="lblForumThreadEditLabel" runat="server" ConfigKey="ForumThreadEditLabel" ResourceFile="ForumResources" UseLabelTag="false" />
+	    <cy:SiteLabel id="lblGroupThreadEditLabel" runat="server" ConfigKey="GroupThreadEditLabel" ResourceFile="GroupResources" UseLabelTag="false" />
 	</legend>
     
         <div class="settingrow">
-            <cy:SiteLabel id="lblThreadSubjectLabel" runat="server" ForControl="txtSubject" CssClass="settinglabel" ConfigKey="ForumThreadEditSubjectLabel" ResourceFile="ForumResources"  />
+            <cy:SiteLabel id="lblTopicTitleLabel" runat="server" ForControl="txtSubject" CssClass="settinglabel" ConfigKey="GroupThreadEditSubjectLabel" ResourceFile="GroupResources"  />
             <asp:TextBox id="txtSubject" runat="server" maxlength="100" CssClass="verywidetextbox forminput" ></asp:TextBox>
         </div>
         <div class="settingrow">
-            <cy:SiteLabel id="lblThreadForumLabel" runat="server" ForControl="ddForumList" CssClass="settinglabel" ConfigKey="ForumThreadEditForumLabel" ResourceFile="ForumResources"  />
-            <asp:DropDownList ID="ddForumList" Runat="server" EnableTheming="false" CssClass="forminput" AutoPostBack="False" DataTextField="Title" DataValueField="ItemID"></asp:DropDownList>
+            <cy:SiteLabel id="lblThreadGroupLabel" runat="server" ForControl="ddGroupList" CssClass="settinglabel" ConfigKey="GroupThreadEditGroupLabel" ResourceFile="GroupResources"  />
+            <asp:DropDownList ID="ddGroupList" Runat="server" EnableTheming="false" CssClass="forminput" AutoPostBack="False" DataTextField="Title" DataValueField="ItemID"></asp:DropDownList>
         </div>
         <div class="settingrow">
             <asp:Label ID="lblError"  runat="server" CssClass="txterror"></asp:Label>

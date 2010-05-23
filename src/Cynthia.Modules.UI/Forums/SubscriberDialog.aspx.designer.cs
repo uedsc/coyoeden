@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cynthia.ForumUI {
+namespace Cynthia.GroupUI {
     
     
     public partial class SubscriberDialog {

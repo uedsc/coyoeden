@@ -23,7 +23,7 @@ using Cynthia.Web;
 using Cynthia.Web.Framework;
 using Resources;
 
-namespace Cynthia.ForumUI
+namespace Cynthia.GroupUI
 {
     public partial class SubscriberDialog : CDialogBasePage
     {
@@ -52,10 +52,10 @@ namespace Cynthia.ForumUI
 
         private void BindGrid()
         {
-            using (IDataReader reader = Forum.GetSubscriberPage(itemId, pageNumber, pageSize, out totalPages))
+            using (IDataReader reader = Group.GetSubscriberPage(itemId, pageNumber, pageSize, out totalPages))
             {
                 string pageUrl = SiteRoot
-                + "/Forums/SubscriberDialog.aspx?ItemID=" 
+                + "/Groups/SubscriberDialog.aspx?ItemID=" 
                 + itemId.ToInvariantString() 
                 + "&amp;mid=" 
                 + moduleId.ToInvariantString() 
@@ -81,7 +81,7 @@ namespace Cynthia.ForumUI
             if (e.CommandName == "unsubscribe")
             {
                 int subscriptionId = Convert.ToInt32(e.CommandArgument);
-                Forum.DeleteSubscription(subscriptionId);
+                Group.DeleteSubscription(subscriptionId);
 
             }
 

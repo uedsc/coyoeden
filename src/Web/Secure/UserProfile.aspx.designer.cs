@@ -542,7 +542,7 @@ namespace Cynthia.Web.UI.Pages {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.UI.ForumUserThreadLink lnkUserPosts;
+        protected global::Cynthia.Web.UI.GroupUserThreadLink lnkUserPosts;
         
         /// <summary>
         /// lnkPublicProfile control.

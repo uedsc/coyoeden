@@ -14,17 +14,17 @@ using Cynthia.Web.Framework;
 using Cynthia.Web.UI;
 using Resources;
 
-namespace Cynthia.Web.ForumUI
+namespace Cynthia.Web.GroupUI
 {
-	public partial class ForumModule : SiteModuleControl
+	public partial class GroupModule : SiteModuleControl
 	{
-        private static readonly ILog log = LogManager.GetLogger(typeof(ForumModule));
+        private static readonly ILog log = LogManager.GetLogger(typeof(GroupModule));
 
         protected string EditContentImage = WebConfigSettings.EditContentImage;
         protected string RssImageFile = WebConfigSettings.RSSImageFileName;
 		private SiteUser siteUser;
         protected bool EnableRSSAtModuleLevel = false;
-        protected bool EnableRSSAtForumLevel = false;
+        protected bool EnableRSSAtGroupLevel = false;
         protected bool EnableRSSAtThreadLevel = false;
         protected bool showSubscriberCount = false;
         protected Double TimeOffset = 0;
@@ -44,8 +44,8 @@ namespace Cynthia.Web.ForumUI
 		{
 			
             
-			Title1.EditUrl = SiteRoot + "/Forums/EditForum.aspx";
-            Title1.EditText = ForumResources.EditImageAltText;
+			Title1.EditUrl = SiteRoot + "/Groups/EditGroup.aspx";
+            Title1.EditText = GroupResources.EditImageAltText;
 
             Title1.Visible = !this.RenderInWebPartMode;
             if (this.ModuleConfiguration != null)
@@ -63,48 +63,48 @@ namespace Cynthia.Web.ForumUI
 
 		private void PopulateControls()
 		{
-            using (IDataReader reader = Forum.GetForums(ModuleId, userId))
+            using (IDataReader reader = Group.GetGroups(ModuleId, userId))
             {
-                rptForums.DataSource = reader;
+                rptGroups.DataSource = reader;
 #if MONO
-			rptForums.DataBind();
+			rptGroups.DataBind();
 #else
                 this.DataBind();
 #endif
             }
 
-            pnlForumList.Visible = (rptForums.Items.Count > 0);
+            pnlGroupList.Visible = (rptGroups.Items.Count > 0);
          
 		}
 
 
         protected string FormatSubscriberCount(int subscriberCount)
         {
-            return string.Format(CultureInfo.InvariantCulture, ForumResources.SubscriberCountFormat, subscriberCount);
+            return string.Format(CultureInfo.InvariantCulture, GroupResources.SubscriberCountFormat, subscriberCount);
 
         }
         
 
 		private void PopulateLabels()
 		{
-            Title1.EditText = ForumResources.ForumEditLabel;
+            Title1.EditText = GroupResources.GroupEditLabel;
             //EditAltText = Resource.EditImageAltText;
             
             divEditSubscriptions.Visible = tdSubscribedHead.Visible = Page.Request.IsAuthenticated;
-            notificationUrl = SiteRoot + "/Forums/EditSubscriptions.aspx?mid="
+            notificationUrl = SiteRoot + "/Groups/EditSubscriptions.aspx?mid="
                 + ModuleId.ToString(CultureInfo.InvariantCulture)
                 + "&pageid=" + PageId.ToString(CultureInfo.InvariantCulture);
 
             editSubscriptionsLink.NavigateUrl = notificationUrl;
 
-            notificationLink = "<a title='" + ForumResources.ForumModuleEditSubscriptionsLabel 
-                + "' href='" + SiteRoot + "/Forums/EditSubscriptions.aspx?mid="
+            notificationLink = "<a title='" + GroupResources.GroupModuleEditSubscriptionsLabel 
+                + "' href='" + SiteRoot + "/Groups/EditSubscriptions.aspx?mid="
                 + ModuleId.ToString(CultureInfo.InvariantCulture)
                 + "&amp;pageid=" + PageId.ToString(CultureInfo.InvariantCulture)
                 + "'><img src='" + ImageSiteRoot + "/Data/SiteImages/FeatureIcons/email.png' /></a>";
 
             lnkModuleRSS.NavigateUrl = SiteRoot
-                + "/Forums/RSS.aspx?mid=" + this.ModuleId.ToString()
+                + "/Groups/RSS.aspx?mid=" + this.ModuleId.ToString()
                 + "&pageid=" + CurPageSettings.PageId.ToString();
 
             lnkModuleRSS.ImageUrl = ImageSiteRoot + "/Data/SiteImages/" + RssImageFile;
@@ -113,7 +113,7 @@ namespace Cynthia.Web.ForumUI
 
             lnkModuleRSS.Visible = EnableRSSAtModuleLevel;
 
-            editSubscriptionsLink.Text = ForumResources.ForumModuleEditSubscriptionsLabel;
+            editSubscriptionsLink.Text = GroupResources.GroupModuleEditSubscriptionsLabel;
 
             
 
@@ -143,13 +143,13 @@ namespace Cynthia.Web.ForumUI
         private void LoadSettings()
         {
             EnableRSSAtModuleLevel = WebUtils.ParseBoolFromHashtable(
-                Settings, "ForumEnableRSSAtModuleLevel", false);
+                Settings, "GroupEnableRSSAtModuleLevel", false);
 
-            EnableRSSAtForumLevel = WebUtils.ParseBoolFromHashtable(
-                Settings, "ForumEnableRSSAtForumLevel", false);
+            EnableRSSAtGroupLevel = WebUtils.ParseBoolFromHashtable(
+                Settings, "GroupEnableRSSAtGroupLevel", false);
 
             EnableRSSAtThreadLevel = WebUtils.ParseBoolFromHashtable(
-                Settings, "ForumEnableRSSAtThreadLevel", false);
+                Settings, "GroupEnableRSSAtThreadLevel", false);
 
             showSubscriberCount = WebUtils.ParseBoolFromHashtable(
                 Settings, "ShowSubscriberCount", showSubscriberCount);

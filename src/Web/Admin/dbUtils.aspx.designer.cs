@@ -104,22 +104,22 @@ namespace Cynthia.Web.AdminUI {
         protected global::System.Web.UI.WebControls.Label lblEventsResults;
         
         /// <summary>
-        /// btnDecodeForums control.
+        /// btnDecodeGroups control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDecodeForums;
+        protected global::System.Web.UI.WebControls.Button btnDecodeGroups;
         
         /// <summary>
-        /// lblForumResults control.
+        /// lblGroupResults control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblForumResults;
+        protected global::System.Web.UI.WebControls.Label lblGroupResults;
         
         /// <summary>
         /// btnDecodeLinks control.

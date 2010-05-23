@@ -917,7 +917,7 @@ namespace Cynthia.Business.WebHelpers
 			{
 				foreach (IndexBuilderProvider indexBuilder in IndexBuilderManager.Providers)
 				{
-					if (indexBuilder.Name != "ForumThreadIndexBuilderProvider")
+					if (indexBuilder.Name != "GroupThreadIndexBuilderProvider")
 					{
 						indexBuilder.RebuildIndex(pageSettings, indexPath);
 					}
@@ -932,7 +932,7 @@ namespace Cynthia.Business.WebHelpers
 			{
 				foreach (IndexBuilderProvider indexBuilder in IndexBuilderManager.Providers)
 				{
-					if (indexBuilder.Name == "ForumThreadIndexBuilderProvider")
+					if (indexBuilder.Name == "GroupThreadIndexBuilderProvider")
 					{
 						indexBuilder.RebuildIndex(pageSettings, indexPath);
 					}
@@ -940,7 +940,7 @@ namespace Cynthia.Business.WebHelpers
 
 			}
 
-			log.Info("Finished indexing Forums.");
+			log.Info("Finished indexing Groups.");
 
 			return true;
 		}

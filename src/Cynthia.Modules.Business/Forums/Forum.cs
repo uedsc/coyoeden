@@ -1,14 +1,4 @@
-﻿// Author:					Joe Audette
-// Created:				    2004-09-12
-// Last Modified:			2009-06-22
-// 
-// The use and distribution terms for this software are covered by the 
-// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-// which can be found in the file CPL.TXT at the root of this distribution.
-// By using this software in any fashion, you are agreeing to be bound by 
-// the terms of this license.
-//
-// You must not remove this notice, or any other, from this software.
+﻿
 
 using System;
 using System.Data;
@@ -20,19 +10,19 @@ namespace Cynthia.Business
     /// <summary>
     /// Represents a forum
     /// </summary>
-    public class Forum
+    public class Group
     {
 
         #region Constructors
 
-        public Forum()
+        public Group()
         { }
 
-        public Forum(int forumId)
+        public Group(int forumId)
         {
             if (forumId > -1)
             {
-                GetForum(forumId);
+                GetGroup(forumId);
             }
 
         }
@@ -41,7 +31,7 @@ namespace Cynthia.Business
 
         #region Private Properties
 
-        private static readonly ILog log = LogManager.GetLogger(typeof(Forum));
+        private static readonly ILog log = LogManager.GetLogger(typeof(Group));
 
         private int itemID = -1;
         private int moduleID = -1;
@@ -140,13 +130,13 @@ namespace Cynthia.Business
             set { postsPerPage = value; }
         }
 
-        public int ThreadsPerPage
+        public int TopicsPerPage
         {
             get { return threadsPerPage; }
             set { threadsPerPage = value; }
         }
 
-        public int ThreadCount
+        public int TopicCount
         {
             get { return threadCount; }
             set { threadCount = value; }
@@ -180,9 +170,9 @@ namespace Cynthia.Business
 
         #region Private Methods
 
-        private void GetForum(int forumId)
+        private void GetGroup(int forumId)
         {
-            using (IDataReader reader = DBForums.GetForum(forumId))
+            using (IDataReader reader = DBGroups.GetGroup(forumId))
             {
                 if (reader.Read())
                 {
@@ -202,8 +192,8 @@ namespace Cynthia.Business
                     this.isActive = (active == "True" || active == "1");
                     this.sortOrder = int.Parse(reader["SortOrder"].ToString());
                     this.postsPerPage = int.Parse(reader["PostsPerPage"].ToString());
-                    this.threadsPerPage = int.Parse(reader["ThreadsPerPage"].ToString());
-                    this.threadCount = int.Parse(reader["ThreadCount"].ToString());
+                    this.threadsPerPage = int.Parse(reader["TopicsPerPage"].ToString());
+                    this.threadCount = int.Parse(reader["TopicCount"].ToString());
                     this.postCount = int.Parse(reader["PostCount"].ToString());
                     if (reader["MostRecentPostDate"] != DBNull.Value)
                     {
@@ -231,7 +221,7 @@ namespace Cynthia.Business
                 {
                     if (log.IsErrorEnabled)
                     {
-                        log.Error("IDataReader didn't read in Forum.GetForum");
+                        log.Error("IDataReader didn't read in Group.GetGroup");
                     }
 
 
@@ -246,7 +236,7 @@ namespace Cynthia.Business
         {
             int newID = -1;
 
-            newID = DBForums.Create(
+            newID = DBGroups.Create(
                 this.moduleID,
                 this.createdByUserID,
                 this.title,
@@ -268,7 +258,7 @@ namespace Cynthia.Business
         private bool Update()
         {
 
-            return DBForums.Update(
+            return DBGroups.Update(
                 this.itemID,
                 this.createdByUserID,
                 this.title,
@@ -301,17 +291,17 @@ namespace Cynthia.Business
 
         public IDataReader GetThreads(int pageNumber)
         {
-            return DBForums.GetThreads(this.itemID, pageNumber);
+            return DBGroups.GetThreads(this.itemID, pageNumber);
         }
 
         public bool Subscribe(int userId)
         {
-            return DBForums.AddSubscriber(this.itemID, userId);
+            return DBGroups.AddSubscriber(this.itemID, userId);
         }
 
         public bool Unsubscribe(int userId)
         {
-            return DBForums.Unsubscribe(this.itemID, userId);
+            return DBGroups.Unsubscribe(this.itemID, userId);
         }
 
         #endregion
@@ -320,65 +310,65 @@ namespace Cynthia.Business
 
         public static bool UnsubscribeAll(int userId)
         {
-            return DBForums.UnsubscribeAll(userId);
+            return DBGroups.UnsubscribeAll(userId);
         }
 
-        public static IDataReader GetForums(int moduleId, int userId)
+        public static IDataReader GetGroups(int moduleId, int userId)
         {
-            return DBForums.GetForums(moduleId, userId);
+            return DBGroups.GetGroups(moduleId, userId);
         }
 
 
         public static bool IncrementPostCount(int forumId, int mostRecentPostUserId, DateTime mostRecentPostDate)
         {
-            return DBForums.IncrementPostCount(forumId, mostRecentPostUserId, mostRecentPostDate);
+            return DBGroups.IncrementPostCount(forumId, mostRecentPostUserId, mostRecentPostDate);
         }
 
         public static bool IncrementPostCount(int forumId)
         {
-            return DBForums.IncrementPostCount(forumId);
+            return DBGroups.IncrementPostCount(forumId);
         }
 
         public static bool DecrementPostCount(int forumId)
         {
-            return DBForums.DecrementPostCount(forumId);
+            return DBGroups.DecrementPostCount(forumId);
         }
 
         public static bool RecalculatePostStats(int forumId)
         {
             //implemented for PostgreSQL. --Dean 9/11/05
-            return DBForums.RecalculatePostStats(forumId);
+            return DBGroups.RecalculatePostStats(forumId);
 
         }
 
-        public static bool DecrementThreadCount(int forumId)
+        public static bool DecrementTopicCount(int forumId)
         {
-            return DBForums.DecrementThreadCount(forumId);
+            return DBGroups.DecrementTopicCount(forumId);
         }
 
-        public static bool IncrementThreadCount(int forumId)
+        public static bool IncrementTopicCount(int forumId)
         {
-            return DBForums.IncrementThreadCount(forumId);
+            return DBGroups.IncrementTopicCount(forumId);
         }
 
         public static bool Delete(int itemId)
         {
-            return DBForums.Delete(itemId);
+            return DBGroups.Delete(itemId);
         }
 
         public static bool DeleteByModule(int moduleId)
         {
-            return DBForums.DeleteByModule(moduleId);
+            return DBGroups.DeleteByModule(moduleId);
         }
 
         public static bool DeleteBySite(int siteId)
         {
-            return DBForums.DeleteBySite(siteId);
+            return DBGroups.DeleteBySite(siteId);
         }
 
         public static bool IsSubscribed(int forumId, int userId)
         {
-            return DBForums.ForumSubscriptionExists(forumId, userId);
+            return DBGroups.GroupSubscriptionExists(forumId, userId);
         }
 
         /// <summary>
@@ -388,7 +378,7 @@ namespace Cynthia.Business
         /// <returns></returns>
         public static bool UpdateUserStats(int userId)
         {
-            return DBForums.UpdateUserStats(userId);
+            return DBGroups.UpdateUserStats(userId);
         }
 
         public static IDataReader GetSubscriberPage(
@@ -397,7 +387,7 @@ namespace Cynthia.Business
             int pageSize,
             out int totalPages)
         {
-            return DBForums.GetSubscriberPage(
+            return DBGroups.GetSubscriberPage(
                 forumId,
                 pageNumber,
                 pageSize,
@@ -406,7 +396,7 @@ namespace Cynthia.Business
 
         public static bool DeleteSubscription(int subscriptionId)
         {
-            return DBForums.DeleteSubscription(subscriptionId);
+            return DBGroups.DeleteSubscription(subscriptionId);
         }
 
 

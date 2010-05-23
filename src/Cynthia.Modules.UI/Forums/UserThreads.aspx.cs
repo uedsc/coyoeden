@@ -21,9 +21,9 @@ using log4net;
 using Cynthia.Business;
 using Resources;
 
-namespace Cynthia.Web.ForumUI
+namespace Cynthia.Web.GroupUI
 {
-    public partial class ForumUserThreadsPage : CBasePage
+    public partial class GroupUserThreadsPage : CBasePage
     {
         private int userId = -1;
         //private bool isAdmin = false;
@@ -31,10 +31,10 @@ namespace Cynthia.Web.ForumUI
         private int pageSize = 20;
         private int totalPages = 1;
         private string editContentImage = ConfigurationManager.AppSettings["EditContentImage"];
-        private string ThreadImage = ConfigurationManager.AppSettings["ForumThreadImage"];
+        private string ThreadImage = ConfigurationManager.AppSettings["GroupThreadImage"];
         
         private Double timeOffset = 0;
-        private static readonly ILog log = LogManager.GetLogger(typeof(ForumThreadView));
+        private static readonly ILog log = LogManager.GetLogger(typeof(GroupThreadView));
         private SiteUser forumUser = null;
 
         #region Protected Properties
@@ -67,16 +67,16 @@ namespace Cynthia.Web.ForumUI
             if (forumUser == null) return;
 
             litTitle.Text = string.Format(CultureInfo.InvariantCulture,
-                ForumResources.ForumUserThreadHeading,
+                GroupResources.GroupUserThreadHeading,
                 forumUser.Name);
 
             Title = SiteUtils.FormatPageTitle(siteSettings, string.Format(CultureInfo.InvariantCulture,
-                ForumResources.UserThreadTitleFormat, forumUser.Name));
+                GroupResources.UserThreadTitleFormat, forumUser.Name));
 
             MetaDescription = string.Format(CultureInfo.InvariantCulture,
-                ForumResources.UserThreadMetaFormat, forumUser.Name);
+                GroupResources.UserThreadMetaFormat, forumUser.Name);
 
-            using (IDataReader reader = ForumThread.GetPageByUser(
+            using (IDataReader reader = GroupThread.GetPageByUser(
                 userId,
                 pageNumber,
                 pageSize,
@@ -84,7 +84,7 @@ namespace Cynthia.Web.ForumUI
             {
 
                 string pageUrl = siteSettings.SiteRoot
-                    + "/Forums/UserThreads.aspx?"
+                    + "/Groups/UserThreads.aspx?"
                     + "userid=" + userId.ToString(CultureInfo.InvariantCulture)
                     + "&amp;pagenumber={0}";
 
@@ -103,8 +103,8 @@ namespace Cynthia.Web.ForumUI
                 pgrBottom.Visible = (pgrBottom.PageCount > 1);
 
 
-                rptForums.DataSource = reader;
-                rptForums.DataBind();
+                rptGroups.DataSource = reader;
+                rptGroups.DataBind();
             }
 
         }
@@ -117,7 +117,7 @@ namespace Cynthia.Web.ForumUI
             link.ID = "threadurl";
             link.Text = "\n<link rel='canonical' href='"
                 + SiteRoot
-                + "/Forums/UserThreads.aspx?userid="
+                + "/Groups/UserThreads.aspx?userid="
                 + userId.ToInvariantString()
                 + "&amp;pagenumber=" + pageNumber.ToInvariantString()
                 + "' />";
@@ -129,21 +129,21 @@ namespace Cynthia.Web.ForumUI
 
         private void PopulateLabels()
         {
-            pgrTop.NavigateToPageText = ForumResources.CutePagerNavigateToPageText;
-            pgrTop.BackToFirstClause = ForumResources.CutePagerBackToFirstClause;
-            pgrTop.GoToLastClause = ForumResources.CutePagerGoToLastClause;
-            pgrTop.BackToPageClause = ForumResources.CutePagerBackToPageClause;
-            pgrTop.NextToPageClause = ForumResources.CutePagerNextToPageClause;
-            pgrTop.PageClause = ForumResources.CutePagerPageClause;
-            pgrTop.OfClause = ForumResources.CutePagerOfClause;
+            pgrTop.NavigateToPageText = GroupResources.CutePagerNavigateToPageText;
+            pgrTop.BackToFirstClause = GroupResources.CutePagerBackToFirstClause;
+            pgrTop.GoToLastClause = GroupResources.CutePagerGoToLastClause;
+            pgrTop.BackToPageClause = GroupResources.CutePagerBackToPageClause;
+            pgrTop.NextToPageClause = GroupResources.CutePagerNextToPageClause;
+            pgrTop.PageClause = GroupResources.CutePagerPageClause;
+            pgrTop.OfClause = GroupResources.CutePagerOfClause;
 
-            pgrBottom.NavigateToPageText = ForumResources.CutePagerNavigateToPageText;
-            pgrBottom.BackToFirstClause = ForumResources.CutePagerBackToFirstClause;
-            pgrBottom.GoToLastClause = ForumResources.CutePagerGoToLastClause;
-            pgrBottom.BackToPageClause = ForumResources.CutePagerBackToPageClause;
-            pgrBottom.NextToPageClause = ForumResources.CutePagerNextToPageClause;
-            pgrBottom.PageClause = ForumResources.CutePagerPageClause;
-            pgrBottom.OfClause = ForumResources.CutePagerOfClause;
+            pgrBottom.NavigateToPageText = GroupResources.CutePagerNavigateToPageText;
+            pgrBottom.BackToFirstClause = GroupResources.CutePagerBackToFirstClause;
+            pgrBottom.GoToLastClause = GroupResources.CutePagerGoToLastClause;
+            pgrBottom.BackToPageClause = GroupResources.CutePagerBackToPageClause;
+            pgrBottom.NextToPageClause = GroupResources.CutePagerNextToPageClause;
+            pgrBottom.PageClause = GroupResources.CutePagerPageClause;
+            pgrBottom.OfClause = GroupResources.CutePagerOfClause;
 
         }
 

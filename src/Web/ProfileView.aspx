@@ -9,10 +9,10 @@
 		            <cy:SiteLabel id="lblCreatedDateLabel" runat="server" CssClass="settinglabel" ConfigKey="ManageUsersCreatedDateLabel" > </cy:SiteLabel>
 		            &nbsp;<asp:Label id="lblCreatedDate" runat="server" ></asp:Label>
 		        </div>
-		        <div id="divForumPosts" runat="server" class="settingrow">
+		        <div id="divGroupPosts" runat="server" class="settingrow">
 		            <cy:SiteLabel id="lblTotalPostsLabel" runat="server" CssClass="settinglabel" ConfigKey="ManageUsersTotalPostsLabel" > </cy:SiteLabel>
 		            &nbsp;<asp:Label id="lblTotalPosts" runat="server" ></asp:Label>
-		            <portal:ForumUserThreadLink id="lnkUserPosts" runat="server"  />
+		            <portal:GroupUserThreadLink id="lnkUserPosts" runat="server"  />
 		        </div>
 		        <div class="settingrow">
 		            <cy:SiteLabel id="lblUserNameLabel" runat="server" CssClass="settinglabel" ConfigKey="ManageUsersUserNameLabel" > </cy:SiteLabel>

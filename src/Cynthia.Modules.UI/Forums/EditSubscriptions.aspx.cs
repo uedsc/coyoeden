@@ -13,10 +13,10 @@ using Cynthia.Business.WebHelpers;
 using Cynthia.Web.Framework;
 using Resources;
 
-namespace Cynthia.Web.ForumUI
+namespace Cynthia.Web.GroupUI
 {
 	
-    public partial class ForumModuleEditSubscriptions : CBasePage
+    public partial class GroupModuleEditSubscriptions : CBasePage
 	{
 		
         private int moduleId = -1; 
@@ -54,7 +54,7 @@ namespace Cynthia.Web.ForumUI
            
         }
 		
-		private Hashtable ForumIdForControlId
+		private Hashtable GroupIdForControlId
 		{
 			get 
 			{
@@ -67,7 +67,7 @@ namespace Cynthia.Web.ForumUI
 		}
 
 		// Create a logger for use in this class
-		private static readonly ILog log = LogManager.GetLogger(typeof(ForumModuleEditSubscriptions));
+		private static readonly ILog log = LogManager.GetLogger(typeof(GroupModuleEditSubscriptions));
 
 
         #region OnInit
@@ -119,12 +119,12 @@ namespace Cynthia.Web.ForumUI
 		{
             Module module = new Module(moduleId, pageId);
             litHeading.Text = module.ModuleTitle;
-			rptForums.ItemDataBound += new RepeaterItemEventHandler(Repeater_ItemDataBound);
-            using (IDataReader reader = Forum.GetForums(moduleId, siteUser.UserId))
+			rptGroups.ItemDataBound += new RepeaterItemEventHandler(Repeater_ItemDataBound);
+            using (IDataReader reader = Group.GetGroups(moduleId, siteUser.UserId))
             {
-                rptForums.DataSource = reader;
+                rptGroups.DataSource = reader;
 #if MONO
-			rptForums.DataBind();
+			rptGroups.DataBind();
 #else
                 this.DataBind();
 #endif
@@ -133,7 +133,7 @@ namespace Cynthia.Web.ForumUI
 			btnSave.Click += new EventHandler(this.btnSave_Click);
 			btnCancel.Click += new EventHandler(this.btnCancel_Click);
 
-            if (rptForums.Items.Count == 0)
+            if (rptGroups.Items.Count == 0)
             {
                 WebUtils.SetupRedirect(this, SiteUtils.GetCurrentPageUrl());
             }
@@ -149,7 +149,7 @@ namespace Cynthia.Web.ForumUI
 			if (checkBox == null)
 				return;
 			int forumId = Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "ItemID"));
-			ForumIdForControlId[checkBox.UniqueID] = forumId;
+			GroupIdForControlId[checkBox.UniqueID] = forumId;
 		}
 		
 		protected void Subscribed_CheckedChanged(object sender, EventArgs e)
@@ -161,7 +161,7 @@ namespace Cynthia.Web.ForumUI
             }
 
 			CheckBox checkBox = sender as CheckBox;			
-			int forumId = Convert.ToInt32(ForumIdForControlId[checkBox.UniqueID]);
+			int forumId = Convert.ToInt32(GroupIdForControlId[checkBox.UniqueID]);
 			if (checkBox.Checked)
 			{
 				forumIDsToSubscribe.Add(forumId);
@@ -176,12 +176,12 @@ namespace Cynthia.Web.ForumUI
 		{
 			foreach (int forumId in forumIDsToSubscribe)
 			{
-				Forum forum = new Forum(forumId);
+				Group forum = new Group(forumId);
 				forum.Subscribe(siteUser.UserId);
 			}
 			foreach (int forumId in forumIDsToUnsubscribe)
 			{
-				Forum forum = new Forum(forumId);
+				Group forum = new Group(forumId);
 				forum.Unsubscribe(siteUser.UserId);
 			}
 
@@ -209,14 +209,14 @@ namespace Cynthia.Web.ForumUI
 
 		private void PopulateLabels()
 		{
-            Title = SiteUtils.FormatPageTitle(siteSettings, ForumResources.ForumSubscriptions);
+            Title = SiteUtils.FormatPageTitle(siteSettings, GroupResources.GroupSubscriptions);
             //EditAltText = Resource.EditImageAltText;
 
-            btnSave.Text = ForumResources.ForumEditUpdateButton;
-            SiteUtils.SetButtonAccessKey(btnSave, ForumResources.ForumEditUpdateButtonAccessKey);
+            btnSave.Text = GroupResources.GroupEditUpdateButton;
+            SiteUtils.SetButtonAccessKey(btnSave, GroupResources.GroupEditUpdateButtonAccessKey);
 
-            btnCancel.Text = ForumResources.ForumEditCancelButton;
-            SiteUtils.SetButtonAccessKey(btnCancel, ForumResources.ForumEditCancelButtonAccessKey);
+            btnCancel.Text = GroupResources.GroupEditCancelButton;
+            SiteUtils.SetButtonAccessKey(btnCancel, GroupResources.GroupEditCancelButtonAccessKey);
 
             
         }

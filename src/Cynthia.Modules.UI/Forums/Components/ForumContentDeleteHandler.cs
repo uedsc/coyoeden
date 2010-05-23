@@ -18,15 +18,15 @@ using Cynthia.Business.WebHelpers;
 
 namespace Cynthia.Modules
 {
-    public class ForumContentDeleteHandler : ContentDeleteHandlerProvider
+    public class GroupContentDeleteHandler : ContentDeleteHandlerProvider
     {
-        public ForumContentDeleteHandler()
+        public GroupContentDeleteHandler()
         { }
 
         public override void DeleteContent(int moduleId, Guid moduleGuid)
         {
 
-            Forum.DeleteByModule(moduleId);
+            Group.DeleteByModule(moduleId);
             
         }
     }

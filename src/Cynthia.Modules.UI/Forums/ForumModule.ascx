@@ -1,5 +1,5 @@
-<%@ Control Language="c#" AutoEventWireup="false" Codebehind="ForumModule.ascx.cs" Inherits="Cynthia.Web.ForumUI.ForumModule" %>
-<%@ Register TagPrefix="forum" TagName="SearchBox" Src="~/Forums/Controls/ForumSearchBox.ascx" %>
+<%@ Control Language="c#" AutoEventWireup="false" Codebehind="GroupModule.ascx.cs" Inherits="Cynthia.Web.GroupUI.GroupModule" %>
+<%@ Register TagPrefix="forum" TagName="SearchBox" Src="~/Groups/Controls/GroupSearchBox.ascx" %>
 <portal:CPanel ID="mp1" runat="server" ArtisteerCssClass="art-Post" RenderArtisteerBlockContentDivs="true">
 <cy:CornerRounderTop id="ctop1" runat="server" />
 <asp:Panel ID="pnlWrapper" runat="server" CssClass="art-Post-inner panelwrapper forums">
@@ -7,26 +7,26 @@
 <portal:CPanel ID="CynPanel1" runat="server" ArtisteerCssClass="art-PostContent">
 <div class="modulecontent">
 <forum:SearchBox id="sb1" runat="server" />
-<asp:Panel ID="pnlForumList" runat="server">
-<table summary='<%# Resources.ForumResources.ForumsTableSummary %>'  cellpadding="0" cellspacing="1" border="0" width="100%">
+<asp:Panel ID="pnlGroupList" runat="server">
+<table summary='<%# Resources.GroupResources.GroupsTableSummary %>'  cellpadding="0" cellspacing="1" border="0" width="100%">
 	<thead><tr class="moduletitle">
 		<th id="tdSubscribedHead" runat="server" >
-			<cy:SiteLabel id="lblSubscribed" runat="server" ConfigKey="ForumModuleSubscribedLabel" ResourceFile="ForumResources" UseLabelTag="false" />
+			<cy:SiteLabel id="lblSubscribed" runat="server" ConfigKey="GroupModuleSubscribedLabel" ResourceFile="GroupResources" UseLabelTag="false" />
 		</th>
-		<th id='<%# Resources.ForumResources.ForumModuleForumLabel %>'>
-			<cy:SiteLabel id="lblForumName" runat="server" ConfigKey="ForumModuleForumLabel" ResourceFile="ForumResources" UseLabelTag="false" />
+		<th id='<%# Resources.GroupResources.GroupModuleGroupLabel %>'>
+			<cy:SiteLabel id="lblGroupName" runat="server" ConfigKey="GroupModuleGroupLabel" ResourceFile="GroupResources" UseLabelTag="false" />
 		</th>
-		<th id='<%# Resources.ForumResources.ForumModuleThreadCountLabel %>'>
-			<cy:SiteLabel id="lblThreadCount" runat="server" ConfigKey="ForumModuleThreadCountLabel" ResourceFile="ForumResources" UseLabelTag="false" />
+		<th id='<%# Resources.GroupResources.GroupModuleTopicCountLabel %>'>
+			<cy:SiteLabel id="lblTopicCount" runat="server" ConfigKey="GroupModuleTopicCountLabel" ResourceFile="GroupResources" UseLabelTag="false" />
 		</th>
-		<th id='<%# Resources.ForumResources.ForumModulePostCountLabel %>'>
-			<cy:SiteLabel id="lblPostCount" runat="server" ConfigKey="ForumModulePostCountLabel" ResourceFile="ForumResources" UseLabelTag="false" />
+		<th id='<%# Resources.GroupResources.GroupModulePostCountLabel %>'>
+			<cy:SiteLabel id="lblPostCount" runat="server" ConfigKey="GroupModulePostCountLabel" ResourceFile="GroupResources" UseLabelTag="false" />
 		</th>
-		<th id='<%# Resources.ForumResources.ForumModulePostLastPostLabel %>'>
-			<cy:SiteLabel id="lblLastPost" runat="server" ConfigKey="ForumModulePostLastPostLabel" ResourceFile="ForumResources" UseLabelTag="false" />
+		<th id='<%# Resources.GroupResources.GroupModulePostLastPostLabel %>'>
+			<cy:SiteLabel id="lblLastPost" runat="server" ConfigKey="GroupModulePostLastPostLabel" ResourceFile="GroupResources" UseLabelTag="false" />
 		</th>
 	</tr></thead>
-   <asp:Repeater id="rptForums" runat="server" >
+   <asp:Repeater id="rptGroups" runat="server" >
       <HeaderTemplate><tbody></HeaderTemplate>
       <ItemTemplate >
          <tr class="modulerow">
@@ -36,42 +36,42 @@
                 </div> 
                 <div id="divEditor" runat="server" visible='<%# IsEditable %>'>
                     <portal:GreyBoxHyperlink ID="lnkUserLookup" runat="server" ClientClick="return GB_showCenter(this.title, this.href, 530,700)" 
-                    NavigateUrl='<%# this.SiteRoot + "/Forums/SubscriberDialog.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId + "&pageid=" + PageId.ToString() %>' 
+                    NavigateUrl='<%# this.SiteRoot + "/Groups/SubscriberDialog.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId + "&pageid=" + PageId.ToString() %>' 
                     Text='<%# FormatSubscriberCount(Convert.ToInt32(Eval("SubscriberCount")))%>' 
                     ToolTip='<%# FormatSubscriberCount(Convert.ToInt32(Eval("SubscriberCount")))%>' />
                 </div>
                 <div class="forumnotify">
 				<asp:HyperLink ID="lnkNotify" runat="server" ImageUrl='<%# this.ImageSiteRoot + "/Data/SiteImages/FeatureIcons/email.png"  %>' NavigateUrl='<%# notificationUrl + "#forum" + Eval("ItemID") %>' 
-				 Text='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Subscribed")) ? Resources.ForumResources.UnSubscribeLink : Resources.ForumResources.SubscribeLink %>' />
+				 Text='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Subscribed")) ? Resources.GroupResources.UnSubscribeLink : Resources.GroupResources.SubscribeLink %>' />
                  &nbsp;<asp:HyperLink ID="lnkNotify2" runat="server" NavigateUrl='<%# notificationUrl + "#forum" + Eval("ItemID") %>' 
-				 Text='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Subscribed")) ? Resources.ForumResources.UnSubscribeLink : Resources.ForumResources.SubscribeLink %>'
-                 ToolTip='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Subscribed")) ? Resources.ForumResources.UnSubscribeLink : Resources.ForumResources.SubscribeLink %>' />
+				 Text='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Subscribed")) ? Resources.GroupResources.UnSubscribeLink : Resources.GroupResources.SubscribeLink %>'
+                 ToolTip='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Subscribed")) ? Resources.GroupResources.UnSubscribeLink : Resources.GroupResources.SubscribeLink %>' />
                  </div>
             </td>
-            <td headers='<%# Resources.ForumResources.ForumModuleForumLabel %>'> 
+            <td headers='<%# Resources.GroupResources.GroupModuleGroupLabel %>'> 
 				<h3><asp:HyperLink id="editLink" runat="server"
-				    Text="<%# Resources.ForumResources.ForumEditForumLabel %>" 
-					Tooltip="<%# Resources.ForumResources.ForumEditForumLabel %>"
+				    Text="<%# Resources.GroupResources.GroupEditGroupLabel %>" 
+					Tooltip="<%# Resources.GroupResources.GroupEditGroupLabel %>"
 				    ImageUrl='<%# this.ImageSiteRoot + "/Data/SiteImages/" + EditContentImage %>' 
-				    NavigateUrl='<%# this.SiteRoot + "/Forums/EditForum.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId + "&pageid=" + PageId.ToString() %>' 
+				    NavigateUrl='<%# this.SiteRoot + "/Groups/EditGroup.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId + "&pageid=" + PageId.ToString() %>' 
 				    Visible="<%# IsEditable %>"  />
 				<asp:HyperLink id="HyperLink3" runat="server"
 				    Text="RSS" Tooltip="RSS"
 				    ImageUrl='<%# ImageSiteRoot + "/Data/SiteImages/" + RssImageFile  %>' 
-				    NavigateUrl='<%# this.SiteRoot + "/Forums/RSS.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId + "&pageid=" + PageId.ToString() %>' 
-				    Visible="<%# EnableRSSAtForumLevel %>"  />
+				    NavigateUrl='<%# this.SiteRoot + "/Groups/RSS.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId + "&pageid=" + PageId.ToString() %>' 
+				    Visible="<%# EnableRSSAtGroupLevel %>"  />
 				<asp:HyperLink id="viewlink1" runat="server" SkinID="TitleLink"
-				    NavigateUrl='<%# this.SiteRoot + "/Forums/ForumView.aspx?pageid=" + PageId.ToString() + "&mid=" + ModuleId + "&ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID")   %>'>
+				    NavigateUrl='<%# this.SiteRoot + "/Groups/GroupView.aspx?pageid=" + PageId.ToString() + "&mid=" + ModuleId + "&ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID")   %>'>
 				    <%# DataBinder.Eval(Container.DataItem,"Title") %></asp:HyperLink></h3>
 				<%# DataBinder.Eval(Container.DataItem,"Description").ToString() %>
             </td>
-            <td headers='<%# Resources.ForumResources.ForumModuleThreadCountLabel %>'>  
-				<%# DataBinder.Eval(Container.DataItem,"ThreadCount") %>
+            <td headers='<%# Resources.GroupResources.GroupModuleTopicCountLabel %>'>  
+				<%# DataBinder.Eval(Container.DataItem,"TopicCount") %>
             </td>
-            <td headers='<%# Resources.ForumResources.ForumModulePostCountLabel %>'>  
+            <td headers='<%# Resources.GroupResources.GroupModulePostCountLabel %>'>  
 				<%# DataBinder.Eval(Container.DataItem,"PostCount") %>
             </td>
-            <td headers='<%# Resources.ForumResources.ForumModulePostLastPostLabel %>'>  
+            <td headers='<%# Resources.GroupResources.GroupModulePostLastPostLabel %>'>  
                 <%# DateTimeHelper.GetTimeZoneAdjustedDateTimeString(((System.Data.Common.DbDataRecord)Container.DataItem),"MostRecentPostDate", TimeOffset) %>
             </td>
          </tr>
@@ -84,43 +84,43 @@
                 </div> 
                 <div id="divEditor" runat="server" visible='<%# IsEditable %>'>
                     <portal:GreyBoxHyperlink ID="lnkUserLookup" runat="server" ClientClick="return GB_showCenter(this.title, this.href, 530, 700)" 
-                    NavigateUrl='<%# this.SiteRoot + "/Forums/SubscriberDialog.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId + "&pageid=" + PageId.ToString() %>' 
+                    NavigateUrl='<%# this.SiteRoot + "/Groups/SubscriberDialog.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId + "&pageid=" + PageId.ToString() %>' 
                     Text='<%# FormatSubscriberCount(Convert.ToInt32(Eval("SubscriberCount")))%>' 
                     ToolTip='<%# FormatSubscriberCount(Convert.ToInt32(Eval("SubscriberCount")))%>' />
                 </div>
                 <div class="forumnotify">
                 <asp:HyperLink ID="lnkNotify" runat="server" ImageUrl='<%# this.ImageSiteRoot + "/Data/SiteImages/FeatureIcons/email.png"  %>' NavigateUrl='<%# notificationUrl + "#forum" + Eval("ItemID") %>' 
-				 Text='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Subscribed")) ? Resources.ForumResources.UnSubscribeLink : Resources.ForumResources.SubscribeLink %>' />
+				 Text='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Subscribed")) ? Resources.GroupResources.UnSubscribeLink : Resources.GroupResources.SubscribeLink %>' />
                  &nbsp;<asp:HyperLink ID="lnkNotify2" runat="server" NavigateUrl='<%# notificationUrl + "#forum" + Eval("ItemID") %>' 
-				 Text='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Subscribed")) ? Resources.ForumResources.UnSubscribeLink : Resources.ForumResources.SubscribeLink %>'
-                 ToolTip='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Subscribed")) ? Resources.ForumResources.UnSubscribeLink : Resources.ForumResources.SubscribeLink %>' />
+				 Text='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Subscribed")) ? Resources.GroupResources.UnSubscribeLink : Resources.GroupResources.SubscribeLink %>'
+                 ToolTip='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "Subscribed")) ? Resources.GroupResources.UnSubscribeLink : Resources.GroupResources.SubscribeLink %>' />
                  </div>
 				
             </td>
-            <td headers='<%# Resources.ForumResources.ForumModuleForumLabel %>'> 
+            <td headers='<%# Resources.GroupResources.GroupModuleGroupLabel %>'> 
 				<h3><asp:HyperLink id="Hyperlink1" runat="server"
-				    Text="<%# Resources.ForumResources.ForumEditForumLabel %>" 
-					Tooltip="<%# Resources.ForumResources.ForumEditForumLabel %>" 
+				    Text="<%# Resources.GroupResources.GroupEditGroupLabel %>" 
+					Tooltip="<%# Resources.GroupResources.GroupEditGroupLabel %>" 
 				    ImageUrl='<%# this.ImageSiteRoot + "/Data/SiteImages/" + EditContentImage %>' 
-				    NavigateUrl='<%# this.SiteRoot + "/Forums/EditForum.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId + "&pageid=" + PageId.ToString() %>' 
+				    NavigateUrl='<%# this.SiteRoot + "/Groups/EditGroup.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId + "&pageid=" + PageId.ToString() %>' 
 				    Visible="<%# IsEditable %>"  />
 				<asp:HyperLink id="HyperLink3" runat="server"
 				    Text="RSS" Tooltip="RSS"
 				    ImageUrl='<%# ImageSiteRoot + "/Data/SiteImages/" + RssImageFile  %>' 
-				    NavigateUrl='<%# this.SiteRoot + "/Forums/RSS.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId + "&pageid=" + PageId.ToString() %>' 
-				    Visible="<%# EnableRSSAtForumLevel %>"  />
+				    NavigateUrl='<%# this.SiteRoot + "/Groups/RSS.aspx?ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") + "&mid=" + ModuleId + "&pageid=" + PageId.ToString() %>' 
+				    Visible="<%# EnableRSSAtGroupLevel %>"  />
 				<asp:HyperLink id="Hyperlink2" runat="server" SkinID="TitleLink"
-				    NavigateUrl='<%# this.SiteRoot + "/Forums/ForumView.aspx?pageid=" + PageId.ToString() + "&mid=" + ModuleId + "&ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") %>' >
+				    NavigateUrl='<%# this.SiteRoot + "/Groups/GroupView.aspx?pageid=" + PageId.ToString() + "&mid=" + ModuleId + "&ItemID=" + DataBinder.Eval(Container.DataItem,"ItemID") %>' >
 				    <%# DataBinder.Eval(Container.DataItem,"Title") %></asp:HyperLink></h3>
 				<%# DataBinder.Eval(Container.DataItem,"Description").ToString()%>
             </td>
-            <td headers='<%# Resources.ForumResources.ForumModuleThreadCountLabel %>'>  
-				<%# DataBinder.Eval(Container.DataItem,"ThreadCount") %>
+            <td headers='<%# Resources.GroupResources.GroupModuleTopicCountLabel %>'>  
+				<%# DataBinder.Eval(Container.DataItem,"TopicCount") %>
             </td>
-            <td headers='<%# Resources.ForumResources.ForumModulePostCountLabel %>'>  
+            <td headers='<%# Resources.GroupResources.GroupModulePostCountLabel %>'>  
 				<%# DataBinder.Eval(Container.DataItem,"PostCount") %>
             </td>
-            <td headers='<%# Resources.ForumResources.ForumModulePostLastPostLabel %>'>  
+            <td headers='<%# Resources.GroupResources.GroupModulePostLastPostLabel %>'>  
                 <%# DateTimeHelper.GetTimeZoneAdjustedDateTimeString(((System.Data.Common.DbDataRecord)Container.DataItem),"MostRecentPostDate", TimeOffset) %>
             </td>
          </tr>

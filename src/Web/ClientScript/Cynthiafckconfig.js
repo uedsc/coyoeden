@@ -199,7 +199,7 @@ FCKConfig.ToolbarSets["FullWithTemplates"] = [
 ] ;
 // removed ,'UniversalKey' because it was removed from fck due to license questions
 //added by Joe Audette 12/16/2004
-FCKConfig.ToolbarSets["Forum"] = [
+FCKConfig.ToolbarSets["Group"] = [
 	['Cut','Copy','PasteText','-'],
 	['Undo','Redo','-','Find','Replace','SpellCheck','-','SelectAll','RemoveFormat'],
 	['Blockquote','Bold','Italic','Underline'],
@@ -209,7 +209,7 @@ FCKConfig.ToolbarSets["Forum"] = [
 ];
 
 //added by Joe Audette 2009-06-14
-FCKConfig.ToolbarSets["ForumWithImages"] = [
+FCKConfig.ToolbarSets["GroupWithImages"] = [
 	['Cut', 'Copy', 'PasteText', '-'],
 	['Undo', 'Redo', '-', 'Find', 'Replace', 'SpellCheck', '-', 'SelectAll', 'RemoveFormat'],
 	['Blockquote', 'Bold', 'Italic', 'Underline', 'Image'],

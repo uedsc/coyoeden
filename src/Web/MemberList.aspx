@@ -66,9 +66,9 @@
 					<td id="tdWebLink" runat="server" visible='<%# ShowWebSiteColumn %>' >
 						<a rel="nofollow"  href='<%# Server.HtmlEncode(DataBinder.Eval(Container.DataItem,"WebSiteUrl").ToString()) %>'><%# Server.HtmlEncode(DataBinder.Eval(Container.DataItem, "WebSiteUrl").ToString())%></a>
 					</td>
-					<td id="tdForumPosts" runat="server" visible='<%# ShowForumPostColumn %>' headers='<%# Resources.Resource.MemberListUserTotalPostsLabel.Replace(" ", "") %>'>
+					<td id="tdGroupPosts" runat="server" visible='<%# ShowGroupPostColumn %>' headers='<%# Resources.Resource.MemberListUserTotalPostsLabel.Replace(" ", "") %>'>
 						<%# DataBinder.Eval(Container.DataItem,"TotalPosts") %>
-						<portal:ForumUserThreadLink id="lnkUserPosts" runat="server" UserId='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem,"UserID")) %>' TotalPosts='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem,"TotalPosts")) %>' />
+						<portal:GroupUserThreadLink id="lnkUserPosts" runat="server" UserId='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem,"UserID")) %>' TotalPosts='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem,"TotalPosts")) %>' />
 					</td>
 					<td>
 						<a href='<%# SiteRoot + "/ProfileView.aspx?userid=" + DataBinder.Eval(Container.DataItem,"UserID") %>'><cy:SiteLabel id="lblViewProfile" runat="server" ConfigKey="MemberListViewProfileLabel" UseLabelTag="false"> </cy:SiteLabel></a>&nbsp;&nbsp;
@@ -102,9 +102,9 @@
 					<td id="tdWebLink2" runat="server" visible='<%# ShowWebSiteColumn %>'>
 						<a rel="nofollow" href='<%# Server.HtmlEncode(DataBinder.Eval(Container.DataItem,"WebSiteUrl").ToString()) %>'><%# Server.HtmlEncode(DataBinder.Eval(Container.DataItem,"WebSiteUrl").ToString()) %></a>
 					</td>
-					<td id="tdForumPosts" runat="server" visible='<%# ShowForumPostColumn %>' headers='<%# Resources.Resource.MemberListUserTotalPostsLabel.Replace(" ", "") %>'>
+					<td id="tdGroupPosts" runat="server" visible='<%# ShowGroupPostColumn %>' headers='<%# Resources.Resource.MemberListUserTotalPostsLabel.Replace(" ", "") %>'>
 						<%# DataBinder.Eval(Container.DataItem,"TotalPosts") %>
-						<portal:ForumUserThreadLink id="lnkUserPosts" runat="server" UserId='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem,"UserID")) %>' TotalPosts='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem,"TotalPosts")) %>' />
+						<portal:GroupUserThreadLink id="lnkUserPosts" runat="server" UserId='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem,"UserID")) %>' TotalPosts='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem,"TotalPosts")) %>' />
 					</td>
 					<td>
 						<a href='<%# SiteRoot + "/ProfileView.aspx?userid=" + DataBinder.Eval(Container.DataItem,"UserID") %>'><cy:SiteLabel id="Sitelabel1" runat="server" ConfigKey="MemberListViewProfileLabel" UseLabelTag="false"> </cy:SiteLabel></a>&nbsp;&nbsp;

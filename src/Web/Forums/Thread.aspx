@@ -1,5 +1,5 @@
 <%@ Page Language="c#" CodeBehind="Thread.aspx.cs" MasterPageFile="~/App_MasterPages/layout.Master"
-    AutoEventWireup="false" Inherits="Cynthia.Web.ForumUI.ForumThreadView" %>
+    AutoEventWireup="false" Inherits="Cynthia.Web.GroupUI.GroupThreadView" %>
 
 <asp:Content ContentPlaceHolderID="leftContent" ID="MPLeftPane" runat="server" />
 <asp:Content ContentPlaceHolderID="mainContent" ID="MPContent" runat="server">
@@ -9,14 +9,14 @@
         <div class="modulecontent">
             <div class="breadcrumbs">
                  <asp:HyperLink ID="lnkPageCrumb" runat="server" CssClass="unselectedcrumb"></asp:HyperLink>
-                &gt; <a href="" id="lnkForum" runat="server"></a>&nbsp;&gt;
+                &gt; <a href="" id="lnkGroup" runat="server"></a>&nbsp;&gt;
                 <asp:Label ID="lblThreadDescription" runat="server"></asp:Label>
             </div>
             <h2 class="forumhead">
                <asp:Label ID="lblHeading" runat="server"></asp:Label>
             </h2>
             <div class="settingrow forumdesc">
-                <asp:Literal ID="litForumDescription" runat="server" />
+                <asp:Literal ID="litGroupDescription" runat="server" />
             </div>
             <asp:Panel ID="pnlNotify" runat="server" Visible="false" CssClass="forumnotify">
                 <asp:HyperLink ID="lnkNotify" runat="server"  />
@@ -51,11 +51,11 @@
                                 <%# DataBinder.Eval(Container.DataItem,"PostAuthorTotalPosts") %>
                             </div>
                             <div class="forumpostuserattribute">
-                                <portal:ForumUserThreadLink ID="lnkUserPosts" runat="server" UserId='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem,"UserID")) %>'
+                                <portal:GroupUserThreadLink ID="lnkUserPosts" runat="server" UserId='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem,"UserID")) %>'
                                     TotalPosts='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem,"PostAuthorTotalPosts")) %>' />
                             </div>
                             <div id="divRevenue" runat="server" visible='<%# showUserRevenue %>' class="forumpostuserattribute">
-                                <cy:SiteLabel ID="SiteLabel1" runat="server" ConfigKey="UserSalesLabel" ResourceFile="ForumResources"
+                                <cy:SiteLabel ID="SiteLabel1" runat="server" ConfigKey="UserSalesLabel" ResourceFile="GroupResources"
                                     UseLabelTag="false" />
                                 <%# string.Format(currencyCulture, "{0:c}", Convert.ToDecimal(Eval("UserRevenue"))) %>
                             </div>
@@ -74,9 +74,9 @@
                             <div class="posttopic">
                                 <h3>
                                     <a id='post<%# DataBinder.Eval(Container.DataItem,"PostID") %>'></a>
-                                    <asp:HyperLink Text="<%# Resources.ForumResources.ForumEditPostLink %>" ToolTip="<%# Resources.ForumResources.ForumEditPostLink %>"
+                                    <asp:HyperLink Text="<%# Resources.GroupResources.GroupEditPostLink %>" ToolTip="<%# Resources.GroupResources.GroupEditPostLink %>"
                                         ID="editLink" ImageUrl='<%# ImageSiteRoot + "/Data/SiteImages/" + EditContentImage %>'
-                                        NavigateUrl='<%# SiteRoot + "/Forums/EditPost.aspx?pageid=" + PageId.ToString() + "&amp;mid=" + moduleId.ToString() + "&amp;ItemID=" + ItemId.ToString() + "&amp;postid=" + DataBinder.Eval(Container.DataItem,"PostID")  + "&amp;thread=" + DataBinder.Eval(Container.DataItem,"ThreadID") + "&amp;forumid=" + DataBinder.Eval(Container.DataItem,"ForumID") + "&amp;pagenumber=" + PageNumber.ToString()  %>'
+                                        NavigateUrl='<%# SiteRoot + "/Groups/EditPost.aspx?pageid=" + PageId.ToString() + "&amp;mid=" + moduleId.ToString() + "&amp;ItemID=" + ItemId.ToString() + "&amp;postid=" + DataBinder.Eval(Container.DataItem,"PostID")  + "&amp;thread=" + DataBinder.Eval(Container.DataItem,"TopicID") + "&amp;forumid=" + DataBinder.Eval(Container.DataItem,"GroupID") + "&amp;pagenumber=" + PageNumber.ToString()  %>'
                                         Visible='<%# GetPermission(DataBinder.Eval(Container.DataItem,"UserID"))%>' runat="server" />
                                     <%# Server.HtmlEncode(DataBinder.Eval(Container.DataItem, "Subject").ToString())%></h3>
                             </div>

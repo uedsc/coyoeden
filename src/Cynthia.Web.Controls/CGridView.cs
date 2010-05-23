@@ -8,7 +8,7 @@ namespace Cynthia.Web.Controls
     /// rather thasn extend the standard GridView directly. This allows the standard GridView to work
     /// as expected for those who don't want to use the Adapter.
     /// http://www.asp.net/cssadapters/gridview.aspx
-    /// http://www.vivasky.com/Forums/Thread.aspx?thread=2276&mid=34&pageid=5&ItemID=4
+    /// http://www.vivasky.com/Groups/Thread.aspx?thread=2276&mid=34&pageid=5&ItemID=4
     /// 
     /// </summary>
     public class CGridView : GridView

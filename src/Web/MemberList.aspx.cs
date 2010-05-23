@@ -35,7 +35,7 @@ namespace Cynthia.Web.UI.Pages
         private string searchText = string.Empty;
         
         protected bool ShowWebSiteColumn = false;
-        protected bool ShowForumPostColumn = WebConfigSettings.ShowForumPostsInMemberList;
+        protected bool ShowGroupPostColumn = WebConfigSettings.ShowGroupPostsInMemberList;
         
         private bool allowView = false;
 		
@@ -357,7 +357,7 @@ namespace Cynthia.Web.UI.Pages
             {
                 // this can't be used in related site mode
                 // because we can't assume forum posts were in this site.
-                ShowForumPostColumn = false;
+                ShowGroupPostColumn = false;
             }
 
         }

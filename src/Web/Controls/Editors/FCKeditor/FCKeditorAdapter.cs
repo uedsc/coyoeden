@@ -500,8 +500,8 @@ namespace Cynthia.Web.Editor
                         
                     break;
 
-                case ToolBar.Forum:
-                    fckEditor.ToolbarSet = "Forum";
+                case ToolBar.Group:
+                    fckEditor.ToolbarSet = "Group";
                     fckEditor.Config["LinkDlgHideTarget"] = "true";
                     fckEditor.Config["LinkUpload"] = "false";
                     fckEditor.Config["LinkDlgHideAdvanced"] = "true";
@@ -509,8 +509,8 @@ namespace Cynthia.Web.Editor
                     fckEditor.ForcePasteAsPlainText = true;
                     break;
 
-                case ToolBar.ForumWithImages:
-                    fckEditor.ToolbarSet = "ForumWithImages";
+                case ToolBar.GroupWithImages:
+                    fckEditor.ToolbarSet = "GroupWithImages";
                     fckEditor.Config["LinkDlgHideTarget"] = "true";
                     fckEditor.Config["LinkUpload"] = "false";
                     fckEditor.Config["LinkDlgHideAdvanced"] = "true";

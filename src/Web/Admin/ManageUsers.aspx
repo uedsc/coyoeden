@@ -107,10 +107,10 @@
                                 <asp:CheckBox ID="chkProfileApproved" runat="server" TabIndex="10" CssClass="forminput"></asp:CheckBox>
                                 <portal:CHelpLink ID="CynHelpLink11" runat="server" HelpKey="userprofileapprovedhelp" />
                             </div>
-                            <div id="divApprovedForForums" runat="server" class="settingrow">
-                                <cy:SiteLabel ID="lblApprovedForForums" runat="server" ForControl="chkApprovedForForums"
-                                    CssClass="settinglabel" ConfigKey="ManageUsersApprovedForForumsLabel"> </cy:SiteLabel>
-                                <asp:CheckBox ID="chkApprovedForForums" runat="server" TabIndex="10" CssClass="forminput"></asp:CheckBox>
+                            <div id="divApprovedForGroups" runat="server" class="settingrow">
+                                <cy:SiteLabel ID="lblApprovedForGroups" runat="server" ForControl="chkApprovedForGroups"
+                                    CssClass="settinglabel" ConfigKey="ManageUsersApprovedForGroupsLabel"> </cy:SiteLabel>
+                                <asp:CheckBox ID="chkApprovedForGroups" runat="server" TabIndex="10" CssClass="forminput"></asp:CheckBox>
                                 <portal:CHelpLink ID="CynHelpLink12" runat="server" HelpKey="userapprovedforforumshelp" />
                             </div>
                             <div id="divTrusted" runat="server" class="settingrow">
@@ -199,8 +199,8 @@
                                 <cy:SiteLabel ID="lblTotalPostsLabel" runat="server" CssClass="settinglabel" ConfigKey="ManageUsersTotalPostsLabel">
                                 </cy:SiteLabel>
                                 <asp:Label ID="lblTotalPosts" runat="server" CssClass="forminput"></asp:Label>
-                                <portal:ForumUserThreadLink ID="lnkUserPosts" runat="server" />
-                                <asp:HyperLink ID="lnkUnsubscribeFromForums" runat="server" />
+                                <portal:GroupUserThreadLink ID="lnkUserPosts" runat="server" />
+                                <asp:HyperLink ID="lnkUnsubscribeFromGroups" runat="server" />
                             </div>
                             <div id="divUserGuid" runat="server" class="settingrow">
                                 <cy:SiteLabel ID="lblUserGuidLabel" runat="server" CssClass="settinglabel" ConfigKey="ManageUsersUserGuidLabel">

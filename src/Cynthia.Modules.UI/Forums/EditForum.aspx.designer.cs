@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cynthia.Web.ForumUI {
+namespace Cynthia.Web.GroupUI {
     
     
-    public partial class ForumEdit {
+    public partial class GroupEdit {
         
         /// <summary>
         /// ctop1 control.
@@ -32,13 +32,13 @@ namespace Cynthia.Web.ForumUI {
         protected global::System.Web.UI.WebControls.Panel pnlEdit;
         
         /// <summary>
-        /// lblForumLabel control.
+        /// lblGroupLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.Controls.SiteLabel lblForumLabel;
+        protected global::Cynthia.Web.Controls.SiteLabel lblGroupLabel;
         
         /// <summary>
         /// lblCreatedDateLabel control.
@@ -203,22 +203,22 @@ namespace Cynthia.Web.ForumUI {
         protected global::System.Web.UI.WebControls.TextBox txtPostsPerPage;
         
         /// <summary>
-        /// lblThreadsPerPageLabel control.
+        /// lblTopicsPerPageLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.Controls.SiteLabel lblThreadsPerPageLabel;
+        protected global::Cynthia.Web.Controls.SiteLabel lblTopicsPerPageLabel;
         
         /// <summary>
-        /// txtThreadsPerPage control.
+        /// txtTopicsPerPage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtThreadsPerPage;
+        protected global::System.Web.UI.WebControls.TextBox txtTopicsPerPage;
         
         /// <summary>
         /// lblError control.

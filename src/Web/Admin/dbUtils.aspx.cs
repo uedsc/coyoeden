@@ -32,7 +32,7 @@ namespace Cynthia.Web.AdminUI
 			this.lblBlogResults.Text = String.Empty;
 			this.lblGalleryResults.Text = String.Empty;
 			this.lblEventsResults.Text = String.Empty;
-			this.lblForumResults.Text = String.Empty;
+			this.lblGroupResults.Text = String.Empty;
 
 			this.lblLinksREsults.Text = String.Empty;
 
@@ -130,11 +130,11 @@ namespace Cynthia.Web.AdminUI
 		
 		}
 
-		protected void btnDecodeForums_Click(object sender, EventArgs e)
+		protected void btnDecodeGroups_Click(object sender, EventArgs e)
 		{
 			DataTable dataTable = DatabaseHelper.GetTable(
 				this.txtConnectionString.Text,
-				"cy_ForumPosts",
+				"cy_GroupPosts",
 				String.Empty);
 
 			foreach(DataRow row in dataTable.Rows)
@@ -143,7 +143,7 @@ namespace Cynthia.Web.AdminUI
 				{
 					DatabaseHelper.UpdateTableField(
 						this.txtConnectionString.Text,
-						"cy_ForumPosts",
+						"cy_GroupPosts",
 						"postid",
 						row["postid"].ToString(),
 						"post",
@@ -158,7 +158,7 @@ namespace Cynthia.Web.AdminUI
 					
 			}
 
-			this.lblForumResults.Text = "Completed with no errors";
+			this.lblGroupResults.Text = "Completed with no errors";
 		
 		}
 

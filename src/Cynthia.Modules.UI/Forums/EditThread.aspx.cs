@@ -18,14 +18,14 @@ using Cynthia.Web.Framework;
 using Resources;
 using Cynthia.Modules;
 
-namespace Cynthia.Web.ForumUI
+namespace Cynthia.Web.GroupUI
 {
 	
-    public partial class ForumThreadEdit : CBasePage
+    public partial class GroupThreadEdit : CBasePage
 	{
 		private int threadId = -1;
 		private SiteUser siteUser;
-		private ForumThread forumThread;
+		private GroupThread forumThread;
         private bool isSiteEditor = false;
 
         #region OnInit
@@ -61,14 +61,14 @@ namespace Cynthia.Web.ForumUI
             SecurityHelper.DisableBrowserCache();
 
             LoadParams();
-            forumThread = new ForumThread(threadId);
+            forumThread = new GroupThread(threadId);
             
-            ForumThreadIndexBuilderProvider indexBuilder 
-                = (ForumThreadIndexBuilderProvider)IndexBuilderManager.Providers["ForumThreadIndexBuilderProvider"];
+            GroupThreadIndexBuilderProvider indexBuilder 
+                = (GroupThreadIndexBuilderProvider)IndexBuilderManager.Providers["GroupThreadIndexBuilderProvider"];
             
             if (indexBuilder != null)
             {
-                forumThread.ThreadMoved += new ForumThread.ThreadMovedEventHandler(indexBuilder.ThreadMovedHandler);
+                forumThread.ThreadMoved += new GroupThread.ThreadMovedEventHandler(indexBuilder.ThreadMovedHandler);
             }
 
             siteUser = SiteUtils.GetCurrentSiteUser();
@@ -92,30 +92,30 @@ namespace Cynthia.Web.ForumUI
 
 		private void PopulateLabels()
 		{
-            Title = SiteUtils.FormatPageTitle(siteSettings, ForumResources.ForumThreadEditLabel);
-            btnUpdate.Text = ForumResources.ForumThreadUpdateButton;
-            SiteUtils.SetButtonAccessKey(btnUpdate, ForumResources.ForumEditUpdateButtonAccessKey);
+            Title = SiteUtils.FormatPageTitle(siteSettings, GroupResources.GroupThreadEditLabel);
+            btnUpdate.Text = GroupResources.GroupThreadUpdateButton;
+            SiteUtils.SetButtonAccessKey(btnUpdate, GroupResources.GroupEditUpdateButtonAccessKey);
 
-            lnkCancel.Text = ForumResources.ForumThreadCancelButton;
+            lnkCancel.Text = GroupResources.GroupThreadCancelButton;
             lnkCancel.NavigateUrl = SiteUtils.GetCurrentPageUrl();
             
-            btnDelete.Text = ForumResources.ForumThreadDeleteButton;
-            SiteUtils.SetButtonAccessKey(btnDelete, ForumResources.ForumEditDeleteButtonAccessKey);
-            UIHelper.AddConfirmationDialog(btnDelete, ForumResources.ForumDeleteThreadWarning);
+            btnDelete.Text = GroupResources.GroupThreadDeleteButton;
+            SiteUtils.SetButtonAccessKey(btnDelete, GroupResources.GroupEditDeleteButtonAccessKey);
+            UIHelper.AddConfirmationDialog(btnDelete, GroupResources.GroupDeleteThreadWarning);
 
             
 		}
 
 		private void PopulateControls()
 		{
-			Forum forum = new Forum(forumThread.ForumId);
+			Group forum = new Group(forumThread.GroupId);
 			this.txtSubject.Text = forumThread.Subject;
-            using (IDataReader reader = Forum.GetForums(forum.ModuleId, siteUser.UserId))
+            using (IDataReader reader = Group.GetGroups(forum.ModuleId, siteUser.UserId))
             {
-                this.ddForumList.DataSource = reader;
-                this.ddForumList.DataBind();
+                this.ddGroupList.DataSource = reader;
+                this.ddGroupList.DataBind();
             }
-			this.ddForumList.SelectedValue = forumThread.ForumId.ToString();
+			this.ddGroupList.SelectedValue = forumThread.GroupId.ToString();
 			
 		}
 
@@ -124,7 +124,7 @@ namespace Cynthia.Web.ForumUI
 
 		private void btnUpdate_Click(object sender, EventArgs e)
 		{
-			forumThread.ForumId = int.Parse(this.ddForumList.SelectedValue);
+			forumThread.GroupId = int.Parse(this.ddGroupList.SelectedValue);
 			forumThread.Subject = this.txtSubject.Text;
 			forumThread.UpdateThread();
 
@@ -140,8 +140,8 @@ namespace Cynthia.Web.ForumUI
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
-			ForumThread.Delete(this.threadId);
-            Forum.UpdateUserStats(-1); // updates all users
+			GroupThread.Delete(this.threadId);
+            Group.UpdateUserStats(-1); // updates all users
 
             if (hdnReturnUrl.Value.Length > 0)
             {

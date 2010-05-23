@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cynthia.Web.ForumUI {
+namespace Cynthia.Web.GroupUI {
     
     
-    public partial class ForumThreadView {
+    public partial class GroupThreadView {
         
         /// <summary>
         /// ctop1 control.
@@ -41,13 +41,13 @@ namespace Cynthia.Web.ForumUI {
         protected global::System.Web.UI.WebControls.HyperLink lnkPageCrumb;
         
         /// <summary>
-        /// lnkForum control.
+        /// lnkGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkForum;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkGroup;
         
         /// <summary>
         /// lblThreadDescription control.
@@ -68,13 +68,13 @@ namespace Cynthia.Web.ForumUI {
         protected global::System.Web.UI.WebControls.Label lblHeading;
         
         /// <summary>
-        /// litForumDescription control.
+        /// litGroupDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litForumDescription;
+        protected global::System.Web.UI.WebControls.Literal litGroupDescription;
         
         /// <summary>
         /// pnlNotify control.

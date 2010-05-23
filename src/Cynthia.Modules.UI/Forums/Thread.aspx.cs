@@ -16,9 +16,9 @@ using Cynthia.Web.Framework;
 using Cynthia.Web.UI;
 using Resources;
 
-namespace Cynthia.Web.ForumUI
+namespace Cynthia.Web.GroupUI
 {
-    public partial class ForumThreadView : CBasePage
+    public partial class GroupThreadView : CBasePage
 	{
         protected int PageId = -1;
 		protected int moduleId = -1;
@@ -30,13 +30,13 @@ namespace Cynthia.Web.ForumUI
         private int nextPageNumber = 0;
         protected string EditContentImage = WebConfigSettings.EditContentImage;
         protected string EditPropertiesImage = WebConfigSettings.EditPropertiesImage;
-        protected string ThreadImage = WebConfigSettings.ForumThreadImage;
+        protected string ThreadImage = WebConfigSettings.GroupThreadImage;
         protected string NewThreadImage = WebConfigSettings.NewThreadImage;
         private int userID = -1;
         protected bool UserCanEdit = false;
         
         protected Double TimeOffset = 0;
-        private static readonly ILog log = LogManager.GetLogger(typeof(ForumThreadView));
+        private static readonly ILog log = LogManager.GetLogger(typeof(GroupThreadView));
         //private bool allowExternalImages = false;
         protected string allowedImageUrlRegexPattern = SecurityHelper.RegexAnyImageUrlPatern;
 
@@ -49,7 +49,7 @@ namespace Cynthia.Web.ForumUI
         private bool isCommerceReportViewer = false;
         protected bool showUserRevenue = false;
         protected string notificationUrl = string.Empty;
-        protected bool isSubscribedToForum = false;
+        protected bool isSubscribedToGroup = false;
         private SiteUser currentUser = null;
 
         
@@ -81,7 +81,7 @@ namespace Cynthia.Web.ForumUI
 			}
 
             LoadParams();
-            showUserRevenue = (WebConfigSettings.ShowRevenueInForums && isCommerceReportViewer);
+            showUserRevenue = (WebConfigSettings.ShowRevenueInGroups && isCommerceReportViewer);
 
             if (!UserCanViewPage(moduleId))
             {
@@ -117,13 +117,13 @@ namespace Cynthia.Web.ForumUI
         
 		private void PopulateControls()
 		{
-			ForumThread thread = new ForumThread(threadId);
+			GroupThread thread = new GroupThread(threadId);
 
             if (thread.ThreadId == -1)
             {
                 //thread does not exist, probably just got deleted
                 //redirect back to thread list
-                WebUtils.SetupRedirect(this, SiteRoot + "/Forums/ForumView.aspx?ItemID="
+                WebUtils.SetupRedirect(this, SiteRoot + "/Groups/GroupView.aspx?ItemID="
                 + ItemId.ToInvariantString()
                 + "&amp;pageid=" + PageId.ToInvariantString()
                 + "&amp;mid=" + moduleId.ToInvariantString());
@@ -132,7 +132,7 @@ namespace Cynthia.Web.ForumUI
 
             }
 
-			Forum forum = new Forum(thread.ForumId);
+			Group forum = new Group(thread.GroupId);
            
             if (forum.ModuleId != moduleId)
             {
@@ -142,9 +142,9 @@ namespace Cynthia.Web.ForumUI
 
             Title = SiteUtils.FormatPageTitle(siteSettings, CurrentPage.PageName + " - " + thread.Subject);
 
-            litForumDescription.Text = forum.Description;
+            litGroupDescription.Text = forum.Description;
             
-            MetaDescription = string.Format(CultureInfo.InvariantCulture, ForumResources.ForumThreadMetaDescriptionFormat, SecurityHelper.RemoveMarkup(thread.Subject));
+            MetaDescription = string.Format(CultureInfo.InvariantCulture, GroupResources.GroupThreadMetaDescriptionFormat, SecurityHelper.RemoveMarkup(thread.Subject));
 
             if ((thread.TotalReplies + 1) == forum.PostsPerPage)
             {
@@ -155,17 +155,17 @@ namespace Cynthia.Web.ForumUI
                 nextPageNumber = PageNumber;
             }
 
-            lnkForum.HRef = SiteRoot + "/Forums/ForumView.aspx?ItemID="
+            lnkGroup.HRef = SiteRoot + "/Groups/GroupView.aspx?ItemID="
                 + forum.ItemId.ToInvariantString()
                 + "&amp;pageid=" + PageId.ToInvariantString()
                 + "&amp;mid=" + forum.ModuleId.ToInvariantString();
 
-			lnkForum.InnerHtml = forum.Title;
+			lnkGroup.InnerHtml = forum.Title;
 			lblThreadDescription.Text = Server.HtmlEncode(thread.Subject);
             lblHeading.Text = lblThreadDescription.Text;
 			
             string pageUrl = SiteRoot
-                + "/Forums/Thread.aspx?pageid="
+                + "/Groups/Thread.aspx?pageid="
                 + PageId.ToInvariantString()
                 + "&amp;mid=" + moduleId.ToInvariantString()
                 + "&amp;ItemID=" + ItemId.ToInvariantString()
@@ -175,14 +175,14 @@ namespace Cynthia.Web.ForumUI
             pgrTop.PageURLFormat = pageUrl;
             pgrTop.ShowFirstLast = true;
             pgrTop.CurrentIndex = PageNumber;
-            pgrTop.PageSize = forum.ThreadsPerPage;
+            pgrTop.PageSize = forum.TopicsPerPage;
             pgrTop.PageCount = thread.TotalPages;
             pgrTop.Visible = (pgrTop.PageCount > 1);
 
             pgrBottom.PageURLFormat = pageUrl;
             pgrBottom.ShowFirstLast = true;
             pgrBottom.CurrentIndex = PageNumber;
-            pgrBottom.PageSize = forum.ThreadsPerPage;
+            pgrBottom.PageSize = forum.TopicsPerPage;
             pgrBottom.PageCount = thread.TotalPages;
             pgrBottom.Visible = (pgrBottom.PageCount > 1);
 
@@ -190,10 +190,10 @@ namespace Cynthia.Web.ForumUI
             if ((Request.IsAuthenticated) || (forum.AllowAnonymousPosts))
             {
                 lnkNewThread.InnerHtml = "<img alt='' src='" + ImageSiteRoot + "/Data/SiteImages/" + NewThreadImage + "'  />&nbsp;"
-                    + ForumResources.ForumThreadViewReplyLabel;
+                    + GroupResources.GroupThreadViewReplyLabel;
 
                 lnkNewThread.HRef = siteSettings.SiteRoot
-                    + "/Forums/EditPost.aspx?"
+                    + "/Groups/EditPost.aspx?"
                     + "thread=" + threadId.ToString()
                     + "&amp;forumid=" + forum.ItemId.ToInvariantString()
                     + "&amp;mid=" + moduleId.ToInvariantString()
@@ -201,10 +201,10 @@ namespace Cynthia.Web.ForumUI
                     + "&amp;pagenumber=" + nextPageNumber.ToInvariantString();
 
                 lnkNewThreadBottom.InnerHtml = "<img alt='' src='" + ImageSiteRoot + "/Data/SiteImages/" + NewThreadImage + "'  />&nbsp;"
-                    + ForumResources.ForumThreadViewReplyLabel;
+                    + GroupResources.GroupThreadViewReplyLabel;
 
                 lnkNewThreadBottom.HRef = SiteRoot
-                    + "/Forums/EditPost.aspx?"
+                    + "/Groups/EditPost.aspx?"
                     + "thread=" + threadId.ToInvariantString()
                     + "&amp;forumid=" + forum.ItemId.ToString()
                     + "&amp;mid=" + moduleId.ToInvariantString()
@@ -216,10 +216,10 @@ namespace Cynthia.Web.ForumUI
             }
 
             lnkLogin.NavigateUrl = SiteRoot + "/Secure/Login.aspx";
-            lnkLogin.Text = ForumResources.ForumsLoginRequiredLink;
+            lnkLogin.Text = GroupResources.GroupsLoginRequiredLink;
 
             lnkLoginBottom.NavigateUrl = SiteRoot + "/Secure/Login.aspx";
-            lnkLoginBottom.Text = ForumResources.ForumsLoginRequiredLink;
+            lnkLoginBottom.Text = GroupResources.GroupsLoginRequiredLink;
 
 
 
@@ -235,11 +235,11 @@ namespace Cynthia.Web.ForumUI
                 )
             {
                 // when the last post in a thread is deleted
-                // the ForumPostEditPage redirects to this page
+                // the GroupPostEditPage redirects to this page
                 // but it will hit this code and go back to the forum instead of showing 
                 // the empty thread
                 String redirectUrl = SiteRoot 
-					+ "/Forums/ForumView.aspx?" 
+					+ "/Groups/GroupView.aspx?" 
                     + "ItemID=" + ItemId.ToInvariantString()
 					+ "&pageid=" + PageId.ToInvariantString()
                     + "&mid=" + moduleId.ToInvariantString();
@@ -320,7 +320,7 @@ namespace Cynthia.Web.ForumUI
             link.ID = "threadurl";
             link.Text = "\n<link rel='canonical' href='"
                 + SiteRoot
-                + "/Forums/Thread.aspx?pageid="
+                + "/Groups/Thread.aspx?pageid="
                 + PageId.ToInvariantString()
                 + "&amp;mid=" + moduleId.ToInvariantString()
                 + "&amp;ItemID=" + ItemId.ToInvariantString()
@@ -337,28 +337,28 @@ namespace Cynthia.Web.ForumUI
             lnkPageCrumb.Text = CurrentPage.PageName;
             lnkPageCrumb.NavigateUrl = SiteUtils.GetCurrentPageUrl();
 
-            pgrTop.NavigateToPageText = ForumResources.CutePagerNavigateToPageText;
-            pgrTop.BackToFirstClause = ForumResources.CutePagerBackToFirstClause;
-            pgrTop.GoToLastClause = ForumResources.CutePagerGoToLastClause;
-            pgrTop.BackToPageClause = ForumResources.CutePagerBackToPageClause;
-            pgrTop.NextToPageClause = ForumResources.CutePagerNextToPageClause;
-            pgrTop.PageClause = ForumResources.CutePagerPageClause;
-            pgrTop.OfClause = ForumResources.CutePagerOfClause;
+            pgrTop.NavigateToPageText = GroupResources.CutePagerNavigateToPageText;
+            pgrTop.BackToFirstClause = GroupResources.CutePagerBackToFirstClause;
+            pgrTop.GoToLastClause = GroupResources.CutePagerGoToLastClause;
+            pgrTop.BackToPageClause = GroupResources.CutePagerBackToPageClause;
+            pgrTop.NextToPageClause = GroupResources.CutePagerNextToPageClause;
+            pgrTop.PageClause = GroupResources.CutePagerPageClause;
+            pgrTop.OfClause = GroupResources.CutePagerOfClause;
 
-            pgrBottom.NavigateToPageText = ForumResources.CutePagerNavigateToPageText;
-            pgrBottom.BackToFirstClause = ForumResources.CutePagerBackToFirstClause;
-            pgrBottom.GoToLastClause = ForumResources.CutePagerGoToLastClause;
-            pgrBottom.BackToPageClause = ForumResources.CutePagerBackToPageClause;
-            pgrBottom.NextToPageClause = ForumResources.CutePagerNextToPageClause;
-            pgrBottom.PageClause = ForumResources.CutePagerPageClause;
-            pgrBottom.OfClause = ForumResources.CutePagerOfClause;
+            pgrBottom.NavigateToPageText = GroupResources.CutePagerNavigateToPageText;
+            pgrBottom.BackToFirstClause = GroupResources.CutePagerBackToFirstClause;
+            pgrBottom.GoToLastClause = GroupResources.CutePagerGoToLastClause;
+            pgrBottom.BackToPageClause = GroupResources.CutePagerBackToPageClause;
+            pgrBottom.NextToPageClause = GroupResources.CutePagerNextToPageClause;
+            pgrBottom.PageClause = GroupResources.CutePagerPageClause;
+            pgrBottom.OfClause = GroupResources.CutePagerOfClause;
 
-            lnkNotify.Text = ForumResources.SubscribeLink;
+            lnkNotify.Text = GroupResources.SubscribeLink;
             lnkNotify.ImageUrl = ImageSiteRoot + "/Data/SiteImages/FeatureIcons/email.png";
             lnkNotify.NavigateUrl = notificationUrl;
 
-            lnkNotify2.Text = ForumResources.SubscribeLongLink;
-            lnkNotify2.ToolTip = ForumResources.SubscribeLongLink;
+            lnkNotify2.Text = GroupResources.SubscribeLongLink;
+            lnkNotify2.ToolTip = GroupResources.SubscribeLongLink;
             lnkNotify2.NavigateUrl = notificationUrl;
 
         }
@@ -397,7 +397,7 @@ namespace Cynthia.Web.ForumUI
 
             }
 
-            notificationUrl = SiteRoot + "/Forums/EditSubscriptions.aspx?mid="
+            notificationUrl = SiteRoot + "/Groups/EditSubscriptions.aspx?mid="
                 + moduleId.ToInvariantString()
                 + "&pageid=" + PageId.ToInvariantString() + "#forum" + ItemId.ToInvariantString();
 
@@ -408,10 +408,10 @@ namespace Cynthia.Web.ForumUI
                 if ((currentUser != null) && (ItemId > -1))
                 {
                     userID = currentUser.UserId;
-                    isSubscribedToForum = Forum.IsSubscribed(ItemId, currentUser.UserId);
+                    isSubscribedToGroup = Group.IsSubscribed(ItemId, currentUser.UserId);
                 }
 
-                if (!isSubscribedToForum) { pnlNotify.Visible = true; }
+                if (!isSubscribedToGroup) { pnlNotify.Visible = true; }
 
             }
 

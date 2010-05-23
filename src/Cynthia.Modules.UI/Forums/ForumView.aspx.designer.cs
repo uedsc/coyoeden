@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cynthia.Web.ForumUI {
+namespace Cynthia.Web.GroupUI {
     
     
-    public partial class ForumView {
+    public partial class GroupView {
         
         /// <summary>
         /// lnkPageCrumb control.
@@ -41,22 +41,22 @@ namespace Cynthia.Web.ForumUI {
         protected global::Cynthia.Web.Controls.CornerRounderTop ctop1;
         
         /// <summary>
-        /// pnlForum control.
+        /// pnlGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlForum;
+        protected global::System.Web.UI.WebControls.Panel pnlGroup;
         
         /// <summary>
-        /// litForumTitle control.
+        /// litGroupTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litForumTitle;
+        protected global::System.Web.UI.WebControls.Literal litGroupTitle;
         
         /// <summary>
         /// CynPanel1 control.
@@ -68,13 +68,13 @@ namespace Cynthia.Web.ForumUI {
         protected global::Cynthia.Web.UI.CPanel CynPanel1;
         
         /// <summary>
-        /// litForumDescription control.
+        /// litGroupDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litForumDescription;
+        protected global::System.Web.UI.WebControls.Literal litGroupDescription;
         
         /// <summary>
         /// sb1 control.
@@ -83,7 +83,7 @@ namespace Cynthia.Web.ForumUI {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.ForumUI.ForumSearchBox sb1;
+        protected global::Cynthia.Web.GroupUI.GroupSearchBox sb1;
         
         /// <summary>
         /// pnlNotify control.
@@ -149,13 +149,13 @@ namespace Cynthia.Web.ForumUI {
         protected global::Cynthia.Web.Controls.SiteLabel SiteLabel1;
         
         /// <summary>
-        /// lblForumStartedBy control.
+        /// lblGroupStartedBy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Cynthia.Web.Controls.SiteLabel lblForumStartedBy;
+        protected global::Cynthia.Web.Controls.SiteLabel lblGroupStartedBy;
         
         /// <summary>
         /// lblTotalViewsCountLabel control.
@@ -185,13 +185,13 @@ namespace Cynthia.Web.ForumUI {
         protected global::Cynthia.Web.Controls.SiteLabel lblLastPostLabel;
         
         /// <summary>
-        /// rptForums control.
+        /// rptGroups control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptForums;
+        protected global::System.Web.UI.WebControls.Repeater rptGroups;
         
         /// <summary>
         /// pgrBottom control.

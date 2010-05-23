@@ -264,7 +264,7 @@ namespace Cynthia.Web.Editor
 
                     break;
 
-                case ToolBar.ForumWithImages:
+                case ToolBar.GroupWithImages:
 
                    
                     Editor.FileManagerUrl = siteRoot + "/Dialog/FileDialog.aspx";
@@ -273,7 +273,7 @@ namespace Cynthia.Web.Editor
 
                     break;
 
-                case ToolBar.Forum:
+                case ToolBar.Group:
 
                     
                     Editor.ForcePasteAsPlainText = true;

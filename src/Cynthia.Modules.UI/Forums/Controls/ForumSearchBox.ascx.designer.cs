@@ -8,19 +8,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cynthia.Web.ForumUI {
+namespace Cynthia.Web.GroupUI {
     
     
-    public partial class ForumSearchBox {
+    public partial class GroupSearchBox {
         
         /// <summary>
-        /// pnlForumSearch control.
+        /// pnlGroupSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlForumSearch;
+        protected global::System.Web.UI.WebControls.Panel pnlGroupSearch;
         
         /// <summary>
         /// txtSearch control.

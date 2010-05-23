@@ -844,7 +844,7 @@ namespace Cynthia.Web
             base.OnInit(e);
 
             // a litle extra protection against CSRF attacks in forms
-            // try catch added because of this post http://www.vivasky.com/Forums/Thread.aspx?thread=2819&mid=34&pageid=5&ItemID=2&pagenumber=1#post11883
+            // try catch added because of this post http://www.vivasky.com/Groups/Thread.aspx?thread=2819&mid=34&pageid=5&ItemID=2&pagenumber=1#post11883
             
             try
             {
