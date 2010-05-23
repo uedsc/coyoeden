@@ -108,7 +108,7 @@ namespace Cynthia.Web
                 writer.WriteBeginTag("ul");
                 if (isRoot)
                 {
-                    writer.WriteAttribute("class", "AspNet-Menu");
+                    writer.WriteAttribute("class", "AspNet-Menu clearfix");
                 }
                 writer.Write(HtmlTextWriter.TagRightChar);
                 writer.Indent++;

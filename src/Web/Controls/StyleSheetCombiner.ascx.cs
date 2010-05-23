@@ -1,19 +1,9 @@
-﻿///		Author:			Joe Audette
-///		Created:		2008-10-31
-///		Last Modified:	2010-01-21
-/// 
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software.	
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
+using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -245,19 +235,15 @@ namespace Cynthia.Web.UI
             string siteRoot = SiteUtils.GetNavigationSiteRoot();
             string siteParam = "&amp;s=-1";
             SiteSettings siteSettings = CacheHelper.GetCurrentSiteSettings();
-            if (siteSettings != null) { siteParam = "&amp;s=" + siteSettings.SiteId.ToInvariantString() + "&amp;v=" + Server.UrlEncode(DatabaseHelper.DBCodeVersion().ToString()); }
+            if (siteSettings != null) { siteParam = string.Format("&amp;s={0}&amp;v={1}&amp;t={2}", siteSettings.SiteId.ToInvariantString(), Server.UrlEncode(DatabaseHelper.DBCodeVersion().ToString()), Assembly.GetExecutingAssembly().GetName().Version); }
 
             if (overrideSkinName.Length > 0)
             {
-                cssLink.Text = "\n<link rel='stylesheet'  type='text/css' href='" + siteRoot
-                    + "/csshandler.ashx?skin=" + overrideSkinName + siteParam
-                    + "' />";
+                cssLink.Text = string.Format("\n<link rel='stylesheet'  type='text/css' href='{0}/csshandler.ashx?skin={1}{2}' />", siteRoot, overrideSkinName, siteParam);
             }
             else
             {
-                cssLink.Text = "\n<link rel='stylesheet' type='text/css' href='" + siteRoot
-                    + "/csshandler.ashx?skin=" + SiteUtils.GetSkinName(allowPageOverride, Page) + siteParam
-                    + "' />";
+                cssLink.Text = string.Format("\n<link rel='stylesheet' type='text/css' href='{0}/csshandler.ashx?skin={1}{2}' />", siteRoot, SiteUtils.GetSkinName(allowPageOverride, Page), siteParam);
             }
 
             this.Controls.Add(cssLink);
@@ -268,9 +254,7 @@ namespace Cynthia.Web.UI
         {
             Literal cssLink = new Literal();
             cssLink.ID = "gb_styles";
-            cssLink.Text = "\n<link rel='stylesheet' type='text/css' href='"
-                + Page.ResolveUrl("~/ClientScript/greybox/gb_styles.css")
-                 + "' media='all' />";
+            cssLink.Text = string.Format("\n<link rel='stylesheet' type='text/css' href='{0}' media='all' />", Page.ResolveUrl("~/ClientScript/greybox/gb_styles.css"));
             Controls.Add(cssLink);
         }
 

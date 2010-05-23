@@ -12940,6 +12940,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Union Sites.
+        /// </summary>
+        internal static string UnionSites {
+            get {
+                return ResourceManager.GetString("UnionSites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upload and Re-size Avatar.
         /// </summary>
         internal static string UploadAvatarAdminHeading {

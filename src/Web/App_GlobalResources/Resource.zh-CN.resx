@@ -2284,4 +2284,7 @@
   <data name="WindowsLiveSignInBeforeRegisterMessage" xml:space="preserve">
     <value>注册前须登录你的Windows Live 帐户</value>
   </data>
+  <data name="UnionSites" xml:space="preserve">
+    <value>联盟网站</value>
+  </data>
 </root>

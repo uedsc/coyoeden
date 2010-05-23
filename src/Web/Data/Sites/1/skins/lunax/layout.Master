@@ -18,7 +18,7 @@
 <%this.RenderView<XSiteTitle>(null,true); %>
 <div class="container sprite" id="header">
 <!--#topheader-->
-<div class="topheader">
+<div class="topheader clearfix">
 	<div id="header-rightcol">
 		<ul id="user-bar" class="clearfix">
 		    <portal:WelcomeMessage id="WelcomeMessage" runat="server" RenderAsListItem="true" ListItemCSS="firstnav" />
@@ -32,39 +32,23 @@
 			<%this.RenderView<XLoginLink>(null,true); %>
 		</ul>
 	</div>
-	<a href="/" class="logo" id="logo"><img src="<%=CurSettings.SkinBaseUrl %>img/logo-dark.png" alt="Vivasky.Com-CodeInMusic" title="Vivasky.Com-CodeInMusic"/></a>
 </div>
 <!--#bottomheader-->
-<div class="bottomheader clearfix">
+<div class="bottomheader">
 	<%this.RenderView<SearchInput>(x => x.LinkOnly = false,true); %>
 	<div id="breadcrumbs">
-		<a href="/" class="first">Home</a>
+		<a href="/" class="first"><%=Resource.DefaultHomePageName %></a>
 	</div>
-	<h1 class="page-title"></h1>
 </div><!--/#bottomheader-->
 <div id="hd_unions">
-    <h3><a href="#" title="union sites"><img width="85" height="18" alt="Vivasky.Com-union" src="<%=CurSettings.SkinBaseUrl %>img/envato.png"/></a></h3>
+    <h3><a href="#" title="<%=Resource.UnionSites %>"><%=Resource.UnionSites %></a></h3>
     <ul>
       <li><a href="http://lizishop.cn" title="">LiziShop</a></li>
-      <li><a href="http://donystudio.com" title="">DonyStudio</a></li>
-      <li><a href="http://google.com" title="">Google</a></li>
+      <li><a href="http://donyshop.com" title="">DonyShop</a></li>
     </ul>
 </div>
 <!--#navigation-->
 <div id="navigation">
-	<div id="categories">
-		<h3 class="sprite"><a href="#" title="Categories">Categories</a></h3>
-		<ul>
-			<li><a href="live.aspx">All Content</a></li>
-			<li><a href="Blog/ViewCategory.aspx?cat=1&amp;mid=6&amp;pageid=3">Javascript</a></li>
-			<li><a href="Blog/ViewCategory.aspx?cat=2&amp;mid=6&amp;pageid=3">DotNET</a></li>
-			<li><a href="Blog/ViewCategory.aspx?cat=3&amp;mid=6&amp;pageid=3">SQL</a></li>
-			<li><a href="Blog/ViewCategory.aspx?cat=4&amp;mid=6&amp;pageid=3">Life</a></li>
-			<li><a href="Blog/ViewCategory.aspx?cat=5&amp;mid=6&amp;pageid=3">Music</a></li>
-			<li><a href="Blog/ViewCategory.aspx?cat=6&amp;mid=6&amp;pageid=3">Joky</a></li>
-			<li class="more-cats"><a href="live.aspx">(MORE CATEGORIES)</a></li>
-		</ul>
-	</div>
     <portal:SiteMenu id="SiteMenu1" runat="server" 
 	            UseTreeView="false" UseSpanInLinks="false" HideMenuOnSiteMap="false"
 		        Direction="Horizontal" DynamicDisplayLevels="2"></portal:SiteMenu>
@@ -73,7 +57,7 @@
 <asp:Panel ID="divAlt1" runat="server" CssClass="topside container" Visible="True">
 <asp:ContentPlaceHolder ID="altContent1" runat="server"></asp:ContentPlaceHolder>
 </asp:Panel>
-<form id="frmMain" runat="server" class="<%=CssClass??main %>">
+<form id="frmMain" runat="server">
 <asp:SiteMapDataSource ID="SiteMapData" runat="server" ShowStartingNode="false" />
 <asp:SiteMapDataSource ID="PageMapDataSource" runat="server" ShowStartingNode="false" />
 <asp:SiteMapDataSource ID="ChildPageSiteMapData" runat="server" ShowStartingNode="false" />
@@ -119,7 +103,7 @@
 	<div class="container clearfix">
 		<div class="fleft">
 			<h4>注意!</h4>
-			<p>为了人类社会的发展,请不要使用IE6及以下版本浏览器!推荐使用Google Chrome或者Firefox！</p>
+			<p>请不要使用IE6及以下版本浏览器!推荐使用Google Chrome或者Firefox！</p>
 			<h4>Notice!</h4>
 			<p>Don't use IE6 When browsing my site!Google Chrome and Firefox are recommended! </p>
 		</div>

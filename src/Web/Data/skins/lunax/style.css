@@ -79,25 +79,21 @@ body#pagex {line-height:normal; background: #d2d1d0 url('img/background_slice.pn
 /*header*/
 #header { height: 117px; }
 #header { position: relative;padding: 10px 0px; background-position: 0px -465px; }
-#header h1.page-title { font-family: MgOpen Modata, Helvetica, Geneva; font-size: 42px; padding-top: 0px; padding-bottom: 0px; padding-left: 3px; margin-bottom: 10px; height: 50px; line-height: 45px; margin-top: -4px; }
-#header h1.page-title{height:0px;}/*don't need page title @homepage*/
-#header a.logo { position: relative; display: block; height: 43px; width:210px;}
-#header a.logo img { position: absolute; }
 #header-rightcol { float: right; width: 700px; height: 20px; padding: 9px 0px; }
-#header-rightcol #user-bar {margin-right: 124px; margin-top: -2px; }
-#header-rightcol #user-bar a { line-height: 22px; }
-#header-rightcol #user-bar a:hover { color: #3f6c18; text-decoration: none; }
-#header-rightcol #user-bar a.input-link, #header-rightcol #user-bar a.input-link-dark { float: right; margin: 0px 3px; margin-top: 1px; }
-#header-rightcol #user-bar p, #header-rightcol #user-bar strong { padding: 0px; float: right; line-height: 22px; }
-#header-rightcol #user-bar strong a { color: #ffffff; }
-#header-rightcol #user-bar strong a:hover { text-decoration: underline; color: #ffffff; }
-#header-rightcol #user-bar p input.signinbar-input,#header-rightcol #user-bar p p button { float: left; }
-#header-rightcol #user-bar .signout { color: #70806d; margin: 0px 5px; margin-left: 10px; font-size: 11px; float: right; }
-#header-rightcol #user-bar .user { color: #70806d; margin-right: 15px; font-size: 11px; }
-#header-rightcol #user-bar strong { margin-right: 15px; font-size: 13px; font-weight: bold; color: #f3f3f3; }
-#header-rightcol #user-bar form { float: right; margin-right: 5px; height: 24px; width: 400px; margin-left: 8px; }
-#header-rightcol #user-bar form p .input-link { margin-left: 9px; }
-#header-rightcol #user-bar form .signinbar-input { width: 81px; height: 13px; padding: 3px; margin-left: 10px; background-color: #373634; border: 1px solid #464441; float: right; font-family: tahoma, Geneva, sans-serif; line-height: 18px; color: #aa9b83; font-size: 10px; margin-top: 2px; }
+    #user-bar {margin-right: 124px; margin-top: -2px; }
+    #user-bar a { line-height: 22px; }
+    #user-bar a:hover { color: #3f6c18; text-decoration: none; }
+    #user-bar a.input-link,#user-bar a.input-link-dark { float: right; margin: 0px 3px; margin-top: 1px; }
+    #user-bar p, #user-bar strong { padding: 0px; float: right; line-height: 22px; }
+    #user-bar strong a { color: #ffffff; }
+    #user-bar strong a:hover { text-decoration: underline; color: #ffffff; }
+    #user-bar p input.signinbar-input,#user-bar p p button { float: left; }
+    #user-bar .signout { color: #70806d; margin: 0px 5px; margin-left: 10px; font-size: 11px; float: right; }
+    #user-bar .user { color: #70806d; margin-right: 15px; font-size: 11px; }
+    #user-bar strong { margin-right: 15px; font-size: 13px; font-weight: bold; color: #f3f3f3; }
+    #user-bar form { float: right; margin-right: 5px; height: 24px; width: 400px; margin-left: 8px; }
+    #user-bar form p .input-link { margin-left: 9px; }
+    #user-bar form .signinbar-input { width: 81px; height: 13px; padding: 3px; margin-left: 10px; background-color: #373634; border: 1px solid #464441; float: right; font-family: tahoma, Geneva, sans-serif; line-height: 18px; color: #aa9b83; font-size: 10px; margin-top: 2px; }
 /*#header>#bottomheader*/
 #search-bar { position: relative; float: right; margin: 17px 0px 7px 0px; } 
 #search-bar form p { padding: 0px; }
@@ -116,7 +112,7 @@ body#pagex {line-height:normal; background: #d2d1d0 url('img/background_slice.pn
 /*#header #hd_unions*/
 #hd_unions { position: absolute; top: 10px; right: -10px; }
 #hd_unions h3 { width: 104px;font-size: 13px;color:#191919;font-family:MgOpen Modata,Helvetica,Geneva;padding:10px 0px 5px 0px; }
-#hd_unions h3 img { padding: 0px 5px 5px 8px; }
+#hd_unions h3 a {display:block;height:18px;padding:0 5px 5px 8px;width:85px; }
 #hd_unions ul { display: none; position: absolute; z-index: 1001; top: 33px; left: -1px; width: 104px; list-style: none; border-right: 1px solid #565044; border-left: 1px solid #565044; border-bottom: 1px solid #565044; padding-top: 10px; padding-bottom: 10px; background-color: #262625; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px; }
 #hd_unions ul li { padding-left: 10px; }
 #hd_unions ul li a { font-size: 11px; line-height: 23px; color: #c7b89a; }
@@ -125,16 +121,9 @@ body#pagex {line-height:normal; background: #d2d1d0 url('img/background_slice.pn
 
 /*navigation*/
 #navigation {height: 40px; position: relative; }
-#navigation #categories:hover h3 { background-position: -531px -43px; }
-#navigation #categories:hover ul { display: block; }
-#navigation #categories { position: absolute; }
-#navigation #categories h3 { position: absolute; left: -2px; top: 0px; z-index: 1100; width: 132px; height: 19px; padding: 10px; padding-left: 20px; background-position: -531px -3px; text-indent: -9999px; cursor: pointer; }
-#navigation #categories ul { display: none; position: absolute; z-index: 1000; width: 138px; background-color: #f4f4f4; border: 1px solid #a7a7a7; list-style: none; top: 20px; left: -1px; padding: 25px 10px 15px 10px; }
-#navigation #categories ul li.more-cats { text-align: center; }
-#navigation #categories ul li.more-cats a { font-size: 10px; color: #9c9c9c; }
-#navigation #categories ul li { padding-left: 10px; padding: 6px 10px; font-size: 15px; color: #3b3b3a; }
-#navigation #categories ul li a { font-size: 15px; color: #3b3b3a; }
-#navigation #categories ul li a:hover { color: #3f6c18; text-decoration: none; }
+    #categories:hover h3 { background-position: -531px -43px; }
+    #categories { position: absolute; }
+    #categories h3 { position: absolute; left: -2px; top: 0px; z-index: 1100; width: 132px; height: 19px; padding: 10px; padding-left: 20px; background-position: -531px -3px; text-indent: -9999px; cursor: pointer; }
 /*searchbox*/
 #search_header{position: absolute; left:-2000px; text-indent: -999em;}
 /*topside*/

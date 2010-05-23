@@ -4809,4 +4809,7 @@
   <data name="SloganLabel" xml:space="preserve">
     <value>Site Slogan</value>
   </data>
+  <data name="UnionSites" xml:space="preserve">
+    <value>Union Sites</value>
+  </data>
 </root>

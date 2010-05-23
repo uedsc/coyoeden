@@ -250,6 +250,11 @@ namespace Cynthia.Web
 			base.OnInit(e);
 			CurSettings = CacheHelper.GetCurrentSiteSettings();
         }
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+            Page.Form.Attributes["class"] = CssClass ?? "main";
+        }
         protected override void Render(HtmlTextWriter writer)
         {
             HtmlWriter = writer;
