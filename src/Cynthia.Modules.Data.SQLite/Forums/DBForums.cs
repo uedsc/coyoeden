@@ -1,17 +1,4 @@
-﻿/// Author:					Joe Audette
-/// Created:				2007-11-03
-/// Last Modified:			2010-03-20
-/// 
-/// The use and distribution terms for this software are covered by the 
-/// Common Public License 1.0 (http://opensource.org/licenses/cpl.php)  
-/// which can be found in the file CPL.TXT at the root of this distribution.
-/// By using this software in any fashion, you are agreeing to be bound by 
-/// the terms of this license.
-///
-/// You must not remove this notice, or any other, from this software.
-/// 
-/// Note moved into separate class file from dbPortal 2007-11-03
-
+﻿
 using System;
 using System.Text;
 using System.Data;
@@ -77,7 +64,7 @@ namespace Cynthia.Data
             }
 
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("INSERT INTO	cy_Forums ( ");
+            sqlCommand.Append("INSERT INTO	cy_Groups ( ");
             sqlCommand.Append("ModuleID, ");
             sqlCommand.Append("CreatedBy, ");
             sqlCommand.Append("CreatedDate, ");
@@ -191,7 +178,7 @@ namespace Cynthia.Data
             }
 
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("UPDATE		cy_Forums ");
+            sqlCommand.Append("UPDATE		cy_Groups ");
             sqlCommand.Append("SET	Title = :Title, ");
             sqlCommand.Append("Description = :Description, ");
             sqlCommand.Append("IsModerated = :IsModerated, ");
@@ -254,7 +241,7 @@ namespace Cynthia.Data
         public static bool Delete(int itemId)
         {
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("DELETE FROM cy_Forums ");
+            sqlCommand.Append("DELETE FROM cy_Groups ");
             sqlCommand.Append("WHERE ItemID = :ItemID ;");
 
             SqliteParameter[] arParams = new SqliteParameter[1];
@@ -275,11 +262,11 @@ namespace Cynthia.Data
         public static bool DeleteByModule(int moduleId)
         {
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("DELETE FROM cy_ForumPosts WHERE ThreadID IN (SELECT ThreadID FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Forums WHERE ModuleID = :ModuleID) );");
-            sqlCommand.Append("DELETE FROM cy_ForumThreadSubscriptions WHERE ThreadID IN (SELECT ThreadID FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Forums WHERE ModuleID = :ModuleID) );");
-            sqlCommand.Append("DELETE FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Forums WHERE ModuleID = :ModuleID);");
-            sqlCommand.Append("DELETE FROM cy_ForumSubscriptions WHERE ForumID IN (SELECT ItemID FROM cy_Forums WHERE ModuleID = :ModuleID) ;");
-            sqlCommand.Append("DELETE FROM cy_Forums WHERE ModuleID = :ModuleID;");
+            sqlCommand.Append("DELETE FROM cy_ForumPosts WHERE ThreadID IN (SELECT ThreadID FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID = :ModuleID) );");
+            sqlCommand.Append("DELETE FROM cy_ForumThreadSubscriptions WHERE ThreadID IN (SELECT ThreadID FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID = :ModuleID) );");
+            sqlCommand.Append("DELETE FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID = :ModuleID);");
+            sqlCommand.Append("DELETE FROM cy_GroupSubscriptions WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID = :ModuleID) ;");
+            sqlCommand.Append("DELETE FROM cy_Groups WHERE ModuleID = :ModuleID;");
 
             SqliteParameter[] arParams = new SqliteParameter[1];
 
@@ -299,11 +286,11 @@ namespace Cynthia.Data
         public static bool DeleteBySite(int siteId)
         {
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("DELETE FROM cy_ForumPosts WHERE ThreadID IN (SELECT ThreadID FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Forums WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = :SiteID)) );");
-            sqlCommand.Append("DELETE FROM cy_ForumThreadSubscriptions WHERE ThreadID IN (SELECT ThreadID FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Forums WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = :SiteID)) );");
-            sqlCommand.Append("DELETE FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Forums WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = :SiteID));");
-            sqlCommand.Append("DELETE FROM cy_ForumSubscriptions WHERE ForumID IN (SELECT ItemID FROM cy_Forums WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = :SiteID)) ;");
-            sqlCommand.Append("DELETE FROM cy_Forums WHERE ModuleID IN (SELECT ModuleID FROM cy_Modules WHERE SiteID = :SiteID);");
+            sqlCommand.Append("DELETE FROM cy_ForumPosts WHERE ThreadID IN (SELECT ThreadID FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = :SiteID)) );");
+            sqlCommand.Append("DELETE FROM cy_ForumThreadSubscriptions WHERE ThreadID IN (SELECT ThreadID FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = :SiteID)) );");
+            sqlCommand.Append("DELETE FROM cy_ForumThreads WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = :SiteID));");
+            sqlCommand.Append("DELETE FROM cy_GroupSubscriptions WHERE ForumID IN (SELECT ItemID FROM cy_Groups WHERE ModuleID IN  (SELECT ModuleID FROM cy_Modules WHERE SiteID = :SiteID)) ;");
+            sqlCommand.Append("DELETE FROM cy_Groups WHERE ModuleID IN (SELECT ModuleID FROM cy_Modules WHERE SiteID = :SiteID);");
 
             SqliteParameter[] arParams = new SqliteParameter[1];
 
@@ -329,14 +316,14 @@ namespace Cynthia.Data
             sqlCommand.Append("SELECT f.*, ");
             sqlCommand.Append("u.Name As MostRecentPostUser, ");
             sqlCommand.Append("s.SubscribeDate IS NOT NULL AND s.UnSubscribeDate IS NULL As Subscribed, ");
-            sqlCommand.Append("(SELECT COUNT(*) FROM cy_ForumSubscriptions fs WHERE fs.ForumID = f.ItemID AND fs.UnSubscribeDate IS NULL) As SubscriberCount  ");
+            sqlCommand.Append("(SELECT COUNT(*) FROM cy_GroupSubscriptions fs WHERE fs.ForumID = f.ItemID AND fs.UnSubscribeDate IS NULL) As SubscriberCount  ");
 
-            sqlCommand.Append("FROM	cy_Forums f ");
+            sqlCommand.Append("FROM	cy_Groups f ");
 
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users u ");
             sqlCommand.Append("ON f.MostRecentPostUserID = u.UserID ");
 
-            sqlCommand.Append("LEFT OUTER JOIN	cy_ForumSubscriptions s ");
+            sqlCommand.Append("LEFT OUTER JOIN	cy_GroupSubscriptions s ");
             sqlCommand.Append("ON f.ItemID = s.ForumID AND s.UserID = :UserID ");
 
             sqlCommand.Append("WHERE f.ModuleID	= :ModuleID ");
@@ -366,7 +353,7 @@ namespace Cynthia.Data
             sqlCommand.Append("SELECT f.*, ");
             sqlCommand.Append("u.Name As CreatedByUser, ");
             sqlCommand.Append("up.Name As MostRecentPostUser ");
-            sqlCommand.Append("FROM	cy_Forums f ");
+            sqlCommand.Append("FROM	cy_Groups f ");
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users u ");
             sqlCommand.Append("ON f.CreatedBy = u.UserID ");
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users up ");
@@ -393,7 +380,7 @@ namespace Cynthia.Data
         {
 
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("UPDATE cy_Forums ");
+            sqlCommand.Append("UPDATE cy_Groups ");
             sqlCommand.Append("SET MostRecentPostDate = :MostRecentPostDate, ");
             sqlCommand.Append("MostRecentPostUserID = :MostRecentPostUserID, ");
             sqlCommand.Append("PostCount = PostCount + 1 ");
@@ -452,7 +439,7 @@ namespace Cynthia.Data
         {
 
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("UPDATE cy_Forums ");
+            sqlCommand.Append("UPDATE cy_Groups ");
             sqlCommand.Append("SET  ");
             sqlCommand.Append("PostCount = PostCount + 1 ");
             sqlCommand.Append("WHERE ItemID = :ItemID ;");
@@ -476,7 +463,7 @@ namespace Cynthia.Data
         {
 
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("UPDATE cy_Forums ");
+            sqlCommand.Append("UPDATE cy_Groups ");
             sqlCommand.Append("SET PostCount = PostCount - 1 ");
 
             sqlCommand.Append("WHERE ItemID = :ItemID ;");
@@ -547,7 +534,7 @@ namespace Cynthia.Data
             }
 
             sqlCommand = new StringBuilder();
-            sqlCommand.Append("UPDATE	cy_Forums ");
+            sqlCommand.Append("UPDATE	cy_Groups ");
             sqlCommand.Append("SET	 ");
             sqlCommand.Append("MostRecentPostDate = :MostRecentPostDate,	 ");
             sqlCommand.Append("MostRecentPostUserID = :MostRecentPostUserID,	 ");
@@ -585,7 +572,7 @@ namespace Cynthia.Data
         public static bool IncrementThreadCount(int forumId)
         {
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("UPDATE	cy_Forums ");
+            sqlCommand.Append("UPDATE	cy_Groups ");
             sqlCommand.Append("SET	ThreadCount = ThreadCount + 1 ");
             sqlCommand.Append("WHERE ItemID = :ItemID ;");
 
@@ -608,7 +595,7 @@ namespace Cynthia.Data
         {
 
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("UPDATE cy_Forums ");
+            sqlCommand.Append("UPDATE cy_Groups ");
             sqlCommand.Append("SET ThreadCount = ThreadCount - 1 ");
 
             sqlCommand.Append("WHERE ItemID = :ItemID ;");
@@ -687,7 +674,7 @@ namespace Cynthia.Data
 
             sqlCommand.Append("FROM	cy_ForumThreads t ");
 
-            sqlCommand.Append("JOIN	cy_Forums f ");
+            sqlCommand.Append("JOIN	cy_Groups f ");
             sqlCommand.Append("ON t.ForumID = f.ItemID ");
 
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users u ");
@@ -801,7 +788,7 @@ namespace Cynthia.Data
         {
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("SELECT  Count(*) ");
-            sqlCommand.Append("FROM	cy_ForumSubscriptions ");
+            sqlCommand.Append("FROM	cy_GroupSubscriptions ");
             sqlCommand.Append("WHERE ");
             sqlCommand.Append("ForumID = :ForumID ");
             sqlCommand.Append("AND ");
@@ -855,7 +842,7 @@ namespace Cynthia.Data
             sqlCommand.Append("u.LoginName, ");
             sqlCommand.Append("u.Email ");
 
-            sqlCommand.Append("FROM	cy_ForumSubscriptions fs ");
+            sqlCommand.Append("FROM	cy_GroupSubscriptions fs ");
 
             sqlCommand.Append("LEFT OUTER JOIN ");
             sqlCommand.Append("cy_Users u ");
@@ -904,7 +891,7 @@ namespace Cynthia.Data
             StringBuilder sqlCommand = new StringBuilder();
 
             sqlCommand.Append("SELECT COUNT(*) As SubscriptionCount ");
-            sqlCommand.Append("FROM cy_ForumSubscriptions  ");
+            sqlCommand.Append("FROM cy_GroupSubscriptions  ");
             sqlCommand.Append("WHERE ForumID = :ForumID AND UserID = :UserID ; ");
 
             SqliteParameter[] arParams = new SqliteParameter[2];
@@ -935,7 +922,7 @@ namespace Cynthia.Data
 
             if (subscriptionCount > 0)
             {
-                sqlCommand.Append("UPDATE cy_ForumSubscriptions ");
+                sqlCommand.Append("UPDATE cy_GroupSubscriptions ");
                 sqlCommand.Append("SET SubscribeDate = :SubscribeDate, ");
                 sqlCommand.Append("UnSubscribeDate = Null ");
                 sqlCommand.Append("WHERE ForumID = :ForumID AND UserID = :UserID ;");
@@ -944,7 +931,7 @@ namespace Cynthia.Data
             else
             {
 
-                sqlCommand.Append("INSERT INTO	cy_ForumSubscriptions ( ");
+                sqlCommand.Append("INSERT INTO	cy_GroupSubscriptions ( ");
                 sqlCommand.Append("ForumID, ");
                 sqlCommand.Append("UserID, ");
                 sqlCommand.Append("SubscribeDate");
@@ -983,7 +970,7 @@ namespace Cynthia.Data
         public static bool DeleteSubscription(int subscriptionId)
         {
             StringBuilder sqlCommand = new StringBuilder();
-            sqlCommand.Append("DELETE FROM cy_ForumSubscriptions ");
+            sqlCommand.Append("DELETE FROM cy_GroupSubscriptions ");
             sqlCommand.Append("WHERE ");
             sqlCommand.Append("SubscriptionID = :SubscriptionID ");
             sqlCommand.Append(";");
@@ -1008,7 +995,7 @@ namespace Cynthia.Data
         {
             StringBuilder sqlCommand = new StringBuilder();
 
-            sqlCommand.Append("UPDATE cy_ForumSubscriptions ");
+            sqlCommand.Append("UPDATE cy_GroupSubscriptions ");
             sqlCommand.Append("SET UnSubscribeDate = :UnSubscribeDate ");
             sqlCommand.Append("WHERE ForumID = :ForumID AND UserID = :UserID ;");
 
@@ -1039,7 +1026,7 @@ namespace Cynthia.Data
         {
             StringBuilder sqlCommand = new StringBuilder();
 
-            sqlCommand.Append("UPDATE cy_ForumSubscriptions ");
+            sqlCommand.Append("UPDATE cy_GroupSubscriptions ");
             sqlCommand.Append("SET UnSubscribeDate = :UnSubscribeDate ");
             sqlCommand.Append("WHERE UserID = :UserID ;");
 
@@ -1066,7 +1053,7 @@ namespace Cynthia.Data
         {
             StringBuilder sqlCommand = new StringBuilder();
             sqlCommand.Append("SELECT Count(*) ");
-            sqlCommand.Append("FROM	cy_ForumSubscriptions ");
+            sqlCommand.Append("FROM	cy_GroupSubscriptions ");
             sqlCommand.Append("WHERE ForumID = :ForumID AND UserID = :UserID AND UnSubscribeDate IS NULL ; ");
 
             SqliteParameter[] arParams = new SqliteParameter[2];
@@ -1127,7 +1114,7 @@ namespace Cynthia.Data
             sqlCommand.Append("ON t.MostRecentPostUserID = u.UserID ");
             sqlCommand.Append("LEFT OUTER JOIN	cy_Users s ");
             sqlCommand.Append("ON t.StartedByUserID = s.UserID ");
-            sqlCommand.Append("JOIN	cy_Forums f ");
+            sqlCommand.Append("JOIN	cy_Groups f ");
             sqlCommand.Append("ON f.ItemID = t.ForumID ");
             sqlCommand.Append("WHERE t.ThreadID = :ThreadID ;");
 
@@ -1268,7 +1255,7 @@ namespace Cynthia.Data
 
             sqlCommand = new StringBuilder();
             sqlCommand.Append("INSERT INTO cy_ForumThreadSubscriptions (ThreadID, UserID) ");
-            sqlCommand.Append("    SELECT :ThreadID as ThreadID, UserID from cy_ForumSubscriptions fs ");
+            sqlCommand.Append("    SELECT :ThreadID as ThreadID, UserID from cy_GroupSubscriptions fs ");
             sqlCommand.Append("        WHERE fs.ForumID = :ForumID AND fs.SubscribeDate IS NOT NULL AND fs.UnSubscribeDate IS NULL;");
 
             arParams = new SqliteParameter[2];
@@ -1544,7 +1531,7 @@ namespace Cynthia.Data
 
             sqlCommand.Append("SELECT	f.PostsPerPage As PostsPerPage ");
             sqlCommand.Append("FROM		cy_ForumThreads ft ");
-            sqlCommand.Append("JOIN		cy_Forums f ");
+            sqlCommand.Append("JOIN		cy_Groups f ");
             sqlCommand.Append("ON		ft.ForumID = f.ItemID ");
             sqlCommand.Append("WHERE	ft.ThreadID = :ThreadID ;");
 
@@ -1719,7 +1706,7 @@ namespace Cynthia.Data
             sqlCommand.Append("FROM	cy_ForumPosts fp ");
             sqlCommand.Append("JOIN	cy_ForumThreads ft ");
             sqlCommand.Append("ON fp.ThreadID = ft.ThreadID ");
-            sqlCommand.Append("JOIN	cy_Forums f ");
+            sqlCommand.Append("JOIN	cy_Groups f ");
             sqlCommand.Append("ON f.ItemID = ft.ForumID ");
             sqlCommand.Append("JOIN	cy_Modules m ");
             sqlCommand.Append("ON f.ModuleID = m.ModuleID ");
@@ -1769,7 +1756,7 @@ namespace Cynthia.Data
             sqlCommand.Append("JOIN		cy_ForumThreads ft ");
             sqlCommand.Append("ON		fp.ThreadID = ft.ThreadID ");
 
-            sqlCommand.Append("JOIN		cy_Forums f ");
+            sqlCommand.Append("JOIN		cy_Groups f ");
             sqlCommand.Append("ON		ft.ForumID = f.ItemID ");
 
             sqlCommand.Append("JOIN		cy_Modules m ");
@@ -1851,7 +1838,7 @@ namespace Cynthia.Data
             sqlCommand.Append("OR ");
 
             sqlCommand.Append("(");
-            sqlCommand.Append("u.UserID IN (SELECT UserID FROM cy_ForumSubscriptions ");
+            sqlCommand.Append("u.UserID IN (SELECT UserID FROM cy_GroupSubscriptions ");
             sqlCommand.Append("WHERE ForumID = :ForumID ");
             sqlCommand.Append("AND UnSubscribeDate IS NULL) ");
             sqlCommand.Append(")");

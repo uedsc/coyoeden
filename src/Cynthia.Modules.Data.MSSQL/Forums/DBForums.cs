@@ -48,7 +48,7 @@ namespace Cynthia.Data
           int threadsPerPage,
           bool allowAnonymousPosts)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_Insert", 10);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_Insert", 10);
             sph.DefineSqlParameter("@ModuleID", SqlDbType.Int, ParameterDirection.Input, moduleId);
             sph.DefineSqlParameter("@UserID", SqlDbType.Int, ParameterDirection.Input, userId);
             sph.DefineSqlParameter("@Title", SqlDbType.NVarChar, 100, ParameterDirection.Input, title);
@@ -75,7 +75,7 @@ namespace Cynthia.Data
           int threadsPerPage,
           bool allowAnonymousPosts)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_Update", 9);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_Update", 9);
             sph.DefineSqlParameter("@ItemID", SqlDbType.Int, ParameterDirection.Input, itemId);
             sph.DefineSqlParameter("@Title", SqlDbType.NVarChar, 100, ParameterDirection.Input, title);
             sph.DefineSqlParameter("@Description", SqlDbType.NText, ParameterDirection.Input, description);
@@ -91,7 +91,7 @@ namespace Cynthia.Data
 
         public static bool Delete(int itemId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_Delete", 1);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_Delete", 1);
             sph.DefineSqlParameter("@ItemID", SqlDbType.Int, ParameterDirection.Input, itemId);
             int rowsAffected = sph.ExecuteNonQuery();
             return (rowsAffected > -1);
@@ -99,7 +99,7 @@ namespace Cynthia.Data
 
         public static bool DeleteByModule(int moduleId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_DeleteByModule", 1);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_DeleteByModule", 1);
             sph.DefineSqlParameter("@ModuleID", SqlDbType.Int, ParameterDirection.Input, moduleId);
             int rowsAffected = sph.ExecuteNonQuery();
             return (rowsAffected > -1);
@@ -108,7 +108,7 @@ namespace Cynthia.Data
 
         public static bool DeleteBySite(int siteId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_DeleteBySite", 1);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_DeleteBySite", 1);
             sph.DefineSqlParameter("@SiteID", SqlDbType.Int, ParameterDirection.Input, siteId);
             int rowsAffected = sph.ExecuteNonQuery();
             return (rowsAffected > -1);
@@ -117,7 +117,7 @@ namespace Cynthia.Data
 
         public static IDataReader GetForums(int moduleId, int userId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_Select", 2);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_Select", 2);
             sph.DefineSqlParameter("@ModuleID", SqlDbType.Int, ParameterDirection.Input, moduleId);
             sph.DefineSqlParameter("@UserID", SqlDbType.Int, ParameterDirection.Input, userId);
             return sph.ExecuteReader();
@@ -125,14 +125,14 @@ namespace Cynthia.Data
 
         public static IDataReader GetForum(int itemId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_SelectOne", 1);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_SelectOne", 1);
             sph.DefineSqlParameter("@ItemID", SqlDbType.Int, ParameterDirection.Input, itemId);
             return sph.ExecuteReader();
         }
 
         public static bool ForumUpdatePostStats(int forumId, int mostRecentPostUserId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_UpdatePostStats", 2);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_UpdatePostStats", 2);
             sph.DefineSqlParameter("@ForumID", SqlDbType.Int, ParameterDirection.Input, forumId);
             sph.DefineSqlParameter("@MostRecentPostUserID", SqlDbType.Int, ParameterDirection.Input, mostRecentPostUserId);
             int rowsAffected = sph.ExecuteNonQuery();
@@ -141,7 +141,7 @@ namespace Cynthia.Data
 
         public static bool IncrementThreadCount(int forumId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_IncrementThreadCount", 1);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_IncrementThreadCount", 1);
             sph.DefineSqlParameter("@ForumID", SqlDbType.Int, ParameterDirection.Input, forumId);
             int rowsAffected = sph.ExecuteNonQuery();
             return (rowsAffected > -1);
@@ -149,7 +149,7 @@ namespace Cynthia.Data
 
         public static bool DecrementThreadCount(int forumId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_DecrementThreadCount", 1);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_DecrementThreadCount", 1);
             sph.DefineSqlParameter("@ForumID", SqlDbType.Int, ParameterDirection.Input, forumId);
             int rowsAffected = sph.ExecuteNonQuery();
             return (rowsAffected > -1);
@@ -202,7 +202,7 @@ namespace Cynthia.Data
 
         public static bool UpdateUserStats(int userId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_UpdateUserStats", 1);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_UpdateUserStats", 1);
             sph.DefineSqlParameter("@UserID", SqlDbType.Int, ParameterDirection.Input, userId);
             int rowsAffected = sph.ExecuteNonQuery();
             return (rowsAffected > -1);
@@ -215,7 +215,7 @@ namespace Cynthia.Data
                 int mostRecentPostUserId,
                 DateTime mostRecentPostDate)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_IncrementPostCount", 3);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_IncrementPostCount", 3);
             sph.DefineSqlParameter("@ForumID", SqlDbType.Int, ParameterDirection.Input, forumId);
             sph.DefineSqlParameter("@MostRecentPostUserID", SqlDbType.Int, ParameterDirection.Input, mostRecentPostUserId);
             sph.DefineSqlParameter("@MostRecentPostDate", SqlDbType.DateTime, ParameterDirection.Input, mostRecentPostDate);
@@ -225,7 +225,7 @@ namespace Cynthia.Data
 
         public static bool IncrementPostCount(int forumId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_IncrementPostCountOnly", 1);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_IncrementPostCountOnly", 1);
             sph.DefineSqlParameter("@ForumID", SqlDbType.Int, ParameterDirection.Input, forumId);
             int rowsAffected = sph.ExecuteNonQuery();
             return (rowsAffected > -1);
@@ -233,7 +233,7 @@ namespace Cynthia.Data
 
         public static bool DecrementPostCount(int forumId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_DecrementPostCount", 1);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_DecrementPostCount", 1);
             sph.DefineSqlParameter("@ForumID", SqlDbType.Int, ParameterDirection.Input, forumId);
             int rowsAffected = sph.ExecuteNonQuery();
             return (rowsAffected > -1);
@@ -241,7 +241,7 @@ namespace Cynthia.Data
 
         public static bool RecalculatePostStats(int forumId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forums_RecalculatePostStats", 1);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Groups_RecalculatePostStats", 1);
             sph.DefineSqlParameter("@ForumID", SqlDbType.Int, ParameterDirection.Input, forumId);
             int rowsAffected = Convert.ToInt32(sph.ExecuteScalar());
             return (rowsAffected > 0);
@@ -249,7 +249,7 @@ namespace Cynthia.Data
 
         public static int GetSubscriberCount(int forumId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_ForumSubscriptions_GetCount", 1);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_GroupSubscriptions_GetCount", 1);
             sph.DefineSqlParameter("@ForumID", SqlDbType.Int, ParameterDirection.Input, forumId);
             int count = Convert.ToInt32(sph.ExecuteScalar());
             return count;
@@ -281,7 +281,7 @@ namespace Cynthia.Data
                 }
             }
 
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_ForumSubscriptions_SelectPage", 3);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_GroupSubscriptions_SelectPage", 3);
             sph.DefineSqlParameter("@ForumID", SqlDbType.Int, ParameterDirection.Input, forumId);
             sph.DefineSqlParameter("@PageNumber", SqlDbType.Int, ParameterDirection.Input, pageNumber);
             sph.DefineSqlParameter("@PageSize", SqlDbType.Int, ParameterDirection.Input, pageSize);
@@ -291,7 +291,7 @@ namespace Cynthia.Data
 
         public static bool AddSubscriber(int forumId, int userId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_ForumSubscriptions_Insert", 2);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_GroupSubscriptions_Insert", 2);
             sph.DefineSqlParameter("@ForumID", SqlDbType.Int, ParameterDirection.Input, forumId);
             sph.DefineSqlParameter("@UserID", SqlDbType.Int, ParameterDirection.Input, userId);
             int rowsAffected = Convert.ToInt32(sph.ExecuteScalar());
@@ -300,7 +300,7 @@ namespace Cynthia.Data
 
         public static bool DeleteSubscription(int subscriptionId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_ForumSubscriptions_Delete", 1);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_GroupSubscriptions_Delete", 1);
             sph.DefineSqlParameter("@SubscriptionID", SqlDbType.Int, ParameterDirection.Input, subscriptionId);
             int rowsAffected = sph.ExecuteNonQuery();
             return (rowsAffected > 0);
@@ -309,7 +309,7 @@ namespace Cynthia.Data
 
         public static bool Unsubscribe(int forumId, int userId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_Forumsubscriptions_UnSubscribe", 2);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_GroupSubscriptions_UnSubscribe", 2);
             sph.DefineSqlParameter("@ForumID", SqlDbType.Int, ParameterDirection.Input, forumId);
             sph.DefineSqlParameter("@UserID", SqlDbType.Int, ParameterDirection.Input, userId);
             int rowsAffected = Convert.ToInt32(sph.ExecuteScalar());
@@ -318,7 +318,7 @@ namespace Cynthia.Data
 
         public static bool UnsubscribeAll(int userId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_ForumSubscriptions_UnsubscribeAll", 1);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_GroupSubscriptions_UnsubscribeAll", 1);
             sph.DefineSqlParameter("@UserID", SqlDbType.Int, ParameterDirection.Input, userId);
             int rowsAffected = Convert.ToInt32(sph.ExecuteScalar());
             return (rowsAffected > 0);
@@ -326,7 +326,7 @@ namespace Cynthia.Data
 
         public static bool ForumSubscriptionExists(int forumId, int userId)
         {
-            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_ForumSubscriptions_Exists", 2);
+            SqlParameterHelper sph = new SqlParameterHelper(GetConnectionString(), "cy_GroupSubscriptions_Exists", 2);
             sph.DefineSqlParameter("@ForumID", SqlDbType.Int, ParameterDirection.Input, forumId);
             sph.DefineSqlParameter("@UserID", SqlDbType.Int, ParameterDirection.Input, userId);
             int count = Convert.ToInt32(sph.ExecuteScalar());
