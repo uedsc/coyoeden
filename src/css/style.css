@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* 顶部导航 */
+#indexNav li a{padding-right:2px;}
+/*顶部广告*/
+#adList{border:1px solid #ccc;}
+.adT,.adA{margin-top:6px;padding:0 15px;}
+.adA .l,.adA .r{width:150px;}
+.adA .center{width:620px;text-align:center;}
+.adT li{display:inline;float:left;width:153.3px;text-align:left;line-height:16px;padding:2px 0;overflow:hidden;}
+
