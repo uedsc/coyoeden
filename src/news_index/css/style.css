@@ -1,0 +1,29 @@
+@charset "utf-8";
+/*common class*/
+.bgSubNav{background:#EEF3F6;}
+.bgSiteBar0{background:#F3F3F3;}
+.bgSiteBar1{background:#EDF0F5;}
+/* 顶部导航 */
+#indexNav li a{padding-right:2px;}
+/*顶部广告*/
+#topAds{border:1px solid #ccc;}
+.adT,.adA{margin-top:6px;padding:0 15px;}
+.adA .l,.adA .r{width:150px;}
+.adA .center{width:620px;text-align:center;}
+.adT li{display:inline;float:left;width:153.3px;text-align:left;line-height:16px;padding:2px 0;overflow:hidden;}
+/*新闻导航链接*/
+#indexNav0,#indexNav1{width:100%;margin:0 auto;}
+#indexNav0{margin-top:6px;padding:15px 0 0;text-align:left;}
+#indexNav0 div.l{width:150px;}
+	#channelLogo{margin-left:15px;}
+#indexNav0 div.r{width:260px;}
+#indexNav0 div.center{width:525px;padding-right:15px;}
+#indexNav0 ul{padding-left:15px;}
+#indexNav0 ul.l,#indexNav0 ul.r{width:120px;}
+#indexNav0 ul.center{width:240px;}
+#indexNav0 ul.center,#indexNav0 ul.r{border-left:1px solid #ccc;}
+#indexNav0 li{float:left;overflow:hidden;margin:0 auto 10px;;line-height:14px;height:20px;width:50%;}
+#indexNav0 a{color:#004276;}
+#indexNav0 ul.center li{width:25%;}
+#indexNav1{background:#06406E;}
+
