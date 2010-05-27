@@ -13,17 +13,18 @@
 .adT li{display:inline;float:left;width:153.3px;text-align:left;line-height:16px;padding:2px 0;overflow:hidden;}
 /*新闻导航链接*/
 #indexNav0,#indexNav1{width:100%;margin:0 auto;}
-#indexNav0{margin-top:6px;padding:15px 0 0;text-align:left;}
+#indexNav0{margin-top:6px;padding:15px 0;text-align:left;}
 #indexNav0 div.l{width:150px;}
 	#channelLogo{margin-left:15px;}
 #indexNav0 div.r{width:260px;}
-#indexNav0 div.center{width:525px;padding-right:15px;}
-#indexNav0 ul{padding-left:15px;}
-#indexNav0 ul.l,#indexNav0 ul.r{width:120px;}
-#indexNav0 ul.center{width:240px;}
-#indexNav0 ul.center,#indexNav0 ul.r{border-left:1px solid #ccc;}
-#indexNav0 li{float:left;overflow:hidden;margin:0 auto 10px;;line-height:14px;height:20px;width:50%;}
+#indexNav0 div.center{width:540px;}
+#indexNav0 .col{border-left:1px solid #ccc;padding-left:14px;}
+#indexNav0 ul{padding:0 15px;}
+#indexNav0 li{display:inline;float:left;overflow:hidden;height:30px;width:60px;line-height:14px;}
+#indexNav0 ul.row1 li{height:15px;}
 #indexNav0 a{color:#004276;}
-#indexNav0 ul.center li{width:25%;}
 #indexNav1{background:#06406E;}
+	#indexNav1_l0{padding:10px 15px;}
+	#indexNav1_l0 li{display:inline;float:left;line-height:14px;margin-right:30px;}
+	#indexNav1_l0 a{color:#fff;font-size:14px;}
 
