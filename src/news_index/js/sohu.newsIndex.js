@@ -10,7 +10,8 @@ var this$ = function() {
 	
 	//tabHeadlines
 	p.initTabHL=function(){
-		$("#tabHL0 ul.secHead").imgNav({mode:'hover'});	
+		$("#tabHL0 ul.secHead").imgNav({mode:'hover',navc:"#tabC01,#tabC02"});	
+		$("#tabHL1 ul.secHead").imgNav({mode:'hover',navc:"#tabC03,#tabC04"});
 	};
 	//fancyHL
 	p.initFancyHL=function(){
@@ -25,13 +26,24 @@ var this$ = function() {
 			effect0(i);		
 		});
 	};
+	//fancyPics
+	p.initFancyPics=function(){
+		var t=$("#fancyPics_S");
+		//放大图x坐标值的计算公式：(i-1)×小图大小含留白边距69-放大图右边距10+放大图大小的一半84/2-箭头图标宽度一半9+调整值5
+		t.imgNav({mode:'hover',navc:"#fancyPics_B li",callback:function(opts){
+			t.find("li").removeClass("on");	
+			opts._i.parent().addClass("on");
+			//箭头位置
+			var l=opts._index*69-10+84/2-9+5;
+			$("#fancyPics .arrow").stop(true,true).animate({left:l+'px'},"normal");
+		}});	
+	};
 	
 	/*
 	initVar方法
 	作用：用于引用重复使用的dom元素或引用服务器端生成到页面的js变量
 	*/
     p.initVar = function(opts) { 
-		
 	};
 	/*
 	onLoaded方法
@@ -42,6 +54,7 @@ var this$ = function() {
     p.onLoaded = function() { 
 		p.initTabHL();
 		p.initFancyHL();
+		p.initFancyPics();
 	};
 	/*
 	initEvents方法

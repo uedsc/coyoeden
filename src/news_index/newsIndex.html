@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/global1.3.css" type="text/css" rel="stylesheet" />
 <link href="css/style.css" type="text/css" rel="stylesheet" />
-<script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.js" type="text/javascript"></script> 
+<script src="../shared/jquery-1.4.2.js" type="text/javascript"></script> 
 <title>搜狐新闻</title>
 </head>
 <body>
@@ -218,6 +218,20 @@
                 </div>
                 <div class="r"></div>
             </div>
+            <div class="secBody clear">
+            	<div class="l">
+					<div class="pt">
+                        <div><a href="#" title="xx"><img src="img/pic80x128_01.gif" width="80" height="128" alt="xx" /></a></div>
+                        <h5>点击今日<span>(第14期)</span></h5>
+                        <h4><a href="#" title="xxx">标题中这里标题中这里啊</a></h4>
+                        <p>
+                        说明文字中所命文字中说明文字中说明文字中所命文字中说明文字中说明文字中所命文字中说明文字中...
+                        <a href="#" title="xx">[详细]</a>                    
+                        </p>
+                    </div>
+                </div>
+                <div class="r"></div>
+            </div>
             <div class="secBody last clear">
             	<div class="l">
 					<div class="pt">
@@ -314,7 +328,7 @@
     </div>
     <div class="col r w260">
     	<!--tab切换头条-->
-        <div id="tabHL0" class="siteBar0">
+        <div id="tabHL0" class="tabber siteBar0">
             <ul class="secHead clear">
             	<li><a href="#tabC01" title="" class="h3 on">热点专题</a></li><li>|</li>
                 <li><a href="#tabC02" title="" class="h3">高层动态</a>
@@ -353,9 +367,111 @@
             </div>
         </div>
         <!--/右列广告ad260-->
+        <!--voice&视频推荐-->
+        <div id="voiceVDPushed" class="siteBar0">
+        	<div id="voicePushed" class="sec">
+            	<div class="secHead">
+                	<h3>声音voices</h3>
+                	<span>
+                    	<a href="#" title="xx">更多&gt;&gt;</a>
+                    </span>
+                </div>
+                <div class="secBody clear">
+                	<div class="l">
+                    	<div class="tip"><a href="#" title="xx">专家:调价给邮件圣诞爽点</a></div>
+                        <div class="tip spec"><a href="#" title="xx">高房价让百姓不敢消费</a></div>
+                    </div>
+                    <div class="r">
+                    	<div class="tip"><a href="#" title="xx">日本对华政策不会改变</a></div>
+                        <div class="tip spec"><a href="#" title="xx">坚持美国国债系短期行为</a></div>
+                    </div>
+                </div>
+                <div class="secFoot">
+                	<div class="tip"><a href="#" title="xx">展望生:自动权欠缺中国大学质量低</a></div>
+                    <div class="avatar">
+                    	<img src="img/pic45x45_01.gif" width="45" height="45" alt="xxx" />
+                    </div>
+                </div>
+            </div>
+            <div id="videoPushed" class="sec">
+            	<div class="secHead">
+                	<h3>视频新闻推荐</h3>
+                </div>
+                <div class="secBody pp">
+					<ul id="videoPushedList" class="clear">
+                    	<li>
+                        	<a href="#" title="xx"><img alt="xxx" src="img/pic80x70_01.gif" height="70" width="80" /></a>
+                            <span><a href="#" title="xx">视频说明文字这里</a></span>
+                        </li>
+                        <li>
+                        	<a href="#" title="xx"><img alt="xxx" src="img/pic80x70_01.gif" height="70" width="80" /></a>
+                            <span><a href="#" title="xx">视频说明文字这里</a></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="secFoot list12">
+                	<ul class="linklist0">
+                    	<li><span class="lnkWrap"><a href="#" title="xx" class="first">视频链接视频链接地址视频链接地址</a><a href="#" title="xx"><img src="img/pic16x10_camera.jpg" alt="xx" title="xx" /></a></span></li>
+                        <li><span class="lnkWrap"><a href="#" title="xx" class="first">视接地址视频链接地址视频链接地址</a><a href="#" title="xx"><img src="img/pic16x10_camera.jpg" alt="xx" title="xx" /></a></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="tabHL1" class="tabber sec">
+                <ul class="secHead clear">
+                    <li><a href="#tabC03" title="" class="h3 on">热点专题</a></li><li>|</li>
+                    <li><a href="#tabC04" title="" class="h3">高层动态</a>
+                </ul>
+                <div id="tabC03" class="navc list12">
+                    <ul class="linklist0 clear">
+                        <li><span class="lnkWrap"><a href="#" title="" class="first">链接文字链接文字</a><a href="#" title="">链接文字链接文字</a></span></li>
+                        <li><span class="lnkWrap"><a href="#" title="" class="first">链接文字链接文字</a><a href="#" title="">链接文字链接文字</a></span></li>
+                        <li><span class="lnkWrap"><a href="#" title="" class="first">链接文字链接文字</a><a href="#" title="">链接文字链接文字</a></span></li>
+                    </ul>
+                </div>
+                <div id="tabC04" class="navc list12 hidden">
+					<ul class="linklist0 clear">
+                        <li><span class="lnkWrap"><a href="#" title="" class="first">链接文字链接文字1</a><a href="#" title="">链接文字链接文字</a></span></li>
+                        <li><span class="lnkWrap"><a href="#" title="" class="first">链接文字链接文字1</a><a href="#" title="">链接文字链接文字</a></span></li>
+                        <li><span class="lnkWrap"><a href="#" title="" class="first">链接文字链接文字1</a><a href="#" title="">链接文字链接文字</a></span></li>
+                    </ul>
+                </div>            	
+            </div>
+        </div>
+        <!--/voice&视频推荐-->
+        
     </div>
 </div>
 <div id="contentB" class="area">
+	<div class="col l w300">
+    	<p class="secHead"><img src="img/pic90x17_xinwenShiYe.jpg"alt="" /></p>
+        <!--图片轮播-->
+        <div id="fancyPics" class="siteBar2">
+        	<div class="pp">
+            	<ul id="fancyPics_B">
+                	<li id="fancyPic1"><a href="#" title=""><img src="img/pic260x195_01.gif" height="195" width="260" alt="xx" /></a><span class="h3"><a href="#" title="xx">巴基斯坦闹事遇袭105人亡1</a></span></li>
+                    <li id="fancyPic2" class="on"><a href="#" title=""><img src="img/pic260x195_01.gif" height="195" width="260" alt="xx" /></a><span class="h3"><a href="#" title="xx">巴基斯坦闹事遇袭105人亡2</a></span></li>
+                    <li id="fancyPic3"><a href="#" title=""><img src="img/pic260x195_01.gif" height="195" width="260" alt="xx" /></a><span class="h3"><a href="#" title="xx">巴基斯坦闹事遇袭105人亡3</a></span></li>
+                    <li id="fancyPic4"><a href="#" title=""><img src="img/pic260x195_01.gif" height="195" width="260" alt="xx" /></a><span class="h3"><a href="#" title="xx">巴基斯坦闹事遇袭105人亡4</a></span></li>
+                </ul>
+                <div class="arrow"><img src="img/pic19x10_arrow.jpg" height="10" width="18" /></div>
+            </div>
+            <ul id="fancyPics_S" class="clear">
+            	<li><a href="#fancyPic1" title="xx"><img src="img/pic80x60_01.gif" alt="" /></a></li>
+                <li class="on"><a href="#fancyPic2" title="xx" class="on"><img src="img/pic80x60_01.gif" alt="" /></a></li>
+                <li><a href="#fancyPic3" title="xx"><img src="img/pic80x60_01.gif" alt="" /></a></li>
+                <li class="last"><a href="#fancyPic4" title="xx"><img src="img/pic80x60_01.gif" alt="" /></a></li>
+            </ul>
+        </div>
+        <!--/图片轮播-->
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        
+    </div>
+    <div class="col center w330"></div>
+    <div class="col r w260"></div>
 </div>
 <!--/主体内容-->
 <!--脚本-->
