@@ -12,6 +12,7 @@ var this$ = function() {
 	p.initTabHL=function(){
 		$("#tabHL0 ul.secHead").imgNav({mode:'hover',navc:"#tabC01,#tabC02"});	
 		$("#tabHL1 ul.secHead").imgNav({mode:'hover',navc:"#tabC03,#tabC04"});
+		$("#tabHL_CM ul.secHead").imgNav({mode:'hover',navc:'#tabHL_CM_01,#tabHL_CM_02'});
 	};
 	//fancyHL
 	p.initFancyHL=function(){
@@ -35,7 +36,7 @@ var this$ = function() {
 			opts._i.parent().addClass("on");
 			//箭头位置
 			var l=opts._index*69-10+84/2-9+5;
-			$("#fancyPics .arrow").stop(true,true).animate({left:l+'px'},"normal");
+			$("#fancyPics0 .arrow").stop(true,true).animate({left:l+'px'},"normal");
 		}});	
 	};
 	

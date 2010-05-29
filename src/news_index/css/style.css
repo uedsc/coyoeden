@@ -8,18 +8,19 @@ a:hover{color:#cc0000;}
 .bgSubNav{background:#EEF3F6;}
 .siteBar0{background:#F3F3F3;border:1px solid #ccc;padding:0 10px 15px 8px;margin-top:10px;}
 .siteBar1{background:#EDF0F5;}
-.siteBar2{border:1px solid #ccc;}
+.siteBar2{border:1px solid #ccc;margin-bottom:10px;}
 .w260{width:260px;}
 .w258{width:258px;}/*260-2px的边框*/
 .w298{width:298px;}/*300-2px的边框*/
 .w300{width:300px;}
 .w330{width:330px;}/*390-左右各30的留白*/
-.h2,h2{font-size:16px;font-weight:bold;color:#203E61;height:20px;line-height:20px;}
-.h3,h3,h4{font-size:14px;}
+.h2,h2{font-size:16px;font-weight:bold;color:#1E3853;height:20px;line-height:20px;text-align:left;}
+.h3,h3,h4{font-size:14px;color:#333;}
 h5{font-size:12px;}
 h3,h4,h5{font-weight:bold;color:#333;}
 ul.linklist0 li{background:url(http://images.sohu.com/uiue/dot.gif) no-repeat 0 -48px;padding-left:14px;}
 ul.linklist1 li{background:url(http://images.sohu.com/uiue/dot.gif) no-repeat 0 0;padding-left:14px;}
+
 /*H1-用于SEO*/
 h1{display:none;}
 /* 顶部导航 */
@@ -50,9 +51,9 @@ h1{display:none;}
 	#indexNav1_l0 a{color:#fff;font-size:14px;}
 /*主体内容*/
 /*主体内容#contentA*/
-#contentA,#contentB{margin-top:10px;overflow:hidden;text-align:left;}
-#contentA div.col{margin-bottom:-2000px;padding-bottom:2000px;}
-#contentA div.center{padding-left:30px;padding-right:30px;}
+#contentA{margin-top:10px;overflow:hidden;text-align:left;}
+#contentA div.col,#contentB div.col{margin-bottom:-5000px;padding-bottom:5000px;}
+#contentA div.center,#contentB div.center{padding-left:30px;padding-right:30px;}
 	/*左列*/
 	#picHL0{position:relative;height:235px;width:300px;overflow:hidden;padding-bottom:10px;text-align:center;}
 	#picHL0 span,#picHL0 h3{display:block;position:absolute;width:100%;height:32px;line-height:32px;top:203px/*235-32*/;z-index:2;color:#fff;font-weight:normal;} 
@@ -72,15 +73,18 @@ h1{display:none;}
 	#fancyHL .on .r{background-position:-13px -36px;}
 	#fancyHL .last{border-bottom:none;}
 	/*中列*/
+	.headline{margin-top:20px;}
+	.headlineSub{margin-top:6px;padding-bottom:15px;}
 	.secHead{position:relative;padding-top:10px;}
 	.secHead .on{font-weight:bold;}
 	.secHead span{position:absolute;top:10px;right:30px;color:#a5a5a5;}
-	.secBody dt{margin-top:15px;}
+	.secBody dt{margin-top:20px;}
 	.secBody dd{margin-top:6px;color:#004276;}
 		 /*link wrapper-a span tag*/
 		.lnkWrap a{margin-left:6px;}
 		.lnkWrap a.first{margin-left:0;}
-	.adT0{margin-top:15px;}
+	.adT0{margin-top:20px;border-top:2px solid #F1F1F1;}
+	.adT0 ul{margin-top:15px;}
 	.adT0 a{color:#333;}
 	.ad320{margin-top:20px;}
 	/*右列*/
@@ -92,7 +96,7 @@ h1{display:none;}
 	#tabHL0 img{background:#fff;padding:2px;border:1px solid #ccc;}
 	.ad260{margin-top:10px;}
 	.ad260 div{border:1px solid #ccc;}
-	#voiceVDPushed .sec{padding:10px 0 15px 0;border-top:1px solid #ccc;}
+	.siteBar0 .sec{padding:10px 0 15px 0;border-top:1px solid #ccc;}
 	#voiceVDPushed #voicePushed{border-top:none;}
 		#voicePushed h3{visibility:hidden;}
 		#voicePushed .secHead span{right:15px;}
@@ -114,10 +118,12 @@ h1{display:none;}
 /*/主体内容#contentA*/
 
 /*主体内容#contentB*/
+#contentB{text-align:left;}
+.secFirst{margin-top:0;}
 /*左列*/
-#fancyPics{margin-top:10px;}
-#fancyPics .pp{position:relative;}
-#fancyPics .arrow{position:absolute;left:97px;bottom:-9px;width:18px;height:10px;}
+#fancyPics0,#fancyPics1{margin-top:10px;}
+#fancyPics0 .pp{position:relative;}
+#fancyPics0 .arrow{position:absolute;left:97px;bottom:-9px;width:18px;height:10px;}
 #fancyPics_B li{display:none;}
 #fancyPics_B li.on{display:block;}
 #fancyPics_B span{background:#f1f1f1;margin:0 8px;padding:8px 0;border:1px solid #ccc;}
@@ -127,10 +133,25 @@ h1{display:none;}
 #fancyPics_S li.last{margin-right:0px;}
 #fancyPics_S li.on{margin:-15px 0 0 -10px;padding-bottom:5px;width:84px;height:64px;overflow:hidden;}
 #fancyPics_S li.on img{border:1px solid #ccc;padding:1px;background:#F1F1F1;}
+
+#fancyPics1 li{display:none;float:left;width:50%;}
+#fancyPics1 li.show{display:block;}
+#fancyPics1 span.cur{font-weight:bold;font-size:16px;}
+#fancyPics1 a.prev,#fancyPics1 a.next{background:url(../img/icon01.gif) no-repeat;width:20px;height:15px;float:left;}
+#fancyPics1 a.prev{background-position:0 -15px;}
+#fancyPics1 a.prev:hover{background-position:0 0;text-decoration:none;}
+#fancyPics1 a.next{background-position:-20px 0;}
+#fancyPics1 a.next:hover{background-position:-20px -15px;text-decoration:none;}
+	#fancyPics1_0 img{margin:15px 10px 10px 10px;}
+	#fancyPics1_0 span{padding-bottom:10px;}
+	#fancyPics1_pg{background:#f4f4f4;padding:4px 5px 4px 15px;}
 /*中列*/
 
 /*右列*/
+#coreReports{border-top:none;}
 /*/主体内容#contentB*/
+
+#adA01{border:1px solid #ccc;}
 
 		
 	
