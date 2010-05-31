@@ -3,24 +3,36 @@
 HL=HL;bg=background;wp=wrapper;sec=sec;
 */
 /*common class*/
+button{cursor:pointer;}
+.area{text-align:left;}
 a{color:#004276;}
 a:hover{color:#cc0000;}
 .bgSubNav{background:#EEF3F6;}
 .siteBar0{background:#F3F3F3;border:1px solid #ccc;padding:0 10px 15px 8px;margin-top:10px;}
+.pt img,.pp img{border:1px solid #ccc;background:#fff;padding:1px;} 
+.pt img.video,.pp img.video{border:none;background:transparent;padding:0;}
 .siteBar1{background:#EDF0F5;}
 .siteBar2{border:1px solid #ccc;margin-bottom:10px;}
+.siteBar2 .sec{padding:10px 10px 15px 10px;}
+.siteBar2 .list12{margin-top:10px;}
+.w230{width:230px;}
 .w260{width:260px;}
 .w258{width:258px;}/*260-2px的边框*/
 .w298{width:298px;}/*300-2px的边框*/
 .w300{width:300px;}
 .w330{width:330px;}/*390-左右各30的留白*/
+.w360{width:360px;}
+.w720{width:720px;}
 .h2,h2{font-size:16px;font-weight:bold;color:#1E3853;height:20px;line-height:20px;text-align:left;}
 .h3,h3,h4{font-size:14px;color:#333;}
 h5{font-size:12px;}
 h3,h4,h5{font-weight:bold;color:#333;}
 ul.linklist0 li{background:url(http://images.sohu.com/uiue/dot.gif) no-repeat 0 -48px;padding-left:14px;}
 ul.linklist1 li{background:url(http://images.sohu.com/uiue/dot.gif) no-repeat 0 0;padding-left:14px;}
-
+.pt .list12{margin-top:10px;}
+.gap10{margin-top:10px;}
+.gap15{margin-top:15px;}
+.pd8{padding-top:8px;}
 /*H1-用于SEO*/
 h1{display:none;}
 /* 顶部导航 */
@@ -51,9 +63,9 @@ h1{display:none;}
 	#indexNav1_l0 a{color:#fff;font-size:14px;}
 /*主体内容*/
 /*主体内容#contentA*/
-#contentA{margin-top:10px;overflow:hidden;text-align:left;}
-#contentA div.col,#contentB div.col{margin-bottom:-5000px;padding-bottom:5000px;}
-#contentA div.center,#contentB div.center{padding-left:30px;padding-right:30px;}
+#contentA{margin-top:10px;overflow:hidden;}
+/*#contentA div.col,#contentB div.col{margin-bottom:-5000px;padding-bottom:5000px;}*/
+.w330{padding-left:30px;padding-right:30px;}
 	/*左列*/
 	#picHL0{position:relative;height:235px;width:300px;overflow:hidden;padding-bottom:10px;text-align:center;}
 	#picHL0 span,#picHL0 h3{display:block;position:absolute;width:100%;height:32px;line-height:32px;top:203px/*235-32*/;z-index:2;color:#fff;font-weight:normal;} 
@@ -86,7 +98,7 @@ h1{display:none;}
 	.adT0{margin-top:20px;border-top:2px solid #F1F1F1;}
 	.adT0 ul{margin-top:15px;}
 	.adT0 a{color:#333;}
-	.ad320{margin-top:20px;}
+	.ad320,.adT320{margin-top:20px;}
 	/*右列*/
 	#tabHL0{margin-top:0;}
 	.tabber li{display:inline;float:left;margin-right:10px;}
@@ -111,15 +123,15 @@ h1{display:none;}
 		#voicePushed .r .spec{margin-top:8px;}
 		#voicePushed .secFoot{position:relative;}
 		#voicePushed .avatar{position:absolute;top:-5px;right:0;width:45px;height:45px;overflow:hidden;}
-		#videoPushedList li{display:inline;float:left;width:50%;padding:10px 0;}
-		#videoPushedList img{border:1px solid #ccc;background:#fff;padding:2px;}
-		#videoPushedList span{padding:10px 0;}
-		#videoPushedList a{font-weight:bold;}
+		.videoList li{display:inline;float:left;width:50%;padding:10px 0;}
+		.videoList img{border:1px solid #ccc;background:#fff;padding:2px;}
+		.videoList span{padding:10px 0;}
+		.videoList a{font-weight:bold;}
 /*/主体内容#contentA*/
 
 /*主体内容#contentB*/
-#contentB{text-align:left;}
 .secFirst{margin-top:0;}
+.secFirst_mt10{margin-top:10px;}
 /*左列*/
 #fancyPics0,#fancyPics1{margin-top:10px;}
 #fancyPics0 .pp{position:relative;}
@@ -148,10 +160,118 @@ h1{display:none;}
 /*中列*/
 
 /*右列*/
-#coreReports{border-top:none;}
+#coreReports,#blogRecommends{border-top:none;}
+#tabHL_CM,#socialActivities{padding-bottom:0;}
 /*/主体内容#contentB*/
 
-#adA01{border:1px solid #ccc;}
+.adAWrap{margin-bottom:10px;border:1px solid #ccc;}
+.adA{margin:0;padding:0;}
+.adA li{line-height:normal;}
+.adA a{color:#333;}
+.adA .right{margin:0 auto;overflow:hidden;width:194px;text-align:center;}
+.adA ul{margin-left:35px;}
+
+/*主体内容#contentC*/
+#contentC .siteBar2,#socialActivities .list12{margin-top:10px;}
+/*右列*/
+#contentC .siteBar0 .secHead{padding-top:5px;}
+#contentC .siteBar0 .navc{padding-bottom:0;}
+
+.sohuSplit{margin-bottom:10px;padding-top:10px;}
+
+/*频道分栏内容*/
+/*频道分栏头部*/
+.channelHead{text-align:center;padding:2px 0 10px 0;}
+.lineL{border:1px solid #f1f1f1;margin:0;padding:0;}
+.channelSubHead{text-align:center;}
+.channelSubHead .link{margin-bottom:-8px;}
+.channelSubHead a,.channelSubHead .split{padding-right:5px;background:#fff;}
+.channelSubHead .first{padding-left:10px;}
+.channelSubHead .last{padding-right:10px;margin-left:0;}
+/*频道分栏排版基本样式layoutB*/
+.layoutB{margin-top:15px;margin-bottom:10px;border-bottom:1px solid #ccc;}
+.layoutB .col{border-top:2px solid #B1B8C4;}
+.layoutB .main{border-left:1px solid #ccc;height:100%;}
+	.secHeadB{background:#EDF2F8;padding:10px 20px;}
+	.secHeadB0{border-top:none;}
+	.secHeadB .l,.secHeadB .r{width:50%;}
+	.secHeadB a,.secHeadB .split{background:transparent;}
+.layoutB .channelSubHead{height:20px;line-height:20px;}
+.layoutB .secBodyB{padding:0 10px 10px 0;}
+.layoutB .headline{margin-top:18px;}
+.layoutB .headlineSub{margin-top:20px;padding-bottom:5px;}
+.layoutB li.ad{background-position:0 0;}
+.layoutB li.ad a{color:#333;}
+	.secBodyB .l,.secBodyB .r{width:50%;}
+	.secBodyB_inner{padding:0 15px 13px;border-left:1px dashed #ccc;}
+	.secBodyB_inner .more{margin-top:5px;}
+	.firstCol{border-left:none;}
+	.sitebarB{padding:0 15px 0 10px;border-left:1px solid #abbaca;border-right:1px solid #abbaca;background:#eef2f6;height:100%;}
+		.moreB a{color:#333;}
+	.sitebarB .sec{margin-top:18px;border-top:2px solid #e5e5e5;}
+	.sitebarB .sec0{margin-top:10px;}
+	.sitebarB .firstSec{border-top:none;margin-top:0;}
+	.sitebarB .secBody{padding-top:15px;}
+	.sitebarB .sec0 .secBody{padding-top:10px;}
+	.sitebarB .secBody_inner{margin-top:5px;}
+	.sitebarB .sec0 .secBody_inner{margin-top:0;}
+	.sitebarB .pp h3{padding-top:10px;}
+	.sitebarB .liH3{font-size:14px;font-weight:bold;text-indent:14px;}
+	.secTip{position:relative;height:30px;border:1px solid #abbaca;text-align:center;}
+		.secTip_inner{position:absolute;background:#fff;width:100%;height:30px;line-height:30px;border-bottom:1px solid #abbaca;border-right:1px solid #abbaca;left:-1px;top:-1px;}
+.layoutB .list14 li{line-height:17px;}
+.adT320{overflow:hidden;background:#F4F4F4;border:1px solid #ccc;width:320px;height:100px;}
+.adT320 img{padding:1px;margin-top:5px;border:1px solid #ccc;background:#fff;}
+.adT320 a{color:#333;}
+.adT320 li{line-height:normal;}
+	.adTHead,.adTBody{margin:8px 15px 0 10px;}
+	.adTHead strong{font-weight:bold;color:#333;}
+/*/频道分栏排版基本样式layoutB*/	
+ 
+/*	国内社会#contentD*/
+#contentD div.col{height:655px;overflow:hidden;}
+/*	国际新闻#contentE*/
+#contentE div.col{height:750px;overflow:hidden;}
+/*	国际新闻#contentF*/
+#contentF div.col{height:1815px;overflow:hidden;}
+#contentF .groupA{height:650px;overflow:hidden;}
+#contentF .groupB{height:530px;overflow:hidden;border-top:1px solid #ccc;}
+#contentF .groupC{height:635px;overflow:hidden;border-top:1px solid #ccc;}
+#contentF .searchSV{padding-top:18px;border-top:1px dashed #ccc;}
+	.searchSV a.on{color:#333;font-weight:bold;}
+	.form0{text-align:center;padding-top:8px;}
+	.form0 input{width:67px;height:16px;padding:2px 0px 2px 5px;color:#999;}
+	.form0 label{color:#333;}
+	.form0 button{margin:0;padding:2px 0 2px 5px;border:none;background:#004377;color:#fff;letter-spacing:5px;}
+	.form0 select{width:48px;height:20px;}
+	.tabStock li{display:inline;float:left;border:1px solid #B1B8C4;}
+	.tabStock li{border-left:none;border-bottom:none;}
+	.tabStock li.first{border-left:1px solid #B1B8C4;}
+		.tabH{border-bottom:1px solid #B1B8C4;}
+		.tabH a{display:block;height:22px;padding:0 12px;background:#f5f9fc;text-align:center;line-height:22px;}
+		.tabH a:hover,.tabH a.on{background:#fff;color:#333;font-weight:bold;}
+	.tabStock .tabC{display:none;}
+	.tabStock .on{display:block;}
+	.tabStock th,.tabStock td{width:24%;padding-top:10px;font-weight:normal;text-align:right;}
+	.tabStock th{width:28%;text-align:left;}
+	.tabStock td{color:red;}
+	.tabStock td.col1,.tabStock td.zero{color:#333;}
+	#searchStockFrm input{width:80px;}
+	
+/*	体育娱乐#contentG*/
+#contentG .groupA,#contentG .groupB{overflow:hidden;}
+#contentG .groupA{height:725px;}
+#contentG .groupB{border-top:1px solid #ccc;height:526px;}
+#contentG .videoList li{padding-top:0;}
+#contentG .commentActions{margin:5px 0px 15px 10px;}
+	.commentActions span{float:left;margin-top:2px;}
+	.commentActions .icon{background:url(../img/icon01.gif) no-repeat -16px -43px;height:16px;width:16px;}
+	.commentActions button{margin:0;padding:2px 0 2px 5px;border:none;background:#004377;color:#fff;}
+	.commentActions .cnt{margin-right:10px;padding-left:5px;background:#fff;color:red;}
+
+	
+
+
 
 		
 	
