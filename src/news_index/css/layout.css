@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* comment */
+button{cursor:pointer;}
+.area{text-align:left;}
+a{color:#004276;}
+a:hover{color:#cc0000;}
+.c{display:inline;float:left;}/*center定宽，为避免与center冲突定义c*/
+.sec0{padding:0px;}
+.borderA{border:1px solid #ccc;}
+.pb20{padding-bottom:20px;}
+.pl20{padding-left:20px;}
+.mt0{margin-top:0;}
+.mt10{margin-top:10px;}
+.mt15{margin-top:15px;}
+.mt25{margin-top:25px;}
+.mr10{margin-right:10px;}
+.halfW{width:50%;}
+.blank10{height:10px;}
+/*sec即section的缩写*/
+/*layoutA-上半页通用排版*/
+/*图片边框色为#cccccc;*/
+.layoutA .left,.layoutA .center,.layoutA .right{overflow:hidden;}
+.layoutA .left{width:300px;}
+.layoutA .center{width:390px;}
+.layoutA .right{width:260px;}
+.layoutA .secL{padding:0 10px 18px 10px;}
+.layoutA .secC{padding:0 30px;}/*center section*/
+.layoutA .secR{border:1px solid #e5e5e5;padding:0 7px 0 6px;background:#f3f3f3; }
+.layoutA .sec{margin-top:10px;}
+.layoutA h2{padding-top:25px;}
+.layoutA .pt38{padding-top:38px;}
+.layoutA .pt20{padding-top:20px;}
+.layoutA .pt15{padding-top:15px;}
+.layoutA .list12_1 li{font-size:12px;padding-top:8px;}
+.layoutA .list12_1 li.first{padding-top:0;}
+.layoutA .list14{margin-top:8px;}
+.layoutA .lineR{margin:18px 0 10px 0;border:1px solid #e5e5e5;_margin:18px 0 0 0;}
+
+/*频道分栏排版基本样式layoutB*/
+.layoutB{margin-top:15px;margin-bottom:10px;border-left:1px solid #ccc;border-bottom:1px solid #ccc;border-top:2px solid #B1B8C4;border-right:1px solid #ABBACA;overflow:hidden;}
+.layoutB1{margin-top:-11px;border-top:none;}
+.layoutB1 .left .secHead{border-top:1px solid #B1B8C4; }
+.layoutB .left{width:719px;overflow:hidden;margin-bottom:-1000px;padding-bottom:1000px;}
+.layoutB .right{width:229px;overflow:hidden;background:#EEF2F6;margin-bottom:-1000px;padding-bottom:1000px;border-left:1px solid #abbaca;}
+.layoutB .col{padding:0 20px 13px 15px;border-left:1px dotted #ccc;}
+.layoutB .firstCol{border-left:none;}
+.layoutB .secL{padding-bottom:13px;}
+.layoutB .lineR0{border:1px solid #e5e5e5;margin:0;}
+.layoutB .lineR{margin:12px 0 20px 0;border:1px solid #e5e5e5;_margin:12px 0 0 0;}
+.layoutB .lineR1{margin:25px 0 15px 0;border:1px solid #e5e5e5;_margin:25px 0 0 0;}
+.layoutB .lineR2{margin:21px 0 20px 0;border:1px solid #e5e5e5;_margin:21px 0 0 0;}
+.layoutB .secHead{background:#EDF2F8;padding:10px 20px;}
+.layoutB .secHead0{padding-top:0;}
+.layoutB .channelSubHead{height:20px;line-height:20px;}
+.layoutB .secBodyB{padding:0 10px 10px 0;}
+.layoutB .headline0{margin-top:18px;}
+.layoutB .headline{margin-top:27px;}
+.layoutB .headlineSub{margin-top:20px;}
+.layoutB li.ad{background-position:0 0;}
+.layoutB li.ad a{color:#333;}
+	.secRB{padding:0 15px 0 10px;}
+	.secRB .secHead{padding-left:0;padding-bottom:0;padding-right:0;}
+	.moreB a{color:#333;}
+	.secRB .list12{margin-top:8px;}
+	.secRB .sec0{margin-top:10px;}
+	.secRB .secBody{margin-top:19px;}
+	.secRB .sec0 .secBody{padding-top:10px;}
+	.secRB .sec0 .secBody_inner{margin-top:0;}
+	.secRB .pp h3{padding-top:10px;}
+	.secRB .liH3{margin-bottom:5px;font-size:14px;font-weight:bold;text-indent:14px;}
+	.secRB .ad{padding-top:14px;border-top:1px solid #e5e5e5; }
+	.secTip{position:relative;height:30px;border:1px solid #abbaca;text-align:center;}
+		.secTip_inner{position:absolute;background:#fff;width:100%;height:30px;line-height:30px;border-bottom:1px solid #abbaca;border-right:1px solid #abbaca;left:-1px;top:-1px;}
+.layoutB .list14 li{line-height:17px;}
+/*频道分栏内容*/
+/*频道分栏头部*/
+.channelHead{text-align:center;margin-top:13px;}
+.lineL{border:1px solid #f1f1f1;margin:0;padding:0;}
+.channelSubHead{margin-top:14px;}
+.genus{height:20px;line-height:20px;text-align:center;}
+.channelSubHead .genus{margin-bottom:-10px;}
+.genus a,.genus .split{padding-right:5px;}
+.channelSubHead .genus a,.channelSubHead span{background:#fff;}
+.genus .first{padding-left:10px;}
+.genus .last{padding-right:10px;margin-left:0;}
+.adT320{overflow:hidden;background:#F4F4F4;border:1px solid #ccc;width:320px;height:100px;}
+.adT320 img{padding:1px;margin-top:5px;border:1px solid #ccc;background:#fff;}
+.adT320 a{color:#333;}
+.adT320 li{line-height:normal;}
+	.adTHead,.adTBody{margin:8px 15px 0 10px;}
+	.adTHead strong{font-weight:bold;color:#333;}
+/*/频道分栏排版基本样式layoutB*/	
+.layoutC{overflow:hidden;}
+.layoutC .left{width:720px;overflow:hidden;margin-bottom:-1000px;padding-bottom:1000px;}
+.layoutC .right{width:228px;overflow:hidden;background:#EEF2F6;margin-bottom:-1000px;padding-bottom:1000px;border:1px solid #abbaca;}
+.layoutC .col{width:230px;overflow:hidden;margin-right:10px;}
+
+.layoutD{border-top:1px solid #ccc;border-bottom:1px solid #ccc;background:#f5f7fa;}
+.layoutD .sec{padding:10px;}
+.layoutD .line{margin:14px 0 27px 0;height:1px;border:1px solid #ccc;}
+.layoutD .right{width:219px;border-left:1px solid #ccc;}
+.layoutD .secR{padding-left:15px;}
+.layoutD .left{width:710px;overflow:hidden;}
+.layoutD .secL{padding-right:15px;}
+.layoutD li{padding:6px 0;}
+.layoutD .h3{font-weight:bold;}
+
+
+

@@ -16,7 +16,7 @@ var this$ = function() {
 	};
 	//fancyHL
 	p.initFancyHL=function(){
-		var items=$("#fancyHL .secBody");
+		var items=$("#fancyHL .item");
 		var effect0=function(i){
 			items.removeClass("on");
 			i.addClass("on");
