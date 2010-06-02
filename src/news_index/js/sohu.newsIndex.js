@@ -30,14 +30,20 @@ var this$ = function() {
 	//fancyPics
 	p.initFancyPics=function(){
 		var t=$("#fancyPics_S");
+		var isIE6=($.browser.msie&&$.browser.version<7);
 		//放大图x坐标值的计算公式：(i-1)×小图大小含留白边距69-放大图右边距10+放大图大小的一半84/2-箭头图标宽度一半9+调整值5
 		t.imgNav({mode:'hover',navc:"#fancyPics_B li",callback:function(opts){
 			t.find("li").removeClass("on");	
 			opts._i.parent().addClass("on");
 			//箭头位置
 			var l=opts._index*69-10+84/2-9+5;
-			$("#fancyPics0 .arrow").stop(true,true).animate({left:l+'px'},"normal");
-		}});	
+			if(isIE6){l-=150;};//ie6绝对定位有问题
+			var tempObj={left:l+'px'};
+			$("#fancyPics0 .arrow").stop(true,true).animate(tempObj,"normal");
+		}});
+		if(isIE6){
+			$("#fancyPics0 .arrow").css("left","-53px");	
+		};
 	};
 	
 	/*

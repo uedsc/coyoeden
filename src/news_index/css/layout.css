@@ -40,15 +40,16 @@ a:hover{color:#cc0000;}
 .layoutB{margin-top:15px;margin-bottom:10px;border-left:1px solid #ccc;border-bottom:1px solid #ccc;border-top:2px solid #B1B8C4;border-right:1px solid #ABBACA;overflow:hidden;}
 .layoutB1{margin-top:-11px;border-top:none;}
 .layoutB1 .left .secHead{border-top:1px solid #B1B8C4; }
-.layoutB .left{width:719px;overflow:hidden;margin-bottom:-1000px;padding-bottom:1000px;}
+.layoutB .left{width:720px;overflow:hidden;margin-bottom:-1000px;padding-bottom:1000px;}
 .layoutB .right{width:229px;overflow:hidden;background:#EEF2F6;margin-bottom:-1000px;padding-bottom:1000px;border-left:1px solid #abbaca;}
 .layoutB .col{padding:0 20px 13px 15px;border-left:1px dotted #ccc;}
 .layoutB .firstCol{border-left:none;}
 .layoutB .secL{padding-bottom:13px;}
-.layoutB .lineR0{border:1px solid #e5e5e5;margin:0;}
-.layoutB .lineR{margin:12px 0 20px 0;border:1px solid #e5e5e5;_margin:12px 0 0 0;}
-.layoutB .lineR1{margin:25px 0 15px 0;border:1px solid #e5e5e5;_margin:25px 0 0 0;}
-.layoutB .lineR2{margin:21px 0 20px 0;border:1px solid #e5e5e5;_margin:21px 0 0 0;}
+.layoutB .lineR0{border:1px solid #e5e5e5;margin:0;padding:0;}
+.layoutB .lineR0Wrap{_margin-top:-6px;}
+.layoutB .lineR{margin:12px 0 20px 0;border:1px solid #e5e5e5;}
+.layoutB .lineR1{margin:25px 0 15px 0;border:1px solid #e5e5e5;}
+.layoutB .lineR2{margin:21px 0 20px 0;border:1px solid #e5e5e5;}
 .layoutB .secHead{background:#EDF2F8;padding:10px 20px;}
 .layoutB .secHead0{padding-top:0;}
 .layoutB .channelSubHead{height:20px;line-height:20px;}
@@ -78,7 +79,7 @@ a:hover{color:#cc0000;}
 .lineL{border:1px solid #f1f1f1;margin:0;padding:0;}
 .channelSubHead{margin-top:14px;}
 .genus{height:20px;line-height:20px;text-align:center;}
-.channelSubHead .genus{margin-bottom:-10px;}
+.channelSubHead .genus{margin-top:-10px;_margin-top:-15px;}
 .genus a,.genus .split{padding-right:5px;}
 .channelSubHead .genus a,.channelSubHead span{background:#fff;}
 .genus .first{padding-left:10px;}
@@ -97,11 +98,11 @@ a:hover{color:#cc0000;}
 
 .layoutD{border-top:1px solid #ccc;border-bottom:1px solid #ccc;background:#f5f7fa;}
 .layoutD .sec{padding:10px;}
-.layoutD .line{margin:14px 0 27px 0;height:1px;border:1px solid #ccc;}
-.layoutD .right{width:219px;border-left:1px solid #ccc;}
+.layoutD .line{margin:14px 0 27px 0;height:1px;border:1px solid #ccc;height:1px;}
+.layoutD .right{width:239px;border-left:1px solid #ccc;}
 .layoutD .secR{padding-left:15px;}
 .layoutD .left{width:710px;overflow:hidden;}
-.layoutD .secL{padding-right:15px;}
+.layoutD .secL{padding:0 15px 0 10px;}
 .layoutD li{padding:6px 0;}
 .layoutD .h3{font-weight:bold;}
 

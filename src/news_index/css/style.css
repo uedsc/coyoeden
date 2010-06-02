@@ -87,20 +87,23 @@ h1{display:none;}
 	.ad260 div{border:1px solid #ccc;}
 	.siteBar0 .sec{padding:10px 0 15px 0;border-top:1px solid #ccc;}
 	#voiceVDPushed #voicePushed{border-top:none;}
-		#voicePushed h3{visibility:hidden;}
-		#voicePushed .secHead span{right:0px;}
-		#voicePushed .secHead a{color:#333;}
-		#voicePushed .secBody{min-height:136px;height:auto !important; height:136px;}
-		#voicePushed .secBody a:hover,#voicePushed .secFoot a:hover{text-decoration:none;background:#FBF1F0;border:1px solid #F1E4E9;}
-		#voicePushed .secBody a{display:block;padding:5px;height:30px;width:73px; border:1px solid #ECECEC;}
+		#voicePushed {position:relative;}
+		#voicePushed .more{position:absolute;top:20px;right:10px;}
+		#voicePushed .more a{color:#333;}
+		#voicePushed .secHead a:hover,#voicePushed .secFoot a:hover{text-decoration:none;background:#FBF1F0;border:1px solid #F1E4E9;}
+		#voicePushed .secHead a{display:block;padding:5px;height:30px;width:73px; border:1px solid #ECECEC;}
 		#voicePushed .secFoot a{display:block;padding:10px;border:1px solid #ECECEC;}
 		#voicePushed .tip{background:#fff;}
-		#voicePushed .l{margin-top:-5px;}
-		#voicePushed .l .spec{margin-top:32px;}
-		#voicePushed .r .spec{margin-top:8px;}
+		#voicePushed .l,#voicePushed .c{width:33.3%;}
+		#voicePushed .colL{padding-top:15px;}
+		#voicePushed .c{width:73px;}
+		#voicePushed .colR{padding-top:32px;}	
+		#voicePushed .colL .spec{margin-top:32px;}
+		#voicePushed .colR .spec{margin-top:8px;}
 		#voicePushed .secFoot{position:relative;}
 		#voicePushed .avatar{position:absolute;top:-5px;right:0;width:45px;height:45px;overflow:hidden;}
-		.videoList li{display:inline;float:left;width:50%;padding:10px 0;overflow:hidden;_width:122.5px;}
+		#videoPushedList li{_width:122.5px;}
+		.videoList li{display:inline;float:left;width:50%;padding:10px 0;overflow:hidden;}
 		.videoList img{border:1px solid #ccc;background:#fff;padding:2px;}
 		.videoList span{padding:10px 0;}
 		.videoList a{font-weight:bold;}
@@ -108,14 +111,14 @@ h1{display:none;}
 
 /*主体内容#contentB*/
 /*左列*/
-#fancyPics0{padding-top:18px;_padding-top:8px;}
+#fancyPics0{padding-top:18px;text-align:center;}
 #fancyPics1{margin-top:10px;}
 #fancyPics0 .pp{position:relative;}
-#fancyPics0 .arrow{position:absolute;left:97px;bottom:-9px;width:18px;height:10px;}
+#fancyPics0 .arrow{position:absolute;left:97px;width:18px;height:10px;margin-top:-1px;}
 #fancyPics_B li{display:none;}
 #fancyPics_B li.on{display:block;}
-#fancyPics_B span{background:#f1f1f1;margin:0 8px;padding:13px 0 8px 0;border:1px solid #ccc;}
-#fancyPics_S{margin:25px 8px 10px 8px;}
+#fancyPics0 .tipBox{position:relative;background:#f1f1f1;margin:0 8px 10px;border:1px solid #ccc;line-height:30px;}
+#fancyPics_S{padding:15px 8px 10px 8px;}
 #fancyPics_S li{display:inline;float:left;width:64px;height:50px;overflow:hidden;margin-right:5px;}
 #fancyPics_S li.last{margin-right:0px;}
 #fancyPics_S li.on{margin:-15px 0 0 -10px;padding-bottom:5px;width:84px;height:64px;overflow:hidden;}
@@ -165,6 +168,9 @@ h1{display:none;}
 	.form0 label{color:#333;}
 	.form0 button{margin:0;padding:2px 0 2px 5px;border:none;background:#004377;color:#fff;letter-spacing:5px;}
 	.form0 select{width:48px;height:20px;}
+	#tabStock0{width:205px;}
+	#tabStock0 li{width:50px; overflow:hidden;}
+	#tabStock1 li{width:95px; overflow:hidden;}
 	.tabStock li{display:inline;float:left;border:1px solid #B1B8C4;}
 	.tabStock li{border-left:none;border-bottom:none;}
 	.tabStock li.first{border-left:1px solid #B1B8C4;}
@@ -185,9 +191,10 @@ h1{display:none;}
 	.commentActions .icon{background:url(../img/icon01.gif) no-repeat -16px -43px;height:16px;width:16px;}
 	.commentActions button{margin:0;padding:2px 0 2px 5px;border:none;background:#004377;color:#fff;}
 	.commentActions .cnt{margin-right:10px;padding-left:5px;background:#fff;color:red;}
-#contentG .videoList li{padding-top:0;}
+#contentG .videoList li{padding-top:0;_width:96.5px;}
 #contentG .videoList img{border:1px solid #ccc;background:#fff;padding:2px;}
 #contentG .videoList span{padding-bottom:0;}
+#contentG .ad160{_margin-top:0;}
 
 #contentI .info{background:#355c9c;color:#fff;height:110px;overflow:hidden;}
 #contentI .blank10{background:#355c9c;}
@@ -203,6 +210,8 @@ h1{display:none;}
 
 #contentJ .left .l{width:11%;overflow:hidden;}
 #contentJ .right .l{width:33%;overflow:hidden;}
+#contentJ .lists{padding-left:10px;}
+/*#contentJ .right li{_width:65px;}*/
 #contentJ h3 a{color:#333;}
 #contentJ dd{color:#666;}
 	#adList1{padding-right:15px;}
