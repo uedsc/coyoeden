@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* CSS Document */
+.buddy120{border:1px solid #93D4EB;
+height:120px;
+width:120px;}
+.otherlist h2{height:42px; line-height:42px; font-family:"微软雅黑","simhei", "Arial Black"; font-size:21px; display:block; background: url(../image/line_h2.jpg) left bottom no-repeat; padding:0 0 0 10px; color:#00a0d2;}
+.linkback{float:right;padding-left:14px;margin-top:45px;margin-right:15px;}
+
+/*=otherlist-start*/
+.nav_others{padding-top:10px; height:40px; color:#00a0d2;_padding-bottom:20px;/*未知ie6bug*/}
+.nav_others li{float:left;height:14px; line-height:14px; border-right:1px solid #00a0d2; position:relative; padding:0 25px;}
+.nav_others li.first{padding-left:15px;}
+.nav_others li.last{border:none;}
+.nav_others li .list_num{position:absolute; top:-10px; right:5px; text-align:right; font-family:Georgia,Constantia; font-size:10px; text-decoration:none;}
+/*=otherlist-end*/
+
+.otherlist .dlist_items{
+	margin-right:15px;border:1px solid #95DAF1;
+}
+.otherlist .list{padding-top:20px;}
+.otherlist .list_detail{width:360px;}
+.otherlist .tools li{margin-left:0;}
+.otherlist li.split{color:#00A0D2;}
+
+/*右侧名片ncard*/
+.ncard{margin-top:40px;}
+.ncard img{float:left;}
+.ncard h3{font-size:14px;
+padding-bottom:10px;}
+.ncard h3 span{ font-size:12px;}
+.ncard h3 a{font-family:"微软雅黑","simhei","Arial Black"; font-size:20px;}
+.ncard h3 a:link{color:#292b2c;}
+.ncard h3 a:visited{color:#292b2c;}
+.ncard h3 a:hover{color:#292b2c;}
+.infoitem{float:right; width:128px;padding-left:8px;}
+.infoitem .tools{padding:20px 0 0 0;} 
+.infoitem .tools li{display:block; background:url(../image/sprit_icons.png) no-repeat; padding-left:20px; height:16px; line-height:16px; margin:5px 0}
+.tools li.buddyinfo{background-position:0 -16px;}
+.tools li.friend{background-position:0 -32px;}
+.tools li.mytool{background-position:0 -48px;}
+.mt20{margin-top:20px;}
+.secHead .r{width:60px;}
+.secHead h3{font-size:14px;}
+
+/*右侧朋友列表friendlist*/
+.friendlist li{display:inline;float:left;margin-right:18px;}
+.friendlist li.nomr{margin-right:0;}
+.friendlist .author{line-height:normal;text-align:center;padding-top:5px;}

@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* 全局CSS定义 */
+body{margin:0 auto;padding:0;background:#FFF;color:#666;font:12px '宋体';text-align:center;}
+body > div{margin-right:auto;margin-left:auto;text-align:center; } 
+/*reset-start*/
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,
+th,td {margin:0;padding:0;}
+table {border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0;}
+address,caption,cite,code,dfn,em,strong,th,var {font-style:normal;font-weight:normal;}
+ol,ul {list-style:none;}
+caption,th {text-align:left;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal;}
+q:before,q:after {content:'';}
+p{line-height:22px;}
+
+li,p{line-height:22px;}
+strong{font-weight:700;}
+
+textarea{border-top:1px solid #5d5d5d;border-left:1px solid #5d5d5d;border-right:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0; font-size:12px;}
+/*reset-end*/
+/*clearfix-start*/
+
+.clearfix:after {clear:both;content:' ';display:block;font-size:0;height:0;line-height:0;visibility:hidden;width:0;}
+.clearfix {display:inline-block;}
+* html .clearfix {height:1%;}
+.clearfix {display:block;}
+
+/*clearfix-end*/
+
+
+
+a{text-decoration:none;color:#00A0D2;}
+a.more{color:#b3b2b2;}
+.l,.left,.center,.c{float:left;}
+.r,.right{float:right;}
+.greyline1{
+	border-bottom:1px solid #d1d7db;
+height:15px;
+line-height:10px;
+overflow:hidden;
+}
+.num{color:#FFC601;
+font-size:14px;
+font-weight:700;}
+/* mylist/otherlist的主体框架 */
+.area{width:803px;text-align:left;}
+.area .left{width:529px;overflow:hidden;}
+.area .right{width:274px;overflow:hidden;}
+.dlist_main{overflow:hidden;}
+.dlist_main .left,.dlist_main .right{margin-bottom:-10000px;padding-bottom:10000px;}
+.dlist_main .right{background:#e9ebec;}
+.dlist_hd{height:86px;background:url(../image/hdbg.gif) repeat-x;}
+.dlist_sbar{padding:0 8px;}
+.dlist_logo{padding:17px 0 0 7px;}
+.dlist_nav{margin-top:17px;}
+.dlist_items{padding:0 15px;border-left:1px solid #ccc;border-bottom:1px solid #ccc;}
+
+.list li{height:145px; border-bottom:1px solid #e4e4e4; margin-bottom:20px;}
+.list li.grey{height:22px; padding:5px 10px;}
+.list h3{font-weight:bold;}
+.list h3 a{font-weight:400; padding-left:5px;}
+.list_img{float:left; width:104px; height:78px; margin-top:5px; border:1px solid #ccc;}
+.list_detail{float:right; width:376px;position:relative;overflow:hidden;margin-left:8px;padding-right:8px;}
+.list_detail .date{line-height:normal;}
+.list_detail .desc{height:48px;overflow:hidden;margin-top:5px;}
+.list_info{padding:26px 0 10px 0;}
+.list_info .comment{float:left; height:14px; line-height:14px;}
+.list_info .author{color:#333;padding-left:5px;}
+.list_info .tools{float:right;}
+.list_info .tools li{float:right; padding-left:14px;margin-left:12px; height:14px; line-height:14px; border-bottom:none; margin-bottom:0;}
+
+.dlist_pagerC{margin:0 auto;text-align:center;}
+.dlist_pager{
+width:320px;
+height:26px;
+line-height:26px;
+padding-bottom:150px;
+}
+.dlist_pager p{
+	width:26px;float:left;
+}
+.dlist_pager p.on{background:#00a0d2; color:#fff;}
+

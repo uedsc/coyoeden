@@ -1,0 +1,74 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*=mylist-start*/
+.ncard{padding-top:17px;}
+.ncard img{float:left;border:1px solid #ccc;}
+.ncard h2{height:50px; line-height:50px; font-family:"微软雅黑","simhei", "Arial Black"; font-size:21px;color:#333;padding-left:60px;}
+/*nav_mylist*/
+.nav_mylist{height:30px; color:#00a0d2;}
+.nav_mylist a{background:url(../image/nav_bg_l.jpg) no-repeat 0 0;padding-left:15px;}
+.nav_mylist a span.inner{background:url(../image/nav_bg_r.jpg) no-repeat right top;padding-right:15px;position:relative;}
+.nav_mylist a span.wrap{background:url(../image/nav_bg_c.jpg) repeat-x right top;}
+.nav_mylist a,.nav_mylist a span{display: block;float: left}
+.nav_mylist a:hover
+{
+background:url(../image/nav_bg_l.jpg) 0 -41px no-repeat;
+padding-left: 15px;
+color:#fff;
+}
+.nav_mylist a:hover span.wrap
+{
+background: url(../image/nav_bg_c.jpg) right -41px repeat-x;
+}
+
+.nav_mylist a:hover span.inner
+{
+background: url(../image/nav_bg_r.jpg) right -41px no-repeat;
+padding-right: 15px
+}
+.nav_mylist li
+{
+	display:inline;
+float: left;
+height:30px; line-height:30px; text-align:center; cursor:pointer; position:relative;
+overflow:hidden;
+}
+.nav_mylist li{color:#00a0d2;}
+.nav_mylist li.on a{background-position:0 -41px; color:#fff; cursor:default;}
+.nav_mylist li.on span{background-position:right -41px;}
+.nav_mylist li.on,.nav_mylist li:hover {color:#fff;}
+.nav_mylist li .list_num2{color:#ff0000;}
+.nav_mylist li .list_num,.nav_mylist li .list_num2{position:relative;top:-5px; text-align:right; font-family:Georgia,Constantia; font-size:10px; text-decoration:none;}
+
+.nav_second{ height:22px; background:#23acda; padding:8px 0 0 29px;}
+.nav_second li{float:left; text-align:center; height:14px; line-height:14px; padding:0 12px 8px; color:#fff;}
+.nav_second li a:link{color:#e4ebf0;}
+.nav_second li a:visited{color:#e4ebf0;}
+.nav_second li a:hover{color:#e4ebf0;}
+.nav_second li.on2{background:url(../image/bg_on_navsecond.jpg) no-repeat 50% 100%;color:#fff;}
+
+
+/*=mylist-end*/
+
+/*=右边部分=*/
+
+/*=quickpost-start*/
+.quickpost{padding-top:40px;}
+.quickpost input.txt{background:url(../image/bg_sprit1.jpg) no-repeat 0 -105px; height:22px; line-height:22px;padding:10px 0 10px 75px;border:0 none; float:left;width:143px;}
+.quickpost input.submit{ background:url(../image/bg_sprit1.jpg) no-repeat 0 -167px; width:40px; height:42px;float:right;border:0 none; overflow:hidden; text-indent:-9999px; cursor:pointer;}
+.quickpost input.submit:hover{background-position:-75px -167px;}
+.quickpost p{line-height:22px;padding-left:5px;}
+.quickpost p.tip{padding-left:0;margin-top:20px;}
+/*=quickpost-end*/
+
+/*=actionlist=*/
+.actionlist{margin-top:12px;}
+.actionlist li{line-height:22px;padding:3px 0;}
+.actionlist span{padding-left:14px;}
+
+.limit{
+font-family:Georgia,Constantia;
+font-size:30px;
+font-weight:normal;
+}

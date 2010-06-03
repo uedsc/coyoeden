@@ -1,0 +1,102 @@
+@charset "utf-8";
+/* CSS Document */
+/*reset-start*/
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,
+th,td {margin:0;padding:0;}
+table {border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0;}
+address,caption,cite,code,dfn,em,strong,th,var {font-style:normal;font-weight:normal;}
+ol,ul {list-style:none;}
+caption,th {text-align:left;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal;}
+q:before,q:after {content:'';}
+p{line-height:22px;}
+
+li,p{line-height:22px;}
+strong{font-weight:700;}
+
+textarea{border-top:1px solid #5d5d5d;border-left:1px solid #5d5d5d;border-right:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0; font-size:12px;}
+/*reset-end*/
+/*clearfix-start*/
+
+.clearfix:after {clear:both;content:' ';display:block;font-size:0;height:0;line-height:0;visibility:hidden;width:0;}
+.clearfix {display:inline-block;}
+* html .clearfix {height:1%;}
+.clearfix {display:block;}
+
+/*clearfix-end*/
+/*=body start*/
+body{font-size:12px; margin:0 0; padding:0 0; font: 12px/1 Helvetica, Tahoma, Arial, \5b8b\4f53, sans-serif; background: url(../image/mainbg.jpg) repeat-x #3c88be; color:#303030;}
+.header{width:920px; margin:0 auto;}
+.header .logo{float:left; width:284px; height:64px; padding:26px 0 0 10px;}
+.header .toolbar{float:right; background:url(../image/bg_sprit1.jpg) no-repeat; width:361px; height:83px; margin-top:10px;}
+
+.container{width:930px; margin:0 auto; background:url(../image/contentbg.jpg) repeat-y 50% 50%;}
+.topbg{background:url(../image/topbg.jpg) no-repeat; height:16px}
+.content{width:570px; float:left; padding:10px 0 0 22px;}
+
+.sidebar{width:300px;; float:right; padding:16px 20px 0 0;}
+.sidebox{position:relative;}
+.sidebox .more{position:absolute; top:10px; right:5px; display:block; height:22px; width:100px; text-align:right;}
+.sidebar h3{font-size:14px; padding-bottom:10px;}
+
+.limit{font-family:Georgia,Constantia;font-size:30px;font-weight:normal;}
+/*=body end*/
+/*=fontcolor start*/
+.grey{color:#b3b2b2;}
+.grey:link{color:#b3b2b2;}
+.grey:visited{color:#b3b2b2;}
+.grey:hover{color:#b3b2b2;}
+
+.darkgrey{color:#303030;}
+.darkgrey:link{color:#303030;}
+.darkgrey:visited{color:#303030;}
+.darkgrey:hover{color:#303030;}
+
+.blue{color:#00a0d2;}
+.blue:link{color:#00a0d2;}
+.blue:visited{color:#00a0d2;}
+.blue:hover{color:#00a0d2;}
+
+.f14{font-size:14px;}
+.num{ color:#ffc601; font-weight:700;font-size:14px;}
+.num:link{ color:#ffc601;}
+.num:visited{ color:#ffc601;}
+.num:hover{ color: #ff3300;}
+
+.geogia{font-family:Georgia,Constantia;}
+/*=fontcolor end*/
+/*=img style start*/
+.img_product1{width:104px; height:78px; border:1px solid #ccc;}
+.img_product2{width:260px; height:180px; border:1px solid #ccc; padding:3px;}
+.buddy50{width:50px; height:50px; border:1px solid #93d4eb;}
+.buddy120{width:120px; height:120px; border:1px solid #93d4eb;}
+/*=img style end*/
+/*=link-start*/
+a:link{color:#00a0d2; overflow:hidden; text-decoration:none;}
+a:visited{color:#00a0d2; overflow:hidden; text-decoration:none;}
+a:hover{color:#00a0d2; overflow:hidden; text-decoration:underline;}
+/*=link-end*/
+/*=pages-start*/
+.pages{height:26px; line-height:26px; padding:15px 10px; float:right;}
+.pages p{width:26px; text-align:center; float:left;}
+.pages p.on{background:#00a0d2; color:#fff;}
+/*=pages-end*/
+/*=line-start*/
+.greyline{border-bottom:1px solid #e4e4e4; height:15px; line-height:10px; overflow:hidden;}
+
+/*=line-end*/
+/*=footer*/
+.footer{background: url(../image/footbg.jpg) no-repeat top center; color:#fff; width:930px; margin:0 auto; padding:40px}
+.footer ul{padding:0 0 0 200px;}
+.footer ul li{padding:0 15px; border-right:1px solid #fff; float:left; height:14px; line-height:14px;}
+.footer ul li a:link{color:#fff;}
+.footer ul li a:visited{color:#fff;}
+.footer ul li a:hover{color:#fff;}
+/*=footer-end*/
+/*=icons start*/
+.submit_b1{ background:url(../image/sprit_button.png) no-repeat -170px -124px; width:62px; height:28px; border:none; cursor:pointer; color:#000;}
+.submit_b1:hover{background-position: -170px -162px; color:#292b2c;}
+/*=icons end*/
+
+
