@@ -1,0 +1,45 @@
+.sys {
+	MARGIN: 20px auto 0px
+}
+.sys .jump {
+	MARGIN: 10px auto 0px
+}
+.sys TH {
+	TEXT-ALIGN: left
+}
+.sys H3 {
+	TEXT-INDENT: 10px; MARGIN: 0px auto 10px; WIDTH: 98%; FONT: 600 12px/22px "ËÎÌו"; BACKGROUND: #f4f4f4; HEIGHT: 22px
+}
+.sysList {
+	MARGIN: 0px auto 10px
+}
+.sysList .l {
+	TEXT-ALIGN: right; LINE-HEIGHT: 16px; MARGIN: 5px 3px 0px 0px; WIDTH: 66px; DISPLAY: inline
+}
+.sysList .r {
+	WIDTH: 90%; FLOAT: left
+}
+.sysList .r H4 {
+	LINE-HEIGHT: 22px; MARGIN: 0px auto 8px; BACKGROUND: #f4f4f4; HEIGHT: 22px; CLEAR: both
+}
+.sysList .r UL {
+	CLEAR: both
+}
+.sysList .r LI {
+	LINE-HEIGHT: 24px; WIDTH: 33%; FLOAT: left
+}
+.channel .form .txt {
+	WIDTH: 90px
+}
+.acl TABLE {
+	MARGIN: 1px auto 0px
+}
+.acl P {
+	LINE-HEIGHT: 22px; TEXT-INDENT: 20px; MARGIN: 10px auto
+}
+.buffer .form .txt {
+	WIDTH: 90px
+}
+.sensitivity .form .txt {
+	WIDTH: 80px
+}

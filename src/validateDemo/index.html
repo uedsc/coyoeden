@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>demo of jquery.validate plugin</title>
+		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>	
+		<script type="text/javascript" src="http://cms5.sohu.com/web/javascript/plugin/jquery.validate.js"></script>
+		<style type="text/css">
+			fieldset{position:relative;}
+			label.error{
+				background:url("img/unchecked.gif") no-repeat scroll 0 0 transparent;
+				padding-left:18px;
+			}
+			label.valid{
+				background:url("img/checked.gif") no-repeat scroll 0 0 transparent;
+				padding-left:18px;
+			}
+		</style>
+	</head>
+	<body>
+		<form id="testForm" name="testForm" action="">
+		<fieldset>
+			<legend>demo of jquery.validate plugin</legend>
+			<label for="txtName">名字：</label>
+			<input id="txtName" name="name"/><br/><br/>
+			<label for="txtName">邮件：</label>
+			<input id="txtEmail" name="mail"/>
+		</fieldset>	
+		<input type="submit" value="提交"/>
+		</form>
+	<script type="text/javascript">
+	//<![CDATA[
+		$(function(){
+			$("#testForm").validate({
+				rules:{
+					name:{required:true,minlength:10},
+					mail:{email:true}
+				},
+				success:"valid"
+			});
+		});
+	//]]>
+	</script>
+  
+		
+	</body>
+</html>

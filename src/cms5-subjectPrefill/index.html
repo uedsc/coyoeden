@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html>
+<head>
+<title>新建专题--SOHU CMS5.0</title>
+<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
+<script type="text/javascript" src="js/jqModal.js"></script>
+<script type="text/javascript" src="js/sohu.frameModal.js"></script>
+<script type="text/javascript" src="js/sohu_cms5_subjectAdd.js"></script>
+<link type="text/css" href="css/jqModal.css" rel="stylesheet"/>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<body bgcolor="#F3F3F3" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+<form id="save" name="save" action="/web/subject/save.action" method="post">
+    <input type="hidden" name="subjectVO.editor" value="90" id="save_subjectVO_editor"/>
+    <input type="hidden" name="subjectVO.type" value="1" id="save_subjectVO_type"/>
+
+<table width="90%"  cellspacing="0" bordercolordark="#ffffff" cellpadding="1" bordercolorlight="#97989a" border="1" align="center">
+  <tr bgcolor="#F8F8F8">
+    <td class="input-title" width="10%">父对象： </td>
+    <td width="40%">
+        <input type="text" name="subjectVO.pname" value="" id="save_subjectVO_pname"/>
+        <input type="hidden" name="subjectVO.channel" value="-1" id="save_subjectVO_channel"/>
+
+    </td>
+    <td class="input-title" width="10%">新建实体类型： </td>
+
+    <td width="40%">
+        <input type="text" name="subjectVO.subtype" value="2" id="save_subjectVO_subtype"/>
+
+    </td>
+	</tr>
+	<tr>
+    <td class="input-title" width="10%">标题： </td>
+    <td width="40%">
+        <input type="text" name="subjectVO.desc" size="28" maxlength="200" value="" id="save_subjectVO_desc"/>
+
+    </td>
+    <td class="input-title" width="10%">内部简称： </td>
+    <td width="40%">
+        <input type="text" name="subjectVO.name" maxlength="32" value="" id="save_subjectVO_name"/>
+    </td>
+	</tr>
+    <tr >
+       <td class="input-title" width="10%">URL： </td>
+
+       <td width="90%" colspan="3">
+           <input type="text" name="subjectVO.shortname" maxlength="30" value="" id="save_subjectVO_shortname"/>
+           <select name="subjectVO.urlref" id="save_subjectVO_urlref">
+    <option value="0" selected="selected">不继承</option>
+    <option value="1">一级</option>
+    <option value="2">二级</option>
+    <option value="3">三级</option>
+
+
+</select>
+
+           <select name="subjectVO.urlstyle" id="save_subjectVO_urlstyle">
+    <option value="0" selected="selected">索引方式</option>
+    <option value="1">扁平方式</option>
+
+
+</select>
+
+
+       </td>
+    </tr>
+
+    <tr>
+    <td class="input-title" width="10%">生成讨论列表： </td>
+    <td width="40%">
+        <input type="checkbox" name="subjectVO.discuss" value="true" checked="checked" id="save_subjectVO_discuss"/>
+<input type="hidden" id="__checkbox_save_subjectVO_discuss" name="__checkbox_subjectVO.discuss" value="true" /> 
+    </td>
+    <td class="input-title" width="10%">使用模板： </td>
+
+    <td width="40%">
+        <input type="text" name="subjectVO.templateId" value="0" id="save_subjectVO_templateId"/>
+       <a href="#">模板库</a>
+    </td>
+  	</tr>
+
+<tr bgcolor="#F8F8F8">
+     <td class="input-title" width="10%">权重：</td>
+    <td  width="40%">
+
+        <input type="text" name="subjectVO.priority" value="0" id="save_subjectVO_priority"/>
+    </td>
+    <td class="input-title" width="10%">状态： </td>
+    <td width="40%">
+        <input type="radio" name="subjectVO.status" id="save_subjectVO_status0" value="0"/><label for="save_subjectVO_status0">无效</label>
+<input type="radio" name="subjectVO.status" id="save_subjectVO_status2" checked="checked" value="2"/><label for="save_subjectVO_status2">有效</label>
+<input type="radio" name="subjectVO.status" id="save_subjectVO_status1" value="1"/><label for="save_subjectVO_status1">备用</label>
+
+        
+    </td>
+	</tr>
+
+	<tr>
+    <td class="input-title" width="10%" height=25>新建子实体： </td>
+    <td width="40%">
+        			<select name="subjectVO.addSubType" id="addSubType" value="0">
+						<option value="0">无</option>
+
+						<option value="2">子专题</option>
+						<option value="1">专题</option>
+						<option value="4">子栏目</option>
+					</select>
+    </td>
+    <td class="input-title" width="10%" height=25>创建时间： </td>
+    <td width="40%">
+
+      
+    <input type="text" name="subjectVO.time" value="23/06/10 10:16:01.359" id="save_subjectVO_time"/>
+    </td>
+	</tr>
+
+	<tr bgcolor="#F8F8F8">
+    <td height="18" colspan=4>
+        <input type="submit" id="save_save" name="save" value="&#20445;&#23384;"/>
+		<a id="btnPrefill" href="#" title="" class="thickbox">预填</a>
+	</td>
+	</tr>
+
+</table>
+
+   
+
+    <input type="submit" id="save_addSubSubject" name="action:addSubSubject" value="&#26032;&#24314;&#23376;&#23454;&#20307;"/>
+
+     
+
+</form>
+
+		<!--jqModal placeholder-->
+		<div id="modalWindow" class="jqmWindow">
+	        <div id="jqmTitle">
+	            <span id="jqmTitleText">Title of modal window</span>
+				<button class="jqmClose">X</button>
+	        </div>
+	        <iframe id="jqmContent" src="" name="jqmContent">
+	        </iframe>
+	    </div>
+		<input type="hidden" id="txtPrefillData"/>
+		<!--/jqModal placeholder-->
+	<script type="text/javascript">
+	//<![CDATA[
+	sohu_cms5_subjectAdd.Init({});
+	//]]>
+	</script>
+ 
+
+
+</body>
+    </html>

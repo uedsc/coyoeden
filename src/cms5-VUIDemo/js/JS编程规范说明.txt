@@ -1,0 +1,22 @@
+1,命名规范
+A，私有变量名:下划线+变量名称
+	如var _var1=0;
+B，私有方法名：第一个字母小写，驼峰型写法
+	如var doSomething=function(){}
+C，公有变量及公有方法名：首字母大写的驼峰型写法
+	如var Name="test";var DoSth=function(){}
+
+2,变量名中常用英文缩写规范
+A，cls=close;
+B，cl=css class;
+C，sec=section;
+D，col=column;
+E，css=css selector;
+F，df=default
+G，rd=random
+H，lb=lower bound
+I，ub=upper bound
+
+3，针对jquery 编程的变量命名规范
+A，如果是jquery对象，变量名前加$
+	如var $btn1=$("#btn1");

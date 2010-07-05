@@ -1,0 +1,20 @@
+﻿[
+	
+	{
+		"text":"20307时事",
+		"href":null,
+		"channelid":"208",
+		"layer":1,
+		"children":[
+			{"text":"2007-1"},{"text":"2007-2"}
+		]
+	},
+	{
+		"text":"2008频道",
+		"id":"allC-2008",
+		"channelid":"209",
+		"layer":2,
+		"href":"#test",
+		"hasChildren":true
+	}
+]

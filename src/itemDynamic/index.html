@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>Untitled Document</title>
+		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
+		<script type="text/javascript" src="js/sohu.itemDynamic.js"></script>
+
+		<style type="text/css">
+			div.iDynamic{border:1px solid red;height:50px;width:80%;padding:10px;margin-top:10px;}
+			.iModel .btnDel{display:none;}
+			.iClone .btnAdd{display:none;}
+		</style>
+	</head>
+	<body>
+		<h1>动态元素-table</h1>
+		<table id="tbTest" border="1" cellpadding="5" cellspacing="5">
+			<tr class="iDynamic">
+				<td>xxxx</td>
+				<td>yyyy</td>
+				<td>zzzz</td>
+				<td>
+					<a class="btnAdd" href="#">添加</a>
+					<a class="btnDel" href="#">删除</a>
+				</td>
+			</tr>
+		</table>
+		<hr/>
+		<h1>动态元素-div</h1>
+		<div class="iDynamic">
+			<strong>阿斯顿发生的发生的发生的发生的</strong>
+			<a class="btnAdd" href="#">添加</a>
+			<a class="btnDel" href="#">删除</a>
+		</div>
+	<script type="text/javascript">
+	//<![CDATA[
+		$("#tbTest .iDynamic").iDynamic({
+			onAdd:function(opts){
+				alert("添加了一行");
+			},
+			onDel:function(opts){
+				alert("删除了一行");
+			},
+			cssItem:"#tbTest .iDynamic"
+		});
+		$("div.iDynamic").iDynamic({
+			cssItem:'div.iDynamic',
+			onPreAdd:function(opts){
+				if(opts.itemCnt>4){
+					alert("元素超过4个啦");
+					return false;
+				}
+				return true;
+			}
+		});
+	//]]>
+	</script>
+ 
+	</body>
+</html>

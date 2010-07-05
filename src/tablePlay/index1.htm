@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0055)http://192.168.202.1:8080/web/fragcodedb/list.action -->
+<HTML><HEAD><TITLE>标准碎片代码库-SOHU CMS5.0</TITLE>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<LINK rel=stylesheet type=text/css href="css/global1.3.css">
+<LINK rel=stylesheet type=text/css href="css/normal.css">
+<LINK rel=stylesheet type=text/css href="css/sys.css">
+<LINK rel=stylesheet type=text/css href="css/displaytag.css">
+<STYLE>
+	.over {
+	BACKGROUND-COLOR: #9999cc; PADDING-LEFT: 1px; FONT-FAMILY: "Comic Sans MS"; COLOR: red; FONT-SIZE: 28px
+}
+table{width:100%;border-collapse:collapse;}
+td,th{
+	background:#FFFFFF;
+	line-height:22px;
+	padding:5px 0 4px 3px;
+	text-align:left;
+	margin:2px;
+	border:1px solid #eee;
+	}
+td{border-bottom:none;}
+td,th{border-right:none;}
+.last td{border-bottom:1px solid #eee;}
+th.last,td.last{border-right:1px solid #eee;}
+</STYLE>
+
+<SCRIPT type=text/javascript>
+        function choice(id, desc) {
+            var obj = new Object();
+            obj.id = id;
+            obj.desc = desc;
+            window.returnValue = obj;
+            window.close();
+        }
+    </SCRIPT>
+
+<META name=GENERATOR content="MSHTML 8.00.6001.18928"></HEAD>
+<BODY>
+<DIV></DIV>
+<DIV class=content>
+<DIV class=title>
+<DIV class=tt>标准碎片代码库</DIV>
+<DIV class=mh>该栏目关键性帮助提示：<A href="http://192.168.202.1:8080/web/help/help.html" 
+target=_blank>更多帮助</A></DIV></DIV>
+<DIV style="PADDING-LEFT: 120px" class=location>碎片管理 &gt;&gt; 标准碎片代码库</DIV>
+<DIV class="sys channel clear">
+<FORM method=post action=list.action>
+<TABLE border=0 cellSpacing=0 cellPadding=0 width="96%" height=45>
+  <TBODY>
+  <TR>
+    <TD align=left><INPUT class=btn onclick="location.href='edit.action'" value=新建碎片 type=button name=Submit>&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+    <TD align=right>名称：<INPUT type=text name=searchKeywords>&nbsp;&nbsp;&nbsp; 
+      类别：<SELECT id=searchType size=1 name=searchType> <OPTION selected 
+        value=0>类别一</OPTION> <OPTION value=1>类别二</OPTION> <OPTION 
+        value=2>类别三</OPTION></SELECT> &nbsp;&nbsp;&nbsp; <INPUT value=搜索 type=submit> </TD></TR></TBODY></TABLE></FORM><SPAN 
+class=pagebanner>One item found.</SPAN><SPAN 
+class=pagelinks><STRONG>1</STRONG></SPAN> 
+<TABLE id=standardcode>
+  <THEAD>
+  <TR>
+    <TH class=sortable><A 
+      href="http://192.168.202.1:8080/web/fragcodedb/list.action?df=&amp;d-7958812-s=0&amp;d-7958812-p=1&amp;d-7958812-o=2">编号</A></TH>
+    <TH class=sortable><A 
+      href="http://192.168.202.1:8080/web/fragcodedb/list.action?df=&amp;d-7958812-s=1&amp;d-7958812-p=1&amp;d-7958812-o=2">碎片名称</A></TH>
+    <TH>描述信息</TH>
+    <TH>类别</TH>
+    <TH>修改时间</TH>
+    <TH class="last">操作</TH></TR></THEAD>
+  <TBODY>
+  <TR class="odd last">
+    <TD>450</TD>
+    <TD>测试测试</TD>
+    <TD>测试测试</TD>
+    <TD>0</TD>
+    <TD></TD>
+    <TD class="last"><A 
+      href="http://192.168.202.1:8080/web/fragcodedb/edit.action?id=450">管理</A> 
+    </TD></TR></TBODY></TABLE>
+<DIV class=exportlinks>Export options: <A 
+href="http://192.168.202.1:8080/web/fragcodedb/list.action?df=&amp;d-7958812-e=1&amp;6578706f7274=1"><SPAN 
+class="export csv">CSV </SPAN></A>| <A 
+href="http://192.168.202.1:8080/web/fragcodedb/list.action?df=&amp;d-7958812-e=2&amp;6578706f7274=1"><SPAN 
+class="export excel">Excel </SPAN></A>| <A 
+href="http://192.168.202.1:8080/web/fragcodedb/list.action?df=&amp;d-7958812-e=3&amp;6578706f7274=1"><SPAN 
+class="export xml">XML </SPAN></A></DIV></DIV></DIV>
+<DIV></DIV>
+<SCRIPT type=text/javascript>
+    function highlightTableRows(tableId) {
+       var previousClass = null;
+       var table = document.getElementById(tableId);
+       var tbody = table.getElementsByTagName("tbody")[0];
+       if (tbody == null) {
+            var rows = table.getElementsByTagName("tr");
+        } else {
+            var rows = tbody.getElementsByTagName("tr");
+        }
+         for (i=0; i < rows.length; i++) {
+            rows[i].onmouseover = function() { previousClass=this.className;this.className+=' over' };
+            rows[i].onmouseout = function() { this.className=previousClass };
+         }
+    }
+    highlightTableRows("standardcode");
+</SCRIPT>
+</BODY></HTML>

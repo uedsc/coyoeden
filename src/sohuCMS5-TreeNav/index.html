@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<link href="http://cms5.sohu.com/web/cms5css/global.css" rel="stylesheet" type="text/css"/>
+		<link href="http://cms5.sohu.com/web/cms5css/layout.css" rel="stylesheet" type="text/css"/>
+		<link href="http://cms5.sohu.com/web/cms5css/style.css" rel="stylesheet" type="text/css"/>
+		
+		<title>CMS5 Tree navigation</title>
+		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script> 
+		<script type="text/javascript" src="js/jquery.json-2.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery.treeview.js"></script>
+		<script type="text/javascript" src="js/jquery.treeview.async.js"></script>
+		<script type="text/javascript" src="js/date.js"></script>
+		<script type="text/javascript" src="http://10.1.56.52/cms5/javascript/sohu.stringUtils.js"></script>
+		<script type="text/javascript" src="js/sohu_treeNav.js"></script>
+		<style type="text/css">
+			.leftNav .tree{margin-left:0;}
+			#leftNav .panel{display:none;background:#eee;padding-left:25px;}
+			#leftNav .panel_h{width:120px;background:#fff;}
+			#leftNav .icon{width:8px;height:8px;background:url(images/256x240_icons.png) no-repeat;} 
+			#leftNav .panel_h .icon{margin-top:4px;}
+			#leftNav span.l{background-position:-101px -20px;}
+			#leftNav span.r{background-position:-38px -20px;}
+			#leftNav input.hit{background:#CFE9FF;}
+			#leftNav input.invalid{color:red;}
+				#txtHisDate{padding:0;border-top:none;border-bottom:none;border-left:1px solid #eee;border-bottom:1px solid #eee;height:16px;width:100px;line-height:16px;text-align:center;}
+				#nav_hisList li{padding:4px 0;width:140px;height:12px;overflow:hidden;}
+				#nav_hisList .time{color:#333;padding-right:2px;}
+				#nav_hisList .icon{margin-top:2px;background-position:-35px -99px;}
+		</style>
+	</head>
+	<body>
+		<div id="leftNav" class="leftNav">
+			<h3><a id="lnkFav" class="root" href="#">个人收藏夹</a></h3>
+			<h3><a id="lnkHis" class="root" href="#">历史记录</a></h3>
+			<div class="panel">
+				<div class="panel_h clear">
+					<a id="btnHisPrev" href="#" title="前一天"><span class="icon l"></span></a><input type="text" id="txtHisDate" value="今  天" class="l" readonly="readonly"/><a id="btnHisNext" href="#" title="后一天"><span class="icon r"></span></a>
+				</div>
+				<ul id="nav_hisList"></ul>
+			</div>
+			
+			<h3><a id="lnkFavC" class="root" href="#">频道收藏夹</a></h3>
+			<h3 class="last"><a id="lnkAllC" class="root" href="#" title="">全部频道</a></h3>
+			<ul id="nav_allCList" class="panel tree"></ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+	//<![CDATA[
+	sohu_cms5_treeNav.Init({
+		treeDataUrl:'allC0.json',
+		hisDataUrl:'http://10.10.83.23:8080/tips/history_show.action'
+	});
+	//]]>
+	</script>
+ 
+</html>

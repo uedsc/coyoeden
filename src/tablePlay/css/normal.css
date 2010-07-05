@@ -1,0 +1,204 @@
+EM {
+	FONT-STYLE: normal
+}
+.content {
+	TEXT-ALIGN: left; WIDTH: 98%; COLOR: #333
+}
+.content A {
+	COLOR: #005ab3
+}
+TABLE {
+	MARGIN: 0px auto; BACKGROUND: #e8e8e8
+}
+TH {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 4px; LINE-HEIGHT: 22px; PADDING-LEFT: 3px; PADDING-RIGHT: 0px; BACKGROUND: #fff; PADDING-TOP: 5px
+}
+TD {
+	TEXT-ALIGN: left; PADDING-BOTTOM: 4px; LINE-HEIGHT: 22px; PADDING-LEFT: 3px; PADDING-RIGHT: 0px; BACKGROUND: #fff; PADDING-TOP: 5px
+}
+.tc {
+	TEXT-ALIGN: center
+}
+.tl {
+	TEXT-ALIGN: left
+}
+.numRed {
+	BACKGROUND: url(../images/icon01.gif) no-repeat
+}
+.numGre {
+	BACKGROUND: url(../images/icon01.gif) no-repeat
+}
+.link .red {
+	BACKGROUND: url(../images/icon01.gif) no-repeat
+}
+.link .blue {
+	BACKGROUND: url(../images/icon01.gif) no-repeat
+}
+.link .blueD {
+	BACKGROUND: url(../images/icon01.gif) no-repeat
+}
+.location {
+	LINE-HEIGHT: 22px; MARGIN: 12px auto 0px; COLOR: #999
+}
+.location STRONG {
+	COLOR: #333
+}
+.title {
+	BORDER-BOTTOM: #ccd8e5 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: 26px; MARGIN: 0px auto; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; HEIGHT: 26px; COLOR: #999; PADDING-TOP: 15px
+}
+.title .tt {
+	DISPLAY: inline; FONT: 600 14px/24px "ËÎÌו"; FLOAT: left; COLOR: #333; MARGIN-LEFT: 15px
+}
+.title .mh {
+	PADDING-LEFT: 20px; BACKGROUND: url(../images/nobg30.gif) no-repeat 0px 2px; FLOAT: right
+}
+.turn {
+	BORDER-BOTTOM: #ccd8e5 1px solid; MARGIN: 8px auto 0px; HEIGHT: 30px
+}
+.turn .l {
+	MARGIN: 3px 0px 0px; HEIGHT: 26px
+}
+.turn .l LI {
+	LINE-HEIGHT: 22px; MARGIN: 0px 5px 0px 15px; DISPLAY: inline; FLOAT: left; HEIGHT: 22px; COLOR: #444; PADDING-TOP: 4px
+}
+.turn .l .now {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; BACKGROUND: #e4e4e4; PADDING-TOP: 4px
+}
+.turn .r {
+	COLOR: #ccd8e5
+}
+.turn .r .cop {
+	LINE-HEIGHT: 22px; MARGIN-TOP: 5px; FLOAT: left
+}
+.turn .r .cop A {
+	MARGIN: 0px 10px
+}
+.turn .r .btn {
+	FLOAT: left
+}
+.content .form {
+	MARGIN: 0px auto 10px
+}
+.content .form SPAN {
+	FLOAT: left
+}
+.content .txt {
+	TEXT-ALIGN: right; LINE-HEIGHT: 16px; MARGIN: 5px 3px 0px 0px; WIDTH: 66px; DISPLAY: inline; FLOAT: left
+}
+.content .txtNo {
+	TEXT-ALIGN: right; LINE-HEIGHT: 16px; MARGIN: 5px 3px 0px 5px; DISPLAY: inline; FLOAT: left
+}
+.content .numRed {
+	TEXT-ALIGN: center; LINE-HEIGHT: 22px; WIDTH: 30px; PADDING-RIGHT: 2px; BACKGROUND-POSITION: 0px 0px; HEIGHT: 22px; COLOR: #d40000
+}
+.content .numGre {
+	TEXT-ALIGN: center; LINE-HEIGHT: 22px; WIDTH: 30px; PADDING-RIGHT: 2px; BACKGROUND-POSITION: 0px -30px; HEIGHT: 22px; COLOR: #019c6b
+}
+.content .bord {
+	BORDER-BOTTOM: #dbdbdb 1px solid; BORDER-LEFT: #bebebe 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; PADDING-LEFT: 5px; PADDING-RIGHT: 0px; FLOAT: left; HEIGHT: 17px; COLOR: #333; BORDER-TOP: #bebebe 1px solid; BORDER-RIGHT: #dbdbdb 1px solid; PADDING-TOP: 3px
+}
+.content .bordNo {
+	BORDER-BOTTOM: #dbdbdb 1px solid; BORDER-LEFT: #bebebe 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; PADDING-LEFT: 5px; PADDING-RIGHT: 0px; HEIGHT: 17px; COLOR: #333; BORDER-TOP: #bebebe 1px solid; BORDER-RIGHT: #dbdbdb 1px solid; PADDING-TOP: 3px
+}
+.content .botB {
+	BORDER-BOTTOM: #ccd8e5 1px solid
+}
+.content .wdA {
+	WIDTH: 142px; BORDER-RIGHT: 0px
+}
+.content .wdB {
+	WIDTH: 157px
+}
+.content .wdC {
+	WIDTH: 262px; BORDER-RIGHT: 0px
+}
+.content .wdD {
+	WIDTH: 292px
+}
+.content .wdE {
+	WIDTH: 142px
+}
+.content .wdF {
+	WIDTH: 80px
+}
+.content .wdG {
+	WIDTH: 100px
+}
+.content .link A {
+	LINE-HEIGHT: 16px; MARGIN: 5px 0px 0px 12px; PADDING-LEFT: 9px; DISPLAY: inline; FLOAT: left
+}
+.content .link .red {
+	BACKGROUND-POSITION: 0px -60px; COLOR: #e62f2f
+}
+.content .link .blue {
+	BACKGROUND-POSITION: 0px -90px
+}
+.content .link .blueD {
+	BACKGROUND-POSITION: 0px -60px
+}
+.content .marA {
+	DISPLAY: inline; MARGIN-LEFT: 6px
+}
+.content .sele {
+	WIDTH: 55px; FLOAT: left; MARGIN-RIGHT: 20px
+}
+.content .ta {
+	BORDER-BOTTOM: #bebebe 1px solid; BORDER-LEFT: #bebebe 1px solid; WIDTH: 760px; HEIGHT: 44px; MARGIN-LEFT: 5px; OVERFLOW: auto; BORDER-TOP: #bebebe 1px solid; BORDER-RIGHT: #bebebe 1px solid
+}
+.content .info {
+	BORDER-BOTTOM: #f2f1e5 1px solid; BORDER-LEFT: #f2f1e5 1px solid; PADDING-BOTTOM: 0px; MARGIN: 3px auto 10px 68px; PADDING-LEFT: 10px; WIDTH: 380px; PADDING-RIGHT: 0px; BACKGROUND: #fffce6; BORDER-TOP: #f2f1e5 1px solid; BORDER-RIGHT: #f2f1e5 1px solid; PADDING-TOP: 3px
+}
+.content .info P {
+	LINE-HEIGHT: 22px; COLOR: #666
+}
+.content .info P EM {
+	COLOR: #f00
+}
+.content .edit {
+	MARGIN: 20px auto
+}
+.content .btn A {
+	COLOR: #444; CURSOR: pointer; TEXT-DECORATION: none
+}
+.content .btn SPAN {
+	LINE-HEIGHT: 25px; MARGIN: 0px 5px; PADDING-LEFT: 8px; FLOAT: left; HEIGHT: 25px; COLOR: #444
+}
+.content .btn SPAN EM {
+	PADDING-RIGHT: 8px; DISPLAY: block; COLOR: #444; TEXT-DECORATION: none
+}
+.content .btn .btnB {
+	BACKGROUND: url(../images/nobg21.gif) no-repeat left 50%
+}
+.content .btn .btnB EM {
+	BACKGROUND: url(../images/nobg22.gif) no-repeat right 50%
+}
+.content .btn A:hover .btnB {
+	BACKGROUND: url(../images/nobg23.gif) no-repeat left 50%
+}
+.content .btn A:hover .btnB EM {
+	BACKGROUND: url(../images/nobg24.gif) no-repeat right 50%
+}
+.content .btn .btnBS {
+	LINE-HEIGHT: 22px; BACKGROUND: url(../images/nobg25.gif) no-repeat left 50%; HEIGHT: 22px
+}
+.content .btn .btnBS EM {
+	BACKGROUND: url(../images/nobg26.gif) no-repeat right 50%
+}
+.content .btn .btnH {
+	BACKGROUND: url(../images/nobg17.gif) no-repeat left 50%
+}
+.content .btn .btnH EM {
+	BACKGROUND: url(../images/nobg18.gif) no-repeat right 50%
+}
+.content .btn A:hover .btnH {
+	BACKGROUND: url(../images/nobg19.gif) no-repeat left 50%
+}
+.content .btn A:hover .btnH EM {
+	BACKGROUND: url(../images/nobg20.gif) no-repeat right 50%
+}
+.content .btn .btnHS {
+	LINE-HEIGHT: 22px; BACKGROUND: url(../images/nobg27.gif) no-repeat left 50%; HEIGHT: 22px
+}
+.content .btn .btnHS EM {
+	BACKGROUND: url(../images/nobg28.gif) no-repeat right 50%; COLOR: #e62f2f
+}

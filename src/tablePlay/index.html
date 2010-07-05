@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>Untitled Document</title>
+		<style type="text/css">
+			#test0{width:600px;height:320px;border:2px dashed #ccc;}
+			table{background:#eee;}
+			td,th{background:#fff;padding:5px 0 4px 3px;}
+			#table1{width:100%;border:none;}
+			
+		</style>
+		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script> 
+	</head>
+	<body>
+		<div id="test0">
+		<h1>表格1</h1>
+		<table id="table0" width="100%" border="0" cellpadding="0" cellspacing="1">
+			<tr><td>列1</td><td>列2</td></tr>
+			<tr><td>内容1</td><td>内容2</td></tr>
+		</table>
+		
+		<hr/>
+		<h1>表格2</h1>
+		<table id="table1">
+			<tr><td>列1</td><td>列2</td></tr>
+			<tr><td>内容1</td><td>内容2</td></tr>
+		</table>
+		
+	<script type="text/javascript">
+	//<![CDATA[
+		$(function(){
+			$("#table1").attr("cellspacing","1");
+		})
+	//]]>
+	</script>
+ 
+		</div>
+	</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=gb2312" />
+
+<title>模板内容预填</title>
+<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
+<script type="text/javascript" src="js/jquery.json-2.2.min.js"></script>
+<script type="text/javascript" src="js/sohu.stringUtils.js"></script>
+<script type="text/javascript" src="js/sohu_cms5_subjectPrefill.js"></script>
+<link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
+<link type="text/css" rel="stylesheet" href="http://cms5.sohu.com/web/html/css/normal.css" />
+<link type="text/css" rel="stylesheet" href="http://cms5.sohu.com/web/html/css/sys.css" />
+<style type="text/css">
+	#tbPrefillData .meta{display:none;}
+</style>
+</head>
+
+<body>
+
+<div class="content">
+	<div class="title">
+		<div class="tt">模板内容预填</div>
+		<input type="hidden" id="txtHidden1" />
+	</div>
+	<div class="sys user clear">
+		<table id="tbPrefillData" width="99%" border="0" cellpadding="0" cellspacing="1">
+		<col width="10%" /><col width="22%" /><col width="18%" /><col width="*" />
+		<tr>
+			<th>模板ID</th><th>模板名称</th><th>模板描述</th><th>该模板使用过的专题</th>
+		</tr>
+		</table>
+		
+		<div class="jump clear">
+			<div class="l"><span class="btn"><a href="#" id="btnOK"><span class="btnBS"><em><strong>确认</strong></em></span></a></span></div>
+			<div class="l"><span class="btn"><a href="#" id="btnCls"><span class="btnBS"><em><strong>取消</strong></em></span></a></span></div>
+		</div>
+	</div>
+</div>
+	<script>
+		var init_data={tc:eval([{"id":"50127","desc":"汽车_专题_09上海车展滚动","entityList":[{"id":"251355120","staticUrl":"http://testcms.sohu.com/victest4/","name":"victest4"},{"id":"251464636","staticUrl":"http://testcms.sohu.com/mmmchinese/","name":"中文测试"},{"id":"252742089","staticUrl":"http://testcms.sohu.com/s2007/ceshitest/","name":"ceshitest"},{"id":"251486833","staticUrl":"http://testcms.sohu.com/sc3/","name":"sc3"},{"id":"251230149","staticUrl":"http://testcms.sohu.com/s2007/vincent8/","name":"vincent8"},{"id":"252742676","staticUrl":"http://testcms.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"ceshitest3311"},{"id":"251507417","staticUrl":"http://testcms.sohu.com/qq3/","name":"qq3"},{"id":"251525634","staticUrl":"http://testcms.sohu.com/ww1/","name":"ww1"},{"id":"251225706","staticUrl":"http://testcms.sohu.com/s2007/miaotestc/","name":"miaotestc"},{"id":"251225762","staticUrl":"http://testcms.sohu.com/s2007/miaotestd/","name":"miaotestd"},{"id":"252742651","staticUrl":"http://testcms.sohu.com/s2007/ceshitest33/","name":"ceshitest33"},{"id":"261133006","staticUrl":"http://auto.sohu.com/overseas_liebiao/","name":"海外汽车"},{"id":"251437286","staticUrl":"http://testcms.sohu.com/aa2/","name":"aa2"},{"id":"260318251","staticUrl":"http://testcms.sohu.com/testsbuject/","name":"测试专题"},{"id":"251434593","staticUrl":"http://testcms.sohu.com/ee3/","name":"ee3"},{"id":"251435274","staticUrl":"http://testcms.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"ee61"},{"id":"251486977","staticUrl":"http://testcms.sohu.com/sc5/","name":"sc5"},{"id":"262653765","staticUrl":"http://auto.sohu.com/s262653765/","name":"2009上海车展专题报道-梅赛德斯-奔驰特约"},{"id":"251225987","staticUrl":"http://testcms.sohu.com/s2007/miaoteste/","name":"miaoteste"},{"id":"262653767","staticUrl":"http://auto.sohu.com/s2009/09zhanche_shuicaidaoyumingshishibiantai/","name":"展车新闻"},{"id":"251507390","staticUrl":"http://testcms.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"qq2"},{"id":"251435571","staticUrl":"http://testcms.sohu.com/ee8/","name":"ee8"},{"id":"251225687","staticUrl":"http://testcms.sohu.com/s2007/miaotestb/","name":"miaotestb"},{"id":"252723130","staticUrl":"http://testcms.sohu.com/test1miao2/","name":"test1miao2"},{"id":"251486442","staticUrl":"http://testcms.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"新建专题2"},{"id":"252748304","staticUrl":"http://testcms.sohu.com/ceshi6/","name":"ceshi6"},{"id":"246296316","staticUrl":"http://auto.sohu.com/s2006entityID(-3)/fullshortname.ext","name":"北京车展自主品牌二级页"},{"id":"251436714","staticUrl":"http://testcms.sohu.com/eee3/","name":"eee3"},{"id":"252743100","staticUrl":"http://testcms.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"ceshitest431"},{"id":"263336286","staticUrl":"http://auto.sohu.com/s2009/s263336286/","name":"车展新闻-2009上海车展"},{"id":"252127705","staticUrl":"http://sports.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"testold3"},{"id":"251500347","staticUrl":"http://testcms.sohu.com/s2007/vv3/","name":"vv3"},{"id":"251360027","staticUrl":"http://testcms.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"victest81"}],"name":"auto_s_09shanghaigd"},{"id":"63793","desc":"0704奥运旅游","entityList":[{"id":"260857988","staticUrl":"http://testcms.sohu.com/s260857988/","name":"2007-L"},{"id":"251526514","staticUrl":"http://testcms.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"ww31"},{"id":"251487445","staticUrl":"http://testcms.sohu.com/s2007/sc71/","name":"sc71"},{"id":"251487446","staticUrl":"http://testcms.sohu.com/s2007/sc72/","name":"sc72"},{"id":"252742333","staticUrl":"http://testcms.sohu.com/ceshitest1/","name":"ceshitest1"},{"id":"253085129","staticUrl":"http://2008.sohu.com/jpfb/","name":"残奥奖牌发布"},{"id":"270710480","staticUrl":"http://testcms.sohu.com/ihome/","name":"会员中心"},{"id":"251645043","staticUrl":"http://testcms.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"cba21"},{"id":"254221894","staticUrl":"http://2008.sohu.com/cg/s254221894/","name":"国家体育场-鸟巢"},{"id":"258149305","staticUrl":"http://zt.blog.sohu.com/s2008/aypark/","name":"奥林匹克公园探秘"},{"id":"247818406","staticUrl":"http://travel.sohu.com/hainanline/","name":"海南"},{"id":"251500375","staticUrl":"http://testcms.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"中文测试1"},{"id":"249743962","staticUrl":"http://travel.sohu.com/s249743962/","name":"出游路线常识"},{"id":"249092299","staticUrl":"http://travel.sohu.com/aoyuntravel/","name":"奥运旅游"},{"id":"270839324","staticUrl":"http://house.focus.cn/s270839324/","name":"会员中心"},{"id":"250794254","staticUrl":"http://testcms.sohu.com/miaotest_2/","name":"miaotesteee"},{"id":"251555665","staticUrl":"http://testcms.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"nn11"},{"id":"270857268","staticUrl":"http://testcms.sohu.com/jiaodianceshiesf1/","name":"jiaodianceshiesf1"},{"id":"252223664","staticUrl":"http://testcms.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"test723434"},{"id":"250539630","staticUrl":"http://testcms.sohu.com/testtest_2/","name":"测试列表测试列表"},{"id":"260777650","staticUrl":"http://testcms.sohu.com/spdj/","name":"视频统计-klm"},{"id":"251505982","staticUrl":"http://testcms.sohu.com/s2007/zz2/","name":"zz2"},{"id":"251508731","staticUrl":"http://testcms.sohu.com/qq7/","name":"qq7"},{"id":"270386816","staticUrl":"http://testcms.sohu.com/s2010/123/","name":"a"},{"id":"252578728","staticUrl":"http://testcms.sohu.com/eee/","name":"eee"},{"id":"251508732","staticUrl":"http://testcms.sohu.com/qq71/","name":"qq71"},{"id":"252578729","staticUrl":"http://testcms.sohu.com/s2007/eee1/","name":"eeee"},{"id":"251600059","staticUrl":"http://testcms.sohu.com/s2007/fasdfasfd22321/","name":"fasdfadsf"},{"id":"251507720","staticUrl":"http://news.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"qq42"},{"id":"251500348","staticUrl":"http://testcms.sohu.com/s2007entityID(-3)/fullshortname.ext","name":"vv31"},{"id":"249760897","staticUrl":"http://travel.sohu.com/olympic/","name":"奥运旅游"},{"id":"260315602","staticUrl":"http://testcms.sohu.com/testcms-01/","name":"km2008test-cms-01"},{"id":"250523684","staticUrl":"http://testcms.sohu.com/s2007/mytest/","name":"测试test"}],"name":"0704奥运旅游"}])};
+		var current_eid=270887428;
+
+		window.returnValue=false;
+		function c_submit(){
+			//eids为实体ID
+			var eids=new Array();
+			tids.each(
+				function(tid){
+					eids.push($(tid).options[$(tid).selectedIndex].value);
+				}
+			);
+			if(tids.length!=eids.length){
+				alert("模版数与实体数目不匹配，请联系管理人员。");
+				return false;
+			}
+			var result=new Array();
+			tids.each(function(tid,index){result.push(tid+","+eids[index])});
+			window.returnValue=result.join(";");
+			window.close();
+		}
+
+		function other(ele){
+			var url="/content/props.jsp";
+			if(ele.value==""){
+				return
+			}
+			var params="n="+escape(encodeURIComponent(ele.value))+"&props=url&urlTid="+ele.tid;
+			var myAjax=new Ajax.Request(url,{method:'post',parameters:params,onComplete:function(request){
+				procesResponse(request,ele)
+			}
+			});
+		}
+
+		function procesResponse(oRequest,ele){
+			var text=oRequest.responseText;
+			var result = eval("("+text+")");
+			if(result.status=='success'){
+				var template=init_data.tc.find(function(tt){return tt.id==ele.tid});
+				var entityList=template.entityList;
+				var nitem = {"id":result.id,"staticUrl":result.url,"name":result.name}
+				if(current_eid==nitem.id){
+					alert("不能使用相同的实体预填碎片.");
+					return
+				}
+				var ss = $(ele.tid)
+				var os = ss.options
+				var exist = false
+				for(var i =0;i<os.length;i++ ){
+					if(os[i].value == nitem.id){
+						exist = true;
+						os[i].selected=true;
+						select_option(ss)
+						break;
+					}
+				}
+				if(exist){
+					//alert('已经存在于列表中,请从中选择');
+					return
+				}
+				entityList.push(nitem)
+				var opt = new Option(nitem.name,nitem.id)
+				os.add(opt)
+				opt.selected = true
+				//refresh view
+				select_option(ss)
+			}else{
+				alert(result.status+":"+result.msg)
+			}
+		}
+
+		function c_cancle(){
+			window.returnValue=false;
+			window.close();
+		}
+
+		function select_option(element){
+			var selectedValue=element.options[element.selectedIndex].value;
+
+			if("none"==selectedValue||"default"==selectedValue){
+				$("link_entity"+element.id).innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;";
+			}else{
+				var template=init_data.tc.find(function(tt){return tt.id==element.id});
+				var entityList=template.entityList;
+				var staticUrl;
+				for(var i=0;i<entityList.length;i++){
+					var entity=entityList[i];
+					if(entity.id==selectedValue){
+						staticUrl= entity.staticUrl;
+						break;
+					}
+				}
+				$("link_entity"+element.id).innerHTML="<a target='_blank' href='"+staticUrl+"'>查看</a>"
+			}
+		}
+	</script>
+
+	<script type="text/javascript">
+	//<![CDATA[
+		sohu_cms5_subjectPrefill.Init({});
+	//]]>
+	</script>
+  
+</body>
+</html>
+

@@ -1,0 +1,1336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=gb2312" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>搜狐网站</title>
+<link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
+<link type="text/css" rel="stylesheet" href="style.css" />
+
+<script type="text/javascript" src="http://css.sohu.com/upload/global1.0.0.9.js"></script>
+<script type="text/javascript" src="http://v.sohu.com/upload/091216vcss/v_lib.js"></script>
+<script type="text/javascript" src="http://tv.sohu.com/upload/swf/showVrsPlayer.js"></script>
+<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
+<script type="text/javascript">
+jQuery.noConflict();
+var showtf = true;
+function showtab(m,n,count){
+	var $=jQuery;
+	for(var i=1;i<=count;i++){
+		if (i==n){			
+			$("#td_"+m+"_"+i).addClass("libg");
+			$("#tab_"+m+"_"+i).show();
+		}
+		else {
+			$("#td_"+m+"_"+i).removeClass("libg");
+			$("#tab_"+m+"_"+i).hide();
+		}
+	}
+}
+
+function showDiv(m,n,count){
+	var $=jQuery;
+	for(var i=1;i<=count;i++){
+		if (i==n){			
+			$("#pic_"+m+"_"+i).attr('src','images/m'+n+'2.gif')
+			$("#div_"+m+"_"+i).show();
+			
+		}
+		else {
+			$("#pic_"+m+"_"+i).attr('src','images/m'+i+'1.gif')
+			$("#div_"+m+"_"+i).hide();
+		}
+	}
+}
+
+var sinit = function(id){
+
+	var frag = ("#"+id);
+	
+    var jq = jQuery,
+		scrolling = false,
+        scrolldir = -1,
+        curIdx = null,
+        htmlLoaded = [],
+        urlCache = [],
+        curCls = 'on',
+        loadIdx = null,
+		scrollDuration = 1200;
+    
+	var box = jq(frag + ' > .dataCon'),
+        box2 = jq(frag + ' > .menuC'),
+        loader = box2.find('> .iframeBox iframe')[0],
+		loaderwin = loader.contentWindow,
+        lis = box2.find('li'),
+		ul = lis.parent(),
+		lis_num = lis.length;
+   
+    loader.src = 'about:blank';
+	
+    window.fragType04ContentLoaded = function loaderLoaded(f){
+      if (loadIdx === null) return;
+      
+      var html;
+      html = (html = loaderwin.document) && (html = html.body) && html.innerHTML;
+      if (html) {
+        htmlLoaded[loadIdx] = 1;
+        conInners.eq(loadIdx).html(html);
+        loadIdx = null;
+		box.animate({left:-687 * curIdx}, scrollDuration);
+      }
+    };
+    
+    function switchTo(idx) {
+      if (idx === curIdx || idx < 0 || idx >= lis_num) return;
+      
+	  if (idx == 1) {
+	  	btnLft.removeClass('labled');
+        btnRgt.removeClass('rabled');
+	  } else if (idx == 2) {
+        btnRgt.addClass('rabled');
+	  } else if (idx == 0) {
+        btnLft.addClass('labled');
+	  }
+	  
+      lis.eq(curIdx).removeClass(curCls);
+      lis.eq(idx).addClass(curCls);
+      
+      curIdx = idx;
+
+	  ul.css({left: {0:250, 1:0, 2:-225}[curIdx]});
+	  
+      var c;
+      if (c = htmlLoaded[idx]) {
+        box.animate({left:-687 * curIdx}, scrollDuration);
+      } else {
+        if (c = urlCache[idx]) {
+          conInners.eq(idx).html('<br><br>数据读取中...');
+          loader.src = c;
+          loadIdx = idx;
+        }
+      }
+    }
+    
+	var conInner = box.find('> .dataConInner');
+    lis.each(function(idx, li){
+      li = jq(li);
+      urlCache[idx] = li.attr('rel');
+	  if (li.hasClass('on')) {
+	  	box.append(conInner);
+	  	curIdx = idx;
+ 	    htmlLoaded[idx] = 1;
+	  } else {
+		box.append('<di'+''+'v class="dataConInner"/>');
+	  }
+    });
+	
+	var conInners = box.find('> .dataConInner');
+	
+	box.css({left:-687 * curIdx});
+    ul.css({left: {0:250, 1:0, 2:-225}[curIdx]});
+    
+    var btnLft = box2.find('> .lBtn'),
+        btnRgt = box2.find('> .rBtn');
+   
+    btnLft.click(function(){
+	 switchTo(curIdx - 1);
+	 return false;
+	});
+    btnRgt.click(function(){
+	 switchTo(curIdx + 1);
+	 return false;
+	});
+   
+};
+
+jQuery(document).ready(function(){
+	sinit("div_2_1");
+	
+})
+
+</script>
+</head> 
+<body>
+
+<div class="bodyBGA"></div>
+<div class="bodyBGB"></div>
+
+<!-- 标准头 st -->
+<div class="area" id="channelNav">
+    <a href="http://www.sohu.com/" target="_blank"><img src="http://images.sohu.com/uiue/sohu_logo/2005/sohu_logo2.gif" height="22" alt="搜狐网站" border="0" class="left" /></a><a href="http://v.sohu.com/" target="_blank"><img src="http://images.sohu.com/uiue/sohu_logo/2006/v_logo2.gif" height="22" alt="搜狐娱乐播报" border="0" class="left" /></a>
+    <style>#channelNav ul {margin-right:5px;width:auto;clear:none}</style>
+<ul class="right">
+	<li><a href="http://www.sohu.com/">搜狐首页</a></li><li>-</li>
+	<li class="red"><a href="http://news.sohu.com/">新闻</a></li><li>-</li>
+	<li><a href="http://sports.sohu.com/">体育</a></li><li>-</li>
+	<li><a href="http://s.sohu.com/">S</a></li><li>-</li>
+	<li><a href="http://yule.sohu.com/">娱乐</a></li><li>-</li>
+	<li><a href="http://v.sohu.com/">V</a></li><li>-</li>
+	<li class="red"><a href="http://business.sohu.com/">财经</a></li><li>-</li>
+	<li><a href="http://it.sohu.com/">IT</a></li><li>-</li>
+	<li><a href="http://auto.sohu.com/">汽车</a></li><li>-</li>
+	<li><a href="http://house.focus.cn/">房产</a></li><li>-</li>
+	<li><a href="http://women.sohu.com/">女人</a></li><li>-</li>
+	<li><a href="http://tv.sohu.com/">视频</a></li><li>-</li>
+	<li><a href="http://v.blog.sohu.com/">播客</a></li><li>-</li>
+	<li><a href="http://t.sohu.com/">微博</a></li><li>-</li>
+	<li><a href="http://login.mail.sohu.com/">邮件</a></li><li>-</li>
+	<li><a href="http://blog.sohu.com/">博客</a></li><li>-</li>
+	<li><a href="http://club.sohu.com/">BBS</a></li><li>-</li>
+	<li><a href="http://comment2.news.sohu.com/">我说两句</a></li><li>-</li>
+	<li class="end"><a href="http://www.sogou.com/">搜狗</a></li>
+</ul>
+</div>
+<!-- 标准头 end -->
+
+<div class="area" id="topPic">
+	<div><img src="images/top01.jpg" width="190" height="160" alt="" /><img src="images/top02.jpg" width="190" height="160" alt="" /><img src="images/top03.jpg" width="190" height="160" alt="" /><img src="images/top04.jpg" width="190" height="160" alt="" /><img src="images/top05.jpg" width="190" height="160" alt="" /></div>
+	<div><img src="images/top06.jpg" width="190" height="150" alt="" /><img src="images/top07.jpg" width="190" height="150" alt="" /><img src="images/top08.jpg" width="190" height="150" alt="" /><img src="images/top09.jpg" width="190" height="150" alt="" /><img src="images/top10.jpg" width="190" height="150" alt="" /></div>
+</div>
+
+<div class="area" id="nav">
+	<a href="#" target="_blank">搜狐娱乐播报</a>|<a href="#" target="_blank">全集回顾</a>|<a href="#" target="_blank">新片热评</a>|<a href="#" target="_blank">下周上映</a>|<a href="#" target="_blank">票房排行</a>|<a href="#" target="_blank">查影讯</a>
+</div>
+
+<div class="area" id="rs">
+	<div class="left">
+		<div class="blockLA clear">
+			<div class="l">热映中：</div>
+			<div class="r">
+				<div id=demo style="margin:0 auto;overflow:hidden;width:540px;height:20px">
+					<div id=demo1>
+					<table width="540" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td>《谍海风云》 北京剧院(今日6场)  《 钢铁侠2》 《 生死逃亡》</td>
+					</tr>
+					<tr>
+						<td>《谍海风云》 北京剧院(今日6场)  《三笑之才子佳人》 《 钢铁侠2》 《 生死逃亡》</td>
+					</tr>
+					</table>
+					</div>
+					<div id=demo2></div>
+				</div>
+			</div>
+			<script type="text/javascript">
+			var speedT=10
+			var demo = document.getElementById("demo");
+			var demo1 = document.getElementById("demo1");
+			var demo2 = document.getElementById("demo2");
+			demo2.innerHTML = demo1.innerHTML
+			
+			function Marquee(){	
+				if(demo2.offsetTop-demo.scrollTop<=0){			
+					demo.scrollTop-=demo1.offsetHeight;	
+				}
+				else if(demo.scrollTop%20==0){	
+					clearInterval(MyMar);
+					demo.scrollTop=demo.scrollTop+1;		
+					var theTimer=setTimeout(function() {MyMar=setInterval(Marquee,speedT)},3000);
+				}
+				else{
+					clearTimeout(theTimer);
+					demo.scrollTop++;		
+				}
+			}
+			
+			var MyMar=setInterval(Marquee,speedT)
+			//demo.onmouseover=function() {clearInterval(MyMar)}
+			//demo.onmouseout=function() {MyMar=setInterval(Marquee,speedT)}
+			</script>
+		</div>
+	</div>
+	<div class="right">
+		<div class="search clear">
+		<select class="sele" style="width:140px"><option>选择正在热映的影片</option></select>
+		<select class="sele" style="width:50px"><option>北京</option></select>
+		<input type="button" class="btn" />
+		</div>
+	</div>
+</div>
+
+<div class="area" id="contentA">
+	<div class="videoWin">
+		<h3 id="videoTitle">文字</h3>
+		<div id="sohuplayer">您的播放器版本过底，无法观看高清视频。系统正在升级，请不要关闭浏览器</div>
+	</div>
+	<div class="videoNav" id="v_tab">
+		<ul>
+			<li><img src="images/v11_1.jpg" width="152" height="95" alt="" vid="80736" txt="文字111" /></li>
+			<li><img src="images/v12_2.jpg" width="136" height="95" alt="" vid="78191" txt="文字222" /></li>
+			<li><img src="images/v13_2.jpg" width="136" height="95" alt="" vid="78192" txt="文字333" /></li>
+			<li><img src="images/v14_2.jpg" width="136" height="95" alt="" vid="78193" txt="文字444" /></li>
+			<li><img src="images/v15_2.jpg" width="136" height="95" alt="" vid="78194" txt="文字555" /></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+	jQuery(function(jQ){
+		jQ("#v_tab li img").each(function(i){				
+			(function(i){
+				jQ("#v_tab li img").eq(i).click(function(){
+					jQ("#v_tab li img").each(function(j){
+						var src=jQ(this).attr("src");
+						var newSrc=src.replace("v1"+(j+1)+"_1.jpg","v1"+(j+1)+"_2.jpg");
+						jQ(this).attr("src",newSrc);
+					});
+					src=jQ("#v_tab li img").eq(i).attr("src");
+					newSrc=src.replace("v1"+(i+1)+"_2.jpg","v1"+(i+1)+"_1.jpg");
+					jQ("#v_tab li img").eq(i).attr("src",newSrc);
+					var num=jQ(this).attr("vid");
+					var txt=jQ(this).attr("txt");
+					jQ("#videoTitle").html(txt)
+					document.getElementById('sohuplayer').innerHTML= showVrsPlayer({
+					    vid: num,
+					    width: "730",
+					    height: "410",
+					    autoplay:true,
+					    getHTML:1
+					});
+				})
+			})(i)
+		}).eq(0).click();
+	})
+	</script>
+</div>
+
+<div class="area" id="contentB">
+	<div class="menuA">
+		<ul>
+			<li><img id="pic_1_1" onmouseover="showDiv(1,1,2)" src="images/m12.gif" width="102" height="31" alt="" /></li>
+			<li><img id="pic_1_2" onmouseover="showDiv(1,2,2)" src="images/m21.gif" width="102" height="31" alt="" /></li>
+		</ul>
+	</div>
+	<div class="left">
+		<div class="show" id="div_1_1">
+			<div class="l">
+				<div class="list">
+					<ul>
+						<li id="td_1_1" onmouseover="showtab(1,1,5)" class="libg">波斯王子--时之刃1</li>
+						<li id="td_1_2" onmouseover="showtab(1,2,5)">波斯王子--时之刃2</li>
+						<li id="td_1_3" onmouseover="showtab(1,3,5)">波斯王子--时之刃3</li>
+						<li id="td_1_4" onmouseover="showtab(1,4,5)">波斯王子--时之刃4</li>
+						<li id="td_1_5" onmouseover="showtab(1,5,5)">波斯王子--时之刃5</li>
+					</ul>
+				</div>
+				<div class="info">
+					<p>(第281期)观影《苏乞儿》</p>
+					<p>时间：2010年2月8日</p>
+					<p>地点：百老汇新东安影城</p>
+					<p>招募人数： 20 人</p>
+					<h5><a href="#" target="_blank">点击报名</a></h5>
+				</div>
+			</div>
+			<div class="r">
+				<div class="show" id="tab_1_1">
+					<div class="blockA clear">
+						<div class="ll">
+							<div class="viedoS"><img src="images/pic277x222.jpg" width="277" height="222" alt="" /></div>
+							<div class="moreInfo">
+								<p><a href="#" target="_blank">&gt;&gt;更多热映影片</a></p>
+								<p><a href="#" target="_blank">&gt;&gt;北京46家影院放映场次</a></p>
+							</div>
+						</div>
+						<div class="rr">
+							<div class="mvInfo">
+								<h3>谍海风云</h3>
+								<dl>
+									<dt>导&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">米凯尔-哈佛斯特朗姆</a></dd>
+								</dl>
+								<dl>
+									<dt>主&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">约翰-库萨克</a>饰&nbsp;&nbsp;Paul Soames</dd>
+									<dd><a href="#" target="_blank">巩俐</a>&nbsp;&nbsp;饰&nbsp;&nbsp;Anna Lan-Ting</dd>
+									<dd><a href="#" target="_blank">周润发</a>饰&nbsp;&nbsp;Anthony Lan-Ting</dd>
+								</dl>
+								<dl>
+									<dt>类&nbsp;&nbsp;型：</dt>
+									<dd><a href="#" target="_blank">剧情</a> <a href="#" target="_blank">悬疑</a> <a href="#" target="_blank">爱情</a> <a href="#" target="_blank">惊悚</a></dd>
+								</dl>
+								<dl>
+									<dt>简&nbsp;&nbsp;介：</dt>
+									<dd>故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明...</dd>
+								</dl>
+								<p><a href="#" target="_blank">剧情</a><a href="#" target="_blank">海报</a><a href="#" target="_blank">片花</a><a href="#" target="_blank">剧照</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="blockB clear">
+						<p>UME国际影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40...</p>
+						<p>美嘉欢乐影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40</p>
+					</div>
+				</div>
+				<div class="hidden" id="tab_1_2">
+					<div class="blockA clear">
+						<div class="ll">
+							<div class="viedoS"><img src="images/pic277x222.jpg" width="277" height="222" alt="" /></div>
+							<div class="moreInfo">
+								<p><a href="#" target="_blank">&gt;&gt;更多热映影片</a></p>
+								<p><a href="#" target="_blank">&gt;&gt;北京46家影院放映场次</a></p>
+							</div>
+						</div>
+						<div class="rr">
+							<div class="mvInfo">
+								<h3>谍海风云</h3>
+								<dl>
+									<dt>导&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">米凯尔-哈佛斯特朗姆</a></dd>
+								</dl>
+								<dl>
+									<dt>主&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">约翰-库萨克</a>饰&nbsp;&nbsp;Paul Soames</dd>
+									<dd><a href="#" target="_blank">巩俐</a>&nbsp;&nbsp;饰&nbsp;&nbsp;Anna Lan-Ting</dd>
+									<dd><a href="#" target="_blank">周润发</a>饰&nbsp;&nbsp;Anthony Lan-Ting</dd>
+								</dl>
+								<dl>
+									<dt>类&nbsp;&nbsp;型：</dt>
+									<dd><a href="#" target="_blank">剧情</a> <a href="#" target="_blank">悬疑</a> <a href="#" target="_blank">爱情</a> <a href="#" target="_blank">惊悚</a></dd>
+								</dl>
+								<dl>
+									<dt>简&nbsp;&nbsp;介：</dt>
+									<dd>故事说明故故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明...</dd>
+								</dl>
+								<p><a href="#" target="_blank">剧情</a><a href="#" target="_blank">海报</a><a href="#" target="_blank">片花</a><a href="#" target="_blank">剧照</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="blockB clear">
+						<p>UME国际影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40...</p>
+						<p>美嘉欢乐影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40</p>
+					</div>
+				</div>
+				<div class="hidden" id="tab_1_3">
+					<div class="blockA clear">
+						<div class="ll">
+							<div class="viedoS"><img src="images/pic277x222.jpg" width="277" height="222" alt="" /></div>
+							<div class="moreInfo">
+								<p><a href="#" target="_blank">&gt;&gt;更多热映影片</a></p>
+								<p><a href="#" target="_blank">&gt;&gt;北京46家影院放映场次</a></p>
+							</div>
+						</div>
+						<div class="rr">
+							<div class="mvInfo">
+								<h3>谍海风云</h3>
+								<dl>
+									<dt>导&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">米凯尔-哈佛斯特朗姆</a></dd>
+								</dl>
+								<dl>
+									<dt>主&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">约翰-库萨克</a>饰&nbsp;&nbsp;Paul Soames</dd>
+									<dd><a href="#" target="_blank">巩俐</a>&nbsp;&nbsp;饰&nbsp;&nbsp;Anna Lan-Ting</dd>
+									<dd><a href="#" target="_blank">周润发</a>饰&nbsp;&nbsp;Anthony Lan-Ting</dd>
+								</dl>
+								<dl>
+									<dt>类&nbsp;&nbsp;型：</dt>
+									<dd><a href="#" target="_blank">剧情</a> <a href="#" target="_blank">悬疑</a> <a href="#" target="_blank">爱情</a> <a href="#" target="_blank">惊悚</a></dd>
+								</dl>
+								<dl>
+									<dt>简&nbsp;&nbsp;介：</dt>
+									<dd>故事说明故事说明故事说明故事说明故事明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明...</dd>
+								</dl>
+								<p><a href="#" target="_blank">剧情</a><a href="#" target="_blank">海报</a><a href="#" target="_blank">片花</a><a href="#" target="_blank">剧照</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="blockB clear">
+						<p>UME国际影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40...</p>
+						<p>美嘉欢乐影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40</p>
+					</div>
+				</div>
+				<div class="hidden" id="tab_1_4">
+					<div class="blockA clear">
+						<div class="ll">
+							<div class="viedoS"><img src="images/pic277x222.jpg" width="277" height="222" alt="" /></div>
+							<div class="moreInfo">
+								<p><a href="#" target="_blank">&gt;&gt;更多热映影片</a></p>
+								<p><a href="#" target="_blank">&gt;&gt;北京46家影院放映场次</a></p>
+							</div>
+						</div>
+						<div class="rr">
+							<div class="mvInfo">
+								<h3>谍海风云</h3>
+								<dl>
+									<dt>导&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">米凯尔-哈佛斯特朗姆</a></dd>
+								</dl>
+								<dl>
+									<dt>主&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">约翰-库萨克</a>饰&nbsp;&nbsp;Paul Soames</dd>
+									<dd><a href="#" target="_blank">周润发</a>饰&nbsp;&nbsp;Anthony Lan-Ting</dd>
+								</dl>
+								<dl>
+									<dt>类&nbsp;&nbsp;型：</dt>
+									<dd><a href="#" target="_blank">剧情</a> <a href="#" target="_blank">悬疑</a> <a href="#" target="_blank">爱情</a> <a href="#" target="_blank">惊悚</a></dd>
+								</dl>
+								<dl>
+									<dt>简&nbsp;&nbsp;介：</dt>
+									<dd>故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明...</dd>
+								</dl>
+								<p><a href="#" target="_blank">剧情</a><a href="#" target="_blank">海报</a><a href="#" target="_blank">片花</a><a href="#" target="_blank">剧照</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="blockB clear">
+						<p>UME国际影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40...</p>
+						<p>美嘉欢乐影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40</p>
+					</div>
+				</div>
+				<div class="hidden" id="tab_1_5">
+					<div class="blockA clear">
+						<div class="ll">
+							<div class="viedoS"><img src="images/pic277x222.jpg" width="277" height="222" alt="" /></div>
+							<div class="moreInfo">
+								<p><a href="#" target="_blank">&gt;&gt;更多热映影片</a></p>
+								<p><a href="#" target="_blank">&gt;&gt;北京46家影院放映场次</a></p>
+							</div>
+						</div>
+						<div class="rr">
+							<div class="mvInfo">
+								<h3>谍海风云</h3>
+								<dl>
+									<dt>导&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">米凯尔-哈佛斯特朗姆</a></dd>
+								</dl>
+								<dl>
+									<dt>主&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">周润发</a>饰&nbsp;&nbsp;Anthony Lan-Ting</dd>
+								</dl>
+								<dl>
+									<dt>类&nbsp;&nbsp;型：</dt>
+									<dd><a href="#" target="_blank">剧情</a> <a href="#" target="_blank">悬疑</a> <a href="#" target="_blank">爱情</a> <a href="#" target="_blank">惊悚</a></dd>
+								</dl>
+								<dl>
+									<dt>简&nbsp;&nbsp;介：</dt>
+									<dd>故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明...</dd>
+								</dl>
+								<p><a href="#" target="_blank">剧情</a><a href="#" target="_blank">海报</a><a href="#" target="_blank">片花</a><a href="#" target="_blank">剧照</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="blockB clear">
+						<p>UME国际影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40...</p>
+						<p>美嘉欢乐影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="hidden" id="div_1_2">
+			<div class="l">
+				<div class="list">
+					<ul>
+						<li id="td_2_1" onmouseover="showtab(2,1,5)" class="libg">爱丽丝梦游仙境1</li>
+						<li id="td_2_2" onmouseover="showtab(2,2,5)">爱丽丝梦游仙境2</li>
+						<li id="td_2_3" onmouseover="showtab(2,3,5)">爱丽丝梦游仙境3</li>
+						<li id="td_2_4" onmouseover="showtab(2,4,5)">爱丽丝梦游仙境4</li>
+						<li id="td_2_5" onmouseover="showtab(2,5,5)">爱丽丝梦游仙境5</li>
+					</ul>
+				</div>
+				<div class="info">
+					<p>(第281期)观影《苏乞儿》</p>
+					<p>时间：2010年2月8日</p>
+					<p>地点：百老汇新东安影城</p>
+					<p>招募人数： 20 人</p>
+					<h5><a href="#" target="_blank">点击报名</a></h5>
+				</div>
+			</div>
+			<div class="r">
+				<div class="show" id="tab_2_1">
+					<div class="blockA clear">
+						<div class="ll">
+							<div class="viedoS"><img src="images/pic277x222.jpg" width="277" height="222" alt="" /></div>
+							<div class="moreInfo">
+								<p><a href="#" target="_blank">&gt;&gt;更多热映影片</a></p>
+								<p><a href="#" target="_blank">&gt;&gt;北京46家影院放映场次</a></p>
+							</div>
+						</div>
+						<div class="rr">
+							<div class="mvInfo">
+								<h3>谍海风云</h3>
+								<dl>
+									<dt>导&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">米凯尔-哈佛斯特朗姆</a></dd>
+								</dl>
+								<dl>
+									<dt>主&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">约翰-库萨克</a>饰&nbsp;&nbsp;Paul Soames</dd>
+									<dd><a href="#" target="_blank">巩俐</a>&nbsp;&nbsp;饰&nbsp;&nbsp;Anna Lan-Ting</dd>
+									<dd><a href="#" target="_blank">周润发</a>饰&nbsp;&nbsp;Anthony Lan-Ting</dd>
+								</dl>
+								<dl>
+									<dt>类&nbsp;&nbsp;型：</dt>
+									<dd><a href="#" target="_blank">剧情</a> <a href="#" target="_blank">悬疑</a> <a href="#" target="_blank">爱情</a> <a href="#" target="_blank">惊悚</a></dd>
+								</dl>
+								<dl>
+									<dt>简&nbsp;&nbsp;介：</dt>
+									<dd>故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明...</dd>
+								</dl>
+								<p><a href="#" target="_blank">剧情</a><a href="#" target="_blank">海报</a><a href="#" target="_blank">片花</a><a href="#" target="_blank">剧照</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="blockB clear">
+						<p>UME国际影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40...</p>
+						<p>美嘉欢乐影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40</p>
+					</div>
+				</div>
+				<div class="hidden" id="tab_2_2">
+					<div class="blockA clear">
+						<div class="ll">
+							<div class="viedoS"><img src="images/pic277x222.jpg" width="277" height="222" alt="" /></div>
+							<div class="moreInfo">
+								<p><a href="#" target="_blank">&gt;&gt;更多热映影片</a></p>
+								<p><a href="#" target="_blank">&gt;&gt;北京46家影院放映场次</a></p>
+							</div>
+						</div>
+						<div class="rr">
+							<div class="mvInfo">
+								<h3>谍海风云</h3>
+								<dl>
+									<dt>导&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">米凯尔-哈佛斯特朗姆</a></dd>
+								</dl>
+								<dl>
+									<dt>主&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">约翰-库萨克</a>饰&nbsp;&nbsp;Paul Soames</dd>
+									<dd><a href="#" target="_blank">巩俐</a>&nbsp;&nbsp;饰&nbsp;&nbsp;Anna Lan-Ting</dd>
+									<dd><a href="#" target="_blank">周润发</a>饰&nbsp;&nbsp;Anthony Lan-Ting</dd>
+								</dl>
+								<dl>
+									<dt>类&nbsp;&nbsp;型：</dt>
+									<dd><a href="#" target="_blank">剧情</a> <a href="#" target="_blank">悬疑</a> <a href="#" target="_blank">爱情</a> <a href="#" target="_blank">惊悚</a></dd>
+								</dl>
+								<dl>
+									<dt>简&nbsp;&nbsp;介：</dt>
+									<dd>故事说明故故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明...</dd>
+								</dl>
+								<p><a href="#" target="_blank">剧情</a><a href="#" target="_blank">海报</a><a href="#" target="_blank">片花</a><a href="#" target="_blank">剧照</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="blockB clear">
+						<p>UME国际影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40...</p>
+						<p>美嘉欢乐影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40</p>
+					</div>
+				</div>
+				<div class="hidden" id="tab_2_3">
+					<div class="blockA clear">
+						<div class="ll">
+							<div class="viedoS"><img src="images/pic277x222.jpg" width="277" height="222" alt="" /></div>
+							<div class="moreInfo">
+								<p><a href="#" target="_blank">&gt;&gt;更多热映影片</a></p>
+								<p><a href="#" target="_blank">&gt;&gt;北京46家影院放映场次</a></p>
+							</div>
+						</div>
+						<div class="rr">
+							<div class="mvInfo">
+								<h3>谍海风云</h3>
+								<dl>
+									<dt>导&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">米凯尔-哈佛斯特朗姆</a></dd>
+								</dl>
+								<dl>
+									<dt>主&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">约翰-库萨克</a>饰&nbsp;&nbsp;Paul Soames</dd>
+									<dd><a href="#" target="_blank">巩俐</a>&nbsp;&nbsp;饰&nbsp;&nbsp;Anna Lan-Ting</dd>
+									<dd><a href="#" target="_blank">周润发</a>饰&nbsp;&nbsp;Anthony Lan-Ting</dd>
+								</dl>
+								<dl>
+									<dt>类&nbsp;&nbsp;型：</dt>
+									<dd><a href="#" target="_blank">剧情</a> <a href="#" target="_blank">悬疑</a> <a href="#" target="_blank">爱情</a> <a href="#" target="_blank">惊悚</a></dd>
+								</dl>
+								<dl>
+									<dt>简&nbsp;&nbsp;介：</dt>
+									<dd>故事说明故事说明故事说明故事说明故事明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明...</dd>
+								</dl>
+								<p><a href="#" target="_blank">剧情</a><a href="#" target="_blank">海报</a><a href="#" target="_blank">片花</a><a href="#" target="_blank">剧照</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="blockB clear">
+						<p>UME国际影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40...</p>
+						<p>美嘉欢乐影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40</p>
+					</div>
+				</div>
+				<div class="hidden" id="tab_2_4">
+					<div class="blockA clear">
+						<div class="ll">
+							<div class="viedoS"><img src="images/pic277x222.jpg" width="277" height="222" alt="" /></div>
+							<div class="moreInfo">
+								<p><a href="#" target="_blank">&gt;&gt;更多热映影片</a></p>
+								<p><a href="#" target="_blank">&gt;&gt;北京46家影院放映场次</a></p>
+							</div>
+						</div>
+						<div class="rr">
+							<div class="mvInfo">
+								<h3>谍海风云</h3>
+								<dl>
+									<dt>导&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">米凯尔-哈佛斯特朗姆</a></dd>
+								</dl>
+								<dl>
+									<dt>主&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">约翰-库萨克</a>饰&nbsp;&nbsp;Paul Soames</dd>
+									<dd><a href="#" target="_blank">周润发</a>饰&nbsp;&nbsp;Anthony Lan-Ting</dd>
+								</dl>
+								<dl>
+									<dt>类&nbsp;&nbsp;型：</dt>
+									<dd><a href="#" target="_blank">剧情</a> <a href="#" target="_blank">悬疑</a> <a href="#" target="_blank">爱情</a> <a href="#" target="_blank">惊悚</a></dd>
+								</dl>
+								<dl>
+									<dt>简&nbsp;&nbsp;介：</dt>
+									<dd>故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明...</dd>
+								</dl>
+								<p><a href="#" target="_blank">剧情</a><a href="#" target="_blank">海报</a><a href="#" target="_blank">片花</a><a href="#" target="_blank">剧照</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="blockB clear">
+						<p>UME国际影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40...</p>
+						<p>美嘉欢乐影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40</p>
+					</div>
+				</div>
+				<div class="hidden" id="tab_2_5">
+					<div class="blockA clear">
+						<div class="ll">
+							<div class="viedoS"><img src="images/pic277x222.jpg" width="277" height="222" alt="" /></div>
+							<div class="moreInfo">
+								<p><a href="#" target="_blank">&gt;&gt;更多热映影片</a></p>
+								<p><a href="#" target="_blank">&gt;&gt;北京46家影院放映场次</a></p>
+							</div>
+						</div>
+						<div class="rr">
+							<div class="mvInfo">
+								<h3>谍海风云</h3>
+								<dl>
+									<dt>导&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">米凯尔-哈佛斯特朗姆</a></dd>
+								</dl>
+								<dl>
+									<dt>主&nbsp;&nbsp;演：</dt>
+									<dd><a href="#" target="_blank">周润发</a>饰&nbsp;&nbsp;Anthony Lan-Ting</dd>
+								</dl>
+								<dl>
+									<dt>类&nbsp;&nbsp;型：</dt>
+									<dd><a href="#" target="_blank">剧情</a> <a href="#" target="_blank">悬疑</a> <a href="#" target="_blank">爱情</a> <a href="#" target="_blank">惊悚</a></dd>
+								</dl>
+								<dl>
+									<dt>简&nbsp;&nbsp;介：</dt>
+									<dd>故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明故事说明...</dd>
+								</dl>
+								<p><a href="#" target="_blank">剧情</a><a href="#" target="_blank">海报</a><a href="#" target="_blank">片花</a><a href="#" target="_blank">剧照</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="blockB clear">
+						<p>UME国际影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40...</p>
+						<p>美嘉欢乐影城：09：30 | 11：20 | 12：30 | 13：35 | 15：20 | 16：40</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="right">
+		<div class="menuB">
+			<div class="tt"><img src="images/tt01.gif" width="94" height="23" alt="" /></div>
+			<ul>
+				<li id="td_3_1" onmouseover="showtab(3,1,4)" class="libg">内地</li>
+				<li id="td_3_2" onmouseover="showtab(3,2,4)">北美</li>
+				<li id="td_3_3" onmouseover="showtab(3,3,4)">日本</li>
+				<li id="td_3_4" onmouseover="showtab(3,4,4)">香港</li>
+			</ul>
+		</div>
+		<div class="show" id="tab_3_1">
+			<div class="txt">5月24日-5月30日(单周)累计(港币)</div>
+			<div class="tab">
+			<table width="206" border="0" cellpadding="0" cellspacing="0">
+			<col width="20" /><col width="91" /><col width="35" /><col width="60" />
+			<tr>
+				<td><span class="sn">1</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">2</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">3</span></td>
+				<td class="tl"><a href="#" target="_blank">波斯王子</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">4</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">5</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">6</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>17万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">7</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">8</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>23万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">9</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">10</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			</table>
+			</div>
+		</div>
+		<div class="hidden" id="tab_3_2">
+			<div class="txt">5月24日-5月30日(单周)累计(港币)</div>
+			<div class="tab">
+			<table width="206" border="0" cellpadding="0" cellspacing="0">
+			<col width="20" /><col width="91" /><col width="35" /><col width="60" />
+			<tr>
+				<td><span class="sn">1</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">2</span></td>
+				<td class="tl"><a href="#" target="_blank">异度公寓</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">3</span></td>
+				<td class="tl"><a href="#" target="_blank">波斯王子</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">4</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">5</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">6</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>17万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">7</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">8</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>23万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">9</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">10</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			</table>
+			</div>
+		</div>
+		<div class="hidden" id="tab_3_3">
+			<div class="txt">5月24日-5月30日(单周)累计(港币)</div>
+			<div class="tab">
+			<table width="206" border="0" cellpadding="0" cellspacing="0">
+			<col width="20" /><col width="91" /><col width="35" /><col width="60" />
+			<tr>
+				<td><span class="sn">1</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">2</span></td>
+				<td class="tl"><a href="#" target="_blank">异度公寓</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">3</span></td>
+				<td class="tl"><a href="#" target="_blank">钢铁侠</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">4</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">5</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">6</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>17万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">7</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">8</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>23万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">9</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">10</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			</table>
+			</div>
+		</div>
+		<div class="hidden" id="tab_3_4">
+			<div class="txt">5月24日-5月30日(单周)累计(港币)</div>
+			<div class="tab">
+			<table width="206" border="0" cellpadding="0" cellspacing="0">
+			<col width="20" /><col width="91" /><col width="35" /><col width="60" />
+			<tr>
+				<td><span class="sn">1</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">2</span></td>
+				<td class="tl"><a href="#" target="_blank">黑猫警长</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">3</span></td>
+				<td class="tl"><a href="#" target="_blank">波斯王子</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">4</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">5</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">6</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>17万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">7</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">8</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>23万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">9</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			<tr>
+				<td><span class="sn">10</span></td>
+				<td class="tl"><a href="#" target="_blank">训龙记</a></td>
+				<td>177万</td>
+				<td>236万</td>
+			</tr>
+			</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="area" id="contentC">
+	<div class="menuA">
+		<ul>
+			<li><img id="pic_2_1" onmouseover="showDiv(2,1,2)" src="images/m12.gif" width="102" height="31" alt="" /></li>
+			<li><img id="pic_2_2" onmouseover="showDiv(2,2,2)" src="images/m21.gif" width="102" height="31" alt="" /></li>
+		</ul>
+	</div>
+	<div class="left">
+		<div id="div_2_1" class="tab show">
+			<div class="menuC">
+				<div class="lBtn"><a href="javascript:void(0)">左</a></div>
+				<div class="menuBox">
+					<ul>
+						<li class="subMenu" id="month_1" rel="sp/1.html"><strong>5</strong>月<span>全部热映</span></li>
+						<li id="month_2" class="subMenu on" rel="sp/6.html"><strong>6</strong>月<span>第二周热映</span></li>
+						<li id="month_3" class="subMenu" rel="sp/3.html"><strong>7</strong>月<span>第一周热映</span></li>
+					</ul>
+	            </div>
+				<div class="rBtn"><a href="javascript:void(0)">右</a></div>
+				<div class="iframeBox" style="width:0;height:1px;overflow:hidden;">
+		        	<iframe onload="window.fragType04ContentLoaded && fragType04ContentLoaded(this);" frameborder="0" scrolling="no" width="0" height="0" src="" id="iframediv_1"></iframe>
+	            </div>
+			</div>
+			
+			<div class="dataCon">
+				<div class="dataConInner">
+		
+								<div class="box clear">
+									<div class="pic"><a href="#" target="_blank"><img src="images/pic191x270.jpg" width="191" height="270" alt="" /></a></div>
+									<div class="info">
+										<h3>片名：《暮光之城1》111</h3>
+										<p>上映日期：6月10日--7月20日</p>
+										<p>导演：沙马兰</p>
+										<p>主演：布莱德利-库帕</p>
+										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格温尼斯-帕尔特洛</p>
+									</div>
+								</div>
+								<div class="box clear">
+									<div class="pic"><a href="#" target="_blank"><img src="images/pic191x270.jpg" width="191" height="270" alt="" /></a></div>
+									<div class="info">
+										<h3>片名：《暮光之城2》</h3>
+										<p>上映日期：6月10日--7月20日</p>
+										<p>导演：沙马兰</p>
+										<p>主演：布莱德利-库帕</p>
+										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格温尼斯-帕尔特洛</p>
+									</div>
+								</div>
+								<div class="box clear">
+									<div class="pic"><a href="#" target="_blank"><img src="images/pic191x270.jpg" width="191" height="270" alt="" /></a></div>
+									<div class="info">
+										<h3>片名：《暮光之城3》</h3>
+										<p>上映日期：6月10日--7月20日</p>
+										<p>导演：沙马兰</p>
+										<p>主演：布莱德利-库帕</p>
+										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格温尼斯-帕尔特洛</p>
+									</div>
+								</div>
+	
+					
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		/*
+		var speed_1 = 10; //速度(毫秒)
+		var space_1 = 10; //每次移动(px)
+		var PageWidth_1 = 229; //翻页宽度
+		var fill_1 = 0; //整体移位
+		var moveLock_1 = false;
+		var moveTimeObj_1;
+		var moveWay_1="right";
+		var comp_1 = 0;
+		var autoPlayObj_1=null;
+		
+		GetObj("List2_1").innerHTML=GetObj("List1_1").innerHTML;
+		GetObj('ISL_Cont_1').scrollLeft=fill_1>=0?fill_1:GetObj('List1_1').scrollWidth-Math.abs(fill_1);
+		GetObj("ISL_Cont_1").onmouseover=function(){clearInterval(autoPlayObj_1)}
+		GetObj("ISL_Cont_1").onmouseout=function(){AutoPlay_1()}
+		AutoPlay_1();
+		
+		function GetObj(objName){
+			if(document.getElementById){return eval('document.getElementById("'+objName+'")')}else{return eval('document.all.'+objName)}
+		}
+		
+		function AutoPlay_1(){
+			clearInterval(autoPlayObj_1);
+			autoPlayObj_1=setInterval('ISL_GoDown_1();ISL_StopDown_1();',4000)
+		}
+		
+		function ISL_GoUp_1(){
+			if(moveLock_1)return;
+			clearInterval(autoPlayObj_1);
+			moveLock_1=true;
+			moveWay_1="left";
+			moveTimeObj_1=setInterval('ISL_ScrUp_1();',speed_1);
+		}
+		
+		function ISL_StopUp_1(){
+		if(moveWay_1 == "right"){return};
+		clearInterval(moveTimeObj_1);
+		if((GetObj('ISL_Cont_1').scrollLeft-fill_1)%PageWidth_1!=0){
+		comp_1=fill_1-(GetObj('ISL_Cont_1').scrollLeft%PageWidth_1);
+		CompScr_1()}else{moveLock_1=false}
+		AutoPlay_1()
+		}
+		
+		function ISL_ScrUp_1(){
+		if(GetObj('ISL_Cont_1').scrollLeft<=0){GetObj('ISL_Cont_1').scrollLeft=GetObj('ISL_Cont_1').scrollLeft+GetObj('List1_1').offsetWidth}
+		GetObj('ISL_Cont_1').scrollLeft-=space_1
+		}
+		
+		function ISL_GoDown_1(){
+			clearInterval(moveTimeObj_1);
+			if(moveLock_1)return;
+			clearInterval(autoPlayObj_1);
+			moveLock_1=true;
+			moveWay_1="right";
+			ISL_ScrDown_1();
+			moveTimeObj_1=setInterval('ISL_ScrDown_1()',speed_1)
+		}
+		
+		function ISL_StopDown_1(){
+			if(moveWay_1 == "left"){return};
+			clearInterval(moveTimeObj_1);
+			if(GetObj('ISL_Cont_1').scrollLeft%PageWidth_1-(fill_1>=0?fill_1:fill_1+1)!=0){
+				comp_1=PageWidth_1-GetObj('ISL_Cont_1').scrollLeft%PageWidth_1+fill_1;
+				CompScr_1()
+			}
+			else{moveLock_1=false}
+			AutoPlay_1()
+		}
+		
+		function ISL_ScrDown_1(){
+		if(GetObj('ISL_Cont_1').scrollLeft>=GetObj('List1_1').scrollWidth){GetObj('ISL_Cont_1').scrollLeft=GetObj('ISL_Cont_1').scrollLeft-GetObj('List1_1').scrollWidth}
+		GetObj('ISL_Cont_1').scrollLeft+=space_1
+		}
+		
+		function CompScr_1(){
+			if(comp_1==0){moveLock_1=false;return}
+			var num,TempSpeed=speed_1,TempSpace=space_1;
+			if(Math.abs(comp_1)<PageWidth_1/2){
+				TempSpace=Math.round(Math.abs(comp_1/space_1));
+				if(TempSpace<1){TempSpace=1}
+			}
+			if(comp_1<0){
+				if(comp_1<-TempSpace){
+					comp_1+=TempSpace;
+					num=TempSpace
+				}
+				else{num=-comp_1;comp_1=0}
+				GetObj('ISL_Cont_1').scrollLeft-=num;
+				setTimeout('CompScr_1()',TempSpeed)
+			}	
+			else{if(comp_1>TempSpace){comp_1-=TempSpace;num=TempSpace}
+			else{num=comp_1;
+			comp_1=0}
+			GetObj('ISL_Cont_1').scrollLeft+=num;
+			setTimeout('CompScr_1()',TempSpeed)}
+		}
+		*/
+		</script>
+		
+		<div id="div_2_2" class="tab hidden">
+			<div class="menuC">
+				<div class="lBtn"><a href="javascript:void(0)">左</a></div>
+				<div class="menuBox">
+					<ul>
+						<li id="month_1" class="subMenu" rel="sp/4.html"><strong>5</strong>月<span>全部热映</span></li>
+						<li id="month_2" class="subMenu on"><strong>6</strong>月<span>第二周热映</span></li>
+						<li id="month_3" class="subMenu" rel="sp/6.html"><strong>7</strong>月<span>第一周热映</span></li>
+					</ul>
+	            </div>
+				<div class="rBtn"><a href="javascript:void(0)">右</a></div>
+				<div class="iframeBox" style="width:0;height:1px;overflow:hidden;">
+		        	<iframe onload="window.fragType04ContentLoaded && fragType04ContentLoaded(this);" frameborder="0" scrolling="no" width="0" height="0" src="" id="iframediv_2"></iframe>
+	            </div>
+			</div>
+			
+			<div class="dataCon">
+				<div class="dataConInner">
+					<div class="box clear">
+						<div class="pic"><a href="#" target="_blank"><img src="images/pic191x270.jpg" width="191" height="270" alt="" /></a></div>
+						<div class="info">
+							<h3>片名：《哈利波特1》</h3>
+							<p>上映日期：6月10日--7月20日</p>
+							<p>导演：沙马兰</p>
+							<p>主演：布莱德利-库帕</p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格温尼斯-帕尔特洛</p>
+						</div>
+					</div>
+					<div class="box clear">
+						<div class="pic"><a href="#" target="_blank"><img src="images/pic191x270.jpg" width="191" height="270" alt="" /></a></div>
+						<div class="info">
+							<h3>片名：《哈利波特2》</h3>
+							<p>上映日期：6月10日--7月20日</p>
+							<p>导演：沙马兰</p>
+							<p>主演：布莱德利-库帕</p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格温尼斯-帕尔特洛</p>
+						</div>
+					</div>
+					<div class="box clear">
+						<div class="pic"><a href="#" target="_blank"><img src="images/pic191x270.jpg" width="191" height="270" alt="" /></a></div>
+						<div class="info">
+							<h3>片名：《哈利波特3》</h3>
+							<p>上映日期：6月10日--7月20日</p>
+							<p>导演：沙马兰</p>
+							<p>主演：布莱德利-库帕</p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格温尼斯-帕尔特洛</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="right">
+		<h2><span><img src="images/tt02.gif" width="76" height="21" alt="" /></span><a href="#" target="_blank">更多&gt;&gt;</a></h2>
+		<div class="list12">
+			<ul>
+				<li>·<a href="#" target="_blank">311 | 黄奕失恋买醉 阎维文爱女婚照</a></li>
+				<li>·<a href="#" target="_blank">311 | 黄奕失恋买醉 阎维文爱女婚照</a></li>
+				<li>·<a href="#" target="_blank">311 | 黄奕失恋买醉 阎维文爱女婚照</a></li>
+				<li>·<a href="#" target="_blank">311 | 黄奕失恋买醉 阎维文爱女婚照</a></li>
+				<li>·<a href="#" target="_blank">311 | 黄奕失恋买醉 阎维文爱女婚照</a></li>
+				<li>·<a href="#" target="_blank">311 | 黄奕失恋买醉 阎维文爱女婚照</a></li>
+				<li>·<a href="#" target="_blank">311 | 黄奕失恋买醉 阎维文爱女婚照</a></li>
+				<li>·<a href="#" target="_blank">311 | 黄奕失恋买醉 阎维文爱女婚照</a></li>
+				<li>·<a href="#" target="_blank">311 | 黄奕失恋买醉 阎维文爱女婚照</a></li>
+				<li>·<a href="#" target="_blank">311 | 黄奕失恋买醉 阎维文爱女婚照</a></li>
+			</ul>
+		</div>
+		<div class="picB"><a href="#" target="_blank"><img src="images/pic218x136.jpg" width="218" height="136" alt="" /></a></div>
+	</div>
+</div>
+
+<div class="area" id="contentD">
+	<div class="tt"></div>
+	<div class="cont"><img src="images/pic01.gif" width="836" height="302" alt="" /></div>
+</div>
+
+<div class="area" id="contentE">
+	<div class="tt">按标签 | <a href="#" target="_blank">交友</a> <a href="#" target="_blank">访谈</a> <a href="#" target="_blank">时尚</a> <a href="#" target="_blank">竞技</a> <a href="#" target="_blank">选秀</a> <a href="#" target="_blank">ktv</a> <a href="#" target="_blank">音乐</a> <a href="#" target="_blank">曲艺</a> <a href="#" target="_blank">综艺</a></div>
+	<div class="pp">
+		<ul>
+			<li><a href="#" target="_blank"><img src="images/pic120x164.jpg" width="120" height="164" alt="" /></a><span><a href="#" target="_blank">《好雨时节》激情戏片段</a><br />类型：<a href="#" target="_blank">爱情片</a> <a href="#" target="_blank">剧情片</a><br />关键字：<a href="#" target="_blank">高圆圆</a> <a href="#" target="_blank">电影</a><br />日期：2010-02-26</span></li>
+			<li><a href="#" target="_blank"><img src="images/pic120x164.jpg" width="120" height="164" alt="" /></a><span><a href="#" target="_blank">《好雨时节》激情戏片段</a><br />类型：<a href="#" target="_blank">爱情片</a> <a href="#" target="_blank">剧情片</a><br />关键字：<a href="#" target="_blank">高圆圆</a> <a href="#" target="_blank">电影</a><br />日期：2010-02-26</span></li>
+			<li><a href="#" target="_blank"><img src="images/pic120x164.jpg" width="120" height="164" alt="" /></a><span><a href="#" target="_blank">《好雨时节》激情戏片段</a><br />类型：<a href="#" target="_blank">爱情片</a> <a href="#" target="_blank">剧情片</a><br />关键字：<a href="#" target="_blank">高圆圆</a> <a href="#" target="_blank">电影</a><br />日期：2010-02-26</span></li>
+			<li><a href="#" target="_blank"><img src="images/pic120x164.jpg" width="120" height="164" alt="" /></a><span><a href="#" target="_blank">《好雨时节》激情戏片段</a><br />类型：<a href="#" target="_blank">爱情片</a> <a href="#" target="_blank">剧情片</a><br />关键字：<a href="#" target="_blank">高圆圆</a> <a href="#" target="_blank">电影</a><br />日期：2010-02-26</span></li>
+			<li><a href="#" target="_blank"><img src="images/pic120x164.jpg" width="120" height="164" alt="" /></a><span><a href="#" target="_blank">《好雨时节》激情戏片段</a><br />类型：<a href="#" target="_blank">爱情片</a> <a href="#" target="_blank">剧情片</a><br />关键字：<a href="#" target="_blank">高圆圆</a> <a href="#" target="_blank">电影</a><br />日期：2010-02-26</span></li>
+		</ul>
+	</div>
+</div>
+
+<div class="area" id="contentF">
+	<div class="tt"></div>
+	<div class="left">
+		<div class="pic"><a href="#" target="_blank"><img src="images/pic352x204.jpg" width="352" height="204" alt="" /></a></div>
+		<div class="txt">
+			<h3><a href="#" target="_blank">电影节天天向上 华语电影“品”字当先</a></h3>
+			<p>文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明</p>
+		</div>
+	</div>
+	<div class="right">
+		<div class="pic"><a href="#" target="_blank"><img src="images/pic352x204.jpg" width="352" height="204" alt="" /></a></div>
+		<div class="txt">
+			<h3><a href="#" target="_blank">电影节天天向上 华语电影“品”字当先</a></h3>
+			<p>文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明</p>
+		</div>
+	</div>
+</div>
+
+<div class="area" id="contentG">
+	<div class="block clear">
+		<div class="l"><img src="images/tt03.gif" width="221" height="59" alt="" /></div>
+		<div class="r">
+		<table width="720" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td><img src="images/ad01.gif" width="106" height="25" alt="" /></td>
+			<td><img src="images/ad02.gif" width="70" height="48" alt="" /></td>
+			<td><img src="images/ad02.gif" width="70" height="48" alt="" /></td>
+			<td><img src="images/ad01.gif" width="106" height="25" alt="" /></td>
+			<td><img src="images/ad02.gif" width="70" height="48" alt="" /></td>
+			<td><img src="images/ad01.gif" width="106" height="25" alt="" /></td>
+			<td><img src="images/ad02.gif" width="70" height="48" alt="" /></td>
+		</tr>
+		</table>
+		</div>
+	</div>
+	<div class="block clear">
+		<div class="l"><img src="images/tt04.gif" width="221" height="76" alt="" /></div>
+		<div class="r">
+		<table width="720" border="0" cellpadding="0" cellspacing="0">
+		<col width="" />
+		<tr>
+			<td><img src="images/tt05.gif" width="38" height="39" alt="" /></td>
+			<td><img src="images/tt06.gif" width="126" height="56" alt="" /></td>
+			<td><img src="images/tt07.gif" width="88" height="69" alt="" /></td>
+			<td><img src="images/tt08.gif" width="147" height="43" alt="" /></td>
+			<td><img src="images/tt09.gif" width="90" height="60" alt="" /></td>
+			<td><img src="images/tt10.gif" width="124" height="38" alt="" /></td>
+		</tr>
+		</table>
+		</div>
+	</div>
+	<div class="blockA clear">
+		出品：邓晔 总监制：郭静怡 监制：魏小玲 制片：娟娟
+	</div>
+</div>
+
+<div id="foot" class="Area"> 
+Copyright <span class="fontArial">&copy;</span> 2010 Sohu.com Inc. All Rights Reserved. 搜狐公司 <span class="unline"><a href="http://corp.sohu.com/s2007/copyright/" target="_blank">版权所有</a></span><br />
+</div>
+
+</body>
+</html>
+
