@@ -22,7 +22,7 @@ sohu.diyEditor=function(opts){
 		clear:this.$LayoutModel.find(".a_clear"),
 		editCode:this.$LayoutModel.find(".a_code")
 	};
-	this.$LayoutModel.btn.addContent.click(function(evt){_this.CTDialog=$("#content_selector").dialog({title:"添加内容",width:600,height:420,modal:true});return false;});
+	this.$LayoutModel.btn.addContent.click(function(evt){_this.DialogCT();return false;});
 	this.$LayoutModel.btn.addSec.click(function(evt){_this.DialogSec();return false;});
 	this.$LayoutModel.btn.clear.click(function(evt){_this.Cls();return false;});
 	this.$LayoutModel.btn.editCode.click(function(evt){alert("代码");return false;});
@@ -63,24 +63,45 @@ sohu.diyEditor.prototype.DialogSec=function(){
 	});
 };
 /**
- * 更新diyEditor的内容
- * @param {int} mode 更新内容的类型 1标识末追加；0表示替换；-1表示首追加
- * @param {Object} ct 内容
+ * 弹出添加内容选择框
  */
-sohu.diyEditor.prototype.UpdateCT=function(mode,ct){
+sohu.diyEditor.prototype.DialogCT=function(){
+	var _this=this;
+	this.CurArea.IsEditing=true;
+	this.CurSec.IsAddingContent=true;
+	
+	var _onClose=function(evt,ui){
+		_this.CurArea.IsEditing=false;
+		_this.CurSec.IsAddingContent=false;
+	};
+	
+	this.CTDialog=$("#content_selector").dialog({
+		title:"添加内容",
+		width:600,
+		height:420,
+		modal:true,
+		close:_onClose
+	});
+};
+/**
+ * 更新diyEditor的内容-用于分栏
+ * @param {Object} $ct 内容(jq dom)
+ * @param {int} mode 更新内容的类型 1标识末追加；0表示替换；-1表示首追加
+ */
+sohu.diyEditor.prototype.UpdateCT=function($ct,mode){
 	var body=this.$Layout_body;//this.$Layout.find(".area_body");
 	switch(mode){
 		case 0:
-			body.empty().append(ct);
+			body.empty().append($ct);
 		break;
 		case 1:
-			body.append(ct);
+			body.append($ct);
 		break;
 		case -1:
-			body.prepend(ct);
+			body.prepend($ct);
 		break;
 		default:
-			body.append(ct);
+			body.append($ct);
 		break;
 	};
 };

@@ -81,21 +81,23 @@ sohu.diySection.prototype.AddSub=function($secSub){
 	subSecs.each(function(i,sec){
 		sohu.diySection.New({$obj:$(sec),editor:_this.Editor,secHelper:_this.$Helper});
 	});
-	this.Editor.UpdateCT(1,$secSub.effect("highlight"));
+	this.Editor.UpdateCT($secSub.effect("highlight"),1);
 	this.$Layout.addClass(this.__p.opts.clHasSub);
 	this.$Helper.addClass(this.__p.opts.clHelperHasSub);
 };
 /**
  * 添加内容-在分栏的末尾添加内容
+ * @param {Object} $ct 待添加到内容(jq dom)
  */
-sohu.diySection.prototype.AddContent=function(){
-	
+sohu.diySection.prototype.AddContent=function($ct){
+	this.Editor.UpdateCT($ct.effect("highlight"),1);
 };
 /**
  * 清除该分栏内的内容
  */
 sohu.diySection.prototype.Cls=function(){
-
+	if(!window.confirm("确认清除分栏的内容?")) return;
+	this.Editor.UpdateCT("",0);
 };
 /**
  * 获取当前分栏父分栏的宽度

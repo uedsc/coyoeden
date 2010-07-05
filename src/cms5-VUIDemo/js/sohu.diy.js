@@ -60,6 +60,6 @@ sohu.diyTp["sw182_182_182_182_182"]='<div class="subsec clear"><div class="col w
 /*=/分栏模板区域=*/
 
 /*=内容模板区域=*/
-sohu.diyTp["ctEmptyLine"]='<div class="vspace"><hr/></div>';
+sohu.diyTp["ctEmptyLine"]='<div class="ct vspace"><hr/></div>';
 /*=/内容模板区域=*/
 

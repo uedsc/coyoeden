@@ -17,6 +17,7 @@ sohu.diyArea=function(opts){
 	this.IsEmpty=true;
 	this.IsEditing=false;//是否处于编辑状态:1,添加分栏时为true
 	this.IsActive=false;//横切是否激活
+	this.HasContent=false;//是否添加了内容
 	
 	var p={
 		opts:opts
@@ -32,7 +33,15 @@ sohu.diyArea=function(opts){
 			_this.Console.CurArea.$Layout.after(_this.$Layout);
 		};		
 	};
-
+	//绑定事件
+	p.bindEvts=function(){
+		_this.$Layout.mouseenter(function(evt){_this.Active();})
+			.mouseleave(function(evt){_this.Deactive();});		
+	};
+	//移除绑定的事件处理函数
+	p.unbindEvts=function(){
+		_this.$Layout.unbind("mouseenter mouseleave");
+	};
 	//行为
 	if(opts.isNew){
 		this.TemplateID=opts.tplID;
@@ -47,9 +56,8 @@ sohu.diyArea=function(opts){
 	};
 	//横切事件-注：当横切具有分栏时，由于分栏的鼠标事件函数返回false，停止了事件的冒泡，横切的鼠标事件将不被触发，
 	//故这里不适合用鼠标事件
-	this.$Layout.effect("highlight",{easing:'easeInElastic'},'slow')
-	.mouseenter(function(evt){_this.Active();})
-	.mouseleave(function(evt){_this.Deactive();});
+	this.$Layout.effect("highlight",{easing:'easeInElastic'},'slow');
+	p.bindEvts();
 	
 	this.__p=p;
 	
@@ -60,29 +68,35 @@ sohu.diyArea=function(opts){
  * 激活
  */
 sohu.diyArea.prototype.Active=function(){
-	if(this.$Layout.hasClass(this.__p.opts.clActive)) return false;
+	var _this=this;
+	if(this.IsActive) return;
+	if(this.$Layout.hasClass(this.__p.opts.clActive)) return;
 	this.Console.AreaList().removeClass(this.__p.opts.clActive);
 	this.$Layout.addClass(this.__p.opts.clActive);
 	this.Console.ActiveArea(this).RePosition();
 	this.IsActive=true;
-	window.setTimeout(function(){
-		this.$Helper.slideUp(500);
-	},700);
+	//隐藏助手dom
+	this.__p.unbindEvts();
+	_this.$Helper.slideUp(400,this.__p.bindEvts);
 };
 /**
  * 移除激活状态
  */
 sohu.diyArea.prototype.Deactive=function(){
-	if(this.IsEditing) return;
+	if(this.IsEditing||(!this.IsActive)) return;
 	var _this=this;
 	_this.$Layout.removeClass(_this.__p.opts.clActive);
 	
-	if(!this.IsEmpty){
-		this.$Helper.hide().remove();
-	}else{
-		this.$Helper.slideDown();
-	};
 	this.IsActive=false;
+	
+	this.__p.unbindEvts();
+	//显示助手dom
+	if(!_this.IsEmpty){
+		_this.$Helper.hide().remove();
+	}else{
+		_this.$Helper.slideDown(500,_this.__p.bindEvts);
+	};
+
 };
 /**
  * 移动

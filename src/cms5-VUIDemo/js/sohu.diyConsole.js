@@ -136,11 +136,9 @@ sohu.diyConsole.prototype.RePosition=function(){
  */
 sohu.diyConsole.prototype.ActiveArea=function(target){
 	//将上一个横切凡激活
-	/*
 	if(this.CurArea){
 		this.CurArea.Deactive();
 	};
-	*/
 	//激活当前的横切
 	this.CurArea=target;
 	this.Editor.CurArea=target;

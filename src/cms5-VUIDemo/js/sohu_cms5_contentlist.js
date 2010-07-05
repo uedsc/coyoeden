@@ -14,7 +14,7 @@ var sohu_cms5_ct={
 	 */
 	submit:function(ct){
 		sohu_cms5_contentlist.SelectedContent=ct;
-		parent.tools.areaEditor.AddContent(ct);
+		parent.bos.Editor.CurSec.AddContent(ct);
 		sohu_cms5_ct.cls();
 	}
 };

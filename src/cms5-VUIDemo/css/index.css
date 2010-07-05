@@ -20,7 +20,7 @@
 .area_active .secTipHot{background:#87bce5;cursor:pointer;}
 .area_active .secTip1{background:#d7e6f2;cursor:pointer;}
 .area_active{border:none;margin-top:10px;}
-.subarea-active{background:#ffffc2;}
+.area_active .ctOn{background:#122e44;border:1px solid red;}
 .col{overflow:hidden;}
 /*·ÖÀ¸±à¼­Æ÷*/
 .actions{border-bottom:none;background:#D6E7FF;}
