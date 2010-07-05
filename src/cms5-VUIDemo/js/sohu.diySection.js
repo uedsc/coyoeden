@@ -38,7 +38,7 @@ sohu.diySection = function(opts) {
 	};
 	p.mouseOut=function(evt){
 		_this.Deactive();
-		//return false;
+		return false;
 	};
 	//鼠标事件-！！停止冒泡事件
 	/*

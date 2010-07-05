@@ -96,6 +96,21 @@ sohu.diyConsole=function(opts){
 		_this.RePosition();
 		return false;	
 	};
+	//body标签的鼠标事件
+	p.onMousemove=function(evt){
+		var lastArea=_this.$Workspace.find(opts.cssArea+":last");
+		if(lastArea.size()==0) return;
+		var lbtop=_this.$Workspace.offset().top;
+		var ubtop=lastArea.height()+lastArea.offset().top;
+		var lbleft=lastArea.offset().left;
+		var ubleft=lastArea.width()+lbleft;
+		
+		if(evt.pageX<lbleft||evt.pageX>ubleft||evt.pageY<lbtop||evt.pageY>ubtop){
+			console.log("preview all...");
+		}else{
+			console.log("editing...");
+		};
+	};
 	p.Init=function(){
 		//横切选择器
 		$("li",p._$areaSelector).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");})
@@ -118,6 +133,8 @@ sohu.diyConsole=function(opts){
 			});
 			return o;
 		});
+		//body鼠标事件
+		$("body").mousemove(p.onMousemove);
 	};
 	this.__p=p;
 	//Init
@@ -135,7 +152,7 @@ sohu.diyConsole.prototype.RePosition=function(){
  * @param {Object} target
  */
 sohu.diyConsole.prototype.ActiveArea=function(target){
-	//将上一个横切凡激活
+	//将上一个横切反激活
 	if(this.CurArea){
 		this.CurArea.Deactive();
 	};

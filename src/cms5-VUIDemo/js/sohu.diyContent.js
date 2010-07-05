@@ -13,4 +13,5 @@ sohu.diyContent=function(opts){
 	var p={opts:opts};
 	this.__p=p;
 	//内容的鼠标事件
+	
 };
