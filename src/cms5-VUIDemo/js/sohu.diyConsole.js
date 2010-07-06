@@ -98,6 +98,8 @@ sohu.diyConsole=function(opts){
 	};
 	//body标签的鼠标事件
 	p.onMousemove=function(evt){
+		if(!_this.CurArea) return;
+		if(!_this.CurArea.IsActive) return;
 		var lastArea=_this.$Workspace.find(opts.cssArea+":last");
 		if(lastArea.size()==0) return;
 		var lbtop=_this.$Workspace.offset().top;
@@ -106,9 +108,7 @@ sohu.diyConsole=function(opts){
 		var ubleft=lastArea.width()+lbleft;
 		
 		if(evt.pageX<lbleft||evt.pageX>ubleft||evt.pageY<lbtop||evt.pageY>ubtop){
-			console.log("preview all...");
-		}else{
-			console.log("editing...");
+			_this.CurArea.Deactive();
 		};
 	};
 	p.Init=function(){

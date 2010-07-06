@@ -47,20 +47,31 @@ sohu.diyEditor.prototype.DialogSec=function(){
 	this.CurTpl=null;
 	this.CurArea.IsEditing=true;
 	this.CurSec.IsAddingContent=true;
+	//close callback
 	var _onClose=function(evt,ui){
 		if(!_this.CurTpl) return;
 		_this.CurArea.IsEditing=false;
 		_this.CurSec.IsAddingContent=false;
 		_this.CurSec.Deactive();
 	};
+	//Open callback
+	var _onOpen=function(evt,ui){
+		var dim=_this.CurSec.Dim();
+		var pos=[dim.x-100,dim.y+dim.h/3];
+		_this.SecSelector.dialog("option","position",pos);
+	};
+	//open the dialog
 	this.SecSelector=$(templateID).dialog({
 		title:"添加分栏",
 		resizable:false,
 		modal:true,
 		width:430,
 		height:250,
-		close:_onClose
+		close:_onClose,
+		open:_onOpen,
+		autoOpen:false//to reuse the dialog,we have to set autoOpen to false!
 	});
+	this.SecSelector.dialog("open");
 };
 /**
  * 弹出添加内容选择框

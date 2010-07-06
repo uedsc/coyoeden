@@ -148,6 +148,18 @@ sohu.diySection.prototype.LoadCurArea=function(){
 		};
 	});
 };
+/**
+ * 返回当前分栏相当于window的x和y值,以及自身的高和宽
+ * @return {Object} {x,y,w,h}
+ */
+sohu.diySection.prototype.Dim=function(){
+	return {
+		x:this.$Layout.offset().left,
+		y:this.$Layout.offset().top,
+		w:this.$Layout.width(),
+		h:this.$Layout.height()
+	};
+};
 /*静态方法*/
 /**
  * 从现有的dom元素新建一个diySection对象
