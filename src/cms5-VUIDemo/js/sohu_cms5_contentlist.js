@@ -6,7 +6,7 @@ var sohu_cms5_ct={
 	 * 关闭内容选择对话框
 	 */
 	cls:function(){
-		parent.tools.CloseContentDialog();
+		parent.bos.CloseCTDialog();
 	},
 	/**
 	 * 提交内容dom对象
@@ -15,11 +15,11 @@ var sohu_cms5_ct={
 	submit:function(ct){
 		sohu_cms5_contentlist.SelectedContent=ct;
 		parent.bos.Editor.CurSec.AddContent(ct);
-		sohu_cms5_ct.cls();
+		//sohu_cms5_ct.cls();
 	}
 };
 /**
- * 空行
+ * 空行的设置类
  */
 sohu_cms5_ct.Line=function(opts){
 	var _this=this;
@@ -79,13 +79,14 @@ sohu_cms5_ct.Line=function(opts){
 };
 sohu_cms5_ct.Line.prototype.Submit=function(opt){
 	this.cLine=this.$cbkLine[0].checked;
-	var hr=this.$layout.find("hr");
-	if(this.cLine){this.$layout.addClass("cline");hr.css("border-color",this.color);}else{
+	var line=this.$layout.clone(true);
+	var hr=line.find("hr");
+	if(this.cLine){line.addClass("cline");hr.css("border-color",this.color);}else{
 		hr.remove();
 	};
 	var css={"height":this.height+'px'};
-	this.$layout.css("height",this.height+'px');
-	sohu_cms5_ct.submit(this.$layout);
+	line.css("height",this.height+'px');
+	sohu_cms5_ct.submit(line);
 };
 
 /**

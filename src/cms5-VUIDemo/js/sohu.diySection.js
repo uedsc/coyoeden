@@ -26,7 +26,7 @@ sohu.diySection = function(opts) {
 	this.IsActive=false;
 	this.IsAddingContent=false;
 	this.Editor=opts.editor;
-	this.CurArea=null;//当前分栏所在的横切。调用LoadCurArea方法时更新该属性
+	this.CurArea=opts.curArea;//当前分栏所在的横切。调用LoadCurArea方法时更新该属性
 	
 	this.AttachHelper();
 	
@@ -56,7 +56,7 @@ sohu.diySection = function(opts) {
 		_this.$Helper.switchClass(opts.clHelperHot,opts.clHelperHasSub);
 	});
 	//获取当前横切
-	this.LoadCurArea();
+	//this.LoadCurArea();
 }; 
 /**
  * 激活分栏
@@ -66,6 +66,10 @@ sohu.diySection.prototype.Active=function(){
 	this.Editor.AttachTo(this).Show();
 	this.IsActive=true;
 	this.$Layout.addClass(this.__p.opts.clSecOn);
+	//看看当前横切是否激活，没激活的话激活
+	if(!this.CurArea.IsActive){
+		this.CurArea.Active();
+	};
 };
 sohu.diySection.prototype.Deactive=function(){
 	this.Editor.Remove();
@@ -73,13 +77,18 @@ sohu.diySection.prototype.Deactive=function(){
 	this.$Layout.removeClass(this.__p.opts.clSecOn);
 };
 /**
- * 添加分栏
+ * 添加子分栏
  */
 sohu.diySection.prototype.AddSub=function($secSub){
 	var _this=this;
 	var subSecs=$secSub.find("."+this.__p.opts.clSec);
 	subSecs.each(function(i,sec){
-		sohu.diySection.New({$obj:$(sec),editor:_this.Editor,secHelper:_this.$Helper});
+		sohu.diySection.New({
+			$obj:$(sec),
+			editor:_this.Editor,
+			secHelper:_this.$Helper,
+			curArea:_this.CurArea
+		});
 	});
 	this.Editor.UpdateCT($secSub.effect("highlight"),1);
 	this.$Layout.addClass(this.__p.opts.clHasSub);
@@ -91,6 +100,9 @@ sohu.diySection.prototype.AddSub=function($secSub){
  */
 sohu.diySection.prototype.AddContent=function($ct){
 	this.Editor.UpdateCT($ct.effect("highlight"),1);
+	this.CurArea.IsEmpty=false;
+	//创建相应的diyContent实体
+	new sohu.diyContent({$obj:$ct,sec:this});
 };
 /**
  * 清除该分栏内的内容

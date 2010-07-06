@@ -164,9 +164,8 @@ sohu.diyConsole.prototype.ActiveArea=function(target){
 /**
  * 关闭内容选择对话框
  */
-sohu.diyConsole.prototype.CloseContentDialog=function(){
-	this.areaEditor.CloseContentDialog();
-	
+sohu.diyConsole.prototype.CloseCTDialog=function(){
+	this.Editor.CloseCTDialog();
 };
 /**
  * 获取所有横切jquery对象

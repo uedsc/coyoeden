@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>sohu frame modal cross domain demo</title>
+		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script> 
+		<script type="text/javascript" src="http://10.1.56.52/cms5/javascript/plugin/jqModal.js"></script>
+		<script type="text/javascript" src="http://10.1.56.52/cms5/javascript/sohu.frameModal.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://10.1.56.52/cms5/cms5css/jqModal.css"></link> 
+	</head>
+	<body>
+		<h1>
+			<a id="test1" href="#">跨域页面</a>
+		</h1>
+		       <!--jqModal placeholder-->
+       <div id="modalWindow" class="jqmWindow">
+            <div id="jqmTitle">
+                <span id="jqmTitleText">Title of modal window</span>
+              <button class="jqmClose">X</button>
+            </div>
+            <iframe id="jqmContent" src="" name="jqmContent">
+            </iframe>
+        </div>
+<!--/jqModal placeholder-->
+
+	</body>
+	<script type="text/javascript">
+	//<![CDATA[
+		function hi(){
+			alert("hi");
+		};
+		$("#test1").click(function(evt){
+			sohu_frameModal.Show({
+				jqm:'#modalWindow',
+				url:"http://10.1.56.235/levinhuang/xx.html"
+			});
+			return false;
+		});
+	//]]>
+	</script>
+ 
+</html>

@@ -80,19 +80,35 @@ sohu.diyEditor.prototype.DialogCT=function(){
 	var _this=this;
 	this.CurArea.IsEditing=true;
 	this.CurSec.IsAddingContent=true;
-	
+	//关闭回调
 	var _onClose=function(evt,ui){
 		_this.CurArea.IsEditing=false;
 		_this.CurSec.IsAddingContent=false;
 	};
-	
+	//打开回调
+	var _onOpen=function(evt,ui){
+		var areaDim=_this.CurArea.Dim();
+		var pos=[areaDim.x+areaDim.w/2-300,areaDim.y+areaDim.h/3];
+		_this.CTDialog.dialog("option","position",pos);
+	};
 	this.CTDialog=$("#content_selector").dialog({
 		title:"添加内容",
 		width:600,
 		height:420,
 		modal:true,
-		close:_onClose
+		close:_onClose,
+		open:_onOpen,
+		autoOpen:false
 	});
+	this.CTDialog.dialog("open");
+};
+/**
+ * 关闭内容选择框
+ * @param {Object} opts 选项
+ */
+sohu.diyEditor.prototype.CloseCTDialog=function(opts){
+	if(!this.CTDialog) return;
+	this.CTDialog.dialog("close");
 };
 /**
  * 更新diyEditor的内容-用于分栏

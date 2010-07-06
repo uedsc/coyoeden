@@ -14,10 +14,9 @@ sohu.diyArea=function(opts){
 	this.Console=opts.console;
 	this.$Workspace=this.Console.$Workspace;
 	this.$Helper=this.Console.__p._$areaHelper.clone();
-	this.IsEmpty=true;
+	this.IsEmpty=true;//是否添加了内容
 	this.IsEditing=false;//是否处于编辑状态:1,添加分栏时为true
 	this.IsActive=false;//横切是否激活
-	this.HasContent=false;//是否添加了内容
 	
 	var p={
 		opts:opts
@@ -54,8 +53,7 @@ sohu.diyArea=function(opts){
 		this.ID=this.$Layout.attr("id");
 		this.TemplateID=this.ID.substr(0,this.ID.lastIndexOf("_"));
 	};
-	//横切事件-注：当横切具有分栏时，由于分栏的鼠标事件函数返回false，停止了事件的冒泡，横切的鼠标事件将不被触发，
-	//故这里不适合用鼠标事件
+	//横切事件-注：当横切具有分栏时，如果分栏的鼠标事件函数返回false，停止了事件的冒泡，横切的鼠标事件将不被触发
 	this.$Layout.effect("highlight",{easing:'easeInElastic'},'slow');
 	p.bindEvts();
 	
@@ -77,7 +75,7 @@ sohu.diyArea.prototype.Active=function(){
 	this.IsActive=true;
 	//隐藏助手dom
 	this.__p.unbindEvts();
-	_this.$Helper.slideUp(400,this.__p.bindEvts);
+	_this.$Helper.slideUp("fast",this.__p.bindEvts);
 };
 /**
  * 移除激活状态
@@ -92,7 +90,7 @@ sohu.diyArea.prototype.Deactive=function(){
 	this.__p.unbindEvts();
 	//显示助手dom
 	if(!_this.IsEmpty){
-		_this.$Helper.hide().remove();
+		_this.$Helper.hide();
 	}else{
 		_this.$Helper.slideDown(500,_this.__p.bindEvts);
 	};
@@ -129,7 +127,24 @@ sohu.diyArea.prototype.LoadSections=function(){
 	var _this=this;
 	var items=this.$Layout.find("."+this.__p.opts.clSec);
 	items=items.map(function(i,sec){
-		return sohu.diySection.New({$obj:$(sec),editor:_this.Console.Editor,secHelper:_this.Console.__p._$secHelper});
+		return sohu.diySection.New({
+			$obj:$(sec),
+			editor:_this.Console.Editor,
+			secHelper:_this.Console.__p._$secHelper,
+			curArea:_this
+		});
 	});
 	return items;
+};
+/**
+ * 返回当前分栏相当于window的x和y值,以及自身的高和宽
+ * @return {Object} {x,y,w,h}
+ */
+sohu.diyArea.prototype.Dim=function(){
+	return {
+		x:this.$Layout.offset().left,
+		y:this.$Layout.offset().top,
+		w:this.$Layout.width(),
+		h:this.$Layout.height()
+	};
 };
