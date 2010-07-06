@@ -14,10 +14,10 @@
 .slider .btnLeft{left:0;}
 .slider .btnRight{right:0;}	
 
-#ctFocusImg{height:210px; overflow:hidden;}
-#ctFocusImg ul{width:356px;margin-left:8px;}
+#ctFocusImg{height:200px; overflow:hidden;}
+#ctFocusImg ul{position:relative;width:356px;margin-left:8px;overflow:hidden;}
 #ctFocusImg li img{padding:4px;border:1px solid #809DB9;}
-#ctFocusImg li{float:left;display:inline;padding-bottom:8px;padding-right:8px;}
+#ctFocusImg li{position:relative;float:left;display:inline;padding-bottom:8px;padding-right:8px;}
 #ctFocusImg .act{height:216px;}
 
 #ctImg{text-align:left;}
