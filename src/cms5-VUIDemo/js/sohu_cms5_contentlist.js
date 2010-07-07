@@ -11,11 +11,14 @@ var sohu_cms5_ct={
 	/**
 	 * 提交内容dom对象
 	 * @param {Object} ct
+	 * @param {Boolean} cls是否关闭对话框
 	 */
-	submit:function(ct){
+	submit:function(ct,cls){
 		sohu_cms5_contentlist.SelectedContent=ct;
 		parent.bos.Editor.CurSec.AddContent(ct);
-		//sohu_cms5_ct.cls();
+		if (cls) {
+			sohu_cms5_ct.cls();
+		};
 	}
 };
 /**
@@ -86,9 +89,41 @@ sohu_cms5_ct.Line.prototype.Submit=function(opt){
 	};
 	var css={"height":this.height+'px'};
 	line.css("height",this.height+'px');
+	line.flash=false;
 	sohu_cms5_ct.submit(line);
 };
-
+/**
+ * 焦点图选择类
+ */
+sohu_cms5_ct.FocusImg=function(opts){
+		//焦点图选择
+		this.$Layout=$("#cSlide_focusImg").cycleSlide({
+			cssBtnPrev:"#ctFocusImg .btnLeft",
+			cssBtnNext:"#ctFocusImg .btnRight",
+			step:178,
+			cloneItem:true
+		});
+		this.FlashTplID=null;//flash 模板号
+		var _this=this;
+		var p={};
+		p.onAddFlash=function(evt){
+			_this.FlashTplID=this.id;
+			_this.Submit();
+			return false;
+		};
+		//鼠标事件
+		this.$Layout.find(".item").hover(
+			function(evt){$(this).addClass("on");},
+			function(evt){$(this).removeClass("on");}
+		).click(p.onAddFlash);
+	
+};
+sohu_cms5_ct.FocusImg.prototype.Submit=function(opt){
+	var ct=$('<div class="ct flash"></div>');
+	ct.flash=true;
+	ct.tplID=this.FlashTplID;
+	sohu_cms5_ct.submit(ct,true);
+};
 /**
  * @author levinhuang
  * 内容模板选择对话框客户端逻辑
@@ -102,15 +137,10 @@ var sohu_cms5_contentlist = function() {
     //private area
     p.initVar = function(opts) { 
 		p._line=new sohu_cms5_ct.Line({});/*空行模板对象*/
+		p._flasher=new sohu_cms5_ct.FocusImg({});/*焦点图*/
 	};
     p.onLoaded = function() { 
 		$("#contentAccordion").accordion();
-		$("#cSlide_focusImg").cycleSlide({
-			cssBtnPrev:"#ctFocusImg .btnLeft",
-			cssBtnNext:"#ctFocusImg .btnRight",
-			step:178,
-			cloneItem:true
-		});
 	};
     p.initEvents = function(opts) {
         $(document).ready(p.onLoaded);

@@ -136,8 +136,23 @@ sohu.diyEditor.prototype.UpdateCT=function($ct,mode){
  * 清空内容
  */
 sohu.diyEditor.prototype.Cls=function(){
-	if(!window.confirm("确定清空当前分栏的内容?")) return;
-	this.$Layout_body.children().not(this.__p.opts.cssSecHelper).remove();
+	var _this=this;
+	var pos=[this.CurSec.Dim().x+10,this.CurSec.Dim().y+10];
+	this.CurSec.IsAddingContent=true;
+	this.CurArea.IsEditing=true;
+	this.Console.Confirm({
+		title:"确认操作",
+		ct:"确定清除分栏的内容么?",
+		yes:function(ui){
+			_this.$Layout_body.children().not(_this.__p.opts.cssSecHelper).remove();	
+		},
+		position:pos,
+		close:function(evt,ui){
+			_this.CurSec.IsAddingContent=false;
+			_this.CurArea.IsEditing=true;
+		}
+	});
+	
 };
 /**
  * 附加到指定的分栏上面

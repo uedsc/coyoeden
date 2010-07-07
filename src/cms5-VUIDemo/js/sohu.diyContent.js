@@ -8,6 +8,7 @@ sohu.diyContent=function(opts){
 	var _this=this;
 	this.$Layout=opts.$obj;
 	this.Sec=opts.sec;//分栏
+	this.MaxWidth=this.Sec.Width;
 	this.ID="ct_"+sohu.diyConsole.RdStr(8);
 	//private property
 	var p={opts:opts};
@@ -21,4 +22,12 @@ sohu.diyContent=function(opts){
 	
 	//内容的鼠标事件
 	this.$Layout.mouseenter(p.mouseEnter).mouseleave(p.mouseLeave);
+	//是否flash
+	if(this.$Layout.flash){
+		this.ID+="_fl";
+		this.$Layout.attr("id",this.ID);
+		//将flash对象呈现出来
+		this.$Layout.flashObj=new sohu.diyTp[this.$Layout.tplID]({tplID:this.$Layout.tplID,w:this.MaxWidth});
+		this.$Layout.flashObj.Render(this.$Layout);
+	};
 };

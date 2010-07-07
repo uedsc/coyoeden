@@ -30,6 +30,7 @@ sohu.diyConsole=function(opts){
 	p._$areaSelector=$("#area_selector");
 	p._$areaHelper=$("#hiddenTemplate .areaTip")
 	p._$secHelper=$("#hiddenTemplate .secTip");
+	p._$pageTip=$("#pageTip");
 	p._opts=opts;
 	
 	//横切删除时的回调函数
@@ -173,6 +174,51 @@ sohu.diyConsole.prototype.CloseCTDialog=function(){
 sohu.diyConsole.prototype.AreaList=function(){
 	var items= this.$Workspace.find(this.__p.opts.cssArea);
 	return items;
+};
+/**
+ * 弹出一个确认对话框
+ * @param {Object} opts
+ */
+sohu.diyConsole.prototype.Confirm=function(opts){
+	var _this=this;
+	opts=$.extend({},{
+		title:"确认操作?",
+		ct:"",
+		height:140,
+		width:"",
+		position:"center",
+		resizable:false,
+		modal:true,
+		yes:null,
+		no:null,
+		close:null
+	},opts);
+	
+	var dlOpt={
+		title:opts.title,
+		resizable:opts.resizable,
+		height:opts.height,
+		width:opts.width,
+		modal:opts.modal,
+		position:opts.position,
+		buttons:{
+			"取消":function(){
+				if(opts.no){opts.no(this);};
+				$(this).dialog("close");
+			},
+			"确认":function(){
+				if(opts.yes){opts.yes(this);};
+				$(this).dialog("close");
+			}
+		},
+		close:function(evt,ui){
+			_this.__p._$pageTip.removeClass("confirm");
+			if(opts.close){
+				opts.close(evt,ui);
+			};
+		}
+	};
+	this.__p._$pageTip.addClass("confirm").html(opts.ct).dialog(dlOpt);
 };
 /*静态方法-TODO:移到sohu.stringUtils.js中*/
 /**

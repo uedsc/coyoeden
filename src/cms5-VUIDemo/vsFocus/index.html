@@ -1,0 +1,379 @@
+<html>
+<head>
+<title>可视化编辑焦点图</title>
+<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script> 
+<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
+</head>
+<style>
+h2{border-bottom:1px #ccc solid;font-size:14px;width:800px;color:#666}
+p{font-size:12px;color:#666}
+.line{border-top:1px #ccc dashed;width:800px;margin:20px 0 0 0}
+
+#flash{background:url(images/bg.gif) no-repeat;width:780px;height:440px;}
+#flash .blocks{width:260px;float:left;margin-top:30px;display:left}
+
+#flash1{background:url(images/bg5.jpg);height:504px;width:980px}
+
+.tisp{border:1px #cccccc solid;padding:5px;width:800px;}
+.tisp h1{margin:0px auto;margin-top:8px;color:#666;font-size:22px;}
+</style>
+<body>
+<div class="tisp">
+	<h1>可视化编辑焦点图列表</h1>
+	<h2></h2>
+</div>
+<h2>焦点图1</h2>
+<p>焦点图元素有 图片，标题，内容，连接，序号，图片5秒轮刷，图片可加减</p>
+<div id="flashcontent01"></div>
+<script type="text/javascript">
+// <![CDATA[
+var pics="images/01.jpg|images/02.jpg|images/03.jpg|images/04.jpg|images/05.jpg";	
+var mylinks="http://www.sohu.com|http://www.sogou.com|http://news.sohu.com|http://women.sohu.com|http://it.sohu.com";
+var texts="男篮力压澳大利亚获斯杯第|中新之战邵式核心激活国足爆发|黄金一代展现实力梦七53分横扫韩国|邵佳一抵津积极备战中新之战|辛辛那提赛:纳达尔晋级第二轮";
+var texts_con="全美超模大赛海选，由于前来参加试镜的人过多，发生混乱，人踩人导致6人受伤|内容222222内容222222内容222222内容222222|内容33333333内容33333333|内容44444444内容44444444|内容555555内容555555内容555555内容555555内容555555";
+
+var sohuFlash2 = new sohuFlash("swf/0501.swf","sohuFlashID01","662","359","5","#ffffff");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("salign", "t");
+	sohuFlash2.addVariable("p",pics);	
+	sohuFlash2.addVariable("l",mylinks);
+	sohuFlash2.addVariable("icon",texts);
+	sohuFlash2.addVariable("icon2",texts_con);
+	sohuFlash2.write("flashcontent01");
+// ]]>
+</script>
+<div class="line"></div>
+<h2>焦点图2</h2>
+<p>大图缓冲出现，其他图片依次遮挡，留左侧一小部分</p>
+<div id="flashcontent02">焦点图</div> 
+<script type="text/javascript">
+<!--
+var pics="images/01.jpg|images/02.jpg|images/03.jpg|images/04.jpg|images/05.jpg";	
+var sohuFlash2 = new sohuFlash("swf/0502.swf", "flashcontent02", "780", "440", "6");
+sohuFlash2.addParam("quality", "high");
+sohuFlash2.addParam("wmode", "opaque");
+sohuFlash2.addVariable("p",pics);
+sohuFlash2.write("flashcontent02");
+//-->
+</script>
+<div class="line"></div>
+<h2>焦点图3</h2>
+<p>焦点图3，普通焦点图，图片轮刷，点击图片打开连接。</p>
+<div id="flashcontent04">焦点图</div> 
+<script type="text/javascript">
+// <![CDATA[
+var pics="images/01.jpg|images/02.jpg|images/03.jpg|images/02.jpg|images/03.jpg";	
+var mylinks="http://sports.sohu.com/s2006/4678/s241444678/|http://sports.sohu.com/1/1203/47/subject217104782.shtml|http://sports.sohu.com/20060816/n244816901.shtml|http://sports.sohu.com/1/1203/47/subject217104782.shtml|http://sports.sohu.com/20060816/n244816901.shtml";
+var texts="一二三四五六七八九十一二三|黄金一代展现实力梦韩国|黄金一代展现实力梦韩国|邵佳一抵津 积极备战中新之战|辛辛那提赛:纳达尔晋级第二轮";
+
+var sohuFlash2 = new sohuFlash("swf/0601.swf","sohuFlashID04","320","270","5","#ffffff");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("salign", "t");
+	sohuFlash2.addVariable("p",pics);	
+	sohuFlash2.addVariable("l",mylinks);
+	sohuFlash2.addVariable("icon",texts);
+	sohuFlash2.write("flashcontent04");
+// ]]>
+</script>
+<div class="line"></div>
+<h2>焦点图4</h2>
+<p>文字在图片下方，焦点图元素有 图片，标题，内容，连接，序号，图片5秒轮刷，图片可加减</p>
+
+<div id="flashcontent05"></div>
+<script type="text/javascript">
+// <![CDATA[
+var pics="images/01.jpg|images/02.jpg|images/03.jpg|images/04.jpg|images/05.jpg";	
+var mylinks="http://www.sohu.com|http://www.sogou.com|http://news.sohu.com|http://women.sohu.com|http://it.sohu.com";
+var texts="男篮力澳大利亚获斯杯澳大利亚获斯杯第压澳大利亚获斯杯第|中新新之战激发新之战邵式核心激活国足爆发|黄金一代展现实力梦七53分横扫韩国|邵佳一抵津积极备战中新之战|辛辛那提赛:纳达尔晋级第二轮";
+var texts_con="内容11111111内容11111111内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容|内容222222内容222222内容222222内容222222内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容|内容33333333内容33333333|内容44444444内容44444444|内容555555内容555555内容555555内容555555内容555555";
+
+var sohuFlash2 = new sohuFlash("swf/0602.swf","flashcontent05","520","340","5","#ffffff");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("salign", "t");
+	sohuFlash2.addVariable("p",pics);	
+	sohuFlash2.addVariable("l",mylinks);
+	sohuFlash2.addVariable("icon",texts);
+	sohuFlash2.addVariable("icon2",texts_con);
+	sohuFlash2.write("flashcontent05");
+// ]]>
+</script>
+<div class="line"></div>
+<h2>焦点图5</h2>
+<p>右侧缩略图，点击右侧左侧变大图，图片轮刷，点击图片打开连接。焦点图有详细介绍，和缩略图和简单介绍。<br />能够可视化编辑<br /><b>tv.sohu.com应用此焦点图</b></p>
+
+<div id="flashcontent06"></div>
+<script type="text/javascript">
+// <![CDATA[
+var pics="http://i0.itc.cn/20090528/56d_85e1b58c_046f_4b01_a64b_d627481efc8c_0.jpg|http://i3.itc.cn/20090601/394_f82076c1_e972_4bcc_ad55_e277805be716_0.jpg|http://i3.itc.cn/20090603/394_1b79b748_de9a_47cf_8fb4_e05a7d4c9a54_0.jpg|http://i5.itc.cn/20090525/589_00464598_6baf_40ee_b86e_a7b14bb33d9d_0.jpg|http://i7.itc.cn/20090514/588_d6a4d134_fa9a_40f9_8b3e_fb98d878f701_0.jpg|http://i7.itc.cn/20090513/588_4ad6ff01_4e2f_4aa3_b565_0b6c9597dbcf_0.jpg";	
+var pics_s="http://i6.itc.cn/20090527/394_44500d0c_dc50_4a45_9e09_481859af7e20_0.jpg|http://i1.itc.cn/20090531/394_b7ddaf15_6473_4ff7_b403_0142a4d1b7ff_0.jpg|http://i0.itc.cn/20090603/394_d5248a92_6123_485c_837e_e30b9c8744c4_0.jpg|http://i4.itc.cn/20090525/589_7fbfe89b_839e_4794_b07f_08b6fae03682_0.jpg|http://i2.itc.cn/20090514/588_02740565_e055_4351_85ea_9f1ef1a879a9_0.jpg|http://i3.itc.cn/20090513/588_63c19638_65b4_45fd_baf5_d992796be331_0.jpg";
+var mylinks="http://tv.sohu.com/s2009/nankingnanking/|http://tv.sohu.com/s2009/xfsb/|http://tv.sohu.com/20090204/n262044821.shtml|http://tv.sohu.com/s2009/wdcn/|http://tv.sohu.com/s2009/qingchun/|http://tv.sohu.com/s2009/qianfu/";
+var texts="<font size='18'><b>《南京！南京！》：在黑白影像里看见人性的血红</b></font><br><font color='#b3b3b3'>30万的死难者，40天的大屠杀，72年的历史风烟，当陆川将他的《南京南京》带到观众面前的时候，这一切都变成如此的切近，残忍的杀戮、人性的深渊、亡国的耻辱，民族的尊严，我们必须正视，我们无法回避——|<font size='18'><b>《新封神榜》：林心如不演玉女演妲己</b></font><br><font color='#b3b3b3'>在新版《封神榜》当中，素来以清纯形象示人的林心如出演了“美若天仙心如蛇蝎”的妲己，这个中国历史上最著名的“蛇蝎美人”究竟有多美？有多坏？还得看了才知道——</font>|<font size='18'><b>《命运呼叫转移》：一部手机和N个明星之间的故事</b></font><br><font color='#b3b3b3'>有人说这是一部“明星总动员”，有人说这是一个“手机广告片”，讲述了四个故事汇聚了20几位明星的《命运呼叫转移》，凭借着葛大爷的光头，范冰冰的美艳，和其他众星的璀璨星光，成为了阵容最强大的贺岁大片——</font>|<font size='18'><b>《我的丑娘》：“荧屏第一老太太”张少华强势催泪</b></font><br><font color='#b3b3b3'>凭借着不可思议的剧情，和张少华质朴真挚的表演，《我的丑娘》人气急升收视走高，然而针对这部剧的剧情却有不少人提出质疑：现实社会中是否真的有“儿子嫌母丑”的故事？如此违背伦理的儿子是否能获得母亲的原谅？</font>|<font size='18'><b>《我的青春谁做主》：赵宝刚再出手打造《奋斗》2.0版</b></font><br><font color='#b3b3b3'>号称《奋斗》2.0版的《我的青春谁做主》阵容更强投资更大制作更精场面更美，因而在网络上未播先红人气飙升，有人说这是《奋斗》的“克隆版”，有人说这是《奋斗》的“升级版”，究竟能否超过《奋斗》，还得看了才知道……</font>|<font size='18'><b>《潜伏》：血色浪漫+黑色幽默+孙红雷的荷尔蒙</b></font><br><font color='#b3b3b3'>一个是野蛮女友，一个是硬派小生，姚晨和孙红雷联手炮制的这部《潜伏》，号称是继《暗算》之后，中国电视荧屏上最好看的谍战剧，注意看的时候一定留心台词，其中很多都可能成为09年流行语……</font>";
+var texts2="<b>南京！南京！</b><br>2009年中国人都无法回避的电影。|<b>新封神榜</b><br>玉女林心如出演了美若天仙心如蛇蝎的妲己。|<b>命运呼叫转移</b><br>范冰冰出演史上最美女鬼，盖过当年王祖贤。|<b>我的丑娘</b><br>09年荧屏最感人母亲，看后必让你感动至痛哭落泪|<b>我的青春谁做主</b><br>赵宝刚继续“奋斗”，王珞丹诠释升级版米莱。|<b>潜伏</b><br>2009年最动人的生死谍战剧。";
+var sohuFlash2 = new sohuFlash("swf/0603.swf","flashcontent06","950","388","8","#000000");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("wmode", "transparent");
+	sohuFlash2.addParam("salign", "t");	
+	sohuFlash2.addVariable("p",pics);
+	sohuFlash2.addVariable("p_s",pics_s);
+	sohuFlash2.addVariable("l",mylinks);
+	sohuFlash2.addVariable("icon",texts);
+	sohuFlash2.addVariable("icon_2",texts2);
+	sohuFlash2.write("flashcontent06");
+// ]]>
+</script>
+<div class="line"></div>
+
+<h2>焦点图6</h2>
+<p>下方有缩略图，点击小图，变大图，大图加有标题。可通过按钮左右选择图片</p>
+	
+<div id="flashcontent18"></div>
+<script type="text/javascript">
+// <![CDATA[
+var bpic = "images/01.jpg|images/02.jpg|images/03.jpg|images/04.jpg|images/05.jpg";
+			var pics = "images/01.jpg|images/02.jpg|images/03.jpg|images/04.jpg|images/05.jpg";
+			var mylinks = "http://tv.sohu.com/20090824/n266183981.shtml|http://tv.sohu.com/20090824/n266183981.shtml|http://tv.sohu.com/20090821/n266136821.shtml|http://tv.sohu.com/20090824/n266186311.shtml|http://tv.sohu.com/20090824/n266186164.shtml";
+			var texts = "广告出现国旗国徽最高罚广告费5倍|央广告出现国旗国徽最高罚广告费5倍|央视、凤凰建网络视频版权保护联盟|内地六大卫视携手赈灾 募善款3.1亿|章子怡上《新闻联播》 网友热议改版 ";	
+			
+var sohuFlash2 = new sohuFlash("swf/1001.swf","flashcontent18","616","369","5","#ffffff");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("salign", "t");
+	sohuFlash2.addVariable("b",bpic);	
+	sohuFlash2.addVariable("p",pics);	
+	sohuFlash2.addVariable("l",mylinks);
+	sohuFlash2.addVariable("icon",texts);
+	sohuFlash2.write("flashcontent18");
+// ]]>
+</script>
+
+<div class="line"></div>
+
+<h2>焦点图7</h2>
+<p>左右按钮翻大图</p>
+	
+<div id="flashcontent21"></div>
+<script type="text/javascript">
+// <![CDATA[
+var bpic = "images/01.jpg|images/02.jpg|images/03.jpg|images/04.jpg|images/05.jpg";
+var mylinks = "http://tv.sohu.com/20090824/n266183981.shtml|http://tv.sohu.com/20090824/n266183981.shtml|http://tv.sohu.com/20090821/n266136821.shtml|http://tv.sohu.com/20090824/n266186311.shtml|http://tv.sohu.com/20090824/n266186164.shtml";
+	
+var sohuFlash2 = new sohuFlash("swf/1102.swf","sohuFlashID21","685","330","5","#ffffff");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("salign", "t");
+	sohuFlash2.addVariable("b",bpic);
+	sohuFlash2.addVariable("l",mylinks);
+	sohuFlash2.write("flashcontent21");
+// ]]>
+</script>
+
+<div class="line"></div>
+<h2>焦点图8</h2>
+<p>左右按钮翻大图，图片组呈弧形透视</p>
+	
+
+<div id="flashcontent22"></div>
+<script type="text/javascript">
+// <![CDATA[
+//图片大小 438x536
+var pics="images/01.jpg|images/01.jpg|images/01.jpg|images/01.jpg|images/01.jpg|images/01.jpg|images/01.jpg|images/01.jpg|images/01.jpg|images/01.jpg"	
+
+var sohuFlash2 = new sohuFlash("swf/1103.swf","flashcontent22","635","295","5","#ffffff");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("salign", "t");
+	sohuFlash2.addVariable("p",pics);	
+	sohuFlash2.write("flashcontent22");
+// ]]>
+</script>
+
+<div class="line"></div>
+<h2>焦点图9</h2>
+<p>焦点图有大图，标题，内容。不用的传统的序号，改为图形。</p>
+	
+<div id="flashcontent24"></div>
+<script type="text/javascript">
+// <![CDATA[
+var pics="http://i0.itc.cn/20091229/607_8fb2f3ee_e5ae_43ec_a8ab_1e3924e4bac5_0.jpg|http://i2.itc.cn/20091228/607_db7f1ec9_d224_4e90_95f8_d6326da08ba0_1.jpg|http://i1.itc.cn/20091228/607_db7f1ec9_d224_4e90_95f8_d6326da08ba0_2.jpg|http://i1.itc.cn/20091228/607_db7f1ec9_d224_4e90_95f8_d6326da08ba0_3.jpg|http://i2.itc.cn/20091228/607_db7f1ec9_d224_4e90_95f8_d6326da08ba0_4.jpg|http://i3.itc.cn/20091228/607_db7f1ec9_d224_4e90_95f8_d6326da08ba0_5.jpg|http://i2.itc.cn/20091229/64a_731614ee_d7dc_4337_89d0_76359cf571d4_0.jpg|http://i2.itc.cn/20091228/607_db7f1ec9_d224_4e90_95f8_d6326da08ba0_7.jpg";	
+			var pics_s="http://i5.itc.cn/20090720/394_bf438c66_4257_41fa_9492_389f12d8445d_0.jpg|http://i6.itc.cn/20090713/589_0f6aaa8d_3cbc_4b94_8313_d9dfccd69d0b_0.jpg|http://i3.itc.cn/20090713/589_cf95723f_7a9a_4fff_b3c4_9339cd755bdb_0.jpg|http://i4.itc.cn/20090702/6dc_a52c89c4_4abf_45d7_bdbb_e060793cea61_0.jpg|http://i8.itc.cn/20090703/6dc_cfd36fdf_f6b9_4a67_8216_4b2110d57da1_1.jpg|http://i9.itc.cn/20090629/6dc_2928802a_5e9b_48d7_b840_76f5a905f288_0.jpg|http://i9.itc.cn/20090703/6dc_f7a30105_0d33_4fad_9dcb_53ec20aa8064_0.jpg|http://i8.itc.cn/20090618/56d_9f24b066_da7b_4486_bfe9_0df76a793fa1_0.jpg";
+			var mylinks="http://v.sohu.com/20091226/n269229987.shtml|http://v.sohu.com/20091227/n269236141.shtml|http://v.sohu.com/20091228/n269246698.shtml|http://v.sohu.com/20091228/n269246531.shtml|http://v.sohu.com/20091227/n269235928.shtml|http://v.sohu.com/s2009/dqdgtbch/index.shtml|http://v.sohu.com/s2009/8015/s269204515/index.shtml|http://v.sohu.com/debade/";
+			var texts="<font size='18'><b>韦唯携三儿子亮相 老大帅老三腼腆</b></font><br><font 			color='#d7d7d7'>12月28日，由海仓慈善基金会、北京比如教育科技有限公司主办，北京诚品文化传播有限公司承办的海仓慈善基金会成立一周年庆典暨“公益小主张”行动启动仪式在北京启动……</font>|<font size='18'><b>“枪毙”让刘谦印象深刻 虎年春晚基本搞定</b></font><br><font 			color='#d7d7d7'>09年的春晚，让内地的观众认识了魔术师刘谦。而在春晚上的出色表现，也让刘谦成为了09年人气最高的明星。可以说，刘谦抓住了春晚的机会，而春晚则成就了刘谦。不过，对于让自己一夜蹿红的春晚……</font>|<font size='18'><b>独家专访：李光洁人气旺 秀父爱憧憬家庭生活</b></font><br><font 			color='#d7d7d7'>近日，电视剧版《杜拉拉升职记》继续在上海热拍，在话剧、电影版本相继出炉之后再次助推“杜拉拉”风潮。搜狐娱乐播报对李光洁进行了独家采访。在采访中李光洁透露憧憬家庭生活……</font>|<font size='18'><b>莫文蔚上海演唱会 香艳热辣成亮点</b></font><br><font 			color='#d7d7d7'>莫文蔚在12月26日顺利完成她的第二站于上海举行的个人巡回演唱会，适逢举行的当天是圣诞节后的boxing day，Karen直言在这个普天同庆的节日跟所有歌迷聚会是很难得又高兴的事情，所以希望……</font>|<font size='18'><b>李宇春个唱秀功夫 歌迷疯狂喊全场</b></font><br><font 			color='#d7d7d7'>26日晚，李宇春的首场北京万人演唱会在五棵松体育馆盛大开唱。李宇春一直秘而不宣的才艺秀乐器终于在演唱会上露出了庐山真面目，从海外购买的贵重鼓机，在国内极为罕见……</font>|<font size='18'><b>《明星在线》特别企划：从《大秦帝国》看现代职场生存</b></font><br><font 			color='#d7d7d7'>如果把《大秦帝国》的故事背景还原到当今社会，对于现代职场谋生将有哪些现实意义？秦孝公新身份：家族企业董事长。最擅于招贤纳士的明君，也因为自己的性格方面的弱点变成了悲情人物……</font>|<font size='18'><b>《狙击手》：佟大为首度挑战军旅题材大戏</b></font><br><font 			color='#d7d7d7'>1月大片指南：世纪大片《阿凡达》创票房奇迹，叫好又叫座；《喜羊羊》新年归来，温馨过年；《大侦探福尔摩斯》北美上映，裘德洛唐尼两大帅哥银幕斗帅，看大侦探精彩破案……</font>|<font size='18'><b>《大鹏嘚吧嘚》：韩庚解约SM 背后推手很神秘</b></font><br><font 			color='#d7d7d7'>12月21日中国媒体爆出SuperJunior成员韩庚向首尔中央地方法院提出诉讼，要求判决与SM公司合同无效。继东方神起三成员之后，韩庚也身陷“解约门”……</font>";
+			var sohuFlash2 = new sohuFlash("swf/1105.swf","flashcontent24","680","390","8","#000000");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("wmode", "transparent");
+	sohuFlash2.addParam("salign", "t");	
+	sohuFlash2.addVariable("p",pics);
+	sohuFlash2.addVariable("p_s",pics_s);
+	sohuFlash2.addVariable("l",mylinks);
+	sohuFlash2.addVariable("icon",texts);
+	sohuFlash2.write("flashcontent24");
+// ]]>
+</script>
+
+<div class="line"></div>
+<h2>焦点图10</h2>
+<p>焦点图左侧小图，通过上下按钮控制小图位置，点小图，变大图和连接</p>
+	
+<div id="flashcontent27"></div>
+<script type="text/javascript">
+// <![CDATA[
+var pics="images/01.jpg|images/02.jpg|images/03.jpg|images/04.jpg|images/05.jpg|images/01.jpg|images/02.jpg|images/03.jpg";	
+var pics_s="images/01.jpg|http://i6.itc.cn/20090713/589_0f6aaa8d_3cbc_4b94_8313_d9dfccd69d0b_0.jpg|http://i3.itc.cn/20090713/589_cf95723f_7a9a_4fff_b3c4_9339cd755bdb_0.jpg|http://i4.itc.cn/20090702/6dc_a52c89c4_4abf_45d7_bdbb_e060793cea61_0.jpg|http://i8.itc.cn/20090703/6dc_cfd36fdf_f6b9_4a67_8216_4b2110d57da1_1.jpg|http://i9.itc.cn/20090629/6dc_2928802a_5e9b_48d7_b840_76f5a905f288_0.jpg|http://i9.itc.cn/20090703/6dc_f7a30105_0d33_4fad_9dcb_53ec20aa8064_0.jpg|http://i8.itc.cn/20090618/56d_9f24b066_da7b_4486_bfe9_0df76a793fa1_0.jpg";
+var mylinks="http://tv.sohu.com/s2009/hsj/|http://tv.sohu.com/20090713/n265166098.shtml|http://tv.sohu.com/s2009/zswlwdjnaq/|http://tv.sohu.com/s2009/xjqxz3/|http://tv.sohu.com/s2009/wdxd/|http://tv.sohu.com/s2009/anxiang/|http://tv.sohu.com/s2009/jujishou/|http://tv.sohu.com/s2009/mmtz/";
+var texts="<font size='14'>《黑三角》：向那个红色年代的经典致敬</font><br><font color='#b3b3b3'>又是谍战题材,又是经典重拍,翻拍于1977年经典老电影《黑三角》,在32年之后,用三十几集的篇幅,在电视荧屏上再现了那个风靡全国惊心动魄的“黑三角热潮”,究竟电视《黑三角》是经典重现?还是狗尾续貂?只有看了才知道——</font>|<font size='14'>《超级女特工》：当玉女变成了打女</font><br><font color='#b3b3b3'>苏菲·玛索，四个芳香的音节，一个性感的符号，曾被一代人视为魂牵梦系的“性感女神”，然而在2009年，这个被誉为“法国最后一个玉女”的美丽女人，却进行了华丽转身，在《超级女特工》里化身一个坚强勇毅的革命女性——<font>|<font size='14'>《艰难爱情》：邓超化身“魔鬼”演绎悬疑情感剧</font><br><font color='#b3b3b3'>一个偶像剧的名字，一个悬疑剧的故事，再加上一个悲情大结局，揭示了邓超车晓这一部《艰难爱情》的全部悬念，在这个由华谊老总王中军钦点的故事里，邓超颠覆了他少年天子和超级情圣的形象，变成看一个你想不到的样子——</font>|<font size='14'>《仙剑奇侠传3》：2009年荧屏暑期档Cosplay大片</font><br><font color='#b3b3b3'>“承受万年的孤独，为迎一场决斗；等候百世的轮回，让爱重蹈覆辙”。作为2009年荧屏暑期档最热门最火爆的古装大戏，《仙剑3》凭借赏心悦目的明星阵容和排山倒海的电脑特技，成为了本年度最受瞩目的暑期大剧——</font>|<font size='14'>《我的兄弟叫顺溜》：王宝强出演许三多2.0版</font><br><font color='#b3b3b3'>《顺溜》已超过开年大戏《走西口》的同期收视率，创2009年央视新高。虽然有人质疑这部剧人物脸谱制作粗糙，但是凭借着幽默台词，“双强”联手，以及王宝强“重走士兵路”的收视期待，依然让它有望问鼎央视收视之王——|<font size='14'>《暗香》：黄晓明领衔史上最豪华“豪门恩怨”</font><br><font color='#b3b3b3'>号称“首部讲述海外华人奋斗史的豪门家族商战大戏”的《暗香》凭着2000万的巨额投资和黄晓明、王珞丹的闪亮阵容，堪称2009年度电视荧屏上最奢侈最养眼的偶像巨制，正如制片人所说：剧情酷似美剧，画面美如韩剧——</font>|<font size='14'>《狙击手》：佟大为首度挑战军旅题材大戏</font><br><font color='#b3b3b3'>中国首部以特殊兵种“狙击手”为视角的军事题材作品，以写实惨烈的战争场面，跌宕起伏的历史波澜，以及佟大为苦心转型的荷尔蒙气息为卖点，堪称本年度最受瞩目的战争剧之一，顺便说一句，佟大为射击的Pose确实很帅——</font>|<font size='14'>《秘密图纸》：请你玩一局谍战版的“杀人游戏”</font><br><font color='#b3b3b3'>1956年出品的反特电影《秘密图纸》曾是一代人心中的经典之作，而今导演郭靖宇携手王志飞吴越重拍电视版，为增加噱头刺激收视，更借鉴美剧情节模式，剧情跌宕节奏紧张，据说如果看时没用心，很可能会被导演给“骗了”——</font>";
+var texts2="黑三角放八个汉字<br>和《潜伏》一样，在网络上未播先红的谍战悬疑剧|超级女特工<br>法国“超女”性感无敌，不过苏菲真的老了。|艰难爱情<br>注意：这是邓超所有角色里最“坏”的一个|仙剑奇侠传3<br>阵容很美很清纯 特技很好很强大。|我的兄弟叫顺溜<br>注意：王宝强终于恋爱了，而且还是“姐弟恋”|暗香<br>黄晓明在剧中的行头总价值超过新版007|狙击手<br>佟大为放话：我不光当硬汉，还要当铁汉!|秘密图纸<br>导演放话：我要用美剧的模式来讲故事。";
+var sohuFlash2 = new sohuFlash("swf/1203.swf","flashcontent27","620","375","8","#000000");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("wmode", "transparent");
+	sohuFlash2.addParam("salign", "t");	
+	sohuFlash2.addVariable("p",pics);
+	sohuFlash2.addVariable("p_s",pics_s);
+	sohuFlash2.addVariable("l",mylinks);
+	sohuFlash2.addVariable("icon",texts);
+	sohuFlash2.addVariable("icon_2",texts2);
+	sohuFlash2.write("flashcontent27");
+// ]]>
+</script>
+
+<div class="line"></div>
+<h2>焦点图11</h2>
+<p>大图横向轮刷，当前图片突出，可通过左右按钮控制图片位置</p>
+	
+<div id="flashcontent28"></div>
+<script type="text/javascript">
+// <![CDATA[
+
+var pics_s="images/c4.jpg|images/a.jpg|images/b1.jpg|images/c3.jpg|images/1.png|images/a.jpg|images/b1.jpg|images/c3.jpg";
+var mylinks="http://tv.sohu.com/s2009/hsj/|http://tv.sohu.com/20090713/n265166098.shtml|http://tv.sohu.com/s2009/zswlwdjnaq/|http://tv.sohu.com/s2009/xjqxz3/|http://tv.sohu.com/s2009/wdxd/|http://tv.sohu.com/s2009/anxiang/|http://tv.sohu.com/s2009/jujishou/|http://tv.sohu.com/s2009/mmtz/";
+var texts2="<b>黑三角放八个汉字</b><br>和《潜伏》一样，在网络上未播先红的谍战悬疑剧|<b>黑三角放八个汉字</b><br>和《潜伏》一样，在网络上未播先红的谍战悬疑剧|黑三角放八个汉字<br>和《潜伏》一样，在网络上未播先红的谍战悬疑剧|黑三角放八个汉字<br>和《潜伏》一样，在网络上未播先红的谍战悬疑剧|黑三角放八个汉字<br>和《潜伏》一样，在网络上未播先红的谍战悬疑剧|黑三角放八个汉字<br>和《潜伏》一样，在网络上未播先红的谍战悬疑剧|黑三角放八个汉字<br>和《潜伏》一样，在网络上未播先红的谍战悬疑剧";
+var sohuFlash4 = new sohuFlash("swf/1204.swf","flashcontent28","948","210","8","#000000");
+	sohuFlash4.addParam("quality", "high");
+	sohuFlash4.addParam("wmode", "transparent");
+	sohuFlash4.addParam("salign", "t");	
+	sohuFlash4.addVariable("p_s",pics_s);
+	sohuFlash4.addVariable("l",mylinks);
+	sohuFlash4.addVariable("icon_2",texts2);
+	sohuFlash4.write("flashcontent28");
+// ]]>
+</script>
+
+
+<div class="line"></div>
+<h2>焦点图12</h2>
+<p>把普通焦点图序号改成汽车迈速表形式。应用与汽车之类</p>
+	
+<div id="flashcontent29"></div>
+<script type="text/javascript">
+// <![CDATA[
+var pics="images/01.jpg|images/02.jpg|images/03.jpg|images/04.jpg|images/05.jpg|images/05.jpg";
+var mylinks="http://www.sohu.com|http://www.sogou.com|http://news.sohu.com|http://women.sohu.com|http://it.sohu.com";
+var texts="男篮力压澳大利亚获1|男篮力压澳大利亚获2|男篮力压澳大利亚获3|男篮力压澳大利亚获4|男篮力压澳大利亚获5|男篮力压澳大利亚获6";
+var sohuFlash2 = new sohuFlash("swf/1205.swf","flashcontent29","290","395","5","#ffffff");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("salign", "t");
+	sohuFlash2.addVariable("pics",pics);	
+	sohuFlash2.addVariable("links",mylinks);
+	sohuFlash2.addVariable("icon",texts);
+	sohuFlash2.write("flashcontent29");
+// ]]>
+</script>
+
+<div class="line"></div>
+<h2>焦点图13</h2>
+<p>焦点图有大图，标题。不用的传统的序号，改为图形，图片可以无限增加，可以通过按钮控制</p>
+	
+
+<div id="flashcontent31"></div>
+<script type="text/javascript">
+// <![CDATA[
+var pics="images/01.jpg|images/02.jpg|images/03.jpg|images/04.jpg|images/05.jpg|images/05.jpg|images/07.jpg|images/08.jpg";	
+var mylinks="http://tv.sohu.com/s2009/hsj/|http://tv.sohu.com/20090713/n265166098.shtml|http://tv.sohu.com/s2009/zswlwdjnaq/|http://tv.sohu.com/s2009/xjqxz3/|http://tv.sohu.com/s2009/wdxd/|http://tv.sohu.com/s2009/anxiang/|http://tv.sohu.com/s2009/jujishou/|http://tv.sohu.com/s2009/mmtz/";
+var texts="午后股市跳水沪指逼近3200四则消息雾里看花|住房部官员:我国十二五住房目标是人人有房住|武广高铁试运营 华中华南城市圈合而为一(图)|洛阳市民中10万大奖无效 官方称彩票可能印错|上海迪士尼大幅缩水 将建全球最“迷你”乐园|住房部官员:我国十二五住房目标是人人有房住|武广高铁试运营 华中华南城市圈合而为一(图)|洛阳市民中10万大奖无效 官方称彩票可能印错|上海迪士尼大幅缩水 将建全球最“迷你”乐园";
+var sohuFlash2 = new sohuFlash("swf/1207.swf","flashcontent31","590","340","8","#000000");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("wmode", "transparent");
+	sohuFlash2.addParam("salign", "t");	
+	sohuFlash2.addVariable("p",pics);
+	sohuFlash2.addVariable("mylinks",mylinks);
+	sohuFlash2.addVariable("texts",texts);
+	sohuFlash2.write("flashcontent31");
+// ]]>
+</script>
+<div class="line"></div>
+<h2>焦点图14</h2>
+<p>焦点图左侧大图，右侧标题，点击标题切换大图</p>
+	
+
+<div id="flashcontent35"></div>
+<script type="text/javascript">
+// <![CDATA[
+var pics="images/01.jpg|images/02.jpg|images/03.jpg|images/04.jpg|images/05.jpg";		
+var mylinks="http://www.sohu.com|http://www.sogou.com|http://www.baidu.com|http://yule.sohu.com|http://digi.it.sohu.com";
+var texts="<b>你觉得自己是几成熟的艺人？春春：我不是牛排！</b>|<b>每一个领域的人，他都会有自己的快乐。</b>|<b>经典，只属于懂得的人。</b>|<b>慈善是发自内心的事情，大家尽力就好</b>|<b>春春：我会孤独，但是我享受。</b>";
+var texts2="一二三四五六七八九十一二三四五六七|小标题222小标题|小标题333小标题|小标题44小标题|小标题555小标题";
+
+var sohuFlash2 = new sohuFlash("swf/0203.swf","flashcontent35","690","230","7","#ffffff");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("salign", "t");	
+	sohuFlash2.addVariable("p",pics);
+	sohuFlash2.addVariable("l",mylinks);
+	sohuFlash2.addVariable("icon",texts);
+	sohuFlash2.addVariable("icon_2",texts2);
+	sohuFlash2.write("flashcontent35");
+// ]]>
+</script>
+<div class="line"></div>
+<h2>焦点图15</h2>
+<p>焦点图有大图，标题。不用的传统的序号，改为图形，图形改为有规律的图片，世博会以七种颜色为循环，图片数量可多可少。</p>
+	
+<div id="flashcontent37"></div>
+<script type="text/javascript">
+// <![CDATA[
+var pics="images/01.jpg|images/02.jpg|images/03.jpg|images/04.jpg|images/05.jpg|images/03.jpg|images/04.jpg|images/05.jpg";	
+var mylinks="http://www.sohu.com|http://www.sogou.com|http://news.sohu.com|http://women.sohu.com|http://it.sohu.com";
+var text="北京上海广州出台政策|银行业还会格外加强对开发贷款的|打击开发商囤房捂盘|保险资金运用管理暂行办法|楼市屋漏偏逢连夜雨";
+
+var sohuFlash2 = new sohuFlash("swf/0205.swf","flashcontent37","298","299","5","#ffffff");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("salign", "t");
+	sohuFlash2.addVariable("pics",pics);	
+	sohuFlash2.addVariable("links",mylinks);
+	sohuFlash2.addVariable("text",text);
+	sohuFlash2.write("flashcontent37");
+// ]]>
+</script>
+<div class="line"></div>
+
+<h2>焦点图16</h2>
+<p>焦点图上大图，下小图。小图代标题。点击小图变大图</p>
+	
+<div id="flashcontent39"></div>
+<script type="text/javascript">
+// <![CDATA[
+var bpic = "http://i2.itc.cn/20100412/394_f260b046_03c7_4892_8d2b_c3157fe6d2c5_0.jpg|http://i3.itc.cn/20100413/589_6613105f_2314_44b2_a02b_00427164bd86_0.jpg|http://i0.itc.cn/20100412/394_1cee480b_9aae_4e2a_b076_30f4276e4a65_0.jpg|http://i1.itc.cn/20100412/394_ef1252ee_383e_4b43_91f5_47ab421bd3bb_0.jpg|http://i2.itc.cn/20100412/394_602f3b5c_b51e_4cc7_95ef_9301d80c5a10_0.jpg|http://i1.itc.cn/20100412/394_78aa8ba5_9817_42ab_870b_f0d86fbada69_0.jpg";
+			var pics = "http://i2.itc.cn/20100412/394_ab5b392c_3961_4592_b13a_a1eb03b12eff_0.jpg|http://i2.itc.cn/20100413/589_6613105f_2314_44b2_a02b_00427164bd86_1.jpg|http://i3.itc.cn/20100412/394_da915408_ecd2_4bdb_9445_fd5f62b6d4cf_0.jpg|http://i3.itc.cn/20100412/394_d36862b9_9204_4ad7_b369_be1dd4286e45_0.jpg|http://i2.itc.cn/20100412/394_fdf8ea82_c7b8_41ae_8821_787fc0139bd4_0.jpg|http://i1.itc.cn/20100412/394_a8ff1ae1_1d6a_4659_8446_9a7f270fce7c_0.jpg";
+			var mylinks = "http://tv.sohu.com/s2010/dndj/|http://tv.sohu.com/20100413/n271471332.shtml|http://tv.sohu.com/s2010/dbxj/|http://tv.sohu.com/s2010/zhanshi/|http://tv.sohu.com/20100401/n271271036.shtml|http://tv.sohu.com/s2010/lnjdzz/";
+			var texts = "央视热播-大女当嫁|天地逃生(真人游戏)|成龙新片-大兵小将|战争题材剿匪剧-战士|亚瑟和他的迷你王国2|宋丹丹-老牛家的战争";	
+			
+var sohuFlash2 = new sohuFlash("swf/0207.swf","flashcontent39","980","469","5","#ffffff");
+	sohuFlash2.addParam("quality", "high");
+	sohuFlash2.addParam("salign", "t");
+	sohuFlash2.addParam("wmode", "transparent");
+	sohuFlash2.addVariable("b",bpic);	
+	sohuFlash2.addVariable("p",pics);	
+	sohuFlash2.addVariable("l",mylinks);
+	sohuFlash2.addVariable("icon",texts);
+	sohuFlash2.write("flashcontent39");
+// ]]>
+</script>
+<div id="ctTest"></div>
+</body>
+	<script type="text/javascript">
+	//<![CDATA[
+	$(function(){
+		var flashs=$("div[id^='flashcontent']");
+		$(".tisp h2").html("共"+flashs.length+"个");
+	})
+	//]]>
+	</script>
+ 
+</html> 
+
+  

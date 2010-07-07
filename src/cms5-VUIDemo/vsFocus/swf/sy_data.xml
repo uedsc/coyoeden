@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+<data pic_url="img/pic01.jpg" t1="场景一" t2="大练石油" ></data>
+<data pic_url="img/pic02.jpg" t1="场景二" t2="内容二" ></data>
+<data pic_url="img/pic03.jpg" t1="场景三" t2="内容三" ></data>
+<data pic_url="img/pic04.jpg" t1="场景四" t2="内容四" ></data>
+<data pic_url="img/pic05.jpg" t1="场景五" t2="内容五" ></data>
+<data pic_url="img/pic06.jpg" t1="场景六" t2="内容六" ></data>
+</root>

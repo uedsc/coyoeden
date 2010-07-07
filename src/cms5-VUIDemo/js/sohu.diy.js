@@ -61,5 +61,87 @@ sohu.diyTp["sw182_182_182_182_182"]='<div class="subsec clear"><div class="col w
 
 /*=内容模板区域=*/
 sohu.diyTp["ctEmptyLine"]='<div class="ct vspace"><hr/></div>';
+//焦点图1
+sohu.diyTp.Flash01=function(opts){
+	//选项
+	opts=$.extend({},{
+		quality:"high",
+		salign:"t",
+		p:"vsFocus/images/01.jpg|vsFocus/images/02.jpg|vsFocus/images/03.jpg|vsFocus/images/04.jpg|vsFocus/images/05.jpg",
+		pNum:5,
+		l:"http://www.sohu.com|http://www.sogou.com|http://news.sohu.com|http://women.sohu.com|http://it.sohu.com",
+		icon:"标题1|标题2|标题3|标题4|标题5",
+		icon2:"内容1|内容2|内容3|内容4|内容5",
+		swf:"vsFocus/swf/0501.swf",
+		h0:359,//默认高
+		w0:662,//默认宽
+		bg:"#ffffff"
+	},opts);
+	//属性
+	this.tid=new Date().getTime();
+	this.tplID=opts.tplID;
+	this.quality=opts.quality;
+	this.salign=opts.salign;
+	this.picsNum=opts.pNum;
+	this.swf=opts.swf;
+	this.FLASH=null;
+	this.height=opts.h||opts.h0;
+	this.width=opts.w||opts.w0;
+	this.bg=opts.bg;
+	this.Var={
+		p:opts.p,
+		l:opts.l,
+		icon:opts.icon,
+		icon2:opts.icon2
+	};
+	
+	//高度的修正-由于分栏的宽度限制，所以要针对高度进行比例缩放
+	this.height=(opts.h0*this.width)/opts.w0;
+};
+
+sohu.diyTp.Flash01.prototype.Render=function($t,reRender){
+	if (!reRender) {
+		this.DomID = $t.attr("id");
+		try{
+			this.FLASH = new sohuFlash(this.swf, this.DomID+"_"+this.tid, this.width, this.height, this.picsNum, this.bg);
+			this.FLASH.addParam("quality", this.quality);
+			this.FLASH.addParam("salign", this.salign);
+			this.FLASH.addParam("wmode","opaque");//zindex issue:slightlymore.co.uk/flash-and-the-z-index-problem-solved/
+			this.FLASH.addVariable("p", this.Var.p);
+			this.FLASH.addVariable("l", this.Var.l);
+			this.FLASH.addVariable("icon", this.Var.icon);
+			this.FLASH.addVariable("icon2", this.Var.icon2);
+		}catch(e){
+			$t.html(e.message);
+		}
+	};
+	if(!this.FLASH) return;
+	try{
+		this.FLASH.write(this.DomID);	
+		$t.css({width:this.width,height:this.height});
+	}catch(e){
+		$t.html(e.message);
+	};
+};
+/**
+ * 更改flash对象的属性。支持的属性有id,height,width,swf
+ * @param {Object} n
+ * @param {Object} v
+ */
+sohu.diyTp.Flash01.prototype.Attr=function(n,v){
+	this.FLASH.setAttribute(n,v);
+	this[n]=v;
+	this.Render(null,true);
+};
+/**
+ * 更改flash对象的属性variables对象的值。属性对象variables的属性有p,l,icon,icon2
+ * @param {Object} n
+ * @param {Object} v
+ */
+sohu.diyTp.Flash01.prototype.Var=function(n,v){
+	this.FLASH.variables[n]=v;
+	this.Var[n]=v;
+	this.Render(null,true);
+};
 /*=/内容模板区域=*/
 

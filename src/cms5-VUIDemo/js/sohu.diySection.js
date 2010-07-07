@@ -105,13 +105,6 @@ sohu.diySection.prototype.AddContent=function($ct){
 	new sohu.diyContent({$obj:$ct,sec:this});
 };
 /**
- * 清除该分栏内的内容
- */
-sohu.diySection.prototype.Cls=function(){
-	if(!window.confirm("确认清除分栏的内容?")) return;
-	this.Editor.UpdateCT("",0);
-};
-/**
  * 获取当前分栏父分栏的宽度
  */
 sohu.diySection.prototype.Size=function(){
