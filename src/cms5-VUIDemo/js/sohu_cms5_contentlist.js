@@ -105,6 +105,12 @@ var sohu_cms5_contentlist = function() {
 	};
     p.onLoaded = function() { 
 		$("#contentAccordion").accordion();
+		$("#cSlide_focusImg").cycleSlide({
+			cssBtnPrev:"#ctFocusImg .btnLeft",
+			cssBtnNext:"#ctFocusImg .btnRight",
+			step:178,
+			cloneItem:true
+		});
 	};
     p.initEvents = function(opts) {
         $(document).ready(p.onLoaded);
