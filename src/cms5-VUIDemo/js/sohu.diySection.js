@@ -100,7 +100,6 @@ sohu.diySection.prototype.AddSub=function($secSub){
  */
 sohu.diySection.prototype.AddContent=function($ct){
 	this.Editor.UpdateCT($ct.effect("highlight"),1);
-	this.CurArea.IsEmpty=false;
 	//创建相应的diyContent实体
 	new sohu.diyContent({$obj:$ct,sec:this});
 };

@@ -8,13 +8,12 @@
 sohu.diyArea=function(opts){
 ///<summary>横切对象</summary>
 	//属性
-	opts=$.extend({},{clArea:"area",clActive:"area_active",isNew:true,clSec:"sec",clHelper:opts.clHelper||"areaTip"},opts);
+	opts=$.extend({},{clArea:"area",clActive:"area_active",isNew:true,clSec:"sec",clHelper:"areaTip",clContent:"ct"},opts);
 	var _this=this;
 	this.TemplateID=null;//横切模板id
 	this.Console=opts.console;
 	this.$Workspace=this.Console.$Workspace;
 	this.$Helper=this.Console.__p._$areaHelper.clone();
-	this.IsEmpty=true;//是否添加了内容
 	this.IsEditing=false;//是否处于编辑状态:1,添加分栏时为true
 	this.IsActive=false;//横切是否激活
 	
@@ -49,7 +48,6 @@ sohu.diyArea=function(opts){
 		this.$Layout.prepend(this.$Helper.css("opacity",0.7));
 	}else{
 		this.$Layout=opts.obj;
-		this.IsEmpty=false;
 		this.ID=this.$Layout.attr("id");
 		this.TemplateID=this.ID.substr(0,this.ID.lastIndexOf("_"));
 	};
@@ -89,7 +87,7 @@ sohu.diyArea.prototype.Deactive=function(){
 	
 	this.__p.unbindEvts();
 	//显示助手dom
-	if(!_this.IsEmpty){
+	if(!_this.IsEmpty()){
 		_this.$Helper.hide();
 	}else{
 		_this.$Helper.slideDown(500,_this.__p.bindEvts);
@@ -135,6 +133,13 @@ sohu.diyArea.prototype.LoadSections=function(){
 		});
 	});
 	return items;
+};
+/**
+ * 当前横切是否有内容
+ */
+sohu.diyArea.prototype.IsEmpty=function(){
+	var ct=this.$Layout.find("."+this.__p.opts.clContent);
+	return (ct.length==0);
 };
 /**
  * 返回当前分栏相当于window的x和y值,以及自身的高和宽

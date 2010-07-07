@@ -149,7 +149,7 @@ sohu.diyEditor.prototype.Cls=function(){
 		position:pos,
 		close:function(evt,ui){
 			_this.CurSec.IsAddingContent=false;
-			_this.CurArea.IsEditing=true;
+			_this.CurArea.IsEditing=false;
 		}
 	});
 	
