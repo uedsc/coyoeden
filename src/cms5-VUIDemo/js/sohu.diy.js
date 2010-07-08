@@ -60,8 +60,109 @@ sohu.diyTp["sw182_182_182_182_182"]='<div class="subsec clear"><div class="col w
 /*=/分栏模板区域=*/
 
 /*=内容模板区域=*/
+//空行
 sohu.diyTp["ctEmptyLine"]='<div class="ct vspace"><hr/></div>';
+//焦点图
+sohu.diyTp.Flash=function(opts){
+	var defaultOpts={
+		interval:5,
+		bg:"#ffffff",
+		Param:{
+			wmode:"opaque",//zindex issue:slightlymore.co.uk/flash-and-the-z-index-problem-solved/
+			quality:"high",
+			salign:"t"
+		},
+		Var:{
+			p:"vsFocus/images/01.jpg|vsFocus/images/02.jpg|vsFocus/images/03.jpg|vsFocus/images/04.jpg|vsFocus/images/05.jpg",
+			l:"http://www.sohu.com|http://www.sogou.com|http://news.sohu.com|http://women.sohu.com|http://it.sohu.com",
+			icon:"标题1|标题2|标题3|标题4|标题5",
+			icon2:"内容1|内容2|内容3|内容4|内容5"
+		}
+	};
+	var models = {};
+	models.Flash01={
+			h0:359,//默认高
+			w0:662,//默认宽
+			swf:"vsFocus/swf/0501.swf"
+	};
+	
+	
+	//属性
+	this.tid=new Date().getTime();
+	this.tplID=opts.tplID;
+	
+	opts=$.extend(true,{},defaultOpts,models[opts.tplID]);
+	//Params
+	this.Param=opts.Param;
+	for(var p in this.Param){
+		if(this.Param[p]=="NULL"){delete this.Param[p];};//special NULL
+	};
+	//Variables
+	this.Var=opts.Var;
+	for(var v in this.Var){
+		if(this.Var[v]=="NULL"){delete this.Var[v];};
+	};
+	//attributes
+	this.interval=opts.interval;
+	this.swf=opts.swf;
+	this.FLASH=null;
+	this.height=opts.h||opts.h0;
+	this.width=opts.w||opts.w0;
+	this.bg=opts.bg;
+	
+	//高度的修正-由于分栏的宽度限制，所以要针对高度进行比例缩放
+	this.height=(opts.h0*this.width)/opts.w0;
+	this.__opts=opts;
+	
+};
+
+sohu.diyTp.Flash.prototype.Render=function($t,reRender){
+	if (!reRender) {
+		this.DomID = $t.attr("id");
+		try{
+			this.FLASH = new sohuFlash(this.swf, this.DomID+"_"+this.tid, this.width, this.height, this.interval, this.bg);
+			//params
+			for(var p in this.Param){
+				this.FLASH.addParam(p,this.Param[p]);
+			};
+			//variables
+			for(var v in this.Var){
+				this.FLASH.addVariable(v,this.Var[v]);
+			};
+		}catch(e){
+			$t.html(e.message);
+		}
+	};
+	if(!this.FLASH) return;
+	try{
+		this.FLASH.write(this.DomID);	
+		$t.css({width:this.width,height:this.height});
+	}catch(e){
+		$t.html(e.message);
+	};
+};
+/**
+ * 更改flash对象的属性。支持的属性有id,height,width,swf
+ * @param {Object} n
+ * @param {Object} v
+ */
+sohu.diyTp.Flash.prototype.Attr=function(n,v){
+	this.FLASH.setAttribute(n,v);
+	this[n]=v;
+	this.Render(null,true);
+};
+/**
+ * 更改flash对象的属性variables对象的值。属性对象variables的属性有p,l,icon,icon2
+ * @param {Object} n
+ * @param {Object} v
+ */
+sohu.diyTp.Flash.prototype.Var=function(n,v){
+	this.FLASH.variables[n]=v;
+	this.Var[n]=v;
+	this.Render(null,true);
+};
 //焦点图1-焦点图元素有 图片，标题，内容，连接，序号，图片5秒轮刷，图片可加减
+
 sohu.diyTp.Flash01=function(opts){
 	//选项
 	opts=$.extend({},{
