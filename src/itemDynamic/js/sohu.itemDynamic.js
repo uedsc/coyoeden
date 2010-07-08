@@ -77,7 +77,7 @@
 				p.items(opts).removeClass(opts.on);
 				opts.now=$(this).addClass(opts.on);
 				if(opts.click){opts.click(evt,opts);};
-				return false;
+				//return false;
 			}).hover(function(evt){
 				$(this).addClass(opts.over);
 				if(opts.mouseOver){opts.mouseOver(evt,opts);};

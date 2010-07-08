@@ -68,6 +68,8 @@ sohu_cms5_ct.Line=function(opts){
 				this.value="10";
 				this.select();
 			};
+
+		}).blur(function(evt){
 			_this.height=parseInt(this.value);
 			_this.height=isNaN(_this.height)?10:_this.height;
 		});
@@ -125,6 +127,99 @@ sohu_cms5_ct.FocusImg.prototype.Submit=function(opt){
 	sohu_cms5_ct.submit(ct,true);
 };
 /**
+ * 焦点图选择类
+ */
+sohu_cms5_ct.FocusImg=function(opts){
+		//焦点图选择
+		this.$Layout=$("#cSlide_focusImg").cycleSlide({
+			cssBtnPrev:"#ctFocusImg .btnLeft",
+			cssBtnNext:"#ctFocusImg .btnRight",
+			step:178,
+			cloneItem:true
+		});
+		this.FlashTplID=null;//flash 模板号
+		var _this=this;
+		var p={};
+		p.onAddFlash=function(evt){
+			_this.FlashTplID=this.id;
+			_this.Submit();
+			return false;
+		};
+		//鼠标事件
+		this.$Layout.find(".item").hover(
+			function(evt){$(this).addClass("on");},
+			function(evt){$(this).removeClass("on");}
+		).click(p.onAddFlash);
+	
+};
+sohu_cms5_ct.FocusImg.prototype.Submit=function(opt){
+	var ct=$('<div class="ct flash"></div>');
+	ct.flash=true;
+	ct.tplID=this.FlashTplID;
+	sohu_cms5_ct.submit(ct,true);
+};
+/**
+ * 图片选择类
+ */
+sohu_cms5_ct.Image=function(opts){
+		//焦点图选择
+		this.$Layout=$("#ctImg");
+		this.tplID=null;//flash 模板号
+		var _this=this;
+		var p={};
+		p.onAddImg=function(evt){
+			_this.tplID=this.id;
+			_this.tplObj=$(this).find(".ct");
+			_this.Submit();
+			return false;
+		};
+		//鼠标事件
+		this.$Layout.find(".item").hover(
+			function(evt){$(this).addClass("on");},
+			function(evt){$(this).removeClass("on");}
+		).click(p.onAddImg);
+	
+};
+sohu_cms5_ct.Image.prototype.Submit=function(opt){
+	var ct=this.tplObj;
+	ct.flash=false;
+	ct.tplID=this.tplID;
+	sohu_cms5_ct.submit(ct,true);
+};
+/**
+ * 文本选择类
+ */
+sohu_cms5_ct.Text=function(opts){
+		//文本选择
+		this.$Layout=$("#cSlide_text").cycleSlide({
+			cssBtnPrev:"#ctText .btnLeft",
+			cssBtnNext:"#ctText .btnRight",
+			step:178,
+			cloneItem:true
+		});
+		this.tplID=null;//模板号
+		var _this=this;
+		var p={};
+		p.onAddText=function(evt){
+			_this.tplID=this.id;
+			_this.tplObj=$(this).find(".ct");
+			_this.Submit();
+			return false;
+		};
+		//鼠标事件
+		this.$Layout.find(".item").hover(
+			function(evt){$(this).addClass("on");},
+			function(evt){$(this).removeClass("on");}
+		).click(p.onAddText);
+	
+};
+sohu_cms5_ct.Text.prototype.Submit=function(opt){
+	var ct=this.tplObj;
+	ct.flash=false;
+	ct.tplID=this.tplID;
+	sohu_cms5_ct.submit(ct,true);
+};
+/**
  * @author levinhuang
  * 内容模板选择对话框客户端逻辑
  */
@@ -138,6 +233,8 @@ var sohu_cms5_contentlist = function() {
     p.initVar = function(opts) { 
 		p._line=new sohu_cms5_ct.Line({});/*空行模板对象*/
 		p._flasher=new sohu_cms5_ct.FocusImg({});/*焦点图*/
+		p._img=new sohu_cms5_ct.Image({});/*图片*/
+		p._txt=new sohu_cms5_ct.Text({});/*文本*/
 	};
     p.onLoaded = function() { 
 		$("#contentAccordion").accordion();

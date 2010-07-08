@@ -179,5 +179,6 @@ sohu.diyTp.Flash.prototype.Var=function(n,v){
 	this.Var[n]=v;
 	this.Render(null,true);
 };
+
 /*=/ÄÚÈİÄ£°åÇøÓò=*/
 
