@@ -4,7 +4,7 @@
  * @param {Object} opts 选项{$obj,sec}
  */
 sohu.diyContent=function(opts){
-	opts=$.extend({},{cl:"ct",clOn:"ctOn"},opts||{});
+	opts=$.extend({},{cl:"ct",clOn:"ctOn",scale:true},opts||{});
 	var _this=this;
 	this.$Layout=opts.$obj;
 	this.Sec=opts.sec;//分栏
@@ -27,7 +27,9 @@ sohu.diyContent=function(opts){
 		this.ID+="_fl";
 		this.$Layout.attr("id",this.ID);
 		//将flash对象呈现出来
-		this.$Layout.flashObj=new sohu.diyTp[this.$Layout.tplID]({tplID:this.$Layout.tplID,w:this.MaxWidth});
+		var fOpt={tplID:this.$Layout.tplID};
+		if(opts.scale){fOpt.w=this.MaxWidth;};
+		this.$Layout.flashObj=new sohu.diyTp.Flash(fOpt);
 		this.$Layout.flashObj.Render(this.$Layout);
 	};
 };

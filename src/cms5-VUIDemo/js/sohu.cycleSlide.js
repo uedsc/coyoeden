@@ -23,7 +23,7 @@
 			var bItem=p.brimItem($t,cfg,(cfg.opts.step<0));//±ß½çÔªËØ
 			var bItemCloned=null;
 			if(cfg.opts.cloneItem){
-				bItemCloned=bItem.clone();
+				bItemCloned=bItem.clone(true);
 				bItemCloned.mTag=parseInt(bItem.css(marginTag));
 				if(cfg.opts.step<0){
 					$t.append(bItemCloned);
