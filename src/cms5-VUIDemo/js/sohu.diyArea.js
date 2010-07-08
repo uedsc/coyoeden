@@ -142,7 +142,7 @@ sohu.diyArea.prototype.IsEmpty=function(){
 	return (ct.length==0);
 };
 /**
- * 返回当前分栏相当于window的x和y值,以及自身的高和宽
+ * 返回当前横切相当于window的x和y值,以及自身的高和宽
  * @return {Object} {x,y,w,h}
  */
 sohu.diyArea.prototype.Dim=function(){
