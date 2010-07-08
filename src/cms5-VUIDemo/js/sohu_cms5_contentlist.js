@@ -238,6 +238,8 @@ var sohu_cms5_contentlist = function() {
 	};
     p.onLoaded = function() { 
 		$("#contentAccordion").accordion();
+		$("#web_loading").remove();
+		parent.sohu.diyConsole.toggleLoading();
 	};
     p.initEvents = function(opts) {
         $(document).ready(p.onLoaded);

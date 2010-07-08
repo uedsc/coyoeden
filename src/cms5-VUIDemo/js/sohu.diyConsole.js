@@ -220,6 +220,12 @@ sohu.diyConsole.prototype.Confirm=function(opts){
 	};
 	this.__p._$pageTip.addClass("confirm").html(opts.ct).dialog(dlOpt);
 };
+/**
+ * 移除.txtLoading
+ */
+sohu.diyConsole.toggleLoading=function(){
+	$(".txtLoading").toggle();
+};
 /*静态方法-TODO:移到sohu.stringUtils.js中*/
 /**
  * 获取指定长度的随机字符串。注意：仅仅由数字和字母组成

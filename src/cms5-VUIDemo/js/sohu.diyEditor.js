@@ -90,11 +90,14 @@ sohu.diyEditor.prototype.DialogCT=function(){
 		var areaDim=_this.CurArea.Dim();
 		var pos=[areaDim.x+areaDim.w/2-300,areaDim.y+areaDim.h/3];
 		_this.CTDialog.dialog("option","position",pos);
+		var ifr=_this.CTDialog.find("#ifContentList");
+		ifr.attr("src",ifr.attr("rel")+"?t="+new Date().getTime());
 	};
+	sohu.diyConsole.toggleLoading();
 	this.CTDialog=$("#content_selector").dialog({
 		title:"Ìí¼ÓÄÚÈÝ",
-		width:600,
-		height:420,
+		width:620,
+		height:430,
 		modal:true,
 		close:_onClose,
 		open:_onOpen,
@@ -174,11 +177,11 @@ sohu.diyEditor.prototype.Show=function(){
 	var _this=this;
 	//prepare ui
 	this.$Layout_body=this.$Layout.find(".area_body");
-	this.$Layout_actions=this.$Layout.find(".actions").hide();
+	this.$Layout_actions=this.$Layout.find(".actions");
 
 	this.$Layout_body.append(this.CurSec.$Layout.children());
 	this.$Layout.appendTo(this.CurSec.$Layout);
-	this.$Layout_actions.slideDown();
+	//this.$Layout_actions.slideDown();
 	
 	if(!this.CurSec.Divisible){
 		this.$Layout.find(".a_sec").hide();	

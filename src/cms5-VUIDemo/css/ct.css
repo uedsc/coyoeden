@@ -1,4 +1,17 @@
-
+#web_loading{
+background:none repeat scroll 0 0 #FF0000;
+color:#FFFFFF;
+font-size:12px;
+font-weight:bold;
+padding:3px;
+position:fixed;
+_position:absolute;
+right:0;
+top:0;
+width:60px;
+z-index:60;
+}
+#contentAccordion{width:590px;}
 #contentAccordion h3{
 	background:#F4F4F4;
 	font-size:14px;
@@ -8,7 +21,9 @@
 #contentAccordion .ct{
 	padding:10px;
 }
-
+#contentAccordion .tab{
+	height:200px;
+}
 .slider .act{position:relative;width:10px;height:216px;}
 .slider .act a{position:absolute;display:block;top:50%;margin-top:-21px;}
 .slider .btnLeft{left:0;}
