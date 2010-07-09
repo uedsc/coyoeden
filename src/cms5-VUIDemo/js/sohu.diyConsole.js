@@ -28,7 +28,6 @@ sohu.diyConsole=function(opts){
 	p._$btnDown=$("#lnkAreaDown");
 	p._$btnUp=$("#lnkAreaUp");
 	p._$areaSelector=$("#area_selector");
-	p._$areaHelper=$("#hiddenTemplate .areaTip")
 	p._$secHelper=$("#hiddenTemplate .secTip");
 	p._$pageTip=$("#pageTip");
 	p._opts=opts;

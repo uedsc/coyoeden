@@ -14,18 +14,18 @@ sohu.diyTp={};
 
 /*=∫·«–ƒ£∞Â«¯”Ú=*/
 //ø’∫·«–
-sohu.diyTp["w0"]='<div class="area"><div class="col w950"><div class="sec"></div></div></div>';
+sohu.diyTp["w0"]='<div class="area area_empty"><div class="col w950"><div class="sec"></div></div></div>';
 //2¿∏∫·«–
-sohu.diyTp["w270_670"]='<div class="area clear"><div class="col w270 left"><div class="sec"></div></div><div class="col w670 right"><div class="sec"></div></div></div>';
-sohu.diyTp["w430_510"]='<div class="area clear"><div class="col w430 left"><div class="sec"></div></div><div class="col w510 right"><div class="sec"></div></div></div>';
-sohu.diyTp["w470_470"]='<div class="area clear"><div class="col w470 left"><div class="sec"></div></div><div class="col w470 right"><div class="sec"></div></div></div>';
-sohu.diyTp["w670_270"]='<div class="area clear"><div class="col w670 left"><div class="sec"></div></div><div class="col w270 right"><div class="sec"></div></div></div>';
-sohu.diyTp["w510_430"]='<div class="area clear"><div class="col w510 left"><div class="sec"></div></div><div class="col w430 right"><div class="sec"></div></div></div>';
+sohu.diyTp["w270_670"]='<div class="area area_empty clear"><div class="col w270 left"><div class="sec"></div></div><div class="col w670 right"><div class="sec"></div></div></div>';
+sohu.diyTp["w430_510"]='<div class="area area_empty clear"><div class="col w430 left"><div class="sec"></div></div><div class="col w510 right"><div class="sec"></div></div></div>';
+sohu.diyTp["w470_470"]='<div class="area area_empty clear"><div class="col w470 left"><div class="sec"></div></div><div class="col w470 right"><div class="sec"></div></div></div>';
+sohu.diyTp["w670_270"]='<div class="area area_empty clear"><div class="col w670 left"><div class="sec"></div></div><div class="col w270 right"><div class="sec"></div></div></div>';
+sohu.diyTp["w510_430"]='<div class="area area_empty clear"><div class="col w510 left"><div class="sec"></div></div><div class="col w430 right"><div class="sec"></div></div></div>';
 //3¿∏∫·«–
-sohu.diyTp["w190_270_470"]='<div class="area clear"><div class="col w190 left"><div class="sec"></div></div><div class="col w270 center"><div class="sec"></div></div><div class="col w470 right"><div class="sec"></div></div></div>';
-sohu.diyTp["w310_390_230"]='<div class="area clear"><div class="col w310 left"><div class="sec"></div></div><div class="col w390 center"><div class="sec"></div></div><div class="col w230 right"><div class="sec"></div></div></div>';
-sohu.diyTp["w470_270_190"]='<div class="area clear"><div class="col w470 left"><div class="sec"></div></div><div class="col w270 center"><div class="sec"></div></div><div class="col w190 right"><div class="sec"></div></div></div>';
-sohu.diyTp["w270_390_270"]='<div class="area clear"><div class="col w270 left"><div class="sec"></div></div><div class="col w390 center"><div class="sec"></div></div><div class="col w270 right"><div class="sec"></div></div></div>';
+sohu.diyTp["w190_270_470"]='<div class="area area_empty clear"><div class="col w190 left"><div class="sec"></div></div><div class="col w270 center"><div class="sec"></div></div><div class="col w470 right"><div class="sec"></div></div></div>';
+sohu.diyTp["w310_390_230"]='<div class="area area_empty clear"><div class="col w310 left"><div class="sec"></div></div><div class="col w390 center"><div class="sec"></div></div><div class="col w230 right"><div class="sec"></div></div></div>';
+sohu.diyTp["w470_270_190"]='<div class="area area_empty clear"><div class="col w470 left"><div class="sec"></div></div><div class="col w270 center"><div class="sec"></div></div><div class="col w190 right"><div class="sec"></div></div></div>';
+sohu.diyTp["w270_390_270"]='<div class="area area_empty clear"><div class="col w270 left"><div class="sec"></div></div><div class="col w390 center"><div class="sec"></div></div><div class="col w270 right"><div class="sec"></div></div></div>';
 
 /*=/∫·«–ƒ£∞Â«¯”Ú=*/
 

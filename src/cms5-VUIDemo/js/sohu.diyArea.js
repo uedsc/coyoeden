@@ -8,12 +8,11 @@
 sohu.diyArea=function(opts){
 ///<summary>横切对象</summary>
 	//属性
-	opts=$.extend({},{clArea:"area",clActive:"area_active",isNew:true,clSec:"sec",clHelper:"areaTip",clContent:"ct"},opts);
+	opts=$.extend({},{clArea:"area",clActive:"area_active",clEmpty:"area_empty",isNew:true,clSec:"sec",clHelper:"areaTip",clContent:"ct"},opts);
 	var _this=this;
 	this.TemplateID=null;//横切模板id
 	this.Console=opts.console;
 	this.$Workspace=this.Console.$Workspace;
-	this.$Helper=this.Console.__p._$areaHelper.clone();
 	this.IsEditing=false;//是否处于编辑状态:1,添加分栏时为true
 	this.IsActive=false;//横切是否激活
 	
@@ -45,7 +44,6 @@ sohu.diyArea=function(opts){
 		this.TemplateID=opts.tplID;
 		this.ID=this.TemplateID+"_"+sohu.diyConsole.RdStr(8);
 		p.addNew();
-		this.$Layout.prepend(this.$Helper.css("opacity",0.7));
 	}else{
 		this.$Layout=opts.obj;
 		this.ID=this.$Layout.attr("id");
@@ -73,25 +71,24 @@ sohu.diyArea.prototype.Active=function(){
 	this.IsActive=true;
 	//隐藏助手dom
 	this.__p.unbindEvts();
-	_this.$Helper.slideUp("fast",this.__p.bindEvts);
 };
 /**
  * 移除激活状态
  */
 sohu.diyArea.prototype.Deactive=function(){
 	if(this.IsEditing||(!this.IsActive)) return;
-	var _this=this;
-	_this.$Layout.removeClass(_this.__p.opts.clActive);
-	
+	this.$Layout.removeClass(this.__p.opts.clActive);
 	this.IsActive=false;
 	
 	this.__p.unbindEvts();
 	//显示助手dom
-	if(!_this.IsEmpty()){
-		_this.$Helper.hide();
+	if(!this.IsEmpty()){
+		this.$Layout.removeClass(this.__p.opts.clEmpty);
 	}else{
-		_this.$Helper.slideDown(500,_this.__p.bindEvts);
+		//没有内容的话继续显示横切的框架以便用户查看
+		this.$Layout.addClass(this.__p.opts.clEmpty);
 	};
+	this.__p.bindEvts();
 
 };
 /**
