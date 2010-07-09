@@ -57,12 +57,21 @@ sohu.diySection = function(opts) {
 	});
 	//获取当前横切
 	//this.LoadCurArea();
+	//排序事件处理
+	this.$Layout.sortable({
+		receive:function(evt,ui){
+			sohu.diyConsole.Dragger.obj.Sec=_this;
+			
+		}
+	});
 }; 
 /**
  * 激活分栏
  */
 sohu.diySection.prototype.Active=function(){
 	if(this.IsActive) return;
+	//如果页面在拖拽则屏蔽UI
+	if(sohu.diyConsole.Dragger.ing) return;
 	this.Editor.AttachTo(this).Show();
 	this.IsActive=true;
 	this.$Layout.addClass(this.__p.opts.clSecOn);

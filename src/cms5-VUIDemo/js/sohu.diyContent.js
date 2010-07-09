@@ -22,6 +22,19 @@ sohu.diyContent=function(opts){
 	
 	//内容的鼠标事件
 	this.$Layout.mouseenter(p.mouseEnter).mouseleave(p.mouseLeave);
+	//拖拽事件
+	this.$Layout.draggable({
+		connectToSortable:".sec",
+		start:function(evt,ui){
+			sohu.diyConsole.Dragger.ing=true;
+			sohu.diyConsole.Dragger.obj=_this;
+			//_this.Sec.Deactive();
+		},
+		stop:function(evt,ui){
+			sohu.diyConsole.Dragger.ing=false;
+			sohu.diyConsole.Dragger.obj.Sec.Active();
+		}
+	});
 	//是否flash
 	if(this.$Layout.flash){
 		this.ID+="_fl";
