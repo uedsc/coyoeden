@@ -8,12 +8,14 @@ sohu.diyContent=function(opts){
 	var _this=this;
 	this.$Layout=opts.$obj;
 	this.Sec=opts.sec;//分栏
+	this.Editor=this.Sec.Editor;//分栏编辑器
 	this.MaxWidth=this.Sec.Width;
 	this.ID="ct_"+sohu.diyConsole.RdStr(8);
 	//private property
 	var p={opts:opts};
 	p.mouseEnter=function(evt){
 		_this.$Layout.addClass(opts.clOn).css("opacity",0.6);
+		_this.Editor.CurCT=_this;
 	};
 	p.mouseLeave=function(evt){
 		_this.$Layout.removeClass(opts.clOn).css("opacity",1);
@@ -22,19 +24,6 @@ sohu.diyContent=function(opts){
 	
 	//内容的鼠标事件
 	this.$Layout.mouseenter(p.mouseEnter).mouseleave(p.mouseLeave);
-	//拖拽事件
-	this.$Layout.draggable({
-		connectToSortable:".sec",
-		start:function(evt,ui){
-			sohu.diyConsole.Dragger.ing=true;
-			sohu.diyConsole.Dragger.obj=_this;
-			//_this.Sec.Deactive();
-		},
-		stop:function(evt,ui){
-			sohu.diyConsole.Dragger.ing=false;
-			sohu.diyConsole.Dragger.obj.Sec.Active();
-		}
-	});
 	//是否flash
 	if(this.$Layout.flash){
 		this.ID+="_fl";
@@ -45,4 +34,12 @@ sohu.diyContent=function(opts){
 		this.$Layout.flashObj=new sohu.diyTp.Flash(fOpt);
 		this.$Layout.flashObj.Render(this.$Layout);
 	};
+};
+/*静态方法*/
+/**
+ * 从现有的dom元素构建一个diyContent 对象
+ * @param {Object} opts 选项
+ */
+sohu.diyContent.New=function(opts){
+	return new sohu.diyContent(opts);
 };

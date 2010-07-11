@@ -11,6 +11,7 @@ sohu.diyEditor=function(opts){
 	this.Console=opts.console;
 	this.CurArea=opts.curArea;//当前横切
 	this.CurSec=opts.curSec;//当前分栏
+	this.CurCT=null;//当前内容
 	
 	var p={opts:opts};
 	this.__p=p;

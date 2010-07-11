@@ -11,7 +11,8 @@ sohu.diySection = function(opts) {
 		clHasSub:"hasSub",clHelperHasSub:"secTip1",
 		clHelperHot:"secTipHot",
 		clSecRoot:"col",
-		clArea:"area"
+		clArea:"area",
+		clContent:"ct"
 		},opts);
 	var p={opts:opts};
 	this.__p=p;
@@ -27,7 +28,6 @@ sohu.diySection = function(opts) {
 	this.IsAddingContent=false;
 	this.Editor=opts.editor;
 	this.CurArea=opts.curArea;//当前分栏所在的横切。调用LoadCurArea方法时更新该属性
-	
 	this.AttachHelper();
 	
 	var p={};
@@ -55,13 +55,29 @@ sohu.diySection = function(opts) {
 		if(!_this.$Helper.hasClass(opts.clHelperHot)) return;
 		_this.$Helper.switchClass(opts.clHelperHot,opts.clHelperHasSub);
 	});
+	//获取当前分栏的内容
+	this.Contents=this.LoadContents();
 	//获取当前横切
 	//this.LoadCurArea();
 	//排序事件处理
 	this.$Layout.sortable({
+		items:".ct",
+		connectWith:".sec",
+		placeholder:"ui-state-highlight",
 		receive:function(evt,ui){
+			console.log("receive!");
 			sohu.diyConsole.Dragger.obj.Sec=_this;
 			
+		},
+		start:function(evt,ui){
+			sohu.diyConsole.Dragger.ing=true;
+			sohu.diyConsole.Dragger.obj=_this.Editor.CurCT;
+			console.log("start dragging");
+			_this.Deactive();
+		},
+		stop:function(evt,ui){
+			sohu.diyConsole.Dragger.ing=false;
+			console.log("stop dragging");
 		}
 	});
 }; 
@@ -110,7 +126,8 @@ sohu.diySection.prototype.AddSub=function($secSub){
 sohu.diySection.prototype.AddContent=function($ct){
 	this.Editor.UpdateCT($ct.effect("highlight"),1);
 	//创建相应的diyContent实体
-	new sohu.diyContent({$obj:$ct,sec:this});
+	var ct=new sohu.diyContent({$obj:$ct,sec:this});
+	this.Contents.push(ct);
 };
 /**
  * 获取当前分栏父分栏的宽度
@@ -172,6 +189,20 @@ sohu.diySection.prototype.Dim=function(){
 		w:this.$Layout.width(),
 		h:this.$Layout.height()
 	};
+};
+/**
+ * 获取该分栏的内容
+ */
+sohu.diySection.prototype.LoadContents=function(){
+	var _this=this;
+	var items=this.$Layout.find("."+this.__p.opts.clContent);
+	items=items.map(function(i,ct){
+		return sohu.diyContent.New({
+			$obj:$(ct),
+			sec:_this
+		});
+	});
+	return items;
 };
 /*静态方法*/
 /**
