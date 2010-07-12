@@ -225,8 +225,12 @@ sohu.diyConsole.prototype.Confirm=function(opts){
 sohu.diyConsole.toggleLoading=function(){
 	$(".txtLoading").toggle();
 };
-/*静态方法*/
-sohu.diyConsole.Dragger={ing:false,obj:null};
+/*静态方法、对象*/
+sohu.diyConsole.Dragger={
+	ing:false,
+	obj:null,
+	handle:$('<div class="dragHandle">Drag me!</div>')
+};
 //TODO:移到sohu.stringUtils.js中
 /**
  * 获取指定长度的随机字符串。注意：仅仅由数字和字母组成

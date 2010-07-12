@@ -1,4 +1,8 @@
 .ui-widget-overlay{opacity:0.4;}
+/*=drag&drop style=*/
+.ui-hl{height: 30px; line-height:30px;background:#ffffc2; }
+.dragHandle{position:absolute;background:#c4e2ff;cursor:move;z-index:300;}
+/*=/drag&drop style=*/
 #main{min-height:500px;height:auto !important;height:500px;}
 .txtLoading{
 background:none repeat scroll 0 0 #FF0000;
@@ -31,8 +35,9 @@ display:none;
 .area_active .hasSub .secTipHot{background:#87bce5;cursor:pointer;}
 .area_active .hasSub .secTip1{background:#d7e6f2;cursor:pointer;}
 .area_active{border:none;margin-top:10px;}
-.area_active .ctOn{background:#dfefff;border:1px solid #510113;}
-.col{overflow:hidden;}
+.ct{position:relative;}
+.area_active .ctOn{background:#dfefff;min-height:30px;height:auto !important;height:30px;}
+.col{position:relative;overflow:hidden;}
 /*·ÖÀ¸±à¼­Æ÷*/
 .actions{border-bottom:none;background:#D6E7FF;}
 .actions .r a{padding-left:10px;}

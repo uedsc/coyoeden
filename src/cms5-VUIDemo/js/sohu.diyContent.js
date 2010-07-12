@@ -14,11 +14,28 @@ sohu.diyContent=function(opts){
 	//private property
 	var p={opts:opts};
 	p.mouseEnter=function(evt){
-		_this.$Layout.addClass(opts.clOn).css("opacity",0.6);
+		_this.$Layout.addClass(opts.clOn);
 		_this.Editor.CurCT=_this;
+		
+		//拖拽助手事件
+		var dim=_this.Dim();
+		sohu.diyConsole.Dragger.handle.show()
+		.css({width:dim.w,height:dim.h,opacity:0.3})
+		.unbind()
+		.bind("mousedown",function(evt){
+			_this.Sec.Deactive();
+			sohu.diyConsole.Dragger.ing=true;
+			sohu.diyConsole.Dragger.obj=_this;
+			
+		}).bind("mouseup",function(evt){
+			sohu.diyConsole.Dragger.ing=false;
+			_this.Sec.Active();
+		});
+		_this.$Layout.prepend(sohu.diyConsole.Dragger.handle);
 	};
 	p.mouseLeave=function(evt){
-		_this.$Layout.removeClass(opts.clOn).css("opacity",1);
+		_this.$Layout.removeClass(opts.clOn);
+		sohu.diyConsole.Dragger.handle.hide();
 	};
 	this.__p=p;
 	
@@ -33,6 +50,18 @@ sohu.diyContent=function(opts){
 		if(opts.scale){fOpt.w=this.MaxWidth;};
 		this.$Layout.flashObj=new sohu.diyTp.Flash(fOpt);
 		this.$Layout.flashObj.Render(this.$Layout);
+	};
+};
+/**
+ * 获取内容的维度信息
+ * @return {Object} {x,y,w,h}
+ */
+sohu.diyContent.prototype.Dim=function(){
+	return {
+		x:this.$Layout.offset().left,
+		y:this.$Layout.offset().top,
+		w:this.$Layout.width(),
+		h:this.$Layout.height()
 	};
 };
 /*静态方法*/

@@ -63,21 +63,12 @@ sohu.diySection = function(opts) {
 	this.$Layout.sortable({
 		items:".ct",
 		connectWith:".sec",
-		placeholder:"ui-state-highlight",
+		placeholder:"ui-hl",
+		handle:".dragHandle",
 		receive:function(evt,ui){
-			console.log("receive!");
+			//console.log("receive!");
 			sohu.diyConsole.Dragger.obj.Sec=_this;
 			
-		},
-		start:function(evt,ui){
-			sohu.diyConsole.Dragger.ing=true;
-			sohu.diyConsole.Dragger.obj=_this.Editor.CurCT;
-			console.log("start dragging");
-			_this.Deactive();
-		},
-		stop:function(evt,ui){
-			sohu.diyConsole.Dragger.ing=false;
-			console.log("stop dragging");
 		}
 	});
 }; 
@@ -97,6 +88,10 @@ sohu.diySection.prototype.Active=function(){
 	};
 };
 sohu.diySection.prototype.Deactive=function(){
+	//如果页面在拖拽则屏蔽UI
+	if(sohu.diyConsole.Dragger.ing) return;
+	//test
+	return;
 	this.Editor.Remove();
 	this.IsActive=false;
 	this.$Layout.removeClass(this.__p.opts.clSecOn);

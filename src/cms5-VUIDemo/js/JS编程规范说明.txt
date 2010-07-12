@@ -16,6 +16,7 @@ F，df=default
 G，rd=random
 H，lb=lower bound
 I，ub=upper bound
+J，hl=highlight
 
 3，针对jquery 编程的变量命名规范
 A，如果是jquery对象，变量名前加$

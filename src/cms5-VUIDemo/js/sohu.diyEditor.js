@@ -148,7 +148,8 @@ sohu.diyEditor.prototype.Cls=function(){
 		title:"确认操作",
 		ct:"确定清除分栏的内容么?",
 		yes:function(ui){
-			_this.$Layout_body.children().not(_this.__p.opts.cssSecHelper).remove();	
+			_this.$Layout_body.children().not(_this.__p.opts.cssSecHelper).remove();
+			_this.CurSec.removeClass("hasSub");	
 		},
 		position:pos,
 		close:function(evt,ui){
