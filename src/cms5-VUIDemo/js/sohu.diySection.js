@@ -125,6 +125,13 @@ sohu.diySection.prototype.AddContent=function($ct){
 	this.Contents.push(ct);
 };
 /**
+ * 清楚分栏内容
+ */
+sohu.diySection.prototype.Cls=function(){
+	this.$Layout.find("."+this.__p.opts.clContent).remove();
+	this.$Layout.removeClass("hasSub");
+};
+/**
  * 获取当前分栏父分栏的宽度
  */
 sohu.diySection.prototype.Size=function(){

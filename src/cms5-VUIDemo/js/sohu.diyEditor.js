@@ -6,7 +6,6 @@ sohu.diyEditor=function(opts){
 	var _this=this;
 	opts=$.extend({},{cssSecHelper:".secTip"},opts);
 	//属性
-	this.$Layout=null;
 	this.$LayoutModel=opts.$layoutModel;
 	this.Console=opts.console;
 	this.CurArea=opts.curArea;//当前横切
@@ -16,20 +15,21 @@ sohu.diyEditor=function(opts){
 	var p={opts:opts};
 	this.__p=p;
 	
-	//按钮事件注册
-	this.$LayoutModel.btn={
-		addContent:this.$LayoutModel.find(".a_content"),
-		addSec:this.$LayoutModel.find(".a_sec"),
-		clear:this.$LayoutModel.find(".a_clear"),
-		editCode:this.$LayoutModel.find(".a_code")
-	};
-	this.$LayoutModel.btn.addContent.click(function(evt){_this.DialogCT();return false;});
-	this.$LayoutModel.btn.addSec.click(function(evt){_this.DialogSec();return false;});
-	this.$LayoutModel.btn.clear.click(function(evt){_this.Cls();return false;});
-	this.$LayoutModel.btn.editCode.click(function(evt){alert("代码");return false;});
-	
-	//this.$Layout=this.$LayoutModel.clone(true);
 	this.$Layout=this.$LayoutModel;
+	this.$LayoutA=this.$Layout.find(".actions");/*editor actions*/
+	this.$LayoutF=this.$Layout.find(".footer");/*editor footer*/
+		//按钮事件注册
+	this.$Layout.btn={
+		addContent:this.$Layout.find(".a_content"),
+		addSec:this.$Layout.find(".a_sec"),
+		clear:this.$Layout.find(".a_clear"),
+		editCode:this.$Layout.find(".a_code")
+	};
+	this.$Layout.btn.addContent.click(function(evt){_this.DialogCT();return false;});
+	this.$Layout.btn.addSec.click(function(evt){_this.DialogSec();return false;});
+	this.$Layout.btn.clear.click(function(evt){_this.Cls();return false;});
+	this.$Layout.btn.editCode.click(function(evt){alert("代码");return false;});
+	
 	this.$Parent=this.$LayoutModel.parent();
 	//分栏选择器事件注册
 	$('#hiddenTemplate .sec_selector li').click(function(evt){
@@ -120,19 +120,19 @@ sohu.diyEditor.prototype.CloseCTDialog=function(opts){
  * @param {int} mode 更新内容的类型 1标识末追加；0表示替换；-1表示首追加
  */
 sohu.diyEditor.prototype.UpdateCT=function($ct,mode){
-	var body=this.$Layout_body;//this.$Layout.find(".area_body");
 	switch(mode){
 		case 0:
-			body.empty().append($ct);
+			this.CurSec.Cls();
+			this.$LayoutF.before($ct);
 		break;
 		case 1:
-			body.append($ct);
+			this.$LayoutF.before($ct);
 		break;
 		case -1:
-			body.prepend($ct);
+			this.CurSec.$Helper.after($ct);
 		break;
 		default:
-			body.append($ct);
+			this.$LayoutF.before($ct);
 		break;
 	};
 };
@@ -148,8 +148,7 @@ sohu.diyEditor.prototype.Cls=function(){
 		title:"确认操作",
 		ct:"确定清除分栏的内容么?",
 		yes:function(ui){
-			_this.$Layout_body.children().not(_this.__p.opts.cssSecHelper).remove();
-			_this.CurSec.removeClass("hasSub");	
+			_this.CurSec.Cls();
 		},
 		position:pos,
 		close:function(evt,ui){
@@ -177,18 +176,14 @@ sohu.diyEditor.prototype.AttachTo=function(sec){
  */
 sohu.diyEditor.prototype.Show=function(){
 	var _this=this;
-	//prepare ui
-	this.$Layout_body=this.$Layout.find(".area_body");
-	this.$Layout_actions=this.$Layout.find(".actions");
-
-	this.$Layout_body.append(this.CurSec.$Layout.children());
-	this.$Layout.appendTo(this.CurSec.$Layout);
-	//this.$Layout_actions.slideDown();
+	var w=this.CurSec.Size()-14;/*12个像素的留白+2个像素边框*/
+	this.$LayoutA.css("width",w).prependTo(this.CurSec.$Layout);
+	this.$LayoutF.css("width",w).appendTo(this.CurSec.$Layout);
 	
 	if(!this.CurSec.Divisible){
-		this.$Layout.find(".a_sec").hide();	
+		this.$Layout.btn.addSec.hide();	
 	}else{
-		this.$Layout.find(".a_sec").show();
+		this.$Layout.btn.addSec.show();
 	};
 };
 /**
@@ -196,8 +191,7 @@ sohu.diyEditor.prototype.Show=function(){
  */
 sohu.diyEditor.prototype.Remove=function(){
 	if(!this.CurSec) return;
-	if(!this.$Layout_body) return;
 	if(this.CurSec.IsAddingContent) return;
-	this.$Layout_body.children().appendTo(this.CurSec.$Layout);
-	this.$Layout.prependTo(this.$Parent);
+	this.$LayoutA.appendTo(this.$Layout);
+	this.$LayoutF.appendTo(this.$Layout);
 };

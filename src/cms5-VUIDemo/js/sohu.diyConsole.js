@@ -16,7 +16,7 @@ sohu.diyConsole=function(opts){
 	this.$Layout=$("#areaTools");
 	this.CurArea=null;//当前激活的横切对象
 	this.Editor=new sohu.diyEditor({
-		$layoutModel:$("#hiddenTemplate .area_editor"),
+		$layoutModel:$("#area_editor"),
 		console:_this
 	});
 	this.Areas=null;
