@@ -4,7 +4,7 @@
  */
 sohu.diyEditor=function(opts){
 	var _this=this;
-	opts=$.extend({},{cssSecHelper:".secTip"},opts);
+	opts=$.extend({},{cssSecHelper:".secTip",footer:true},opts);
 	//属性
 	this.$LayoutModel=opts.$layoutModel;
 	this.Console=opts.console;
@@ -123,16 +123,16 @@ sohu.diyEditor.prototype.UpdateCT=function($ct,mode){
 	switch(mode){
 		case 0:
 			this.CurSec.Cls();
-			this.$LayoutF.before($ct);
+			this.CurSec.append($ct);
 		break;
 		case 1:
-			this.$LayoutF.before($ct);
+			this.CurSec.append($ct);
 		break;
 		case -1:
 			this.CurSec.$Helper.after($ct);
 		break;
 		default:
-			this.$LayoutF.before($ct);
+			this.CurSec.append($ct);
 		break;
 	};
 };
@@ -176,9 +176,14 @@ sohu.diyEditor.prototype.AttachTo=function(sec){
  */
 sohu.diyEditor.prototype.Show=function(){
 	var _this=this;
-	var w=this.CurSec.Size()-14;/*12个像素的留白+2个像素边框*/
-	this.$LayoutA.css("width",w).prependTo(this.CurSec.$Layout);
-	this.$LayoutF.css("width",w).appendTo(this.CurSec.$Layout);
+	var d=this.CurSec.Dim();
+	this.$LayoutA.css({width:d.w-12,top:d.y-31,left:d.x,opacity:0.8});/*宽要减去12个像素的留白;31是高度*/
+	
+	this.CurArea.$Layout.append(this.$LayoutA);
+	if(this.__p.opts.footer){
+		this.$LayoutF.css({width:d.w-12});
+		this.CurSec.$Layout.prepend(this.$LayoutF);		
+	};
 	
 	if(!this.CurSec.Divisible){
 		this.$Layout.btn.addSec.hide();	
@@ -193,5 +198,7 @@ sohu.diyEditor.prototype.Remove=function(){
 	if(!this.CurSec) return;
 	if(this.CurSec.IsAddingContent) return;
 	this.$LayoutA.appendTo(this.$Layout);
-	this.$LayoutF.appendTo(this.$Layout);
+	if(this.__p.opts.footer){
+		this.$LayoutF.appendTo(this.$Layout);
+	}
 };

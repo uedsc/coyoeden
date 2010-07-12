@@ -37,9 +37,9 @@ display:none;
 .area_active{border:none;margin-top:10px;}
 .ct{position:relative;}
 .area_active .ctOn{background:#dfefff;min-height:30px;height:auto !important;height:30px;}
-.col{position:relative;overflow-y:visible;overflow-x:hidden;}
+.col{overflow:hidden;}
 /*·ÖÀ¸±à¼­Æ÷*/
-.actions{height:18px;left:-1px;top:-31px;border-bottom:none;background:#D6E7FF;}
+.actions{height:18px;border-bottom:none;background:#D6E7FF;}
 .actions .r a{padding-left:10px;}
 .actions .l a{padding-right:10px;}
 .rounded{position:absolute;padding:6px;border:1px solid #84ADDE;z-index:300;}
@@ -48,7 +48,7 @@ display:none;
 		.tr{top:-1px;right:-1px;background-position:-12px -1px;}
 		.bl{bottom:-1px;_bottom:-5px;left:-1px;background-position:-1px -12px;}
 		.br{bottom:-1px;_bottom:-5px;right:-1px;background-position:-12px -12px;}
-.footer{border-top:none;padding-top:0;padding-bottom:0;min-height:9px;height:auto !important;height:9px;bottom:-1px;left:-1px;}
+.footer{border-top:none;padding-top:0;padding-bottom:0;height:9px;left:-1px;bottom:-1px;}
 
 /*Òþ²ØÄ£°å*/
 #hiddenTemplate{display:none;}

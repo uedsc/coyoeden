@@ -41,10 +41,7 @@ sohu.diySection = function(opts) {
 		return false;
 	};
 	//鼠标事件-！！停止冒泡事件
-	/*
-	this.$Layout.hover(p.mouseOver,p.mouseOut);
-	*/
-	this.$Layout.mouseenter(p.mouseOver).mouseleave(p.mouseOut);
+	this.$Layout.mouseenter(p.mouseOver);//.mouseleave(p.mouseOut);
 	//$Helper事件
 	this.$Helper.click(function(evt){
 		_this.Active();
@@ -77,6 +74,7 @@ sohu.diySection = function(opts) {
  */
 sohu.diySection.prototype.Active=function(){
 	if(this.IsActive) return;
+	if(this.Editor.CurSec){this.Editor.CurSec.Deactive();};
 	//如果页面在拖拽则屏蔽UI
 	if(sohu.diyConsole.Dragger.ing) return;
 	this.Editor.AttachTo(this).Show();
@@ -90,8 +88,6 @@ sohu.diySection.prototype.Active=function(){
 sohu.diySection.prototype.Deactive=function(){
 	//如果页面在拖拽则屏蔽UI
 	if(sohu.diyConsole.Dragger.ing) return;
-	//test
-	return;
 	this.Editor.Remove();
 	this.IsActive=false;
 	this.$Layout.removeClass(this.__p.opts.clSecOn);

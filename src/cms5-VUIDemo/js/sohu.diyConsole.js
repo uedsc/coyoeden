@@ -107,7 +107,7 @@ sohu.diyConsole=function(opts){
 		var lbleft=lastArea.offset().left;
 		var ubleft=lastArea.width()+lbleft;
 		
-		if(evt.pageX<lbleft||evt.pageX>ubleft||evt.pageY<lbtop||evt.pageY>ubtop){
+		if(evt.pageX<lbleft||evt.pageX>ubleft||evt.pageY>ubtop){//||evt.pageY<lbtop
 			_this.CurArea.Deactive();
 		};
 	};
