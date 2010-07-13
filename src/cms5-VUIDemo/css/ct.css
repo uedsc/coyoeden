@@ -30,7 +30,7 @@ z-index:60;
 .slider .btnRight{right:0;}	
 .ct li img{border:1px solid #809DB9;cursor:pointer;}
 .ct .on img{border-color:red;opacity:0.7;}
-.item .ct{display:none;}
+.item .ctWrap{display:none;}
 #ctFocusImg{height:200px; overflow:hidden;}
    	#focusImgSlide{position:relative;width:356px;overflow:hidden;padding-left:8px;}
 		#cSlide_focusImg{position:relative;width:2000px;}

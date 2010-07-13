@@ -60,7 +60,7 @@ sohu.diySection = function(opts) {
 	//自定义事件
 	this.$Layout.bind("evtActive",function(e){
 		_this.Active();
-		return false;
+		return false;//停止冒泡
 	});
 }; 
 /**
@@ -87,8 +87,8 @@ sohu.diySection.prototype.Deactive=function(){
  */
 sohu.diySection.prototype.AddSub=function($secSub){
 	var _this=this;
-	var subSecs=$secSub.find("."+this.__p.opts.clSec);
 	this.Editor.UpdateCT($secSub,1);
+	var subSecs=$secSub.find("."+this.__p.opts.clSec);
 	this.$Layout.addClass(this.__p.opts.clHasSub);
 	subSecs.each(function(i,sec){
 		sohu.diySection.New({
@@ -100,13 +100,11 @@ sohu.diySection.prototype.AddSub=function($secSub){
 };
 /**
  * 添加内容-在分栏的末尾添加内容
- * @param {Object} $ct 待添加到内容(jq dom)
+ * @param {Object} ct 待添加内容对象。如{html:'xx',flash:false}
  */
-sohu.diySection.prototype.AddContent=function($ct){
-	if(!$ct.flash){
-		$ct=$($ct.html);$ct.flash=false;
-		$ct.click(function(evt){alert("hi");});
-	}
+sohu.diySection.prototype.AddContent=function(ct){
+	var $ct=$(ct.html);
+	$.extend($ct,ct);
 	this.Editor.UpdateCT($ct,1);
 	//创建相应的diyContent实体
 	var ct=sohu.diyContent.New({$obj:$ct,sec:this});

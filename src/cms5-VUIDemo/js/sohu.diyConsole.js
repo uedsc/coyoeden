@@ -108,8 +108,8 @@ sohu.diyConsole=function(opts){
 		var ubleft=lastArea.width()+lbleft;
 		
 		if(evt.pageX<lbleft||evt.pageX>ubleft||evt.pageY>ubtop){//||evt.pageY<lbtop
-			//_this.CurArea.Deactive();
-			//_this.Editor.CurSec.Deactive();
+			_this.CurArea.Deactive();
+			_this.Editor.CurSec.Deactive();
 		};
 	};
 	p.Init=function(){

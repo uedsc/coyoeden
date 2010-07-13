@@ -9,8 +9,8 @@ var sohu_cms5_ct={
 		parent.bos.CloseCTDialog();
 	},
 	/**
-	 * 提交内容dom对象
-	 * @param {Object} ct
+	 * 提交内容对象
+	 * @param {Object} ct 内容对象
 	 * @param {Boolean} cls是否关闭对话框
 	 */
 	submit:function(ct,cls){
@@ -36,7 +36,7 @@ sohu_cms5_ct.Line=function(opts){
 	this.height=opts.height||10;
 	this.cLine=opts.cLine||false;//是否中间显示分割线
 	//属性定义-dom引用
-	this.$layout=null;//模板dom
+	this.html=null;//模板html
 	this.$layoutCfg=null;//设置界面dom
 	this.$txtCpk=null;//dom-颜色选择器colorpicker
 	this.$txtHeight=null;//dom-高度输入框
@@ -46,7 +46,7 @@ sohu_cms5_ct.Line=function(opts){
 	//私有成员
 	var p={};
 	p.initLayout=function(){
-		_this.$layout=$(sohu.diyTp[_this.layoutID]);
+		_this.html=sohu.diyTp[_this.layoutID];
 		_this.$layoutCfg=$("#"+_this.layoutID);
 		//颜色录入框
 		_this.$txtCpk=_this.$layoutCfg.find(_this.css_cpk).ColorPicker({
@@ -84,15 +84,21 @@ sohu_cms5_ct.Line=function(opts){
 };
 sohu_cms5_ct.Line.prototype.Submit=function(opt){
 	this.cLine=this.$cbkLine[0].checked;
-	var line=this.$layout.clone(true);
-	var hr=line.find("hr");
+	var lineWrap=$("<div/>").html(this.html);
+	var hr=lineWrap.find("hr");
+	var line=lineWrap.find(".vspace");
 	if(this.cLine){line.addClass("cline");hr.css("border-color",this.color);}else{
 		hr.remove();
 	};
 	var css={"height":this.height+'px'};
 	line.css("height",this.height+'px');
-	line.flash=false;
-	sohu_cms5_ct.submit(line);
+	
+	var ct={
+		flash:false,
+		html:lineWrap.html()
+	};
+	
+	sohu_cms5_ct.submit(ct);
 };
 /**
  * 焦点图选择类
@@ -121,7 +127,8 @@ sohu_cms5_ct.FocusImg=function(opts){
 	
 };
 sohu_cms5_ct.FocusImg.prototype.Submit=function(opt){
-	var ct=$('<div class="ct flash"></div>');
+	var ct={};
+	ct.html='<div class="ct flash"></div>';
 	ct.flash=true;
 	ct.tplID=this.FlashTplID;
 	sohu_cms5_ct.submit(ct,true);
@@ -132,12 +139,12 @@ sohu_cms5_ct.FocusImg.prototype.Submit=function(opt){
 sohu_cms5_ct.Image=function(opts){
 		//焦点图选择
 		this.$Layout=$("#ctImg");
-		this.tplID=null;//flash 模板号
+		this.tplID=null;//模板号
 		var _this=this;
 		var p={};
 		p.onAddImg=function(evt){
 			_this.tplID=this.id;
-			_this.tplObj=$(this).find(".ct");
+			_this.tplObj=$(this).find(".ctWrap");
 			_this.Submit();
 			return false;
 		};
@@ -149,7 +156,8 @@ sohu_cms5_ct.Image=function(opts){
 	
 };
 sohu_cms5_ct.Image.prototype.Submit=function(opt){
-	var ct=this.tplObj;//.clone();
+	var ct={};
+	ct.html=this.tplObj.html();
 	ct.flash=false;
 	ct.tplID=this.tplID;
 	sohu_cms5_ct.submit(ct,true);
@@ -170,7 +178,7 @@ sohu_cms5_ct.Text=function(opts){
 		var p={};
 		p.onAddText=function(evt){
 			_this.tplID=this.id;
-			_this.tplObj=$(this).find(".ctWrapper").html();
+			_this.tplObj=$(this).find(".ctWrap");
 			_this.Submit();
 			return false;
 		};
@@ -182,8 +190,7 @@ sohu_cms5_ct.Text=function(opts){
 	
 };
 sohu_cms5_ct.Text.prototype.Submit=function(opt){
-	//var ct=this.tplObj;//.clone();
-	var ct={html:this.tplObj};
+	var ct={html:this.tplObj.html()};
 	ct.flash=false;
 	ct.tplID=this.tplID;
 	sohu_cms5_ct.submit(ct,true);
