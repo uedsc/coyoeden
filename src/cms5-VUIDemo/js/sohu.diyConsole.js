@@ -28,7 +28,6 @@ sohu.diyConsole=function(opts){
 	p._$btnDown=$("#lnkAreaDown");
 	p._$btnUp=$("#lnkAreaUp");
 	p._$areaSelector=$("#area_selector");
-	p._$secHelper=$("#hiddenTemplate .secTip");
 	p._$pageTip=$("#pageTip");
 	p._opts=opts;
 	
@@ -100,6 +99,7 @@ sohu.diyConsole=function(opts){
 	p.onMousemove=function(evt){
 		if(!_this.CurArea) return;
 		if(!_this.CurArea.IsActive) return;
+		if(_this.CurArea.IsEditing) return;
 		var lastArea=_this.$Workspace.find(opts.cssArea+":last");
 		if(lastArea.size()==0) return;
 		var lbtop=_this.$Workspace.offset().top;
@@ -108,7 +108,8 @@ sohu.diyConsole=function(opts){
 		var ubleft=lastArea.width()+lbleft;
 		
 		if(evt.pageX<lbleft||evt.pageX>ubleft||evt.pageY>ubtop){//||evt.pageY<lbtop
-			_this.CurArea.Deactive();
+			//_this.CurArea.Deactive();
+			//_this.Editor.CurSec.Deactive();
 		};
 	};
 	p.Init=function(){
@@ -135,6 +136,10 @@ sohu.diyConsole=function(opts){
 		});
 		//body鼠标事件
 		$("body").mousemove(p.onMousemove);
+		//window resize事件
+		$(window).resize(function(evt){
+			_this.Editor.RePosition();
+		});
 	};
 	this.__p=p;
 	//Init
@@ -229,7 +234,7 @@ sohu.diyConsole.toggleLoading=function(){
 sohu.diyConsole.Dragger={
 	ing:false,
 	obj:null,
-	handle:$('<div class="dragHandle">Drag me!</div>')
+	handle:$('<div class="dragHandle"></div>')
 };
 //TODO:移到sohu.stringUtils.js中
 /**

@@ -32,12 +32,13 @@ sohu.diyArea=function(opts){
 	};
 	//绑定事件
 	p.bindEvts=function(){
-		_this.$Layout.mouseenter(function(evt){_this.Active();})
-			.mouseleave(function(evt){_this.Deactive();});		
+		_this.$Layout.mouseenter(function(evt){_this.Active();});
+			//.mouseleave(function(evt){_this.Deactive();});		
 	};
 	//移除绑定的事件处理函数
 	p.unbindEvts=function(){
-		_this.$Layout.unbind("mouseenter mouseleave");
+		//_this.$Layout.unbind("mouseenter mouseleave");
+		_this.$Layout.unbind("mouseenter");
 	};
 	//行为
 	if(opts.isNew){
@@ -50,7 +51,7 @@ sohu.diyArea=function(opts){
 		this.TemplateID=this.ID.substr(0,this.ID.lastIndexOf("_"));
 	};
 	//横切事件-注：当横切具有分栏时，如果分栏的鼠标事件函数返回false，停止了事件的冒泡，横切的鼠标事件将不被触发
-	this.$Layout.effect("highlight",{easing:'easeInElastic'},'slow');
+	this.$Layout.effect("highlight",null,"fast");
 	p.bindEvts();
 	
 	this.__p=p;
@@ -69,7 +70,7 @@ sohu.diyArea.prototype.Active=function(){
 	this.$Layout.addClass(this.__p.opts.clActive);
 	this.Console.ActiveArea(this).RePosition();
 	this.IsActive=true;
-	//隐藏助手dom
+	//暂时移除事件处理函数
 	this.__p.unbindEvts();
 };
 /**
@@ -81,7 +82,7 @@ sohu.diyArea.prototype.Deactive=function(){
 	this.IsActive=false;
 	
 	this.__p.unbindEvts();
-	//显示助手dom
+	//内容是否为空
 	if(!this.IsEmpty()){
 		this.$Layout.removeClass(this.__p.opts.clEmpty);
 	}else{
@@ -101,7 +102,7 @@ sohu.diyArea.prototype.Move=function(isUp){
 	if (sibling.size() == 0) {
 		alert(tip0);return false;
 	};	
-	if(isUp){sibling.before(this.$Layout);}else{sibling.after(this.$Layout)};
+	if(isUp){sibling.before(this.$Layout);}else{sibling.after(this.$Layout);};
 	return false;	
 };
 /**
@@ -125,7 +126,6 @@ sohu.diyArea.prototype.LoadSections=function(){
 		return sohu.diySection.New({
 			$obj:$(sec),
 			editor:_this.Console.Editor,
-			secHelper:_this.Console.__p._$secHelper,
 			curArea:_this
 		});
 	});

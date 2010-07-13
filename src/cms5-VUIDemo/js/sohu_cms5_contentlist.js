@@ -127,38 +127,6 @@ sohu_cms5_ct.FocusImg.prototype.Submit=function(opt){
 	sohu_cms5_ct.submit(ct,true);
 };
 /**
- * 焦点图选择类
- */
-sohu_cms5_ct.FocusImg=function(opts){
-		//焦点图选择
-		this.$Layout=$("#cSlide_focusImg").cycleSlide({
-			cssBtnPrev:"#ctFocusImg .btnLeft",
-			cssBtnNext:"#ctFocusImg .btnRight",
-			step:178,
-			cloneItem:true
-		});
-		this.FlashTplID=null;//flash 模板号
-		var _this=this;
-		var p={};
-		p.onAddFlash=function(evt){
-			_this.FlashTplID=this.id;
-			_this.Submit();
-			return false;
-		};
-		//鼠标事件
-		this.$Layout.find(".item").hover(
-			function(evt){$(this).addClass("on");},
-			function(evt){$(this).removeClass("on");}
-		).click(p.onAddFlash);
-	
-};
-sohu_cms5_ct.FocusImg.prototype.Submit=function(opt){
-	var ct=$('<div class="ct flash"></div>');
-	ct.flash=true;
-	ct.tplID=this.FlashTplID;
-	sohu_cms5_ct.submit(ct,true);
-};
-/**
  * 图片选择类
  */
 sohu_cms5_ct.Image=function(opts){
@@ -181,7 +149,7 @@ sohu_cms5_ct.Image=function(opts){
 	
 };
 sohu_cms5_ct.Image.prototype.Submit=function(opt){
-	var ct=this.tplObj;
+	var ct=this.tplObj;//.clone();
 	ct.flash=false;
 	ct.tplID=this.tplID;
 	sohu_cms5_ct.submit(ct,true);
@@ -202,7 +170,7 @@ sohu_cms5_ct.Text=function(opts){
 		var p={};
 		p.onAddText=function(evt){
 			_this.tplID=this.id;
-			_this.tplObj=$(this).find(".ct");
+			_this.tplObj=$(this).find(".ctWrapper").html();
 			_this.Submit();
 			return false;
 		};
@@ -214,7 +182,8 @@ sohu_cms5_ct.Text=function(opts){
 	
 };
 sohu_cms5_ct.Text.prototype.Submit=function(opt){
-	var ct=this.tplObj;
+	//var ct=this.tplObj;//.clone();
+	var ct={html:this.tplObj};
 	ct.flash=false;
 	ct.tplID=this.tplID;
 	sohu_cms5_ct.submit(ct,true);
@@ -226,7 +195,7 @@ sohu_cms5_ct.Text.prototype.Submit=function(opt){
 var sohu_cms5_contentlist = function() {
     var p={},pub={};
 	p.selectEmptyLine=function(evt){
-		p.setContent(line)
+		p.setContent(line);
 		return false;
 	};
     //private area

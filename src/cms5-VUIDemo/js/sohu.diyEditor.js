@@ -4,7 +4,7 @@
  */
 sohu.diyEditor=function(opts){
 	var _this=this;
-	opts=$.extend({},{cssSecHelper:".secTip",footer:true},opts);
+	opts=$.extend({},{cssSecHelper:".secTip"},opts);
 	//属性
 	this.$LayoutModel=opts.$layoutModel;
 	this.Console=opts.console;
@@ -18,6 +18,7 @@ sohu.diyEditor=function(opts){
 	this.$Layout=this.$LayoutModel;
 	this.$LayoutA=this.$Layout.find(".actions");/*editor actions*/
 	this.$LayoutF=this.$Layout.find(".footer");/*editor footer*/
+	this.$LayoutT=this.$Layout.find(opts.cssSecHelper);/*sec tip*/
 		//按钮事件注册
 	this.$Layout.btn={
 		addContent:this.$Layout.find(".a_content"),
@@ -29,7 +30,12 @@ sohu.diyEditor=function(opts){
 	this.$Layout.btn.addSec.click(function(evt){_this.DialogSec();return false;});
 	this.$Layout.btn.clear.click(function(evt){_this.Cls();return false;});
 	this.$Layout.btn.editCode.click(function(evt){alert("代码");return false;});
-	
+	// sec tip事件注册
+	this.$LayoutT.click(function(evt){$(this).hide();});
+	//actions事件注册-双击返回父级分栏
+	this.$LayoutA.dblclick(function(evt){
+		_this.CurSec.ActiveParent();return false;
+	});
 	this.$Parent=this.$LayoutModel.parent();
 	//分栏选择器事件注册
 	$('#hiddenTemplate .sec_selector li').click(function(evt){
@@ -85,6 +91,7 @@ sohu.diyEditor.prototype.DialogCT=function(){
 	var _onClose=function(evt,ui){
 		_this.CurArea.IsEditing=false;
 		_this.CurSec.IsAddingContent=false;
+		_this.RePosition();
 	};
 	//打开回调
 	var _onOpen=function(evt,ui){
@@ -123,16 +130,16 @@ sohu.diyEditor.prototype.UpdateCT=function($ct,mode){
 	switch(mode){
 		case 0:
 			this.CurSec.Cls();
-			this.CurSec.append($ct);
+			this.CurSec.$Layout.append($ct);
 		break;
 		case 1:
-			this.CurSec.append($ct);
+			this.CurSec.$Layout.append($ct);
 		break;
 		case -1:
-			this.CurSec.$Helper.after($ct);
+			this.CurSec.$Layout.prepend($ct);
 		break;
 		default:
-			this.CurSec.append($ct);
+			this.CurSec.$Layout.append($ct);
 		break;
 	};
 };
@@ -141,7 +148,8 @@ sohu.diyEditor.prototype.UpdateCT=function($ct,mode){
  */
 sohu.diyEditor.prototype.Cls=function(){
 	var _this=this;
-	var pos=[this.CurSec.Dim().x+10,this.CurSec.Dim().y+10];
+	var d=this.CurSec.Dim();
+	var pos=[d.x+10,d.y+10];//对话框位置
 	this.CurSec.IsAddingContent=true;
 	this.CurArea.IsEditing=true;
 	this.Console.Confirm({
@@ -175,15 +183,9 @@ sohu.diyEditor.prototype.AttachTo=function(sec){
  * @param {Object} opts
  */
 sohu.diyEditor.prototype.Show=function(){
-	var _this=this;
-	var d=this.CurSec.Dim();
-	this.$LayoutA.css({width:d.w-12,top:d.y-31,left:d.x,opacity:0.8});/*宽要减去12个像素的留白;31是高度*/
-	
+	this.RePosition();
 	this.CurArea.$Layout.append(this.$LayoutA);
-	if(this.__p.opts.footer){
-		this.$LayoutF.css({width:d.w-12});
-		this.CurSec.$Layout.prepend(this.$LayoutF);		
-	};
+	this.CurArea.$Layout.append(this.$LayoutF);		
 	
 	if(!this.CurSec.Divisible){
 		this.$Layout.btn.addSec.hide();	
@@ -198,7 +200,16 @@ sohu.diyEditor.prototype.Remove=function(){
 	if(!this.CurSec) return;
 	if(this.CurSec.IsAddingContent) return;
 	this.$LayoutA.appendTo(this.$Layout);
-	if(this.__p.opts.footer){
-		this.$LayoutF.appendTo(this.$Layout);
-	}
+	this.$LayoutF.appendTo(this.$Layout);
+};
+/**
+ * 更新编辑器的位置.一般在添加分栏或者内容后调用此方法
+ */
+sohu.diyEditor.prototype.RePosition=function(){
+	if(!this.CurSec) return;
+	var d=this.CurSec.Dim();
+	this.$LayoutA.css({width:d.w-12,top:d.y-31,left:d.x,opacity:0.8});/*宽要减去12个像素的留白;31是高度*/
+	this.$LayoutF.css({width:d.w-12,top:d.y+d.h-8,left:d.x});/*8是footer的高度*/
+	this.$LayoutT.show().css({width:d.w}).html("w:"+d.w+"px");
+	return this;
 };

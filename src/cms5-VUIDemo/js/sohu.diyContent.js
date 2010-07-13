@@ -18,24 +18,24 @@ sohu.diyContent=function(opts){
 		_this.Editor.CurCT=_this;
 		
 		//ÍÏ×§ÖúÊÖÊÂ¼þ
+		
 		var dim=_this.Dim();
 		sohu.diyConsole.Dragger.handle.show()
 		.css({width:dim.w,height:dim.h,opacity:0.3})
 		.unbind()
 		.bind("mousedown",function(evt){
-			_this.Sec.Deactive();
 			sohu.diyConsole.Dragger.ing=true;
 			sohu.diyConsole.Dragger.obj=_this;
 			
 		}).bind("mouseup",function(evt){
 			sohu.diyConsole.Dragger.ing=false;
-			_this.Sec.Active();
 		});
 		_this.$Layout.prepend(sohu.diyConsole.Dragger.handle);
+		
 	};
 	p.mouseLeave=function(evt){
 		_this.$Layout.removeClass(opts.clOn);
-		sohu.diyConsole.Dragger.handle.hide();
+		sohu.diyConsole.Dragger.handle.remove();
 	};
 	this.__p=p;
 	

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>nested list sortable demo-using jquery ui</title>
+		<link rel="stylesheet" type="text/css" href="css/global1.3.css"></link>
+		<link media="all" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet"></link> 
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/flick/jquery-ui.css" type="text/css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> 
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script> 
+		<script src="js/jquery.json-2.2.min.js" type="text/javascript"></script> 
+		<style type="text/css">
+		h1{height:2em;line-height:1.8em;font-size:200%;font-weight:bold;}
+		#test1,#test2{width:300px;}
+		li{min-height:20px;height:auto !important;height:20px;padding:3px;border:1px solid #eee;margin-top:5px;}
+		li li{width:95%;background:#ffffc2;margin-bottom:10px;}
+		li li li{width:95%;background:#ccc;margin-bottom:10px;}
+		.ui-hl{height: 20px; line-height:20px;background:#d5eaff; }
+		</style> 
+	</head>
+	<body>
+		<h1>nested list sortable test!</h1>
+		<div class="area clear" id="area1">
+			<ul id="test1" class="left sort">
+				<li class="ct">list1-item1</li>
+				<li class="ct">list1-item2</li>
+				<li>
+					<ul id="test3" class="sort">
+						<li class="ct">list3-item1</li>
+						<li class="ct">list3-item2</li>
+					</ul>
+				</li>		
+			</ul>
+			<ul id="test2" class="sort right">
+				<li class="ct">list2-item1</li>
+				<li class="ct">list2-item2</li>
+				<li>
+					<ul id="test4" class="sort">
+						<li class="ct">list4-item1</li>
+						<li class="ct">list4-item2</li>
+						<li>
+							<ul id="test5" class="sort">
+								<li class="ct">list5-item1</li>
+								<li class="ct">list5-item2</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+			<script type="text/javascript">
+	//<![CDATA[
+	$(".sort").sortable({
+		items:">.ct",
+		connectWith:".sort",
+		placeholder:"ui-hl"
+	});
+	//]]>
+	</script>
+ 
+	</body>
+</html>
