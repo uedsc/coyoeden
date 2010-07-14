@@ -26,6 +26,7 @@ sohu.diyContent=function(opts){
 		.bind("mousedown",function(evt){
 			sohu.diyConsole.Dragger.ing=true;
 			sohu.diyConsole.Dragger.obj=_this;
+			_this.Sec.Deactive();
 			
 		}).bind("mouseup",function(evt){
 			sohu.diyConsole.Dragger.ing=false;
