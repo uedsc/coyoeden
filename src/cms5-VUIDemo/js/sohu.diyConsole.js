@@ -100,6 +100,7 @@ sohu.diyConsole=function(opts){
 		if(!_this.CurArea) return;
 		if(!_this.CurArea.IsActive) return;
 		if(_this.CurArea.IsEditing) return;
+		if(sohu.diyConsole.Dragger.ing) return;
 		var lastArea=_this.$Workspace.find(opts.cssArea+":last");
 		if(lastArea.size()==0) return;
 		var lbtop=_this.$Workspace.offset().top;
