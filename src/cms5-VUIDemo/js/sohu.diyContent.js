@@ -16,7 +16,7 @@ sohu.diyContent=function(opts){
 	p.mouseEnter=function(evt){
 		_this.$Layout.addClass(opts.clOn);
 		_this.Editor.CurCT=_this;
-		
+		sohu.diyConsole.CurCT=_this;
 		//拖拽助手事件
 		
 		var dim=_this.Dim();
@@ -30,13 +30,17 @@ sohu.diyContent=function(opts){
 			
 		}).bind("mouseup",function(evt){
 			sohu.diyConsole.Dragger.ing=false;
+		}).bind("dblclick",function(evt){
+			_this.DoEdit();return false;
 		});
-		_this.$Layout.prepend(sohu.diyConsole.Dragger.handle);
+		_this.$Layout.find(".dragHandle").remove().end().prepend(sohu.diyConsole.Dragger.handle);
 		
 	};
 	p.mouseLeave=function(evt){
+		if(_this.Editor.CurArea.IsEditing) return false;
 		_this.$Layout.removeClass(opts.clOn);
 		sohu.diyConsole.Dragger.handle.remove();
+		sohu.diyConsole.CurCT=null;
 	};
 	this.__p=p;
 	
@@ -45,13 +49,13 @@ sohu.diyContent=function(opts){
 	//是否flash
 	if(this.$Layout.flash){
 		this.ID+="_fl";
-		this.$Layout.attr("id",this.ID);
 		//将flash对象呈现出来
 		var fOpt={tplID:this.$Layout.tplID};
 		if(opts.scale){fOpt.w=this.MaxWidth;};
 		this.$Layout.flashObj=new sohu.diyTp.Flash(fOpt);
 		this.$Layout.flashObj.Render(this.$Layout);
 	};
+	this.$Layout.attr("id",this.ID);
 };
 /**
  * 获取内容的维度信息
@@ -64,6 +68,12 @@ sohu.diyContent.prototype.Dim=function(){
 		w:this.$Layout.width(),
 		h:this.$Layout.height()
 	};
+};
+/**
+ * 利用html编辑器编辑内容
+ */
+sohu.diyContent.prototype.DoEdit=function(){
+	this.Editor.DialogCT("update");
 };
 /*静态方法*/
 /**

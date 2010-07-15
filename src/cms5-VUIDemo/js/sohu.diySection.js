@@ -47,8 +47,9 @@ sohu.diySection = function(opts) {
 		placeholder:"ui-hl",
 		handle:".dragHandle",
 		receive:function(evt,ui){
+			sohu.diyConsole.Dragger.obj.Sec.RemoveCTByID(sohu.diyConsole.Dragger.obj.ID);
 			sohu.diyConsole.Dragger.obj.Sec=_this;
-			
+			_this.Contents.push(sohu.diyConsole.Dragger.obj);
 		},
 		start:function(evt,ui){
 			_this.Editor.RePosition();
@@ -103,12 +104,24 @@ sohu.diySection.prototype.AddSub=function($secSub){
  * @param {Object} ct 待添加内容对象。如{html:'xx',flash:false}
  */
 sohu.diySection.prototype.AddContent=function(ct){
-	var $ct=$(ct.html);
-	$.extend($ct,ct);
-	this.Editor.UpdateCT($ct,1);
-	//创建相应的diyContent实体
-	var ct=sohu.diyContent.New({$obj:$ct,sec:this});
-	this.Contents.push(ct);
+	var $ct=null;
+	if(ct.isNew){
+		$ct=$("<div/>").html(ct.html).addClass("ct "+ct.type);
+		$.extend($ct,ct);
+		//创建相应的diyContent实体
+		ct=sohu.diyContent.New({$obj:$ct,sec:this});
+		this.Editor.UpdateCT($ct,1);
+		this.Contents.push(ct);
+	}else{
+		var ct0=this.GetCTByID(ct.id);
+		if(!ct0) return;
+		$ct=ct0.$obj;
+		if(ct.html==""){
+			$ct.remove();	
+		}else{
+			$ct.html(ct.html);
+		};//if1	
+	};//if0
 };
 /**
  * 清楚分栏内容
@@ -116,6 +129,38 @@ sohu.diySection.prototype.AddContent=function(ct){
 sohu.diySection.prototype.Cls=function(){
 	this.$Layout.find("."+this.__p.opts.clContent).remove();
 	this.$Layout.removeClass("hasSub");
+	this.Contents=[];
+};
+/**
+ * 根据内容id获取内容对象
+ * @param {String} ctID
+ * @return {diyContent}
+ */
+sohu.diySection.prototype.GetCTByID=function(ctID){
+	if(this.Contents.length==0) return null;
+	var ct=null;
+	$.each(this.Contents,function(i,o){
+		if(o.ID==ctID){
+			ct=o;return false;
+		};
+	});
+	return ct;
+};
+/**
+ * 根据内容id从内容列表中移除内容对象。注意,非从dom中移除。此方法用在排序时後
+ * @param {String} ctID 内容ID
+ * @return {diyContent} 被移除的对象
+ */
+sohu.diySection.prototype.RemoveCTByID=function(ctID){
+	if(this.Contents.length==0) return null;
+	var ct=null;
+	this.Contents=$.grep(this.Contents,function(o,i){
+		if(o.ID==ctID){
+			ct=o;return false;
+		}
+		return true;
+	});
+	return ct;
 };
 /**
  * 获取当前分栏父分栏的宽度

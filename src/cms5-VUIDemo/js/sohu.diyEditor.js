@@ -82,8 +82,9 @@ sohu.diyEditor.prototype.DialogSec=function(){
 };
 /**
  * 弹出添加内容选择框
+ * @param {String} mode mode="update"时编辑html内容
  */
-sohu.diyEditor.prototype.DialogCT=function(){
+sohu.diyEditor.prototype.DialogCT=function(mode){
 	var _this=this;
 	this.CurArea.IsEditing=true;
 	this.CurSec.IsAddingContent=true;
@@ -102,15 +103,20 @@ sohu.diyEditor.prototype.DialogCT=function(){
 		ifr.attr("src",ifr.attr("rel")+"?t="+new Date().getTime());
 	};
 	sohu.diyConsole.toggleLoading();
-	this.CTDialog=$("#content_selector").dialog({
-		title:"添加内容",
-		width:620,
-		height:430,
-		modal:true,
-		close:_onClose,
-		open:_onOpen,
-		autoOpen:false
-	});
+	if(!mode){
+		this.CTDialog=$("#content_selector").dialog({
+			title:"添加内容",
+			width:660,
+			height:430,
+			modal:true,
+			close:_onClose,
+			open:_onOpen,
+			autoOpen:false
+		});
+	}else{
+		if(!sohu.diyConsole.CurCT) return;
+		sohu.diyConsole.CurCT.isNew=false;
+	}
 	this.CTDialog.dialog("open");
 };
 /**

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#diyTable_dlg.title}</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> 
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="../../utils/mctabs.js"></script>
+	<script type="text/javascript" src="../../utils/form_utils.js"></script>
+	<script type="text/javascript" src="../../utils/validate.js"></script>
+	<script type="text/javascript" src="../../utils/editable_selects.js"></script>
+	<script type="text/javascript" src="js/table.js"></script>
+	<link href="css/table.css" rel="stylesheet" type="text/css" />
+ 
+</head>
+<body>
+
+<form onsubmit="diyTableDialog.insert();return false;" action="#">
+	<div class="tabs">
+		<ul>
+			<li id="general_tab" class="current"><span><a href="javascript:mcTabs.displayTab('general_tab','general_panel');" onmousedown="return false;">{#diyTable_dlg.general_tab}</a></span></li>
+		</ul>
+	</div>
+	<div class="panel_wrapper">
+		<div id="general_panel" class="panel current">
+			<label for="rows">{#diyTable_dlg.rows}</label>
+			<input id="rows" name="rows" type="text" value="" size="3" maxlength="3" class="required number min1 mceFocus" />
+			<br/>
+			<label for="cols">{#diyTable_dlg.cols}</label>
+			<input id="cols" name="cols" type="text" value="" size="3" maxlength="3" class="required number min1" />
+			<br/>
+			<label for="bordercolor">{#diyTable_dlg.bd_color}</label>
+			<input id="bordercolor" name="bordercolor" type="text" value="" size="9" onchange="updateColor('bordercolor_pick','bordercolor');diyTableDialog.changedColor();" />
+			<span id="bordercolor_pickcontainer"></span>
+			<br/>
+			<label for="hdbgcolor">{#diyTable_dlg.hd_bgColor}</label>
+			<input id="hdbgcolor" name="hdbgcolor" type="text" value="" size="9" onchange="updateColor('hdbgcolor_pick','hdbgcolor');diyTableDialog.changedColor();" />
+			<span id="hdbgcolor_pickcontainer"></span>
+			<br/>
+		</div>
+	</div>
+	<div class="mceActionPanel">
+		<input type="button" id="insert" name="insert" value="{#insert}" onclick="diyTableDialog.insert();" />
+		<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+	</div>
+</form>
+
+</body>
+</html>

@@ -237,6 +237,7 @@ sohu.diyConsole.Dragger={
 	obj:null,
 	handle:$('<div class="dragHandle"></div>')
 };
+sohu.diyConsole.CurCT=null;
 //TODO:移到sohu.stringUtils.js中
 /**
  * 获取指定长度的随机字符串。注意：仅仅由数字和字母组成

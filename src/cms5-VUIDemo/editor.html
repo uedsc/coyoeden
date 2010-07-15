@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Sohu diyEditor</title>
+		<!-- Load jQuery -->
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+			google.load("jquery", "1");
+		</script>
+		<!-- Load TinyMCE -->
+		<script type="text/javascript" src="editor/tiny_mce/jquery.tinymce.js"></script>
+		<!--<script type="text/javascript" src="editor/tiny_mce/tiny_mce_src.js"></script>-->
+		<!-- /TinyMCE -->
+	</head>
+	<body>
+			<textarea id="editor1" name="editor1" rows="18" cols="50" style="width: 100%" class="htmlEditor"></textarea>
+			<p class="acts">
+				<button id="btnOK">确定</button>
+				<button id="btnClose">取消</button>
+			</p>
+			
+			<div id="test" style="display:none;">
+				<table style="width: 300px; border: 1px solid #15d0e9; height: 100px; background-color: #ffffff;" border="1">
+					<tbody>
+					<tr style="background-color: #30ce40;">
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					</tr>
+					<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+	</body>
+	<script type="text/javascript" src="js/sohu.diyHtmlEditor.js"></script>
+	<script type="text/javascript">
+	//<![CDATA[
+	sohu.diyTinyMCE.Init({editor:"tinymce"});
+	//]]>
+	</script>
+ 
+ 
+</html>
