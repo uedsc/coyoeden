@@ -114,6 +114,7 @@ sohu.diyTinyMCE = function() {
 		};
 		//cfg for CKE
 		p._CKEditorCfg= {
+			language:'zh-cn',
 			toolbar:
 			[
 				['Source','Maximize','-','Undo','Redo','-','SHTable']

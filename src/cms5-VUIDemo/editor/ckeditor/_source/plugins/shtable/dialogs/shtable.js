@@ -14,7 +14,20 @@ Table plugin for sohu.com
 			data.info = {};
 		data.info[id] = this.getValue();
 	};
-
+	var colorDialogHandler={
+		close:function(evt,dialog,inputElm,caller){
+			dialog.removeListener( 'ok', caller );
+			dialog.removeListener( 'cancel', caller );
+			if(evt.name=='cancel') return;
+			var c=dialog.getContentElement( 'picker', 'selectedColor' ).getValue();
+			$('#'+inputElm._.inputId).val(c).css("background-color",c);
+		},
+		show:function(evt,dialog,inputElm){
+			dialog.getContentElement( 'picker', 'selectedColor' ).setValue(inputElm.getValue());
+		}
+	};
+	
+	
 	function tableDialog( editor, command )
 	{
 		var $e = function( name ){ return new CKEDITOR.dom.element( name, editor.document ); };
@@ -87,7 +100,17 @@ Table plugin for sohu.com
 				if ( data.info )
 				{
 					var info = data.info;
-
+					//table outer border style
+					if(info.txtOBorder!='0'){
+						var css = CKEDITOR.tools.cssLength( info.txtOBorder )+" solid "+info.txtOBorderColor;
+						$(table.$).css("border",css);
+					}else{
+						$(table.$).css("border","none");
+					}
+					// caption bg
+					if(data.caption){
+						$(table.$).find("caption").css("background-color",info.txtCaptionBGColor);
+					}
 					// Generate the rows and cols.
 					if ( !this._.selectedElement )
 					{
@@ -357,14 +380,7 @@ Table plugin for sohu.com
 												if ( bMatch )
 													this.setValue( bMatch[1] );
 											},
-											commit:function(data,st){
-												var v=this.getValue();
-												if(v){
-													st.setStyle( 'border-width', CKEDITOR.tools.cssLength( v ) );
-												}else{
-													st.removeStyle('border-width');
-												}
-											}
+											commit:commitValue
 										},
 										{
 											id : 'cmbAlign',
@@ -552,15 +568,24 @@ Table plugin for sohu.com
 											label : editor.lang.shtable.obordercolor,
 											'default':'#ffffff',
 											setup:function(tb){
-												this.setValue(tb.$.style.borderColor||'#ffffff');
+												var cl=$(tb.$).css("borderColor")||'#ffffff';
+												$('#'+this._.inputId).val(cl).css("background-color",cl).attr("readonly",true);
 											},
-											commit:function(data,tb){
-												var v=this.getValue();
-												if(v){
-													st.setStyle( 'border-color', CKEDITOR.tools.cssLength( v ) );
-												}else{
-													st.removeStyle('border-color');
-												}
+											commit:commitValue,
+											onClick:function(e){
+												var _this=this;
+												var _close=function(evt){
+													colorDialogHandler.close(evt,this,_this,_close);
+												};
+												var _onShow=function(e){
+													colorDialogHandler.show(e,this,_this);
+												};
+												editor.openDialog( 'colordialog', function()
+												{
+													this.on( 'ok', _close);
+													this.on( 'cancel', _close);
+													this.on('show',_onShow)
+												} );
 											}
 										},
 										{
@@ -571,18 +596,25 @@ Table plugin for sohu.com
 											label : editor.lang.shtable.captionbgcolor,
 											'default':'#ffffff',
 											setup:function(tb){
-												var capBG=$(tb).find("caption").css("background-color")||'#ffffff';
-												this.setValue(capBG);
+												var cl=$(tb.$).find("caption").css("background-color")||'#ffffff';
+												$('#'+this._.inputId).val(cl).css("background-color",cl).attr("readonly",true);
 											},
-											commit:function(data,tb){
-												var v=this.getValue();
-												var cap=$(tb).find("caption");
-												if(v&&cap.length>0){
-													cap.css("background-color",v);
-												}else{
-													cap.removeStyle('background-color');
-												}
-											}
+											commit:commitValue,
+											onClick:function(e){
+												var _this=this;
+												var _close=function(evt){
+													colorDialogHandler.close(evt,this,_this,_close);
+												};
+												var _onShow=function(e){
+													colorDialogHandler.show(e,this,_this);
+												};
+												editor.openDialog( 'colordialog', function()
+												{
+													this.on( 'ok', _close);
+													this.on( 'cancel', _close);
+													this.on('show',_onShow)
+												} );
+											}											
 										}										
 									]
 								}
@@ -619,8 +651,11 @@ Table plugin for sohu.com
 									{
 										var caption = this.getValue(),
 											captionElement = table.getElementsByTag( 'caption' );
+										data[this.id]=caption;
+										data.caption=false;
 										if ( caption )
 										{
+											data.caption=true;
 											if ( captionElement.count() > 0 )
 											{
 												captionElement = captionElement.getItem( 0 );

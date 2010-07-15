@@ -7,6 +7,9 @@ CKEDITOR.plugins.setLang( 'shtable', 'en',
 	{
 		toolbar		: 'SHTable',
 		title		: 'Table Properties',
-		menu		: 'Table Properties'
+		menu		: 'Table Properties',
+		obordercolor: 'Outer border color',
+		oborder		: 'Outer border width',
+		captionbgcolor:'Caption background'	
 	}
 });
