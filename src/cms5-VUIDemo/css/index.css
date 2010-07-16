@@ -3,6 +3,10 @@
 .ui-hl{height: 30px; line-height:30px;background:#ffffc2; }
 .dragHandle{position:absolute;background:#c4e2ff;cursor:move;z-index:300;}
 /*=/drag&drop style=*/
+/*=ckeditor=*/
+.cke_button_shtable .cke_icon{display: none !important;}
+.cke_button_shtable .cke_label{display: inline !important;}
+/*=/ckeditor=*/
 #main{min-height:500px;height:auto !important;height:500px;}
 .txtLoading{
 background:none repeat scroll 0 0 #FF0000;

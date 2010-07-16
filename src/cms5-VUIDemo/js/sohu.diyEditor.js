@@ -4,7 +4,7 @@
  */
 sohu.diyEditor=function(opts){
 	var _this=this;
-	opts=$.extend({},{cssSecHelper:".secTip"},opts);
+	opts=$.extend({},{cssSecHelper:".secTip",cssCTSelector:"#content_selector"},opts);
 	// Ù–‘
 	this.$LayoutModel=opts.$layoutModel;
 	this.Console=opts.console;
@@ -104,7 +104,7 @@ sohu.diyEditor.prototype.DialogCT=function(mode){
 	};
 	sohu.diyConsole.toggleLoading();
 	if(!mode){
-		this.CTDialog=$("#content_selector").dialog({
+		this.CTDialog=$(this.__p.opts.cssCTSelector).dialog({
 			title:"ÃÌº”ƒ⁄»›",
 			width:660,
 			height:430,

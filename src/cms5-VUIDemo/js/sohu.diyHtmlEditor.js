@@ -6,16 +6,16 @@ if(!sohu){
  * 注意:内容和碎片需要写成tinyMCE的插件\ckeditor插件
  * @author levinhuang
  */
-sohu.diyTinyMCE = function() {
+sohu.diyHtmlEditor = function() {
     var p={},pub={};
 	p.loadContent=function(){
 		if(p._editorType=="ckeditor"){
 			p.editor=p.$editor.ckeditorGet();
 			p.editor.getContent=p.editor.getData;
-			p.editor.setData($("#test").html());
+			//p.editor.setData($("#test").html());
 		}else{
 			p.editor=p.$editor.tinymce();//tinymce.activeEditor;
-			p.editor.execCommand('mceInsertContent',false,$("#test").html());
+			//p.editor.execCommand('mceInsertContent',false,$("#test").html());
 		}
 
 		return;
@@ -65,6 +65,8 @@ sohu.diyTinyMCE = function() {
 		p._btnClose=$("#btnClose");
 		//CFG for tinymce
 		p._tinyMCECfg={
+			// Location of TinyMCE script
+			script_url : 'editor/tiny_mce/tiny_mce.js',
 			// General options
 			mode : "textareas",
 			theme : "advanced",
@@ -117,11 +119,13 @@ sohu.diyTinyMCE = function() {
 			language:'zh-cn',
 			toolbar:
 			[
-				['Source','Maximize','-','Undo','Redo','-','SHTable']
+				['Source','Maximize','-','Undo','Redo','-','SHTable','SHLine','SHText','-','SHImage','SHFlash']
 			],
-			extraPlugins:'shtable',
+			extraPlugins:'shtable,shline,shtext,shimage,shflash',
 			removePlugins:'uicolor,table',
-			menu_groups:'clipboard,form,tablecell,tablecellproperties,tablerow,tablecolumn,shtable,anchor,link,image,flash,checkbox,radio,textfield,hiddenfield,imagebutton,button,select,textarea'
+			menu_groups:'clipboard,form,tablecell,tablecellproperties,tablerow,tablecolumn,shtable,anchor,link,image,flash,checkbox,radio,textfield,hiddenfield,imagebutton,button,select,textarea',
+			contentsCss:[CKEDITOR.basePath+'contents.css','css/content.css'],
+			others:''
 		};
 	};
     p.onLoaded = function() { 

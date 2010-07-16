@@ -113,6 +113,9 @@ sohu.diyConsole=function(opts){
 			_this.Editor.CurSec.Deactive();
 		};
 	};
+	p.onLoaded=function(){
+		
+	};
 	p.Init=function(){
 		//ºáÇÐÑ¡ÔñÆ÷
 		$("li",p._$areaSelector).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");})
@@ -141,6 +144,8 @@ sohu.diyConsole=function(opts){
 		$(window).resize(function(evt){
 			_this.Editor.RePosition();
 		});
+		//on page loaded
+		$(document).ready(p.onLoaded);
 	};
 	this.__p=p;
 	//Init

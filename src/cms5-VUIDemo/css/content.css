@@ -1,0 +1,58 @@
+/*ËéÆ¬ÑùÊ½*/
+.flash{z-index:1;}
+.sp_space{margin-bottom:10px;}
+
+.list12,
+.list14{margin-bottom:10px;}
+.list14 li{line-height:24px;font-size:14px;text-align:left;padding:1px 0;color:#666;}
+.list12 li{line-height:20px;font-size:12px;text-align:left;padding:1px 0;color:#666;}
+
+.pre_dot .list14 li{line-height:24px;font-size:14px;text-align:left;padding:1px 0 1px 14px;
+  background:url(http://images.sohu.com/uiue/dot.gif) no-repeat 0 0;}
+.pre_dot .list12 li{line-height:20px;font-size:12px;text-align:left;padding:1px 0 1px 12px;
+  background:url(http://images.sohu.com/uiue/dot.gif) no-repeat -1px -1px;}
+
+.txt{margin-bottom:10px;}
+.txt h3{font-size:18px;font-family:"ËÎÌå";font-weight:400;margin:.3em 0;}
+.txt h4{font-size:16px;font-weight:700;margin:.3em 0;}
+.txt h5{font-size:14px;font-weight:700;margin:.3em 0;}
+.txt h6{font-size:12px;font-weight:700;margin:.3em 0;}
+.txt h3,.txt h3 a,
+.txt h4,.txt h4 a,
+.txt h5,.txt h5 a,
+.txt h6,.txt h6 a{color:#039;}
+.txt p{color:#666;margin:0 0 .5em;line-height:22px;}
+
+
+.pt{margin-bottom:10px;}
+.pt img{display:block;margin-bottom:5px;border:1px solid #ccc;padding:1px;background:#fff;}
+.pt img.l{margin-right:5px;}
+.pt img.r{margin-left:5px;}
+.pt h3{font-size:12px;font-weight:700;}
+.pt p{color:#666;line-height:22px;}
+
+
+.pl{margin-bottom:10px;}
+.pl:after{clear: both;
+content: ' ';
+display: block;
+font-size: 0;
+line-height: 0;
+visibility: hidden;
+width: 0;
+height: 0;}
+
+.pl li{float:left;text-align:center;color:#666;}
+.pl li.lst{margin-right:-1px;}
+.pl li span{display:block;line-height:1.5em;}
+
+.pl_2c li{width:50%;}
+.pl_3c li{width:33.3%;}
+.pl_4c li{width:25%;}
+.pl_5c li{width:20%;}
+.pl_6c li{width:16.6%;}
+.pl_7c li{width:14.25%;}
+.pl_8c li{width:12.5%;}
+
+.vspace{position:relative;font-size:0;line-height:0;height:10px;}
+.vspace hr{position:absolute;top:49.9%;padding:0;margin:0;}

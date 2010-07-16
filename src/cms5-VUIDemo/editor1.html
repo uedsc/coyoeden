@@ -8,12 +8,20 @@
 		<script type="text/javascript" src="editor/ckeditor/adapters/jquery.js"></script>
 		<style id="styles" type="text/css">
 
-		.cke_button_shtable .cke_icon
+		.cke_button_shtable .cke_icon,
+		.cke_button_shline .cke_icon,
+		.cke_button_shimage .cke_icon,
+		.cke_button_shflash .cke_icon,
+		.cke_button_shtext .cke_icon
 		{
 			display: none !important;
 		}
 
-		.cke_button_shtable .cke_label
+		.cke_button_shtable .cke_label,
+		.cke_button_shline .cke_label,
+		.cke_button_shimage .cke_label,
+		.cke_button_shflash .cke_label,
+		.cke_button_shtext .cke_label
 		{
 			display: inline !important;
 		}
@@ -22,27 +30,11 @@
 	</head>
 	<body>
 		<textarea class="htmlEditor" cols="80" id="editor1" name="editor1" rows="10"></textarea>
-		<div id="test" style="display:none;">
-			<table style="width: 300px; border: 1px solid #15d0e9; height: 100px; background-color: #ffffff;" border="1">
-				<tbody>
-				<tr style="background-color: #30ce40;">
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				</tr>
-				<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				</tr>
-				</tbody>
-			</table>
-		</div>
 	</body>
 	<script type="text/javascript" src="js/sohu.diyHtmlEditor.js"></script>
 	<script type="text/javascript">
 	//<![CDATA[
-	sohu.diyTinyMCE.Init({});
+	sohu.diyHtmlEditor.Init({});
 	//]]>
 	</script>
 	</script>
