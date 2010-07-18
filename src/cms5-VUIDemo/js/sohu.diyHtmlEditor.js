@@ -1,6 +1,3 @@
-if(!sohu){
-	var sohu={};
-};
 /**
  * 集成tinyMCE编辑器\ckeditor编辑器
  * 注意:内容和碎片需要写成tinyMCE的插件\ckeditor插件
@@ -11,13 +8,16 @@ sohu.diyHtmlEditor = function() {
 	p.loadContent=function(){
 		if(p._editorType=="ckeditor"){
 			p.editor=p.$editor.ckeditorGet();
+			p.editor.siteRoot=CKEDITOR.basePath.replace("editor/ckeditor/","");
 			p.editor.getContent=p.editor.getData;
 			//p.editor.setData($("#test").html());
 		}else{
 			p.editor=p.$editor.tinymce();//tinymce.activeEditor;
 			//p.editor.execCommand('mceInsertContent',false,$("#test").html());
 		}
-
+		//scripts used by the document
+		//$(p.editor.document.$).find("head").append('<script src="'+p.editor.siteRoot+"js/sohu.diy_utf8.js"+'" type="text/javascript"></script>');
+		
 		return;
 		//load editing content if exists
 		if(parent.sohu.diyConsole.CurCT){
@@ -124,7 +124,7 @@ sohu.diyHtmlEditor = function() {
 			extraPlugins:'shtable,shline,shtext,shimage,shflash',
 			removePlugins:'uicolor,table',
 			menu_groups:'clipboard,form,tablecell,tablecellproperties,tablerow,tablecolumn,shtable,anchor,link,image,flash,checkbox,radio,textfield,hiddenfield,imagebutton,button,select,textarea',
-			contentsCss:[CKEDITOR.basePath+'contents.css','css/content.css'],
+			contentsCss:[CKEDITOR.basePath+'contents.css','css/global1.3.css','css/content.css'],
 			others:''
 		};
 	};
@@ -150,5 +150,8 @@ sohu.diyHtmlEditor = function() {
         p.initVar(opts);
         p.initEvents(opts);
     };
+	pub.Editor=function(){
+		return p.editor;
+	};
     return pub;
 } (); 

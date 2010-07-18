@@ -9,9 +9,20 @@
 	};
 	//1,dialog callback functions
 	var dlgcbk={};
-	dlgcbk.show=function(editor,dlg){};
-	dlgcbk.ok=function(editor,dlg){
+	dlgcbk.show=function(editor,dlg){
+		editor.shHtml=null;
+		editor.shFlashID=null;
+	};
+	dlgcbk.hide=function(editor,dlg){
 		//use dlgInfo.ifDoc to reference the iframe document
+		if(editor.shHtml){
+			//editor.shFlash=new sohu.diyTp.Flash({tplID:editor.shFlashID});
+			editor.setData(editor.shHtml,function(){
+				var $d=$(editor.document.$).find(".shflash");
+				//editor.shFlash.Render($d);
+			});
+
+		}		
 	};
 	//2,dialog content definition
 	var dlgct=function(editor,src){
@@ -22,7 +33,7 @@
 		var ct=[];
 		var p1={
 			id:'info',
-			label:editor.lang.shtext.title,
+			label:editor.lang.shflash.title,
 			expand:true,
 			elements:
 			[
@@ -50,9 +61,10 @@
 			title : editor.lang.shflash.title/* title in string*/,
 			minWidth : 600 /*number of pixels*/,
 			minHeight : 300 /*number of pixels*/,
-			onOk: function(){dlgcbk.ok(editor,this);}/*function*/ ,
+			onHide: function(){dlgcbk.hide(editor,this);}/*function*/ ,
 			onShow: function(){ dlgcbk.show(editor,this); }/*function*/,
 			resizable: 'none' /* none,width,height or both  */,
+			buttons:[],
 			contents: dlgct(editor, src) /*content definition, basically the UI of the dialog*/		
 		};
 	};

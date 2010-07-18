@@ -1,0 +1,26 @@
+#web_loading{
+background:none repeat scroll 0 0 #FF0000;
+color:#FFFFFF;
+font-size:12px;
+font-weight:bold;
+padding:3px;
+position:fixed;
+_position:absolute;
+right:0;
+top:0;
+width:60px;
+z-index:60;
+}
+/* cke iframe doc styles */
+.cke_iframe .item{padding:5px 5px;cursor:pointer;border:1px dotted #eee;}
+.cke_iframe .item:hover{border-color:#b9e835;background:#eee;}
+.cke_iframe .item .left{width:70%;}
+.cke_iframe .item .ct{padding-right:20px;border-right:2px dotted #f4f4f4;}
+.cke_iframe .item .desc{padding-left:10px;text-align:left;}
+.cke_iframe .desc h2{font-size:120%;font-weight:bold;line-height:1.3em;text-align:left;}
+.cke_iframe .desc h3{margin-top:10px;}
+.cke_iframe .item .right{width:28%;}
+
+/* Ò³ÃæÑùÊ½ */
+.item{position:relative;}
+#itemCover{position:absolute;display:none;left:0;top:0;background:#a4cceb;}

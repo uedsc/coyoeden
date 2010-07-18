@@ -62,6 +62,10 @@ z-index:60;
 .cke_iframe .item .right{width:28%;}
 .cke_iframe .pp,.cke_iframe .pt{width:auto;margin:0 auto;}
 
+/* 页面样式 */
+.item{position:relative;}
+#itemCover{position:absolute;display:none;left:0;top:0;background:#a4cceb;}
+
 /* 碎片样式 - 参照根目录下面的css/content.css */
 .flash{z-index:1;}
 .sp_space{margin-bottom:10px;}
