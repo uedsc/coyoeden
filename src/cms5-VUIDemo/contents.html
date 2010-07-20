@@ -14,7 +14,7 @@
 		<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
 		<script type="text/javascript" src="js/sohu.diy.js"></script>
 		<script type="text/javascript" src="js/sohu.cycleSlide.js"></script>
-		<script type="text/javascript" src="js/sohu_cms5_contentlist.js"></script>
+		<script type="text/javascript" src="js/sohu.diyCTFactory.js"></script>
 		<title>CMS5内容模板</title>
 	</head>
 	<body>
@@ -27,7 +27,8 @@
 						<input type="text" class="cpk" size="9" name="lineColor" value="#808080" readonly="readonly"/>
 					</div>
 					<div class="left">
-						高度：<input type="text" class="txtH" name="lineH" size="9" value="10"/>
+						<label for="txtELH">高度(px)：</label><input id="txtELH" type="text" class="txtH" name="lineH" size="9" value="10"/>
+						<label for="txtELW">宽度(%)：</label><input id="txtELW" type="text" class="txtW" name="lineW" size="9" value="100"/>
 					</div>
 					<div class="left">
 						<input type="checkbox" class="cbxLine" name="showLine" />
@@ -125,7 +126,7 @@
 					<li class="item" id="Image01" title="图左字右">
 						<img src="img/pic171x70_01.gif" alt=""/>
 						<div class="ctWrap">
-						<div class="ct ctImg pt">
+						<div class="ct shimage pt">
 						  <a href="#"><img height="70" border="0" width="70" title="搜狐财经,公司报道,商业" alt="中铝,力拓" src="static/img/img.jpg" class="l"/></a>
 						  <h3><a href="#" target="_blank">中铝证实已全额行使力拓配股权</a></h3>
 						  <p>力拓152亿美元的配股发行中，中铝全额行使配股权，维持9%持股比例<a href="#" target="_blank">...详细&gt;&gt;</a></p>
@@ -135,7 +136,7 @@
 					<li class="item" id="Image02" title="图右字左">
 						<img src="img/pic171x70_02.gif" alt=""/>
 						<div class="ctWrap">
-						<div class="ct ctImg pt">
+						<div class="ct shimage pt">
 						  <a href="#"><img height="70" border="0" width="70" title="搜狐财经,公司报道,商业" alt="中铝,力拓" src="static/img/img.jpg" class="r"/></a>
 						  <h3><a href="#" target="_blank">中铝证实已全额行使力拓配股权</a></h3>
 						  <p>力拓152亿美元的配股发行中，中铝全额行使配股权，维持9%持股比例<a href="#" target="_blank">...详细&gt;&gt;</a></p>
@@ -145,13 +146,13 @@
 					<li class="item" id="Image03" title="单张图片">
 						<img src="img/pic105x70_01.gif" alt=""/>
 						<div class="ctWrap">
-							<div class="ct ctImg sp_space"><a href="#"><img height="225" width="300" src="static/img/img.jpg"/></a></div>
+							<div class="ct shimage sp_space"><a href="#"><img height="225" width="300" src="static/img/img.jpg"/></a></div>
 						</div>
 					</li>
 					<li class="item" id="Image04" title="图片列表">
 						<img src="img/pic108x70_01.gif" alt=""/>
 						<div class="ctWrap">
-						<div class="ct ctImg pl pl_4c">
+						<div class="ct shimage pl pl_4c">
 							<ul>
 							<li><a href="#"><img height="50" width="67" src="static/img/img.jpg"/><span>图片尺寸:67x50</span></a></li>
 							<li><a href="#"><img height="50" width="67" src="static/img/img.jpg"/><span>图片尺寸:67x50</span></a></li>
@@ -164,7 +165,7 @@
 					<li class="item" id="Image05" title="图上字下">
 						<img src="img/pic108x70_02.gif" alt=""/>
 						<div class="ctWrap">
-						<div class="ct ctImg pt">
+						<div class="ct shimage pt">
 						  <a href="#"><img height="225" border="0" width="300" title="搜狐财经,公司报道,商业" alt="中铝,力拓" src="static/img/img.jpg"/></a>
 						  <h3><a href="#" target="_blank">中铝证实已全额行使力拓配股权</a></h3>
 						  <p>力拓152亿美元的配股发行中，中铝全额行使配股权，维持9%持股比例<a href="#" target="_blank">...详细&gt;&gt;</a></p>
@@ -186,7 +187,7 @@
 							<div id="Text01" class="item" title="第一行文字14号加粗，第二行文字12号">
 								<img src="img/pic160_56_01.gif" alt=""/>
 								<div class="ctWrap">
-								<div class="ct txt txt_main">
+								<div class="ct shtext txt txt_main">
 								  <h5><a href="#">人渣！富家子飙车撞死毕业生</a></h5>
 								  <p><a href="#">[小心]公司员工上班下载A片被辞 [恶搞]《奥特曼大战猪流感》</a><br/>
 								  <a href="#">[小心]公司员工上班下载A片被辞 [恶搞]《奥特曼大战猪流感》</a></p>
@@ -196,7 +197,7 @@
 							<div id="Text02" class="item" title="第一行文字16号加粗，第二行文字12号">
 								<img src="img/pic160_56_02.gif" alt=""/>
 								<div class="ctWrap">
-								<div class="ct txt txt_main">
+								<div class="ct shtext txt txt_main">
 								  <h4><a href="#">人渣！富家子飙车撞死毕业生</a></h4>
 								  <p><a href="#">[小心]公司员工上班下载A片被辞 [恶搞]《奥特曼大战猪流感》</a><br/>
 								  <a href="#">[小心]公司员工上班下载A片被辞 [恶搞]《奥特曼大战猪流感》</a></p>
@@ -208,7 +209,7 @@
 							<div id="Text03" class="item" title="12号文字，文字前带·">
 								<img src="img/pic160_56_03.gif" alt=""/>
 								<div class="ctWrap">
-								<div class="ct list12"><ul>
+								<div class="ct shtext list12"><ul>
 								<li>·<a href="#" target="_blank">从“金砖四国峰会” 看世界潮流</a></li>
 								<li>·<a href="#" target="_blank">从“金砖四国峰会” 看世界潮流</a></li>
 								</ul><div style="text-align: right;"><a href="#" target="_blank">更多 &gt;&gt; </a></div>
@@ -218,7 +219,7 @@
 							<div id="Text04" class="item" title="14号文字，文字前带·">
 								<img src="img/pic160_56_04.gif" alt=""/>
 								<div class="ctWrap">
-								<div class="ct list14"><ul>
+								<div class="ct shtext list14"><ul>
 								<li>·<a href="#" target="_blank">从“金砖四国峰会” 看世界潮流</a></li>
 								<li>·<a href="#" target="_blank">从“金砖四国峰会” 看世界潮流</a></li>
 								</ul><div style="text-align: right;"><a href="#" target="_blank">更多 &gt;&gt; </a></div>
@@ -230,7 +231,7 @@
 							<div id="Text05" class="item" title="第一行文字16号加粗，第二行文字14号">
 								<img src="img/pic160_56_01.gif" alt=""/>
 								<div class="ctWrap">
-								<div class="ct txt txt_main">
+								<div class="ct shtext txt txt_main">
 								  <h4><a href="#">人渣！富家子飙车撞死毕业生</a></h4>
 								  <p style="text-align: left;"><a href="#">[小心]公司员工上班下载A片被辞 [恶搞]《奥特曼大战猪流感》</a><br/>
 								  <a href="#">[小心]公司员工上班下载A片被辞 [恶搞]《奥特曼大战猪流感》</a></p>
@@ -240,7 +241,7 @@
 							<div id="Text06" class="item" title="第一行文字18号加粗，第二行文字12号">
 								<img src="img/pic160_56_01.gif" width="160" height="56" alt="第一行文字18号加粗，第二行文字12号"/>
 								<div class="ctWrap">
-								<div class="ct txt txt_main">
+								<div class="ct shtext txt txt_main">
 								  <h3><a href="#">人渣！富家子飙车撞死毕业生</a></h3>
 								  <p><a href="#">[小心]公司员工上班下载A片被辞 [恶搞]《奥特曼大战猪流感》</a><br/>
 								  <a href="#">[小心]公司员工上班下载A片被辞 [恶搞]《奥特曼大战猪流感》</a></p>
@@ -252,7 +253,7 @@
 							<div id="Text07" class="item" title="第一行文字18号加粗，第二行文字14号">
 								<img src="img/pic160_56_01.gif" width="160" height="56" alt="第一行文字18号加粗，第二行文字14号"/>
 								<div class="ctWrap">
-								<div class="ct txt txt_main">
+								<div class="ct shtext txt txt_main">
 								  <h3><a href="#">人渣！富家子飙车撞死毕业生</a></h3>
 								  <p><a href="#">[小心]公司员工上班下载A片被辞 [恶搞]《奥特曼大战猪流感》</a><br/>
 								  <a href="#">[小心]公司员工上班下载A片被辞 [恶搞]《奥特曼大战猪流感》</a></p>
@@ -269,11 +270,12 @@
 				</div>
 			</div>
 		</div>
-	<script type="text/javascript">
-	//<![CDATA[
-	sohu_cms5_contentlist.Init({});
-	//]]>
-	</script>
+		<div id="ctWrap"></div>
+		<script type="text/javascript">
+		//<![CDATA[
+		sohu.diyCTFactory.Init({});
+		//]]>
+		</script>
   
 	</body>
 </html>

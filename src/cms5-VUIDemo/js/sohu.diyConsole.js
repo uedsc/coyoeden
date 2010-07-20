@@ -113,15 +113,7 @@ sohu.diyConsole=function(opts){
 			_this.Editor.CurSec.Deactive();
 		};
 	};
-	p.onLoaded=function(){
-		//html editor
-		sohu.diyHtmlEditor.Init({
-			onHtmlEditorInit:function(editor){
-				_this.HtmlEditor=editor;
-				sohu.diyConsole.HtmlEditor=editor;
-			}
-		});
-	};
+	p.onLoaded=function(){};
 	p.Init=function(){
 		//ºáÇÐÑ¡ÔñÆ÷
 		$("li",p._$areaSelector).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");})

@@ -101,7 +101,7 @@ sohu.diySection.prototype.AddSub=function($secSub){
 };
 /**
  * 添加内容-在分栏的末尾添加内容
- * @param {Object} ct 待添加内容对象。如{html:'xx',flash:false}
+ * @param {Object} ct 待添加内容对象。如{html0:'xx',flash:false}
  */
 sohu.diySection.prototype.AddContent=function(ct){
 	var _this=this;
@@ -113,7 +113,7 @@ sohu.diySection.prototype.AddContent=function(ct){
 			alert(ct.Validation.msg);
 			return;
 		};
-		this.Editor.UpdateCT(ct.$Layout,1);
+		this.Editor.UpdateCT(ct,1);
 		this.Contents.push(ct);
 	}else{
 		/* 更新 */

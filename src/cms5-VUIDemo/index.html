@@ -14,11 +14,6 @@
 		<script src="js/jquery.json-2.2.min.js" type="text/javascript"></script> 
 		<script type="text/javascript" src="js/jqModal.js"></script>
 		<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
-		
-		<!--ckeditor-->
-		<script type="text/javascript" src="editor/ckeditor/ckeditor_source.js"></script>
-		<script type="text/javascript" src="editor/ckeditor/adapters/jquery.js"></script>
-		<!--/ckeditor-->
 	</head>
     <body>
 		<!--通用头-->
@@ -150,7 +145,7 @@
 			<!--内容模板-->
 			<div id="content_selector">
 				<div class="txtLoading">Loading...</div>
-				<iframe id="ifContentList" name="ifContentList" src="" frameborder="0" rel="editor1.html" scrolling="no"></iframe>
+				<iframe id="ifContentList" name="ifContentList" src="" frameborder="0" rel="contents.html" scrolling="no"></iframe>
 			</div>
 			<!--page tip-->
 			<div id="pageTip"></div>
@@ -158,12 +153,12 @@
 			<div id="ctWrap"></div>
 		</div>
 		<!--ckeditor-->
-		<div id="content_selector1" class="jqmWindow">
+		<div id="jqmWin1" class="jqmWindow">
 			<div class="jqmTitle">
 	            <span class="jqmTitleText">添加内容</span>
 				<button class="jqmClose">X</button>
 	        </div>
-			<textarea class="htmlEditor" cols="40" id="editor1" name="editor1" rows="10"></textarea>
+			<div class="jqmCT"></div>
 			<div class="jqmActions">
 				<a class="jqmBtn jqmOk" title="确定" href="#"><span>确定</span></a>
 				<a class="jqmBtn jqmClose" title="取消" href="#"><span>取消</span></a>
@@ -176,9 +171,6 @@
 	<script type="text/javascript" src="js/sohu.diySection.js"></script>
 	<script type="text/javascript" src="js/sohu.diyArea.js"></script>
 	<script type="text/javascript" src="js/sohu.diyConsole.js"></script>
-	<!--ckeditor-->
-	<script type="text/javascript" src="js/sohu.diyHtmlEditor.js"></script>
-	<!--/ckeditor-->
 	
 	<script type="text/javascript">
 	//<![CDATA[

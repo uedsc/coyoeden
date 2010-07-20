@@ -13,6 +13,7 @@ sohu.diyContent=function(opts){
 	this.Editor=this.Sec.Editor;//分栏编辑器
 	this.MaxWidth=this.Sec.Width;
 	this.ID="ct_"+this.Type+"_"+sohu.diyConsole.RdStr(8);
+	this.onDomed=null;/* 被添加到dom树后的回调函数 */
 	
 	//private property
 	var p={opts:opts};
@@ -60,8 +61,10 @@ sohu.diyContent=function(opts){
 		//将flash对象呈现出来
 		var fOpt={tplID:this.$Layout.tplID};
 		if(opts.scale){fOpt.w=this.MaxWidth;};
-		this.$Layout.flashObj=new sohu.diyTp.Flash(fOpt);
-		this.$Layout.flashObj.Render(this.$Layout);
+		this.onDomed=function(mode){
+			this.$Layout.flashObj=new sohu.diyTp.Flash(fOpt);
+			this.$Layout.flashObj.Render(this.$Layout);
+		};
 	};
 	this.$Layout.attr("id",this.ID);
 };
@@ -90,10 +93,10 @@ sohu.diyContent.prototype.Validate=function(){
 	var _this=this;
 	this.SetValidation(true);
 	
-	var commonValidate=function(type,msg){
-		_this.$Layout=$(_this.Meta.html0).filter("."+type);
-		if(_this.$Layout.length==0||(!_this.$Layout.is("."+_this.__p.opts.cl))){
-			_this.SetValidation(false,msg);
+	var commonValidate=function(ct,msg){
+		ct.$Layout=$(ct.Meta.html0).filter("."+ct.Type);
+		if(ct.$Layout.length==0||(!ct.$Layout.is("."+ct.__p.opts.cl))){
+			ct.SetValidation(false,msg);
 		};
 	};
 	
@@ -111,15 +114,16 @@ sohu.diyContent.prototype.Validate=function(){
 			}
 		break;
 		case "shflash":
+			this.$Layout=$(this.Meta.html0);
 		break;
 		case "shline":
-			commonValidate(this.Type,"Html内容不符合{空行}模板规范");
+			commonValidate(this,"Html内容不符合{空行}模板规范");
 		break;
 		case "shimage":
-			commonValidate(this.Type,"Html内容不符合{图文}模板规范");
+			commonValidate(this,"Html内容不符合{图文}模板规范");
 		break;
 		case "shtext":
-			commonValidate(this.Type,"Html内容不符合{文本}模板规范");
+			commonValidate(this,"Html内容不符合{文本}模板规范");
 		break;
 		default:
 			this.SetValidation(false,"Html内容不符合可视化专题模板规范");

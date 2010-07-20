@@ -1,7 +1,7 @@
 /**
  * 搜狐cms5内容模板类定义
  */
-var sohu_cms5_ct={
+sohu.diyTplFactory={
 	/**
 	 * 关闭内容选择对话框
 	 */
@@ -14,17 +14,17 @@ var sohu_cms5_ct={
 	 * @param {Boolean} cls是否关闭对话框
 	 */
 	submit:function(ct,cls){
-		sohu_cms5_contentlist.SelectedContent=ct;
+		sohu.diyCTFactory.CurCT=ct;
 		parent.bos.Editor.CurSec.AddContent(ct);
 		if (cls) {
-			sohu_cms5_ct.cls();
+			sohu.diyTplFactory.cls();
 		};
 	}
 };
 /**
  * 空行的设置类
  */
-sohu_cms5_ct.Line=function(opts){
+sohu.diyTplFactory.Line=function(opts){
 	var _this=this;
 	//属性定义-用户设置
 	this.layoutID=opts.layoutID||"ctEmptyLine";//模板编号
@@ -75,19 +75,24 @@ sohu_cms5_ct.Line=function(opts){
 		}).blur(function(evt){
 			_this.height=parseInt(this.value);
 			_this.height=isNaN(_this.height)?10:_this.height;
+			_this.height=(_this.height>100||_this.height<1)?10:_this.height;
+			this.value=_this.height;
 		});
 		/* input for width */
-		_this.$txtWidth=_this.$layoutCfg.find(_this.css._txtW).keyup(function(evt){
+		_this.$txtWidth=_this.$layoutCfg.find(_this.css_txtW).keyup(function(evt){
 			/* handler for keyup evt */
 			if(!StringUtils.isPlusInt(this.value)){
 				this.value="100";
 				this.select();
 			}
+			
 		}).blur(function(evt){
 			/* handler for blur evt */
 			//_this.width=parseInt(this.value);
 			//_this.width=isNaN(_this.width)?100:_this.width;
 			_this.width=isNaN(_this.width=parseInt(this.value))?100:_this.width;
+			_this.width=(_this.width>100||_this.width<10)?100:_this.width;
+			this.value=_this.width;
 		});
 		//确定按钮
 		_this.$btnOK=_this.$layoutCfg.find(_this.css_btnOK).click(function(evt){
@@ -98,12 +103,20 @@ sohu_cms5_ct.Line=function(opts){
 	};
 	p.initLayout();
 };
-sohu_cms5_ct.Line.prototype.Submit=function(opt){
+sohu.diyTplFactory.Line.prototype.Submit=function(opt){
 	this.cLine=this.$cbkLine[0].checked;
-	var lineWrap=$("<div/>").html(this.html);
-	var hr=lineWrap.find("hr");
-	var line=lineWrap.find(".vspace");
-	if(this.cLine){line.addClass("cline");hr.css("border-color",this.color);}else{
+	sohu.diyCTFactory.$ctWrap.html(this.html);
+	var hr=sohu.diyCTFactory.$ctWrap.find("hr");
+	var line=sohu.diyCTFactory.$ctWrap.find(".vspace");
+	if(this.cLine){
+		var css={
+			"border-color":this.color,
+			"width":this.width+"%",
+			"left":(100-this.width)/2+"%"
+		};
+		hr.css(css);
+		
+	}else{
 		hr.remove();
 	};
 	var css={"height":this.height+'px'};
@@ -111,15 +124,17 @@ sohu_cms5_ct.Line.prototype.Submit=function(opt){
 	
 	var ct={
 		flash:false,
-		html:lineWrap.html()
+		html0:sohu.diyCTFactory.$ctWrap.html(),
+		isNew:true,
+		type:'shline'
 	};
 	
-	sohu_cms5_ct.submit(ct);
+	sohu.diyTplFactory.submit(ct);
 };
 /**
  * 焦点图选择类
  */
-sohu_cms5_ct.FocusImg=function(opts){
+sohu.diyTplFactory.FocusImg=function(opts){
 		//焦点图选择
 		this.$Layout=$("#cSlide_focusImg").cycleSlide({
 			cssBtnPrev:"#ctFocusImg .btnLeft",
@@ -127,11 +142,11 @@ sohu_cms5_ct.FocusImg=function(opts){
 			step:178,
 			cloneItem:true
 		});
-		this.FlashTplID=null;//flash 模板号
+		this.tplID=null;//flash 模板号
 		var _this=this;
 		var p={};
 		p.onAddFlash=function(evt){
-			_this.FlashTplID=this.id;
+			_this.tplID=this.id;
 			_this.Submit();
 			return false;
 		};
@@ -142,17 +157,19 @@ sohu_cms5_ct.FocusImg=function(opts){
 		).click(p.onAddFlash);
 	
 };
-sohu_cms5_ct.FocusImg.prototype.Submit=function(opt){
+sohu.diyTplFactory.FocusImg.prototype.Submit=function(opt){
 	var ct={};
-	ct.html='<div class="ct flash"></div>';
+	ct.html0='<div class="ct shflash"></div>';
 	ct.flash=true;
-	ct.tplID=this.FlashTplID;
-	sohu_cms5_ct.submit(ct,true);
+	ct.tplID=this.tplID;
+	ct.isNew=true;
+	ct.type='shflash';
+	sohu.diyTplFactory.submit(ct,true);
 };
 /**
  * 图片选择类
  */
-sohu_cms5_ct.Image=function(opts){
+sohu.diyTplFactory.Image=function(opts){
 		//焦点图选择
 		this.$Layout=$("#ctImg");
 		this.tplID=null;//模板号
@@ -171,17 +188,19 @@ sohu_cms5_ct.Image=function(opts){
 		).click(p.onAddImg);
 	
 };
-sohu_cms5_ct.Image.prototype.Submit=function(opt){
+sohu.diyTplFactory.Image.prototype.Submit=function(opt){
 	var ct={};
-	ct.html=this.tplObj.html();
+	ct.html0=this.tplObj.html();
 	ct.flash=false;
 	ct.tplID=this.tplID;
-	sohu_cms5_ct.submit(ct,true);
+	ct.isNew=true;
+	ct.type="shimage";
+	sohu.diyTplFactory.submit(ct,true);
 };
 /**
  * 文本选择类
  */
-sohu_cms5_ct.Text=function(opts){
+sohu.diyTplFactory.Text=function(opts){
 		//文本选择
 		this.$Layout=$("#cSlide_text").cycleSlide({
 			cssBtnPrev:"#ctText .btnLeft",
@@ -205,17 +224,19 @@ sohu_cms5_ct.Text=function(opts){
 		).click(p.onAddText);
 	
 };
-sohu_cms5_ct.Text.prototype.Submit=function(opt){
-	var ct={html:this.tplObj.html()};
+sohu.diyTplFactory.Text.prototype.Submit=function(opt){
+	var ct={html0:this.tplObj.html()};
 	ct.flash=false;
 	ct.tplID=this.tplID;
-	sohu_cms5_ct.submit(ct,true);
+	ct.isNew=true;
+	ct.type="shtext";
+	sohu.diyTplFactory.submit(ct,true);
 };
 /**
  * @author levinhuang
  * 内容模板选择对话框客户端逻辑
  */
-var sohu_cms5_contentlist = function() {
+sohu.diyCTFactory = function() {
     var p={},pub={};
 	p.selectEmptyLine=function(evt){
 		p.setContent(line);
@@ -223,10 +244,10 @@ var sohu_cms5_contentlist = function() {
 	};
     //private area
     p.initVar = function(opts) { 
-		p._line=new sohu_cms5_ct.Line({});/*空行模板对象*/
-		p._flasher=new sohu_cms5_ct.FocusImg({});/*焦点图*/
-		p._img=new sohu_cms5_ct.Image({});/*图片*/
-		p._txt=new sohu_cms5_ct.Text({});/*文本*/
+		p._line=new sohu.diyTplFactory.Line({});/*空行模板对象*/
+		p._flasher=new sohu.diyTplFactory.FocusImg({});/*焦点图*/
+		p._img=new sohu.diyTplFactory.Image({});/*图片*/
+		p._txt=new sohu.diyTplFactory.Text({});/*文本*/
 		pub.$ctWrap=$("#ctWrap");
 	};
     p.onLoaded = function() { 

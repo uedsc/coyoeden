@@ -89,45 +89,22 @@ sohu.diyEditor.prototype.DialogCT=function(mode){
 	var _this=this;
 	this.CurArea.IsEditing=true;
 	this.CurSec.IsAddingContent=true;
-	sohu.diyConsole.HtmlEditor.shmode=mode;
 	//关闭回调
 	var _onClose=function(evt,ui){
 		_this.CurArea.IsEditing=false;
 		_this.CurSec.IsAddingContent=false;
 		_this.RePosition();
-		//jqmHide
-		evt.w.fadeOut('1000',function(){ evt.o.remove(); });
-		//reset editor data
-		sohu.diyConsole.HtmlEditor.setData("");
 	};
 	//打开回调
 	var _onOpen=function(evt,ui){
-		/*
-		 //v2010.7.19
 		var areaDim=_this.CurArea.Dim();
 		var pos=[areaDim.x+areaDim.w/2-300,areaDim.y+areaDim.h/3];
 		_this.CTDialog.dialog("option","position",pos);
 		var ifr=_this.CTDialog.find("#ifContentList");
 		ifr.attr("src",ifr.attr("rel")+"?t="+new Date().getTime());
-		*/
 		
-		if(!sohu.diyConsole.HtmlEditor.shmode){
-			//添加内容
-			_this.$CTDialogTitle.html("添加内容");
-			//sohu.diyConsole.HtmlEditor.setData("");
-		}else{
-			//编辑现有内容
-			var ct=_this.CurCT.$Layout.clone();
-			ct.find(sohu.diyConsole.Dragger.cssHandle).remove();
-			_this.$CTWrap.empty().append(ct);
-			sohu.diyConsole.HtmlEditor.setData(_this.$CTWrap.html());
-			_this.$CTDialogTitle.html("编辑内容:"+sohu.diyConsole.HtmlEditor.lang[_this.CurCT.Type].toolbar);
-		}
-		//show the jqm
-		evt.w.show();
 	};
-	/*
-	//v2010.7.19:jquery-ui的弹框插件与ckeditor有js冲突，导致ckeditor文本框无法获得焦点
+
 	sohu.diyConsole.toggleLoading();
 	if(!mode){
 		this.CTDialog=$(this.__p.opts.cssCTSelector).dialog({
@@ -144,50 +121,41 @@ sohu.diyEditor.prototype.DialogCT=function(mode){
 		sohu.diyConsole.CurCT.isNew=false;
 	}
 	this.CTDialog.dialog("open");
-	*/
-	if (!mode) {
-		this.$CTDialogTitle=$("#content_selector1 .jqmTitleText");
-		this.CTDialog1 = $("#content_selector1").jqm({
-			modal: true,
-			onHide: _onClose,
-			onShow: _onOpen
-		}).jqmShow();
-	}else{
-		this.CTDialog1.jqmShow();
-	};
 };
 /**
  * 关闭内容选择框
  * @param {Object} opts 选项
  */
 sohu.diyEditor.prototype.CloseCTDialog=function(opts){
-	/*
-	//v2010.7.19
+
 	if(!this.CTDialog) return;
 	this.CTDialog.dialog("close");
-	*/
-	this.CTDialog1.jqmHide();
+	
 };
 /**
  * 更新diyEditor的内容-用于分栏
- * @param {Object} $ct 内容(jq dom)
+ * @param {diyContent} ct 内容对象
  * @param {int} mode 更新内容的类型 1标识末追加；0表示替换；-1表示首追加
+ * @param {Function} cbk 更新内容后的回调函数
  */
-sohu.diyEditor.prototype.UpdateCT=function($ct,mode){
+sohu.diyEditor.prototype.UpdateCT=function(ct,mode){
 	switch(mode){
 		case 0:
 			this.CurSec.Cls();
-			this.CurSec.$Layout.append($ct);
+			this.CurSec.$Layout.append(ct.$Layout);
 		break;
 		case 1:
-			this.CurSec.$Layout.append($ct);
+			this.CurSec.$Layout.append(ct.$Layout);
 		break;
 		case -1:
-			this.CurSec.$Layout.prepend($ct);
+			this.CurSec.$Layout.prepend(ct.$Layout);
 		break;
 		default:
-			this.CurSec.$Layout.append($ct);
+			this.CurSec.$Layout.append(ct.$Layout);
 		break;
+	};
+	if(ct.onDomed){
+		ct.onDomed(mode);
 	};
 };
 /**
@@ -232,7 +200,7 @@ sohu.diyEditor.prototype.AttachTo=function(sec){
 sohu.diyEditor.prototype.Show=function(){
 	this.RePosition();
 	this.CurArea.$Layout.append(this.$LayoutA);
-	this.CurArea.$Layout.append(this.$LayoutF);		
+	//this.CurArea.$Layout.append(this.$LayoutF);		
 	
 	if(!this.CurSec.Divisible){
 		this.$Layout.btn.addSec.hide();	
@@ -256,7 +224,7 @@ sohu.diyEditor.prototype.RePosition=function(){
 	if(!this.CurSec) return;
 	var d=this.CurSec.Dim();
 	this.$LayoutA.css({width:d.w-12,top:d.y-31,left:d.x,opacity:0.8});/*宽要减去12个像素的留白;31是高度*/
-	this.$LayoutF.css({width:d.w-12,top:d.y+d.h-8,left:d.x});/*8是footer的高度*/
+	//this.$LayoutF.css({width:d.w-12,top:d.y+d.h-8,left:d.x});/*8是footer的高度*/
 	this.$LayoutT.show().css({width:d.w}).html("w:"+d.w+"px");
 	return this;
 };
