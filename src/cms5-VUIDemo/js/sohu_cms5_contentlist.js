@@ -10,7 +10,7 @@ var sohu_cms5_ct={
 	},
 	/**
 	 * 提交内容对象
-	 * @param {Object} ct 内容对象
+	 * @param {Object} ct 内容对象,如{isNew:true,flash:false,html0:''}
 	 * @param {Boolean} cls是否关闭对话框
 	 */
 	submit:function(ct,cls){
@@ -30,16 +30,19 @@ sohu_cms5_ct.Line=function(opts){
 	this.layoutID=opts.layoutID||"ctEmptyLine";//模板编号
 	this.css_cpk=opts.css_cpk||".cpk";//cpk css选择器
 	this.css_txtH=opts.css_txtH||".txtH";//高度录入框 css选择器
+	this.css_txtW=opts.css_txtW||".txtW";//宽度录入框
 	this.css_btnOK=opts.css_btnOK||".btnOK";
 	this.css_cbkLine=opts.css_cbkLine||".cbxLine";
 	this.color=opts.color||"#808080";
 	this.height=opts.height||10;
+	this.width=opts.width||100;/* 高度％ */
 	this.cLine=opts.cLine||false;//是否中间显示分割线
 	//属性定义-dom引用
 	this.html=null;//模板html
 	this.$layoutCfg=null;//设置界面dom
 	this.$txtCpk=null;//dom-颜色选择器colorpicker
 	this.$txtHeight=null;//dom-高度输入框
+	this.$txtWidth=null;/* input $obj for width */
 	this.$btnOK=null;//提交按钮
 	this.$cbkLine=null;//显示虚线复选框
 	
@@ -72,6 +75,19 @@ sohu_cms5_ct.Line=function(opts){
 		}).blur(function(evt){
 			_this.height=parseInt(this.value);
 			_this.height=isNaN(_this.height)?10:_this.height;
+		});
+		/* input for width */
+		_this.$txtWidth=_this.$layoutCfg.find(_this.css._txtW).keyup(function(evt){
+			/* handler for keyup evt */
+			if(!StringUtils.isPlusInt(this.value)){
+				this.value="100";
+				this.select();
+			}
+		}).blur(function(evt){
+			/* handler for blur evt */
+			//_this.width=parseInt(this.value);
+			//_this.width=isNaN(_this.width)?100:_this.width;
+			_this.width=isNaN(_this.width=parseInt(this.value))?100:_this.width;
 		});
 		//确定按钮
 		_this.$btnOK=_this.$layoutCfg.find(_this.css_btnOK).click(function(evt){
@@ -211,6 +227,7 @@ var sohu_cms5_contentlist = function() {
 		p._flasher=new sohu_cms5_ct.FocusImg({});/*焦点图*/
 		p._img=new sohu_cms5_ct.Image({});/*图片*/
 		p._txt=new sohu_cms5_ct.Text({});/*文本*/
+		pub.$ctWrap=$("#ctWrap");
 	};
     p.onLoaded = function() { 
 		$("#contentAccordion").accordion();
