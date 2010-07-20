@@ -15,6 +15,8 @@ CKEDITOR.plugins.setLang( 'shline', 'zh-cn',
 		linestyleDotted : '虚线',
 		linecolor		: '分割线颜色',
 		invalidHeight	: '属性高度无效',
-		invalidWidth	: '属性宽度无效'	
+		invalidWidth	: '属性宽度无效',
+		menu			: '空行属性'	,
+		deleteMe		: '删除空行'
 	}
 });

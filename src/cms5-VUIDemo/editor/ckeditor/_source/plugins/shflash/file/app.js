@@ -20,10 +20,10 @@ var this$ = function() {
 	p.select=function(evt){
 		 var _this=$(this);
 		 var $ctWrap=$("#ctWrap").find(".ct").attr("id","ct_"+new Date().getTime()).end();
-		 p._cke.shFlashID=_this.parent().attr("id");
-		 p._cke.shFlash=new parent.sohu.diyTp.Flash({tplID:p._cke.shFlashID});	
-		 p._cke.shFlash.Render($ctWrap.find(".ct"));	 
-		 p._cke.shHtml=$ctWrap.html();
+		 p._cke.M.flashID=_this.parent().attr("id");
+		 p._cke.M.flash=new parent.sohu.diyTp.Flash({tplID:p._cke.shFlashID});	
+		 p._cke.M.flash.Render($ctWrap.find(".ct"));	 
+		 p._cke.M.html=$ctWrap.html();
 		 //p._cke.shFlashID=_this.parent().attr("id");
 		 //p._cke.shFlash=new parent.sohu.diyTp.Flash({tplID:p._cke.shFlashID});
 		 p._ckeDlg.hide();

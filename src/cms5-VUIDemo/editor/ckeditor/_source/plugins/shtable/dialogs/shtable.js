@@ -38,6 +38,11 @@ Table plugin for sohu.com
 			minHeight : CKEDITOR.env.ie ? 310 : 280,
 			onShow : function()
 			{
+				/* 定义editor目前的插件的元信息 Meta*/
+				editor.M={
+					type:'shtable',
+					dom:null
+				};
 				// Detect if there's a selected table.
 				var selection = editor.getSelection(),
 					ranges = selection.getRanges(),
@@ -225,7 +230,8 @@ Table plugin for sohu.com
 
 				// Insert the table element if we're creating one.
 				if ( !this._.selectedElement )
-					editor.insertElement( table );
+					//editor.insertElement( table );
+					editor.setData(table.getOuterHtml());
 				// Properly restore the selection inside table. (#4822)
 				else
 					selection.selectBookmarks( bms );

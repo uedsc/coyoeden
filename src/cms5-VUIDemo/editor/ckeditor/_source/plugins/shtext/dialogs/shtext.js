@@ -10,12 +10,17 @@
 	//1,dialog callback functions
 	var dlgcbk={};
 	dlgcbk.show=function(editor,dlg){
-		editor.shHtml=null;
+		/* 定义editor目前的插件的元信息 Meta*/
+		editor.M={
+			type:'shtext',
+			dom:null,
+			html:null
+		};
 	};
 	dlgcbk.hide=function(editor,dlg){
 		//use dlgInfo.ifDoc to reference the iframe document
-		if(editor.shHtml){
-			editor.setData(editor.shHtml);
+		if(editor.M.html){
+			editor.setData(editor.M.html);
 		}
 	};
 	//2,dialog content definition
@@ -40,8 +45,8 @@
 						//iframe is loaded
 						dlgInfo.iframe=document.getElementById(this._.frameId);
 						dlgInfo.ifDoc=dlgInfo.iframe.contentWindow;
-						dlgInfo.iframe.width=dlgInfo.ifDoc.innerWidth;
-						dlgInfo.iframe.height=dlgInfo.ifDoc.innerHeight;	
+						//dlgInfo.iframe.width=dlgInfo.ifDoc.innerWidth;
+						//dlgInfo.iframe.height=dlgInfo.ifDoc.innerHeight;	
 					}
 				}
 			]

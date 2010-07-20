@@ -1,4 +1,7 @@
-/*碎片样式*/
+/* 说明:content.css是给ckeditor编辑器用的,实时显示编辑效果  */
+/* 所有编辑状态下的内容，加一个背景以便用户编辑 */
+.ct{margin:15px 8px;background:#e9f0f9;border:1px dotted #ccc;}
+/* 碎片样式 */
 .flash{z-index:1;}
 .sp_space{margin-bottom:10px;}
 

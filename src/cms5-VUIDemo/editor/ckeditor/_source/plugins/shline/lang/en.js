@@ -15,6 +15,8 @@ CKEDITOR.plugins.setLang( 'shline', 'en',
 		linestyleDotted : 'Dotted line',
 		linecolor		: 'Line Color',
 		invalidHeight	: 'Invalid height',
-		invalidWidth	: 'Invalid width'	
+		invalidWidth	: 'Invalid width',
+		menu			: 'SHLine Properties',
+		deleteMe		: 'Delete SHLine'		
 	}
 });

@@ -114,7 +114,13 @@ sohu.diyConsole=function(opts){
 		};
 	};
 	p.onLoaded=function(){
-		
+		//html editor
+		sohu.diyHtmlEditor.Init({
+			onHtmlEditorInit:function(editor){
+				_this.HtmlEditor=editor;
+				sohu.diyConsole.HtmlEditor=editor;
+			}
+		});
 	};
 	p.Init=function(){
 		//∫·«–—°‘Ò∆˜
@@ -240,7 +246,8 @@ sohu.diyConsole.toggleLoading=function(){
 sohu.diyConsole.Dragger={
 	ing:false,
 	obj:null,
-	handle:$('<div class="dragHandle"></div>')
+	handle:$('<div class="dragHandle"></div>'),
+	cssHandle:'.dragHandle'
 };
 sohu.diyConsole.CurCT=null;
 //TODO:“∆µΩsohu.stringUtils.js÷–

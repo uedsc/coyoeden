@@ -5,47 +5,68 @@
  */
 sohu.diyHtmlEditor = function() {
     var p={},pub={};
-	p.loadContent=function(){
+	/**
+	 * 往编辑器的iframe文档中注入交互脚本
+	 */
+	p.injectJS=function(){
+		/* 此方法有bug，每次编辑器内容改变后，cke会自动重新生成一个iframe... */
+		var js1='<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>';
+		var js2='<script type="text/javascript" src="js/sohu.diyHtmlEditorInner.js"></script>';
+		var e1=new CKEDITOR.dom.element.createFromHtml(js1,p.editor.document);
+		var e2=new CKEDITOR.dom.element.createFromHtml(js2,p.editor.document);
+		p.editor.document.getHead().append(e1);
+		p.editor.document.getBody().getParent().append(e2);
+	};
+	p.onEditorInit=function(){
 		if(p._editorType=="ckeditor"){
 			p.editor=p.$editor.ckeditorGet();
 			p.editor.siteRoot=CKEDITOR.basePath.replace("editor/ckeditor/","");
 			p.editor.getContent=p.editor.getData;
-			//p.editor.setData($("#test").html());
 		}else{
 			p.editor=p.$editor.tinymce();//tinymce.activeEditor;
-			//p.editor.execCommand('mceInsertContent',false,$("#test").html());
-		}
+		};
 		//scripts used by the document
 		//$(p.editor.document.$).find("head").append('<script src="'+p.editor.siteRoot+"js/sohu.diy_utf8.js"+'" type="text/javascript"></script>');
 		
-		return;
 		//load editing content if exists
-		if(parent.sohu.diyConsole.CurCT){
-			p.isNew=false;
-			p.editor.execCommand('mceInsertContent',false,parent.sohu.diyConsole.CurCT.$Layout.html);
-		}
+		if(sohu.diyConsole.CurCT){
+			//p.editor.execCommand('mceInsertContent',false,sohu.diyConsole.CurCT.$Layout.html);
+			p.editor.setData(sohu.diyConsole.CurCT.$Layout.html);
+		};
+		
+		//用户是否提供了oninit回调
+		if(p._opts.onHtmlEditorInit){
+			p._opts.onHtmlEditorInit(p.editor);
+		};
+		
+		/* 编辑器iframe文档内部js交互 */
+		//p.injectJS();
 	};
 	p.cls=function(){
-		parent.bos.CloseCTDialog();
+		//parent.bos.CloseCTDialog();
+		bos.CloseCTDialog();
+		return false;
 	};
-	p.isNew=true;
 	p.submit=function(evt){
 		var html=p.editor.getContent();
-		alert(html);return;
-		if(p.isNew){
+		if(!p.editor.shmode){
+			/* 新增 */
 			p.ct={
 				flash:false,
-				html:html,
+				html0:html,
 				isNew:true,
-				type:"diy_tbl"
+				type:p.editor.M.type||'ohmygod'
 			};
 		}else{
-			p.ct=parent.sohu.diyConsole.CurCT.$Layout;
+			/* 更新 */
+			var ct=$(html).filter(".ct");
+			p.ct=sohu.diyConsole.CurCT.$Layout;
 			p.ct.isNew=false;
-			p.ct.html=html;	
+			p.ct.html0=ct.length>0?ct.html():ct.find(".ct").html();
+			p.ct.html0=p.ct.html0||"";	
 		}
-		parent.bos.Editor.CurSec.AddContent(p.ct);
-		p.cls();
+		bos.Editor.CurSec.AddContent(p.ct);
+		return p.cls();
 	};
 	p.initTinyMCE=function(){
 		p.$editor=$('textarea.htmlEditor').tinymce(p._tinyMCECfg);
@@ -56,13 +77,16 @@ sohu.diyHtmlEditor = function() {
 	p.initCKEditor=function(){
 		// Initialize the editor.
 		// Callback function can be passed and executed after full instance creation.
-		p.$editor=$('.htmlEditor').ckeditor(p.loadContent,p._CKEditorCfg);
+		p.$editor=$('.htmlEditor').ckeditor(p.onEditorInit,p._CKEditorCfg);
 	};
     //private area
     p.initVar = function(opts) { 
+		p._opts=opts||{};
 		p._editorType=opts.editor||"ckeditor";
-		p._btnOk=$("#btnOK");
-		p._btnClose=$("#btnClose");
+		//p._btnOk=$("#btnOK");
+		//p._btnClose=$("#btnClose");
+		p._btnOk=$("#content_selector1 .jqmOk");
+		p._btnClose=$("#content_selector1 .jqmClose");
 		//CFG for tinymce
 		p._tinyMCECfg={
 			// Location of TinyMCE script
@@ -112,7 +136,7 @@ sohu.diyHtmlEditor = function() {
 				username : "Some User",
 				staffid : "991234"
 			},
-			oninit:p.loadContent
+			oninit:p.onEditorInit
 		};
 		//cfg for CKE
 		p._CKEditorCfg= {
@@ -122,13 +146,13 @@ sohu.diyHtmlEditor = function() {
 				['Source','Maximize','-','Undo','Redo','-','SHTable','SHLine','SHText','-','SHImage','SHFlash']
 			],
 			extraPlugins:'shtable,shline,shtext,shimage,shflash',
-			removePlugins:'uicolor,table',
+			removePlugins:'uicolor,table,scayt',
 			menu_groups:'clipboard,form,tablecell,tablecellproperties,tablerow,tablecolumn,shtable,anchor,link,image,flash,checkbox,radio,textfield,hiddenfield,imagebutton,button,select,textarea',
 			contentsCss:[CKEDITOR.basePath+'contents.css','css/global1.3.css','css/content.css'],
 			others:''
 		};
 	};
-    p.onLoaded = function() { 
+	p.initEditor=function(){
 		$("#web_loading").remove();
 		//parent.sohu.diyConsole.toggleLoading();
 		//init htmlEditor instance
@@ -140,9 +164,13 @@ sohu.diyHtmlEditor = function() {
 		//p.initTinyMCE1();
 		}
 	};
+    p.onLoaded = function() { };
     p.initEvents = function(opts) {
-        $(document).ready(p.onLoaded);
-		p._btnClose.click(p.cls);
+        //$(document).ready(p.onLoaded);
+		//初始化htmlEditor
+		p.initEditor();
+		//按钮事件注册
+		//p._btnClose.click(p.cls);
 		p._btnOk.click(p.submit);
     };
     //public area

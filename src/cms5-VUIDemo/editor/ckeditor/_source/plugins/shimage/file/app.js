@@ -19,7 +19,7 @@ var this$ = function() {
 	};
 	p.select=function(evt){
 		 
-		 p._cke.shHtml=$(this).next().html();
+		 p._cke.M.html=$(this).next().html();
 		 p._ckeDlg.hide();
 	};
 	//private area

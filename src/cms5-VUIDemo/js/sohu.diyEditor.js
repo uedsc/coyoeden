@@ -37,6 +37,7 @@ sohu.diyEditor=function(opts){
 		_this.CurSec.ActiveParent();return false;
 	});
 	this.$Parent=this.$LayoutModel.parent();
+	this.$CTWrap=$("#ctWrap");
 	//分栏选择器事件注册
 	$('#hiddenTemplate .sec_selector li').click(function(evt){
 		_this.CurTpl=this.id;
@@ -88,20 +89,45 @@ sohu.diyEditor.prototype.DialogCT=function(mode){
 	var _this=this;
 	this.CurArea.IsEditing=true;
 	this.CurSec.IsAddingContent=true;
+	sohu.diyConsole.HtmlEditor.shmode=mode;
 	//关闭回调
 	var _onClose=function(evt,ui){
 		_this.CurArea.IsEditing=false;
 		_this.CurSec.IsAddingContent=false;
 		_this.RePosition();
+		//jqmHide
+		evt.w.fadeOut('1000',function(){ evt.o.remove(); });
+		//reset editor data
+		sohu.diyConsole.HtmlEditor.setData("");
 	};
 	//打开回调
 	var _onOpen=function(evt,ui){
+		/*
+		 //v2010.7.19
 		var areaDim=_this.CurArea.Dim();
 		var pos=[areaDim.x+areaDim.w/2-300,areaDim.y+areaDim.h/3];
 		_this.CTDialog.dialog("option","position",pos);
 		var ifr=_this.CTDialog.find("#ifContentList");
 		ifr.attr("src",ifr.attr("rel")+"?t="+new Date().getTime());
+		*/
+		
+		if(!sohu.diyConsole.HtmlEditor.shmode){
+			//添加内容
+			_this.$CTDialogTitle.html("添加内容");
+			//sohu.diyConsole.HtmlEditor.setData("");
+		}else{
+			//编辑现有内容
+			var ct=_this.CurCT.$Layout.clone();
+			ct.find(sohu.diyConsole.Dragger.cssHandle).remove();
+			_this.$CTWrap.empty().append(ct);
+			sohu.diyConsole.HtmlEditor.setData(_this.$CTWrap.html());
+			_this.$CTDialogTitle.html("编辑内容:"+sohu.diyConsole.HtmlEditor.lang[_this.CurCT.Type].toolbar);
+		}
+		//show the jqm
+		evt.w.show();
 	};
+	/*
+	//v2010.7.19:jquery-ui的弹框插件与ckeditor有js冲突，导致ckeditor文本框无法获得焦点
 	sohu.diyConsole.toggleLoading();
 	if(!mode){
 		this.CTDialog=$(this.__p.opts.cssCTSelector).dialog({
@@ -118,14 +144,29 @@ sohu.diyEditor.prototype.DialogCT=function(mode){
 		sohu.diyConsole.CurCT.isNew=false;
 	}
 	this.CTDialog.dialog("open");
+	*/
+	if (!mode) {
+		this.$CTDialogTitle=$("#content_selector1 .jqmTitleText");
+		this.CTDialog1 = $("#content_selector1").jqm({
+			modal: true,
+			onHide: _onClose,
+			onShow: _onOpen
+		}).jqmShow();
+	}else{
+		this.CTDialog1.jqmShow();
+	};
 };
 /**
  * 关闭内容选择框
  * @param {Object} opts 选项
  */
 sohu.diyEditor.prototype.CloseCTDialog=function(opts){
+	/*
+	//v2010.7.19
 	if(!this.CTDialog) return;
 	this.CTDialog.dialog("close");
+	*/
+	this.CTDialog1.jqmHide();
 };
 /**
  * 更新diyEditor的内容-用于分栏

@@ -104,22 +104,27 @@ sohu.diySection.prototype.AddSub=function($secSub){
  * @param {Object} ct 待添加内容对象。如{html:'xx',flash:false}
  */
 sohu.diySection.prototype.AddContent=function(ct){
-	var $ct=null;
+	var _this=this;
 	if(ct.isNew){
-		$ct=$("<div/>").html(ct.html).addClass("ct "+ct.type);
-		$.extend($ct,ct);
+		/* 新增 */
 		//创建相应的diyContent实体
-		ct=sohu.diyContent.New({$obj:$ct,sec:this});
-		this.Editor.UpdateCT($ct,1);
+		ct=sohu.diyContent.New({sec:this,ct:ct});
+		if(!ct.Validation.valid){
+			alert(ct.Validation.msg);
+			return;
+		};
+		this.Editor.UpdateCT(ct.$Layout,1);
 		this.Contents.push(ct);
 	}else{
-		var ct0=this.GetCTByID(ct.id);
+		/* 更新 */
+		var ct0=this.GetCTByID(ct.attr("id"));
 		if(!ct0) return;
-		$ct=ct0.$obj;
-		if(ct.html==""){
-			$ct.remove();	
+		if(ct.html0==""){
+			if (window.confirm("HTML内容为空或者不符合模板规范,是否确定删除原内容?")) {
+				ct0.$Layout.remove();
+			};
 		}else{
-			$ct.html(ct.html);
+			ct0.$Layout.html(ct.html0);
 		};//if1	
 	};//if0
 };

@@ -6,13 +6,22 @@
 sohu.diyContent=function(opts){
 	opts=$.extend({},{cl:"ct",clOn:"ctOn",scale:true},opts||{});
 	var _this=this;
-	this.$Layout=opts.$obj;
+	this.Meta=opts.ct;
+	this.$Layout=null;/*在Validate方法中构建*/
+	this.Type=opts.ct.type;/* 内容插件类型 */
 	this.Sec=opts.sec;//分栏
 	this.Editor=this.Sec.Editor;//分栏编辑器
 	this.MaxWidth=this.Sec.Width;
-	this.ID="ct_"+sohu.diyConsole.RdStr(8);
+	this.ID="ct_"+this.Type+"_"+sohu.diyConsole.RdStr(8);
+	
 	//private property
 	var p={opts:opts};
+	this.__p=p;
+	
+	/* 验证内容的有效性 并且构建$Layout*/
+	this.Validate();
+	if(!this.Validation.valid) return;
+	
 	p.mouseEnter=function(evt){
 		_this.$Layout.addClass(opts.clOn);
 		_this.Editor.CurCT=_this;
@@ -42,7 +51,6 @@ sohu.diyContent=function(opts){
 		sohu.diyConsole.Dragger.handle.remove();
 		sohu.diyConsole.CurCT=null;
 	};
-	this.__p=p;
 	
 	//内容的鼠标事件
 	this.$Layout.mouseenter(p.mouseEnter).mouseleave(p.mouseLeave);
@@ -74,6 +82,65 @@ sohu.diyContent.prototype.Dim=function(){
  */
 sohu.diyContent.prototype.DoEdit=function(){
 	this.Editor.DialogCT("update");
+};
+/**
+ * 验证当前内容是否有效
+ */
+sohu.diyContent.prototype.Validate=function(){
+	var _this=this;
+	this.SetValidation(true);
+	
+	var commonValidate=function(type,msg){
+		_this.$Layout=$(_this.Meta.html0).filter("."+type);
+		if(_this.$Layout.length==0||(!_this.$Layout.is("."+_this.__p.opts.cl))){
+			_this.SetValidation(false,msg);
+		};
+	};
+	
+	switch(this.Type){
+		case "ohmygod":
+			this.SetValidation(false,"Html内容不符合可视化专题模板规范");
+		break;
+		case "shtable":
+			this.$Layout=$(this.Meta.html0).filter("table");
+			if(this.$Layout.length==0){
+				this.SetValidation(false,"Html内容无表格标签");
+			}else{
+				//将$Layout替换成符合diy内容模板规范的对象
+				this.$Layout=$("<div/>").addClass(this.__p.opts.cl+" "+this.Type+" clear").append(this.$Layout);
+			}
+		break;
+		case "shflash":
+		break;
+		case "shline":
+			commonValidate(this.Type,"Html内容不符合{空行}模板规范");
+		break;
+		case "shimage":
+			commonValidate(this.Type,"Html内容不符合{图文}模板规范");
+		break;
+		case "shtext":
+			commonValidate(this.Type,"Html内容不符合{文本}模板规范");
+		break;
+		default:
+			this.SetValidation(false,"Html内容不符合可视化专题模板规范");
+		break;
+	};
+	if(this.Validation.valid){
+		$.extend(this.$Layout,this.Meta);
+	};
+	return this;
+};
+/**
+ * 设置验证信息
+ * @param {Boolean} isValid 是否有效
+ * @param {String} 验证结果提示信息
+ */
+sohu.diyContent.prototype.SetValidation=function(isValid,msg){
+	this.Validation={
+		valid:isValid,
+		msg:msg||null
+	};
+	return this;
 };
 /*静态方法*/
 /**

@@ -10,14 +10,19 @@
 	//1,dialog callback functions
 	var dlgcbk={};
 	dlgcbk.show=function(editor,dlg){
-		editor.shHtml=null;
-		editor.shFlashID=null;
+		/* 定义editor目前的插件的元信息 Meta*/
+		editor.M={
+			type:'shflash',
+			dom:null,
+			html:null,
+			flashID:null
+		};
 	};
 	dlgcbk.hide=function(editor,dlg){
 		//use dlgInfo.ifDoc to reference the iframe document
-		if(editor.shHtml){
+		if(editor.M.html){
 			//editor.shFlash=new sohu.diyTp.Flash({tplID:editor.shFlashID});
-			editor.setData(editor.shHtml,function(){
+			editor.setData(editor.html,function(){
 				var $d=$(editor.document.$).find(".shflash");
 				//editor.shFlash.Render($d);
 			});
