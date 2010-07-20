@@ -51,8 +51,8 @@
 						//iframe is loaded
 						dlgInfo.iframe=document.getElementById(this._.frameId);
 						dlgInfo.ifDoc=dlgInfo.iframe.contentWindow;
-						dlgInfo.iframe.width=dlgInfo.ifDoc.innerWidth;
-						dlgInfo.iframe.height=dlgInfo.ifDoc.innerHeight;	
+						//dlgInfo.iframe.width=dlgInfo.ifDoc.innerWidth;
+						//dlgInfo.iframe.height=dlgInfo.ifDoc.innerHeight;	
 					}
 				}
 			]

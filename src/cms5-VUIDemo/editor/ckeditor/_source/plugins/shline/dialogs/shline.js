@@ -221,7 +221,7 @@
 										items: [[editor.lang.shline.linestyleNone, ''], [editor.lang.shline.linestyleSolid, 'solid'], [editor.lang.shline.linestyleDotted, 'dotted']],
 										setup: function(shline){
 											var h = $(shline.$).find("hr").css("borderStyle");
-											if (h && h != '' && h != 'dotted') 
+											if (h && h != '' && h != 'dotted'&&h!='solid') 
 												h = 'dotted';
 											else
 												h=h||'';
