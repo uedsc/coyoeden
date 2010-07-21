@@ -9,7 +9,7 @@
     p.onClick = function(evt) { 
 		this.iEdit("on");
 	};
-	p.initIFrame=function(dom){
+	p.initIframe=function(dom){
 		  var $dom=$(dom);
 		  dom.id=dom.id==""?"ET_"+new Date().getTime():dom.id;
 		  var if0=document.createElement('iframe');
@@ -40,6 +40,42 @@
 		  });
 		  
 	};
+	p.cssToIframe=function(dom){
+		var $this=$(dom);
+		var $body=dom.i$frame.i$Body();
+		//copy styles to the iframe document
+		$this.copyCss($body).copyCss(dom.i$frame);
+		//auto height or width process
+		if($this.css("height")=="auto"){
+			var h=$this.height();
+			dom.i$frame.css("height",h);
+			$body.css("height",h);
+		};
+			
+		/*
+		if($this.css("width")=="auto"){
+			var w=$this.width();
+			dom.i$frame.css("width",w);
+			$body.css("width",w);
+		};
+		*/
+		//update iframe lineheight
+		if(!$.browser.msie){
+			var fs = $this.css('fontSize').replace('px', '');
+            var lh = $this.css('lineHeight').replace('px', '');
+            if(fs && lh){
+                var newHeight = ''+(lh/fs);
+                dom.i$frame.css("lineHeight", newHeight);
+                $body.css("lineHeight",newHeight);
+            };
+		};
+		//we don't need any marign inside the iframe body tag 
+		$body.css("margin",0);	
+		//visibility
+		$body.show();
+		dom.i$frame.show();
+		
+	};
 	/* Public functions that will be merged into the raw element. */
 	/* Add the prefix 'i' to all the functions to avoid name conflicts with other jquery plugins... */
 	var pub={
@@ -48,33 +84,31 @@
 		iEdit:function(mode){
 			var $this=$(this);
 			if(!this.i$frame)
-				p.initIFrame(this);
+				p.initIframe(this);
 				
 			if(mode=="on"){
 				if(this.iEditing) return;
 				
 				this.iEditing=true;
 				$this.hide();
+				
+				p.cssToIframe(this);
 				//show the editbox
 				this.i$frame
-					.iDesignMode("on")
 					.iSetData($this.html())
 					.iFocus()
 					.iSelect();
-				//copy styles to the iframe document
-				$this.copyCss(this.i$frame.i$Body());
-				this.i$frame.show();
-				//focus and select the text in the iframe
-			
+				
 			}else{
 				//hide the editbox
 				if(!this.iEditing) return;
 				
 				this.iEditing=false;
-				$this.show();
+				$this.show().html(this.i$frame.iGetData());
 				this.i$frame.hide();
-			}
-		}
+			};
+			return this;
+		}//iEdit
 		
 	};
 	

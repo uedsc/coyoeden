@@ -24,12 +24,14 @@
 /*=/ckeditor=*/
 
 /* =editable iframe= */
+/*
 iframe.editable{
 display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(255, 255, 255); content: none; cursor: auto; direction: ltr; left: 0px; opacity: 1; overflow: visible; position: relative; quotes: "¡°" "¡±" "¡®" "¡¯"; right: 0px; top: 0px; visibility: visible; text-align: left; font: bold 24px/1.20833 Verdana,Tahoma,Arial,sans-serif; background: none repeat scroll 0% 0% transparent; letter-spacing: -0.483333px; vertical-align: baseline; z-index: 11; caption-side: top; counter-increment: none; counter-reset: none; empty-cells: show; list-style: none outside none; marker-offset: auto; min-height: 0px; min-width: 0px; outline: 0px none rgb(0, 0, 0); page-break-after: auto; page-break-before: auto; table-layout: auto; text-decoration: none; text-indent: 0px; text-shadow: none; text-transform: none; unicode-bidi: embed; white-space: normal; word-spacing: 0px; -moz-appearance: none; -moz-background-inline-policy: continuous; -moz-binding: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; -moz-border-right-colors: none; -moz-border-top-colors: none; -moz-border-radius: 0px 0px 0px 0px; -moz-box-align: stretch; -moz-box-direction: normal; -moz-box-flex: 0; -moz-box-orient: horizontal; -moz-box-ordinal-group: 1; -moz-box-pack: start; -moz-box-sizing: content-box; -moz-column-count: auto; -moz-column-width: auto; -moz-column-gap: 24px; -moz-float-edge: content-box; -moz-force-broken-image-icon: 0; -moz-image-region: auto; -moz-outline-radius: 0px 0px 0px 0px; outline-offset: 0px; -moz-user-focus: none; -moz-user-input: auto; -moz-user-modify: read-only; -moz-user-select: auto; ime-mode: auto; -moz-stack-sizing: stretch-to-fit; -moz-box-shadow: none; -moz-border-image: none; -moz-column-rule: 0px none rgb(255, 255, 255); word-wrap: normal; -moz-transform: none; -moz-transform-origin: 50% 50%; -moz-window-shadow: default; pointer-events: auto; height: 58px; width: 584px; border: 1px dashed rgb(68, 85, 170); max-width: inherit;
 }
 .editable{
 	background-color:#FAFBFC;
 }
+*/
 /* =/editable iframe= */
 #main{min-height:500px;height:auto !important;height:500px;}
 .txtLoading{
@@ -74,6 +76,9 @@ display:none;
 		.bl{bottom:-1px;_bottom:-5px;left:-1px;background-position:-1px -12px;}
 		.br{bottom:-1px;_bottom:-5px;right:-1px;background-position:-12px -12px;}
 .footer{border-top:none;padding-top:0;padding-bottom:0;height:9px;}
+
+/* sohu.diyElement */
+.elmOn{border:1px dashed #ccc;}
 
 /*Òþ²ØÄ£°å*/
 #hiddenTemplate{display:none;}

@@ -14,9 +14,9 @@
 	</head>
 	<body>
 		<h1>DEMO1-sohu.iframeEX</h1>
-		<iframe id="test1" name="name" src="" class="editable" scrolling="no" frameborder="0"></iframe>
+		<iframe id="test1" name="name" src="" class="editable" scrolling="no" frameborder="1" width="500" height="100"></iframe>
 		<br/>
-		<iframe id="test2" name="name" src="" class="editable" scrolling="no" frameborder="0"></iframe>
+		<iframe id="test2" name="name" src="" class="editable" scrolling="no" frameborder="1" width="500" height="100"></iframe>
 		<h1>DEMO2-Inline editor with iframe</h1>
 		<div id="test3" style="width:500px;height:100px;border:1px solid #ccc;padding:10px;">
 			<h2 class="elm">µã»÷±à¼­ÄÚÈÝ...</h2>
@@ -31,7 +31,7 @@
 		i.iSetData("iframe2",1);
 		
 		//2,demo2
-		$(".elm").hover(function(evt){
+		var items=$(".elm").hover(function(evt){
 			$(this).addClass("on");
 		},function(evt){
 			$(this).removeClass("on");

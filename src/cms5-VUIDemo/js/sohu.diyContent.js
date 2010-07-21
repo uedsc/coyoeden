@@ -4,7 +4,7 @@
  * @param {Object} opts 选项{$obj,sec}
  */
 sohu.diyContent=function(opts){
-	opts=$.extend({},{cl:"ct",clOn:"ctOn",scale:true},opts||{});
+	opts=$.extend({},{cl:"ct",clOn:"ctOn",scale:true,clElm:"elm"},opts||{});
 	var _this=this;
 	this.Meta=opts.ct;
 	this.$Layout=null;/*在Validate方法中构建*/
@@ -23,6 +23,9 @@ sohu.diyContent=function(opts){
 	this.Validate();
 	if(!this.Validation.valid) return;
 	
+	/* Load elements */
+	this.LoadElements();
+	
 	p.mouseEnter=function(evt){
 		_this.$Layout.addClass(opts.clOn);
 		_this.Editor.CurCT=_this;
@@ -30,6 +33,7 @@ sohu.diyContent=function(opts){
 		//拖拽助手事件
 		
 		var dim=_this.Dim();
+		/*v20100722
 		sohu.diyConsole.Dragger.handle.show()
 		.css({width:dim.w,height:dim.h,opacity:0.3})
 		.unbind()
@@ -44,12 +48,12 @@ sohu.diyContent=function(opts){
 			_this.DoEdit();return false;
 		});
 		_this.$Layout.find(".dragHandle").remove().end().prepend(sohu.diyConsole.Dragger.handle);
-		
+		*/
 	};
 	p.mouseLeave=function(evt){
 		if(_this.Editor.CurArea.IsEditing) return false;
 		_this.$Layout.removeClass(opts.clOn);
-		sohu.diyConsole.Dragger.handle.remove();
+		/*sohu.diyConsole.Dragger.handle.remove();v20100722*/
 		sohu.diyConsole.CurCT=null;
 	};
 	
@@ -145,6 +149,16 @@ sohu.diyContent.prototype.SetValidation=function(isValid,msg){
 		msg:msg||null
 	};
 	return this;
+};
+sohu.diyContent.prototype.LoadElements=function(){
+	var _this=this;
+	var items=this.$Layout.find("."+this.__p.opts.clElm);
+	items.each(function(i,o){
+		new sohu.diyElement({
+			$dom:$(o),
+			ct:_this
+		});
+	});
 };
 /*静态方法*/
 /**

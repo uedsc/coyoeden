@@ -104,16 +104,17 @@
 		iSelect:function(idx){
 			var _i=this.i(idx);
 			var _this=this;
-			this.iDoCommand("selectall",false,null);
+			this.iDoCommand("selectAll",false,null,idx);
 			setTimeout(function(){
-				_this.iDoCommand("selecteall",false,null);
+				_this.iDoCommand("selectAll",false,null,idx);
 			},500);	
 			return this;
 		},
 		/**
 		 * invoke specified execCommand method.
 		 */
-		iDoCommand:function(cmd,opts,cbk){
+		iDoCommand:function(cmd,opts,cbk,idx){
+			idx=idx||0;
 			try {
 				switch (cmd) {
 					case "fontsizeup":
@@ -124,22 +125,22 @@
 						break;
 					case "justifyleft":
 						this.iCurCss["text-align"] = "left";
-						this.i$Doc().css("text-align", "left");
+						this.i$Doc(idx).css("text-align", "left");
 						break;
 					case "justifycenter":
 						this.iCurCss["text-align"] = "center";
-						this.i$Doc().css("text-align", "center");
+						this.i$Doc(idx).css("text-align", "center");
 						break;
 					case "justifyright":
 						this.iCurCss["text-align"] = "right";
-						this.i$Doc().css("text-align", "right");
+						this.i$Doc(idx).css("text-align", "right");
 						break;
 					case "justifyfull":
 						this.iCurCss["text-align"] = "right";
-						this.i$Doc().css("text-align", "right");
+						this.i$Doc(idx).css("text-align", "right");
 						break;
 					default:
-						this.i$Doc()[0].execCommand(cmd, false, opts);
+						this.i$Doc(idx)[0].execCommand(cmd, false, opts);
 						break;
 				};//switch
 				if(cbk){cbk(this);};
@@ -193,10 +194,11 @@
 		 */
 		i$Body:function(idx){
 			var _i=this.i(idx);
-			if(!_i.contentWindow.document.body){
+			if(this._opts.bodyTag){/* init body tab only once */
 				_i.contentWindow.document.open();
 				_i.contentWindow.document.write(this._opts.bodyTag);
 				_i.contentWindow.document.close();
+				this._opts.bodyTag=null;
 			}
 			
 			return $(_i.contentWindow.document.body);
@@ -226,13 +228,13 @@
 		iSetBodyCss:function(css,idx){
 			var _this=this;
 			if(css){
-				this.i$Body().css(css);
+				this.i$Body(idx).css(css);
 			}else{
 				if(pub._opts.bodyCss.toLowerCase().indexOf(".css")>0){
 					//load external css file
 					$.get(pub._opts.bodyCss,function(css1,txtStatus){
 						pub._opts.bodyCss=css1||"";
-						_this.i$Body().attr("style",pub._opts.bodyCss);
+						_this.i$Body(idx).attr("style",pub._opts.bodyCss);
 					});
 				}
 			}//if

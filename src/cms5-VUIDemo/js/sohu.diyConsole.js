@@ -242,6 +242,7 @@ sohu.diyConsole.Dragger={
 	cssHandle:'.dragHandle'
 };
 sohu.diyConsole.CurCT=null;
+sohu.diyConsole.CurElm=null;/* current editing element */
 //TODO:移到sohu.stringUtils.js中
 /**
  * 获取指定长度的随机字符串。注意：仅仅由数字和字母组成
