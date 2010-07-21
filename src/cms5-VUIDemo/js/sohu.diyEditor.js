@@ -136,7 +136,6 @@ sohu.diyEditor.prototype.CloseCTDialog=function(opts){
  * 更新diyEditor的内容-用于分栏
  * @param {diyContent} ct 内容对象
  * @param {int} mode 更新内容的类型 1标识末追加；0表示替换；-1表示首追加
- * @param {Function} cbk 更新内容后的回调函数
  */
 sohu.diyEditor.prototype.UpdateCT=function(ct,mode){
 	switch(mode){

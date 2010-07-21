@@ -4,16 +4,38 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 		<title>Inline Editor Demo</title>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> 
-		<script type="text/javascript" src="js/sohu.editableIframe.js"></script> 
+		<script type="text/javascript" src="js/jquery.cssEX.js"></script>
+		<script type="text/javascript" src="js/sohu.iframeEX.js"></script> 
+		<script type="text/javascript" src="js/sohu.iEditable.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/index.css"></link> 
+		<style type="text/css">
+			.on{border:1px dotted blue;}
+		</style>  
 	</head>
 	<body>
-		<iframe id="test" name="name" src="">
-			
-		</iframe>
+		<h1>DEMO1-sohu.iframeEX</h1>
+		<iframe id="test1" name="name" src="" class="editable" scrolling="no" frameborder="0"></iframe>
+		<br/>
+		<iframe id="test2" name="name" src="" class="editable" scrolling="no" frameborder="0"></iframe>
+		<h1>DEMO2-Inline editor with iframe</h1>
+		<div id="test3" style="width:500px;height:100px;border:1px solid #ccc;padding:10px;">
+			<h2 class="elm">点击编辑内容...</h2>
+			<div class="elm">点击编辑内容...</div>
+		</div>
 	</body>
 	<script type="text/javascript">
 	//<![CDATA[
-		var i=$("#test").editableIframe();
+		//1,demo1
+		var i=$(".editable").iframeEX();
+		i.iSetData("iframe1",0);
+		i.iSetData("iframe2",1);
+		
+		//2,demo2
+		$(".elm").hover(function(evt){
+			$(this).addClass("on");
+		},function(evt){
+			$(this).removeClass("on");
+		}).iEditable();
 		
 	//]]>
 	</script>

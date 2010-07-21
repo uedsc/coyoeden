@@ -88,7 +88,7 @@ sohu.diySection.prototype.Deactive=function(){
  */
 sohu.diySection.prototype.AddSub=function($secSub){
 	var _this=this;
-	this.Editor.UpdateCT($secSub,1);
+	this.Editor.UpdateCT({$Layout: $secSub},1);
 	var subSecs=$secSub.find("."+this.__p.opts.clSec);
 	this.$Layout.addClass(this.__p.opts.clHasSub);
 	subSecs.each(function(i,sec){
