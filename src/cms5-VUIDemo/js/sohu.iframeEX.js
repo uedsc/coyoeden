@@ -112,10 +112,14 @@
 		},
 		/**
 		 * invoke specified execCommand method.
+		 * @param {Function} preCbk callback handler before running command
 		 */
-		iDoCommand:function(cmd,opts,cbk,idx){
+		iDoCommand:function(cmd,opts,cbk,idx,preCbk){
 			idx=idx||0;
 			try {
+				//callback handler before running command
+				if(preCbk){preCbk(this);};
+				//execute the command
 				switch (cmd) {
 					case "fontsizeup":
 						p.cmdFontSizeUp(this.i$Doc()[0], opts);
@@ -125,22 +129,22 @@
 						break;
 					case "justifyleft":
 						this.iCurCss["text-align"] = "left";
-						this.i$Doc(idx).css("text-align", "left");
+						this.i$Body(idx).css("text-align", "left");
 						break;
 					case "justifycenter":
 						this.iCurCss["text-align"] = "center";
-						this.i$Doc(idx).css("text-align", "center");
+						this.i$Body(idx).css("text-align", "center");
 						break;
 					case "justifyright":
 						this.iCurCss["text-align"] = "right";
-						this.i$Doc(idx).css("text-align", "right");
+						this.i$Body(idx).css("text-align", "right");
 						break;
 					case "justifyfull":
 						this.iCurCss["text-align"] = "right";
-						this.i$Doc(idx).css("text-align", "right");
+						this.i$Body(idx).css("text-align", "right");
 						break;
 					default:
-						this.i$Doc(idx)[0].execCommand(cmd, false, opts);
+						this.i$Body(idx)[0].execCommand(cmd, false, opts);
 						break;
 				};//switch
 				if(cbk){cbk(this);};

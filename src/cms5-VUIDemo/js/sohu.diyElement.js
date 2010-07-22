@@ -9,14 +9,18 @@ sohu.diyElement=function(opts){
 	this.CT=opts.ct;
 	this.$Context=this.CT.$Layout;
 	this.$Layout=opts.$dom;
+	this.i$frame=null;/* Reference to the iframe editor */
 	
 	/* private member variables */
 	var p={opts:opts};
 	p.onEditModeChange=function(dom){
 		if (dom.iEditing) {
+			_this.i$frame=_this.$Layout[0].i$frame;
 			sohu.diyConsole.$EditMenu.show();
 			_this.CT.InlineEdit("on");
 		}else{
+			_this.i$frame=null;
+			sohu.diyConsole.$CPKWrap.hide();
 			sohu.diyConsole.$EditMenu.hide();
 			_this.CT.InlineEdit("off");
 		}

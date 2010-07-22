@@ -28,6 +28,8 @@ sohu.diyConsole=function(opts){
 	p._$areaSelector=$("#area_selector");
 	p._$pageTip=$("#pageTip");
 	p._$editMenu=$("#editMenu");
+	p._$cpkWrap=$("#cpkWrap");
+	p._$txtFontColor=$("#txtFontColor");
 	p._opts=opts;
 	
 	//横切删除时的回调函数
@@ -167,13 +169,62 @@ sohu.diyConsole=function(opts){
 		//文档高度适应处理
 		p.setDocumentDim();
 		//编辑工具栏位置处理
-		p._$editMenu.css("top",p.opts.scrollWrapMainginTop).hide().find("#editMenuChild").draggable({containment:'#mainWrap',scroll:false});
+		p._$editMenu.css("top",p.opts.scrollWrapMainginTop)
+			.hide().find("#editMenuIn")
+			.draggable({containment:'#mainWrap',scroll:false,handle:"#editMenuChild"});
 		//横切工具条位置
 		_this.$Layout.css({"top":p.opts.scrollWrapMainginTop+30});
+	};
+	p.initColorPicker=function(){
+		var cbk=p._$cpkWrap.ColorPicker({
+			flat:true,
+			color:"#000000",
+			onSubmit:function(hsb,hex,rgb){
+				var c="#"+hex;
+				p._$txtFontColor.val(c);
+				p._$cpkWrap.slideUp();	
+			},
+			onChange:function(hsb,hex,rgb){
+				var c1="#"+hex;
+				sohu.diyConsole.CurElm.i$frame.iDoCommand("forecolor",c1,null,0,function($iframe){
+					if(sohu.diyConsole.DocSelection.text){
+						sohu.diyConsole.DocSelection.select();
+						sohu.diyConsole.DocSelection='';
+					}
+				});
+			}
+		});
+	};
+	p.initEditMenu=function(){
+		var fontStyleCbk=function(iframeEditor){
+			sohu.diyConsole.CurElm.$Layout.css(iframeEditor.iCurCss);
+		};
+		$("#editMenuChild .menuitem").click(function(evt){return false;});
+		$("#menuitem-b").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("Bold",null);});
+		$("#menuitem-i").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("Italic",null);});
+		$("#menuitem-u").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("Underline",null);});
+		$("#menuitem-if").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("increasefontsize",null);});
+		$("#menuitem-df").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("decreasefontsize",null);});
+		$("#menuitem-al").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("justifyleft",null,fontStyleCbk);});
+		$("#menuitem-ac").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("justifycenter",null,fontStyleCbk);});
+		$("#menuitem-ar").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("justifyright",null,fontStyleCbk);});
+		$("#menuitem-af").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("justifyfull",null,fontStyleCbk);});
+		$("#menuitem-ul").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("insertunorderedlist",null);});
+		$("#menuitem-ol").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("insertorderedlist",null);});
+		$("#menuitem-z").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("undo",null);});
+		$("#menuitem-r").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("redo",null);});
+		//colorpicker
+		$("#menuitem-cc").mousedown(function(evt){
+			if(document.selection)
+				sohu.diyConsole.DocSelection=sohu.diyConsole.CurElm.i$frame.i$Doc().selection.createRange();
+				
+			p._$cpkWrap.slideDown();
+		});
 	};
 	p.Init=function(){
 		//公有属性引用
 		sohu.diyConsole.$EditMenu=p._$editMenu;
+		sohu.diyConsole.$CPKWrap=p._$cpkWrap;
 		//横切选择器
 		$("li",p._$areaSelector).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");})
 			.click(p.onSelectAreaTpl);
@@ -212,6 +263,10 @@ sohu.diyConsole=function(opts){
 			if(sohu.diyConsole.CurSec)
 				sohu.diyConsole.CurSec.Editor.Reposition();
 		});
+		//color picker
+		p.initColorPicker();
+		//editMenu的事件注册
+		p.initEditMenu();
 		//on page loaded
 		$(document).ready(p.onLoaded);
 	};
@@ -320,6 +375,7 @@ sohu.diyConsole.CurCT=null;
 sohu.diyConsole.EditingCT=null;
 sohu.diyConsole.CurElm=null;/* current editing element */
 sohu.diyConsole.$SecEditorModel=null; /* 分栏编辑器dom模型 */
+sohu.diyConsole.DocSelection='';
 sohu.diyConsole.InnerHeight=function() {
     var x,y;
     if (self.innerHeight) // all except Explorer

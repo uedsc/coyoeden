@@ -8,35 +8,41 @@
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/flick/jquery-ui.css" type="text/css" />
 		<link type="text/css" rel="stylesheet" href="css/index.css"/>
 		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link> 
+		<link rel="stylesheet" type="text/css" href="css/colorpicker.css"></link>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
 		<!--<script src="js/jquery-1.4.2.js" type="text/javascript"></script>--> 
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script> 
 		<script src="js/jquery.json-2.2.min.js" type="text/javascript"></script> 
 		<script type="text/javascript" src="js/jqModal.js"></script>
+		<script type="text/javascript" src="js/colorpicker.js"></script> 
 		<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
 	</head>
     <body>
 		<!--文本编辑菜单-->
 		<div id="editMenu">
-		  <div id="editMenuChild" class="clear">
-			<a onclick="runCommand(currentBox, 'Bold', null); return false;" class="menuitem" title="加粗" href="#" id="menuitem-b"></a>
-			<a onclick="runCommand(currentBox, 'Italic', null); return false;" class="menuitem" title="斜体" href="#" id="menuitem-i"></a>
-			<a onclick="runCommand(currentBox,'Underline', null); return false;" title="下划线" href="#" class="menuitem" id="menuitem-u"></a>
-			<a onmousedown="saveSelection();showNewColorChooser(); return false" id="menuitem-cc" title="颜色" href="#" class="menuitem"></a><input type="hidden" id="currentColor" />
-			<a onclick="runCommand(currentBox,'increasefontsize', null); return false;" title="增大尺寸" href="#" class="menuitem" id="menuitem-if"></a>
-			<a onclick="runCommand(currentBox,'decreasefontsize', null); return false;" title="减少尺寸" href="#" class="menuitem" id="menuitem-df"></a>
-			<a onclick="showCreateLink(); return false;" onmousedown="saveSelection();" title="加链接" href="#" class="menuitem" id="menuitem-cl"></a>
-			<a onclick="runCommand(currentBox,'justifyleft', null); return false;" title="左对齐" href="#" class="menuitem" id="menuitem-al"></a>
-			<a onclick="runCommand(currentBox,'justifycenter', null); return false;" title="居中对齐" href="#" class="menuitem" id="menuitem-ac"></a>
-			<a onclick="runCommand(currentBox, 'justifyright', null); return false;" title="右对齐" href="#" class="menuitem" id="menuitem-ar"></a>
-			<a onclick="runCommand(currentBox, 'justifyfull', null); return false;" title="两边对齐" href="#" class="menuitem" id="menuitem-af"></a>
-			<a onclick="runCommand(currentBox, 'insertunorderedlist', null); return false;" title="无序列表" href="#" class="menuitem" id="menuitem-ul"></a>
-			<a onclick="runCommand(currentBox, 'insertorderedlist', null); return false;" title="有序列表" href="#" class="menuitem" id="menuitem-ol"></a>
-			<a onclick="runCommand(currentBox,'undo', null); return false;" style="" title="撤销" href="#" class="menuitem" id="menuitem-z"></a>
-			<a onclick="runCommand(currentBox,'redo', null); return false;" style="" title="重做" href="#" class="menuitem" id="menuitem-r"></a>
-			<div class="bar_l"></div>
-			<div class="bar_r"></div>
-		  </div>
+			<div id="editMenuIn">
+				<div id="editMenuChild" class="clear">
+					<a class="menuitem" title="加粗" href="#" id="menuitem-b"></a>
+					<a class="menuitem" title="斜体" href="#" id="menuitem-i"></a>
+					<a title="下划线" href="#" class="menuitem" id="menuitem-u"></a>
+					<!--onmousedown="saveSelection();showNewColorChooser(); return false"-->
+					<a id="menuitem-cc" title="颜色" href="#" class="menuitem"></a><input type="hidden" id="txtFontColor" />
+					<a title="增大尺寸" href="#" class="menuitem" id="menuitem-if"></a>
+					<a title="减少尺寸" href="#" class="menuitem" id="menuitem-df"></a>
+					<a onclick="showCreateLink();return false;" onmousedown="saveSelection();" title="加链接" href="#" class="menuitem" id="menuitem-cl"></a>
+					<a title="左对齐" href="#" class="menuitem" id="menuitem-al"></a>
+					<a title="居中对齐" href="#" class="menuitem" id="menuitem-ac"></a>
+					<a title="右对齐" href="#" class="menuitem" id="menuitem-ar"></a>
+					<a title="两边对齐" href="#" class="menuitem" id="menuitem-af"></a>
+					<a title="无序列表" href="#" class="menuitem" id="menuitem-ul"></a>
+					<a title="有序列表" href="#" class="menuitem" id="menuitem-ol"></a>
+					<a title="撤销" href="#" class="menuitem" id="menuitem-z"></a>
+					<a title="重做" href="#" class="menuitem" id="menuitem-r"></a>
+					<div class="bar_l"></div>
+					<div class="bar_r"></div>
+				</div>
+  				<div id="cpkWrap"></div>
+			</div>
 		</div>		
 		<!--/文本编辑菜单-->
 		<!--#main-->

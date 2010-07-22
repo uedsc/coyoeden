@@ -1,3 +1,5 @@
+/* color picker */
+.colorpicker{position:relative;z-index:1000;margin:0 auto;}
 .ui-widget-overlay{opacity:0.4;}
 /*=drag&drop style=*/
 .ui-hl{height: 30px; line-height:30px;background:#ffffc2; }
@@ -70,13 +72,16 @@ display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(25
 	#menuitem-z:hover { background-position: -741px 0; }
 	#menuitem-r:hover { background-position: -767px 0; }
 
+	#editMenuIn{position:relative;width:356px;margin:0 auto;}
 	#editMenuChild .bar_l,#editMenuChild .bar_r{width: 5px; height: 35px;position: absolute; bottom: 0px;}
 	#editMenuChild .bar_l{ background: url("../img/menubar-l.gif") no-repeat scroll left bottom transparent;  left: 0px; margin-left: -5px;}
 	#editMenuChild .bar_r{background: url("../img/menubar-r.gif") no-repeat scroll right bottom transparent; right: 0px; margin-right: -5px;}
+	#cpkWrap{position:relative;display:none;width:356px;margin:0 auto;}
+	#cpkWrap .colorpicker{background-image:url("../images/custom_background.png");}
 /* =/#editMenu= */
 
 /* =main= */
-#scrollWrap{position: relative;margin-top:0 /*100px*/;overflow-y: scroll; overflow-x: auto;background:#444;}
+#scrollWrap{position: relative;margin-top:0 /*100px*/;overflow-y: scroll; overflow-x: auto;background:#444;text-align:left;}
 #mainWrap{background:#fff;width:960px;border:2px solid #ccc;margin:0 auto;}
 #main{min-height:500px;height:auto !important;height:500px;}
 .txtLoading{
@@ -115,7 +120,7 @@ display:none;
 .actions{height:18px;border-bottom:none;background:#D6E7FF;}
 .actions .r a{padding-left:5px;}
 .actions .l a{padding-right:5px;}
-.actions .secTip{position:relative;bottom:-1px;margin-left:-6px;height:12px;font-size:95%;background:#f4f4f4;}
+.actions .secTip{position:relative;bottom:-1px;margin-left:-6px;height:12px;font-size:95%;background:#f4f4f4;text-align:center;}
 .rounded{position:absolute;padding:6px;border:1px solid #84ADDE;z-index:300;}
 	.corner{position:absolute;width:10px;height:10px;background:url(../img/rounded_bg.gif) no-repeat;}
 		.tl{top:-1px;left:-1px;background-position:-1px -1px;}
@@ -127,7 +132,7 @@ display:none;
 
 
 /* sohu.diyElement */
-.elmOn{border:1px dotted #4455AA;/*64ADF8*/;}
+.elmOn{border:1px dashed #4455AA;/*64ADF8*/;}
 
 /*Òþ²ØÄ£°å*/
 #hiddenTemplate{display:none;}

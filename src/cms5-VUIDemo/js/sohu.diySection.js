@@ -75,12 +75,12 @@ sohu.diySection.prototype.Active=function(){
 	if(!this.CurArea.IsActive){
 		this.CurArea.Active();
 	};
+	/* 反激活上一个分栏 */
+	if(sohu.diyConsole.CurSec){sohu.diyConsole.CurSec.Deactive();};
 	this.IsActive=true;
 	this.$Layout.addClass(this.__p.opts.clSecOn);
 	//Show the toolbar
 	this.Editor.Show();
-	/* 反激活上一个分栏 */
-	if(sohu.diyConsole.CurSec){sohu.diyConsole.CurSec.Deactive();};
 	//Update sohu.diyConsole.CurSec
 	sohu.diyConsole.CurSec=this;
 };

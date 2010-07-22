@@ -64,13 +64,12 @@
 			$body.css("height",h);
 		};
 			
-		/*
-		if($this.css("width")=="auto"){
-			var w=$this.width();
+		if($this.css("width")=="auto"&&dom._opts.accurateWidth){
+			var w=$this.parent().width();
 			dom.i$frame.css("width",w);
 			$body.css("width",w);
 		};
-		*/
+
 		//update iframe lineheight
 		if(!$.browser.msie){
 			var fs = $this.css('fontSize').replace('px', '');
@@ -156,7 +155,8 @@
     // Public defaults.
     $.fn.iEditable.defaults = {
         excludeTags: 'table,input,select,button,tr,iframe' /* tags that don't support inline editable */,
-		onModeChange:null /* callback handler when the iEdit function was invoked */
+		onModeChange:null /* callback handler when the iEdit function was invoked */,
+		accurateWidth:true /* convert auto with to an accurate value when in editing mode */
     };
     // Public functions.
     $.fn.iEditable.method1 = function(skinName) {
