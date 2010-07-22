@@ -11,18 +11,24 @@ sohu.diySection = function(opts) {
 		clHasSub:"hasSub",
 		clSecRoot:"col",
 		clArea:"area",
-		clContent:"ct"
+		clContent:"ct",
+		clTip:"secTip"
 		},opts);
 	var p={opts:opts};
 	this.__p=p;
 	//属性
+	this.ID="sec_"+sohu.diyConsole.RdStr(8);
 	this.$Layout=opts.$obj;
 	this.Width=this.Size();
 	this.Divisible=(this.Width>=390);//可继续分栏
 	this.IsActive=false;
 	this.IsAddingContent=false;
-	this.Editor=opts.editor;
+	this.InlineEditing=false;
 	this.CurArea=opts.curArea;//当前分栏所在的横切。调用LoadCurArea方法时更新该属性
+	this.Editor=new sohu.diyEditor({
+		curArea:this.CurArea,
+		curSec:this	
+	});
 
 	var p={};
 	p.mouseOver=function(evt){
@@ -34,8 +40,9 @@ sohu.diySection = function(opts) {
 		_this.Deactive();
 		return false;
 	};
+
 	//鼠标事件-！！停止冒泡事件
-	this.$Layout.mouseenter(p.mouseOver);//.mouseleave(p.mouseOut);
+	this.$Layout.attr("id",this.ID).mouseenter(p.mouseOver);//.mouseleave(p.mouseOut);
 	//获取当前分栏的内容
 	this.Contents=this.LoadContents();
 	//获取当前横切
@@ -50,14 +57,9 @@ sohu.diySection = function(opts) {
 			sohu.diyConsole.Dragger.obj.Sec.RemoveCTByID(sohu.diyConsole.Dragger.obj.ID);
 			sohu.diyConsole.Dragger.obj.Sec=_this;
 			_this.Contents.push(sohu.diyConsole.Dragger.obj);
-		},
-		start:function(evt,ui){
-			_this.Editor.RePosition();
-		},
-		stop:function(evt,ui){
-			_this.Editor.RePosition();
 		}
 	});
+	/*  */
 	//自定义事件
 	this.$Layout.bind("evtActive",function(e){
 		_this.Active();
@@ -69,17 +71,22 @@ sohu.diySection = function(opts) {
  */
 sohu.diySection.prototype.Active=function(){
 	if(this.IsActive) return;
-	if(this.Editor.CurSec){this.Editor.CurSec.Deactive();};
 	//看看当前横切是否激活，没激活的话激活
 	if(!this.CurArea.IsActive){
 		this.CurArea.Active();
 	};
-	this.Editor.AttachTo(this).Show();
 	this.IsActive=true;
 	this.$Layout.addClass(this.__p.opts.clSecOn);
+	//Show the toolbar
+	this.Editor.Show();
+	/* 反激活上一个分栏 */
+	if(sohu.diyConsole.CurSec){sohu.diyConsole.CurSec.Deactive();};
+	//Update sohu.diyConsole.CurSec
+	sohu.diyConsole.CurSec=this;
 };
 sohu.diySection.prototype.Deactive=function(){
-	this.Editor.Remove();
+	if(this.IsAddingContent||this.InlineEditing) return;/* 正在编辑内容 */
+	this.Editor.Hide();
 	this.IsActive=false;
 	this.$Layout.removeClass(this.__p.opts.clSecOn);
 };
@@ -94,7 +101,6 @@ sohu.diySection.prototype.AddSub=function($secSub){
 	subSecs.each(function(i,sec){
 		sohu.diySection.New({
 			$obj:$(sec),
-			editor:_this.Editor,
 			curArea:_this.CurArea
 		});
 	});
@@ -211,7 +217,8 @@ sohu.diySection.prototype.Dim=function(){
 		x:this.$Layout.offset().left,
 		y:this.$Layout.offset().top,
 		w:this.$Layout.width(),
-		h:this.$Layout.height()
+		h:this.$Layout.height(),
+		mw:this.Size()
 	};
 };
 /**

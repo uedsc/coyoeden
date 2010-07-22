@@ -91,6 +91,23 @@ sohu.diyContent.prototype.DoEdit=function(){
 	this.Editor.DialogCT("update");
 };
 /**
+ * Notice related objects that current element is being edited.
+ * TODO:Use event model to implement this,let related objects register the inline editing event.
+ * @param {Object} state
+ */
+sohu.diyContent.prototype.InlineEdit=function(state){
+	if(state=="on"){
+		this.Sec.InlineEditing=true;
+		sohu.diyConsole.EditingSec=this.Sec;
+		sohu.diyConsole.EditingCT=this;
+	}else{
+		this.Sec.InlineEditing=false;
+		this.Sec.Deactive();
+		sohu.diyConsole.EditingSec=null;
+		sohu.diyConsole.EditingCT=null;
+	}
+};
+/**
  * 验证当前内容是否有效
  */
 sohu.diyContent.prototype.Validate=function(){

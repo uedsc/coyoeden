@@ -15,7 +15,7 @@ sohu.diyTplFactory={
 	 */
 	submit:function(ct,cls){
 		sohu.diyCTFactory.CurCT=ct;
-		parent.bos.Editor.CurSec.AddContent(ct);
+		parent.sohu.diyConsole.CurSec.AddContent(ct);
 		if (cls) {
 			sohu.diyTplFactory.cls();
 		};

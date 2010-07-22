@@ -1,13 +1,13 @@
 /**
- * 分栏编辑器
+ * 分栏编辑器-每个分栏具有一个分栏编辑器实体
  * @author levinhuang
  */
 sohu.diyEditor=function(opts){
 	var _this=this;
 	opts=$.extend({},{cssSecHelper:".secTip",cssCTSelector:"#content_selector"},opts);
 	//属性
-	this.$LayoutModel=opts.$layoutModel;
-	this.Console=opts.console;
+	this.$LayoutModel=sohu.diyConsole.$SecEditorModel;/* 工具条的dom模型 */
+	this.Console=window.bos;
 	this.CurArea=opts.curArea;//当前横切
 	this.CurSec=opts.curSec;//当前分栏
 	this.CurCT=null;//当前内容
@@ -15,36 +15,31 @@ sohu.diyEditor=function(opts){
 	var p={opts:opts};
 	this.__p=p;
 	
-	this.$Layout=this.$LayoutModel;
-	this.$LayoutA=this.$Layout.find(".actions");/*editor actions*/
-	this.$LayoutF=this.$Layout.find(".footer");/*editor footer*/
-	this.$LayoutT=this.$Layout.find(opts.cssSecHelper);/*sec tip*/
-		//按钮事件注册
-	this.$Layout.btn={
-		addContent:this.$Layout.find(".a_content"),
-		addSec:this.$Layout.find(".a_sec"),
-		clear:this.$Layout.find(".a_clear"),
-		editCode:this.$Layout.find(".a_code")
+	this.$Toolbar=this.$LayoutModel.find(".actions").clone();	/* editor actions */
+	this.$ToolbarF=this.$LayoutModel.find(".footer").clone();	/* editor footer */
+	this.$ToolbarTip=this.$Toolbar.find(opts.cssSecHelper);	/* sec tip */
+	//按钮事件注册
+	this.$Toolbar.btn={
+		addContent:this.$Toolbar.find(".a_content"),
+		addSec:this.$Toolbar.find(".a_sec"),
+		clear:this.$Toolbar.find(".a_clear"),
+		editCode:this.$Toolbar.find(".a_code")
 	};
-	this.$Layout.btn.addContent.click(function(evt){_this.DialogCT();return false;});
-	this.$Layout.btn.addSec.click(function(evt){_this.DialogSec();return false;});
-	this.$Layout.btn.clear.click(function(evt){_this.Cls();return false;});
-	this.$Layout.btn.editCode.click(function(evt){alert("代码");return false;});
+	this.$Toolbar.btn.addContent.click(function(evt){_this.DialogCT();return false;});
+	this.$Toolbar.btn.addSec.click(function(evt){_this.DialogSec();return false;});
+	this.$Toolbar.btn.clear.click(function(evt){_this.Cls();return false;});
+	this.$Toolbar.btn.editCode.click(function(evt){alert("代码");return false;});
 	// sec tip事件注册
-	this.$LayoutT.click(function(evt){$(this).hide();});
+	this.$ToolbarTip.click(function(evt){$(this).hide();});
 	//actions事件注册-双击返回父级分栏
-	this.$LayoutA.dblclick(function(evt){
+	this.$Toolbar.dblclick(function(evt){
 		_this.CurSec.ActiveParent();return false;
 	});
-	this.$Parent=this.$LayoutModel.parent();
 	this.$CTWrap=$("#ctWrap");
-	//分栏选择器事件注册
-	$('#hiddenTemplate .sec_selector li').click(function(evt){
-		_this.CurTpl=this.id;
-		//_this.SecSelector.dialog("close");
-		_this.CurSec.AddSub($(sohu.diyTp[_this.CurTpl]));
-		return false;
-	}).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");});
+	
+	//persist the toolbar dom
+	this.$Toolbar.attr("id",this.CurSec.ID+"_t").hide().appendTo(this.CurArea.$Layout);
+	_this.$Toolbar.isNew=true;
 };
 /**
  * 弹出添加分栏选择框
@@ -57,7 +52,7 @@ sohu.diyEditor.prototype.DialogSec=function(){
 	this.CurSec.IsAddingContent=true;
 	//close callback
 	var _onClose=function(evt,ui){
-		if(!_this.CurTpl) return;
+		if(!_this.SecSelector.Cur) return; /* _this.SecSelector.Cur赋值逻辑参考sohu.diyConsole.js */
 		_this.CurArea.IsEditing=false;
 		_this.CurSec.IsAddingContent=false;
 		_this.CurSec.Deactive();
@@ -93,7 +88,6 @@ sohu.diyEditor.prototype.DialogCT=function(mode){
 	var _onClose=function(evt,ui){
 		_this.CurArea.IsEditing=false;
 		_this.CurSec.IsAddingContent=false;
-		_this.RePosition();
 	};
 	//打开回调
 	var _onOpen=function(evt,ui){
@@ -180,50 +174,32 @@ sohu.diyEditor.prototype.Cls=function(){
 	});
 	
 };
-/**
- * 附加到指定的分栏上面
- * @param {Object} sec 分栏对象
- */
-sohu.diyEditor.prototype.AttachTo=function(sec){
-	//先从旧的编辑对象上移除编辑器
-	if(this.CurSec){
-		this.CurSec.Deactive();
-	};
-	this.CurSec=sec;
-	return this;
+sohu.diyEditor.prototype.Reposition=function(){
+		var d=this.CurSec.Dim();
+		this.$Toolbar.css({width:d.w-12,top:d.y-31,left:d.x,opacity:0.8});/*宽要减去12个像素的留白;31是高度*/
+		this.$ToolbarTip.css({width:d.w}).html("w:"+d.mw+"px");
 };
 /**
  * 显示编辑器-即激活编辑器
  * @param {Object} opts
  */
 sohu.diyEditor.prototype.Show=function(){
-	this.RePosition();
-	this.CurArea.$Layout.append(this.$LayoutA);
-	//this.CurArea.$Layout.append(this.$LayoutF);		
-	
+	if(this.$Toolbar.isNew){
+		this.Reposition();
+	}
+	this.$Toolbar.show();
+		
 	if(!this.CurSec.Divisible){
-		this.$Layout.btn.addSec.hide();	
+		this.$Toolbar.btn.addSec.hide();	
 	}else{
-		this.$Layout.btn.addSec.show();
+		this.$Toolbar.btn.addSec.show();
 	};
 };
 /**
- * 移除
+ * 隐藏
  */
-sohu.diyEditor.prototype.Remove=function(){
+sohu.diyEditor.prototype.Hide=function(){
 	if(!this.CurSec) return;
 	if(this.CurSec.IsAddingContent) return;
-	this.$LayoutA.appendTo(this.$Layout);
-	this.$LayoutF.appendTo(this.$Layout);
-};
-/**
- * 更新编辑器的位置.一般在添加分栏或者内容后调用此方法
- */
-sohu.diyEditor.prototype.RePosition=function(){
-	if(!this.CurSec) return;
-	var d=this.CurSec.Dim();
-	this.$LayoutA.css({width:d.w-12,top:d.y-31,left:d.x,opacity:0.8});/*宽要减去12个像素的留白;31是高度*/
-	//this.$LayoutF.css({width:d.w-12,top:d.y+d.h-8,left:d.x});/*8是footer的高度*/
-	this.$LayoutT.show().css({width:d.w}).html("w:"+d.w+"px");
-	return this;
+	this.$Toolbar.hide();
 };

@@ -65,8 +65,8 @@ sohu.diyArea=function(opts){
 sohu.diyArea.prototype.Active=function(){
 	var _this=this;
 	if(this.IsActive) return;
-	if(this.$Layout.hasClass(this.__p.opts.clActive)) return;
-	this.Console.AreaList().removeClass(this.__p.opts.clActive);
+	//if(this.$Layout.hasClass(this.__p.opts.clActive)) return;
+	//this.Console.AreaList().removeClass(this.__p.opts.clActive);
 	this.$Layout.addClass(this.__p.opts.clActive);
 	this.Console.ActiveArea(this).RePosition();
 	this.IsActive=true;
@@ -77,7 +77,7 @@ sohu.diyArea.prototype.Active=function(){
  * ÒÆ³ý¼¤»î×´Ì¬
  */
 sohu.diyArea.prototype.Deactive=function(){
-	if(this.IsEditing||(!this.IsActive)) return;
+	if(this.IsEditing||(!this.IsActive)||(sohu.diyConsole.EditingSec!=null)) return;
 	this.$Layout.removeClass(this.__p.opts.clActive);
 	this.IsActive=false;
 	
@@ -125,7 +125,6 @@ sohu.diyArea.prototype.LoadSections=function(){
 	items=items.map(function(i,sec){
 		return sohu.diySection.New({
 			$obj:$(sec),
-			editor:_this.Console.Editor,
 			curArea:_this
 		});
 	});

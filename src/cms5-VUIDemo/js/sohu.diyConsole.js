@@ -9,16 +9,14 @@ sohu.diyConsole=function(opts){
 	opts=$.extend({},{
 		cssWsp:"#main",clSec:"sec",clSec0:"sec0",clSecSub:"subsec",
 		clSecRoot:"col",clArea:"area",cssArea:".area",dfTop:100,
-		limitSec:390
+		limitSec:390,
+		scrollWrapMainginTop:0
 		},opts);
 	var _this=this;
 	this.$Workspace=$(opts.cssWsp);
 	this.$Layout=$("#areaTools");
-	this.CurArea=null;//当前激活的横切对象
-	this.Editor=new sohu.diyEditor({
-		$layoutModel:$("#area_editor"),
-		console:_this
-	});
+
+	sohu.diyConsole.$SecEditorModel=$("#area_editor");
 	this.Areas=null;
 	
 	var p={opts:opts};
@@ -29,6 +27,7 @@ sohu.diyConsole=function(opts){
 	p._$btnUp=$("#lnkAreaUp");
 	p._$areaSelector=$("#area_selector");
 	p._$pageTip=$("#pageTip");
+	p._$editMenu=$("#editMenu");
 	p._opts=opts;
 	
 	//横切删除时的回调函数
@@ -73,51 +72,120 @@ sohu.diyConsole=function(opts){
 	};
 	p.onRemove=function(evt){
 	///<summary>删除横切</summary>	
-		if(!_this.CurArea){alert("未选中任何横切!");return false;};
+		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
 		_this.Areas=$.grep(_this.Areas,function(o,i){
 			if(o.ID==_this.CurArea.ID) return false;
 			return true;
 		});
-		_this.CurArea.Remove();
+		sohu.diyConsole.CurArea.Remove();
 		return false;	
 	};
 	p.onAddBG=function(evt){
 	///<summary>添加横切背景</summary>	
-		if(!_this.CurArea){alert("未选中任何横切!");return false;};
+		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
 		alert("背景");
 		return false;
 	};
 	p.onMove=function(evt){
 	///<summary>移动横切</summary>
-		if(!_this.CurArea){alert("未选中任何横切!");return false;};	
+		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};	
 		var isUp=evt.data.up;
-		_this.CurArea.Move(isUp);
+		sohu.diyConsole.CurArea.Move(isUp);
 		_this.RePosition();
 		return false;	
 	};
-	//body标签的鼠标事件
-	p.onMousemove=function(evt){
-		if(!_this.CurArea) return;
-		if(!_this.CurArea.IsActive) return;
-		if(_this.CurArea.IsEditing) return;
-		if(sohu.diyConsole.Dragger.ing) return;
+	p.getWorkspaceBoundary=function(){
 		var lastArea=_this.$Workspace.find(opts.cssArea+":last");
-		if(lastArea.size()==0) return;
+		if (lastArea.size() == 0) {
+			return {
+				lbleft: -2000,
+				ubleft: 2000,
+				lbtop: -2000,
+				ubtop: 2000
+			};
+		};
+		
 		var lbtop=_this.$Workspace.offset().top;
 		var ubtop=lastArea.height()+lastArea.offset().top;
 		var lbleft=lastArea.offset().left;
 		var ubleft=lastArea.width()+lbleft;
 		
-		if(evt.pageX<lbleft||evt.pageX>ubleft||evt.pageY>ubtop){//||evt.pageY<lbtop
-			_this.CurArea.Deactive();
-			_this.Editor.CurSec.Deactive();
+		return {
+			lbleft:lbleft,
+			ubleft:ubleft,
+			lbtop:lbtop,
+			ubtop:ubtop
 		};
 	};
-	p.onLoaded=function(){};
+	//body标签的鼠标事件
+	p.onMousemove=function(evt){
+		if(!sohu.diyConsole.CurArea) return;
+		if(!sohu.diyConsole.CurArea.IsActive) return;
+		if(sohu.diyConsole.CurArea.IsEditing) return;
+		if(sohu.diyConsole.Dragger.ing) return;
+		//if(sohu.diyConsole.EditingSec!=null) return;
+		
+		var b=p.getWorkspaceBoundary();
+		
+		if(evt.pageX<b.lbleft||evt.pageX>b.ubleft||evt.pageY>b.ubtop){//||evt.pageY<lbtop
+			//反激活横切
+			sohu.diyConsole.CurArea.Deactive();
+			//反激活分栏
+			if(sohu.diyConsole.CurSec)
+				sohu.diyConsole.CurSec.Deactive();
+		};
+	};
+	p.onBodyClick=function(evt){
+		if(!sohu.diyConsole.CurArea) return;
+		if(!sohu.diyConsole.CurArea.IsActive) return;
+		if(sohu.diyConsole.CurArea.IsEditing) return;
+		if(sohu.diyConsole.Dragger.ing) return;
+		
+		var b=p.getWorkspaceBoundary();
+		if(evt.pageX<b.lbleft||evt.pageX>b.ubleft||evt.pageY>b.ubtop){//||evt.pageY<lbtop
+			//强制移除内联编辑器
+			if(sohu.diyConsole.EditingSec!=null){
+				sohu.diyConsole.CurElm.HideEditor(false);
+			};
+			//反激活横切
+			sohu.diyConsole.CurArea.Deactive();
+			//反激活分栏
+			if(sohu.diyConsole.CurSec)
+				sohu.diyConsole.CurSec.Deactive();
+		};
+		return false;
+	};
+	p.setDocumentDim=function(){
+		var fullheight, height;
+		fullheight = sohu.diyConsole.InnerHeight();        
+		height = fullheight - p.opts.scrollWrapMainginTop;
+		
+		$("#scrollWrap").css("height",height);
+		$("#main").css("minHeight",height);
+	};
+	p.onLoaded=function(){
+		//文档高度适应处理
+		p.setDocumentDim();
+		//编辑工具栏位置处理
+		p._$editMenu.css("top",p.opts.scrollWrapMainginTop).hide().find("#editMenuChild").draggable({containment:'#mainWrap',scroll:false});
+		//横切工具条位置
+		_this.$Layout.css({"top":p.opts.scrollWrapMainginTop+30});
+	};
 	p.Init=function(){
+		//公有属性引用
+		sohu.diyConsole.$EditMenu=p._$editMenu;
 		//横切选择器
 		$("li",p._$areaSelector).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");})
 			.click(p.onSelectAreaTpl);
+		
+		//分栏选择器
+		$('#hiddenTemplate .sec_selector li').click(function(evt){
+			if(!sohu.diyConsole.CurSec) return;
+			sohu.diyConsole.CurSec.Editor.SecSelector.Cur=this.id;
+			//_this.SecSelector.dialog("close");
+			sohu.diyConsole.CurSec.AddSub($(sohu.diyTp[this.id]));
+			return false;
+		}).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");});
 		
 		p._$btnAdd.bind("click",p.onAdd);
 		p._$btnDel.click(p.onRemove);
@@ -137,10 +205,12 @@ sohu.diyConsole=function(opts){
 			return o;
 		});
 		//body鼠标事件
-		$("body").mousemove(p.onMousemove);
+		$("body").mousemove(p.onMousemove).click(p.onBodyClick);
 		//window resize事件
 		$(window).resize(function(evt){
-			_this.Editor.RePosition();
+			p.setDocumentDim();
+			if(sohu.diyConsole.CurSec)
+				sohu.diyConsole.CurSec.Editor.Reposition();
 		});
 		//on page loaded
 		$(document).ready(p.onLoaded);
@@ -157,24 +227,26 @@ sohu.diyConsole.prototype.RePosition=function(){
 	this.$Layout.css("top",this.CurArea.$Layout.offset().top);
 };
 /**
- * 激活指定横切对象
+ * 设定激活的横切对象
  * @param {Object} target
  */
 sohu.diyConsole.prototype.ActiveArea=function(target){
 	//将上一个横切反激活
-	if(this.CurArea){
-		this.CurArea.Deactive();
+	if(sohu.diyConsole.CurArea){
+		if(target.ID==sohu.diyConsole.CurArea.ID) 
+			return this;
+		
+		sohu.diyConsole.CurArea.Deactive();
 	};
 	//激活当前的横切
-	this.CurArea=target;
-	this.Editor.CurArea=target;
+	sohu.diyConsole.CurArea=target;
 	return this;
 };
 /**
  * 关闭内容选择对话框
  */
 sohu.diyConsole.prototype.CloseCTDialog=function(){
-	this.Editor.CloseCTDialog();
+	sohu.diyConsole.CurSec.Editor.CloseCTDialog();
 };
 /**
  * 获取所有横切jquery对象
@@ -241,8 +313,30 @@ sohu.diyConsole.Dragger={
 	handle:$('<div class="dragHandle"></div>'),
 	cssHandle:'.dragHandle'
 };
+sohu.diyConsole.CurArea=null;
+sohu.diyConsole.CurSec=null;		/* 当前鼠标所在的分栏 */
+sohu.diyConsole.EditingSec=null;	/* 当前内联编辑的分栏 */
 sohu.diyConsole.CurCT=null;
+sohu.diyConsole.EditingCT=null;
 sohu.diyConsole.CurElm=null;/* current editing element */
+sohu.diyConsole.$SecEditorModel=null; /* 分栏编辑器dom模型 */
+sohu.diyConsole.InnerHeight=function() {
+    var x,y;
+    if (self.innerHeight) // all except Explorer
+    {
+		return self.innerHeight;
+    }
+    else if (document.documentElement && document.documentElement.clientHeight)         
+    {
+		// Explorer 6 Strict Mode
+        return document.documentElement.clientHeight;
+    }
+    else if (document.body) // other Explorers
+    {
+        return document.body.clientHeight;
+    };
+
+};
 //TODO:移到sohu.stringUtils.js中
 /**
  * 获取指定长度的随机字符串。注意：仅仅由数字和字母组成

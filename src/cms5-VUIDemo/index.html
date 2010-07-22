@@ -16,41 +16,68 @@
 		<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
 	</head>
     <body>
-		<!--通用头-->
-		<div id="indexNav" class="area">
-		    <a rel="external" href="http://www.sohu.com/">
-		    	<img height="22" border="0" width="87" class="left" alt="搜狐网站" src="http://images.sohu.com/uiue/sohu_logo/2005/sohu_logo2.gif" />
-			</a>
-			<a rel="external" href="http://sports.sohu.com/">
-				<img height="22" border="0" class="left" alt="搜狐体育" src="http://images.sohu.com/uiue/sohu_logo/2006/news_logo2.gif" />
-			</a>
-		    <style>#channelNav ul {margin-right:5px;width:auto;clear:none}</style>
-		    <ul class="right">
-		    	<li><a href="http://www.sohu.com/">搜狐首页</a></li><li>-</li>
-		    	<li class="red"><a href="http://news.sohu.com/">新闻</a></li><li>-</li>
-		    	<li><a href="http://sports.sohu.com/">体育</a></li><li>-</li>
-		    	<li><a href="http://s.sohu.com/">S</a></li><li>-</li>
-		    	<li><a href="http://yule.sohu.com/">娱乐</a></li><li>-</li>
-		    	<li><a href="http://v.sohu.com/">V</a></li><li>-</li>
-		    	<li class="red"><a href="http://business.sohu.com/">财经</a></li><li>-</li>
-		    	<li><a href="http://it.sohu.com/">IT</a></li><li>-</li>
-		    	<li><a href="http://auto.sohu.com/">汽车</a></li><li>-</li>
-		    	<li><a href="http://house.sohu.com/">房产</a></li><li>-</li>
-		    	<li><a href="http://women.sohu.com/">女人</a></li><li>-</li>
-		    	<li><a href="http://tv.sohu.com/">视频</a></li><li>-</li>
-		    	<li><a href="http://v.blog.sohu.com/">播客</a></li><li>-</li>
-		    	<li><a href="http://www.chinaren.com/">ChinaRen</a></li><li>-</li>
-		    	<li><a href="http://login.mail.sohu.com/">邮件</a></li><li>-</li>
-		    	<li><a href="http://blog.sohu.com/">博客</a></li><li>-</li>
-		    	<li><a href="http://club.sohu.com/">BBS</a></li><li>-</li>
-		    	<li><a href="http://comment2.news.sohu.com/">我说两句</a></li><li>-</li>
-		    	<li class="end"><a href="http://www.sogou.com/">搜狗</a></li>
-		    </ul>
-	    </div>
-		<!--/通用头-->
+		<!--文本编辑菜单-->
+		<div id="editMenu">
+		  <div id="editMenuChild" class="clear">
+			<a onclick="runCommand(currentBox, 'Bold', null); return false;" class="menuitem" title="加粗" href="#" id="menuitem-b"></a>
+			<a onclick="runCommand(currentBox, 'Italic', null); return false;" class="menuitem" title="斜体" href="#" id="menuitem-i"></a>
+			<a onclick="runCommand(currentBox,'Underline', null); return false;" title="下划线" href="#" class="menuitem" id="menuitem-u"></a>
+			<a onmousedown="saveSelection();showNewColorChooser(); return false" id="menuitem-cc" title="颜色" href="#" class="menuitem"></a><input type="hidden" id="currentColor" />
+			<a onclick="runCommand(currentBox,'increasefontsize', null); return false;" title="增大尺寸" href="#" class="menuitem" id="menuitem-if"></a>
+			<a onclick="runCommand(currentBox,'decreasefontsize', null); return false;" title="减少尺寸" href="#" class="menuitem" id="menuitem-df"></a>
+			<a onclick="showCreateLink(); return false;" onmousedown="saveSelection();" title="加链接" href="#" class="menuitem" id="menuitem-cl"></a>
+			<a onclick="runCommand(currentBox,'justifyleft', null); return false;" title="左对齐" href="#" class="menuitem" id="menuitem-al"></a>
+			<a onclick="runCommand(currentBox,'justifycenter', null); return false;" title="居中对齐" href="#" class="menuitem" id="menuitem-ac"></a>
+			<a onclick="runCommand(currentBox, 'justifyright', null); return false;" title="右对齐" href="#" class="menuitem" id="menuitem-ar"></a>
+			<a onclick="runCommand(currentBox, 'justifyfull', null); return false;" title="两边对齐" href="#" class="menuitem" id="menuitem-af"></a>
+			<a onclick="runCommand(currentBox, 'insertunorderedlist', null); return false;" title="无序列表" href="#" class="menuitem" id="menuitem-ul"></a>
+			<a onclick="runCommand(currentBox, 'insertorderedlist', null); return false;" title="有序列表" href="#" class="menuitem" id="menuitem-ol"></a>
+			<a onclick="runCommand(currentBox,'undo', null); return false;" style="" title="撤销" href="#" class="menuitem" id="menuitem-z"></a>
+			<a onclick="runCommand(currentBox,'redo', null); return false;" style="" title="重做" href="#" class="menuitem" id="menuitem-r"></a>
+			<div class="bar_l"></div>
+			<div class="bar_r"></div>
+		  </div>
+		</div>		
+		<!--/文本编辑菜单-->
 		<!--#main-->
-		<div id="main" class="main">
+		<div id="scrollWrap">
+			<div id="mainWrap">
+				<!--通用头-->
+				<div id="indexNav" class="area">
+				    <a rel="external" href="http://www.sohu.com/">
+				    	<img height="22" border="0" width="87" class="left" alt="搜狐网站" src="http://images.sohu.com/uiue/sohu_logo/2005/sohu_logo2.gif" />
+					</a>
+					<a rel="external" href="http://sports.sohu.com/">
+						<img height="22" border="0" class="left" alt="搜狐体育" src="http://images.sohu.com/uiue/sohu_logo/2006/news_logo2.gif" />
+					</a>
+				    <style>#channelNav ul {margin-right:5px;width:auto;clear:none}</style>
+				    <ul class="right">
+				    	<li><a href="http://www.sohu.com/">搜狐首页</a></li><li>-</li>
+				    	<li class="red"><a href="http://news.sohu.com/">新闻</a></li><li>-</li>
+				    	<li><a href="http://sports.sohu.com/">体育</a></li><li>-</li>
+				    	<li><a href="http://s.sohu.com/">S</a></li><li>-</li>
+				    	<li><a href="http://yule.sohu.com/">娱乐</a></li><li>-</li>
+				    	<li><a href="http://v.sohu.com/">V</a></li><li>-</li>
+				    	<li class="red"><a href="http://business.sohu.com/">财经</a></li><li>-</li>
+				    	<li><a href="http://it.sohu.com/">IT</a></li><li>-</li>
+				    	<li><a href="http://auto.sohu.com/">汽车</a></li><li>-</li>
+				    	<li><a href="http://house.sohu.com/">房产</a></li><li>-</li>
+				    	<li><a href="http://women.sohu.com/">女人</a></li><li>-</li>
+				    	<li><a href="http://tv.sohu.com/">视频</a></li><li>-</li>
+				    	<li><a href="http://v.blog.sohu.com/">播客</a></li><li>-</li>
+				    	<li><a href="http://www.chinaren.com/">ChinaRen</a></li><li>-</li>
+				    	<li><a href="http://login.mail.sohu.com/">邮件</a></li><li>-</li>
+				    	<li><a href="http://blog.sohu.com/">博客</a></li><li>-</li>
+				    	<li><a href="http://club.sohu.com/">BBS</a></li><li>-</li>
+				    	<li><a href="http://comment2.news.sohu.com/">我说两句</a></li><li>-</li>
+				    	<li class="end"><a href="http://www.sogou.com/">搜狗</a></li>
+				    </ul>
+			    </div>
+				<!--/通用头-->
+				<div id="main" class="main area"></div>
+			</div>
 		</div>
+		<!--/#main-->
 		
 		<!--可视化编辑所需dom模板-->
 		<div id="areaTools" class="areaTools">

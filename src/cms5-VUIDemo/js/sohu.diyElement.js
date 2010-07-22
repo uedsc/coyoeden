@@ -9,9 +9,35 @@ sohu.diyElement=function(opts){
 	this.CT=opts.ct;
 	this.$Context=this.CT.$Layout;
 	this.$Layout=opts.$dom;
-	if(opts.inlineEditable){
-		this.$Layout.iEditable();
+	
+	/* private member variables */
+	var p={opts:opts};
+	p.onEditModeChange=function(dom){
+		if (dom.iEditing) {
+			sohu.diyConsole.$EditMenu.show();
+			_this.CT.InlineEdit("on");
+		}else{
+			sohu.diyConsole.$EditMenu.hide();
+			_this.CT.InlineEdit("off");
+		}
+			
 	};
+	p.initEditable=function(){
+		if(opts.inlineEditable){
+			_this.$Layout.iEditable({
+				onModeChange:p.onEditModeChange
+			});
+		};
+	};
+	/* /private member variables */
+	
+	p.Init=function(){
+		p.initEditable();
+	};
+	
+	//初始化
+	p.Init();
+	
 	//鼠标事件
 	this.$Layout.mouseenter(function(evt){
 		_this.$Layout.addClass(opts.clOn);
@@ -21,11 +47,16 @@ sohu.diyElement=function(opts){
 	});
 	this.$Layout.click(function(evt){
 		if(sohu.diyConsole.CurElm)
-			sohu.diyConsole.CurElm.$Layout[0].iEdit("off");
+			sohu.diyConsole.CurElm.HideEditor(true);
 			
 		sohu.diyConsole.CurElm=_this;
+		
 		
 	});
 	//屏蔽超链接
 	this.$Context.find("a").css("cursor","text").click(function(evt){return false;});
+};
+sohu.diyElement.prototype.HideEditor=function(ignoreCbk){
+	this.$Layout[0].iEdit("off",ignoreCbk||false);
+	sohu.diyConsole.CurElm=null;
 };

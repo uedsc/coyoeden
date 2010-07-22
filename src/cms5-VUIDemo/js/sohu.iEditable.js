@@ -9,6 +9,26 @@
     p.onClick = function(evt) { 
 		this.iEdit("on");
 	};
+	p.bindEvents=function(dom){
+		dom.i$Doc.keyup(function(evt){
+			 //reset the iframe high
+			 var h=dom.i$Body[0].scrollHeight;
+			 h=h<25?25:h;
+			 dom.i$frame.css("height",h);
+			 //refresh text
+			 $(dom).html(dom.i$Body.html());  	
+	  	}).keydown(function(evt){
+			//fix newline entering in IE
+			if($.browser.msie){
+				var sel = document.selection.createRange();
+		        sel.pasteHTML('<br /><span></span>');  //empty span needed to advance cursor to next line
+				return false;
+			}
+		});
+	};
+	p.unbindEvents=function(dom){
+		dom.i$Doc.unbind();
+	};
 	p.initIframe=function(dom){
 		  var $dom=$(dom);
 		  dom.id=dom.id==""?"ET_"+new Date().getTime():dom.id;
@@ -28,17 +48,9 @@
 		  //insert the iframe and hide it
 		  $dom.after(dom.i$frame);
 		  dom.i$frame.iframeEX().hide();
-		  //event handlers
-		  dom.i$frame.keyup(function(evt){
-			 //reset the iframe high
-			 var $body=dom.i$frame.i$Body();
-			 var h=$body.css("scrollHeight");
-			 h=h<25?25:h;
-			 dom.i$frame.css("height",h);
-			 //refresh text
-			 $dom.html($body.html());  	
-		  });
-		  
+		  //references
+		  dom.i$Doc=dom.i$frame.i$Doc();
+		  dom.i$Body=dom.i$frame.i$Body();
 	};
 	p.cssToIframe=function(dom){
 		var $this=$(dom);
@@ -69,8 +81,8 @@
                 $body.css("lineHeight",newHeight);
             };
 		};
-		//we don't need any marign inside the iframe body tag 
-		$body.css("margin",0);	
+		//we don't need any marign and border styles inside the iframe body tag 
+		$body.css({"margin":"0","border":"none"});	
 		//visibility
 		$body.show();
 		dom.i$frame.show();
@@ -80,8 +92,11 @@
 	/* Add the prefix 'i' to all the functions to avoid name conflicts with other jquery plugins... */
 	var pub={
 		iEditing:false,
-		i$frame:null,
-		iEdit:function(mode){
+		i$frame:null,		/* Cache the iframe editor */
+		i$Body:null,		/* Cache the iframe body jq obj */
+		i$Doc:null,			/* Cache the iframe document jq obj */
+		iEdit:function(mode,ignoreCbk){
+			ignoreCbk=ignoreCbk||false;
 			var $this=$(this);
 			if(!this.i$frame)
 				p.initIframe(this);
@@ -99,13 +114,19 @@
 					.iFocus()
 					.iSelect();
 				
+				p.bindEvents(this);
+				
 			}else{
 				//hide the editbox
 				if(!this.iEditing) return;
 				
 				this.iEditing=false;
 				$this.show().html(this.i$frame.iGetData());
+				p.unbindEvents(this);
 				this.i$frame.hide();
+			};
+			if(this._opts.onModeChange&&(!ignoreCbk)){
+				this._opts.onModeChange(this);
 			};
 			return this;
 		}//iEdit
@@ -126,6 +147,7 @@
 			/* 2,click handler register */
 			$this.click(p.onClick);	
 			/* 3,Extent the element */
+			pub._opts=opts;
 			$.extend(this,pub);
 			
 				
@@ -133,7 +155,8 @@
     };
     // Public defaults.
     $.fn.iEditable.defaults = {
-        excludeTags: 'table,input,select,button,tr,iframe' /* tags that don't support inline editable */
+        excludeTags: 'table,input,select,button,tr,iframe' /* tags that don't support inline editable */,
+		onModeChange:null /* callback handler when the iEdit function was invoked */
     };
     // Public functions.
     $.fn.iEditable.method1 = function(skinName) {
