@@ -2,6 +2,7 @@
  * Make an element to be inline editable
  * @dependency sohu.iframeEX.js
  * @author levinhuang
+ * @version 1.2010.0722
  */
 ;(function($) {
     // Private functions.
@@ -10,16 +11,17 @@
 		this.iEdit("on");
 	};
 	p.bindEvents=function(dom){
-		dom.i$Doc.keyup(function(evt){
+		dom.i$frame[0].i$Doc().keyup(function(evt){
+			 var $body=dom.i$frame[0].i$Body();
 			 //reset the iframe high
-			 var h=dom.i$Body[0].scrollHeight;
+			 var h=$body[0].scrollHeight;
 			 h=h<25?25:h;
 			 dom.i$frame.css("height",h);
 			 //refresh text
-			 $(dom).html(dom.i$Body.html());  	
+			 $(dom).html($body.html());  	
 	  	}).keydown(function(evt){
 			//fix newline entering in IE
-			if($.browser.msie){
+			if($.browser.msie&& evt.which == 13 && document.selection){
 				var sel = document.selection.createRange();
 		        sel.pasteHTML('<br /><span></span>');  //empty span needed to advance cursor to next line
 				return false;
@@ -27,9 +29,9 @@
 		});
 	};
 	p.unbindEvents=function(dom){
-		dom.i$Doc.unbind();
+		dom.i$frame[0].i$Doc().unbind();
 	};
-	p.initIframe=function(dom){
+	p.initIframe=function(dom,callback){
 		  var $dom=$(dom);
 		  dom.id=dom.id==""?"ET_"+new Date().getTime():dom.id;
 		  var if0=document.createElement('iframe');
@@ -43,18 +45,22 @@
 	      if0.frameBorder = '0' ;
 	      if0.scrolling = 'no' ;
 		  if0.src= "";
-		  
-		  dom.i$frame=$(if0);
 		  //insert the iframe and hide it
-		  $dom.after(dom.i$frame);
-		  dom.i$frame.iframeEX().hide();
-		  //references
-		  dom.i$Doc=dom.i$frame.i$Doc();
-		  dom.i$Body=dom.i$frame.i$Body();
+		  $if=$(if0)
+		  $dom.after($if);
+		  dom.i$frame=$if.iframeEX().hide();
+		  if(callback&&$.browser.msie){
+		  	 //IE like a shit
+		  	 setTimeout(function(){
+			 	callback(dom);
+			 },400);
+		  }else{
+		  	 callback(dom);
+		  };
 	};
 	p.cssToIframe=function(dom){
 		var $this=$(dom);
-		var $body=dom.i$frame.i$Body();
+		var $body=dom.i$frame[0].i$Body();
 		//copy styles to the iframe document
 		$this.copyCss($body).copyCss(dom.i$frame);
 		//auto height or width process
@@ -77,7 +83,7 @@
             if(fs && lh){
                 var newHeight = ''+(lh/fs);
                 dom.i$frame.css("lineHeight", newHeight);
-                $body.css("lineHeight",newHeight);
+              	$body.css("lineHeight",newHeight);
             };
 		};
 		//we don't need any marign and border styles inside the iframe body tag 
@@ -87,46 +93,51 @@
 		dom.i$frame.show();
 		
 	};
+	p.doEditing=function(dom){
+		var $this=$(dom);
+		if(dom.mode=="on"){
+			if(dom.iEditing) return;
+			
+			dom.iEditing=true;
+			$this.hide();
+			
+			p.cssToIframe(dom);
+			//show the editbox
+			
+			dom.i$frame[0]
+				.iSetData($this.html())
+				.iFocus()
+				.iSelect();
+			
+			p.bindEvents(dom);
+			
+		}else{
+			//hide the editbox
+			if(!dom.iEditing) return;
+			
+			dom.iEditing=false;
+			$this.show().html(dom.i$frame[0].iGetData());
+			p.unbindEvents(dom);
+			dom.i$frame.hide();
+		};
+		if(dom._opts.onModeChange&&(!ignoreCbk)){
+			dom._opts.onModeChange(dom);
+		};
+	};
 	/* Public functions that will be merged into the raw element. */
 	/* Add the prefix 'i' to all the functions to avoid name conflicts with other jquery plugins... */
 	var pub={
 		iEditing:false,
 		i$frame:null,		/* Cache the iframe editor */
-		i$Body:null,		/* Cache the iframe body jq obj */
-		i$Doc:null,			/* Cache the iframe document jq obj */
 		iEdit:function(mode,ignoreCbk){
 			ignoreCbk=ignoreCbk||false;
-			var $this=$(this);
-			if(!this.i$frame)
-				p.initIframe(this);
+			this.mode=mode;
+			if (!this.i$frame) {
+				p.initIframe(this, p.doEditing);
+				return this;
+			}
 				
-			if(mode=="on"){
-				if(this.iEditing) return;
-				
-				this.iEditing=true;
-				$this.hide();
-				
-				p.cssToIframe(this);
-				//show the editbox
-				this.i$frame
-					.iSetData($this.html())
-					.iFocus()
-					.iSelect();
-				
-				p.bindEvents(this);
-				
-			}else{
-				//hide the editbox
-				if(!this.iEditing) return;
-				
-				this.iEditing=false;
-				$this.show().html(this.i$frame.iGetData());
-				p.unbindEvents(this);
-				this.i$frame.hide();
-			};
-			if(this._opts.onModeChange&&(!ignoreCbk)){
-				this._opts.onModeChange(this);
-			};
+			p.doEditing(this);
 			return this;
 		}//iEdit
 		
