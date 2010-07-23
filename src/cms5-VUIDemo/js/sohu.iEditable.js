@@ -93,35 +93,35 @@
 		dom.i$frame.show();
 		
 	};
-	p.doEditing=function(dom){
-		var $this=$(dom);
-		if(dom.mode=="on"){
-			if(dom.iEditing) return;
+	p.doEditing=function(opts){
+		var $this=$(opts.dom);
+		if(opts.mode=="on"){
+			if(opts.dom.iEditing) return;
 			
-			dom.iEditing=true;
+			opts.dom.iEditing=true;
 			$this.hide();
 			
-			p.cssToIframe(dom);
+			p.cssToIframe(opts.dom);
 			//show the editbox
 			
-			dom.i$frame[0]
+			opts.dom.i$frame[0]
 				.iSetData($this.html())
 				.iFocus()
 				.iSelect();
 			
-			p.bindEvents(dom);
+			p.bindEvents(opts.dom);
 			
 		}else{
 			//hide the editbox
-			if(!dom.iEditing) return;
+			if(!opts.dom.iEditing) return;
 			
-			dom.iEditing=false;
-			$this.show().html(dom.i$frame[0].iGetData());
-			p.unbindEvents(dom);
-			dom.i$frame.hide();
+			opts.dom.iEditing=false;
+			$this.show().html(opts.dom.i$frame[0].iGetData());
+			p.unbindEvents(opts.dom);
+			opts.dom.i$frame.hide();
 		};
-		if(dom._opts.onModeChange&&(!ignoreCbk)){
-			dom._opts.onModeChange(dom);
+		if(opts.dom._opts.onModeChange&&(!opts.ignoreCbk)){
+			opts.dom._opts.onModeChange(opts.dom);
 		};
 	};
 	/* Public functions that will be merged into the raw element. */
@@ -131,13 +131,19 @@
 		i$frame:null,		/* Cache the iframe editor */
 		iEdit:function(mode,ignoreCbk){
 			ignoreCbk=ignoreCbk||false;
-			this.mode=mode;
+			var cbkOpt={
+				dom:this,
+				mode:mode,
+				ignoreCbk:ignoreCbk
+			};
 			if (!this.i$frame) {
-				p.initIframe(this, p.doEditing);
+				p.initIframe(this, function(){
+					p.doEditing(cbkOpt);
+				});
 				return this;
 			}
 				
-			p.doEditing(this);
+			p.doEditing(cbkOpt);
 			return this;
 		}//iEdit
 		

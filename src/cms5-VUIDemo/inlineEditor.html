@@ -14,11 +14,26 @@
 	</head>
 	<body>
 		<h1>DEMO1-sohu.iframeEX</h1>
+		<button onclick="i[0].iSetData('xxxxxxxxxxxxxxxxxxxx')">SetData</button>
+		<button onclick="alert(i[0].iGetData());return false;">GetData</button>
+		<button onclick="i[0].iDoCommand('Bold')">Bold</button>
+		<button onclick="i[0].iDoCommand('Italic')">Italic</button>
+		<button onclick="i[0].iDoCommand('Underline')">Underline</button>
+		<br/>
 		<iframe id="test1" name="name" src="" class="editable" scrolling="no" frameborder="1" width="500" height="100"></iframe>
 		<br/>
-		<iframe id="test2" name="name" src="" class="editable" scrolling="no" frameborder="1" width="500" height="100"></iframe>
+		
 		<h1>DEMO2-Inline editor with iframe</h1>
 		<div id="test3" style="width:500px;height:100px;border:1px solid #ccc;padding:10px;">
+			<div>
+				<button onclick="items[0].i$frame[0].iSetData('xxxxxxxxxxxxxxxxxxxx')">SetData</button>
+				<button onclick="alert(items[0].i$frame[0].iGetData());return false;">GetData</button>
+				<button onclick="items[0].i$frame[0].iDoCommand('Bold')">Bold</button>
+				<button onclick="items[0].i$frame[0].iDoCommand('Italic')">Italic</button>
+				<button onclick="items[0].i$frame[0].iDoCommand('Underline')">Underline</button>
+				<button onclick="items[0].iEdit('off')">OK</button>
+			</div>
+			
 			<h2 class="elm">点击编辑内容...</h2>
 			<div class="elm">点击编辑内容...</div>
 		</div>
@@ -27,8 +42,7 @@
 	//<![CDATA[
 		//1,demo1
 		var i=$(".editable").iframeEX();
-		i.iSetData("iframe1",0);
-		i.iSetData("iframe2",1);
+
 		
 		//2,demo2
 		var items=$(".elm").hover(function(evt){

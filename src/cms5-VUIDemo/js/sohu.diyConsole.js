@@ -142,6 +142,8 @@ sohu.diyConsole=function(opts){
 		if(!sohu.diyConsole.CurArea.IsActive) return;
 		if(sohu.diyConsole.CurArea.IsEditing) return;
 		if(sohu.diyConsole.Dragger.ing) return;
+		//用户是否点击#editMenu
+		if($(evt.target).parents("#editMenu").length>0) return;
 		
 		var b=p.getWorkspaceBoundary();
 		if(evt.pageX<b.lbleft||evt.pageX>b.ubleft||evt.pageY>b.ubtop){//||evt.pageY<lbtop
@@ -183,15 +185,18 @@ sohu.diyConsole=function(opts){
 				var c="#"+hex;
 				p._$txtFontColor.val(c);
 				p._$cpkWrap.slideUp();	
-			},
-			onChange:function(hsb,hex,rgb){
-				var c1="#"+hex;
-				sohu.diyConsole.CurElm.i$frame.iDoCommand("forecolor",c1,null,0,function($iframe){
+				sohu.diyConsole.CurElm.i$frame[0].iDoCommand("foreColor",c,null,function($iframe){
 					if(sohu.diyConsole.DocSelection.text){
 						sohu.diyConsole.DocSelection.select();
 						sohu.diyConsole.DocSelection='';
 					}
 				});
+			},
+			onChange:function(hsb,hex,rgb){
+				//IE like a bullshit
+				if($.browser.msie&&sohu.diyConsole.DocSelection.text){
+					sohu.diyConsole.DocSelection.select();
+				};
 			}
 		});
 	};
@@ -200,23 +205,23 @@ sohu.diyConsole=function(opts){
 			sohu.diyConsole.CurElm.$Layout.css(iframeEditor.iCurCss);
 		};
 		$("#editMenuChild .menuitem").click(function(evt){return false;});
-		$("#menuitem-b").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("Bold",null);});
-		$("#menuitem-i").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("Italic",null);});
-		$("#menuitem-u").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("Underline",null);});
-		$("#menuitem-if").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("increasefontsize",null);});
-		$("#menuitem-df").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("decreasefontsize",null);});
-		$("#menuitem-al").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("justifyleft",null,fontStyleCbk);});
-		$("#menuitem-ac").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("justifycenter",null,fontStyleCbk);});
-		$("#menuitem-ar").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("justifyright",null,fontStyleCbk);});
-		$("#menuitem-af").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("justifyfull",null,fontStyleCbk);});
-		$("#menuitem-ul").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("insertunorderedlist",null);});
-		$("#menuitem-ol").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("insertorderedlist",null);});
-		$("#menuitem-z").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("undo",null);});
-		$("#menuitem-r").click(function(evt){sohu.diyConsole.CurElm.i$frame.iDoCommand("redo",null);});
+		$("#menuitem-b").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Bold",null);});
+		$("#menuitem-i").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Italic",null);});
+		$("#menuitem-u").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Underline",null);});
+		$("#menuitem-if").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("increasefontsize",null);});
+		$("#menuitem-df").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("decreasefontsize",null);});
+		$("#menuitem-al").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("justifyleft",null,fontStyleCbk);});
+		$("#menuitem-ac").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("justifycenter",null,fontStyleCbk);});
+		$("#menuitem-ar").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("justifyright",null,fontStyleCbk);});
+		$("#menuitem-af").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("justifyfull",null,fontStyleCbk);});
+		$("#menuitem-ul").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("insertunorderedlist",null);});
+		$("#menuitem-ol").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("insertorderedlist",null);});
+		$("#menuitem-z").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("undo",null);});
+		$("#menuitem-r").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("redo",null);});
 		//colorpicker
 		$("#menuitem-cc").mousedown(function(evt){
 			if(document.selection)
-				sohu.diyConsole.DocSelection=sohu.diyConsole.CurElm.i$frame.i$Doc().selection.createRange();
+				sohu.diyConsole.DocSelection=sohu.diyConsole.CurElm.i$frame[0].iDoc().selection.createRange();
 				
 			p._$cpkWrap.slideDown();
 		});

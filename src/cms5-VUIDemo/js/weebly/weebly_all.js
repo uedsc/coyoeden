@@ -11411,61 +11411,6 @@ var iframeEl 	  = null;
 var editBoxSaveCallback  = null;
 var editBoxRedrawOptions = false;
 var editBoxShowOptions = true;
-
-function init(nameOfBox) {
-
-	var self = this;
-
-	//setTimeout("document.getElementById('"+nameOfBox+"Edit').contentWindow.document.designMode = 'On'",500);
-
-	setTimeout("init2('"+nameOfBox+"')", 500);
-
-}
-
-function init2(nameOfBox) {
-
-	var activateCount = 0;
-	var keepGoing = 0;
-
-	// Crap out if these elements don't exist anymore, for whatever reason
-	if (!(document.getElementById(nameOfBox+'Edit') && document.getElementById(nameOfBox+'Edit').contentWindow)) { return false; }
-
-	var myEl = document.getElementById(nameOfBox+'Edit').contentWindow.document;
-
-	while (keepGoing == 0 && activateCount < 3) {
-	  try{
-	   myEl.designMode = 'On';
-	   keepGoing = 1;
-	  } catch (e) {
-	   keepGoing = 0;
-	   activateCount++;
-	  }
-	}
-
-	if (typeof document.addEventListener == "function") {
-	   myEl.addEventListener("keyup", function(e){self.keyUp(); return true;}, false);
-           myEl.addEventListener("keydown", function(e){self.keyDown(); self.detectPaste(e); return true;}, false);
-	}
-	//initBoxes.push(nameOfBox);
-
-        // Firefox is "ready" for the runCommand here
-        // otherwise, spits out a nsComponentNotReady error later
-        if (navigator.appVersion.indexOf("MSIE") == -1) {
-          if (myEl.body.innerHTML.indexOf('Click here to edit.') > -1 || myEl.body.innerHTML.indexOf('This is your new blog post.') > -1 || myEl.body.innerHTML.indexOf('100.00') > -1) {
-            document.getElementById(nameOfBox+'Edit').contentWindow.focus();
-            try {
-              selectAll();
-            } catch(e) { setTimeout("selectAll();", 500); }
-          }
-        }
-
-	// The order in which things are done varies for IE and FF
-	// IE wants continueShowEditBox here
-        if (navigator.appVersion.indexOf("MSIE") > -1) {
-          continueShowEditBox(nameOfBox);
-        }
-
-}
                                                                                                                              
 function hideEditBox(name, tries) {
 
@@ -11585,19 +11530,60 @@ function showEditBox(name, elementid, options) {
 	}
 
 }
+function init(nameOfBox) {
 
-function handleEditBoxOptions(options){
-    if('function' == typeof(options.saveCallback)){
-        editBoxSaveCallback = options.saveCallback;
-    }
-    if('undefined' !== typeof(options.redrawOptions)){
-        editBoxRedrawOptions = options.redrawOptions;
-    }
-    if('undefined' !== typeof(options.showOptions)){
-        editBoxShowOptions = options.showOptions;
-    }
+	var self = this;
+
+	//setTimeout("document.getElementById('"+nameOfBox+"Edit').contentWindow.document.designMode = 'On'",500);
+
+	setTimeout("init2('"+nameOfBox+"')", 500);
+
 }
 
+function init2(nameOfBox) {
+
+	var activateCount = 0;
+	var keepGoing = 0;
+
+	// Crap out if these elements don't exist anymore, for whatever reason
+	if (!(document.getElementById(nameOfBox+'Edit') && document.getElementById(nameOfBox+'Edit').contentWindow)) { return false; }
+
+	var myEl = document.getElementById(nameOfBox+'Edit').contentWindow.document;
+
+	while (keepGoing == 0 && activateCount < 3) {
+	  try{
+	   myEl.designMode = 'On';
+	   keepGoing = 1;
+	  } catch (e) {
+	   keepGoing = 0;
+	   activateCount++;
+	  }
+	}
+
+	if (typeof document.addEventListener == "function") {
+	   myEl.addEventListener("keyup", function(e){self.keyUp(); return true;}, false);
+           myEl.addEventListener("keydown", function(e){self.keyDown(); self.detectPaste(e); return true;}, false);
+	}
+	//initBoxes.push(nameOfBox);
+
+        // Firefox is "ready" for the runCommand here
+        // otherwise, spits out a nsComponentNotReady error later
+        if (navigator.appVersion.indexOf("MSIE") == -1) {
+          if (myEl.body.innerHTML.indexOf('Click here to edit.') > -1 || myEl.body.innerHTML.indexOf('This is your new blog post.') > -1 || myEl.body.innerHTML.indexOf('100.00') > -1) {
+            document.getElementById(nameOfBox+'Edit').contentWindow.focus();
+            try {
+              selectAll();
+            } catch(e) { setTimeout("selectAll();", 500); }
+          }
+        }
+
+	// The order in which things are done varies for IE and FF
+	// IE wants continueShowEditBox here
+        if (navigator.appVersion.indexOf("MSIE") > -1) {
+          continueShowEditBox(nameOfBox);
+        }
+
+}
 function continueShowEditBox(name) {
 
 	// Crap out if these elements don't exist anymore, for whatever reason
@@ -11753,6 +11739,17 @@ function createIframe(nameOfBox) {
 	  Element.insert($(nameOfBox), { after: iframeEl});
 	}
 
+}
+function handleEditBoxOptions(options){
+    if('function' == typeof(options.saveCallback)){
+        editBoxSaveCallback = options.saveCallback;
+    }
+    if('undefined' !== typeof(options.redrawOptions)){
+        editBoxRedrawOptions = options.redrawOptions;
+    }
+    if('undefined' !== typeof(options.showOptions)){
+        editBoxShowOptions = options.showOptions;
+    }
 }
 
 
