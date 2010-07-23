@@ -9,6 +9,7 @@
 		<link type="text/css" rel="stylesheet" href="css/index.css"/>
 		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link> 
 		<link rel="stylesheet" type="text/css" href="css/colorpicker.css"></link>
+		<link rel="stylesheet" type="text/css" href="css/vs.skinform.css"></link> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
 		<!--<script src="js/jquery-1.4.2.js" type="text/javascript"></script>--> 
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script> 
@@ -41,7 +42,25 @@
 					<div class="bar_l"></div>
 					<div class="bar_r"></div>
 				</div>
-  				<div id="cpkWrap"></div>
+  				<div id="cpkWrap" class="win"></div>
+		        <div id="addLink" class="win">
+		        	<div class="skform skformx">
+		        		<label>Title<span class="small">title属性</span></label>
+		                <input name="atitle" id="txtATitle" type="text" class="field"/>
+		                <label>链接<span class="small">请输入有效网址</span></label>
+		                <input name="ahref" id="txtAHref" type="text" class="field"/>
+		                <label>打开位置</label>
+						<div class="field">
+						    <input type="radio" name="atarget" value="_blank" checked="checked" ><span>新窗口</span>
+					   		<input type="radio" name="atarget" value="_self"><span>本页</span>			
+						</div>
+		                <div class="acts">
+							<button id="btnAddLink">确定</button>
+							<button id="btnCloseLink">取消</button>
+						</div>
+		                <div class="spacer"></div>
+		        	</div>	      
+		        </div>
 			</div>
 		</div>		
 		<!--/文本编辑菜单-->

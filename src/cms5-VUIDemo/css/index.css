@@ -76,8 +76,14 @@ display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(25
 	#editMenuChild .bar_l,#editMenuChild .bar_r{width: 5px; height: 35px;position: absolute; bottom: 0px;}
 	#editMenuChild .bar_l{ background: url("../img/menubar-l.gif") no-repeat scroll left bottom transparent;  left: 0px; margin-left: -5px;}
 	#editMenuChild .bar_r{background: url("../img/menubar-r.gif") no-repeat scroll right bottom transparent; right: 0px; margin-right: -5px;}
+	/* colorpicker wrapper */
 	#cpkWrap{position:relative;display:none;width:356px;margin:0 auto;}
 	#cpkWrap .colorpicker{background-image:url("../images/custom_background.png");}
+	/* create link wrapper */
+	#addLink{position:relative;width:356px;margin:0 auto;}
+	#addLink .skform{width:100%;padding:10px 0;}
+	#addLink .skform label{width:25%;}
+	#addLink .skform .field{width:65%;}
 /* =/#editMenu= */
 
 /* =main= */
