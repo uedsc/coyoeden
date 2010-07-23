@@ -1,6 +1,7 @@
 /**
  * A jquery plugin which will do some extensions to the iframe element!
  * @author levinhuang
+ * @version 1.2010.0723
  */
 ;(function($) {
 	/* Private helper methods */
@@ -74,176 +75,166 @@
           }
       } catch(e) { ifDoc.execCommand(command, false, opts); }		
 	}; 
-   /* Public functions that will be merged into the raw iframe element. */
+   	/* Public functions that will be merged into the raw iframe element. */
 	/* Add the prefix 'i' to all the functions to avoid name conflicts with other jquery plugins... */
     var pub = {
-		/**
-		 * Reference to the iframe dom object itself.
-		 * @param {int} idx index for the seleted iframe
-		 */
-		i:function(idx){
-			/* Resume that the method caller 'this' reference to a jquery object firstly */
-			idx=idx||0;
-			return (this[idx]||this);
-		},
 		iCnt:0,/* Design mode trying counters */
 		iCurCss:{"text-align":"left"},/* Current font align for the iframe */
 		/**
 		 * Focus the specified iframe
-		 * @param {Object} idx index
 		 */
-		iFocus:function(idx){
-			var _i=this.i(idx);
-			_i.contentWindow.focus();
+		iFocus:function(){
+			this.contentWindow.focus();
 			return this;
 		},
 		/**
 		 * Select all the contents of the specified iframe
-		 * @param {Object} idx index
 		 */
-		iSelect:function(idx){
-			var _i=this.i(idx);
-			var _this=this;
-			this.iDoCommand("selectAll",false,null,idx);
-			setTimeout(function(){
-				_this.iDoCommand("selectAll",false,null,idx);
-			},500);	
+		iSelect:function(){
+			this.iDoCommand("selectall",false);
 			return this;
 		},
 		/**
 		 * invoke specified execCommand method.
 		 * @param {Function} preCbk callback handler before running command
 		 */
-		iDoCommand:function(cmd,opts,cbk,idx,preCbk){
-			idx=idx||0;
+		iDoCommand:function(cmd,opts,cbk,preCbk){
 			try {
 				//callback handler before running command
 				if(preCbk){preCbk(this);};
 				//execute the command
 				switch (cmd) {
 					case "fontsizeup":
-						p.cmdFontSizeUp(this.i$Doc()[0], opts);
+						p.cmdFontSizeUp(this.contentWindow.document, opts);
 						break;
 					case "fontsizedwn":
-						p.cmdFontSizeDwn(this.i$Doc()[0], opts);
+						p.cmdFontSizeDwn(this.contentWindow.document, opts);
 						break;
 					case "justifyleft":
 						this.iCurCss["text-align"] = "left";
-						this.i$Body(idx).css("text-align", "left");
+						this.i$Body().css("text-align", "left");
 						break;
 					case "justifycenter":
 						this.iCurCss["text-align"] = "center";
-						this.i$Body(idx).css("text-align", "center");
+						this.i$Body().css("text-align", "center");
 						break;
 					case "justifyright":
 						this.iCurCss["text-align"] = "right";
-						this.i$Body(idx).css("text-align", "right");
+						this.i$Body().css("text-align", "right");
 						break;
 					case "justifyfull":
 						this.iCurCss["text-align"] = "right";
-						this.i$Body(idx).css("text-align", "right");
+						this.i$Body().css("text-align", "right");
 						break;
 					default:
-						this.i$Body(idx)[0].execCommand(cmd, false, opts);
+						this.contentWindow.document.execCommand(cmd, false, opts||null);
 						break;
 				};//switch
 				if(cbk){cbk(this);};
 			}catch(e){
 				//do nothing
+				this.contentWindow.document.write("ERROR:"+(e.description||e.message));
 			};
 			return this;
 		},
 		/**
 		 * Toggle the designMode of the iframe
 		 * @param {String} mode Possible values may be 'on' or 'off'
-		 * @param {int} idx index for the seleted iframe
 		 * @param {Function} cbk callback handler when the mode has been changed.
 		 */
-		iDesignMode:function(mode,idx,cbk){
-			var _i=this.i(idx); 
+		iDesignMode:function(mode,cbk){
 			//Old mode,no need to change
-			if(_i.contentWindow.document.designMode.toLowerCase()==mode) 
+			if(this.contentWindow.document.designMode.toLowerCase()==mode) 
 				return this;
 			//Change the designMode 				
 			var _this=this;
-			if(_i.contentWindow.document.body)/* null if an iframe with empty src property in IE */
-				_i.contentWindow.document.body.contentEditable=(mode=="on");
 			
 			try{
-				_i.contentWindow.document.designMode=mode;
+				//this.iBody.contentEditable=(mode=="on");	
+				//set the design mode
+				this.contentWindow.document.designMode=mode;
+				
 				if(cbk){
-					cbk(this,{mode:mode,idx:idx});
+					cbk(this,{mode:mode});
 				}//if
 			}catch(e){
 				if((this.iCnt++)>3)
 					return this;
-				
+				alert("Design mode error,try it again!");
 				//try again
 				setTimeout(function(){
-					_this.iDesignMode(mode,idx);
+					_this.iDesignMode(mode,cbk);
 				},350);
-			}	
+			}//try
 			
 			return this;
 		},//disignMode
 		/**
 		 * Get the data contained in the body tag of the iframe
-		 * @param {int} idx index for the seleted iframe
 		 */
-		iGetData:function(idx){
-			return this.i$Body(idx).html();
-		},
-		/**
-		 * @param {int} idx index for the seleted iframe
-		 */
-		i$Body:function(idx){
-			var _i=this.i(idx);
-			if(this._opts.bodyTag){/* init body tab only once */
-				_i.contentWindow.document.open();
-				_i.contentWindow.document.write(this._opts.bodyTag);
-				_i.contentWindow.document.close();
-				this._opts.bodyTag=null;
-			}
-			
-			return $(_i.contentWindow.document.body);
-		},
-		/**
-		 * Get the document jquery object of the iframe
-		 * @param {Object} idx index for the seleted iframe
-		 */
-		i$Doc:function(idx){
-			var _i=this.i(idx);
-			return $(_i.contentWindow.document);
+		iGetData:function(){
+			return this.contentWindow.document.body.innerHTML;
 		},
 		/**
 		 * set data to the body tag of the iframe
 		 * @param {String} html 
-		 * @param {int} idx index for the seleted iframe
 		 */
-		iSetData:function(html,idx){
-			this.i$Body(idx).html(html);
+		iSetData:function(html){
+			this.contentWindow.document.body.innerHTML=html;
 			return this;
 		},
 		/**
 		 * 
 		 * @param {Object} css
-		 * @param {Object} idx index for the seleted iframe
 		 */
-		iSetBodyCss:function(css,idx){
+		iSetBodyCss:function(css){
 			var _this=this;
 			if(css){
-				this.i$Body(idx).css(css);
+				this.i$Body().css(css);
 			}else{
-				if(pub._opts.bodyCss.toLowerCase().indexOf(".css")>0){
+				if(this._opts.bodyCss.toLowerCase().indexOf(".css")>0){
 					//load external css file
-					$.get(pub._opts.bodyCss,function(css1,txtStatus){
-						pub._opts.bodyCss=css1||"";
-						_this.i$Body(idx).attr("style",pub._opts.bodyCss);
+					$.get(this._opts.bodyCss,function(css1,txtStatus){
+						this._opts.bodyCss=css1||"";
+						_this.i$Body().attr("style",this._opts.bodyCss);
 					});
 				}
 			}//if
 			return this;
+		},
+		/**
+		 * Get iframe body jquery object.
+		 * Can't use i$Body as  property because the order in which things are done varies for IE and FF 
+		 */
+		i$Body:function(){
+			if(this._opts.bodyTag){/* init body tab only once */
+				this.contentWindow.document.open();
+				this.contentWindow.document.write(this._opts.bodyTag);
+				this.contentWindow.document.close();
+				this._opts.bodyTag=null;
+			}
+			return $(this.contentWindow.document.body);
+		},
+		/**
+		 * Get the iframe document jq obj
+		 * Can't use i$Body as  property because the order in which things are done varies for IE and FF
+		 */
+		i$Doc:function(){
+			return $(this.contentWindow.document);
+		},
+		/**
+		 * Get the iframe body
+		 */
+		iBody:function(){
+			return this.contentWindow.document.body;
+		},
+		/**
+		 * Get the iframe document
+		 */
+		iDoc:function(){
+			return this.contentWindow.document;
 		}
+			
 	};
     /* main plugin body */
     $.fn.iframeEX = function(opts) {
@@ -253,18 +244,20 @@
         this.each(function() {
 			var $this=$(this);
 			if(!$this.is("iframe")) return;
-			//register methods
+			var _this=this;
+			/* register public methods to the iframe dom object!So we call use iframe.setMode method */
 			pub._opts=opts;
-			$.extend(this,pub);	/* register to the iframe dom object!So we call use iframe.setMode method */
-			//init mode
-			if(opts.designMode)
-				this.iDesignMode("on");
-			//load css
+			$.extend(this,pub);
+			//init body tag
+			var $body=this.i$Body();
+			//load the external css for once
 			this.iSetBodyCss();
+			//init mode
+			if(opts.designMode){
+				this.iDesignMode("on");
+			}				
+			
         });
-		/* Register to the iframe jquery object.*/
-		$.extend(this,pub);
-		/* return the extended one */
 		return this;
 		
     };
