@@ -80,7 +80,7 @@ display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(25
 	#cpkWrap{position:relative;display:none;width:356px;margin:0 auto;}
 	#cpkWrap .colorpicker{background-image:url("../images/custom_background.png");}
 	/* create link wrapper */
-	#addLink{position:relative;width:356px;margin:0 auto;}
+	#addLink{position:relative;display:none;width:356px;margin:0 auto;}
 	#addLink .skform{width:100%;padding:10px 0;}
 	#addLink .skform label{width:25%;}
 	#addLink .skform .field{width:65%;}

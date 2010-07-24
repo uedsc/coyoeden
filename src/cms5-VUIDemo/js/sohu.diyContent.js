@@ -12,7 +12,7 @@ sohu.diyContent=function(opts){
 	this.Sec=opts.sec;//分栏
 	this.Editor=this.Sec.Editor;//分栏编辑器
 	this.MaxWidth=this.Sec.Width;
-	this.ID="ct_"+this.Type+"_"+sohu.diyConsole.RdStr(8);
+	this.ID="ct_"+this.Type+"_"+StringUtils.RdStr(8);
 	this.onDomed=null;/* 被添加到dom树后的回调函数 */
 	
 	//private property

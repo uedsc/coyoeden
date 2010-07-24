@@ -43,7 +43,7 @@ sohu.diyArea=function(opts){
 	//ÐÐÎª
 	if(opts.isNew){
 		this.TemplateID=opts.tplID;
-		this.ID=this.TemplateID+"_"+sohu.diyConsole.RdStr(8);
+		this.ID=this.TemplateID+"_"+StringUtils.RdStr(8);
 		p.addNew();
 	}else{
 		this.$Layout=opts.obj;

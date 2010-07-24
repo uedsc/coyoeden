@@ -1,11 +1,10 @@
 /**
  ** Created By Levin Van 20070911
- ** StringUtils is a javascript class.
- ** Revision:100628
+ ** StringUtils is a javascript class for proccessing strings.
  **/
 
 function StringUtils() {
-	this.version = "1.10.0628";
+	this.version = "1.10.0724";
 }
 StringUtils.abbreviate = function(str, offset, maxWidth) {
 	if (str == null) {
@@ -243,3 +242,74 @@ StringUtils.Tail = function(str, size, tailStr) {
 	str += (tailStr || "...");
 	return str;
 };
+/**
+ * 获取指定长度的随机字符串。注意：仅仅由数字和字母组成
+ * @param {Object} size 随机字符串的长度
+ * @param {Boolean} plusTimeStamp 是否加上当前时间戳
+ */
+StringUtils.RdStr=function(size,plusTimeStamp){
+	var size0=8;
+	var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+	size=size||size0;size=size<1?size0:size;size=size>chars.length?size0:size;
+	var s = '';
+	for (var i=0; i<size; i++) {
+		var rnum = Math.floor(Math.random() * chars.length);
+		s += chars.substring(rnum,rnum+1);
+	};
+	if(plusTimeStamp){
+		s+=new Date().getTime();
+	};
+	return s;
+};
+/**
+ * 判断指定的字符串是否是有效的url
+ * @param {Object} str href字符串
+ */
+StringUtils.isUrl=function(str){
+	var regx= /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/
+	return regx.test(str);
+};
+StringUtils.noScript = function(text) {
+	///<summary>判断指定的字符串没有有害的script字符</summary>
+	///<return>bool</return>
+	var flag = true;
+	var scriptWord = "<|>|script|alert|{|}|(|)|#|$|'|\"|:|;|&|*|@|%|^|?";
+	var words = scriptWord.split('|');
+	for (var i = 0; i < words.length; i++) {
+		if (text.indexOf(words[i]) != -1) {
+			flag = false;
+			break;
+		};
+	};
+	return flag;
+}; //noScript
+StringUtils.clearScript = function(text) {
+	///<summary>判断指定的字符串没有有害的script字符</summary>
+	///<return>bool</return>
+	var scriptWord = "<|>|script|alert|{|}|(|)|#|$|'|\"|:|;|&|*|@|%|^|?";
+	var words = scriptWord.split('|');
+	for (var i = 0; i < words.length; i++) {
+		if (text.indexOf(words[i]) != -1) {
+			text = text.replace(words[i], "");
+		};
+	};
+	return text;
+}; //noScript
+StringUtils.clearSql = function(text) {
+	///<summary>清除字符串中的sql关键字</summary>
+	var repWord = "|and|exec|insert|select|delete|update|count|*|chr|mid|master|truncate|char|declare|set|;|from";
+	var repWords = repWord.split('|');
+	var appIndex;
+	for (var i = 0; i < repWords.length; i++) {
+		appIndex = text.indexOf(repWords[i]);
+		if (appIndex != -1) {
+			text = text.replace(repWords[i], "");
+		}
+	}
+	return text;
+};
+StringUtils.hasQuote = function(text) {
+	var yes = text.indexOf("'") > -1 || text.indexOf('"') > -1;
+	return yes;
+}; //noQuote
+

@@ -28,7 +28,16 @@ sohu.diyConsole=function(opts){
 	p._$areaSelector=$("#area_selector");
 	p._$pageTip=$("#pageTip");
 	p._$editMenu=$("#editMenu");
+	p._$popWins=p._$editMenu.find(".win");
 	p._$cpkWrap=$("#cpkWrap");
+	p._$addLink=$("#addLink");
+	p._fmAddLink={
+		txtATitle:$("#txtATitle"),
+		txtAHref:$("#txtAHref"),
+		txtATarget:$("input[name='atarget']"),
+		tipAHref:p._$addLink.find(".tipAHref"),
+		reset:function(){p._$addLink.find(".tip").removeClass("alert").end().find("input[type='text']").val("");}
+	};
 	p._$txtFontColor=$("#txtFontColor");
 	p._opts=opts;
 	
@@ -156,6 +165,8 @@ sohu.diyConsole=function(opts){
 			//反激活分栏
 			if(sohu.diyConsole.CurSec)
 				sohu.diyConsole.CurSec.Deactive();
+			//重置添加链接对话框表单
+			p._fmAddLink.reset();
 		};
 		return false;
 	};
@@ -184,7 +195,7 @@ sohu.diyConsole=function(opts){
 			onSubmit:function(hsb,hex,rgb){
 				var c="#"+hex;
 				p._$txtFontColor.val(c);
-				p._$cpkWrap.slideUp();	
+				p._$popWins.slideUp();	
 				sohu.diyConsole.CurElm.i$frame[0].iDoCommand("foreColor",c,null,function($iframe){
 					if(sohu.diyConsole.DocSelection.text){
 						sohu.diyConsole.DocSelection.select();
@@ -199,6 +210,41 @@ sohu.diyConsole=function(opts){
 				};
 			}
 		});
+	};
+	p.initAddLink=function(){
+		p._$addLink.find("#btnAddLink").click(function(evt){
+			var url=p._fmAddLink.txtAHref.val();
+			if(!StringUtils.isUrl(url)){
+				p._fmAddLink.txtAHref.css("color","red").select();
+				p._fmAddLink.tipAHref.addClass("alert");
+				return false;
+			};
+			p._$popWins.slideUp();
+			sohu.diyConsole.CurElm.i$frame[0].iDoCommand("createlink",url,null,function($iframe){
+				if(sohu.diyConsole.DocSelection.text){
+					sohu.diyConsole.DocSelection.select();
+					sohu.diyConsole.DocSelection='';
+				}
+			});
+			p._fmAddLink.reset();
+		});
+		p._$addLink.find("#btnCloseLink").click(function(evt){
+			p._$popWins.slideUp();
+		});
+		p._$addLink.find("input[type='text']").keyup(function(evt){
+			this.value=this.value.replace('"',"").replace("'","").replace('‘',"").replace('“',"").replace('”',"");
+		});
+		p._fmAddLink.txtATarget.click(function(evt){
+			p._fmAddLink.txtATarget.curVal=this.value;
+		});
+		p._fmAddLink.txtATarget.curVal="_blank";
+	};
+	/**
+	 * Save current document.selection to sohu.diyConsole.DocSelection
+	 */
+	p.saveSelection=function(){
+		if(document.selection)
+				sohu.diyConsole.DocSelection=sohu.diyConsole.CurElm.i$frame[0].iDoc().selection.createRange();
 	};
 	p.initEditMenu=function(){
 		var fontStyleCbk=function(iframeEditor){
@@ -220,10 +266,16 @@ sohu.diyConsole=function(opts){
 		$("#menuitem-r").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("redo",null);});
 		//colorpicker
 		$("#menuitem-cc").mousedown(function(evt){
-			if(document.selection)
-				sohu.diyConsole.DocSelection=sohu.diyConsole.CurElm.i$frame[0].iDoc().selection.createRange();
-				
+			p.saveSelection();
+			p._$popWins.hide();	
 			p._$cpkWrap.slideDown();
+		});
+		//create link
+		$("#menuitem-cl").mousedown(function(evt){
+			p.saveSelection();
+			p._$popWins.hide();
+			p._$addLink.slideDown();
+			p._fmAddLink.txtATitle.focus();
 		});
 	};
 	p.Init=function(){
@@ -270,6 +322,8 @@ sohu.diyConsole=function(opts){
 		});
 		//color picker
 		p.initColorPicker();
+		//create link popup window
+		p.initAddLink();
 		//editMenu的事件注册
 		p.initEditMenu();
 		//on page loaded
@@ -397,24 +451,4 @@ sohu.diyConsole.InnerHeight=function() {
         return document.body.clientHeight;
     };
 
-};
-//TODO:移到sohu.stringUtils.js中
-/**
- * 获取指定长度的随机字符串。注意：仅仅由数字和字母组成
- * @param {Object} size 随机字符串的长度
- * @param {Boolean} plusTimeStamp 是否加上当前时间戳
- */
-sohu.diyConsole.RdStr=function(size,plusTimeStamp){
-	var size0=8;
-	var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-	size=size||size0;size=size<1?size0:size;size=size>chars.length?size0:size;
-	var s = '';
-	for (var i=0; i<size; i++) {
-		var rnum = Math.floor(Math.random() * chars.length);
-		s += chars.substring(rnum,rnum+1);
-	};
-	if(plusTimeStamp){
-		s+=new Date().getTime();
-	};
-	return s;
 };

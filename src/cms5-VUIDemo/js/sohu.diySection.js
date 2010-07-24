@@ -17,7 +17,7 @@ sohu.diySection = function(opts) {
 	var p={opts:opts};
 	this.__p=p;
 	//属性
-	this.ID="sec_"+sohu.diyConsole.RdStr(8);
+	this.ID="sec_"+StringUtils.RdStr(8);
 	this.$Layout=opts.$obj;
 	this.Width=this.Size();
 	this.Divisible=(this.Width>=390);//可继续分栏

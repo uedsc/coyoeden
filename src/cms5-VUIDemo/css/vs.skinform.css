@@ -52,6 +52,7 @@ p, h1, form, button {
     text-align: right;
     width: 100%;
 }
+.skform .alert{color:red;}
 .skform .field {
     float: left;
     width: 200px;
