@@ -28,15 +28,29 @@ sohu.diyConsole=function(opts){
 	p._$areaSelector=$("#area_selector");
 	p._$pageTip=$("#pageTip");
 	p._$editMenu=$("#editMenu");
+	p._$menus=$("#editMenuChild .menuitem");
+	p._$menuTxt=p._$editMenu.find(".mtxt");
+	p._$menuImg=p._$editMenu.find(".mimg");
 	p._$popWins=p._$editMenu.find(".win");
 	p._$cpkWrap=$("#cpkWrap");
 	p._$addLink=$("#addLink");
+	p._$imgPro=$("#imgPro");
 	p._fmAddLink={
 		txtATitle:$("#txtATitle"),
 		txtAHref:$("#txtAHref"),
 		txtATarget:$("input[name='atarget']"),
 		tipAHref:p._$addLink.find(".tipAHref"),
-		reset:function(){p._$addLink.find(".tip").removeClass("alert").end().find("input[type='text']").val("");}
+		reset:function(){p._$addLink.find(".tip").removeClass("alert").end().find("input[type='text']").removeClass("alert").val("");}
+	};
+	p._fmImgPro={
+		txtImgH:$("#txtImgH"),
+		txtImgW:$("#txtImgW"),
+		ddlImgBStyle:$("#ddlImgBStyle"),
+		txtImgBColor:$('#txtImgBColor'),
+		txtImgPadding:$("#txtImgPadding"),
+		reset:function(){
+			p._$imgPro.find(".tip").removeClass("alert").end().find("input[type='text']").removeClass("alert").val("");
+		}
 	};
 	p._$txtFontColor=$("#txtFontColor");
 	p._opts=opts;
@@ -197,60 +211,110 @@ sohu.diyConsole=function(opts){
 				p._$txtFontColor.val(c);
 				p._$popWins.slideUp();	
 				sohu.diyConsole.CurElm.i$frame[0].iDoCommand("foreColor",c,null,function($iframe){
-					if(sohu.diyConsole.DocSelection.text){
-						sohu.diyConsole.DocSelection.select();
-						sohu.diyConsole.DocSelection='';
-					}
+					sohu.diyConsole.DocSelection.selectAndRelease();
 				});
 			},
 			onChange:function(hsb,hex,rgb){
-				//IE like a bullshit
-				if($.browser.msie&&sohu.diyConsole.DocSelection.text){
-					sohu.diyConsole.DocSelection.select();
-				};
+				sohu.diyConsole.DocSelection.select();
 			}
 		});
 	};
 	p.initAddLink=function(){
+		//链接对话框的确认按钮逻辑
 		p._$addLink.find("#btnAddLink").click(function(evt){
 			var url=p._fmAddLink.txtAHref.val();
 			if(!StringUtils.isUrl(url)){
-				p._fmAddLink.txtAHref.css("color","red").select();
+				p._fmAddLink.txtAHref.addClass("alert").select();
 				p._fmAddLink.tipAHref.addClass("alert");
 				return false;
 			};
 			p._$popWins.slideUp();
-			sohu.diyConsole.CurElm.i$frame[0].iDoCommand("createlink",url,null,function($iframe){
-				if(sohu.diyConsole.DocSelection.text){
-					sohu.diyConsole.DocSelection.select();
-					sohu.diyConsole.DocSelection='';
-				}
-			});
+			if(p._fmAddLink.isNew){
+				sohu.diyConsole.CurElm.i$frame[0].iDoCommand("createlink",url,null,function($iframe){
+					sohu.diyConsole.DocSelection.selectAndRelease();
+				});
+			}else{
+				p._fmAddLink.a.$obj.attr("title",p._fmAddLink.txtATitle.val())
+					.attr("href",p._fmAddLink.txtAHref.val())
+					.attr("target",p._fmAddLink.txtATarget.curVal);
+			}
+
 			p._fmAddLink.reset();
 		});
+		//关闭按钮
 		p._$addLink.find("#btnCloseLink").click(function(evt){
 			p._$popWins.slideUp();
 		});
 		p._$addLink.find("input[type='text']").keyup(function(evt){
 			this.value=this.value.replace('"',"").replace("'","").replace('‘',"").replace('“',"").replace('”',"");
 		});
+		//打开位置单选框
 		p._fmAddLink.txtATarget.click(function(evt){
 			p._fmAddLink.txtATarget.curVal=this.value;
 		});
 		p._fmAddLink.txtATarget.curVal="_blank";
 	};
+	p.initImgPro=function(){
+		//图片属性对话框的确认按钮逻辑
+		p._$imgPro.find("#btnAddLink1").click(function(evt){
+			var isOk=true,i={h:null,w:null,p:null};
+			$.each([p._fmImgPro.txtImgH,p._fmImgPro.txtImgW,p._fmImgPro.txtImgPadding],function(j,o){
+				if((o.value!="")&&(!StringUtils.isPlusInt(o.value))){
+					$(o).addClass("alert");
+					isOk=isOk&&false;
+					i[j]=o.value==""?"auto":o.value;
+				}
+			});
+			if(!isOk) return;
+			p._$popWins.slideUp();
+
+			var $img=sohu.diyConsole.CurElm.$Layout;
+			$img.css({width:i.w,height:i.h,padding:i.p});
+			if(p._fmImgPro.ddlImgBStyle.val()!="none"){
+				var b="1px "+p._fmImgPro.ddlImgBStyle.val()+" "+p._fmImgPro.txtImgBColor.val();
+				$img.css(b);
+			}else{
+				$img.css("border","none");
+			}
+
+			p._fmImgPro.reset();
+		});
+		//关闭按钮
+		p._$imgPro.find("#btnCloseLink1").click(function(evt){
+			p._$popWins.slideUp();
+		});
+		p._$imgPro.find("input[type='text']").keyup(function(evt){
+			this.value=this.value.replace('"',"").replace("'","").replace('‘',"").replace('“',"").replace('”',"");
+		});
+		//边框样式
+		p._fmImgPro.ddlImgBStyle.change(function(evt){
+			p._fmImgPro.ddlImgBStyle.curVal=this.value;
+		});
+		p._fmImgPro.ddlImgBStyle.curVal="none";
+	};	
 	/**
 	 * Save current document.selection to sohu.diyConsole.DocSelection
 	 */
 	p.saveSelection=function(){
-		if(document.selection)
-				sohu.diyConsole.DocSelection=sohu.diyConsole.CurElm.i$frame[0].iDoc().selection.createRange();
+		if(sohu.diyConsole.CurElm.InlineEditable){
+			sohu.diySelection.snap(sohu.diyConsole.CurElm.i$frame[0].iDoc());
+		}else{
+			sohu.diySelection.snap(document,sohu.diyConsole.CurElm.$Layout[0]);
+		};
 	};
 	p.initEditMenu=function(){
 		var fontStyleCbk=function(iframeEditor){
 			sohu.diyConsole.CurElm.$Layout.css(iframeEditor.iCurCss);
 		};
-		$("#editMenuChild .menuitem").click(function(evt){return false;});
+		p._$menus.click(function(evt){
+			p._$menus.removeClass("on");
+			var _this=$(this);
+			_this.addClass("on");
+			if(!_this.is(".popwin"))
+				p._$popWins.hide();	
+				
+			return false;
+		});
 		$("#menuitem-b").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Bold",null);});
 		$("#menuitem-i").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Italic",null);});
 		$("#menuitem-u").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Underline",null);});
@@ -276,12 +340,53 @@ sohu.diyConsole=function(opts){
 			p._$popWins.hide();
 			p._$addLink.slideDown();
 			p._fmAddLink.txtATitle.focus();
+			//当前选中是否有a标签
+			var a=sohu.diyConsole.DocSelection.getA();
+			/*
+			if(sohu.diyConsole.CurElm.InlineEditable){
+				a=
+			}else{
+				if(sohu.diyConsole.CurElm.tagName=="img"){
+					var $a=sohu.diyConsole.CurElm.$Layout.parents("a");
+					a={
+						isNull:false,
+						$obj:$a,
+						title:$a.attr()
+					};	
+				};
+			};
+			*/
+			if(a.isNull){
+				p._fmAddLink.isNew=true;
+				p.a=null;
+				return;
+			};
+			p._fmAddLink.txtATitle.val(a.title);
+			p._fmAddLink.txtAHref.val(a.href);
+			p._fmAddLink.txtATarget.filter("input[value='"+a.target+"']").trigger("click");
+			p._fmAddLink.isNew=false;
+			p._fmAddLink.a=a;
+		});
+		//图片属性
+		$("#menuitem-imgp").mousedown(function(evt){
+			p._$popWins.hide();
+			p._$imgPro.slideDown();
+			var $img=sohu.diyConsole.CurElm.$Layout;
+			p._fmImgPro.txtImgH.val(parseInt($img.css("height")));
+			p._fmImgPro.txtImgW.val(parseInt($img.css("width")));
+			p._fmImgPro.txtImgBStyle.val($img.css("borderStyle"));
+			p._fmImgPro.txtImgBColor.val($img.css("borderColor"));
+			p._fmImgPro.txtImgPadding.val(parseInt($img.css("padding")));
 		});
 	};
 	p.Init=function(){
 		//公有属性引用
 		sohu.diyConsole.$EditMenu=p._$editMenu;
+		sohu.diyConsole.$MenuTxt=p._$menuTxt;
+		sohu.diyConsole.$MenuImg=p._$menuImg;
 		sohu.diyConsole.$CPKWrap=p._$cpkWrap;
+		sohu.diyConsole.$PopWins=p._$popWins;
+		sohu.diyConsole.$Menu=p._$menus;
 		//横切选择器
 		$("li",p._$areaSelector).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");})
 			.click(p.onSelectAreaTpl);

@@ -98,6 +98,7 @@ sohu.diyContent.prototype.DoEdit=function(){
 sohu.diyContent.prototype.InlineEdit=function(state){
 	if(state=="on"){
 		this.Sec.InlineEditing=true;
+		this.Sec.Active();
 		sohu.diyConsole.EditingSec=this.Sec;
 		sohu.diyConsole.EditingCT=this;
 	}else{
