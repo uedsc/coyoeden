@@ -14,8 +14,9 @@ sohu.diySelection=function(){
 		if($.browser.msie){
 			this.text=this._range.text;
 			this.isEmpty=(this.text=="");
-			this.$parent=$(this._range.parentElement());
-			this.$selected=this._range.item?this._range.item(0):this.$parent;
+			//if current selected range is a control range,use range.item(idx) to get the selected item
+			this.$selected=this._range.item?$(this._range.item(0)):$(this._range.parentElement());
+			this.$parent=this._range.item?this.$selected.parent():this.$selected;
 		}else{
 			this.isEmpty=(this._sel.rangeCount==0);
 			this.text=this.isEmpty?"":this._range.toString();

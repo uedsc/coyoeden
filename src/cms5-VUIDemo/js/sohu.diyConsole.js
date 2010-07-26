@@ -3,6 +3,7 @@
  * @author levinhuang
  * @param {Object} opts 选项,如clSec:"sec",cssWsp:"#main"表示分栏的css类为sec,工作区域的css选择器为#main
  * @dependency sohu.diyEditor.js;sohu.diyArea.js
+ * TODO:将顶部菜单部分逻辑移到单独的js文件diyMenuBar.js
  */
 sohu.diyConsole=function(opts){
 	//属性
@@ -32,15 +33,20 @@ sohu.diyConsole=function(opts){
 	p._$menuTxt=p._$editMenu.find(".mtxt");
 	p._$menuImg=p._$editMenu.find(".mimg");
 	p._$popWins=p._$editMenu.find(".win");
-	p._$cpkWrap=$("#cpkWrap");
-	p._$addLink=$("#addLink");
-	p._$imgPro=$("#imgPro");
+	/* 对话框jq对象 */
+	p._$wCpkWrap=$("#cpkWrap");
+	p._$wAddLink=$("#addLink");
+	p._$wImgPro=$("#imgPro");
+	p._$wImgSwitch=$("#imgSwitch");
+	/* /对话框jq对象 */
+	
+	/* 对话框表单元素 */
 	p._fmAddLink={
 		txtATitle:$("#txtATitle"),
 		txtAHref:$("#txtAHref"),
 		txtATarget:$("input[name='atarget']"),
-		tipAHref:p._$addLink.find(".tipAHref"),
-		reset:function(){p._$addLink.find(".tip").removeClass("alert").end().find("input[type='text']").removeClass("alert").val("");}
+		tipAHref:p._$wAddLink.find(".tipAHref"),
+		reset:function(){p._$wAddLink.find(".tip").removeClass("alert").end().find("input[type='text']").removeClass("alert").val("");}
 	};
 	p._fmImgPro={
 		txtImgH:$("#txtImgH"),
@@ -48,11 +54,20 @@ sohu.diyConsole=function(opts){
 		ddlImgBStyle:$("#ddlImgBStyle"),
 		txtImgBColor:$('#txtImgBColor'),
 		txtImgPadding:$("#txtImgPadding"),
-		cpk:p._$imgPro.find(".cpk"),
+		cpk:p._$wImgPro.find(".cpk"),
 		reset:function(){
-			p._$imgPro.find(".tip").removeClass("alert").end().find("input[type='text']").removeClass("alert").val("");
+			p._$wImgPro.find(".tip").removeClass("alert").end().find("input[type='text']").removeClass("alert").val("");
 		}
 	};
+	p._fmImgSwitch={
+		txtImgAlt:$("#txtImgAlt"),
+		txtImgSrc:$("#txtImgSrc"),
+		tipImgSrc:p._$wImgSwitch.find(".tipImgSrc"),
+		btnOK:p._$wImgSwitch.find(".btnMWinOK"),
+		btnNO:p._$wImgSwitch.find(".btnMWinNO"),
+		reset:function(){p._$wImgSwitch.find(".tip").removeClass("alert").end().find("input[type='text']").removeClass("alert").val("");}
+	};
+	/* /对话框表单元素 */
 	p._$txtFontColor=$("#txtFontColor");
 	p._opts=opts;
 	
@@ -205,7 +220,7 @@ sohu.diyConsole=function(opts){
 	};
 	p.initColorPicker=function(){
 		//文字颜色拾色器
-		var cbk=p._$cpkWrap.ColorPicker({
+		var cbk=p._$wCpkWrap.ColorPicker({
 			flat:true,
 			color:"#000000",
 			onSubmit:function(hsb,hex,rgb){
@@ -234,7 +249,7 @@ sohu.diyConsole=function(opts){
 	};
 	p.initAddLink=function(){
 		//链接对话框的确认按钮逻辑
-		p._$addLink.find("#btnAddLink").click(function(evt){
+		p._$wAddLink.find("#btnAddLink").click(function(evt){
 			var url=p._fmAddLink.txtAHref.val();
 			if(!StringUtils.isUrl(url)){
 				p._fmAddLink.txtAHref.addClass("alert").select();
@@ -255,10 +270,10 @@ sohu.diyConsole=function(opts){
 			p._fmAddLink.reset();
 		});
 		//关闭按钮
-		p._$addLink.find("#btnCloseLink").click(function(evt){
+		p._$wAddLink.find("#btnCloseLink").click(function(evt){
 			p._$popWins.slideUp();
 		});
-		p._$addLink.find("input[type='text']").keyup(function(evt){
+		p._$wAddLink.find("input[type='text']").keyup(function(evt){
 			this.value=this.value.replace('"',"").replace("'","").replace('‘',"").replace('“',"").replace('”',"");
 		});
 		//打开位置单选框
@@ -269,7 +284,7 @@ sohu.diyConsole=function(opts){
 	};
 	p.initImgPro=function(){
 		//图片属性对话框的确认按钮逻辑
-		p._$imgPro.find("#btnAddLink1").click(function(evt){
+		p._$wImgPro.find("#btnAddLink1").click(function(evt){
 			var isOk=true,i=[null,null,null];
 			$.each([p._fmImgPro.txtImgH,p._fmImgPro.txtImgW,p._fmImgPro.txtImgPadding],function(j,o){
 				var _v=o.val();
@@ -295,10 +310,10 @@ sohu.diyConsole=function(opts){
 			p._fmImgPro.reset();
 		});
 		//关闭按钮
-		p._$imgPro.find("#btnCloseLink1").click(function(evt){
+		p._$wImgPro.find("#btnCloseLink1").click(function(evt){
 			p._$popWins.slideUp();
 		});
-		p._$imgPro.find("input[type='text']").keyup(function(evt){
+		p._$wImgPro.find("input[type='text']").keyup(function(evt){
 			this.value=this.value.replace('"',"").replace("'","").replace('‘',"").replace('“',"").replace('”',"");
 		});
 		//边框样式
@@ -314,6 +329,25 @@ sohu.diyConsole=function(opts){
 			.click(function(evt){
 				p._fmImgPro.cpk.show();
 			});
+	};
+	p.initImgSwitch=function(){
+		//按钮行为
+		p._fmImgSwitch.btnOK.click(function(evt){
+			var url=p._fmImgSwitch.txtImgSrc.val();
+			if(!StringUtils.isUrl(url)){
+				p._fmImgSwitch.txtImgSrc.addClass("alert").select();
+				p._fmImgSwitch.tipImgSrc.addClass("alert");
+				return false;
+			};
+			//更改图片属性
+			sohu.diyConsole.CurElm.$Layout.attr("src",url).attr("alt",p._fmImgSwitch.txtImgAlt.val());
+			//收起对话框
+			p._$popWins.slideUp();
+			//重置表单
+			p._fmImgSwitch.reset();	
+		});
+		p._fmImgSwitch.btnNO.click(function(evt){p._$popWins.slideUp();});
+		
 	};	
 	/**
 	 * Save current document.selection to sohu.diyConsole.DocSelection
@@ -355,13 +389,13 @@ sohu.diyConsole=function(opts){
 		$("#menuitem-cc").mousedown(function(evt){
 			p.saveSelection();
 			p._$popWins.hide();	
-			p._$cpkWrap.slideDown();
+			p._$wCpkWrap.slideDown();
 		});
 		//create link
 		$("#menuitem-cl").mousedown(function(evt){
 			p.saveSelection();
 			p._$popWins.hide();
-			p._$addLink.slideDown();
+			p._$wAddLink.slideDown();
 			p._fmAddLink.txtATitle.focus();
 			//当前选中是否有a标签
 			var a=sohu.diyConsole.DocSelection.getA();
@@ -393,7 +427,7 @@ sohu.diyConsole=function(opts){
 		//图片属性
 		$("#menuitem-imgp").mousedown(function(evt){
 			p._$popWins.hide();
-			p._$imgPro.slideDown();
+			p._$wImgPro.slideDown();
 			var $img=sohu.diyConsole.CurElm.$Layout;
 			p._fmImgPro.txtImgH.val(parseInt($img.css("height")));
 			p._fmImgPro.txtImgW.val(parseInt($img.css("width")));
@@ -401,13 +435,20 @@ sohu.diyConsole=function(opts){
 			p._fmImgPro.txtImgBColor.val($img.css("borderColor"));
 			p._fmImgPro.txtImgPadding.val(parseInt($img.css("padding"))||"0");
 		});
+		//更换图片
+		$("#menuitem-img").mousedown(function(evt){
+			p._$popWins.hide();
+			p._$wImgSwitch.slideDown();
+			p._fmImgSwitch.txtImgAlt.val(sohu.diyConsole.CurElm.$Layout.attr("alt"));
+			p._fmImgSwitch.txtImgSrc.val("");
+		});
 	};
 	p.Init=function(){
 		//公有属性引用
 		sohu.diyConsole.$EditMenu=p._$editMenu;
 		sohu.diyConsole.$MenuTxt=p._$menuTxt;
 		sohu.diyConsole.$MenuImg=p._$menuImg;
-		sohu.diyConsole.$CPKWrap=p._$cpkWrap;
+		sohu.diyConsole.$CPKWrap=p._$wCpkWrap;
 		sohu.diyConsole.$PopWins=p._$popWins;
 		sohu.diyConsole.$Menu=p._$menus;
 		//横切选择器
@@ -454,6 +495,8 @@ sohu.diyConsole=function(opts){
 		p.initAddLink();
 		//图片属性对话框
 		p.initImgPro();
+		//更换图片对话框
+		p.initImgSwitch();
 		//editMenu的事件注册
 		p.initEditMenu();
 		//on page loaded
