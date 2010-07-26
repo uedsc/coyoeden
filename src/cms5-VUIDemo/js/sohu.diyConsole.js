@@ -48,6 +48,7 @@ sohu.diyConsole=function(opts){
 		ddlImgBStyle:$("#ddlImgBStyle"),
 		txtImgBColor:$('#txtImgBColor'),
 		txtImgPadding:$("#txtImgPadding"),
+		cpk:p._$imgPro.find(".cpk"),
 		reset:function(){
 			p._$imgPro.find(".tip").removeClass("alert").end().find("input[type='text']").removeClass("alert").val("");
 		}
@@ -203,6 +204,7 @@ sohu.diyConsole=function(opts){
 		_this.$Layout.css({"top":p.opts.scrollWrapMainginTop+30});
 	};
 	p.initColorPicker=function(){
+		//文字颜色拾色器
 		var cbk=p._$cpkWrap.ColorPicker({
 			flat:true,
 			color:"#000000",
@@ -216,6 +218,17 @@ sohu.diyConsole=function(opts){
 			},
 			onChange:function(hsb,hex,rgb){
 				sohu.diyConsole.DocSelection.select();
+			}
+		});
+		//图片边框拾色器
+		p._fmImgPro.cpk.ColorPicker({
+			flat:true,
+			color:"#cccccc",
+			onChange:function(hsb,hex,rgb){
+				p._fmImgPro.txtImgBColor.css("backgroundColor","#"+hex).val("#"+hex);
+			},
+			onSubmit:function(hsb,hex,rgb){
+				p._fmImgPro.cpk.hide();
 			}
 		});
 	};
@@ -257,22 +270,24 @@ sohu.diyConsole=function(opts){
 	p.initImgPro=function(){
 		//图片属性对话框的确认按钮逻辑
 		p._$imgPro.find("#btnAddLink1").click(function(evt){
-			var isOk=true,i={h:null,w:null,p:null};
+			var isOk=true,i=[null,null,null];
 			$.each([p._fmImgPro.txtImgH,p._fmImgPro.txtImgW,p._fmImgPro.txtImgPadding],function(j,o){
-				if((o.value!="")&&(!StringUtils.isPlusInt(o.value))){
+				var _v=o.val();
+				i[j]=(_v==""?"auto":_v);
+				if((_v!="")&&(!StringUtils.isPlusInt(_v))){
 					$(o).addClass("alert");
 					isOk=isOk&&false;
-					i[j]=o.value==""?"auto":o.value;
 				}
 			});
 			if(!isOk) return;
 			p._$popWins.slideUp();
 
+			i[2]=i[2]=="auto"?"0":i[2];
 			var $img=sohu.diyConsole.CurElm.$Layout;
-			$img.css({width:i.w,height:i.h,padding:i.p});
+			$img.attr("width",i[1]).attr("height",i[0]).css("padding",i[2]+'px');
 			if(p._fmImgPro.ddlImgBStyle.val()!="none"){
 				var b="1px "+p._fmImgPro.ddlImgBStyle.val()+" "+p._fmImgPro.txtImgBColor.val();
-				$img.css(b);
+				$img.css("border",b);
 			}else{
 				$img.css("border","none");
 			}
@@ -291,6 +306,14 @@ sohu.diyConsole=function(opts){
 			p._fmImgPro.ddlImgBStyle.curVal=this.value;
 		});
 		p._fmImgPro.ddlImgBStyle.curVal="none";
+		//边框颜色拾色器
+
+		p._fmImgPro.txtImgBColor
+			.attr("readonly",true)
+			.css("backgroundColor","#cccccc")
+			.click(function(evt){
+				p._fmImgPro.cpk.show();
+			});
 	};	
 	/**
 	 * Save current document.selection to sohu.diyConsole.DocSelection
@@ -374,9 +397,9 @@ sohu.diyConsole=function(opts){
 			var $img=sohu.diyConsole.CurElm.$Layout;
 			p._fmImgPro.txtImgH.val(parseInt($img.css("height")));
 			p._fmImgPro.txtImgW.val(parseInt($img.css("width")));
-			p._fmImgPro.txtImgBStyle.val($img.css("borderStyle"));
+			p._fmImgPro.ddlImgBStyle.val($img.css("borderStyle"));
 			p._fmImgPro.txtImgBColor.val($img.css("borderColor"));
-			p._fmImgPro.txtImgPadding.val(parseInt($img.css("padding")));
+			p._fmImgPro.txtImgPadding.val(parseInt($img.css("padding"))||"0");
 		});
 	};
 	p.Init=function(){
@@ -429,6 +452,8 @@ sohu.diyConsole=function(opts){
 		p.initColorPicker();
 		//create link popup window
 		p.initAddLink();
+		//图片属性对话框
+		p.initImgPro();
 		//editMenu的事件注册
 		p.initEditMenu();
 		//on page loaded

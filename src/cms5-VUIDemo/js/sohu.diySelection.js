@@ -14,8 +14,8 @@ sohu.diySelection=function(){
 		if($.browser.msie){
 			this.text=this._range.text;
 			this.isEmpty=(this.text=="");
-			this.$parent=$(this._range.parentElement);
-			this.$selected=this._range.item(0);
+			this.$parent=$(this._range.parentElement());
+			this.$selected=this._range.item?this._range.item(0):this.$parent;
 		}else{
 			this.isEmpty=(this._sel.rangeCount==0);
 			this.text=this.isEmpty?"":this._range.toString();
@@ -76,7 +76,7 @@ sohu.diySelection=function(){
 		if($.browser.msie){
 			if(obj){
 				doc.selection.empty();
-				var cr=doc.createControlRange();
+				var cr=doc.body.createControlRange();
 				cr.addElement(obj);
 				cr.select();
 			};
