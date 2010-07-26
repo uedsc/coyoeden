@@ -63,12 +63,19 @@
 		var $body=dom.i$frame[0].i$Body();
 		//copy styles to the iframe document
 		$this.copyCss($body).copyCss(dom.i$frame);
-		//auto height or width process
+		//override height or width process
+		
 		if($this.css("height")=="auto"){
 			var h=$this.height();
 			dom.i$frame.css("height",h);
 			$body.css("height",h);
 		};
+		
+		/*
+		var h=$this.height();
+		dom.i$frame.css("height",h);
+		$body.css("height",h);
+		*/
 			
 		if($this.css("width")=="auto"&&dom._opts.accurateWidth){
 			var w=$this.parent().width();
@@ -88,9 +95,42 @@
 		};
 		//we don't need any marign and border styles inside the iframe body tag 
 		$body.css({"margin":"0","border":"none"});	
+		//maxWidth
+		if(!$.browser.msie)
+			dom.i$frame.css("maxWidth","inherit");
 		//visibility
+		$this.hide();
 		$body.show();
 		dom.i$frame.show();
+		
+	};
+	p.fixPosition=function(dom){
+		//TODO:finish this method
+		var $this=$(dom);
+		//If there's a floating element before it, make the element position absolute!
+		var $items=$this.prevAll();
+		$items=$.grep($items,function(o,i){
+			return $(o).is(dom._opts.cssFloat);
+		});
+		if($items.length==0) return;
+		
+		//show the original dom as the place holder!
+		$this.show().css("visibility","hidden");
+		
+		$items=$($items[0]);
+		var pos=$this.position();
+		var floatWidth=$items.width();
+		var frameWidth=dom.i$frame.width()-floatWidth;
+		var css={
+			"position":"absolute",
+			"top":pos.top,
+			"left":pos.left,
+			"z-index":50,
+			"width":frameWidth
+		};
+		css["padding-"+$items.css("float")]=floatWidth+'px';
+		dom.i$frame.css(css);
+		dom.i$frame[0].i$Body().css("width",frameWidth);
 		
 	};
 	p.doEditing=function(opts){
@@ -99,11 +139,11 @@
 			if(opts.dom.iEditing) return;
 			
 			opts.dom.iEditing=true;
-			$this.hide();
 			
 			p.cssToIframe(opts.dom);
+
+			p.fixPosition(opts.dom);
 			//show the editbox
-			
 			opts.dom.i$frame[0]
 				.iSetData($this.html())
 				.iFocus()
@@ -116,7 +156,7 @@
 			if(!opts.dom.iEditing) return;
 			
 			opts.dom.iEditing=false;
-			$this.show().html(opts.dom.i$frame[0].iGetData());
+			$this.show().css("visibility","visible").html(opts.dom.i$frame[0].iGetData());
 			p.unbindEvents(opts.dom);
 			opts.dom.i$frame.hide();
 		};
@@ -173,7 +213,8 @@
     $.fn.iEditable.defaults = {
         excludeTags: 'table,input,select,button,tr,iframe' /* tags that don't support inline editable */,
 		onModeChange:null /* callback handler when the iEdit function was invoked */,
-		accurateWidth:true /* convert auto with to an accurate value when in editing mode */
+		accurateWidth:true /* convert auto with to an accurate value when in editing mode */,
+		cssFloat:'.l,.r,.left,.right' /* floating css selectors */
     };
     // Public functions.
     $.fn.iEditable.method1 = function(skinName) {

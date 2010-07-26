@@ -94,6 +94,19 @@ display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(25
 	#imgPro .cpk{position:absolute;display:none;width:356px;top:20%;right:-250px;}	
 /* =/#editMenu= */
 
+/* =Editor related style= */
+.elm_gray{
+	border:1px solid transparent;
+	opacity:0.07;
+}
+.elm_vshow{
+	visibility:visible;
+}
+.elm_vhide{
+	visibility:hidden;
+}
+/* =/Editor related style= */
+
 /* =main= */
 #scrollWrap{position: relative;margin-top:0 /*100px*/;overflow-y: scroll; overflow-x: auto;background:#444;text-align:left;}
 #mainWrap{background:#fff;width:960px;border:2px solid #ccc;margin:0 auto;}
@@ -254,6 +267,8 @@ height: 0;}
 
 .vspace{position:relative;font-size:0;line-height:0;height:10px;}
 .vspace hr{position:absolute;top:49.9%;padding:0;margin:0 auto;border:1px dotted #808080;}
+
+.elmimg{position:relative;z-index:10;}
 
 
 		
