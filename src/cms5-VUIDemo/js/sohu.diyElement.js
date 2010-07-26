@@ -1,10 +1,10 @@
 /**
  * 可视化编辑元素
- * @dependency sohu.iframeEX,sohu.iEditable,jquery.cssEX
+ * @dependency sohu.iframeEX,sohu.iEditable,jquery.cssEX,sohu.diyElementTool.js
  * @author levin
  */
 sohu.diyElement=function(opts){
-	opts=$.extend({},{cl:"elm",clOn:"elmOn"},opts||{});
+	opts=$.extend({},{cl:"elm",clOn:"elmOn",clCopyable:"elmc"},opts||{});
 	var _this=this;
 	this.CT=opts.ct;
 	this.$Context=this.CT.$Layout;
@@ -67,9 +67,13 @@ sohu.diyElement=function(opts){
 	//鼠标事件
 	this.$Layout.mouseenter(function(evt){
 		_this.$Layout.addClass(opts.clOn);
+		if(_this.$Layout.hasClass(opts.clCopyable))
+			sohu.diyElementTool.Trigger({type:"evtShow",elm:_this});
 	});
 	this.$Layout.mouseleave(function(evt){
 		_this.$Layout.removeClass(opts.clOn);
+		if(_this.$Layout.hasClass(opts.clCopyable))
+			sohu.diyElementTool.Trigger({type:"evtHide",elm:_this});
 	});
 	this.$Layout.mousedown(function(evt){
 		sohu.diyConsole.$PopWins.hide();

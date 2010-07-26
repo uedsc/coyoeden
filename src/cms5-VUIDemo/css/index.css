@@ -135,7 +135,7 @@ display:none;
 .areaTools li{padding:4px 0;line-height:16px;}
 .area_active,.area_empty{margin-top:10px;}
 .area_active .sec,.area_empty .sec{min-height:150px;height:auto !important;height:150px;border:1px dotted #ccc;}
-.area_active .subsec .sec,.area_empty .subsec .sec{border-top:none;border-bottom:none;}
+.area_active .subsec .sec,.area_empty .subsec .sec{border-bottom:none;}
 .area_active .secOn,.area_active .subsec .secOn{border:1px solid #84ADDE;}
 .area_active .secp{border:bone;}
 .area_active{border:none;margin-top:10px;}
@@ -162,7 +162,7 @@ display:none;
 
 /*隐藏模板*/
 #hiddenTemplate{display:none;}
-
+	#elmTool{display:none;position:absolute;border:1px solid #ccc;width:90px;}
 /*静态模板样式-横切选择模板*/
 .area_selector{width:404px;height:220px;}
 .area_selector ul{width:192px;padding:0;margin:0;}
@@ -266,7 +266,7 @@ height: 0;}
 
 .vspace{position:relative;font-size:0;line-height:0;height:10px;}
 .vspace hr{position:absolute;top:49.9%;padding:0;margin:0 auto;border:1px dotted #808080;}
-
+.elm{position:relative;}
 .elmimg{position:relative;z-index:10;}
 
 

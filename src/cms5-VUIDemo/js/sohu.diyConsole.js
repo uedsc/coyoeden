@@ -28,6 +28,8 @@ sohu.diyConsole=function(opts){
 	p._$btnUp=$("#lnkAreaUp");
 	p._$areaSelector=$("#area_selector");
 	p._$pageTip=$("#pageTip");
+	p._$elmTool=$("#elmTool");
+	/* =顶部交互菜单= */
 	p._$editMenu=$("#editMenu");
 	p._$menus=$("#editMenuChild .menuitem");
 	p._$menuTxt=p._$editMenu.find(".mtxt");
@@ -70,6 +72,7 @@ sohu.diyConsole=function(opts){
 	/* /对话框表单元素 */
 	p._$txtFontColor=$("#txtFontColor");
 	p._opts=opts;
+	/* =/顶部交互菜单= */
 	
 	//横切删除时的回调函数
 	p.onAreaRemove=function(area){
@@ -451,6 +454,7 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.$CPKWrap=p._$wCpkWrap;
 		sohu.diyConsole.$PopWins=p._$popWins;
 		sohu.diyConsole.$Menu=p._$menus;
+		sohu.diyConsole.$ElmTool=p._$elmTool;
 		//横切选择器
 		$("li",p._$areaSelector).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");})
 			.click(p.onSelectAreaTpl);
@@ -499,6 +503,8 @@ sohu.diyConsole=function(opts){
 		p.initImgSwitch();
 		//editMenu的事件注册
 		p.initEditMenu();
+		//元素工具条
+		sohu.diyElementTool.Init({});
 		//on page loaded
 		$(document).ready(p.onLoaded);
 	};
