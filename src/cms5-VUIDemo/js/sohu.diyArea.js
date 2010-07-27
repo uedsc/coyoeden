@@ -64,14 +64,14 @@ sohu.diyArea=function(opts){
  */
 sohu.diyArea.prototype.Active=function(){
 	var _this=this;
-	if(this.IsActive) return;
+	//if(this.IsActive) return;
 	//if(this.$Layout.hasClass(this.__p.opts.clActive)) return;
 	//this.Console.AreaList().removeClass(this.__p.opts.clActive);
 	this.$Layout.addClass(this.__p.opts.clActive);
 	this.Console.ActiveArea(this).RePosition();
 	this.IsActive=true;
 	//暂时移除事件处理函数
-	this.__p.unbindEvts();
+	//this.__p.unbindEvts();
 };
 /**
  * 移除激活状态
@@ -81,7 +81,7 @@ sohu.diyArea.prototype.Deactive=function(){
 	this.$Layout.removeClass(this.__p.opts.clActive);
 	this.IsActive=false;
 	
-	this.__p.unbindEvts();
+	//this.__p.unbindEvts();
 	//内容是否为空
 	if(!this.IsEmpty()){
 		this.$Layout.removeClass(this.__p.opts.clEmpty);
@@ -89,7 +89,7 @@ sohu.diyArea.prototype.Deactive=function(){
 		//没有内容的话继续显示横切的框架以便用户查看
 		this.$Layout.addClass(this.__p.opts.clEmpty);
 	};
-	this.__p.bindEvts();
+	//this.__p.bindEvts();
 
 };
 /**

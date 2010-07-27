@@ -83,6 +83,9 @@ sohu.diySection.prototype.Active=function(){
 	this.Editor.Show();
 	//Update sohu.diyConsole.CurSec
 	sohu.diyConsole.CurSec=this;
+	//激活对应横切
+	//TODO:将横切的激活完全放在diySection内部进行，移除横切的mouseenter事件
+	this.CurArea.Active();
 };
 sohu.diySection.prototype.Deactive=function(){
 	if(this.IsAddingContent||this.InlineEditing) return;/* 正在编辑内容 */
