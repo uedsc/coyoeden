@@ -595,7 +595,7 @@ sohu.diyConsole.prototype.RePosition=function(){
 sohu.diyConsole.prototype.ActiveArea=function(target){
 	//将上一个横切反激活
 	if(sohu.diyConsole.CurArea){
-		if(target.ID==sohu.diyConsole.CurArea.ID) 
+		if(target&&(target.ID==sohu.diyConsole.CurArea.ID)) 
 			return this;
 		
 		sohu.diyConsole.CurArea.Deactive();
