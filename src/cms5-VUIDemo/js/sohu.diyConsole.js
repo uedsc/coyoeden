@@ -27,6 +27,7 @@ sohu.diyConsole=function(opts){
 	p._$btnDown=$("#lnkAreaDown");
 	p._$btnUp=$("#lnkAreaUp");
 	p._$areaSelector=$("#area_selector");
+	p._$wAreaBG=$("#wAreaBG")
 	p._$pageTip=$("#pageTip");
 	p._$elmTool=$("#elmTool");
 	/* =顶部交互菜单= */
@@ -68,6 +69,13 @@ sohu.diyConsole=function(opts){
 		btnOK:p._$wImgSwitch.find(".btnMWinOK"),
 		btnNO:p._$wImgSwitch.find(".btnMWinNO"),
 		reset:function(){p._$wImgSwitch.find(".tip").removeClass("alert").end().find("input[type='text']").removeClass("alert").val("");}
+	};
+	p._fmAreaBG={
+		txtAreaBG:$("#txtAreaBG"),
+		rbtnAreaBGAlign:p._$wAreaBG.find("input[name='areaBGAlign']"),
+		rbtnAreaBGRepeat:p._$wAreaBG.find("input[name='areaBGRepeat']"),
+		tipAreaBG:p._$wAreaBG.find(".tipAreaBG"),
+		reset:function(){p._$wAreaBG.find("*").removeClass("alert").end().find(":text").val("");}
 	};
 	/* /对话框表单元素 */
 	p._$txtFontColor=$("#txtFontColor");
@@ -127,7 +135,56 @@ sohu.diyConsole=function(opts){
 	p.onAddBG=function(evt){
 	///<summary>添加横切背景</summary>	
 		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
-		alert("背景");
+		//对话框相关回调处理函数
+		var _onOK=function(evt,cls){
+			cls=cls||true;
+			var url=p._fmAreaBG.txtAreaBG.val();
+			if((url!="")&&(!StringUtils.isUrl(url))){
+				p._fmAreaBG.txtAreaBG.addClass("alert").select();
+				p._fmAreaBG.tipAreaBG.addClass("alert");
+				return false;
+			};
+			if(url==""){
+				sohu.diyConsole.CurArea.$Layout.css("background-image","none");
+			}else{
+				sohu.diyConsole.CurArea.$Layout.css("background-image","url('"+url+"')");
+			};
+			var al=p._fmAreaBG.rbtnAreaBGAlign.curVal;
+			al=al=="center"?al:al+" top";
+			sohu.diyConsole.CurArea.$Layout.css("background-position",al);
+			
+			var rp=p._fmAreaBG.rbtnAreaBGRepeat.curVal;
+			sohu.diyConsole.CurArea.$Layout.css("background-repeat",rp);
+			if(cls)
+				$(this).dialog("close");
+		};
+		var _onNO=function(evt){
+			$(this).dialog("close");
+		};
+		var _onPreview=function(evt){
+			_onOK(evt,false);
+		};
+		//显示对话框
+		p._$wAreaBG.dialog(
+		{
+			title:"横切背景设置",
+			resizable:false,
+			modal:true,
+			width:430,
+			position:[700,50],
+			buttons:{
+				"取消":_onNO,
+				"预览":_onPreview,
+				"确认":_onOK,
+			},
+			open:function(evt,ui){
+				var img=sohu.diyConsole.CurArea.$Layout.css("background-image");
+				img=img.replace('url("',"").replace('")',"");
+				p._fmAreaBG.txtAreaBG.val(img).select();
+			},
+			close:function(evt,ui){p._fmAreaBG.reset();}
+		}
+		);
 		return false;
 	};
 	p.onMove=function(evt){
@@ -352,6 +409,16 @@ sohu.diyConsole=function(opts){
 		p._fmImgSwitch.btnNO.click(function(evt){p._$popWins.slideUp();});
 		
 	};	
+	p.initAreaBG=function(){
+		p._fmAreaBG.rbtnAreaBGAlign.click(function(evt){
+			p._fmAreaBG.rbtnAreaBGAlign.curVal=this.value;
+		});
+		p._fmAreaBG.rbtnAreaBGRepeat.click(function(evt){
+			p._fmAreaBG.rbtnAreaBGRepeat.curVal=this.value;
+		});		
+		p._fmAreaBG.rbtnAreaBGAlign.curVal="center";
+		p._fmAreaBG.rbtnAreaBGRepeat.curVal="no-repeat";
+	};
 	/**
 	 * Save current document.selection to sohu.diyConsole.DocSelection
 	 */
@@ -501,6 +568,8 @@ sohu.diyConsole=function(opts){
 		p.initImgPro();
 		//更换图片对话框
 		p.initImgSwitch();
+		//横切背景对话框
+		p.initAreaBG();
 		//editMenu的事件注册
 		p.initEditMenu();
 		//元素工具条
@@ -533,6 +602,7 @@ sohu.diyConsole.prototype.ActiveArea=function(target){
 	};
 	//激活当前的横切
 	sohu.diyConsole.CurArea=target;
+	this.CurArea=target;
 	return this;
 };
 /**

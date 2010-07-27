@@ -138,7 +138,10 @@ sohu.diySection.prototype.AddContent=function(ct){
  * 清楚分栏内容
  */
 sohu.diySection.prototype.Cls=function(){
-	this.$Layout.find("."+this.__p.opts.clContent).remove();
+	//删除内容
+	this.$Layout.find(">."+this.__p.opts.clContent).remove();
+	//删除子分栏
+	this.$Layout.find("."+this.__p.opts.clSecSub).remove();
 	this.$Layout.removeClass("hasSub");
 	this.Contents=[];
 };
