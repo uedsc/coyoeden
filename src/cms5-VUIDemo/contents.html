@@ -20,6 +20,30 @@
 	<body>
 		<div id="web_loading">Loading...</div>
 		<div id="contentAccordion">
+			<h3><a href="#">栏目标题</a></h3>
+			<div id="ctSecHead" class="ct tab clear">
+				<div class="clear">
+					<div class="left">
+						<label for="ddlSecHeadCss">样式</label>
+						<select id="ddlSecHeadCss" name="secHeadCss">
+							<option value="sec_hd">默认样式</option>
+							<option value="sec_hd1">样式1</option>
+						</select>
+						<label for="cbxSecHeadMore">显示更多</label>
+						<input type="checkbox" id="cbxSecHeadMore" checked="checked" name="secHeadMore"/>
+					</div>
+					<div class="ctWrap left">
+						<div class="sec_hd ct">
+							<h2 class="elm">
+								<span>栏目标题示例</span>更多>>
+							</h2>							
+						</div>
+					</div>					
+				</div>
+				<div class="ct_act">
+					<button class="btnOK">添加</button>
+				</div>
+			</div>
 			<h3><a href="#">空行</a></h3>
 			<div id="ctEmptyLine" class="ct tab clear">
 				<div class="clear">
@@ -124,57 +148,54 @@
 			<div id="ctImg" class="ct tab clear">
 				<ul>
 					<li class="item" id="Image01" title="图左字右">
-						<img src="img/pic171x70_01.gif" alt=""/>
 						<div class="ctWrap">
-						<div class="ct shimage pt">
-						  <span class="elmimg l">
-						  	<a href="#"><img class="elm" height="70" border="0" width="70" title="搜狐财经,公司报道,商业" alt="中铝,力拓" src="static/img/img.jpg" /></a>
-						  </span>
-						  <h3 class="elm">点击这里更改标题...</h3>
-						  <p class="elm elmc">点击这里更改描述信息...点击这里更改描述信息...</p>
-						</div>
-						</div>
-					</li>
-					<li class="item" id="Image02" title="图右字左">
-						<img src="img/pic171x70_02.gif" alt=""/>
-						<div class="ctWrap">
-						<div class="ct shimage pt">
-						  <span class="elmimg r">	
-						  	<a href="#"><img height="70" border="0" width="70" title="搜狐财经,公司报道,商业" alt="中铝,力拓" src="static/img/img.jpg" class="elm"/></a>
-						  </span>
-						  <h3 class='elm'>点击这里更改标题...</h3>
-						  <p class="elm elmc">点击这里更改描述信息...点击这里更改描述信息...</p>
-						</div>
-						</div>
-					</li>
-					<li class="item" id="Image03" title="单张图片">
-						<img src="img/pic105x70_01.gif" alt=""/>
-						<div class="ctWrap">
-							<div class="ct shimage sp_space">
-								<a href="#"><img class="elm" height="225" width="300" src="static/img/img.jpg"/></a>
+							<div class="pt ct">
+							  <div>
+							  	<a href="#"><img class="elm" height="60" width="80" title="图片的标题..." alt="图片的替代文字..." src="static/img/img.jpg" /></a>
+							  </div>
+							  <h4 class="elm">标题...</h4>
+							  <p class="elm">点击这里更改描述信息...</p>
 							</div>
 						</div>
 					</li>
-					<li class="item" id="Image04" title="图片列表">
-						<img src="img/pic108x70_01.gif" alt=""/>
+					<li class="item" id="Image02" title="图右字左">
 						<div class="ctWrap">
-						<div class="ct shimage pl pl_4c">
-							<ul>
-							<li><a href="#"><img class="elm" height="50" width="67" src="static/img/img.jpg"/><span class="elm">图片尺寸:67x50</span></a></li>
-							<li><a href="#"><img class="elm" height="50" width="67" src="static/img/img.jpg"/><span class="elm">图片尺寸:67x50</span></a></li>
-							<li><a href="#"><img class="elm" height="50" width="67" src="static/img/img.jpg"/><span class="elm">图片尺寸:67x50</span></a></li>
-							<li class="lst"><a href="#"><img class="elm" height="50" width="67" src="static/img/img.jpg"/><span class="elm">图片尺寸:67x50</span></a></li>
-							</ul>
+							<div class="pt pt_r ct">
+							  <div>	
+							  	<a href="#"><img class="elm" height="60" width="80" title="图片的标题..." alt="图片的替代文字..." src="static/img/img.jpg"/></a>
+							  </div>
+							  <h4 class='elm'>标题...</h4>
+							  <p class="elm">点击这里更改描述信息...</p>
+							</div>
 						</div>
+					</li>
+					<li class="item" id="Image03" title="单张图片">
+						<div class="ctWrap">
+							<div class="pt pt_t ct">
+								<div>
+									<a href="#"><img class="elm" height="60" width="80" src="static/img/img.jpg"/></a>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="item" id="Image04" title="图片组图">
+						<div class="ctWrap">
+							<div class="pp ct">
+								<ul>
+									<li><a href="#"><img class="elm" height="60" width="80" src="static/img/img.jpg" title="点击图片进行组图设置"/></a><span class="elm">文字说明</span></li>
+									<li><a href="#"><img class="elm" height="60" width="80" src="static/img/img.jpg" title="点击图片进行组图设置"/></a><span class="elm">文字说明</span></li>
+								</ul>
+							</div>
 						</div>
 					</li>
 					<li class="item" id="Image05" title="图上字下">
-						<img src="img/pic108x70_02.gif" alt=""/>
 						<div class="ctWrap">
-						<div class="ct shimage pt">
-						  <a href="#"><img class="elm" height="225" border="0" width="300" title="搜狐财经,公司报道,商业" alt="中铝,力拓" src="static/img/img.jpg"/></a>
-						  <h3 class="elm">点击这里更改标题...</h3>
-						  <p class="elm">点击这里更改描述信息...点击这里更改描述信息...</p>
+						<div class="pt pt_t ct">
+							<div>
+								<a href="#"><img class="elm" height="60" width="120" title="图片标题" alt="图片替代文字" src="static/img/img.jpg"/></a>
+							</div>
+						  	<h4 class="elm">图文标题...</h4>
+						  	<p class="elm">点击更改描述信息...</p>
 						</div>
 						</div>
 					</li>
@@ -191,83 +212,68 @@
 					<ul id="cSlide_text" class="clear">
 						<li>
 							<div id="Text01" class="item" title="第一行文字14号加粗，第二行文字12号">
-								<img src="img/pic160_56_01.gif" alt=""/>
 								<div class="ctWrap">
-								<div class="ct shtext txt txt_main">
-								  <h5 class="elm">点击这里更改14号标题...</h5>
-								  <p class="elm elmc">点击这里更改12号文本文字...</p>
-								</div>			
+									<div class="txt ct">
+									  <h2 class="hd14 elm"><span>点击更改14号标题...</span></h2>
+									  <p class="elm elmc">点击这里更改12号文本文字...</p>
+									</div>			
 								</div>					
 							</div>
 							<div id="Text02" class="item" title="第一行文字16号加粗，第二行文字12号">
-								<img src="img/pic160_56_02.gif" alt=""/>
 								<div class="ctWrap">
-								<div class="ct shtext txt txt_main">
-								  <h4 class="elm">点击这里更改16号标题...</h4>
-								  <p class="elm elmc">
-								  	点击这里更改12号文本...
-								  </p>
-								</div>
+									<div class="txt ct">
+									  <h2 class="hd16 elm"><span>点击更改16号标题...</span></h2>
+									  <p class="elm elmc">点击更改12号文本...</p>
+									</div>
 								</div>
 							</div>
 						</li>
 						<li>
-							<div id="Text03" class="item" title="12号文字，文字前带·">
-								<img src="img/pic160_56_03.gif" alt=""/>
+							<div id="Text03" class="item" title="12号文字列表，文字前带·">
 								<div class="ctWrap">
-								<div class="ct shtext list12">
+								<div class="list12 ct">
 									<ul>
-										<li class="elmc"><span class="elm">·点击这里更改12号列表文字...</span></li><!--elmc=copyable element-->
+										<li class="elm elmc">点击更改12号列表文字...</li><!--elmc=copyable element-->
+										<li class="elm elmc">点击更改12号列表文字...</li>
 									</ul>
-									<div style="text-align: right;" class="elm">更多 &gt;&gt; </div>
 								</div>
 								</div>
 							</div>
 							<div id="Text04" class="item" title="14号文字，文字前带·">
-								<img src="img/pic160_56_04.gif" alt=""/>
 								<div class="ctWrap">
-								<div class="ct shtext list14">
+								<div class="list14 ct">
 									<ul>
-										<li class="elmc"><div class="elm">·点击这里更改14号列表文字...</div></li>
+										<li class="elm elmc">点击更改14号列表文字...</li>
+										<li class="elm elmc">点击更改14号列表文字...</li>
 									</ul>
-									<div style="text-align: right;" class="elm">更多 &gt;&gt;</div>
 								</div>	
 								</div>							
 							</div>
 						</li>
 						<li>
 							<div id="Text05" class="item" title="第一行文字16号加粗，第二行文字14号">
-								<img src="img/pic160_56_01.gif" alt=""/>
 								<div class="ctWrap">
-								<div class="ct shtext txt txt_main">
-								  	<h4 class="elm">点击这里更改16号标题...</h4>
-								  	<p style="text-align: left;" class="elm">
-								  		点击这里更改14号文本行...
-									</p>
+								<div class="txt14 ct">
+								  	<h2 class="hd16 elm"><span>点击更改16号标题...</span></h2>
+								  	<p class="elm elmc">点击更改14号文本行...</p>
 								</div>		
 								</div>						
 							</div>
 							<div id="Text06" class="item" title="第一行文字18号加粗，第二行文字12号">
-								<img src="img/pic160_56_01.gif" width="160" height="56" alt="第一行文字18号加粗，第二行文字12号"/>
 								<div class="ctWrap">
-								<div class="ct shtext txt txt_main">
-								  	<h3 class="elm">点击这里更改18号标题...</h3>
-								  	<p class="elm">
-								  		点击这里更改12号文本行...
-									</p>
+								<div class="txt ct">
+								  	<h1 class="h1 elm">点击更改18号标题...</h1>
+								  	<p class="elm elmc">点击更改12号文本行...</p>
 								</div>
 								</div>							
 							</div>
 						</li>
 						<li>
 							<div id="Text07" class="item" title="第一行文字18号加粗，第二行文字14号">
-								<img src="img/pic160_56_01.gif" width="160" height="56" alt="第一行文字18号加粗，第二行文字14号"/>
 								<div class="ctWrap">
-								<div class="ct shtext txt txt_main">
-								  	<h3 class="elm">点击这里更改18号标题...</h3>
-								  	<p class="elm">
-								  		点击这里更改14号文本行...
-									</p>
+								<div class="txt14 ct">
+								  	<h1 class="h1 elm">点击更改18号标题...</h1>
+								  	<p class="elm elmc">点击更改14号文本行...</p>
 								</div>
 								</div>	
 							</div>

@@ -176,8 +176,8 @@ sohu.diyEditor.prototype.Cls=function(){
 };
 sohu.diyEditor.prototype.Reposition=function(){
 		var d=this.CurSec.Dim();
-		this.$Toolbar.css({width:d.w-12,top:d.y-31,left:d.x,opacity:0.8});/*宽要减去12个像素的留白;31是高度*/
-		this.$ToolbarTip.css({width:d.w}).html("w:"+d.mw+"px");
+		this.$Toolbar.css({width:d.w-12,top:d.y-31,left:d.x,opacity:0.9});/*宽要减去12个像素的留白;31是高度*/
+		this.$ToolbarTip.css({width:d.w}).html("["+d.mw+"px]");
 };
 /**
  * 显示编辑器-即激活编辑器

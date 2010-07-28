@@ -110,7 +110,9 @@
 		//If there's a floating element before it, make the element position absolute!
 		var $items=$this.prevAll();
 		$items=$.grep($items,function(o,i){
-			return $(o).is(dom._opts.cssFloat);
+			var fl=$(o).css("float");
+			return (fl=="left"||fl=="right");
+			//return $(o).is(dom._opts.cssFloat);
 		});
 		if($items.length==0) return;
 		

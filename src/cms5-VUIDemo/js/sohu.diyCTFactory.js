@@ -19,7 +19,73 @@ sohu.diyTplFactory={
 		if (cls) {
 			sohu.diyTplFactory.cls();
 		};
+	},
+	r:function(evt){return false;},
+	/**
+	 * 获取class属性的某个值。注意内容模板的class属性的第一个值表示该模板的类型
+	 * @param {Object} $dom 内容模板
+	 */
+	getClass:function($dom,idx){
+		idx=idx||0;
+		var items=$dom.attr("class").split(" ");
+		items=$.grep(items,function(o,i){
+			if($.trim(o)=="") return false;
+			return true;
+		});
+		if(idx<0) return items;
+		idx=idx>=items.length?(items.length-1):idx;
+		return items[idx];
 	}
+};
+/**
+ * 栏目标题设置类
+ * @param {Object} opts
+ */
+sohu.diyTplFactory.SecHead=function(opts){
+	var _this=this;
+	//属性-用户变量
+	this.Style="sec_hd";
+	this.ShowMore=true;
+	this.ShowMoreTpl='<a class="elm" target="_blank" href="#">更多>></a>';
+	//属性-dom引用
+	this.$Layout=$("#ctSecHead");
+	this.$ddlSecHeadCss=$("#ddlSecHeadCss");
+	this.$tplObj=this.$Layout.find(".ctWrap");
+	//私有成员
+	var p={};
+	p.defaultStyle="sec_hd ct";
+	p.initLayout=function(){
+		_this.$ddlSecHeadCss.change(function(evt){
+			_this.Style=this.value;
+			_this.$tplObj.find("h2").attr("class","").addClass(p.defaultStyle).addClass(_this.Style);
+		});
+		
+		_this.$Layout.find(".btnOK").click(function(evt){
+			_this.Submit({});
+			return false;
+		});
+		_this.$Layout.find("#cbxSecHeadMore").click(function(evt){
+			_this.ShowMore=this.checked;
+			var items=_this.$tplObj.find("a");
+			if(!_this.ShowMore){
+				items.remove();
+			}else{
+				if(items.length==0)
+					_this.$tplObj.find("h2").append(_this.ShowMoreTpl);
+			}
+		});
+	};
+	
+	p.initLayout();
+};
+sohu.diyTplFactory.SecHead.prototype.Submit=function(opts){
+	var ct={
+		flash:false,
+		html0:this.$tplObj.html(),
+		isNew:true,
+		type:"sec_hd"
+	};
+	sohu.diyTplFactory.submit(ct,true);
 };
 /**
  * 空行的设置类
@@ -186,6 +252,8 @@ sohu.diyTplFactory.Image=function(opts){
 			function(evt){$(this).addClass("on");},
 			function(evt){$(this).removeClass("on");}
 		).click(p.onAddImg);
+		//a标签
+		this.$Layout.find("a").click(sohu.diyTplFactory.r);
 	
 };
 sohu.diyTplFactory.Image.prototype.Submit=function(opt){
@@ -194,7 +262,7 @@ sohu.diyTplFactory.Image.prototype.Submit=function(opt){
 	ct.flash=false;
 	ct.tplID=this.tplID;
 	ct.isNew=true;
-	ct.type="shimage";
+	ct.type=sohu.diyTplFactory.getClass(this.tplObj.children());
 	sohu.diyTplFactory.submit(ct,true);
 };
 /**
@@ -205,7 +273,7 @@ sohu.diyTplFactory.Text=function(opts){
 		this.$Layout=$("#cSlide_text").cycleSlide({
 			cssBtnPrev:"#ctText .btnLeft",
 			cssBtnNext:"#ctText .btnRight",
-			step:178,
+			step:187,
 			cloneItem:true
 		});
 		this.tplID=null;//模板号
@@ -222,14 +290,15 @@ sohu.diyTplFactory.Text=function(opts){
 			function(evt){$(this).addClass("on");},
 			function(evt){$(this).removeClass("on");}
 		).click(p.onAddText);
-	
+		//a标签
+		this.$Layout.find("a").click(sohu.diyTplFactory.r);	
 };
 sohu.diyTplFactory.Text.prototype.Submit=function(opt){
 	var ct={html0:this.tplObj.html()};
 	ct.flash=false;
 	ct.tplID=this.tplID;
 	ct.isNew=true;
-	ct.type="shtext";
+	ct.type=sohu.diyTplFactory.getClass(this.tplObj.children());
 	sohu.diyTplFactory.submit(ct,true);
 };
 /**
@@ -248,6 +317,7 @@ sohu.diyCTFactory = function() {
 		p._flasher=new sohu.diyTplFactory.FocusImg({});/*焦点图*/
 		p._img=new sohu.diyTplFactory.Image({});/*图片*/
 		p._txt=new sohu.diyTplFactory.Text({});/*文本*/
+		new sohu.diyTplFactory.SecHead({});/* 栏目标题 */
 		pub.$ctWrap=$("#ctWrap");
 	};
     p.onLoaded = function() { 

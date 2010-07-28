@@ -530,7 +530,7 @@ sohu.diyConsole=function(opts){
 		$('#hiddenTemplate .sec_selector li').click(function(evt){
 			if(!sohu.diyConsole.CurSec) return;
 			sohu.diyConsole.CurSec.Editor.SecSelector.Cur=this.id;
-			//_this.SecSelector.dialog("close");
+			sohu.diyConsole.CurSec.Editor.SecSelector.dialog("close");
 			sohu.diyConsole.CurSec.AddSub($(sohu.diyTp[this.id]));
 			return false;
 		}).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");});

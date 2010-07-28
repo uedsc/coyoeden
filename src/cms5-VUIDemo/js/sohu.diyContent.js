@@ -138,17 +138,8 @@ sohu.diyContent.prototype.Validate=function(){
 		case "shflash":
 			this.$Layout=$(this.Meta.html0);
 		break;
-		case "shline":
-			commonValidate(this,"Html内容不符合{空行}模板规范");
-		break;
-		case "shimage":
-			commonValidate(this,"Html内容不符合{图文}模板规范");
-		break;
-		case "shtext":
-			commonValidate(this,"Html内容不符合{文本}模板规范");
-		break;
 		default:
-			this.SetValidation(false,"Html内容不符合可视化专题模板规范");
+			commonValidate(this,"Html内容不符合模板规范");
 		break;
 	};
 	if(this.Validation.valid){
