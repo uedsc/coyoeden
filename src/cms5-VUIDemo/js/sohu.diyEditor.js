@@ -162,7 +162,7 @@ sohu.diyEditor.prototype.Cls=function(){
 	this.CurArea.IsEditing=true;
 	this.Console.Confirm({
 		title:"确认操作",
-		ct:"确定清除分栏的内容么?",
+		ct:"1,分栏有内容时删除内容。<br/>2,分栏无内容时删除该分栏及其父分栏",
 		yes:function(ui){
 			_this.CurSec.Cls();
 		},

@@ -75,9 +75,8 @@
 		var h=$this.height();
 		dom.i$frame.css("height",h);
 		$body.css("height",h);
-		*/
-			
-		if($this.css("width")=="auto"&&dom._opts.accurateWidth){
+		*/	
+		if(($this.css("width")=="auto"&&dom._opts.accurateWidth)/*||($this.css("display")=="block")*/){
 			var w=$this.parent().width();
 			dom.i$frame.css("width",w);
 			$body.css("width",w);
@@ -85,16 +84,22 @@
 
 		//update iframe lineheight
 		if(!$.browser.msie){
-			var fs = $this.css('fontSize').replace('px', '');
-            var lh = $this.css('lineHeight').replace('px', '');
-            if(fs && lh){
-                var newHeight = ''+(lh/fs);
-                dom.i$frame.css("lineHeight", newHeight);
-              	$body.css("lineHeight",newHeight);
-            };
+			if($this.css("display")!="block"){
+				dom.i$frame.css("lineHeight", "normal");
+              	$body.css("lineHeight","normal");
+			}else{
+				var fs = $this.css('fontSize').replace('px', '');
+	            var lh = $this.css('lineHeight').replace('px', '');
+	            if(fs && lh){
+	                var newHeight = ''+(lh/fs);
+	                dom.i$frame.css("lineHeight", newHeight);
+	              	$body.css("lineHeight",newHeight);
+	            };				
+			};
+
 		};
 		//we don't need any marign and border styles inside the iframe body tag 
-		$body.css({"margin":"0","border":"none"});	
+		$body.css({"margin":"0","border":"none","text-align":"left"});	
 		//maxWidth
 		if(!$.browser.msie)
 			dom.i$frame.css("maxWidth","inherit");
@@ -107,6 +112,7 @@
 	p.fixPosition=function(dom){
 		//TODO:finish this method
 		var $this=$(dom);
+		var needfix=false,hasFloatPrev=false;
 		//If there's a floating element before it, make the element position absolute!
 		var $items=$this.prevAll();
 		$items=$.grep($items,function(o,i){
@@ -114,12 +120,15 @@
 			return (fl=="left"||fl=="right");
 			//return $(o).is(dom._opts.cssFloat);
 		});
-		if($items.length==0) return;
+		hasFloatPrev=($items.length>0);
+		needfix=hasFloatPrev||($this.css("float")!="none");
+		
+		if(!needfix) return;
 		
 		//show the original dom as the place holder!
 		$this.show().css("visibility","hidden");
 		
-		$items=$($items[0]);
+		$items=hasFloatPrev?$($items[0]):({width:function(){return 0;}});
 		var pos=$this.position();
 		var floatWidth=$items.width();
 		var frameWidth=dom.i$frame.width()-floatWidth;
@@ -130,7 +139,9 @@
 			"z-index":50,
 			"width":frameWidth
 		};
-		css["padding-"+$items.css("float")]=floatWidth+'px';
+		if($this.css("display")=="block"&&hasFloatPrev)
+			css["padding-"+$items.css("float")]=floatWidth+'px';
+		
 		dom.i$frame.css(css);
 		dom.i$frame[0].i$Body().css("width",frameWidth);
 		
@@ -148,8 +159,7 @@
 			//show the editbox
 			opts.dom.i$frame[0]
 				.iSetData($this.html())
-				.iFocus()
-				.iSelect();
+				.iFocus();
 			
 			p.bindEvents(opts.dom);
 			

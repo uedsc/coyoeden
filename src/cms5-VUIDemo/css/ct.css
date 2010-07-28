@@ -21,7 +21,7 @@ z-index:60;
 .ct .on{background:#FF0084;opacity:0.5;}
 /* 栏目标题 */
 #ctSecHead{text-align:left;}
-#ctSecHead .left{padding-right:35px;}
+#ctSecHead .left{padding-right:30px;}
 #ctSecHead .ctWrap{width:50%;}
 #ctSecHead .ctWrap h2{width:180px;}
 /* 焦点图 */
@@ -58,6 +58,7 @@ z-index:60;
 /* 栏目标题 */
 .sec_hd{height:30px;background:#ECF5FB;padding:0 15px;line-height:30px;}
 .sec_hd1{height:30px;background:#E2E2E2;padding:0 15px;line-height:30px;}
+.sec_hd a span{float:none;font-weight:normal;font-size:100%;}
 /* 组图 */
 .pp li{float:left;display:inline;}
 /* 图文-标题 */

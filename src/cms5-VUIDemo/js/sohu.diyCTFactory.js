@@ -46,7 +46,7 @@ sohu.diyTplFactory.SecHead=function(opts){
 	//属性-用户变量
 	this.Style="sec_hd";
 	this.ShowMore=true;
-	this.ShowMoreTpl='<a class="elm" target="_blank" href="#">更多>></a>';
+	this.ShowMoreTpl='<em class="elm">更多>></em>';
 	//属性-dom引用
 	this.$Layout=$("#ctSecHead");
 	this.$ddlSecHeadCss=$("#ddlSecHeadCss");
@@ -66,7 +66,7 @@ sohu.diyTplFactory.SecHead=function(opts){
 		});
 		_this.$Layout.find("#cbxSecHeadMore").click(function(evt){
 			_this.ShowMore=this.checked;
-			var items=_this.$tplObj.find("a");
+			var items=_this.$tplObj.find("em");
 			if(!_this.ShowMore){
 				items.remove();
 			}else{
