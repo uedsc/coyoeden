@@ -23,9 +23,16 @@ sohu.diyElement=function(opts){
 	p.onEditModeChange=function(dom){
 		if (dom.iEditing) {
 			_this.i$frame=_this.$Layout[0].i$frame;
+			/*
 			sohu.diyConsole.$EditMenu.show();
 			sohu.diyConsole.$MenuTxt.show();
 			sohu.diyConsole.$MenuImg.hide();
+			*/
+			sohu.diyConsole.ShowEditMenu("$MenuTxt");
+			//À¸Ä¿±êÌâ
+			if(_this.$Layout.parent().is(".sec_hd")){
+				sohu.diyConsole.ShowEditMenu("$MenuSecHead",true);
+			};
 			_this.CT.InlineEdit("on");
 		}else{
 			_this.i$frame=null;
@@ -46,13 +53,16 @@ sohu.diyElement=function(opts){
 		//img
 		if(_this.tagName=="img"){
 			_this.$Layout.click(function(evt){
+				sohu.diyConsole.ShowEditMenu("$MenuImg");
+				/*
 				sohu.diyConsole.$EditMenu.show();
-				sohu.diyConsole.$MenuTxt.hide();
+				sohu.diyConsole.$Menu.not(".mcom").hide();
 				sohu.diyConsole.$MenuImg.show();
+				*/
 				_this.CT.InlineEdit("on");
 			});
 			return;
-		}
+		};
 	};
 	/* /private member variables */
 	

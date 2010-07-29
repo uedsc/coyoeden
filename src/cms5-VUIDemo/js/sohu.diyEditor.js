@@ -23,18 +23,21 @@ sohu.diyEditor=function(opts){
 		addContent:this.$Toolbar.find(".a_content"),
 		addSec:this.$Toolbar.find(".a_sec"),
 		clear:this.$Toolbar.find(".a_clear"),
-		editCode:this.$Toolbar.find(".a_code")
+		editCode:this.$Toolbar.find(".a_code"),
+		prevLevel:this.$Toolbar.find(".a_ret")
 	};
 	this.$Toolbar.btn.addContent.click(function(evt){_this.DialogCT();return false;});
 	this.$Toolbar.btn.addSec.click(function(evt){_this.DialogSec();return false;});
 	this.$Toolbar.btn.clear.click(function(evt){_this.Cls();return false;});
 	this.$Toolbar.btn.editCode.click(function(evt){alert("代码");return false;});
+	this.$Toolbar.btn.prevLevel.click(function(evt){_this.CurSec.ActiveParent();return false;});
+	//如果没有父分栏，隐藏“上级”按钮
+	if(!this.CurSec.HasParent()){
+		this.$Toolbar.btn.prevLevel.hide();
+	};
 	// sec tip事件注册
 	this.$ToolbarTip.click(function(evt){$(this).hide();});
-	//actions事件注册-双击返回父级分栏
-	this.$Toolbar.dblclick(function(evt){
-		_this.CurSec.ActiveParent();return false;
-	});
+
 	this.$CTWrap=$("#ctWrap");
 	
 	//persist the toolbar dom
@@ -48,13 +51,11 @@ sohu.diyEditor.prototype.DialogSec=function(){
 	var _this=this;
 	var templateID="#sec_selector_"+this.CurSec.Width;
 	this.CurTpl=null;
-	this.CurArea.IsEditing=true;
-	this.CurSec.IsAddingContent=true;
+	this.Editing("on");
 	//close callback
 	var _onClose=function(evt,ui){
 		if(!_this.SecSelector.Cur) return; /* _this.SecSelector.Cur赋值逻辑参考sohu.diyConsole.js */
-		_this.CurArea.IsEditing=false;
-		_this.CurSec.IsAddingContent=false;
+		_this.Editing("off");
 		_this.CurSec.Deactive();
 	};
 	//Open callback
@@ -82,12 +83,11 @@ sohu.diyEditor.prototype.DialogSec=function(){
  */
 sohu.diyEditor.prototype.DialogCT=function(mode){
 	var _this=this;
-	this.CurArea.IsEditing=true;
-	this.CurSec.IsAddingContent=true;
+	this.Editing("on");
+	
 	//关闭回调
 	var _onClose=function(evt,ui){
-		_this.CurArea.IsEditing=false;
-		_this.CurSec.IsAddingContent=false;
+		_this.Editing("off");
 	};
 	//打开回调
 	var _onOpen=function(evt,ui){
@@ -158,18 +158,16 @@ sohu.diyEditor.prototype.Cls=function(){
 	var _this=this;
 	var d=this.CurSec.Dim();
 	var pos=[d.x+10,d.y+10];//对话框位置
-	this.CurSec.IsAddingContent=true;
-	this.CurArea.IsEditing=true;
+	this.Editing("on");
 	this.Console.Confirm({
 		title:"确认操作",
-		ct:"1,分栏有内容时删除内容。<br/>2,分栏无内容时删除该分栏及其父分栏",
+		ct:"1,分栏有内容时将清除内容及其子分栏。<br/>2,分栏无内容时删除该分栏及其同级分栏",
 		yes:function(ui){
 			_this.CurSec.Cls();
 		},
 		position:pos,
 		close:function(evt,ui){
-			_this.CurSec.IsAddingContent=false;
-			_this.CurArea.IsEditing=false;
+			_this.Editing("off");
 		}
 	});
 	
@@ -193,6 +191,21 @@ sohu.diyEditor.prototype.Show=function(){
 		this.$Toolbar.btn.addSec.hide();	
 	}else{
 		this.$Toolbar.btn.addSec.show();
+	};
+};
+/**
+ * 触发编辑事件。
+ * @param {Object} mode "off"或"on"
+ */
+sohu.diyEditor.prototype.Editing=function(mode){
+	if(mode=="on"){
+		this.CurSec.IsAddingContent=true;
+		this.CurArea.IsEditing=true;
+		this.CurSec.$Layout.addClass("ing");
+	}else{
+		this.CurSec.IsAddingContent=false;
+		this.CurArea.IsEditing=false;
+		this.CurSec.$Layout.removeClass("ing");
 	};
 };
 /**

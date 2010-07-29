@@ -141,6 +141,16 @@ sohu.diySection.prototype.AddContent=function(ct){
  * 清楚分栏内容
  */
 sohu.diySection.prototype.Cls=function(){
+	var isEmpty=(this.$Layout.children().length==0);
+	//内容为空，删除该分栏和同级分栏
+	if(isEmpty){
+		var p=this.$Layout.closest("."+this.__p.opts.clSecSub);
+		if(p.length>0){
+			p.remove();
+		};
+		return;
+	};
+	//内容不为空则删除内容和子分栏
 	//删除内容
 	this.$Layout.find(">."+this.__p.opts.clContent).remove();
 	//删除子分栏
@@ -201,6 +211,13 @@ sohu.diySection.prototype.HasSub=function(){
 	return (cnt>0);
 };
 /**
+ * 是否有父级分栏
+ */
+sohu.diySection.prototype.HasParent=function(){
+	var cnt=this.$Layout.parents("."+this.__p.opts.clSec).size();
+	return (cnt>0);
+};
+/**
  * 获取当前分栏所属的横切对象
  */
 sohu.diySection.prototype.LoadCurArea=function(){
@@ -245,7 +262,7 @@ sohu.diySection.prototype.LoadContents=function(){
  * 激活父级分栏
  */
 sohu.diySection.prototype.ActiveParent=function(){
-	var $psec=this.$Layout.parents("."+this.__p.opts.clSec+":first");
+	var $psec=this.$Layout.parent().closest("."+this.__p.opts.clSec);//this.$Layout.parents("."+this.__p.opts.clSec+":last");
 	$psec.trigger("evtActive");
 };
 /*静态方法*/

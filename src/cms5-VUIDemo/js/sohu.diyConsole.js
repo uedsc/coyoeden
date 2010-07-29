@@ -35,12 +35,14 @@ sohu.diyConsole=function(opts){
 	p._$menus=$("#editMenuChild .menuitem");
 	p._$menuTxt=p._$editMenu.find(".mtxt");
 	p._$menuImg=p._$editMenu.find(".mimg");
+	p._$menuSecHead=p._$editMenu.find(".msecHead");
 	p._$popWins=p._$editMenu.find(".win");
 	/* 对话框jq对象 */
 	p._$wCpkWrap=$("#cpkWrap");
 	p._$wAddLink=$("#addLink");
 	p._$wImgPro=$("#imgPro");
 	p._$wImgSwitch=$("#imgSwitch");
+	p._$wSecHead=$("#cfgSecHead");
 	/* /对话框jq对象 */
 	
 	/* 对话框表单元素 */
@@ -76,6 +78,16 @@ sohu.diyConsole=function(opts){
 		rbtnAreaBGRepeat:p._$wAreaBG.find("input[name='areaBGRepeat']"),
 		tipAreaBG:p._$wAreaBG.find(".tipAreaBG"),
 		reset:function(){p._$wAreaBG.find("*").removeClass("alert").end().find(":text").val("");}
+	};
+	p._fmSecHead={
+		txtBG:$("#txtSecHeadBGC"),
+		txtBGImg:$("#txtSecHeadImg"),
+		tipBGImg:p._$wSecHead.find(".tipSecHeadImg"),
+		btnOK:p._$wSecHead.find(".btnMWinOK"),
+		btnNO:p._$wSecHead.find(".btnMWinNO"),
+		btnDel:p._$wSecHead.find(".btnMWinDel"),
+		cpk:p._$wSecHead.find(".cpk"),
+		reset:function(){p._$wSecHead.find(".tip").removeClass("alert").end().find("input[type='text']").removeClass("alert").val("");}
 	};
 	/* /对话框表单元素 */
 	p._$txtFontColor=$("#txtFontColor");
@@ -161,9 +173,6 @@ sohu.diyConsole=function(opts){
 		var _onNO=function(evt){
 			$(this).dialog("close");
 		};
-		var _onPreview=function(evt){
-			_onOK(evt,false);
-		};
 		//显示对话框
 		p._$wAreaBG.dialog(
 		{
@@ -173,14 +182,16 @@ sohu.diyConsole=function(opts){
 			width:430,
 			position:[700,50],
 			buttons:{
-				"取消":_onNO,
-				"预览":_onPreview,
+				"关闭":_onNO,
 				"确认":_onOK,
 			},
 			open:function(evt,ui){
 				var img=sohu.diyConsole.CurArea.$Layout.css("background-image");
 				img=img.replace('url("',"").replace('")',"");
 				p._fmAreaBG.txtAreaBG.val(img).select();
+				p._$wAreaBG.preview=function(){
+					_onOK(evt,false);
+				};
 			},
 			close:function(evt,ui){p._fmAreaBG.reset();}
 		}
@@ -247,7 +258,7 @@ sohu.diyConsole=function(opts){
 		var b=p.getWorkspaceBoundary();
 		if(evt.pageX<b.lbleft||evt.pageX>b.ubleft||evt.pageY>b.ubtop){//||evt.pageY<lbtop
 			//强制移除内联编辑器
-			if(sohu.diyConsole.EditingSec!=null){
+			if(sohu.diyConsole.EditingSec!=null&&sohu.diyConsole.CurElm!=null){
 				sohu.diyConsole.CurElm.HideEditor(false);
 			};
 			//反激活横切
@@ -304,6 +315,18 @@ sohu.diyConsole=function(opts){
 			},
 			onSubmit:function(hsb,hex,rgb){
 				p._fmImgPro.cpk.hide();
+			}
+		});
+		//栏目头背景色
+		p._fmSecHead.cpk.ColorPicker({
+			flat:true,
+			color:"#cccccc",
+			onChange:function(hsb,hex,rgb){
+				p._fmSecHead.txtBG.css("backgroundColor","#"+hex).val("#"+hex);
+				sohu.diyConsole.CurElm.$Layout.parent().css("backgroundColor","#"+hex).val("#"+hex);
+			},
+			onSubmit:function(hsb,hex,rgb){
+				p._fmSecHead.cpk.hide();
 			}
 		});
 	};
@@ -412,12 +435,61 @@ sohu.diyConsole=function(opts){
 	p.initAreaBG=function(){
 		p._fmAreaBG.rbtnAreaBGAlign.click(function(evt){
 			p._fmAreaBG.rbtnAreaBGAlign.curVal=this.value;
+			p._$wAreaBG.preview();
 		});
 		p._fmAreaBG.rbtnAreaBGRepeat.click(function(evt){
 			p._fmAreaBG.rbtnAreaBGRepeat.curVal=this.value;
+			p._$wAreaBG.preview();
 		});		
 		p._fmAreaBG.rbtnAreaBGAlign.curVal="center";
 		p._fmAreaBG.rbtnAreaBGRepeat.curVal="no-repeat";
+	};
+	p.initSecHead=function(){
+		//按钮行为
+		p._fmSecHead.btnOK.click(function(evt){
+			var url=$.trim(p._fmSecHead.txtBGImg.val());
+			if( (url!="") && (!StringUtils.isUrl(url)) ){
+				p._fmSecHead.txtBGImg.addClass("alert").select();
+				p._fmSecHead.tipBGImg.addClass("alert");
+				return false;
+			};
+			//更改图片属性
+			if(url!="")
+				sohu.diyConsole.CurElm.$Layout.parent().css("background-image","url('"+url+"')");
+			//收起对话框
+			p._$popWins.slideUp();
+			//重置表单
+			p._fmSecHead.reset();	
+		});
+		p._fmSecHead.btnNO.click(function(evt){p._$popWins.slideUp();});
+		p._fmSecHead.btnDel.click(function(evt){
+			if(!window.confirm("确定删除该栏目标题么")) return;
+			p._$popWins.slideUp();
+			var ct=sohu.diyConsole.CurElm.CT;
+			var sec=sohu.diyConsole.EditingSec;
+			sohu.diyConsole.CurElm.HideEditor(false);
+			ct.$Layout.remove();
+			sec.RemoveCTByID(ct.ID);
+			
+		});
+		//背景色
+		p._fmSecHead.txtBG
+		.attr("readonly",true)
+		.css("backgroundColor","#cccccc")
+		.click(function(evt){
+			p._fmSecHead.cpk.show();
+		});
+		//背景图
+		p._fmSecHead.txtBGImg.change(function(evt){
+			var url=p._fmSecHead.txtBGImg.val();
+			if(!StringUtils.isUrl(url)){
+				p._fmSecHead.txtBGImg.addClass("alert").select();
+				p._fmSecHead.tipBGImg.addClass("alert");
+				return false;
+			};
+			//更改图片属性
+			sohu.diyConsole.CurElm.$Layout.parent().css("background-image","url('"+url+"')");
+		});
 	};
 	/**
 	 * Save current document.selection to sohu.diyConsole.DocSelection
@@ -512,12 +584,24 @@ sohu.diyConsole=function(opts){
 			p._fmImgSwitch.txtImgAlt.val(sohu.diyConsole.CurElm.$Layout.attr("alt"));
 			p._fmImgSwitch.txtImgSrc.val("");
 		});
+		//分栏标题
+		$("#menuitem-secHead").mousedown(function(evt){
+			p._$popWins.hide();
+			p._$wSecHead.slideDown();
+			var $img=sohu.diyConsole.CurElm.$Layout;
+			p._fmSecHead.txtBG.val($img.css("backgroundColor"));
+			var img=$img.css("background-image");
+			img=img.replace('url("',"").replace('")',"");
+			img=img=="none"?"":img;
+			p._fmSecHead.txtBGImg.val(img);
+		});
 	};
 	p.Init=function(){
 		//公有属性引用
 		sohu.diyConsole.$EditMenu=p._$editMenu;
 		sohu.diyConsole.$MenuTxt=p._$menuTxt;
 		sohu.diyConsole.$MenuImg=p._$menuImg;
+		sohu.diyConsole.$MenuSecHead=p._$menuSecHead;
 		sohu.diyConsole.$CPKWrap=p._$wCpkWrap;
 		sohu.diyConsole.$PopWins=p._$popWins;
 		sohu.diyConsole.$Menu=p._$menus;
@@ -570,6 +654,8 @@ sohu.diyConsole=function(opts){
 		p.initImgSwitch();
 		//横切背景对话框
 		p.initAreaBG();
+		//分栏标题对话框
+		p.initSecHead();
 		//editMenu的事件注册
 		p.initEditMenu();
 		//元素工具条
@@ -700,4 +786,17 @@ sohu.diyConsole.InnerHeight=function() {
         return document.body.clientHeight;
     };
 
+};
+/**
+ * 显示顶部编辑菜单
+ * @param {Object} group 菜单组名
+ * @param {Boolean} showOthers 显示其他组菜单
+ */
+sohu.diyConsole.ShowEditMenu=function(group,showOthers){
+	showOthers=showOthers||false;
+	sohu.diyConsole.$EditMenu.show();
+	if(!showOthers)
+		sohu.diyConsole.$Menu.not(".mcom").hide();
+	
+	sohu.diyConsole[group].show();
 };

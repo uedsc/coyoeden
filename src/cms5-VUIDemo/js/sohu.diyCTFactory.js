@@ -195,7 +195,7 @@ sohu.diyTplFactory.Line.prototype.Submit=function(opt){
 		type:'shline'
 	};
 	
-	sohu.diyTplFactory.submit(ct);
+	sohu.diyTplFactory.submit(ct,true);
 };
 /**
  * Ωπµ„Õº—°‘Ò¿‡

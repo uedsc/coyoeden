@@ -25,25 +25,26 @@ display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(25
 
 /* =#editMenu= */
 #editMenu{display: block; position: absolute; height: 35px;width: 100%;top:35px; z-index: 999;}
-	#editMenuChild{margin: 0pt auto; width: 260px; position: relative; background: url("../img/menubar-c.gif") repeat-x scroll left bottom transparent; padding: 4px 15px 6px;}
+	#editMenuIn{position:relative;width:356px;margin:0 auto;}
+	#editMenuChild{margin: 0pt auto; width: 280px; position: relative; background: url("../img/menubar-c.gif") repeat-x scroll left bottom transparent; padding: 4px 15px 6px;}
 	.menuitem{float:left;background:url("../img/menubar.gif") no-repeat;display:block;height:25px;width:25px;text-decoration:none;}
-#editMenu .on{border:1px solid red;}	
+#editMenu .on{border-bottom:1px solid red;}	
 	#menuitem-b {background-position: 0px 0; width:26px;}
 	#menuitem-i {display:none;background-position: -26px 0; }
 	#menuitem-u {background-position: -51px 0; }
 	#menuitem-cc { background-position: -76px 0;width: 32px; }
 	#menuitem-if { display:none;background-position: -108px 0; }
-	#menuitem-df { display:none;background-position: -133px 0;width: 27px;margin-right: 15px; }
-	#menuitem-cl { background-position: -160px 0; width: 28px; margin-right: 15px;}
+	#menuitem-df { display:none;background-position: -133px 0;width: 27px;margin-right: 12px; }
+	#menuitem-cl { background-position: -160px 0; width: 28px; margin-right: 12px;}
 	#menuitem-al { background-position: -188px 0;width: 26px; }
 	#menuitem-ac { background-position: -214px 0; }
 	#menuitem-ar { background-position: -239px 0; }
-	#menuitem-af { background-position: -264px 0;width: 27px; margin-right: 15px; }
+	#menuitem-af { background-position: -264px 0;width: 27px; margin-right: 12px; }
 	#menuitem-ul { background-position: -291px 0;width: 26px; display: none; }
-	#menuitem-ol { background-position: -317px 0;width: 27px; margin-right: 15px; display: none; }
+	#menuitem-ol { background-position: -317px 0;width: 27px; margin-right: 12px; display: none; }
 	#menuitem-z { display:none;background-position: -344px 0; width: 26px;}
 	#menuitem-r { display:none;background-position: -370px 0;width: 27px; }
-	#menuitem-img,#menuitem-imgp{background:none;font-size:11px; margin-right:5px;border:1px solid #7EA3BF;}
+	#menuitem-img,#menuitem-imgp,#menuitem-secHead{background:none;font-size:11px; margin-right:5px;border:1px solid #7EA3BF;}
 	
 	#menuitem-b:hover { background-position: -397px 0; }
 	#menuitem-i:hover { background-position: -423px 0; }
@@ -61,7 +62,6 @@ display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(25
 	#menuitem-z:hover { background-position: -741px 0; }
 	#menuitem-r:hover { background-position: -767px 0; }
 
-	#editMenuIn{position:relative;width:356px;margin:0 auto;}
 	/* popup windows style */
 	#editMenuIn .win{position:relative;display:none;width:356px;margin:0 auto;}
 	#editMenuIn .skform{width:100%;padding:10px 0;}
@@ -74,10 +74,12 @@ display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(25
 
 	/* colorpicker wrapper */
 	#editMenu .colorpicker{background-image:url("../images/custom_background.png");}
-	/* img property */
-	#imgPro{position:relative;}
-	#imgPro .skform{position:relative;}
-	#imgPro .cpk{position:absolute;display:none;width:356px;top:20%;right:-250px;}	
+	/* Img property & SecHead cfg */
+	#imgPro,#cfgSecHead{position:relative;}
+	#imgPro .skform,#cfgSecHead .skform{position:relative;}
+	#imgPro .cpk,#cfgSecHead .cpk{position:absolute;display:none;width:356px;top:20%;right:-250px;}	
+	#cfgSecHead .cpk{top:20px;}
+	
 /* =/#editMenu= */
 
 /* =Editor related style= */
@@ -122,11 +124,12 @@ display:none;
 .areaTools li{padding:4px 0;line-height:16px;}
 /* ·ÖÀ¸ÑùÊ½ -Editing */
 .sec{border:1px solid transparent;}
-/*.sec .elm{border:1px solid transparent;}*/
-.sec .elmOn{/*border:1px dashed #4455AA;*/background:#FFDBA8;}
+.sec .elm{border:1px solid transparent;border-bottom:none;}
+.sec .elmOn{border:1px dotted #4455AA;/*background:#FFDBA8;*/}
 .area_active .sec,.area_empty .sec{min-height:25px;height:auto !important;height:25px;border:1px dotted #ccc;}
 /*.area_active .subsec .sec,.area_empty .subsec .sec{border-bottom:none;}*/
 .area_active .secOn,.area_active .subsec .secOn{border:1px solid #84ADDE;}
+.area_active .ing,.area_active .subsec .ing{border-color:#FF0084;}
 .ct{position:relative;border:1px solid transparent;}
 .area_active .ctOn{border-color:#FFDBA8;}
 .col{overflow:hidden;}

@@ -30,7 +30,7 @@
 					<a id="menuitem-cc" title="颜色" href="#" class="menuitem mtxt popwin"></a><input type="hidden" id="txtFontColor" />
 					<a title="增大尺寸" href="#" class="menuitem" id="menuitem-if"></a>
 					<a title="减少尺寸" href="#" class="menuitem" id="menuitem-df"></a>
-					<a title="加链接" href="#" class="menuitem popwin" id="menuitem-cl"></a>
+					<a title="加链接" href="#" class="menuitem mcom popwin" id="menuitem-cl"></a>
 					<a title="左对齐" href="#" class="menuitem mtxt" id="menuitem-al"></a>
 					<a title="居中对齐" href="#" class="menuitem mtxt" id="menuitem-ac"></a>
 					<a title="右对齐" href="#" class="menuitem mtxt" id="menuitem-ar"></a>
@@ -41,6 +41,8 @@
 					<a title="重做" href="#" class="menuitem" id="menuitem-r"></a>
 					<a title="替换图片" href="#" class="menuitem mimg popwin" id="menuitem-img">替换图片</a>
 					<a title="图片属性" href="#" class="menuitem mimg popwin" id="menuitem-imgp">图片属性</a>
+					<a title="栏目头设置" href="#" class="menuitem msecHead popwin" id="menuitem-secHead">设置</a>
+					<div style="width: 0pt; height: 0pt; clear: both; overflow: hidden;"> </div>
 					<div class="bar_l"></div>
 					<div class="bar_r"></div>
 				</div>
@@ -109,6 +111,25 @@
 						</div>
 		                <div class="spacer"></div>
 					</div>
+				</div>
+				<!--栏目头设置-->
+				<div id="cfgSecHead" class="win">
+					<div class="skform skformx">
+						<label>背景色</label>
+						<input name="secHeadBGC" id="txtSecHeadBGC" type="text" class="field"/>
+						<label>背景图<span class="tip tipSecHeadImg small">请输入有效图片网址或从服务器选择</span></label>
+						<div class="field">
+							<input type="text" id="txtSecHeadImg" name="secHeadImg" size="27"/>
+							<button onclick="alert('hi')">浏览</button>
+						</div>
+						<div class="acts">
+							<button class="btnMWinOK">确定</button>
+							<button class="btnMWinDel" title="删除栏目头">删除</button>
+							<button class="btnMWinNO">关闭</button>
+						</div>
+						<div class="cpk"></div>
+		                <div class="spacer"></div>
+					</div>					
 				</div>				
 			</div>
 		</div>		
@@ -171,7 +192,7 @@
 						<div class="l"><a class="a_code" href="#" title="查看当前分栏的代码">代码</a></div>
 						<div class="r">
 							<span class="secTip"></span>
-							<a class="a_ret" href="#" title="">上级</a>
+							<a class="a_ret" href="#" title="返回上一级分栏">上级</a>
 							<a class="a_content" href="#" title="为分栏添加内容">内容</a>
 							<a class="a_sec" href="#" title="添加子分栏">分栏</a>
 							<a class="a_clear" href="#" title="清除分栏的子分栏以及内容">清除</a>
