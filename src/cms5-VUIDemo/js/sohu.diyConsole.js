@@ -759,7 +759,7 @@ sohu.diyConsole.toggleLoading=function(){
 sohu.diyConsole.Dragger={
 	ing:false,
 	obj:null,
-	handle:$('<div class="dragHandle"></div>'),
+	handle:$("#ctHandle"),
 	cssHandle:'.dragHandle'
 };
 sohu.diyConsole.CurArea=null;

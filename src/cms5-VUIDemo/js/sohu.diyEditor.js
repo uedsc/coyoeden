@@ -24,13 +24,15 @@ sohu.diyEditor=function(opts){
 		addSec:this.$Toolbar.find(".a_sec"),
 		clear:this.$Toolbar.find(".a_clear"),
 		editCode:this.$Toolbar.find(".a_code"),
-		prevLevel:this.$Toolbar.find(".a_ret")
+		prevLevel:this.$Toolbar.find(".a_ret"),
+		cfg:this.$Toolbar.find(".a_cfg")
 	};
 	this.$Toolbar.btn.addContent.click(function(evt){_this.DialogCT();return false;});
 	this.$Toolbar.btn.addSec.click(function(evt){_this.DialogSec();return false;});
 	this.$Toolbar.btn.clear.click(function(evt){_this.Cls();return false;});
 	this.$Toolbar.btn.editCode.click(function(evt){alert("代码");return false;});
 	this.$Toolbar.btn.prevLevel.click(function(evt){_this.CurSec.ActiveParent();return false;});
+	this.$Toolbar.btn.cfg.click(function(evt){_this.DialogSecCfg();return false;});
 	//如果没有父分栏，隐藏“上级”按钮
 	if(!this.CurSec.HasParent()){
 		this.$Toolbar.btn.prevLevel.hide();
@@ -76,6 +78,21 @@ sohu.diyEditor.prototype.DialogSec=function(){
 		autoOpen:false//to reuse the dialog,we have to set autoOpen to false!
 	});
 	this.SecSelector.dialog("open");
+};
+/**
+ * 弹出分栏设置对话框
+ */
+sohu.diyEditor.prototype.DialogSecCfg=function(){
+	var _this=this;
+	this.WSecCfg=$("#wCfgSec").dialog({
+		title:"分栏设置",
+		resizable:false,
+		modal:true,
+		width:430,
+		height:300,
+		autoOpen:false
+	});
+	this.WSecCfg.dialog("open");
 };
 /**
  * 弹出添加内容选择框
@@ -175,7 +192,7 @@ sohu.diyEditor.prototype.Cls=function(){
 sohu.diyEditor.prototype.Reposition=function(){
 		var d=this.CurSec.Dim();
 		this.$Toolbar.css({width:d.w-12,top:d.y-31,left:d.x,opacity:0.9});/*宽要减去12个像素的留白;31是高度*/
-		this.$ToolbarTip.css({width:d.w}).html("["+d.mw+"px]");
+		this.$ToolbarTip.css({width:d.w}).html(d.mw+"px");
 };
 /**
  * 显示编辑器-即激活编辑器

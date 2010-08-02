@@ -31,29 +31,23 @@ sohu.diyContent=function(opts){
 		_this.Editor.CurCT=_this;
 		sohu.diyConsole.CurCT=_this;
 		//ÍÏ×§ÖúÊÖÊÂ¼þ
-		
-		var dim=_this.Dim();
-		/*v20100722
-		sohu.diyConsole.Dragger.handle.show()
-		.css({width:dim.w,height:dim.h,opacity:0.3})
+		_this.$Layout.find(sohu.diyConsole.Dragger.cssHandle).remove().end()
+			.append(sohu.diyConsole.Dragger.handle.show());
+
+		sohu.diyConsole.Dragger.handle
 		.unbind()
 		.bind("mousedown",function(evt){
 			sohu.diyConsole.Dragger.ing=true;
 			sohu.diyConsole.Dragger.obj=_this;
-			_this.Sec.Deactive();
-			
+			_this.Sec.Deactive();	
 		}).bind("mouseup",function(evt){
 			sohu.diyConsole.Dragger.ing=false;
-		}).bind("dblclick",function(evt){
-			_this.DoEdit();return false;
 		});
-		_this.$Layout.find(".dragHandle").remove().end().prepend(sohu.diyConsole.Dragger.handle);
-		*/
 	};
 	p.mouseLeave=function(evt){
 		if(_this.Editor.CurArea.IsEditing) return false;
 		_this.$Layout.removeClass(opts.clOn);
-		/*sohu.diyConsole.Dragger.handle.remove();v20100722*/
+		sohu.diyConsole.Dragger.handle.remove();
 		sohu.diyConsole.CurCT=null;
 	};
 	

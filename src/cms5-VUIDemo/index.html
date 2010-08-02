@@ -189,21 +189,16 @@
 			<div id="area_editor">
 				<div class="actions rounded">
 					<div class="actions_body clear">
-						<div class="l"><a class="a_code" href="#" title="查看当前分栏的代码">代码</a></div>
+						<div class="l"><span class="secTip"></span></div>
 						<div class="r">
-							<span class="secTip"></span>
+							<a class="a_code" href="#" title="查看当前分栏的代码">代码</a>
+							<a class="a_cfg" href="#" title="分栏设置">设置</a>
 							<a class="a_ret" href="#" title="返回上一级分栏">上级</a>
 							<a class="a_content" href="#" title="为分栏添加内容">内容</a>
 							<a class="a_sec" href="#" title="添加子分栏">分栏</a>
 							<a class="a_clear" href="#" title="清除分栏的子分栏以及内容">清除</a>
 						</div>
 					</div>
-					<div class="corner tl"></div>
-					<div class="corner tr"></div>
-				</div>
-				<div class="footer rounded">
-					<div class="corner bl"></div>
-					<div class="corner br"></div>
 				</div>
 			</div>
 			<!--横切选择模板-->
@@ -296,6 +291,52 @@
 				</div>
                 <div class="spacer"></div>				
 			</div>
+			<!--分栏设置对话框-->
+			<div id="wCfgSec" class="skform skformx">
+				<label>背景图<span class="small tip tipAreaBG">请输图片网址</span></label>
+				<div class="field">
+					<input type="text" size="36" id="txtAreaBG" name="areaBG"/>
+					<button id="btnCfgSecBrowse" onclick="alert('hi');">浏览</button>
+				</div>
+				<label>对齐方式</label>
+				<div class="field">
+					<input type="radio" name="areaBGAlign" value="center" checked="checked" /><span>居中</span>
+					<input type="radio" name="areaBGAlign" value="left"/><span>靠左</span>
+					<input type="radio" name="areaBGAlign" value="right"/><span>靠右</span>	
+				</div>
+				<label>平铺方式</label>
+				<div class="field">
+					<input type="radio" name="areaBGRepeat" value="repeat"/><span>平铺</span>
+					<input type="radio" name="areaBGRepeat" value="no-repeat" checked="checked" /><span>不平铺</span>
+					<input type="radio" name="areaBGRepeat" value="repeat-x"/><span>横平铺</span>
+					<input type="radio" name="areaBGRepeat" value="repeat-y"/><span>纵平铺</span>
+				</div>
+				<label>边框设置</label>
+				<div class="field">
+					<span>大小</span>
+					<select id="ddlSecBorderSize" name="SecBorderSize">
+						<option value="0" selected="selected">无边框</option>
+						<option value="1">1像素</option>
+						<option value="2">2像素</option>
+						<option value="3">3像素</option>
+						<option value="4">4像素</option>
+						<option value="5">5像素</option>
+					</select>
+					<span>样式</span>
+					<select id="ddlSecBorderStyle" name="SecBorderStyle">
+						<option value="solid" selected="selected">实线</option>
+						<option value="dotted">虚线</option>
+					</select>
+					<span>颜色</span>
+					<input type="text" size="4" id="txtSecBorderColor" name="SecBorderColor"/>
+					<br/>
+					<input type="checkbox" name="SecBorderDir" value="top" checked="checked"/><span>上</span>
+					<input type="checkbox" name="SecBorderDir" value="right" checked="checked"/><span>右</span>
+					<input type="checkbox" name="SecBorderDir" value="bottom" checked="checked"/><span>下</span>
+					<input type="checkbox" name="SecBorderDir" value="top" checked="checked"/><span>上</span>
+				</div>
+                <div class="spacer"></div>				
+			</div>			
 		</div>
 		<!--ckeditor-->
 		<div id="jqmWin1" class="jqmWindow">
@@ -315,6 +356,10 @@
 			<a class="del" href="#">删</a>
 			<a class="up" href="#">上</a>
 			<a class="dwn" href="#">下</a>
+		</div>
+		<!--内容拖拽助手-->
+		<div id="ctHandle" class="dragHandle">
+			<img src="img/move.gif" alt="移动" width="16" height="16"/>
 		</div>
     </body>
 	<script src="js/jquery.cssEX.js" type="text/javascript"></script>

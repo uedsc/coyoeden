@@ -5,7 +5,7 @@
 .ui-widget-overlay{opacity:0.4;}
 /* drag&drop style */
 .ui-hl{height: 30px; line-height:30px;background:#ffffc2; }
-.dragHandle{position:absolute;background:#c4e2ff;cursor:move;z-index:300;}
+#ctHandle{position:absolute;display:none;margin:0;top:-2px;right:-1px;width:16px;height:16px;overflow:hidden;z-index:101;cursor:move;}
 /* 对话框 */
 .ui-dialog .skform{width:100%;padding:10px 0;}
 .ui-dialog .skform label{width:25%;}
@@ -130,20 +130,23 @@ display:none;
 /*.area_active .subsec .sec,.area_empty .subsec .sec{border-bottom:none;}*/
 .area_active .secOn,.area_active .subsec .secOn{border:1px solid #84ADDE;}
 .area_active .ing,.area_active .subsec .ing{border-color:#FF0084;}
+/* 内容样式-Editing */
 .ct{position:relative;border:1px solid transparent;}
 .area_active .ctOn{border-color:#FFDBA8;}
 .col{overflow:hidden;}
 /*分栏编辑器*/
-.actions{height:18px;border-bottom:none;background:#D6E7FF;}
+.actions{position:absolute;padding:5px;border:1px solid #bbd2ea;z-index:300;height:18px;background:#e2ecf8;}
 .actions .r a{padding-left:5px;}
 .actions .l a{padding-right:5px;}
-.actions .secTip{font-size:95%;}
+.actions .secTip{font-size:105%;}
+/* 圆角效果-(已停用) */
 .rounded{position:absolute;padding:6px;border:1px solid #84ADDE;z-index:300;}
 	.corner{position:absolute;width:10px;height:10px;background:url(../img/rounded_bg.gif) no-repeat;}
 		.tl{top:-1px;left:-1px;background-position:-1px -1px;}
 		.tr{top:-1px;right:-1px;background-position:-12px -1px;}
 		.bl{bottom:-1px;_bottom:-5px;left:-1px;background-position:-1px -12px;}
 		.br{bottom:-1px;_bottom:-5px;right:-1px;background-position:-12px -12px;}
+/* /圆角效果 */
 .footer{border-top:none;padding-top:0;padding-bottom:0;height:9px;}
 /* =/main= */
 
