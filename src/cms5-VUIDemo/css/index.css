@@ -82,6 +82,9 @@ display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(25
 	
 /* =/#editMenu= */
 
+#wCfgSec{position:relative;}
+#wCfgSec .cpk{position:absolute;display:none;width:356px;top:20%;right:10px;}
+
 /* =Editor related style= */
 .elm_gray{
 	border:1px solid transparent;
@@ -124,7 +127,6 @@ display:none;
 .areaTools li{padding:4px 0;line-height:16px;}
 /* 分栏样式 -Editing */
 .sec{border:1px solid transparent;}
-.sec .elm{border:1px solid transparent;border-bottom:none;}
 .sec .elmOn{border:1px dotted #4455AA;/*background:#FFDBA8;*/}
 .area_active .sec,.area_empty .sec{min-height:25px;height:auto !important;height:25px;border:1px dotted #ccc;}
 /*.area_active .subsec .sec,.area_empty .subsec .sec{border-bottom:none;}*/
@@ -135,10 +137,10 @@ display:none;
 .area_active .ctOn{border-color:#FFDBA8;}
 .col{overflow:hidden;}
 /*分栏编辑器*/
-.actions{position:absolute;padding:5px;border:1px solid #bbd2ea;z-index:300;height:18px;background:#e2ecf8;}
-.actions .r a{padding-left:5px;}
-.actions .l a{padding-right:5px;}
-.actions .secTip{font-size:105%;}
+.actions{position:absolute;padding:6px;border:1px solid #bbd2ea;border-bottom:none;z-index:300;height:18px;background:#e2ecf8;}
+.actions .r a{padding-left:4px;}
+.actions .l a{padding-right:4px;}
+.actions .secTip{font-size:98%;}
 /* 圆角效果-(已停用) */
 .rounded{position:absolute;padding:6px;border:1px solid #84ADDE;z-index:300;}
 	.corner{position:absolute;width:10px;height:10px;background:url(../img/rounded_bg.gif) no-repeat;}
@@ -175,23 +177,6 @@ display:none;
 	.w104{width:104px;}
 	.w108{width:108px;}
 	.w134{width:134px;}
-	.w182{width:182px;}
-	.w190{width:190px;}
-	.w210{width:210px;}
-	.w230{width:230px;}
-	.w250{width:250px;}
-	.w270{width:270px;}
-	.w310{width:310px;}
-	.w330{width:330px;}
-	.w390{width:390px;}
-	.w430{width:430px;}
-	.w470{width:470px;}
-	.w510{width:510px;}
-	.w670{width:670px;}
-	.w950{width:950px;}
-	
-/*横切模板样式*/
-.area .center{margin-left:10px;}
 
 /*内容模板*/
 #content_selector{width:440px;height:360px;overflow:hidden;}
@@ -200,9 +185,8 @@ display:none;
 /* 以下css样式为专题发布后的样式-TODO:移到单独的css文件 */
 
 /* 分栏样式 */
-.sec_hd{height:30px;background:#ECF5FB;padding:0 15px;line-height:30px;}
-.sec_hd span{font-size:14px;}
-.sec_hd1{height:30px;background:#E2E2E2;padding:0 15px;line-height:30px;}
+.sec_hd{background:#ECF5FB;}
+.sec_hd1{background:#E2E2E2;}
 /* 碎片样式 */
 .flash{z-index:1;}
 .sp_space{margin-bottom:10px;}
@@ -212,8 +196,6 @@ display:none;
 .pre_dot .list12 li{line-height:20px;font-size:12px;text-align:left;padding:1px 0 1px 12px;
   background:url(http://images.sohu.com/uiue/dot.gif) no-repeat -1px -1px;}
 
-/* 组图 */
-.pp li{float:left;display:inline;}
 /* 图文-标题 */
 .pt h4{font-weight:bold;line-height:26px;}
 /* 图文-图在右 */
@@ -221,21 +203,7 @@ display:none;
 /* 图文-图在上 */
 .pt_t div{float:none;margin:0 0 10px 0;}
 /* 标题 */
-.hd14,.hd16{zoom:1}
-.hd14:after,.hd16:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
-.hd14 span,.hd16 span{float:left;font-weight:bold;}
-.hd14{height:30px;line-height:30px;padding:0 15px;}
-.hd14 span{font-size:14px;}
-.hd16 span{font-size:16px;}
 .h1{font-family:'黑体';font-size:18px;line-height:34px;}
-/* 文字 */
-.txt14{font-size:14px;}
-.txt p,.txt14 p{line-height:24px;text-align:left;}
-/* 文字列表 */
-.list12 ul,.list14 ul{margin:10px auto;}
-.list12 li,.list14 li{background:url(http://images.sohu.com/uiue/dot.gif) no-repeat;}
-.list12 li{background-position:-1px -2px;padding-left:12px;}
-.list14 li{background-position:0 -1px;padding-left:14px;}
 
 .vspace{position:relative;font-size:0;line-height:0;height:10px;}
 .vspace hr{position:absolute;top:49.9%;padding:0;margin:0 auto;border:1px dotted #808080;}

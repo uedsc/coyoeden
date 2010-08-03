@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="css/global1.3.css"></link>
 		<link media="all" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet"></link> 
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/flick/jquery-ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/layout.css"></link> 
 		<link type="text/css" rel="stylesheet" href="css/index.css"/>
 		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link> 
 		<link rel="stylesheet" type="text/css" href="css/colorpicker.css"></link>
@@ -187,7 +188,7 @@
 		<div id="hiddenTemplate">
 			<!--横切编辑模板-->
 			<div id="area_editor">
-				<div class="actions rounded">
+				<div class="actions">
 					<div class="actions_body clear">
 						<div class="l"><span class="secTip"></span></div>
 						<div class="r">
@@ -293,48 +294,41 @@
 			</div>
 			<!--分栏设置对话框-->
 			<div id="wCfgSec" class="skform skformx">
-				<label>背景图<span class="small tip tipAreaBG">请输图片网址</span></label>
+				<label>背景图<span class="small tip tipSecBG">请输图片网址</span></label>
 				<div class="field">
-					<input type="text" size="36" id="txtAreaBG" name="areaBG"/>
+					<input type="text" size="36" id="txtSecBG" name="secBG"/>
 					<button id="btnCfgSecBrowse" onclick="alert('hi');">浏览</button>
+				</div>
+				<label>背景色<span class="small tip tipSecBGC">分栏背景色</span></label>
+				<div class="field">
+					<input type="text" size="36" id="txtSecBGC" name="secBGC" readonly="readonly"/>
 				</div>
 				<label>对齐方式</label>
 				<div class="field">
-					<input type="radio" name="areaBGAlign" value="center" checked="checked" /><span>居中</span>
-					<input type="radio" name="areaBGAlign" value="left"/><span>靠左</span>
-					<input type="radio" name="areaBGAlign" value="right"/><span>靠右</span>	
+					<input type="radio" name="secBGAlign" value="center" checked="checked" /><span>居中</span>
+					<input type="radio" name="secBGAlign" value="left"/><span>靠左</span>
+					<input type="radio" name="secBGAlign" value="right"/><span>靠右</span>	
 				</div>
 				<label>平铺方式</label>
 				<div class="field">
-					<input type="radio" name="areaBGRepeat" value="repeat"/><span>平铺</span>
-					<input type="radio" name="areaBGRepeat" value="no-repeat" checked="checked" /><span>不平铺</span>
-					<input type="radio" name="areaBGRepeat" value="repeat-x"/><span>横平铺</span>
-					<input type="radio" name="areaBGRepeat" value="repeat-y"/><span>纵平铺</span>
+					<input type="radio" name="secBGRepeat" value="repeat"/><span>平铺</span>
+					<input type="radio" name="secBGRepeat" value="no-repeat" checked="checked" /><span>不平铺</span>
+					<input type="radio" name="secBGRepeat" value="repeat-x"/><span>横平铺</span>
+					<input type="radio" name="secBGRepeat" value="repeat-y"/><span>纵平铺</span>
 				</div>
-				<label>边框设置</label>
+				<label>边框设置<span class="small">颜色及方向</span></label>
 				<div class="field">
-					<span>大小</span>
-					<select id="ddlSecBorderSize" name="SecBorderSize">
-						<option value="0" selected="selected">无边框</option>
-						<option value="1">1像素</option>
-						<option value="2">2像素</option>
-						<option value="3">3像素</option>
-						<option value="4">4像素</option>
-						<option value="5">5像素</option>
-					</select>
-					<span>样式</span>
-					<select id="ddlSecBorderStyle" name="SecBorderStyle">
-						<option value="solid" selected="selected">实线</option>
-						<option value="dotted">虚线</option>
-					</select>
-					<span>颜色</span>
-					<input type="text" size="4" id="txtSecBorderColor" name="SecBorderColor"/>
-					<br/>
+					<input type="text" size="4" id="txtSecBorderColor" name="SecBorderColor" readonly="readonly"/>
 					<input type="checkbox" name="SecBorderDir" value="top" checked="checked"/><span>上</span>
 					<input type="checkbox" name="SecBorderDir" value="right" checked="checked"/><span>右</span>
 					<input type="checkbox" name="SecBorderDir" value="bottom" checked="checked"/><span>下</span>
 					<input type="checkbox" name="SecBorderDir" value="top" checked="checked"/><span>上</span>
 				</div>
+				<div class="acts">
+					<button class="btnWinOK">确定</button>
+					<button class="btnWinNO">关闭</button>
+				</div>
+				<div class="cpk"></div>
                 <div class="spacer"></div>				
 			</div>			
 		</div>

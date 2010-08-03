@@ -19,6 +19,7 @@ z-index:60;
 .slider .btnRight{right:0;}	
 .ct li img{border:1px solid #ccc;cursor:pointer;}
 .ct .on{background:#FF0084;opacity:0.5;}
+.alert{color:red;}
 /* À¸Ä¿±êÌâ */
 #ctSecHead{text-align:left;}
 #ctSecHead .left{padding-right:30px;}
@@ -31,21 +32,24 @@ z-index:60;
 		#cSlide_focusImg{position:relative;width:2000px;}
 		#cSlide_focusImg li img{padding:4px;}
 		#cSlide_focusImg li{position:relative;float:left;display:inline;padding-bottom:8px;padding-right:8px;}
-#ctImg{text-align:left;}
+#ctImg{position:relative;text-align:left;}
 /*#ctImg ul{width:420px;}*/
 #ctImg li ul{width:auto;}
 #ctImg .item{cursor:pointer;}
 #ctImg li{float:left;display:inline;margin-bottom:8px;margin-right:10px;width:38%;}
 #ctImg li li{width:auto;margin:0;}
 #ctImg .ctWrap{border:2px solid #eee;padding:5px;}
-#ctImg li img{padding:3px;}
-
+#ctImg li img{padding:3px;margin:0;}
+	#cfgImgList_ovl{position:absolute;top:0;left:0;height:100%;width:100%;background:#BED2EA;z-index:10;}
+	#cfgImgList{position:absolute;top:15%;left:95px;z-index:11;}
+	.cfgImgList{display:none;}
+	
 #ctText{height:164px;overflow:hidden;}
 	#textSlide{position:relative;width:374px;overflow:hidden;padding-left:8px;}
 		#cSlide_text{position:relative;width:2000px;}
 		#cSlide_text li img{padding:4px;}
 		#cSlide_text li{position:relative;float:left;display:inline;}
-		#cSlide_text li li{float:none;display:block;}
+		#cSlide_text li li{float:none;display:block;padding-left:12px;}
 
 #ctText .act{height:148px;}
 #ctText .list12 ul,#ctText .list14 ul{margin:0;}

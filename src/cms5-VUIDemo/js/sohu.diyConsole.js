@@ -43,6 +43,7 @@ sohu.diyConsole=function(opts){
 	p._$wImgPro=$("#imgPro");
 	p._$wImgSwitch=$("#imgSwitch");
 	p._$wSecHead=$("#cfgSecHead");
+	p._$wSec=$("#wCfgSec");
 	/* /对话框jq对象 */
 	
 	/* 对话框表单元素 */
@@ -87,6 +88,19 @@ sohu.diyConsole=function(opts){
 		btnNO:p._$wSecHead.find(".btnMWinNO"),
 		btnDel:p._$wSecHead.find(".btnMWinDel"),
 		cpk:p._$wSecHead.find(".cpk"),
+		reset:function(){p._$wSecHead.find(".tip").removeClass("alert").end().find("input[type='text']").removeClass("alert").val("");}
+	};
+	p._fmSec={
+		txtBG:$("#txtSecBG"),
+		tipBG:p._$wSec.find(".tipSecBG"),
+		txtBGC:$("#txtSecBGC"),
+		txtBorderC:$("#txtSecBorderColor"),
+		btnOK:p._$wSec.find(".btnWinOK"),
+		btnNO:p._$wSec.find(".btnWinNO"),
+		cpk:p._$wSec.find(".cpk"),
+		rbtnSecBGAlign:p._$wSec.find("input[name='secBGAlign']"),
+		rbtnSecBGRepeat:p._$wSec.find("input[name='secBGRepeat']"),
+		cbxSecBorder:p._$wSec.find("input[name='SecBorderDir']"),
 		reset:function(){p._$wSecHead.find(".tip").removeClass("alert").end().find("input[type='text']").removeClass("alert").val("");}
 	};
 	/* /对话框表单元素 */
@@ -329,6 +343,22 @@ sohu.diyConsole=function(opts){
 				p._fmSecHead.cpk.hide();
 			}
 		});
+		//栏目背景色
+		p._fmSec.cpk.ColorPicker({
+			flat:true,
+			color:"#eeeeee",
+			onChange:function(hsb,hex,rgb){
+				p._fmSec.cpk.$t.css("backgroundColor","#"+hex);
+				if(p._fmSec.cpk.flag=="bg"){
+					sohu.diyConsole.CurSec.$Layout.css("backgroundColor","#"+hex);
+				}else{
+					sohu.diyConsole.CurSec.$Layout.css("borderColor","#"+hex);
+				};
+			},
+			onSubmit:function(hsb,hex,rgb){
+				p._fmSec.cpk.hide();
+			}
+		});
 	};
 	p.initAddLink=function(){
 		//链接对话框的确认按钮逻辑
@@ -491,6 +521,91 @@ sohu.diyConsole=function(opts){
 			sohu.diyConsole.CurElm.$Layout.parent().css("background-image","url('"+url+"')");
 		});
 	};
+	p.initSec=function(){
+		//按钮行为
+		p._fmSec.btnOK.click(function(evt){
+			var url=$.trim(p._fmSec.txtBG.val());
+			if( (url!="") && (!StringUtils.isUrl(url)) ){
+				p._fmSec.txtBG.addClass("alert").select();
+				p._fmSec.tipBG.addClass("alert");
+				return false;
+			};
+			//更改图片属性
+			if(url!="")
+				sohu.diyConsole.CurSec.$Layout.css("background-image","url('"+url+"')");
+			
+			
+			//收起对话框
+			p._$wSec.dialog("close");
+			//重置表单
+			p._fmSec.reset();	
+		});
+		p._fmSec.btnNO.click(function(evt){p._$wSec.dialog("close");});
+		//背景色
+		p._fmSec.txtBGC
+		.css("backgroundColor","transparent")
+		.click(function(evt){
+			p._fmSec.cpk.$t=p._fmSec.txtBGC;
+			p._fmSec.cpk.flag="bg"
+			p._fmSec.cpk.show();
+		});
+		//边框色
+		p._fmSec.txtBorderC
+		.css("borderColor","#eeeeee")
+		.click(function(evt){
+			p._fmSec.cpk.$t=p._fmSec.txtBorderC;
+			p._fmSec.cpk.flag="bdc"
+			p._fmSec.cpk.show();
+		});		
+		//背景图
+		p._fmSec.txtBG.change(function(evt){
+			var url=p._fmSec.txtBG.val();
+			if(!StringUtils.isUrl(url)){
+				p._fmSec.txtBG.addClass("alert").select();
+				p._fmSec.tipBG.addClass("alert");
+				return false;
+			};
+			//更改图片属性
+			sohu.diyConsole.CurSec.$Layout.css("background-image","url('"+url+"')");
+		});
+		
+		var _onOpen=function(){
+			p._fmSec.txtBG.val(sohu.diyConsole.CurSec.$Layout.css("background-image"));
+			p._fmSec.txtBGC.css("backgroundColor",sohu.diyConsole.CurSec.$Layout.css("backgroundColor"));
+			p._fmSec.txtBorderC.css("borderColor",sohu.diyConsole.CurSec.$Layout.css("borderColor"));
+			var bg_p=sohu.diyConsole.CurSec.$Layout.css("backgroundPosition");
+			bg_p=bg_p=="0% 0%"?"center":bg_p;
+			var bg_a=sohu.diyConsole.CurSec.$Layout.css("backgroundRepeat");
+			//对齐方式
+			p._fmSec.rbtnSecBGAlign.filter("[value='"+bg_p+"']").trigger("click");
+			//平铺方式
+			p._fmSec.rbtnSecBGRepeat.filter("[value='"+bg_a+"']").trigger("click");
+			//边框
+			var l=sohu.diyConsole.CurSec.$Layout.css("borderLeft");
+			l=l==""?"transparent":l;
+			var r=sohu.diyConsole.CurSec.$Layout.css("borderRight");
+			r=r==""?"transparent":r;
+			var t=sohu.diyConsole.CurSec.$Layout.css("borderTop");
+			t=t==""?"transparent":t;
+			var b=sohu.diyConsole.CurSec.$Layout.css("borderBottom");
+			b=b==""?"transparent":b;
+			
+			p._fmSec.cbxSecBorder.filter("[value='left']")[0].checked=(l.indexOf("transparent")>-1);
+			p._fmSec.cbxSecBorder.filter("[value='right']")[0].checked=(r.indexOf("transparent")>-1);
+			p._fmSec.cbxSecBorder.filter("[value='top']")[0].checked=(t.indexOf("transparent")>-1);
+			p._fmSec.cbxSecBorder.filter("[value='bottom']")[0].checked=(b.indexOf("transparent")>-1);			
+			
+		};
+		p._$wSec=p._$wSec.dialog({
+			title:"分栏设置",
+			resizable:false,
+			modal:true,
+			width:540,
+			open:_onOpen,
+			autoOpen:false
+		});
+		
+	};
 	/**
 	 * Save current document.selection to sohu.diyConsole.DocSelection
 	 */
@@ -606,6 +721,7 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.$PopWins=p._$popWins;
 		sohu.diyConsole.$Menu=p._$menus;
 		sohu.diyConsole.$ElmTool=p._$elmTool;
+		sohu.diyConsole.$WinSec=p._$wSec;
 		//横切选择器
 		$("li",p._$areaSelector).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");})
 			.click(p.onSelectAreaTpl);
@@ -656,6 +772,8 @@ sohu.diyConsole=function(opts){
 		p.initAreaBG();
 		//分栏标题对话框
 		p.initSecHead();
+		//分栏设置对话框
+		p.initSec();
 		//editMenu的事件注册
 		p.initEditMenu();
 		//元素工具条

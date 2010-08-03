@@ -238,22 +238,99 @@ sohu.diyTplFactory.FocusImg.prototype.Submit=function(opt){
 sohu.diyTplFactory.Image=function(opts){
 		//焦点图选择
 		this.$Layout=$("#ctImg");
+		//组图设置弹框
+		this.$WinCfg=$("#cfgImgList");
+		this.$WinCfg.ovl=$("#cfgImgList_ovl");
+		this.$WinCfg.$imgWidth=$("#txtImgWidth");
+		this.$WinCfg.$imgCol=$("#ddlImgListCol");
+		this.$WinCfg.$tip=this.$WinCfg.find(".tip");
 		this.tplID=null;//模板号
+		this.IsImgList=false;//是否组图
 		var _this=this;
 		var p={};
 		p.onAddImg=function(evt){
 			_this.tplID=this.id;
 			_this.tplObj=$(this).find(".ctWrap");
+			_this.CurColSize=parseInt(parent.sohu.diyConsole.CurSec.Width);
+			_this.CurSecSize=parent.sohu.diyConsole.CurSec.Dim().w;
+			//如果是组图，弹出组图设置框
+			_this.IsImgList=_this.tplObj.find(".ct").hasClass("pp");
+			if(_this.IsImgList){
+				_this.$WinCfg.ovl.css("opacity","0.8").show();
+				_this.$WinCfg.$tip.html(_this.CurColSize);
+				_this.$WinCfg.slideDown();
+				_this.$WinCfg.$imgCol.trigger("change");
+				return false;
+			};
 			_this.Submit();
 			return false;
+		};
+		p.closePPCfg=function(evt){
+			_this.$WinCfg.hide();
+			_this.$WinCfg.ovl.hide();
+			return false;
+		};
+		p.buildPP=function(evt){
+			if(_this.$WinCfg.$imgWidth.hasClass("alert")){
+				_this.$WinCfg.$imgWidth.select();
+				return false;
+			};
+			var col=_this.$WinCfg.$imgCol.val();
+			var w=_this.$WinCfg.$imgWidth.val();
+			
+			var ct0=$(_this.tplObj.html());
+			var li0=ct0.find("li:first"),li1=null;
+			var ul0=ct0.find("ul");
+			ul0.addClass("c"+col).empty();
+			for(var i=0;i<col;i++){
+				li1=li0.clone();
+				li1.find("img").attr("width",w);
+				ul0.append(li1);
+			};
+			_this.tplObj=$("<div/>").append(ct0);
+			
+			_this.Submit();
+			
+			return false;
+		};
+		p.setPPCol=function(evt){
+			var v=_this.$WinCfg.$imgCol.val();
+			var w=Math.floor(_this.CurSecSize/v-10-6);
+			_this.$WinCfg.$imgWidth.removeClass("alert").val(w).effect("highlight");
+		};
+		p.setPPWidth=function(evt){
+			var v=this.value;
+			if(!StringUtils.isPlusInt(v)){
+				_this.$WinCfg.$imgWidth.addClass("alert");
+				//_this.$WinCfg.$imgCol.trigger("change");
+				_this.$WinCfg.$imgWidth.select();
+				return false;
+			};
+			_this.$WinCfg.$imgWidth.removeClass("alert");
+			//根据图片宽度推算列数
+			v=parseInt(v);
+			var col=Math.floor(_this.CurSecSize/(v+10+6));
+			col=col==0?1:col;
+			if(col>6){
+				alert("图片宽度"+v+"px对应的图片列数是"+col+"列,超过了组图列数上限6！");
+				_this.$WinCfg.$imgWidth.addClass("alert");
+				//_this.$WinCfg.$imgCol.trigger("change");
+				_this.$WinCfg.$imgWidth.select();
+				return false;
+			};
+			_this.$WinCfg.$imgCol.val(col);
 		};
 		//鼠标事件
 		this.$Layout.find(".item").hover(
 			function(evt){$(this).addClass("on");},
 			function(evt){$(this).removeClass("on");}
 		).click(p.onAddImg);
+		this.$WinCfg.find(".btnOK").click(p.buildPP);
+		this.$WinCfg.find(".btnNO").click(p.closePPCfg);
+		this.$WinCfg.$imgCol.change(p.setPPCol);
+		this.$WinCfg.$imgWidth.change(p.setPPWidth);
 		//a标签
-		this.$Layout.find("a").click(sohu.diyTplFactory.r);
+		//this.$Layout.find("a").click(sohu.diyTplFactory.r);
 	
 };
 sohu.diyTplFactory.Image.prototype.Submit=function(opt){

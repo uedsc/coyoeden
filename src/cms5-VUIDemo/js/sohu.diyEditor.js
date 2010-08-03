@@ -11,6 +11,7 @@ sohu.diyEditor=function(opts){
 	this.CurArea=opts.curArea;//当前横切
 	this.CurSec=opts.curSec;//当前分栏
 	this.CurCT=null;//当前内容
+	this.WSecCfg=sohu.diyConsole.$WinSec;
 	
 	var p={opts:opts};
 	this.__p=p;
@@ -84,14 +85,6 @@ sohu.diyEditor.prototype.DialogSec=function(){
  */
 sohu.diyEditor.prototype.DialogSecCfg=function(){
 	var _this=this;
-	this.WSecCfg=$("#wCfgSec").dialog({
-		title:"分栏设置",
-		resizable:false,
-		modal:true,
-		width:430,
-		height:300,
-		autoOpen:false
-	});
 	this.WSecCfg.dialog("open");
 };
 /**

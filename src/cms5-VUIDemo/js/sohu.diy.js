@@ -14,7 +14,7 @@ sohu.diyTp={};
 
 /*=横切模板区域=*/
 //空横切
-sohu.diyTp["w0"]='<div class="area area_empty"><div class="col w950"><div class="sec"><h2 class="sec_hd"><span>栏目头</span></h2></div></div></div>';
+sohu.diyTp["w0"]='<div class="area area_empty"><div class="col w950"><div class="sec"></div></div></div>';
 //2栏横切
 sohu.diyTp["w270_670"]='<div class="area area_empty"><div class="col w270 left"><div class="sec"></div></div><div class="col w670 right"><div class="sec"></div></div></div>';
 sohu.diyTp["w430_510"]='<div class="area area_empty"><div class="col w430 left"><div class="sec"></div></div><div class="col w510 right"><div class="sec"></div></div></div>';

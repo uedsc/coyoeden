@@ -3,9 +3,11 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 		<link rel="stylesheet" type="text/css" href="css/global1.3.css"></link>
+		<link rel="stylesheet" type="text/css" href="css/layout.css"></link> 
 		<link media="all" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet"></link> 
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/flick/jquery-ui.css" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/colorpicker.css"></link> 
+		<link rel="stylesheet" type="text/css" href="css/vs.skinform.css"></link> 
 		<link rel="stylesheet" type="text/css" href="css/ct.css"></link> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> 
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script> 
@@ -181,8 +183,8 @@
 						<div class="ctWrap">
 							<div class="pp ct">
 								<ul>
-									<li><a href="#"><img class="elm" height="60" width="80" src="static/img/img.jpg" title="点击图片进行组图设置"/></a><span class="elm">文字说明</span></li>
-									<li><a href="#"><img class="elm" height="60" width="80" src="static/img/img.jpg" title="点击图片进行组图设置"/></a><span class="elm">文字说明</span></li>
+									<li><a href="javascript:void(0)"><img class="elm" height="60" width="80" src="static/img/img.jpg" title="点击图片进行组图设置"/></a><span class="elm">文字说明</span></li>
+									<li><a href="javascript:void(0)"><img class="elm" height="60" width="80" src="static/img/img.jpg" title="点击图片进行组图设置"/></a><span class="elm">文字说明</span></li>
 								</ul>
 							</div>
 						</div>
@@ -199,6 +201,28 @@
 						</div>
 					</li>
 				</ul>
+				<div id="cfgImgList_ovl" class="cfgImgList"></div>
+				<div id="cfgImgList" class="cfgImgList skform skformx">
+					<label>组图设置<span class="small">当前分栏宽度(px):<em class="tip"></em></span></label>
+					<div class="field">
+						<span>列数:</span>
+						<select id="ddlImgListCol" name="imgListCol">
+							<option value="1" selected="selected">1列</option>
+							<option value="2">2列</option>
+							<option value="3">3列</option>
+							<option value="4">4列</option>
+							<option value="5">5列</option>
+							<option value="6">6列</option>
+						</select>
+						<span>宽度(px):</span>
+						<input type="text" id="txtImgWidth" name="imgWidth" value="" size="6"/>
+					</div>
+					<div class="acts">
+						<button class="btnOK">确定</button>
+						<button class="btnNO">取消</button>
+					</div>
+					<div class="spacer"></div>
+				</div>				
 			</div>
 			<h3><a href="#">文本</a></h3>
 			<div id="ctText" class="ct tab slider clear">
@@ -210,71 +234,23 @@
 				<div id="textSlide" class="left">
 					<ul id="cSlide_text" class="clear">
 						<li>
-							<div id="Text01" class="item" title="第一行文字14号加粗，第二行文字12号">
+							<div id="Text01" class="item" title="带标题的文字段落">
 								<div class="ctWrap">
 									<div class="txt ct">
-									  <h2 class="hd14 elm"><span>点击更改14号标题...</span></h2>
-									  <p class="elm elmc">点击这里更改12号文本文字...</p>
+									  <h2 class="hd elm"><span>点击更改标题...</span></h2>
+									  <p class="elm elmc">点击这里更改文本文字...</p>
 									</div>			
 								</div>					
 							</div>
-							<div id="Text02" class="item" title="第一行文字16号加粗，第二行文字12号">
+							<div id="Text02" class="item" title="文字列表，文字前带·">
 								<div class="ctWrap">
-									<div class="txt ct">
-									  <h2 class="hd16 elm"><span>点击更改16号标题...</span></h2>
-									  <p class="elm elmc">点击更改12号文本...</p>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div id="Text03" class="item" title="12号文字列表，文字前带·">
-								<div class="ctWrap">
-								<div class="list12 ct">
+								<div class="list ct">
 									<ul>
-										<li class="elm elmc">点击更改12号列表文字...</li><!--elmc=copyable element-->
-										<li class="elm elmc">点击更改12号列表文字...</li>
+										<li class="elm elmc">点击更改列表文字...</li><!--elmc=copyable element-->
+										<li class="elm elmc">点击更改列表文字...</li>
 									</ul>
 								</div>
 								</div>
-							</div>
-							<div id="Text04" class="item" title="14号文字，文字前带·">
-								<div class="ctWrap">
-								<div class="list14 ct">
-									<ul>
-										<li class="elm elmc">点击更改14号列表文字...</li>
-										<li class="elm elmc">点击更改14号列表文字...</li>
-									</ul>
-								</div>	
-								</div>							
-							</div>
-						</li>
-						<li>
-							<div id="Text05" class="item" title="第一行文字16号加粗，第二行文字14号">
-								<div class="ctWrap">
-								<div class="txt14 ct">
-								  	<h2 class="hd16 elm"><span>点击更改16号标题...</span></h2>
-								  	<p class="elm elmc">点击更改14号文本行...</p>
-								</div>		
-								</div>						
-							</div>
-							<div id="Text06" class="item" title="第一行文字18号加粗，第二行文字12号">
-								<div class="ctWrap">
-								<div class="txt ct">
-								  	<h1 class="h1 elm">点击更改18号标题...</h1>
-								  	<p class="elm elmc">点击更改12号文本行...</p>
-								</div>
-								</div>							
-							</div>
-						</li>
-						<li>
-							<div id="Text07" class="item" title="第一行文字18号加粗，第二行文字14号">
-								<div class="ctWrap">
-								<div class="txt14 ct">
-								  	<h1 class="h1 elm">点击更改18号标题...</h1>
-								  	<p class="elm elmc">点击更改14号文本行...</p>
-								</div>
-								</div>	
 							</div>
 						</li>
 					</ul>
