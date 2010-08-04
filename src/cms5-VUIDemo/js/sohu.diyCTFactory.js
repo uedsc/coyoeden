@@ -379,6 +379,179 @@ sohu.diyTplFactory.Text.prototype.Submit=function(opt){
 	sohu.diyTplFactory.submit(ct,true);
 };
 /**
+ * 自动列表类
+ * @param {Object} opts
+ */
+sohu.diyTplFactory.DynamicList=function(opts){
+	var _this=this;
+	var p={};
+	p.scriptItems=[{"categroyName":"txt","desc":"默认文字列表","name":"std_list","categoryDesc":"文字列表","type":"groovy"},{"categroyName":"txt","desc":"默认无点文字列表","name":"std_list_nodot","categoryDesc":"文字列表","type":"groovy"},{"categroyName":"txt","desc":"时间右对齐","name":"std_list_timera","categoryDesc":"文字列表","type":"groovy"},{"categroyName":"txt","desc":"10条输出一空行,带类别","name":"std_list_b10s","categoryDesc":"文字列表","type":"groovy"},{"categroyName":"txt","desc":"5条一块,带副标题","name":"std_subhead","categoryDesc":"文字列表","type":"groovy"},{"categroyName":"txt","desc":"第一块4条，其它的5条一块,带副标题","name":"four_std_subhead","categoryDesc":"文字列表","type":"groovy"},{"categroyName":"pic","desc":"默认图片列表","name":"std_list_pic","categoryDesc":"图片列表","type":"groovy"},{"categroyName":"pic","desc":"组图列表","name":"std_list_zutu","categoryDesc":"图片列表","type":"groovy"},{"categroyName":"pic","desc":"新版图片列表","name":"std_list_pic_custom","categoryDesc":"图片列表","type":"groovy"},{"categroyName":"pic","desc":"新版组图列表","name":"std_list_zutu_custom","categoryDesc":"图片列表","type":"groovy"},{"categroyName":"video","desc":"默认视频列表","name":"std_list_video","categoryDesc":"视频列表","type":"groovy"},{"categroyName":"video","desc":"新版视频列表","name":"std_list_video_custom","categoryDesc":"视频列表","type":"groovy"},{"categroyName":"video","desc":"大图视频列表","name":"std_list_video_bpic_custom","categoryDesc":"视频列表","type":"groovy"}];
+	this.$dlContent=$("#dlContent");
+	//表单
+	p.form={
+		dlFlagName:$("#dlFlagName"),				/* 碎片名称 */
+		txtDLEntity:$("#txtDLEntity"),				/* 引用实体 */
+		txtDLShowNum:$("#txtDLShowNum"),			/* 显示条数 */
+		ddlDLSort:$("#ddlDLSort"),					/* 排序类型 */
+		ddlDLPriorityMin:$("#ddlDLPriorityMin"),	/* 权重min */
+		ddlDLPriorityMax:$("#ddlDLPriorityMax"),	/* 权重max */
+		ddlDLSubType:$("#ddlDLSubType"),			/* 新闻类型 */
+		ddlDLScriptType:$("#ddlDLScriptType"),		/* 显示类型 */
+		ddlDLScriptName:$("#ddlDLScriptName"),		/* 输出格式 */
+		ddlDLTimeType:$("#ddlDLTimeType"),			/* 时间格式 */
+		btnPreview:$("#ctDynamicList .btnPreview"),	/* 预览按钮 */
+		btnOK:$("#ctDynamicList .btnOK"),			/* 确定按钮 */
+		btnNO:$("#ctDynamicList .btnNO")			/* 关闭按钮 */
+	};
+	p.form.validate=function(){
+		p.form.isValid=true;
+		p.form.txtDLEntity.curVal=$.trim(p.form.txtDLEntity.val());
+		p.form.txtDLShowNum.curVal=$.trim(p.form.txtDLShowNum.val());
+		p.form.ddlDLSort.curVal=p.form.ddlDLSort.val();
+		p.form.ddlDLPriorityMin.curVal=p.form.ddlDLPriorityMin.val();
+		p.form.ddlDLPriorityMax.curVal=p.form.ddlDLPriorityMax.val();
+		p.form.ddlDLSubType.curVal=p.form.ddlDLSubType.val();
+		p.form.ddlDLScriptType.curVal=p.form.ddlDLScriptType.val();
+		p.form.ddlDLScriptName.curVal=p.form.ddlDLScriptName.val();
+		p.form.ddlDLTimeType.curVal=p.form.ddlDLTimeType.val();
+		
+		if(p.form.txtDLEntity.curVal=="")
+		{
+			alert("引用实体不能为空");
+			p.form.txtDLEntity.focus();
+			p.form.isValid=false;
+			return;
+		};
+		if(!StringUtils.isPlusInt(p.form.txtDLShowNum.curVal))
+		{
+			alert("显示条数必须是1到100间的整数");
+			p.form.txtDLShowNum.focus();
+			p.form.isValid=false;
+			return;
+		};
+		p.form.txtDLShowNum.curVal=parseInt(p.form.txtDLShowNum.curVal);
+		if(p.form.txtDLShowNum.curVal<1||p.form.txtDLShowNum.curVal>100){
+			alert("显示条数必须是1到100间的整数");
+			p.form.isValid=false;
+			return;			
+		};
+		
+		if(p.form.ddlDLPriorityMin.curVal>p.form.ddlDLPriorityMax.curVal){
+			alert("权重下限必须小于等于权重上限");
+			p.form.isValid=false;
+			return;
+		};
+		
+	};
+	//表单事件注册
+	p.form.ddlDLPriorityMin.change(function(evt){
+		var v=$(this).val();
+		if(v>p.form.ddlDLPriorityMax.val()){
+			alert("权重下限必须小于等于权重上限");
+			p.form.ddlDLPriorityMax.focus();
+		};
+	});
+	p.form.ddlDLPriorityMin.change(function(evt){
+		var v=$(this).val();
+		if(v<p.form.ddlDLPriorityMin.val()){
+			alert("权重下限必须小于等于权重上限");
+			p.form.ddlDLPriorityMin.focus();
+		};
+	});
+	
+	//显示类型联动输出格式
+	p.form.ddlDLScriptType.change(function(evt){
+		var v=$(this).val();
+		p.form.ddlDLScriptName.empty();
+		$.each(p.scriptItems,function(i,o){
+			if(o.categroyName==v){
+				p.form.ddlDLScriptName.append('<option value="'+o.name+'">'+o.desc+'</option>');
+			};
+		});//each
+	});
+	
+	p.form.ddlDLScriptType.trigger("change");
+	
+	p.form.btnPreview.click(function(evt){
+		_this.Preview();
+	});
+	
+	p.form.btnOK.click(function(evt){
+		_this.Submit();
+	});
+	p.form.btnNO.click(function(evt){
+		sohu.diyTplFactory.cls();
+	});
+	
+	this.$dlContent.click(function(evt){
+		_this.$dlContent.slideUp();
+	});
+	
+	this._p=p;
+};
+sohu.diyTplFactory.DynamicList.prototype.Submit=function(){
+	this._p.form.validate();
+	if(!this._p.form.isValid) return false;
+	
+	this.Preview(-1);
+	
+	var tempDiv=this.$dlContent.clone().find(".overlay").remove().end();
+	var ct={html0:$.trim(tempDiv.html())};
+	ct.flash=false;
+	ct.tplID="dynamicList";
+	ct.isNew=true;
+	ct.type="dlist";
+	
+	sohu.diyTplFactory.submit(ct,true);
+};
+sohu.diyTplFactory.DynamicList.prototype.Preview=function(popup){
+	popup=popup||true;
+	this._p.form.validate();
+	if(!this._p.form.isValid) return false;
+	
+	this.BuildList();
+	if(popup){
+		this.$dlContent.slideDown("fast");
+		this.$dlContent.find(".overlay").css("opacity","0.8");
+	};
+
+};
+sohu.diyTplFactory.DynamicList.prototype.BuildList=function(){
+	//生成相应的dom
+	if(!this._p.form.isValid) return false;
+	var ctWrap=$('<div><div class="dlist ct"><ul/></div></div>');
+	var ul0=ctWrap.find("ul");
+	var ct0=ctWrap.find(".ct");
+	var li0=$('<li><a href="http://testcms.sohu.com/20090602/n264287979.shtml" target="_blank">视频：医院丧道德 致新生儿失治疗机会终生残疾</a><span>(13:00)</span></li>');
+	var li1=$('<li><a href="http://testcms.sohu.com/20091010/n267260341.shtml" target="_blank"><img alt="beijing news" src="http://photocdn.sohu.com/20091010/Img267260342_ss.jpg" width="120" height="90"/></a><span><a href="http://testcms.sohu.com/20091010/n267260341.shtml" target="_blank">beijing news</a><br/>组图1张</span></li>');
+	var li=null;
+	if(this._p.form.ddlDLScriptType.curVal=="txt"){
+		for(var i=0;i<this._p.form.txtDLShowNum.curVal;i++){
+			li=li0.clone();
+			if(this._p.form.ddlDLTimeType.curVal=="-1"){
+				li.find("span").remove();
+			};
+			ul0.append(li);
+		};
+		ct0.addClass("list");
+		
+	}else if(this._p.form.ddlDLScriptType.curVal=="pic"){
+		ct0.addClass("pp");
+		for(var i=0;i<this._p.form.txtDLShowNum.curVal;i++){
+			li=li1.clone();
+			ul0.append(li);
+		};
+	}else{
+		ct0.addClass("pp");
+		for(var i=0;i<this._p.form.txtDLShowNum.curVal;i++){
+			li=li1.clone();
+			ul0.append(li);
+		};
+	};
+	
+	this.$dlContent.find(".ct").remove().end().append(ctWrap.html());
+};
+/**
  * @author levinhuang
  * 内容模板选择对话框客户端逻辑
  */
@@ -410,6 +583,7 @@ sohu.diyCTFactory = function() {
 		p._img=new sohu.diyTplFactory.Image({});/*图片*/
 		p._txt=new sohu.diyTplFactory.Text({});/*文本*/
 		new sohu.diyTplFactory.SecHead({});/* 栏目标题 */
+		new sohu.diyTplFactory.DynamicList({});/* 自动列表 */
 		pub.$ctWrap=$("#ctWrap");
 	};
     p.onLoaded = function() { 
