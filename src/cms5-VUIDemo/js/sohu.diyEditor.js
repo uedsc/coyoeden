@@ -17,7 +17,6 @@ sohu.diyEditor=function(opts){
 	this.__p=p;
 	
 	this.$Toolbar=this.$LayoutModel.find(".actions").clone();	/* editor actions */
-	this.$ToolbarF=this.$LayoutModel.find(".footer").clone();	/* editor footer */
 	this.$ToolbarTip=this.$Toolbar.find(opts.cssSecHelper);	/* sec tip */
 	//°´Å¥ÊÂ¼þ×¢²á
 	this.$Toolbar.btn={
@@ -85,6 +84,11 @@ sohu.diyEditor.prototype.DialogSec=function(){
  */
 sohu.diyEditor.prototype.DialogSecCfg=function(){
 	var _this=this;
+	var _onClose=function(evt,ui){
+		_this.Editing("off").CurSec.Deactive();
+	};
+	this.Editing("on");
+	this.WSecCfg.dialog("option",{close:_onClose});
 	this.WSecCfg.dialog("open");
 };
 /**
@@ -217,6 +221,7 @@ sohu.diyEditor.prototype.Editing=function(mode){
 		this.CurArea.IsEditing=false;
 		this.CurSec.$Layout.removeClass("ing");
 	};
+	return this;
 };
 /**
  * Òþ²Ø

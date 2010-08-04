@@ -348,11 +348,12 @@ sohu.diyConsole=function(opts){
 			flat:true,
 			color:"#eeeeee",
 			onChange:function(hsb,hex,rgb){
-				p._fmSec.cpk.$t.css("backgroundColor","#"+hex);
+				var c="#"+hex;
+				p._fmSec.cpk.$t.css("backgroundColor",c).attr("title",c);
 				if(p._fmSec.cpk.flag=="bg"){
-					sohu.diyConsole.CurSec.$Layout.css("backgroundColor","#"+hex);
+					sohu.diyConsole.CurSec.$Layout.css("backgroundColor",c);
 				}else{
-					sohu.diyConsole.CurSec.$Layout.css("borderColor","#"+hex);
+					sohu.diyConsole.CurSec.$Layout.css("borderColor",c);
 				};
 			},
 			onSubmit:function(hsb,hex,rgb){
@@ -556,6 +557,14 @@ sohu.diyConsole=function(opts){
 			p._fmSec.cpk.$t=p._fmSec.txtBorderC;
 			p._fmSec.cpk.flag="bdc"
 			p._fmSec.cpk.show();
+		});
+		//边框方向
+		p._fmSec.cbxSecBorder.click(function(evt){
+			if(this.checked){
+				sohu.diyConsole.CurSec.$Layout.css("border-"+this.value,"1px solid "+p._fmSec.txtBorderC.attr("title"));
+			}else{
+				sohu.diyConsole.CurSec.$Layout.css("border-"+this.value,"1px solid transparent");
+			};
 		});		
 		//背景图
 		p._fmSec.txtBG.change(function(evt){
@@ -565,35 +574,56 @@ sohu.diyConsole=function(opts){
 				p._fmSec.tipBG.addClass("alert");
 				return false;
 			};
+			p._fmSec.txtBG.removeClass("alert");
+			p._fmSec.tipBG.removeClass("alert");
 			//更改图片属性
 			sohu.diyConsole.CurSec.$Layout.css("background-image","url('"+url+"')");
 		});
+		//背景图对齐方式
+		p._fmSec.rbtnSecBGAlign.click(function(evt){
+			p._fmSec.rbtnSecBGAlign.curVal=this.value;
+			sohu.diyConsole.CurSec.$Layout.css("background-position",this.value);
+		});
+		//背景图平铺方式
+		p._fmSec.rbtnSecBGRepeat.click(function(evt){
+			p._fmSec.rbtnSecBGRepeat.curVal=this.value;
+			sohu.diyConsole.CurSec.$Layout.css("background-repeat",this.value);
+		});		
+		p._fmSec.rbtnSecBGAlign.curVal="center";
+		p._fmSec.rbtnSecBGRepeat.curVal="repeat";
 		
+		//初始化分栏设置对话框
 		var _onOpen=function(){
-			p._fmSec.txtBG.val(sohu.diyConsole.CurSec.$Layout.css("background-image"));
+			//背景图
+			var bgimg=sohu.diyConsole.CurSec.$Layout.css("background-image");
+			bgimg=bgimg=="none"?"":bgimg;
+			bgimg=bgimg.replace('url("',"").replace('")',"");
+			p._fmSec.txtBG.val(bgimg);
+			//背景色
 			p._fmSec.txtBGC.css("backgroundColor",sohu.diyConsole.CurSec.$Layout.css("backgroundColor"));
-			p._fmSec.txtBorderC.css("borderColor",sohu.diyConsole.CurSec.$Layout.css("borderColor"));
-			var bg_p=sohu.diyConsole.CurSec.$Layout.css("backgroundPosition");
-			bg_p=bg_p=="0% 0%"?"center":bg_p;
-			var bg_a=sohu.diyConsole.CurSec.$Layout.css("backgroundRepeat");
+			//边框色
+			var bdc=sohu.diyConsole.CurSec.$Layout.css("borderColor");
+			bdc=bdc==""?"#eeeeee":bdc;
+			p._fmSec.txtBorderC.css("backgroundColor",bdc);
 			//对齐方式
+			var bg_p=sohu.diyConsole.CurSec.$Layout.css("backgroundPosition");
+			bg_p=bg_p=="0% 0%"?"center center":bg_p;
+			var bg_a=sohu.diyConsole.CurSec.$Layout.css("backgroundRepeat");
 			p._fmSec.rbtnSecBGAlign.filter("[value='"+bg_p+"']").trigger("click");
 			//平铺方式
 			p._fmSec.rbtnSecBGRepeat.filter("[value='"+bg_a+"']").trigger("click");
-			//边框
-			var l=sohu.diyConsole.CurSec.$Layout.css("borderLeft");
-			l=l==""?"transparent":l;
-			var r=sohu.diyConsole.CurSec.$Layout.css("borderRight");
-			r=r==""?"transparent":r;
-			var t=sohu.diyConsole.CurSec.$Layout.css("borderTop");
-			t=t==""?"transparent":t;
-			var b=sohu.diyConsole.CurSec.$Layout.css("borderBottom");
-			b=b==""?"transparent":b;
-			
-			p._fmSec.cbxSecBorder.filter("[value='left']")[0].checked=(l.indexOf("transparent")>-1);
-			p._fmSec.cbxSecBorder.filter("[value='right']")[0].checked=(r.indexOf("transparent")>-1);
-			p._fmSec.cbxSecBorder.filter("[value='top']")[0].checked=(t.indexOf("transparent")>-1);
-			p._fmSec.cbxSecBorder.filter("[value='bottom']")[0].checked=(b.indexOf("transparent")>-1);			
+			//边框-根据边框色判断边框的有无
+			bdc=sohu.diyConsole.GetBorderColor(bdc);
+			if(!bdc){
+				p._fmSec.cbxSecBorder.each(function(i,o){
+					o.checked=false;
+				});
+			}else{
+				for(var x in bdc){
+					if(x)
+						p._fmSec.cbxSecBorder.filter("[value='"+x+"']")[0].checked=(bdc[x].indexOf("transparent")<0);
+				};//for
+			};//if	
 			
 		};
 		p._$wSec=p._$wSec.dialog({
@@ -917,4 +947,43 @@ sohu.diyConsole.ShowEditMenu=function(group,showOthers){
 		sohu.diyConsole.$Menu.not(".mcom").hide();
 	
 	sohu.diyConsole[group].show();
+};
+/**
+ * 根据颜色值获取完整的上、右、下、左四个方向的颜色值
+ * @param {Object} c
+ */
+sohu.diyConsole.GetBorderColor=function(c){
+	c=$.trim(c);
+	if(c=="") return null;
+	//默认情况下用jquery的css方法获取的rgb颜色值rgb(9, 168, 139)中含有空格，需先将这些空格去掉
+	var reg=/\b,\s\b/g;
+	c=c.replace(reg,",");//将", "替换为","
+	var cList=c.split(" "),retVal={};
+	switch(cList.length){
+		case 0:
+			retVal= null;
+		break;
+		case 1:
+			retVal.top=retVal.right=retVal.bottom=retVal.left=cList[0];
+		break;
+		case 2:
+			retVal.top=retVal.bottom=cList[0];
+			retVal.left=retVal.right=cList[1];
+		break;
+		case 3:
+			retVal.top=cList[0];
+			retVal.left=retVal.right=cList[1];
+			retVal.bottom=cList[2];	
+		break;
+		case 4:
+			retVal.top=cList[0];
+			retVal.right=cList[1];
+			retVal.bottom=cList[2];
+			retVal.left=cList[3];
+		break;
+		default:
+			retVal=null;
+		break;
+	};//switch
+	return retVal;
 };
