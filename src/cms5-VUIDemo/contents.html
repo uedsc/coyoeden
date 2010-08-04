@@ -11,6 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="css/ct.css"></link> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> 
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script> 
+		<script type="text/javascript" src="js/jquery.ezCookie_0.7.01.min.js"></script>
 		<script type="text/javascript" src="js/colorpicker.js"></script> 
 		<script type="text/javascript" src="js/sohu.stringUtils.js"></script>
 		<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
@@ -22,7 +23,7 @@
 	<body>
 		<div id="web_loading">Loading...</div>
 		<div id="contentAccordion">
-			<h3><a href="#">栏目标题</a></h3>
+			<h3 id="tabHD_0"><a href="#">栏目标题</a></h3>
 			<div id="ctSecHead" class="ct tab clear">
 				<div class="clear">
 					<div class="left">
@@ -45,7 +46,7 @@
 					<button class="btnOK">添加</button>
 				</div>
 			</div>
-			<h3><a href="#">空行</a></h3>
+			<h3 id="tabHD_1"><a href="#">空行</a></h3>
 			<div id="ctEmptyLine" class="ct tab clear">
 				<div class="clear">
 					<div class="left">
@@ -64,7 +65,7 @@
 					<button class="btnOK">确定</button>
 				</div>
 			</div>
-			<h3><a href="#">焦点图</a></h3>
+			<h3 id="tabHD_2"><a href="#">焦点图</a></h3>
 			<div id="ctFocusImg" class="ct tab slider clear">
 				<div class="act left">
 					<a class="btnLeft" href="#">
@@ -145,7 +146,7 @@
 					</a>
 				</div>	
 			</div>
-			<h3><a href="#">图片</a></h3>
+			<h3 id="tabHD_3"><a href="#">图片</a></h3>
 			<div id="ctImg" class="ct tab clear">
 				<ul>
 					<li class="item" id="Image01" title="图左字右">
@@ -224,7 +225,7 @@
 					<div class="spacer"></div>
 				</div>				
 			</div>
-			<h3><a href="#">文本</a></h3>
+			<h3 id="tabHD_4"><a href="#">文本</a></h3>
 			<div id="ctText" class="ct tab slider clear">
 				<div class="act left">
 					<a class="btnLeft" href="#">
@@ -260,6 +261,87 @@
 						<img alt="" src="img/pic10x42_right.gif"/>
 					</a>
 				</div>
+			</div>
+			<h3 id="tabHD_5"><a href="#">自动列表</a></h3>
+			<div id="ctDynamicList" class="ct tab clear">
+				<div id="dlContent">预览区域</div>
+				<div class="skform skformx clear">
+					<div class="left">
+						<label>碎片名称</label>
+						<div class="field"><span id="dlFragName">碎片名称1</span></div>
+						<label>引用实体<span class="small">*名称</span></label>
+						<input type="text" class="field" id="txtDLEntity" name="DLEntity"/>
+						<label>显示条数<span class="small">*(1~100)</span></label>
+						<input type="text" class="field" id="txtDLShowNum" name="DLShowNum"/>
+						<label>排序类型</label>
+						<div class="field">
+							<select id="ddlDLSort" name="DLSort">
+								<option value="1" selected="selected">时间权重</option>
+								<option value="2">时间</option>
+								<option value="3">权重</option>
+							</select>
+						</div>
+						<label>权重</label>
+						<div class="field">
+							<select id="ddlDLPriorityMin" name="DLPriorityMin">
+								<option value="50" selected="selected">1类</option>
+								<option value="60">2类</option>
+								<option value="70">3类</option>
+								<option value="80">4类</option>
+								<option value="90">5类</option>
+							</select>
+							<span>-</span>
+							<select id="ddlDLPriorityMax" name="DLPriorityMax">
+								<option value="50" selected="selected">1类</option>
+								<option value="60">2类</option>
+								<option value="70">3类</option>
+								<option value="80">4类</option>
+								<option value="90">5类</option>
+							</select>														
+						</div>
+					</div>
+					<div class="right">
+						<label>新闻类型</label>
+						<div class="field">
+							<select id="ddlDLSubType" name="DLSubType">
+								<option selected="selected" value="0">全部</option>
+								<option value="1">普通新闻</option>
+								<option value="3">组图新闻</option>
+								<option value="4">视频新闻</option>
+							</select>							
+						</div>
+						<label>显示类型</label>
+						<div class="field">
+							<select id="ddlDLScriptType" name="DLScriptType">
+								<option value="txt" selected="selected">文字列表</option>
+								<option value="pic">图片列表</option>
+								<option value="video">视频列表</option>
+							</select>							
+						</div>
+						<!--输出格式根据显示类型的变化而变化-->
+						<label>输出格式</label>
+						<div class="field">
+							<select id="ddlDLScriptName" name="DLScriptName"></select>							
+						</div>
+						<label>时间格式</label>
+						<div class="field">
+							<select id="ddlDLTimeType" name="DLTimeType">
+								<option selected="selected" value="-1">无</option>
+								<option value="1">(MM/dd HH:mm)</option>
+								<option value="2">(MM/dd)</option>
+								<option value="3">HH:mm</option>
+								<option value="4">(MMMMM dd, yyyy)</option>
+								<option value="5">(HH:mm)</option>
+							</select>							
+						</div>					
+					</div>	
+					<div class="acts">
+						<button class="btnPreview">预览</button>
+						<button class="btnOK">确定</button>
+						<button class="btnNO">关闭</button>
+					</div>
+					<div class="spacer"></div>					
+				</div><!--/skform-->
 			</div>
 		</div>
 		<div id="ctWrap"></div>

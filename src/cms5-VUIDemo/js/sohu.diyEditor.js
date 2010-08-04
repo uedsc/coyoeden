@@ -117,8 +117,8 @@ sohu.diyEditor.prototype.DialogCT=function(mode){
 	if(!mode){
 		this.CTDialog=$(this.__p.opts.cssCTSelector).dialog({
 			title:"Ìí¼ÓÄÚÈÝ",
-			width:660,
-			height:430,
+			width:680,
+			height:500,
 			modal:true,
 			close:_onClose,
 			open:_onOpen,

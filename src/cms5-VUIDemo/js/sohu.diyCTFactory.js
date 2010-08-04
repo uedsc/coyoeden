@@ -388,6 +388,21 @@ sohu.diyCTFactory = function() {
 		p.setContent(line);
 		return false;
 	};
+	p.getAccordionCfg=function(){
+		var ckName="sohu.diyCTFactory.tabIndx";
+		//看cookie中上次打开的tab
+		var tabIdx=$.cookie(ckName);
+		tabIdx=tabIdx||0;
+		//每次tab改变时更新cookie
+		var _onChange=function(evt,ui){
+			var idx=ui.newHeader[0].id.split("_")[1];
+			$.setCookie(ckName,idx);
+		};
+		return {
+			active:tabIdx,
+			change:_onChange
+		};
+	};
     //private area
     p.initVar = function(opts) { 
 		p._line=new sohu.diyTplFactory.Line({});/*空行模板对象*/
@@ -398,7 +413,8 @@ sohu.diyCTFactory = function() {
 		pub.$ctWrap=$("#ctWrap");
 	};
     p.onLoaded = function() { 
-		$("#contentAccordion").accordion();
+		var cfg=p.getAccordionCfg();
+		$("#contentAccordion").accordion(cfg);
 		$("#web_loading").remove();
 		parent.sohu.diyConsole.toggleLoading();
 	};
