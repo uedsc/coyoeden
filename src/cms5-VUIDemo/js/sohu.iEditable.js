@@ -103,6 +103,8 @@
 		//maxWidth
 		if(!$.browser.msie)
 			dom.i$frame.css("maxWidth","inherit");
+		//overflow
+		dom.i$frame.css("overflow","hidden");
 		//visibility
 		$this.hide();
 		$body.show();

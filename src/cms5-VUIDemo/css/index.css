@@ -82,26 +82,27 @@ display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(25
 	
 /* =/#editMenu= */
 
+#wPageBG{position:relative;}
+#wPageBG .cpk{position:absolute;display:none;width:356px;top:20%;right:10px;}
+
 #wCfgSec{position:relative;}
 #wCfgSec .cpk{position:absolute;display:none;width:356px;top:20%;right:10px;}
 
+#wCode .acts{display:none;}
+
 /* =Editor related style= */
-.elm_gray{
-	border:1px solid transparent;
-	opacity:0.07;
-}
-.elm_vshow{
-	visibility:visible;
-}
-.elm_vhide{
-	visibility:hidden;
-}
+.elm_gray{border:1px solid transparent;opacity:0.07;}
+.elm_vshow{visibility:visible;}
+.elm_vhide{visibility:hidden;}
 /* =/Editor related style= */
 
 /* =main= */
-#scrollWrap{position: relative;margin-top:0 /*100px*/;overflow-y: scroll; overflow-x: auto;background:#444;text-align:left;}
+#scrollWrap{position: relative;margin-top:0 /*100px*/;overflow-y: scroll; overflow-x: auto;/*background:#444;text-align:left;*/}
+/*v20100805
 #mainWrap{background:#fff;width:960px;border:2px solid #ccc;margin:0 auto;}
 #main{min-height:500px;height:auto !important;height:500px;}
+*/
+#main{width:960px;margin:0 auto;min-height:500px;height:auto !important;height:500px;}
 .txtLoading{
 background:none repeat scroll 0 0 #FF0000;
 color:#FFFFFF;
@@ -112,35 +113,28 @@ width:60px;
 display:none;
 }
 .main{_position:absolute;}
-.areaTools{
-	position:fixed;
-	_position:absolute;
-	top:100px;
-	right:60px;
-	width:50px;
-	border:1px solid #ccc;
-	background:#f4f4f4;
-}
+.areaTools{position:fixed;_position:absolute;top:100px;right:60px;width:50px;border:1px solid #ccc;background:#f4f4f4;}
 #pageTip{font-weight:bold;text-align:left;min-height:45px;height:auto !important;_height:45px;}
 .confirm{color:blue;}
 .alert{color:red;}
 .areaTools li{padding:4px 0;line-height:16px;}
 /* 分栏样式 -Editing */
-.sec{border:1px solid transparent;}
+/*.sec{border:1px solid transparent;}*/
 .sec .elmOn{border:1px dotted #4455AA;/*background:#FFDBA8;*/}
-.area_active .sec,.area_empty .sec{min-height:25px;height:auto !important;height:25px;border:1px dotted #ccc;}
+.area_active .sec,.area_empty .sec{min-height:25px;height:auto !important;height:25px;border-color:#ccc;}
 /*.area_active .subsec .sec,.area_empty .subsec .sec{border-bottom:none;}*/
-.area_active .secOn,.area_active .subsec .secOn{border:1px solid #84ADDE;}
+/*.area_active .secOn,.area_active .subsec .secOn{border:1px solid #84ADDE;}*/
 .area_active .ing,.area_active .subsec .ing{border-color:#FF0084;}
 /* 内容样式-Editing */
 .ct{position:relative;border:1px solid transparent;}
 .area_active .ctOn{border-color:#FFDBA8;}
 .col{overflow:hidden;}
 /*分栏编辑器*/
-.actions{position:absolute;padding:6px;border:1px solid #bbd2ea;border-bottom:none;z-index:300;height:18px;background:#e2ecf8;}
-.actions .r a{padding-left:4px;}
-.actions .l a{padding-right:4px;}
-.actions .secTip{font-size:98%;}
+.secEditor .actions{position:absolute;padding:3px 6px;border:1px solid #bbd2ea;border-bottom:none;z-index:300;height:18px;background:#e2ecf8;}
+.secEditor .actions .r a{padding-left:4px;}
+.secEditor .actions .l a{padding-right:4px;}
+.secEditor .actions .secTip{font-size:98%;}
+.secEditor .overlay{position:absolute;border:1px solid #bbd2ea;border-top:none;background:#e2ecf8;z-index:-100;}
 /* 圆角效果-(已停用) */
 .rounded{position:absolute;padding:6px;border:1px solid #84ADDE;z-index:300;}
 	.corner{position:absolute;width:10px;height:10px;background:url(../img/rounded_bg.gif) no-repeat;}

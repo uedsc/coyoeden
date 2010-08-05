@@ -110,7 +110,7 @@ sohu.diySection.prototype.AddSub=function($secSub){
 };
 /**
  * 添加内容-在分栏的末尾添加内容
- * @param {Object} ct 待添加内容对象。如{html0:'xx',flash:false}
+ * @param {Object} ct 待添加内容对象。如{html0:'xx',flash:false,type:'pp'}
  */
 sohu.diySection.prototype.AddContent=function(ct){
 	var _this=this;
@@ -250,10 +250,16 @@ sohu.diySection.prototype.Dim=function(){
 sohu.diySection.prototype.LoadContents=function(){
 	var _this=this;
 	var items=this.$Layout.find("."+this.__p.opts.clContent);
-	items=items.map(function(i,ct){
+	items=items.map(function(i,ctdom){
+		var $dom=$(ctdom);
+		var ct={
+			type:sohu.diyConsole.GetClassName($dom),
+			$dom:$dom
+		};
 		return sohu.diyContent.New({
-			$obj:$(ct),
-			sec:_this
+			ct:ct,
+			sec:_this,
+			isNew:false
 		});
 	});
 	return items;

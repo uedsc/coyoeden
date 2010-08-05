@@ -141,7 +141,7 @@ sohu.diyTplFactory.Line=function(opts){
 		}).blur(function(evt){
 			_this.height=parseInt(this.value);
 			_this.height=isNaN(_this.height)?10:_this.height;
-			_this.height=(_this.height>100||_this.height<1)?10:_this.height;
+			_this.height=(_this.height>1000||_this.height<1)?10:_this.height;
 			this.value=_this.height;
 		});
 		/* input for width */
@@ -225,11 +225,11 @@ sohu.diyTplFactory.FocusImg=function(opts){
 };
 sohu.diyTplFactory.FocusImg.prototype.Submit=function(opt){
 	var ct={};
-	ct.html0='<div class="ct shflash"></div>';
+	ct.html0='<div class="flash ct"></div>';
 	ct.flash=true;
 	ct.tplID=this.tplID;
 	ct.isNew=true;
-	ct.type='shflash';
+	ct.type='flash';
 	sohu.diyTplFactory.submit(ct,true);
 };
 /**

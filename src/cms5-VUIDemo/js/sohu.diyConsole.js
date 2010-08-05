@@ -10,6 +10,7 @@ sohu.diyConsole=function(opts){
 	opts=$.extend({},{
 		cssWsp:"#main",clSec:"sec",clSec0:"sec0",clSecSub:"subsec",
 		clSecRoot:"col",clArea:"area",cssArea:".area",dfTop:100,
+		clAreaStatic:"static",
 		limitSec:390,
 		scrollWrapMainginTop:0
 		},opts);
@@ -17,17 +18,16 @@ sohu.diyConsole=function(opts){
 	this.$Workspace=$(opts.cssWsp);
 	this.$Layout=$("#areaTools");
 
-	sohu.diyConsole.$SecEditorModel=$("#area_editor");
 	this.Areas=null;
 	
 	var p={opts:opts};
 	p._$btnAdd=$("#lnkAreaAdd");
 	p._$btnDel=$("#lnkAreaDel");
 	p._$btnBG=$("#lnkAreaBG");
+	p._$btnPageBG=$("#lnkPageBG");
 	p._$btnDown=$("#lnkAreaDown");
 	p._$btnUp=$("#lnkAreaUp");
 	p._$areaSelector=$("#area_selector");
-	p._$wAreaBG=$("#wAreaBG")
 	p._$pageTip=$("#pageTip");
 	p._$elmTool=$("#elmTool");
 	/* =顶部交互菜单= */
@@ -38,12 +38,15 @@ sohu.diyConsole=function(opts){
 	p._$menuSecHead=p._$editMenu.find(".msecHead");
 	p._$popWins=p._$editMenu.find(".win");
 	/* 对话框jq对象 */
+	p._$wAreaBG=$("#wAreaBG")
+	p._$wPageBG=$("#wPageBG");
 	p._$wCpkWrap=$("#cpkWrap");
 	p._$wAddLink=$("#addLink");
 	p._$wImgPro=$("#imgPro");
 	p._$wImgSwitch=$("#imgSwitch");
 	p._$wSecHead=$("#cfgSecHead");
 	p._$wSec=$("#wCfgSec");
+	p._$wCode=$("#wCode");
 	/* /对话框jq对象 */
 	
 	/* 对话框表单元素 */
@@ -79,6 +82,17 @@ sohu.diyConsole=function(opts){
 		rbtnAreaBGRepeat:p._$wAreaBG.find("input[name='areaBGRepeat']"),
 		tipAreaBG:p._$wAreaBG.find(".tipAreaBG"),
 		reset:function(){p._$wAreaBG.find("*").removeClass("alert").end().find(":text").val("");}
+	};
+	p._fmPageBG={
+		txtPageBG:$("#txtPageBG"),
+		txtPageBGH:$("#txtPageBGH"),
+		rbtnPageBGAlign:p._$wPageBG.find("input[name='pageBGAlign']"),
+		rbtnPageBGRepeat:p._$wPageBG.find("input[name='pageBGRepeat']"),
+		tipPageBG:p._$wPageBG.find(".tipPageBG"),
+		tipPageBGH:p._$wPageBG.find(".tipPageBGH"),
+		txtPageBGC:$("#txtPageBGC"),
+		cpk:p._$wPageBG.find(".cpk"),
+		reset:function(){p._$wPageBG.find("*").removeClass("alert").end().find(":text").val("");}
 	};
 	p._fmSecHead={
 		txtBG:$("#txtSecHeadBGC"),
@@ -212,6 +226,11 @@ sohu.diyConsole=function(opts){
 		);
 		return false;
 	};
+	p.onPageBG=function(evt){
+	///<summary>设置页面背景</summary>	
+		p._$wPageBG.dialog("open");
+		return false;
+	};
 	p.onMove=function(evt){
 	///<summary>移动横切</summary>
 		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};	
@@ -290,8 +309,8 @@ sohu.diyConsole=function(opts){
 		fullheight = sohu.diyConsole.InnerHeight();        
 		height = fullheight - p.opts.scrollWrapMainginTop;
 		
-		$("#scrollWrap").css("height",height);
-		$("#main").css("minHeight",height);
+		sohu.diyConsole.$ScrollWrap.css("height",height);
+		_this.$Workspace.css("minHeight",height);
 	};
 	p.onLoaded=function(){
 		//文档高度适应处理
@@ -358,6 +377,20 @@ sohu.diyConsole=function(opts){
 			},
 			onSubmit:function(hsb,hex,rgb){
 				p._fmSec.cpk.hide();
+			}
+		});
+		//页面背景色
+		p._fmPageBG.cpk.ColorPicker({
+			flat:true,
+			color:"#ffffff",
+			onChange:function(hsb,hex,rgb){
+				var c="#"+hex;
+				p._fmPageBG.txtPageBGC.css("backgroundColor",c).attr("title",c);
+				$("body").css("backgroundColor",c);
+			},
+			onSubmit:function(hsb,hex,rgb){
+				$("body").css("backgroundColor","#"+hex);
+				p._fmPageBG.cpk.hide();
 			}
 		});
 	};
@@ -474,6 +507,100 @@ sohu.diyConsole=function(opts){
 		});		
 		p._fmAreaBG.rbtnAreaBGAlign.curVal="center";
 		p._fmAreaBG.rbtnAreaBGRepeat.curVal="no-repeat";
+	};
+	p.initPageBG=function(){
+		//对话框相关回调处理函数
+		var _onOK=function(evt,cls){
+			cls=cls||true;
+			var url=p._fmPageBG.txtPageBG.val();
+			if((url!="")&&(!StringUtils.isUrl(url))){
+				p._fmPageBG.txtPageBG.addClass("alert").select();
+				p._fmPageBG.tipPageBG.addClass("alert");
+				return false;
+			};
+			var h=p._fmPageBG.txtPageBGH.val();
+			if((!StringUtils.isPlusInt(h))||(h=parseInt(h))<1){
+				p._fmPageBG.txtPageBGH.addClass("alert").select();
+				p._fmPageBG.tipPageBGH.addClass("alert");
+				return false;
+			};
+			
+			if(url==""){
+				sohu.diyConsole.$BodyBGA.css("background-image","none");
+			}else{
+				sohu.diyConsole.$BodyBGA.css("background-image","url('"+url+"')");
+			};
+			var al=p._fmPageBG.rbtnPageBGAlign.curVal;
+			sohu.diyConsole.$BodyBGA.css("background-position",al);
+			
+			var rp=p._fmPageBG.rbtnPageBGRepeat.curVal;
+			sohu.diyConsole.$BodyBGA.css("background-repeat",rp);
+			
+			sohu.diyConsole.$BodyBGA.css("height",h);
+			
+			if(cls)
+				$(this).dialog("close");
+		};
+		var _onNO=function(evt){
+			$(this).dialog("close");
+		};
+		//显示对话框
+		p._$wPageBG=p._$wPageBG.dialog(
+		{
+			title:"页面背景设置",
+			resizable:false,
+			modal:true,
+			width:430,
+			position:[700,50],
+			autoOpen:false,
+			buttons:{
+				"关闭":_onNO,
+				"确认":_onOK,
+			},
+			open:function(evt,ui){
+				//背景图
+				var img=sohu.diyConsole.$BodyBGA.css("background-image");
+				img=img=="none"?"":img;
+				img=img.replace('url("',"").replace('")',"");
+				p._fmPageBG.txtPageBG.val(img).select();
+				//高度
+				var h=sohu.diyConsole.$BodyBGA.css("height");
+				h=parseInt(h);
+				p._fmPageBG.txtPageBGH.val(h);
+				//对齐方式
+				var bg_p=sohu.diyConsole.$BodyBGA.css("backgroundPosition");
+				bg_p=bg_p=="0% 0%"?"center center":bg_p;
+				var bg_a=sohu.diyConsole.$BodyBGA.css("backgroundRepeat");
+				p._fmPageBG.rbtnPageBGAlign.filter("[value='"+bg_p+"']").trigger("click");
+				//平铺方式
+				p._fmPageBG.rbtnPageBGRepeat.filter("[value='"+bg_a+"']").trigger("click");
+				//背景色
+				p._fmPageBG.txtPageBGC.css("backgroundColor",$("body").css("backgroundColor"));
+			},
+			close:function(evt,ui){p._fmPageBG.reset();}
+		}
+		);
+		p._$wPageBG.preview=function(){
+			_onOK(null,false);
+		};
+		//事件注册
+		p._fmPageBG.rbtnPageBGAlign.click(function(evt){
+			p._fmPageBG.rbtnPageBGAlign.curVal=this.value;
+			p._$wPageBG.preview();
+		});
+		p._fmPageBG.rbtnPageBGRepeat.click(function(evt){
+			p._fmPageBG.rbtnPageBGRepeat.curVal=this.value;
+			p._$wPageBG.preview();
+		});		
+		p._fmPageBG.rbtnPageBGAlign.curVal="center center";
+		p._fmPageBG.rbtnPageBGRepeat.curVal="no-repeat";
+		
+		//背景色
+		p._fmPageBG.txtPageBGC
+		.css("backgroundColor","transparent")
+		.click(function(evt){
+			p._fmPageBG.cpk.show();
+		});
 	};
 	p.initSecHead=function(){
 		//按钮行为
@@ -636,6 +763,30 @@ sohu.diyConsole=function(opts){
 		});
 		
 	};
+	p.initCode=function(){
+		var txtarea=p._$wCode.find("textarea");
+		var btnOK=p._$wCode.find(".btnOK");
+		var _onOpen=function(evt,ui){
+			txtarea.val(sohu.diyConsole.CurSec.$Layout.html());
+		};
+		//事件注册
+		p._$wCode=p._$wCode.dialog({
+			title:"HTML代码-查看",
+			resizable:false,
+			modal:true,
+			width:540,
+			open:_onOpen,
+			autoOpen:false
+		});
+		btnOK.click(function(evt){
+			alert("hi"); 
+			return;
+			//更新分栏的html代码
+			if(!window.confirm("确定更新当前分栏的HTML代码么?")) return false;
+			//TODO:利用diySection.AddContent方法添加自定义内容
+			//TODO:直接更新html内容，需要重置该分栏的内容Contents属性
+		});
+	};
 	/**
 	 * Save current document.selection to sohu.diyConsole.DocSelection
 	 */
@@ -752,6 +903,11 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.$Menu=p._$menus;
 		sohu.diyConsole.$ElmTool=p._$elmTool;
 		sohu.diyConsole.$WinSec=p._$wSec;
+		sohu.diyConsole.$WinCode=p._$wCode;
+		//sohu.diyConsole.$WinPageBG=p._$wPageBG;
+		sohu.diyConsole.$SecEditorModel=$("#area_editor");
+		sohu.diyConsole.$ScrollWrap=$("#scrollWrap");
+		sohu.diyConsole.$BodyBGA=$("#main .bodyBGA");
 		//横切选择器
 		$("li",p._$areaSelector).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");})
 			.click(p.onSelectAreaTpl);
@@ -770,17 +926,19 @@ sohu.diyConsole=function(opts){
 		//隐藏删除按钮
 		//p._$btnDel.parent().hide();
 		p._$btnBG.click(p.onAddBG);
+		p._$btnPageBG.click(p.onPageBG);
 		p._$btnUp.bind("click",{up:true},p.onMove);
 		p._$btnDown.bind("click",{up:false},p.onMove);
 		
 		//已有横切
 		_this.Areas=_this.AreaList().map(function(i,o){
-			o=new sohu.diyArea({
+			var a=new sohu.diyArea({
 				isNew:false,
 				console:_this,
-				onRemove:p.onAreaRemove
+				onRemove:p.onAreaRemove,
+				obj:$(o)
 			});
-			return o;
+			return a;
 		});
 		//body鼠标事件
 		$("body").mousemove(p.onMousemove).click(p.onBodyClick);
@@ -804,8 +962,12 @@ sohu.diyConsole=function(opts){
 		p.initSecHead();
 		//分栏设置对话框
 		p.initSec();
+		//html代码对话框
+		p.initCode();
 		//editMenu的事件注册
 		p.initEditMenu();
+		//页面背景设置
+		p.initPageBG();
 		//元素工具条
 		sohu.diyElementTool.Init({});
 		//on page loaded
@@ -849,8 +1011,15 @@ sohu.diyConsole.prototype.CloseCTDialog=function(){
  * 获取所有横切jquery对象
  */
 sohu.diyConsole.prototype.AreaList=function(){
+	var _this=this;
 	var items= this.$Workspace.find(this.__p.opts.cssArea);
-	return items;
+	//剔除channelNav和indexNav等含有static类的横切
+	items=$.grep(items,function(o,i){
+		if($(o).hasClass(_this.__p.opts.clAreaStatic)) return false;
+		return true;
+	});
+	
+	return $(items);
 };
 /**
  * 弹出一个确认对话框
@@ -986,4 +1155,23 @@ sohu.diyConsole.GetBorderColor=function(c){
 		break;
 	};//switch
 	return retVal;
+};
+/**
+ * 获取指定jq dom对象的第idx个css class
+ * @param {Object} $dom
+ * @param {Object} idx
+ */
+sohu.diyConsole.GetClassName=function($dom,idx){
+	var cl=$.trim($dom.attr("class"));
+	if(cl=="") return "";
+	
+	cl=cl.split(" ");
+	cl=$.grep(cl,function(o,i){
+		if(o=="") return false;
+		return true;
+	});
+	idx=idx||0;
+	if(idx<0) idx=0;
+	if(idx>=cl.length) idx-=1;
+	return cl[idx];
 };

@@ -4,15 +4,15 @@
  * @param {Object} opts 选项{$obj,sec}
  */
 sohu.diyContent=function(opts){
-	opts=$.extend({},{cl:"ct",clOn:"ctOn",scale:true,clElm:"elm"},opts||{});
+	opts=$.extend({},{cl:"ct",clOn:"ctOn",scale:true,clElm:"elm",isNew:true},opts||{});
 	var _this=this;
 	this.Meta=opts.ct;
+	this.IsNew=opts.isNew;
 	this.$Layout=null;/*在Validate方法中构建*/
 	this.Type=opts.ct.type;/* 内容插件类型 */
 	this.Sec=opts.sec;//分栏
 	this.Editor=this.Sec.Editor;//分栏编辑器
 	this.MaxWidth=this.Sec.Width;
-	this.ID="ct_"+this.Type+"_"+StringUtils.RdStr(8);
 	this.onDomed=null;/* 被添加到dom树后的回调函数 */
 	
 	//private property
@@ -22,6 +22,10 @@ sohu.diyContent=function(opts){
 	/* 验证内容的有效性 并且构建$Layout*/
 	this.Validate();
 	if(!this.Validation.valid) return;
+	
+	/* ID */
+	if(this.$Layout.attr("id")=="")
+		this.ID="ct_"+this.Type+"_"+StringUtils.RdStr(8);
 	
 	/* Load elements */
 	this.LoadElements();
@@ -110,7 +114,12 @@ sohu.diyContent.prototype.Validate=function(){
 	this.SetValidation(true);
 	
 	var commonValidate=function(ct,msg){
-		ct.$Layout=$(ct.Meta.html0).filter("."+ct.Type);
+		if(_this.IsNew){
+			ct.$Layout=$(ct.Meta.html0).filter("."+ct.Type);
+		}else{
+			ct.$Layout=ct.Meta.$dom;
+		};
+		
 		if(ct.$Layout.length==0||(!ct.$Layout.is("."+ct.__p.opts.cl))){
 			ct.SetValidation(false,msg);
 		};
@@ -129,8 +138,8 @@ sohu.diyContent.prototype.Validate=function(){
 				this.$Layout=$("<div/>").addClass(this.__p.opts.cl+" "+this.Type+" clear").append(this.$Layout);
 			}
 		break;
-		case "shflash":
-			this.$Layout=$(this.Meta.html0);
+		case "flash":
+			this.$Layout=this.IsNew?$(this.Meta.html0):this.Meta.$dom;
 		break;
 		default:
 			commonValidate(this,"Html内容不符合模板规范");
@@ -166,7 +175,7 @@ sohu.diyContent.prototype.LoadElements=function(){
 /*静态方法*/
 /**
  * 从现有的dom元素构建一个diyContent 对象
- * @param {Object} opts 选项
+ * @param {Object} opts 选项 {sec,ct}
  */
 sohu.diyContent.New=function(opts){
 	return new sohu.diyContent(opts);

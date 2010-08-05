@@ -2,12 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-        <title>可视化专题交互原型</title>
+        <title>可视化专题-编辑现有专题</title>
 		<link rel="stylesheet" type="text/css" href="css/global1.3.css"></link>
 		<link media="all" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet"></link> 
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/flick/jquery-ui.css" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/layout.css"></link> 
 		<link type="text/css" rel="stylesheet" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style_demo.css"></link> 
 		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link> 
 		<link rel="stylesheet" type="text/css" href="css/colorpicker.css"></link>
 		<link rel="stylesheet" type="text/css" href="css/vs.skinform.css"></link> 
@@ -139,38 +140,256 @@
 		<div id="scrollWrap">
 			<div id="main">
 				<div class="bodyBGA"></div>
-				<!--通用头-->
-				<div id="indexNav" class="area static">
-				    <a rel="external" href="http://www.sohu.com/">
-				    	<img height="22" border="0" width="87" class="left" alt="搜狐网站" src="http://images.sohu.com/uiue/sohu_logo/2005/sohu_logo2.gif" />
-					</a>
-					<a rel="external" href="http://sports.sohu.com/">
-						<img height="22" border="0" class="left" alt="搜狐体育" src="http://images.sohu.com/uiue/sohu_logo/2006/news_logo2.gif" />
-					</a>
+				<!--频道头-->
+				<div id="channelNav" class="area static">
+				    <a target="_blank" href="http://www.sohu.com/"><img height="22" border="0" class="left" alt="搜狐网站" src="http://images.sohu.com/uiue/sohu_logo/2005/sohu_logo2.gif"/></a><a target="_blank" href="http://yule.sohu.com/"><img height="22" border="0" class="left" alt="搜狐娱乐" src="http://images.sohu.com/uiue/sohu_logo/2009/cs/yule_logo2.gif"/></a>
 				    <style>#channelNav ul {margin-right:5px;width:auto;clear:none}</style>
-				    <ul class="right">
-				    	<li><a href="http://www.sohu.com/">搜狐首页</a></li><li>-</li>
-				    	<li class="red"><a href="http://news.sohu.com/">新闻</a></li><li>-</li>
-				    	<li><a href="http://sports.sohu.com/">体育</a></li><li>-</li>
-				    	<li><a href="http://s.sohu.com/">S</a></li><li>-</li>
-				    	<li><a href="http://yule.sohu.com/">娱乐</a></li><li>-</li>
-				    	<li><a href="http://v.sohu.com/">V</a></li><li>-</li>
-				    	<li class="red"><a href="http://business.sohu.com/">财经</a></li><li>-</li>
-				    	<li><a href="http://it.sohu.com/">IT</a></li><li>-</li>
-				    	<li><a href="http://auto.sohu.com/">汽车</a></li><li>-</li>
-				    	<li><a href="http://house.sohu.com/">房产</a></li><li>-</li>
-				    	<li><a href="http://women.sohu.com/">女人</a></li><li>-</li>
-				    	<li><a href="http://tv.sohu.com/">视频</a></li><li>-</li>
-				    	<li><a href="http://v.blog.sohu.com/">播客</a></li><li>-</li>
-				    	<li><a href="http://www.chinaren.com/">ChinaRen</a></li><li>-</li>
-				    	<li><a href="http://login.mail.sohu.com/">邮件</a></li><li>-</li>
-				    	<li><a href="http://blog.sohu.com/">博客</a></li><li>-</li>
-				    	<li><a href="http://club.sohu.com/">BBS</a></li><li>-</li>
-				    	<li><a href="http://comment2.news.sohu.com/">我说两句</a></li><li>-</li>
-				    	<li class="end"><a href="http://www.sogou.com/">搜狗</a></li>
-				    </ul>
-			    </div>
-				<!--/通用头-->
+					<ul class="right">
+						<li><a href="http://www.sohu.com/">搜狐首页</a></li><li>-</li>
+						<li class="red"><a href="http://news.sohu.com/">新闻</a></li><li>-</li>
+						<li><a href="http://sports.sohu.com/">体育</a></li><li>-</li>
+						<li><a href="http://s.sohu.com/">S</a></li><li>-</li>
+						<li><a href="http://yule.sohu.com/">娱乐</a></li><li>-</li>
+						<li><a href="http://v.sohu.com/">V</a></li><li>-</li>
+						<li class="red"><a href="http://business.sohu.com/">财经</a></li><li>-</li>
+						<li><a href="http://it.sohu.com/">IT</a></li><li>-</li>
+						<li><a href="http://auto.sohu.com/">汽车</a></li><li>-</li>
+						<li><a href="http://house.focus.cn/">房产</a></li><li>-</li>
+						<li><a href="http://women.sohu.com/">女人</a></li><li>-</li>
+						<li><a href="http://tv.sohu.com/">视频</a></li><li>-</li>
+						<li><a href="http://v.blog.sohu.com/">播客</a></li><li>-</li>
+						<li><a href="http://t.sohu.com/">微博</a></li><li>-</li>
+						<li><a href="http://login.mail.sohu.com/">邮件</a></li><li>-</li>
+						<li><a href="http://blog.sohu.com/">博客</a></li><li>-</li>
+						<li><a href="http://club.sohu.com/">BBS</a></li><li>-</li>
+						<li><a href="http://comment2.news.sohu.com/">我说两句</a></li><li>-</li>
+						<li class="end"><a href="http://www.sogou.com/">搜狗</a></li>
+					</ul>
+				</div>				
+				<!--/频道头-->
+				<!--自定义html:外面不套ct-->
+				<div id="topPic" class="area">
+					<div class="col w950">
+						<div class="sec">
+							<div><img src="images/top01.jpg" width="190" height="180" alt="" /><img src="images/top02.jpg" width="190" height="180" alt="" /><img src="images/top03.jpg" width="190" height="180" alt="" /><img src="images/top04.jpg" width="190" height="180" alt="" /><img src="images/top05.jpg" width="190" height="180" alt="" /></div>
+							<div><img src="images/top06.jpg" width="190" height="185" alt="" /><img src="images/top07.jpg" width="190" height="185" alt="" /><img src="images/top08.jpg" width="190" height="185" alt="" /><img src="images/top09.jpg" width="190" height="185" alt="" /><img src="images/top10.jpg" width="190" height="185" alt="" /></div>
+						</div>
+					</div>
+				</div>
+				<!--导航条-->
+				<div id="nav" class="area">
+					<div class="col w950">
+						<div class="sec">
+							<div class="nav ct">
+								<ul class="clear">
+									<li><a target="_blank" href="#"><span>官网 Official Site</span></a></li>
+									<li><a target="_blank" href="#"><span>滚动 RSS</span></a></li>
+									<li><a target="_blank" href="#"><span>新闻 News</span></a></li>
+									<li><a target="_blank" href="#"><span>图集 Picture</span></a></li>
+									<li><a target="_blank" href="#"><span>视频片花 Video</span></a></li>
+									<li><a target="_blank" href="#"><span>各方评论 Comment</span></a></li>
+									<li><a target="_blank" href="#"><span>网友留言 Message</span></a></li>
+								</ul>								
+							</div>
+						</div>
+					</div>					
+				</div>
+				<!--contentA-->
+				<div id="contentA" class="area">
+					<div class="w270 left">
+						<div class="sec">
+							<h2 class="sec_hd ct"><span class="elm">《婚姻保卫战》图集</span><a target="_blank" href="#" class="elm">[更多]</a></h2>
+							<div class="vspace ct" style="height:5px;"></div>
+							<div class="flash ct">
+								<div id="sasFlashFocus195">《婚姻保卫战》</div>
+								<script type="text/javascript">
+								<!--
+								//可编辑内容开始（可放置特版中）
+								var pic_width=290; //图片宽度
+								var pic_height=300; //图片高度
+								var button_pos=2; //按扭位置 1左 2右 3上 4下
+								var stop_time=5000; //图片停留时间(1000为1秒钟)
+								var show_text=1; //是否显示文字标签 1显示 0不显示
+								var txtcolor="000000"; //文字色
+								var bgcolor="ffffff"; //背景色
+								
+								//可编辑内容结束
+								var swf_height=show_text==1?pic_height+20:pic_height;
+								
+								var pics="", mylinks="", texts="";
+								pics='http://photocdn.sohu.com/focusUp/20100713/172739313454441044.jpg|http://photocdn.sohu.com/focusUp/20100712/140811552183145090.jpg|http://photocdn.sohu.com/focusUp/20100712/140813992219672509.jpg|http://photocdn.sohu.com/focusUp/20100712/140816512183145090.jpg'
+								
+								mylinks='http://pic.yule.sohu.com/group-222714.shtml|http://yule.sohu.com/20100706/n273301501.shtml|http://yule.sohu.com/20100625/n273063715.shtml|http://yule.sohu.com/20100122/n269770598.shtml';
+								
+								texts='《婚姻保卫战》官网启动 赵宝刚携搜狐视频维权|《婚姻保卫战》即将打响 佟大为马伊琍演夫妻|《婚姻保卫战》首轮卫视签约 众星到场助阵|《婚姻保卫战》超豪华落幕 打造时尚唯美秀场';
+								
+								var sohuFlash2 = new sohuFlash("http://images.sohu.com/uiue/FlashFocus/allfocus4.swf", "sasFlashFocus201", pic_width, swf_height, "6");
+								sohuFlash2.addParam("quality", "high");
+								sohuFlash2.addParam("wmode", "opaque");
+								sohuFlash2.addVariable("pics",pics);
+								sohuFlash2.addVariable("links",mylinks);
+								sohuFlash2.addVariable("texts",texts);
+								sohuFlash2.addVariable("pic_width",pic_width);
+								sohuFlash2.addVariable("pic_height",pic_height);
+								sohuFlash2.addVariable("show_text",show_text);
+								sohuFlash2.addVariable("txtcolor",txtcolor);
+								sohuFlash2.addVariable("bgcolor",bgcolor);
+								sohuFlash2.addVariable("button_pos",button_pos);
+								sohuFlash2.addVariable("stop_time",stop_time);
+								sohuFlash2.write("sasFlashFocus195");
+								//-->
+								</script>
+
+							</div>
+							
+						</div>
+						
+					</div>
+					<div class="w670 right">
+						<div class="sec">
+							<!--自定义html,通过修改分栏代码加进来-建议将自定义Html作为内容或碎片的一种-->
+							<div class="blockRA clear">
+								<div class="tt"><span>网友打分</span>给《婚姻保卫战》打分，满分5分，你给几分？</div>
+					
+								<div class="star">
+									<ul>
+										<li><a href="#" target="_blank">5</a></li>
+										<li><a href="#" target="_blank">4</a></li>
+										<li><a href="#" target="_blank">3</a></li>
+										<li><a href="#" target="_blank">2</a></li>
+										<li><a href="#" target="_blank">1</a></li>
+					
+									</ul>
+								</div>
+								<div class="point">				
+									<p>评分结果：<span>4.25</span> 分</p>
+									<p>参与人数：<em>15740</em>人</p>
+								</div>
+								<div class="link"><a href="#" target="_blank"><img src="images/pic01.gif" width="65" height="44" alt="" /></a><a href="#" target="_blank"><img src="images/pic02.gif" width="65" height="44" alt="" /></a></div>
+							</div>
+							<!--/自定义html-->
+							<div class="subsec clear">
+								<div class="w470 l">
+									<div class="sec">
+										<h2 class="sec_hd ct">
+											<span class="elm">官网启动</span>
+											[<a href="#" target="_blank">官网</a>][<a href="#" target="_blank">综述</a>][<a href="#" target="_blank">现场图集</a>][<a href="#" target="_blank">视频回顾</a>][<a href="#" target="_blank">现场实录</a>]
+										</h2>
+										<div class="news ct">
+											<h1 class="elm"><a href="#" target="_blank">五大卫视同步播出《婚姻保卫战》即将打响</a></h1>
+											<h3 class="elm">活动现场：</h3>
+											<p class="elm">&gt; <a href="#" target="_blank">《婚姻保卫战》网络版权与《三国》等价 一集百万为都市剧提价</a></p>
+											<p class="elm">&gt; <a href="#" target="_blank">刘金山VS于娜：年龄不是问题，身高不是困境 视频</a><a href="#" target="_blank"><img src="images/vd.gif" width="16" height="10" alt="" /></a></p>
+											<p class="elm">&gt; <a href="#" target="_blank">刘金山VS于娜：年龄不是问题，身高不是困境 视频</a><a href="#" target="_blank"><img src="images/vd.gif" width="16" height="10" alt="" /></a></p>
+											<p class="elm">&gt; <a href="#" target="_blank">刘金山VS于娜：年龄不是问题，身高不是困境 视频</a><a href="#" target="_blank"><img src="images/vd.gif" width="16" height="10" alt="" /></a></p>
+											<h3 class="elm">媒体评论：</h3>
+											<p class="elm"><&gt; <a href="#" target="_blank">《婚姻保卫战》新剧卖得好价钱 赵宝刚：家庭遇矛盾 踮起脚歇歇</a></p>
+											<p class="elm"><&gt; <a href="#" target="_blank">《婚姻保卫战》新剧卖得好价钱 赵宝刚：家庭遇矛盾 踮起脚歇歇</a></p>
+										</div>
+
+									</div>
+								</div>
+								<div class="w190 r">
+									<div class="sec">
+										<h2 class="sec_hd ct">
+											<span class="elm">剧集资料</span>
+											<a href="#" target="_blank" class="elm">[详细]</a>
+										</h2>
+										<!--自定义html-->
+										<div class="info">
+											<h3>播出信息：</h3>
+											<p><span>2010年8月16日在北京、浙江、天津、云南、深圳五大卫视全国首播，<strong>搜狐高清视频8月20日独家播出</strong>。</span></p>
+											<div class="line"></div>
+											<h3>故事梗概：</h3>
+											<p>&nbsp;&nbsp;&nbsp;&nbsp;证券公司白领李梅和装饰设计师郭洋的婚姻正处于“七年之痒”的微妙时刻。丈夫在业内小有名气，儿子即将上小学，夫妻感情也不错。本来还算满足的李梅由于为家庭和孩子丧失了不少机会，看到别的女人享受事业成功……<a href="#" target="_blank">[详细]</a></p>
+										</div>
+										<!--/自定义html-->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--contentB-->
+				<div id="contentB" class="area">
+					<div class="w270 left">
+						<div class="sec">
+							<h2 class="sec_hd ct"><span class="elm">婚姻保卫战》视频</span><a href="#" target="_blank" class="elm">[更多]</a></h2>
+							<div class="vspace ct" style="height:5px;"></div>
+							<div class="video ct">
+								<script type="text/javascript" src="http://tv.sohu.com/upload/swf/showVrsPlayer.js"></script>
+								<script type="text/javascript">
+								showVrsPlayer({vid: '114726',nid: '268331646',pid: '267927626',width: '280',height: '228',playercover: 'http://i1.itc.cn/20100709/692_27c09c17_9374_452c_b6d0_9b7f7a956598_0.jpg',autoplay: 'false'});
+								</script>
+								<p><a href="http://v.sohu.com/20100707/n273342485.shtml" target=_blank>视频：佟大为马伊琍 《婚姻保卫战》片花</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="w390 center">
+						<div class="sec">
+							<h2 class="sec_hd ct"><span class="elm">新闻报道</span></h2>
+							<!--自定义html-->
+							<div class="news clear">
+								<h1><a href="#" target="_blank">五大卫视同步播出《婚姻保卫战》即将打响</a></h1>
+								<dl>
+									<dt>新闻动态：</dt>
+									<dd><a href="#" target="_blank">《婚姻保卫战》发布 “抠门男”刘金山大气献唱</a></dd>
+									<dd><a href="#" target="_blank">《婚姻保卫战》发布 “抠门男”刘金山大气献唱</a></dd>
+								</dl>
+								<dl>
+									<dt>签约仪式：</dt>
+									<dd><a href="#" target="_blank">《婚姻保卫战》发布 “抠门男”刘金山大气献唱</a></dd>
+									<dd><a href="#" target="_blank">《婚姻保卫战》发布 “抠门男”刘金山大气献唱</a></dd>
+								</dl>
+							</div>
+							<div class="news clear">
+								<h1><a href="#" target="_blank">五大卫视同步播出《婚姻保卫战》即将打响</a></h1>
+								<dl>
+									<dt>视频报道：</dt>
+									<dd><a href="#" target="_blank">《婚姻保卫战》发布 “抠门男”刘金山大气献唱</a><a href="#" target="_blank"><img src="images/vd.gif" width="16" height="10" alt="" /></a></dd>
+									<dd><a href="#" target="_blank">《婚姻保卫战》发布 “抠门男”刘金山大气献唱</a><a href="#" target="_blank"><img src="images/vd.gif" width="16" height="10" alt="" /></a></dd>
+									<dd><a href="#" target="_blank">《婚姻保卫战》发布 “抠门男”刘金山大气献唱</a><a href="#" target="_blank"><img src="images/vd.gif" width="16" height="10" alt="" /></a></dd>
+								</dl>
+							</div>
+							<!--/自定义html-->
+						</div>
+					</div>
+					<div class="w270 right">
+						<div class="sec">
+							<h2 class="sec_hd ct"><span class="elm">主创名单</span><a href="#" target="_blank" class="elm">[详细]</a></h2>
+							<div class="boxA clear">
+								<h3>领衔主演：</h3>
+				
+								<ul>
+									<li><a href="#" target="_blank">佟大为</a> 饰 <a href="#" target="_blank">郭　洋</a></li>
+									<li><a href="#" target="_blank">佟大为</a> 饰 <a href="#" target="_blank">郭　洋</a></li>
+									<li><a href="#" target="_blank">佟大为</a> 饰 <a href="#" target="_blank">郭　洋</a></li>
+				
+									<li><a href="#" target="_blank">佟大为</a> 饰 <a href="#" target="_blank">郭　洋</a></li>
+									<li><a href="#" target="_blank">佟大为</a> 饰 <a href="#" target="_blank">郭　洋</a></li>
+									<li><a href="#" target="_blank">曾泳醍</a> 饰 <a href="#" target="_blank">常小小</a></li>
+				
+									<li><a href="#" target="_blank">佟大为</a> 饰 <a href="#" target="_blank">郭　洋</a></li>
+									<li><a href="#" target="_blank">佟大为</a> 饰 <a href="#" target="_blank">郭　洋</a></li>
+									<li><a href="#" target="_blank">佟大为</a> 饰 <a href="#" target="_blank">郭　洋</a></li>
+				
+									<li><a href="#" target="_blank">佟大为</a> 饰 <a href="#" target="_blank">郭　洋</a></li>
+								</ul>
+							</div>
+							<div class="boxB clear">
+								<h3>其他主创：</h3>
+								<p>
+								<strong>出品公司：</strong>鑫宝源<br />
+								<strong>编　剧：</strong>魏晓霞<br />
+								<strong>导　演：</strong><a href="#" target="_blank">赵宝刚</a> 王 迎<br />
+								<strong>出品人：</strong>丁 芯<br />
+				
+								<strong>总策划：</strong>赵宝刚 钟 伟<br />
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!--/#main-->
@@ -180,8 +399,7 @@
 			<ul>
 				<li><a href="#" id="lnkAreaAdd">+横切</a></li>
 				<li><a href="#" id="lnkAreaDel">-横切</a></li>
-				<li><a href="#" id="lnkAreaBG">横切背景</a></li>
-				<li><a href="#" id="lnkPageBG">页面背景</a></li>
+				<li><a href="#" id="lnkAreaBG">背景</a></li>
 				<li><a href="#" id="lnkAreaDown">下移</a></li>
 				<li><a href="#" id="lnkAreaUp">上移</a></li>
 			</ul>
@@ -189,18 +407,21 @@
 		<div id="hiddenTemplate">
 			<!--横切编辑模板-->
 			<div id="area_editor">
-				<div class="actions">
-					<div class="actions_body clear">
-						<div class="l"><span class="secTip"></span></div>
-						<div class="r">
-							<a class="a_code" href="#" title="查看当前分栏的代码">代码</a>
-							<a class="a_cfg" href="#" title="分栏设置">设置</a>
-							<a class="a_ret" href="#" title="返回上一级分栏">上级</a>
-							<a class="a_content" href="#" title="为分栏添加内容">内容</a>
-							<a class="a_sec" href="#" title="添加子分栏">分栏</a>
-							<a class="a_clear" href="#" title="清除分栏的子分栏以及内容">清除</a>
+				<div class="secEditor">
+					<div class="actions">
+						<div class="actions_body clear">
+							<div class="l"><span class="secTip"></span></div>
+							<div class="r">
+								<a class="a_code" href="#" title="查看当前分栏的代码">代码</a>
+								<a class="a_cfg" href="#" title="分栏设置">设置</a>
+								<a class="a_ret" href="#" title="返回上一级分栏">上级</a>
+								<a class="a_content" href="#" title="为分栏添加内容">内容</a>
+								<a class="a_sec" href="#" title="添加子分栏">分栏</a>
+								<a class="a_clear" href="#" title="清除分栏的子分栏以及内容">清除</a>
+							</div>
 						</div>
 					</div>
+					<div class="overlay"></div>
 				</div>
 			</div>
 			<!--横切选择模板-->
@@ -293,35 +514,6 @@
 				</div>
                 <div class="spacer"></div>				
 			</div>
-			<!--页面背景-->
-			<div id="wPageBG" class="skform skformx">
-				<label>背景图<span class="small tip tipPageBG">请输图片网址</span></label>
-				<div class="field">
-					<input type="text" size="36" id="txtPageBG" name="pageBG"/>
-					<button id="btnPageBGBrowse" onclick="alert('hi');">浏览</button>
-				</div>
-				<label>对齐方式</label>
-				<div class="field">
-					<input type="radio" name="pageBGAlign" value="center center" checked="checked" /><span>居中</span>
-					<input type="radio" name="pageBGAlign" value="left center"/><span>靠左</span>
-					<input type="radio" name="pageBGAlign" value="right center"/><span>靠右</span>	
-				</div>
-				<label>平铺方式</label>
-				<div class="field">
-					<input type="radio" name="pageBGRepeat" value="repeat"/><span>平铺</span>
-					<input type="radio" name="pageBGRepeat" value="no-repeat" checked="checked" /><span>不平铺</span>
-					<input type="radio" name="pageBGRepeat" value="repeat-x"/><span>横平铺</span>
-					<input type="radio" name="pageBGRepeat" value="repeat-y"/><span>纵平铺</span>
-				</div>
-				<label>背景高度<span class="small tip tipPageBGH">px</span></label>
-				<input type="text" id="txtPageBGH" name="pageBGH" class="field"/>
-				<label>背景色<span class="small tip tipPageBGC">页面背景色</span></label>
-				<div class="field">
-					<input type="text" size="36" id="txtPageBGC" name="pageBGC" readonly="readonly"/>
-				</div>
-				<div class="cpk"></div>
-                <div class="spacer"></div>				
-			</div>			
 			<!--分栏设置对话框-->
 			<div id="wCfgSec" class="skform skformx">
 				<label>背景图<span class="small tip tipSecBG">请输图片网址</span></label>
@@ -361,6 +553,13 @@
 				<div class="cpk"></div>
                 <div class="spacer"></div>				
 			</div>			
+			<!--代码对话框-->
+			<div id="wCode">
+				<textarea cols="75" rows="20" readonly="readonly"></textarea>
+				<div class="acts">
+					<button class="btnOK">确认</button>
+				</div>
+			</div>
 		</div>
 		<!--ckeditor-->
 		<div id="jqmWin1" class="jqmWindow">

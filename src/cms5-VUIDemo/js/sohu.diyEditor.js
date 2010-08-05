@@ -7,6 +7,7 @@ sohu.diyEditor=function(opts){
 	opts=$.extend({},{cssSecHelper:".secTip",cssCTSelector:"#content_selector"},opts);
 	//属性
 	this.$LayoutModel=sohu.diyConsole.$SecEditorModel;/* 工具条的dom模型 */
+	this.$Layout=$(this.$LayoutModel.html());
 	this.Console=window.bos;
 	this.CurArea=opts.curArea;//当前横切
 	this.CurSec=opts.curSec;//当前分栏
@@ -16,7 +17,8 @@ sohu.diyEditor=function(opts){
 	var p={opts:opts};
 	this.__p=p;
 	
-	this.$Toolbar=this.$LayoutModel.find(".actions").clone();	/* editor actions */
+	this.$Toolbar=this.$Layout.find(".actions");	/* editor actions */
+	this.$Overlay=this.$Layout.find(".overlay")
 	this.$ToolbarTip=this.$Toolbar.find(opts.cssSecHelper);	/* sec tip */
 	//按钮事件注册
 	this.$Toolbar.btn={
@@ -30,7 +32,7 @@ sohu.diyEditor=function(opts){
 	this.$Toolbar.btn.addContent.click(function(evt){_this.DialogCT();return false;});
 	this.$Toolbar.btn.addSec.click(function(evt){_this.DialogSec();return false;});
 	this.$Toolbar.btn.clear.click(function(evt){_this.Cls();return false;});
-	this.$Toolbar.btn.editCode.click(function(evt){alert("代码");return false;});
+	this.$Toolbar.btn.editCode.click(function(evt){_this.DialogCode();return false;});
 	this.$Toolbar.btn.prevLevel.click(function(evt){_this.CurSec.ActiveParent();return false;});
 	this.$Toolbar.btn.cfg.click(function(evt){_this.DialogSecCfg();return false;});
 	//如果没有父分栏，隐藏“上级”按钮
@@ -42,8 +44,8 @@ sohu.diyEditor=function(opts){
 
 	this.$CTWrap=$("#ctWrap");
 	
-	//persist the toolbar dom
-	this.$Toolbar.attr("id",this.CurSec.ID+"_t").hide().appendTo(this.CurArea.$Layout);
+	//persist the editor dom
+	this.$Layout.attr("id",this.CurSec.ID+"_t").hide().appendTo(this.CurArea.$Layout);
 	_this.$Toolbar.isNew=true;
 };
 /**
@@ -90,6 +92,18 @@ sohu.diyEditor.prototype.DialogSecCfg=function(){
 	this.Editing("on");
 	this.WSecCfg.dialog("option",{close:_onClose});
 	this.WSecCfg.dialog("open");
+};
+/**
+ * 弹出代码对话框
+ */
+sohu.diyEditor.prototype.DialogCode=function(){
+	var _this=this;
+	var _onClose=function(evt,ui){
+		_this.Editing("off").CurSec.Deactive();
+	};
+	this.Editing("on");
+	sohu.diyConsole.$WinCode.dialog("option",{close:_onClose});
+	sohu.diyConsole.$WinCode.dialog("open");
 };
 /**
  * 弹出添加内容选择框
@@ -188,8 +202,11 @@ sohu.diyEditor.prototype.Cls=function(){
 };
 sohu.diyEditor.prototype.Reposition=function(){
 		var d=this.CurSec.Dim();
-		this.$Toolbar.css({width:d.w-12,top:d.y-31,left:d.x,opacity:0.9});/*宽要减去12个像素的留白;31是高度*/
+		var st=sohu.diyConsole.$ScrollWrap.scrollTop();/* 上滚动距离 */
+		this.$Toolbar.css({width:d.w-11,top:d.y+st-25,left:d.x-1,opacity:0.9});/*宽要减去11个像素的留白;25是工具条高度*/
 		this.$ToolbarTip.css({width:d.w}).html(d.mw+"px");
+		//overlay
+		this.$Overlay.css({width:d.w+1,top:d.y+st,left:d.x-1,opacity:0.9,height:d.h+1});
 };
 /**
  * 显示编辑器-即激活编辑器
@@ -199,7 +216,7 @@ sohu.diyEditor.prototype.Show=function(){
 	if(this.$Toolbar.isNew){
 		this.Reposition();
 	}
-	this.$Toolbar.show();
+	this.$Layout.show();
 		
 	if(!this.CurSec.Divisible){
 		this.$Toolbar.btn.addSec.hide();	
@@ -227,7 +244,8 @@ sohu.diyEditor.prototype.Editing=function(mode){
  * 隐藏
  */
 sohu.diyEditor.prototype.Hide=function(){
+	//return;
 	if(!this.CurSec) return;
 	if(this.CurSec.IsAddingContent) return;
-	this.$Toolbar.hide();
+	this.$Layout.hide();
 };
