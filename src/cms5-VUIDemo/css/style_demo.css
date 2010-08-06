@@ -35,7 +35,7 @@ em{font-style:normal}
 
 #contentA .right .l{width:397px}
 #contentA .right .r{width:240px}
-#contentA .right .l h2{height:28px;width:381px;margin:0 auto;text-align:left;font:12px/28px "ËÎÌו";color:#000}
+#contentA .right .l h2{height:28px;width:381px;margin:0 auto;text-align:left;font:12px/28px "ËÎÌו";color:#000;padding:0;background:transparent;}
 #contentA .right .l h2 span{display:block;float:left;width:68px;height:24px;margin-right:8px;background:url(../images/bg05.gif) no-repeat top;color:#FFF;font:12px/22px "ËÎÌו";text-align:center}
 
 .news{margin:0 auto 5px}

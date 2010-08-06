@@ -93,6 +93,30 @@ sohu.diyArea.prototype.Deactive=function(){
 
 };
 /**
+ * 更新横切的ID，同时遍历sohu.diyConsole实体的Areas属性
+ * @param {Object} newID
+ */
+sohu.diyArea.prototype.UpdateID=function(newID){
+	if((!newID)||(newID==this.ID)||(!sohu.diyConsole.IsValidID(newID))) return;
+	//遍历判断该ID是否已经存在
+	var isOk=true;
+	$.each(this.Console.Areas,function(i,o){
+		if(o.ID==newID){
+			return (isOk=false);
+		};
+		return true;
+	});
+	if (!isOk) {
+		alert("编号" + newID + "已经被占用！");
+		return false;
+	};
+	
+	this.ID=newID;
+	this.$Layout.attr("id",this.ID);
+	
+	return true;
+};
+/**
  * 移动
  * @param {Object} isUp 上移true，下移false
  */

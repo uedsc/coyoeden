@@ -1,6 +1,6 @@
 /**
  * @author levinhuang
- * @desc sohu自家jquery插件
+ * @desc sohu用jquery插件
  */
 ; (function($) {
 
@@ -162,7 +162,18 @@
 			return _hash.substr(1);
 		};
 	};
-
+	/**
+	 * dummy div
+	 */
+	$.dummyDiv=$("<div/>");
+	/**
+	 * outerHtml
+	 * @param {Object} $dom jquery dom object
+	 */
+	$.outerHtml=function($dom){
+		var r=$.dummyDiv.empty().append($dom);
+		return r.html();
+	};
 	//pass jQuery to the function, 
 	//So that we will able to use any valid Javascript variable name 
 	//to replace "$" SIGN. But, we'll stick to $ (I like dollar sign: ) )		

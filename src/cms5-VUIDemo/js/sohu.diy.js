@@ -181,4 +181,3 @@ sohu.diyTp.Flash.prototype.Var=function(n,v){
 };
 
 /*=/ÄÚÈİÄ£°åÇøÓò=*/
-

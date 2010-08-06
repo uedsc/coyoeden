@@ -38,6 +38,31 @@ sohu.diyTplFactory={
 	}
 };
 /**
+ * 导航条设置类
+ * @param {Object} opts
+ */
+sohu.diyTplFactory.Nav=function(opts){
+	var _this=this;
+	this.$Layout=$("#ctNav");
+	this.$TplList=this.$Layout.find(".nav");
+	//事件注册
+	$("#ddlNavTpl").change(function(evt){
+		_this.CurIndex=this.value;
+	}).trigger("change");
+	
+	this.$Layout.find(".btnOK").click(function(evt){
+		_this.Submit();
+	});
+};
+sohu.diyTplFactory.Nav.prototype.Submit=function(){
+	var ct={};
+	ct.html0=$.outerHtml(this.$TplList.eq(this.CurIndex));
+	ct.flash=false;
+	ct.isNew=true;
+	ct.type="nav";
+	sohu.diyTplFactory.submit(ct,true);
+};
+/**
  * 栏目标题设置类
  * @param {Object} opts
  */
@@ -192,7 +217,7 @@ sohu.diyTplFactory.Line.prototype.Submit=function(opt){
 		flash:false,
 		html0:sohu.diyCTFactory.$ctWrap.html(),
 		isNew:true,
-		type:'shline'
+		type:'vspace'
 	};
 	
 	sohu.diyTplFactory.submit(ct,true);
@@ -584,6 +609,7 @@ sohu.diyCTFactory = function() {
 		p._txt=new sohu.diyTplFactory.Text({});/*文本*/
 		new sohu.diyTplFactory.SecHead({});/* 栏目标题 */
 		new sohu.diyTplFactory.DynamicList({});/* 自动列表 */
+		new sohu.diyTplFactory.Nav({}); /* 导航 */
 		pub.$ctWrap=$("#ctWrap");
 	};
     p.onLoaded = function() { 

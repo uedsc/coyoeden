@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/flick/jquery-ui.css" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/layout.css"></link> 
 		<link type="text/css" rel="stylesheet" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style_demo.css"></link>
 		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link> 
 		<link rel="stylesheet" type="text/css" href="css/colorpicker.css"></link>
 		<link rel="stylesheet" type="text/css" href="css/vs.skinform.css"></link> 
@@ -25,24 +26,29 @@
 		<div id="editMenu">
 			<div id="editMenuIn">
 				<div id="editMenuChild" class="clear">
-					<a class="menuitem mtxt" title="加粗" href="#" id="menuitem-b"></a>
-					<a class="menuitem" title="斜体" href="#" id="menuitem-i"></a>
-					<a title="下划线" href="#" class="menuitem mtxt" id="menuitem-u"></a>
-					<a id="menuitem-cc" title="颜色" href="#" class="menuitem mtxt popwin"></a><input type="hidden" id="txtFontColor" />
-					<a title="增大尺寸" href="#" class="menuitem" id="menuitem-if"></a>
-					<a title="减少尺寸" href="#" class="menuitem" id="menuitem-df"></a>
-					<a title="加链接" href="#" class="menuitem mcom popwin" id="menuitem-cl"></a>
-					<a title="左对齐" href="#" class="menuitem mtxt" id="menuitem-al"></a>
-					<a title="居中对齐" href="#" class="menuitem mtxt" id="menuitem-ac"></a>
-					<a title="右对齐" href="#" class="menuitem mtxt" id="menuitem-ar"></a>
-					<a title="两边对齐" href="#" class="menuitem mtxt" id="menuitem-af"></a>
-					<a title="无序列表" href="#" class="menuitem" id="menuitem-ul"></a>
-					<a title="有序列表" href="#" class="menuitem" id="menuitem-ol"></a>
-					<a title="撤销" href="#" class="menuitem" id="menuitem-z"></a>
-					<a title="重做" href="#" class="menuitem" id="menuitem-r"></a>
-					<a title="替换图片" href="#" class="menuitem mimg popwin" id="menuitem-img">替换图片</a>
-					<a title="图片属性" href="#" class="menuitem mimg popwin" id="menuitem-imgp">图片属性</a>
-					<a title="栏目头设置" href="#" class="menuitem msecHead popwin" id="menuitem-secHead">设置</a>
+					<a class="imenu mtxt" title="加粗" href="#" id="imenu-b"></a>
+					<a class="imenu" title="斜体" href="#" id="imenu-i"></a>
+					<a title="下划线" href="#" class="imenu mtxt" id="imenu-u"></a>
+					<a id="imenu-cc" title="颜色" href="#" class="imenu mtxt popwin"></a><input type="hidden" id="txtFontColor" />
+					<a title="增大尺寸" href="#" class="imenu" id="imenu-if"></a>
+					<a title="减少尺寸" href="#" class="imenu" id="imenu-df"></a>
+					<a title="加链接" href="#" class="imenu mcom popwin" id="imenu-cl"></a>
+					<a title="左对齐" href="#" class="imenu mtxt" id="imenu-al"></a>
+					<a title="居中对齐" href="#" class="imenu mtxt" id="imenu-ac"></a>
+					<a title="右对齐" href="#" class="imenu mtxt" id="imenu-ar"></a>
+					<a title="两边对齐" href="#" class="imenu mtxt" id="imenu-af"></a>
+					<a title="无序列表" href="#" class="imenu" id="imenu-ul"></a>
+					<a title="有序列表" href="#" class="imenu" id="imenu-ol"></a>
+					<a title="撤销" href="#" class="imenu" id="imenu-z"></a>
+					<a title="重做" href="#" class="imenu" id="imenu-r"></a>
+					<a title="替换图片" href="#" class="imenu mimg micon0 popwin" id="imenu-img">替换图片</a>
+					<a title="图片属性" href="#" class="imenu mimg micon0 popwin" id="imenu-imgp">图片属性</a>
+					<a title="栏目头设置" href="#" class="imenu msecHead micon0 popwin" id="imenu-secHead">设置</a>
+					<a title="删除父级内容块" href="#" class="imenu mcom micon0" id="imenu_delCT">删父内容</a>
+					<a title="复制增加元素" href="#" class="imenu melmc micon0" id="imenu_addElm">复制元素</a>
+					<a title="删除元素" href="#" class="imenu melmc micon0" id="imenu_delElm">删除元素</a>
+					<a title="上移元素" href="#" class="imenu melmc micon0" id="imenu_moveElmUp">上移元素</a>
+					<a title="下移元素" href="#" class="imenu melmc micon0" id="imenu_moveElmDwn">下移元素</a>
 					<div style="width: 0pt; height: 0pt; clear: both; overflow: hidden;"> </div>
 					<div class="bar_l"></div>
 					<div class="bar_r"></div>
@@ -139,38 +145,33 @@
 		<div id="scrollWrap">
 			<div id="main">
 				<div class="bodyBGA"></div>
-				<!--通用头-->
-				<div id="indexNav" class="area static">
-				    <a rel="external" href="http://www.sohu.com/">
-				    	<img height="22" border="0" width="87" class="left" alt="搜狐网站" src="http://images.sohu.com/uiue/sohu_logo/2005/sohu_logo2.gif" />
-					</a>
-					<a rel="external" href="http://sports.sohu.com/">
-						<img height="22" border="0" class="left" alt="搜狐体育" src="http://images.sohu.com/uiue/sohu_logo/2006/news_logo2.gif" />
-					</a>
+				<!--频道头-->
+				<div id="channelNav" class="area static">
+				    <a target="_blank" href="http://www.sohu.com/"><img height="22" border="0" class="left" alt="搜狐网站" src="http://images.sohu.com/uiue/sohu_logo/2005/sohu_logo2.gif"/></a><a target="_blank" href="http://yule.sohu.com/"><img height="22" border="0" class="left" alt="搜狐娱乐" src="http://images.sohu.com/uiue/sohu_logo/2009/cs/yule_logo2.gif"/></a>
 				    <style>#channelNav ul {margin-right:5px;width:auto;clear:none}</style>
-				    <ul class="right">
-				    	<li><a href="http://www.sohu.com/">搜狐首页</a></li><li>-</li>
-				    	<li class="red"><a href="http://news.sohu.com/">新闻</a></li><li>-</li>
-				    	<li><a href="http://sports.sohu.com/">体育</a></li><li>-</li>
-				    	<li><a href="http://s.sohu.com/">S</a></li><li>-</li>
-				    	<li><a href="http://yule.sohu.com/">娱乐</a></li><li>-</li>
-				    	<li><a href="http://v.sohu.com/">V</a></li><li>-</li>
-				    	<li class="red"><a href="http://business.sohu.com/">财经</a></li><li>-</li>
-				    	<li><a href="http://it.sohu.com/">IT</a></li><li>-</li>
-				    	<li><a href="http://auto.sohu.com/">汽车</a></li><li>-</li>
-				    	<li><a href="http://house.sohu.com/">房产</a></li><li>-</li>
-				    	<li><a href="http://women.sohu.com/">女人</a></li><li>-</li>
-				    	<li><a href="http://tv.sohu.com/">视频</a></li><li>-</li>
-				    	<li><a href="http://v.blog.sohu.com/">播客</a></li><li>-</li>
-				    	<li><a href="http://www.chinaren.com/">ChinaRen</a></li><li>-</li>
-				    	<li><a href="http://login.mail.sohu.com/">邮件</a></li><li>-</li>
-				    	<li><a href="http://blog.sohu.com/">博客</a></li><li>-</li>
-				    	<li><a href="http://club.sohu.com/">BBS</a></li><li>-</li>
-				    	<li><a href="http://comment2.news.sohu.com/">我说两句</a></li><li>-</li>
-				    	<li class="end"><a href="http://www.sogou.com/">搜狗</a></li>
-				    </ul>
-			    </div>
-				<!--/通用头-->
+					<ul class="right">
+						<li><a href="http://www.sohu.com/">搜狐首页</a></li><li>-</li>
+						<li class="red"><a href="http://news.sohu.com/">新闻</a></li><li>-</li>
+						<li><a href="http://sports.sohu.com/">体育</a></li><li>-</li>
+						<li><a href="http://s.sohu.com/">S</a></li><li>-</li>
+						<li><a href="http://yule.sohu.com/">娱乐</a></li><li>-</li>
+						<li><a href="http://v.sohu.com/">V</a></li><li>-</li>
+						<li class="red"><a href="http://business.sohu.com/">财经</a></li><li>-</li>
+						<li><a href="http://it.sohu.com/">IT</a></li><li>-</li>
+						<li><a href="http://auto.sohu.com/">汽车</a></li><li>-</li>
+						<li><a href="http://house.focus.cn/">房产</a></li><li>-</li>
+						<li><a href="http://women.sohu.com/">女人</a></li><li>-</li>
+						<li><a href="http://tv.sohu.com/">视频</a></li><li>-</li>
+						<li><a href="http://v.blog.sohu.com/">播客</a></li><li>-</li>
+						<li><a href="http://t.sohu.com/">微博</a></li><li>-</li>
+						<li><a href="http://login.mail.sohu.com/">邮件</a></li><li>-</li>
+						<li><a href="http://blog.sohu.com/">博客</a></li><li>-</li>
+						<li><a href="http://club.sohu.com/">BBS</a></li><li>-</li>
+						<li><a href="http://comment2.news.sohu.com/">我说两句</a></li><li>-</li>
+						<li class="end"><a href="http://www.sogou.com/">搜狗</a></li>
+					</ul>
+				</div>				
+				<!--/频道头-->
 			</div>
 		</div>
 		<!--/#main-->
@@ -189,18 +190,21 @@
 		<div id="hiddenTemplate">
 			<!--横切编辑模板-->
 			<div id="area_editor">
-				<div class="actions">
-					<div class="actions_body clear">
-						<div class="l"><span class="secTip"></span></div>
-						<div class="r">
-							<a class="a_code" href="#" title="查看当前分栏的代码">代码</a>
-							<a class="a_cfg" href="#" title="分栏设置">设置</a>
-							<a class="a_ret" href="#" title="返回上一级分栏">上级</a>
-							<a class="a_content" href="#" title="为分栏添加内容">内容</a>
-							<a class="a_sec" href="#" title="添加子分栏">分栏</a>
-							<a class="a_clear" href="#" title="清除分栏的子分栏以及内容">清除</a>
+				<div class="secEditor">
+					<div class="actions">
+						<div class="actions_body clear">
+							<div class="l"><span class="secTip"></span></div>
+							<div class="r">
+								<a class="a_code" href="#" title="查看当前分栏的代码">代码</a>
+								<a class="a_cfg" href="#" title="分栏设置">设置</a>
+								<a class="a_ret" href="#" title="返回上一级分栏">上级</a>
+								<a class="a_content" href="#" title="为分栏添加内容">内容</a>
+								<a class="a_sec" href="#" title="添加子分栏">分栏</a>
+								<a class="a_clear" href="#" title="清除分栏的子分栏以及内容">清除</a>
+							</div>
 						</div>
 					</div>
+					<div class="overlay"></div>
 				</div>
 			</div>
 			<!--横切选择模板-->
@@ -265,7 +269,7 @@
 			<!--内容模板-->
 			<div id="content_selector">
 				<div class="txtLoading">Loading...</div>
-				<iframe id="ifContentList" name="ifContentList" src="" frameborder="0" rel="contents.html" scrolling="no"></iframe>
+				<iframe id="ifContentList" name="ifContentList" src="contents.html?v=1.2010.0806" frameborder="0" rel="contents.html" scrolling="no"></iframe>
 			</div>
 			<!--page tip-->
 			<div id="pageTip"></div>
@@ -291,6 +295,8 @@
 					<input type="radio" name="areaBGRepeat" value="repeat-x"/><span>横平铺</span>
 					<input type="radio" name="areaBGRepeat" value="repeat-y"/><span>纵平铺</span>
 				</div>
+				<label>横切ID<span class="small tip tipAreaID">字母、数字及下划线组成</span></label>
+				<input type="text" class="field" id="txtAreaID" name="areaID"/>
                 <div class="spacer"></div>				
 			</div>
 			<!--页面背景-->
@@ -360,7 +366,14 @@
 				</div>
 				<div class="cpk"></div>
                 <div class="spacer"></div>				
-			</div>			
+			</div>	
+			<!--代码对话框-->
+			<div id="wCode">
+				<textarea cols="75" rows="20"></textarea>
+				<div class="acts">
+					<button class="btnOK">确认</button>
+				</div>
+			</div>	
 		</div>
 		<!--ckeditor-->
 		<div id="jqmWin1" class="jqmWindow">

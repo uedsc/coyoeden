@@ -20,6 +20,8 @@ z-index:60;
 .ct li img{border:1px solid #ccc;cursor:pointer;}
 .ct .on{background:#FF0084;opacity:0.5;}
 .alert{color:red;}
+/* 导航条 */
+#ctNavTpl{display:none;}
 /* 栏目标题 */
 #ctSecHead{text-align:left;}
 #ctSecHead .left{padding-right:30px;}

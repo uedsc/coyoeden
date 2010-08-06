@@ -44,7 +44,7 @@ sohu.diySection = function(opts) {
 	//鼠标事件-！！停止冒泡事件
 	this.$Layout.attr("id",this.ID).mouseenter(p.mouseOver);//.mouseleave(p.mouseOut);
 	//获取当前分栏的内容
-	this.Contents=this.LoadContents();
+	this.LoadContents();
 	//获取当前横切
 	//this.LoadCurArea();
 	//排序事件处理
@@ -262,7 +262,8 @@ sohu.diySection.prototype.LoadContents=function(){
 			isNew:false
 		});
 	});
-	return items;
+	this.Contents=items;
+	//return items;
 };
 /**
  * 激活父级分栏

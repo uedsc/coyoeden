@@ -122,9 +122,8 @@ sohu.diyEditor.prototype.DialogCT=function(mode){
 		var areaDim=_this.CurArea.Dim();
 		var pos=[areaDim.x+areaDim.w/2-300,areaDim.y+areaDim.h/3];
 		_this.CTDialog.dialog("option","position",pos);
-		var ifr=_this.CTDialog.find("#ifContentList");
-		ifr.attr("src",ifr.attr("rel")+"?t="+new Date().getTime());
-		
+		//var ifr=_this.CTDialog.find("#ifContentList");
+		//ifr.attr("src",ifr.attr("rel")+"?t="+new Date().getTime());
 	};
 
 	sohu.diyConsole.toggleLoading();
@@ -132,7 +131,7 @@ sohu.diyEditor.prototype.DialogCT=function(mode){
 		this.CTDialog=$(this.__p.opts.cssCTSelector).dialog({
 			title:"Ìí¼ÓÄÚÈÝ",
 			width:680,
-			height:500,
+			height:550,
 			modal:true,
 			close:_onClose,
 			open:_onOpen,

@@ -33,6 +33,11 @@ sohu.diyElement=function(opts){
 			if(_this.$Layout.parent().is(".sec_hd")){
 				sohu.diyConsole.ShowEditMenu("$MenuSecHead",true);
 			};
+			//¿É¸´ÖÆÔªËØ
+			if(_this.$Layout.is(".elmc")||_this._$Layout.parent(".elmc").length>0){
+				sohu.diyConsole.ShowEditMenu("$MenuElmc",true);
+			};
+			
 			_this.CT.InlineEdit("on");
 		}else{
 			_this.i$frame=null;

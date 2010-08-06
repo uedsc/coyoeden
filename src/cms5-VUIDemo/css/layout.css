@@ -41,10 +41,11 @@
 .w950 h2 span,.w670 h2 span,.w510 h2 span,.w470 h2 span,.w430 h2 span,.w390 h2 span{font-size:16px;}
 .w330 h2 span,.w310 h2 span,.w270 h2 span,.w250 h2 span,.w230 h2 span,.w210 h2 span,.w190 h2 span,.w182 h2 span{font-size:14px;}
 .sec_hd,.hd{height:30px;padding:0 15px;line-height:30px;}
-
+/* 大标题 */
+.h1{font-family:'黑体';font-size:18px;line-height:34px;}
 /* 文本 */
-.hd{zoom:1} /* 文本标题 */
-.hd:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
+.sec_hd,.hd{zoom:1} /* 文本标题 */
+.sec_hd:after,.hd:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
 .txt p{line-height:24px;text-align:left;} /* 文本段落 */
 
 /* 
@@ -59,3 +60,7 @@
 .c4 li{width:25%;}
 .c5 li{width:20%;}
 .c6 li{width:16.6%;}
+/* 空行 */
+.vspace{position:relative;font-size:0;line-height:0;height:10px;}
+.vspace hr{position:absolute;top:49.9%;padding:0;margin:0 auto;border:1px dotted #808080;}
+

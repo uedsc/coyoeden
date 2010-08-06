@@ -1,0 +1,5 @@
+/**
+ * µØøÚπ‹¿Ì¿‡
+ * @author levinhuang
+ */
+sohu.diyDialog=function(){};

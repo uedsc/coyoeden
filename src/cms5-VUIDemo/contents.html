@@ -15,6 +15,7 @@
 		<script type="text/javascript" src="js/colorpicker.js"></script> 
 		<script type="text/javascript" src="js/sohu.stringUtils.js"></script>
 		<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
+		<script type="text/javascript" src="js/jquery.sohu.js"></script>
 		<script type="text/javascript" src="js/sohu.diy.js"></script>
 		<script type="text/javascript" src="js/sohu.cycleSlide.js"></script>
 		<script type="text/javascript" src="js/sohu.diyCTFactory.js"></script>
@@ -23,7 +24,35 @@
 	<body>
 		<div id="web_loading">Loading...</div>
 		<div id="contentAccordion">
-			<h3 id="tabHD_0"><a href="#">栏目标题</a></h3>
+			<h3 id="tabHD_0"><a href="#">导航条</a></h3>
+			<div id="ctNav" class="ct tab clear">
+				<div class="skform skformx clear">
+					<label>模板<span class="small">导航条模板</span></label>
+					<div class="field">
+						<select id="ddlNavTpl" name="navTpl">
+							<option value="0" selected="selected">默认模板</option>
+						</select>
+					</div>
+					<div class="acts">
+						<button class="btnOK">确定</button>
+					</div>
+					<div class="spacer"></div>
+				</div>
+				<div id="ctNavTpl">
+					<div class="nav ct">
+						<ul class="clear">
+							<li><a target="_blank" href="#"><span>官网 Official Site</span></a></li>
+							<li><a target="_blank" href="#"><span>滚动 RSS</span></a></li>
+							<li><a target="_blank" href="#"><span>新闻 News</span></a></li>
+							<li><a target="_blank" href="#"><span>图集 Picture</span></a></li>
+							<li><a target="_blank" href="#"><span>视频片花 Video</span></a></li>
+							<li><a target="_blank" href="#"><span>各方评论 Comment</span></a></li>
+							<li><a target="_blank" href="#"><span>网友留言 Message</span></a></li>
+						</ul>								
+					</div>
+				</div>
+			</div>
+			<h3 id="tabHD_1"><a href="#">栏目标题</a></h3>
 			<div id="ctSecHead" class="ct tab clear">
 				<div class="clear">
 					<div class="left">
@@ -46,7 +75,7 @@
 					<button class="btnOK">添加</button>
 				</div>
 			</div>
-			<h3 id="tabHD_1"><a href="#">空行</a></h3>
+			<h3 id="tabHD_2"><a href="#">空行</a></h3>
 			<div id="ctEmptyLine" class="ct tab clear">
 				<div class="clear">
 					<div class="left">
@@ -65,7 +94,7 @@
 					<button class="btnOK">确定</button>
 				</div>
 			</div>
-			<h3 id="tabHD_2"><a href="#">焦点图</a></h3>
+			<h3 id="tabHD_3"><a href="#">焦点图</a></h3>
 			<div id="ctFocusImg" class="ct tab slider clear">
 				<div class="act left">
 					<a class="btnLeft" href="#">
@@ -146,7 +175,7 @@
 					</a>
 				</div>	
 			</div>
-			<h3 id="tabHD_3"><a href="#">图片</a></h3>
+			<h3 id="tabHD_4"><a href="#">图片</a></h3>
 			<div id="ctImg" class="ct tab clear">
 				<ul>
 					<li class="item" id="Image01" title="图左字右">
@@ -225,7 +254,7 @@
 					<div class="spacer"></div>
 				</div>				
 			</div>
-			<h3 id="tabHD_4"><a href="#">文本</a></h3>
+			<h3 id="tabHD_5"><a href="#">文本</a></h3>
 			<div id="ctText" class="ct tab slider clear">
 				<div class="act left">
 					<a class="btnLeft" href="#">
@@ -263,7 +292,7 @@
 					</a>
 				</div>
 			</div>
-			<h3 id="tabHD_5"><a href="#">自动列表</a></h3>
+			<h3 id="tabHD_6"><a href="#">自动列表</a></h3>
 			<div id="ctDynamicList" class="ct tab clear">
 				<div id="dlContent">
 					<div class="overlay"></div>
