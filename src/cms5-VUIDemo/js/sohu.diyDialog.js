@@ -115,7 +115,8 @@ sohu.diyDialog=function(){
 		p.dlg=new p.dialog();
 		
 		//注册弹框实体
-		sohu.diyDialog.Register("addBlock",sohu.diyDialog.Area(p.dlg).$Layout);
+		sohu.diyDialog.Register("addBlock",new sohu.diyDialog.Area(p.dlg));
+		sohu.diyDialog.Register("areaTools",new sohu.diyDialog.AreaTool(p.dlg));
 	};
 	/**
 	 * Show a dialog.
@@ -126,8 +127,9 @@ sohu.diyDialog=function(){
 		//fetch from cache firstly
 		var $dom=null;
 		if(typeof(dom)=="string"){
-			$dom=p[dom];
-			if ($dom) {
+			var dlg=p[dom];
+			if (dlg) {
+				$dom=dlg.$Layout;
 				opts = $dom.jqmOpts;
 			};
 		};
@@ -150,16 +152,15 @@ sohu.diyDialog=function(){
 	 */
 	pub.Register=function(key,$dom){
 		p[key]=$dom;
-		return this;
 	};
 	return pub;
 }();
 
 /**
- * 横切弹框
+ * 添加横切弹框
  */
 sohu.diyDialog.Area=function(dlg){
-	var p={},pub={};
+	var p={};
 	//私有函数
 	p.afterShow=function(hash,dlg0){
 		p._curTpl=null;
@@ -190,7 +191,76 @@ sohu.diyDialog.Area=function(dlg){
 	}();
 	
 	
-	pub.$Layout=p.$layout;
+	this.$Layout=p.$layout;
+};
+/**
+ * 横切设置弹框
+ * @param {Object} dlg
+ */
+sohu.diyDialog.CfgArea=function(dlg){
+	var p={},pub={};
+	//DOM引用
 	
 	return pub;
+};
+/**
+ * 横切工具条
+ * @param {Object} dlg
+ */
+sohu.diyDialog.AreaTool=function(dlg){
+	var p={};
+	//DOM引用
+	p.$layout=$("#areaTools");
+	p._$btnAdd=$("#lnkAreaAdd");
+	p._$btnDel=$("#lnkAreaDel");
+	p._$btnBG=$("#lnkAreaBG");
+	p._$btnPageBG=$("#lnkPageBG");
+	p._$btnDown=$("#lnkAreaDown");
+	p._$btnUp=$("#lnkAreaUp");
+	
+	//私有函数
+	p.rePosition=function(){
+		if(!dlg.Console.CurArea){p.$layout.attr("style","");return;};
+		p.$layout.css("top",dlg.Console.CurArea.$Layout.offset().top);
+	};
+	
+	//事件处理
+	p.onAdd=function(evt){
+		sohu.diyDialog.Show("addBlock");
+	};
+	p.onDel=function(evt){
+		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
+		dlg.Console.Areas=$.grep(dlg.Console.Areas,function(o,i){
+			if(o.ID==dlg.Console.CurArea.ID) return false;
+			return true;
+		});
+		sohu.diyConsole.CurArea.Remove();
+	};
+	p.onCfgBG=function(evt){
+		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
+		sohu.diyDialog.Show("cfgAreaBG");
+	};
+	p.onCfgPageBG=function(evt){
+		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
+		sohu.diyDialog.Show("cfgPageBG");
+	};
+	p.onMove=function(evt){
+		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};	
+		var isUp=evt.data.up;
+		sohu.diyConsole.CurArea.Move(isUp);
+		p.rePosition();
+	};
+	//事件注册
+	p.initEvts=function(){
+		p.$layout.find("a").click(function(evt){return false;});
+		p._$btnAdd.click(p.onAdd);
+		p._$btnDel.click(p.onDel);
+		p._$btnBG.click(p.onCfgBG);
+		p._$btnPageBG.click(p.onCfgPageBG);
+		p._$btnUp.bind("click",{up:true},p.onMove);
+		p._$btnDown.bind("click",{up:false},p.onMove);
+	}();
+	
+	this.$Layout=p.$layout;
+	this.RePosition=p.rePosition;	
 };

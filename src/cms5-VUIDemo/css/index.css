@@ -112,11 +112,9 @@ width:60px;
 display:none;
 }
 .main{_position:absolute;}
-.areaTools{position:fixed;_position:absolute;top:100px;right:60px;width:50px;border:1px solid #ccc;background:#f4f4f4;}
 #pageTip{font-weight:bold;text-align:left;min-height:45px;height:auto !important;_height:45px;}
 .confirm{color:blue;}
 .alert{color:red;}
-.areaTools li{padding:4px 0;line-height:16px;}
 /* ·ÖÀ¸ÑùÊ½ -Editing */
 /*.sec{border:1px solid transparent;}*/
 .sec .elmOn{border:1px dotted #4455AA;/*background:#FFDBA8;*/}

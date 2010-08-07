@@ -1,9 +1,9 @@
 .blank40{height: 40px;}
-.titleA{ width:auto; height: 14px;  border-bottom:1px solid #666; text-align:left; padding:3px 5px 2px 9px; color:#F0F0EE;  background:url(../images/common.jpg) 0px -19px;}
+.titleA{position:relative; width:auto; height: 14px;  border-bottom:1px solid #666; text-align:left; padding:3px 5px 2px 9px; color:#F0F0EE;  background:url(../images/common.jpg) 0px -19px;}
 .titleA h1 { float:left; font-weight:bold; vertical-align:middle; }
 .titleA span { float:right; width:15px; height:13px;vertical-align:middle; }
-.close ,.close a{display: block;	background: url(../images/close.jpg) no-repeat top;	width: 15px;	height: 13px;}
-.close a:hover{background-position: bottom;}
+a.close{position:absolute;top:3px;right:5px;display: block;background: url(../images/close.jpg) no-repeat top;	width: 15px;	height: 13px;}
+a.close:hover{background-position: bottom;}
 .btnLine{margin:0 auto; width: 105px; height:25px;}
 .Btn {display: block; background: url(../images/ybtn.gif) top;width: 45px;height: 24px; border: 0px; cursor:pointer;}
 .BtnM {background-position: bottom;}
@@ -259,13 +259,13 @@
 
 
 
-#ctroBlock{ width:67px; height: 155px; border:1px solid #666; background:#F0F0EE}
-#ctroBlock .titleA{ background:url(../images/common.jpg) 0px -114px;}
-#ctroBlock .ctroArea{ width:55px; margin: 0 auto; margin-top: 10px; margin-bottom:10px;}
-#ctroBlock .ctroArea a{ margin-bottom: 5px;}
+#areaTools{position:fixed;_position:absolute;top:100px;right:60px; width:67px; border:1px solid #666; background:#F0F0EE}
+#areaTools .titleA{ background:url(../images/common.jpg) 0px -114px;}
+#areaTools .ctroArea{ width:55px; margin: 0 auto; margin-top: 10px; margin-bottom:10px;}
+#areaTools .ctroArea a{ margin-bottom: 5px;}
 
 /***editbtn***/
-.ctroBtn{float:left;display:inline-block;*display:inline;*zoom:1; }
+.ctroBtn{display:inline-block;*display:inline;*zoom:1; }
 .ctroBtn,.ctroBtn strong{overflow:hidden;height:19px;line-height:19px;line-height:19px\9;_line-height:34px;padding:0;border:0;font-size:12px;background:url(../images/btn6.png) no-repeat;}
 .ctroBtn{ margin:0 0 0.2em;padding:0 0 0 4px;vertical-align:middle;white-space:nowrap;cursor:pointer;cursor:hand}
 .ctroBtn strong{display:block;*display:inline;*zoom:1;padding:0px;margin:0;color:#fff;background-position:right -21px;*vertical-align:top}

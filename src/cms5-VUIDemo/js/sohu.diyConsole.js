@@ -914,13 +914,14 @@ sohu.diyConsole=function(opts){
 		}).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");});
 		
 		//功能按钮
+		/*
 		p._$btnAdd.bind("click",p.onAdd);
 		p._$btnDel.click(p.onRemove);
 		p._$btnBG.click(p.onAddBG);
 		p._$btnPageBG.click(p.onPageBG);
 		p._$btnUp.bind("click",{up:true},p.onMove);
 		p._$btnDown.bind("click",{up:false},p.onMove);
-		
+		*/
 		//已有横切
 		_this.Areas=_this.AreaList().map(function(i,o){
 			var a=new sohu.diyArea({
