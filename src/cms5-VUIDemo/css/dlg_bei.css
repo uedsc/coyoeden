@@ -77,32 +77,17 @@
 
 #addContent{ width:598px; height: auto; border:1px solid #666; background:#F0F0EE}
 #addContent .titleA{ background:url(../images/common.jpg) 0px -0px;}
-#addContent .lineC{margin:0 auto; height:auto;border-bottom:1px solid #000;vertical-align: middle;}
+#addContent .lineC{margin:0 auto; width:570px;height:auto;border-bottom:1px solid #D6D6D6;vertical-align: middle;}
 #addContent .tLine{border-top:1px solid #F7F7F7;}
-/* levin */
-#addContent .hd{height:14px;margin:0 auto; text-align: left; vertical-align: middle; font-weight:bold; padding: 8px 0 8px 0; color:#000;padding-left:25px;}
-#addContent .hd img{margin-right: 8px;}
-#addContent .ui-state-active,#addContent .ui-state-default,#addContent .ui-widget-content{background: none;border:none;}
-#addContent .ui-state-default{ border-bottom:1px solid #d7d7d7;}
-#addContent .ui-accordion-content{padding:0;}
-/* /levin */
-#addContent .lineC h3{height:14px; text-align: left; vertical-align: middle; font-weight:bold; padding: 8px 0 8px 0; color:#000}
-#addContent .lineC h3 img{ margin-right: 8px;}
+#addContent .lineC h2{height:14px; text-align: left; vertical-align: middle; font-weight:bold; padding: 8px 0 8px 0; color:#000}
+#addContent .lineC h2 img{ margin-right: 8px;}
 #addContent .lineC .lineA{ vertical-align: middle; padding-bottom:8px;}
 #addContent .lineC .txt01{ width:40px; text-align: right; padding-right:5px; color:#000}
 #addContent .lineC .txt02{  padding-left:2px; color:#000}
 #addContent .lineC .txt04{ float:left;padding-left: 5px; padding-right: 20px;vertical-align: middle; color:#000}
-/*
 #addContent .lineC .lineA .cBox01{float:left;margin-left:15px;border:1px solid #F0F0EE;}
 #addContent .lineC .lineA .Btn,#addContent .lineC .lineA .BtnM{ width:45px; height:24px;}
-*/
-/*levin*/
-#addContent .lineC{vertical-align: middle; padding-bottom:8px;position: relative;}
-#addContent .lineC span{height:22px;margin:5px auto 0;}
-#addContent .lineC .cBox01{float:left;margin-left:15px;border:1px solid #F0F0EE;}
-#addContent .lineC .Btn,#addContent .lineC .BtnM{ width:45px; height:24px;}
-/* /levin*/
-
+#addContent .lineC .wrapDiv{position: relative;}
 #addContent .lineC .focusPic{margin:0 auto; width:570px;height:14px; text-align: left; vertical-align: middle;font-weight:bold;padding: 8px 0 8px 0; color:#000;}
 #addContent .lineC .focusPic img{ margin-right: 8px;}
 #addContent .lineC .classify{width: auto;height: 20px;	position: absolute; right: 1px;	top: 4px; z-index:10;}
