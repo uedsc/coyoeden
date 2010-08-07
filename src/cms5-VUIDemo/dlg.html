@@ -1,0 +1,539 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta name="description" content="内容摘要">
+<meta name="keywords" content="关键词">
+<meta name="robots" content="all">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>可视化专题编辑器</title>
+<link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
+<link type="text/css" rel="stylesheet" href="css/dlg.css" />
+</head>
+
+<body>
+
+<!--标准头 st-->
+<div id="channelNav" class="area">
+	<!--sas:mt:xhtml:st-->
+	<a href="http://www.sohu.com/" target="_blank"><img src="http://images.sohu.com/uiue/sohu_logo/2005/sohu_logo2.gif" height="22" alt="搜狐网站" border="0" class="left" /></a><a href="http://news.sohu.com/" target="_blank"><img src="http://images.sohu.com/uiue/sohu_logo/2009/cs/news_logo2.gif" height="22" alt="搜狐新闻" border="0" class="left" /></a>
+	<style>#channelNav ul {margin-right:5px;width:auto;clear:none}</style>
+<ul class="right">
+	<li><a href="http://www.sohu.com/">搜狐首页</a></li><li>-</li>
+	<li class="red"><a href="http://news.sohu.com/">新闻</a></li><li>-</li>
+	<li><a href="http://sports.sohu.com/">体育</a></li><li>-</li>
+	<li><a href="http://s.sohu.com/">S</a></li><li>-</li>
+	<li><a href="http://yule.sohu.com/">娱乐</a></li><li>-</li>
+	<li><a href="http://v.sohu.com/">V</a></li><li>-</li>
+	<li class="red"><a href="http://business.sohu.com/">财经</a></li><li>-</li>
+	<li><a href="http://it.sohu.com/">IT</a></li><li>-</li>
+	<li><a href="http://auto.sohu.com/">汽车</a></li><li>-</li>
+	<li><a href="http://house.focus.cn/">房产</a></li><li>-</li>
+	<li><a href="http://women.sohu.com/">女人</a></li><li>-</li>
+	<li><a href="http://tv.sohu.com/">视频</a></li><li>-</li>
+	<li><a href="http://v.blog.sohu.com/">播客</a></li><li>-</li>
+	<li><a href="http://t.sohu.com/">微博</a></li><li>-</li>
+	<li><a href="http://login.mail.sohu.com/">邮件</a></li><li>-</li>
+	<li><a href="http://blog.sohu.com/">博客</a></li><li>-</li>
+	<li><a href="http://club.sohu.com/">BBS</a></li><li>-</li>
+	<li><a href="http://comment2.news.sohu.com/">我说两句</a></li><li>-</li>
+	<li class="end"><a href="http://www.sogou.com/">搜狗</a></li>
+</ul>
+	<!--sas:mt:xhtml:end-->
+</div>
+<!--标准头 end-->
+<!--提示信息 -->
+<div id="delMsg">
+     <div class="titleA"><h1>提示信息</h1><span><div class="close"><a href="#"></a></div></span></div>
+	 <div class="tip"><span class="icon caution"></span><p>是否删除所有选中分栏及其内容？</p><p>注意：删除后无法恢复</p></div>
+	 <div class="btnLine">
+	   <input type="button" class="Btn left"  onmouseover="this.className='Btn BtnM left'" onmouseout="this.className='Btn left'" value="确认" />
+	   <input type="button" class="Btn right"  onmouseover="this.className='Btn BtnM right'" onmouseout="this.className='Btn right'" value="取消" />
+	 </div>
+</div>
+<!--提示信息 结束-->
+<div class="blank40"></div>
+
+<!--图像 -->
+<div id="picMsg">
+     <div class="titleA"><h1>图像</h1><span><div class="close"><a href="#"></a></div></span></div>
+	 
+	 <div class="lineA">
+	   <div class="txt01">宽</div>
+	   <input type="text" value="260" class="ipt01"/>
+	   <div class="txt02">px</div>
+	   <div class="txt02">高</div>
+	   <input type="text" value="130" class="ipt01"/>
+	   <div class="txt02">px</div>
+	   <div class="txt01">边框</div>
+	   <input type="text" value="" class="ipt02"/>
+	   <div class="two"></div>
+	   <a class="editBtn editBtn1" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/up.gif" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/down.gif" /></strong></a>
+	 </div>
+	 
+	 <div class="lineA">
+	 <div class="txt01">换图</div><input type="text" value="" class="ipt03"/><input type="button" class="browse"  value="浏览" />
+     </div>
+	 
+	 <div class="lineA">
+	 <div class="txt01">链接</div><input type="text" value="" class="ipt03"/><select class="selAuto"><option value="txt">新窗口</option></select>
+     </div>
+	 
+	 <div class="lineA fontRed">请输入有效网址！</div>
+	 
+	 <div class="lineA">
+	 <div class="txt01">Title</div><input type="text" value="" class="ipt03"/>
+     </div>
+	 
+	 <div class="btnLine">
+	 <input type="button" class="Btn left"  onmouseover="this.className='Btn BtnM left'" onmouseout="this.className='Btn left'" value="确认" />
+	 <input type="button" class="Btn right"  onmouseover="this.className='Btn BtnM right'" onmouseout="this.className='Btn right'" value="取消" />
+	 </div>
+	 
+</div>
+<!--图像 结束 -->
+<div class="blank40"></div>
+
+<!--文字 -->
+ <div id="fontMsg">
+      <div class="titleA"><h1>文字</h1><span><div class="close"><a href="#"></a></div></span></div>
+	  
+	  <div class="blank8"></div>
+	  
+	  <div class="wline">
+	   <a class="editBtn editBtn1" href="#"><strong><img src="images/w01.gif" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/w02.gif" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/w04.gif" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/w05.gif" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/w06.gif" /></strong></a>
+	   <a class="editBtn2" href="#"><strong><img src="images/w07.gif" /></strong></a>
+	   <div class="two"></div>
+	   <a class="editBtn" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/up.gif" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/down.gif" /></strong></a>
+	 </div>
+	  
+	  <div class="blank8"></div>
+	  <div class="bottom2line"></div>
+	  <div class="lineB"></div>
+	  
+	  <div class="lineA">
+	  <div class="txt01">链接</div><input type="text" value="" class="ipt03"/><select class="selAuto"><option value="txt">新窗口</option></select>
+      </div>
+	  
+	  <div class="lineA fontRed">请输入有效网址！</div>
+	  
+	  <div class="lineA">
+	  <div class="txt01">Title</div><input type="text" value="" class="ipt03" value="与选中文本相同的默认内容" />
+      </div>
+	  
+	  <div class="btnLine">
+	  <input type="button" class="Btn left"  onmouseover="this.className='Btn BtnM left'" onmouseout="this.className='Btn left'" value="确认" />
+	  <input type="button" class="Btn right"  onmouseover="this.className='Btn BtnM right'" onmouseout="this.className='Btn right'" value="取消" />
+	  </div>
+	 
+</div>
+<!--文字 结束-->
+
+
+<div class="blank40"></div>
+
+<!--添加横切 -->
+ <div id="addBlock">
+      <div class="titleA"><h1>添加横切</h1><span><div class="close"><a href="#"></a></div></span></div>
+	  <div class="lineB">
+	       <div class="block01"><a href="#"></a></div>
+		   <div class="block02"><a href="#"></a></div>
+		   <div class="block03"><a href="#"></a></div>
+		   <div class="block04"><a href="#"></a></div>
+		   <div class="block05"><a href="#"></a></div>
+		   <div class="block06"><a href="#"></a></div>
+		   <div class="block07"><a href="#"></a></div>
+		   <div class="block08"><a href="#"></a></div>
+		   <div class="block09"><a href="#"></a></div>
+		   <div class="block10"><a href="#"></a></div>
+	  </div>
+</div>
+<!--添加横切 结束-->
+
+<div class="blank40"></div>
+
+<!--添加内容 -->
+ <div id="addContent">
+      <div class="titleA"><h1>添加内容</h1><span><div class="close"><a href="#"></a></div></span></div>
+	  <div class="lineC">
+	  <h2><img src="images/down01.gif" width="7" height="4" alt="" />空行</h2>
+	     <div class="lineA">
+	     <div class="txt01">高度</div>
+	     <input type="text" value="10" class="ipt01"/>
+	     <div class="txt02">px</div>
+	     <div class="txt01">宽度</div>
+	     <input type="text" value="130" class="ipt01"/>
+	     <div class="txt02">%</div>
+	     <input type="checkbox" name="check" value="1" class="cBox01"/>
+		 <div class="txt04">带有垂直居中的分割线</div>
+		 <input type="button" class="Btn left"  onmouseover="this.className='Btn BtnM left'" onmouseout="this.className='Btn left'" value="确定" />
+		 </div>
+	  </div>
+<!--1-->	  
+      <div class="lineC tLine">
+	    <div class="wrapDiv"> 
+		   <div class="focusPic"><img src="images/right01.gif" width="4" height="7" alt="" />焦点图</div>
+		   <div class="classify">
+		        <ul>
+			    <li class="now"><a href="">分类01</a></li>
+			    <li><a href="">分类02</a></li>
+			    <li><a href="">分类03</a></li>
+			    <li><a href="">分类04</a></li>
+			    <li><a href="">分类05</a></li>
+				<li><a href="">分类04</a></li>
+			    <li><a href="">分类05</a></li>
+			    </ul>
+		   </div>
+		   <div class="wrap01">
+		      <div class="left"><img src="images/lbtn01.gif" width="22" height="30" alt="" /></div>
+		      <div class="center">
+			     <ul>
+                 <li><a href="#" target="_blank"><img src="images/pic146x101_1.jpg" width="146" height="101" alt="" /></a><span>焦点图形式说明标题</span></li>
+                 <li><a href="#" target="_blank"><img src="images/pic146x101_2.jpg" width="146" height="101" alt="" /></a><span>焦点图形式说明标题</span></li>
+				 <li><a href="#" target="_blank"><img src="images/pic146x101_3.jpg" width="146" height="101" alt="" /></a><span>焦点图形式说明标题</span></li>
+				 </ul>
+              </div>
+			 <div class="right"><input type="button" class="r1btn"  onmouseover="this.className='r1btn r1btnM'" onmouseout="this.className='r1btn'" value="" /></div>
+			 <div class="rollDot">
+			    <a id="a_movie_0" class="currA" onclick="" target="_self" href="javascript://">1</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">2</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">3</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">4</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">5</a>
+			 </div>
+		   </div>
+		</div>
+		
+	     
+		 
+	  </div>
+
+<!--1 over-->
+
+<!--2-->
+<div class="lineC tLine">
+	    <div class="wrapDiv"> 
+		   <div class="focusPic"><img src="images/right01.gif" width="4" height="7" alt="" />图片</div>
+		   <div class="classify">
+		        <ul>
+			    <li class="now"><a href="">分类01</a></li>
+			    <li><a href="">分类02</a></li>
+			    <li><a href="">分类03</a></li>
+			    <li><a href="">分类04</a></li>
+			    <li><a href="">分类05</a></li>
+				<li><a href="">分类04</a></li>
+			    <li><a href="">分类05</a></li>
+			    </ul>
+		   </div>
+		   <div class="wrap02">
+		      <div class="left"><input type="button" class="l1btn"  onmouseover="this.className='l1btn l1btnM'" onmouseout="this.className='l1btn'" value="" /></div>
+		      <div class="center">
+			     <ul>
+                 <li><a href="#" target="_blank"><em class="middle"></em><img src="images/pic98x103_1.jpg" width="98" height="103" alt="" /></a><span>焦点图形式说明标题</span></li>
+                 <li><a href="#" target="_blank"><em class="middle"></em><img src="images/pic98x40_1.jpg" width="98" height="40" alt="" /></a><span>焦点图形式说明标题</span></li>
+				 <li><a href="#" target="_blank"><em class="middle"></em><img src="images/pic98x40_2.jpg" width="98" height="40" alt="" /></a><span>焦点图形式说明标题</span></li>
+                 <li><a href="#" target="_blank"><em class="middle"></em><img src="images/pic98x53_1.jpg" width="98" height="53" alt="" /></a><span>焦点图形式说明标题</span></li>
+				 </ul>
+              </div>
+			 <div class="right"><img src="images/rbtn01.gif" width="22" height="30" alt="" /></div>
+			 <div class="rollDot">
+			    <a id="a_movie_0" class="currA" onclick="" target="_self" href="javascript://">1</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">2</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">3</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">4</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">5</a>
+			 </div>
+		   </div>
+		</div>
+		
+	     
+		 
+	  </div>
+	  
+<!--2 over-->
+	  
+<!--3-->
+<div class="lineC tLine">
+	    <div class="wrapDiv"> 
+		   <div class="focusPic"><img src="images/right01.gif" width="4" height="7" alt="" />文本</div>
+		   <div class="classify">
+		        <ul>
+			    <li class="now"><a href="">分类01</a></li>
+			    <li><a href="">分类02</a></li>
+			    <li><a href="">分类03</a></li>
+			    <li><a href="">分类04</a></li>
+			    <li><a href="">分类05</a></li>
+				<li><a href="">分类04</a></li>
+			    <li><a href="">分类05</a></li>
+			    </ul>
+		   </div>
+		   <div class="wrap02">
+		      <div class="left"><input type="button" class="l1btn"  onmouseover="this.className='l1btn l1btnM'" onmouseout="this.className='l1btn'" value="" /></div>
+		      <div class="center">
+			     <ul>
+                 <li><a href="#" target="_blank"><em class="middle"></em><img src="images/pic98x39_1.jpg" width="98" height="39" alt="" /></a><span>焦点图形式说明标题</span></li>
+                 <li><a href="#" target="_blank"><em class="middle"></em><img src="images/pic98x40_3.jpg" width="98" height="40" alt="" /></a><span>焦点图形式说明标题</span></li>
+				 
+				 </ul>
+              </div>
+			 <div class="right"><img src="images/rbtn01.gif" width="22" height="30" alt="" /></div>
+			 <div class="rollDot">
+			    <a id="a_movie_0" class="currA" onclick="" target="_self" href="javascript://">1</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">2</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">3</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">4</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">5</a>
+			 </div>
+		   </div>
+		</div>
+		
+	     
+		 
+	  </div>
+	  
+<!--3 over-->
+</div>
+<!--添加内容 结束-->
+
+<div class="blank40"></div>
+
+
+<!--更换风格 -->
+
+ <div id="changeStyle">
+      <div class="titleA"><h1>更换风格</h1><span><div class="close"><a href="#"></a></div></span></div>
+	  
+<!--1-->	  
+      <div class="lineC tLine">
+	    <div class="wrapDiv"> 
+		   <div class="focusPic"><img src="images/right01.gif" width="4" height="7" alt="" />常用专题风格</div>
+		   <div class="classify">
+		        <ul>
+			    <li class="now"><a href="">分类01</a></li>
+			    <li><a href="">分类02</a></li>
+			    <li><a href="">分类03</a></li>
+			    <li><a href="">分类04</a></li>
+			    </ul>
+		   </div>
+		   <div class="wrap01">
+		      <div class="left"><img src="images/lbtn01.gif" width="22" height="30" alt="" /></div>
+		      <div class="center">
+			     <ul>
+                 <li><a href="#" target="_blank"><img src="images/pic146x151_1.jpg" width="146" height="151" alt="" /></a><span>焦点图形式说明标题</span></li>
+                 <li><a href="#" target="_blank"><img src="images/pic146x151_1.jpg" width="146" height="151" alt="" /></a><span>焦点图形式说明标题</span></li>
+				 <li><a href="#" target="_blank"><img src="images/pic146x151_1.jpg" width="146" height="151" alt="" /></a><span>焦点图形式说明标题</span></li>
+				 </ul>
+              </div>
+			 <div class="right"><input type="button" class="r1btn"  onmouseover="this.className='r1btn r1btnM'" onmouseout="this.className='r1btn'" value="" /></div>
+			 <div class="rollDot">
+			    <a id="a_movie_0" class="currA" onclick="" target="_self" href="javascript://">1</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">2</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">3</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">4</a>
+				<a id="a_movie_0" onclick="" target="_self" href="javascript://">5</a>
+			 </div>
+		   </div>
+		</div>
+		
+	     
+		 
+	  </div>
+
+<!--1 over-->
+
+
+</div>
+<!--更换风格 over-->
+<div class="blank40"></div>
+
+
+
+<!--专题发布-->
+<div id="spPub">
+    <div class="titleA"><h1>专题发布</h1><span><div class="close"><a href="#"></a></div></span></div>
+	<div class="lineA">
+	 <div class="txt01">状态：</div><select class="selAuto"><option value="txt">连接</option></select>
+     </div>
+	
+	<div class="lineA">
+	 <div class="txt01">权重：</div><input type="text" value="" class="ipt01"/>
+     </div>
+	 <div class="blank8"></div>
+	<div class="btnLine">
+	 <input type="button" class="Btn left"  onmouseover="this.className='Btn BtnM left'" onmouseout="this.className='Btn left'" value="确认" />
+	 <input type="button" class="Btn right"  onmouseover="this.className='Btn BtnM right'" onmouseout="this.className='Btn right'" value="取消" />
+	 </div>
+	
+</div>
+
+<!--专题发布 over-->
+<div class="blank40"></div>
+
+<!--页面属性-->
+<div id="pagePro">
+    <div class="titleA"><h1>页面属性</h1><span><div class="close"><a href="#"></a></div></span></div>
+	
+	 <div class="lineA">
+	 <div class="txt01">title</div><input type="text" value="" class="ipt01"/>
+     </div>
+	 
+	 <div class="linep fontRed">请输入有效网址！</div>
+	 
+	 <div class="lineA">
+	 <div class="txt01">keywords</div><input type="text" value="" class="ipt01"/>
+     </div>
+	 
+	 <div class="lineA h60">
+	 <div class="txt01">description</div><input type="textarea" value="" class="area01"/>
+     </div>
+	 
+	 <div class="btnLine">
+	 <input type="button" class="Btn left"  onmouseover="this.className='Btn BtnM left'" onmouseout="this.className='Btn left'" value="确认" />
+	 <input type="button" class="Btn right"  onmouseover="this.className='Btn BtnM right'" onmouseout="this.className='Btn right'" value="取消" />
+	 </div>
+	
+</div>
+
+<!--页面属性 over-->
+
+<div class="blank40"></div>
+<!--自动列表-->
+<div id="autoList">
+    <div class="titleA"><h1>自动列表</h1><span><div class="close"><a href="#"></a></div></span></div>
+	
+	<div class="lineA">
+	 <div class="txt01">列表类型</div><select class="selAuto"><option value="txt">文字列表</option></select>
+     </div>
+	
+	<div class="lineA">
+	 <div class="txt01">显示条数</div><input type="text" value="" class="ipt01"/>
+     </div>
+	 <div class="bottom1line"></div>
+	 <div class="lineA">
+	 <div class="txt01">引用实体</div><input type="text" value="" class="ipt01"/>
+     </div>
+	 
+	 <div class="lineA">
+	 <div class="txt01">新闻类型</div><select class="selAuto"><option value="txt">全部</option></select>
+     </div>
+	 
+	 <div class="lineA">
+	 <div class="txt01">排序方式</div><select class="selAuto"><option value="txt">按时间排序</option></select>
+     </div>
+	 
+	 <div class="lineA">
+	 <div class="txt01">新闻权重</div><select class="selAuto1"><option value="txt">3类</option></select><div class="txt02">—</div><select class="selAuto1"><option value="txt">5类</option></select>
+     </div>
+	 
+	 <div class="bottom1line"></div>
+	 
+	 <div class="lineA">
+	 <div class="txt01">输出格式</div><select class="selAuto"><option value="txt">·新闻标题（月/日 分:秒）</option></select>
+     </div>
+	 
+</div>
+
+<!--自动列表 over-->
+
+<div class="blank40"></div>
+<!--栏目头-->
+<div id="colHead">
+     <div class="titleA"><h1>栏目头</h1><span><div class="close"><a href="#"></a></div></span></div>
+		<div class="blank8"></div>
+	 <div class="lineA">
+	 <div class="txt01">背景</div><input type="text" value="" class="ipt03"/><input type="button" class="browse"  value="浏览" />
+     </div>
+	
+	
+      <div class="blank8"></div>
+	  <div class="bottom3line"></div>
+	  <div class="blank8"></div>
+	  
+	  <div class="wline">
+	   <a class="editBtn editBtn1" href="#"><strong><img src="images/w01.gif" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/w02.gif" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/w04.gif" /></strong></a>
+	   <a class="editBtn editBtn2" href="#"><strong><img src="images/w05.gif" /></strong></a>
+	   <a class="editBtn" href="#"><strong><img src="images/w06.gif" /></strong></a>
+       <input type="checkbox" name="check" value="1" class="cBox03" />
+	   <div class="txt05">更多</div>
+	 </div>
+
+	  <div class="blank8"></div>
+	  <div class="bottom3line"></div>
+
+	  <div class="lineA">
+	  <div class="txt01">链接</div><input type="text" value="" class="ipt03"/><select class="selAuto"><option value="txt">新窗口</option></select>
+      </div>
+	  
+	  <div class="lineA fontRed">请输入有效网址！</div>
+	  
+	  <div class="lineA">
+	  <div class="txt01">Title</div><input type="text" value="" class="ipt03" value="与选中文本相同的默认内容" />
+      </div>
+	  
+	  <div class="btnLine">
+	  <input type="button" class="Btn left"  onmouseover="this.className='Btn BtnM left'" onmouseout="this.className='Btn left'" value="确认" />
+	  <input type="button" class="Btn right"  onmouseover="this.className='Btn BtnM right'" onmouseout="this.className='Btn right'" value="取消" />
+	  </div>
+</div>
+
+<!--栏目头 over-->
+
+
+<div class="blank40"></div>
+<!--横切-->
+<div id="ctroBlock">
+    <div class="titleA"><h1>横切</h1><span><div class="close"><a href="#"></a></div></span></div>
+	<div class="ctroArea">
+	
+	<a class="ctroBtn" href="#"><strong><img src="images/hq.gif" /></strong></a>
+	<a class="ctroBtn" href="#"><strong><img src="images/jhq.gif" /></strong></a>
+	<a class="ctroBtn" href="#"><strong><img src="images/bj.gif" /></strong></a>
+	<a class="ctroBtn" href="#"><strong><img src="images/sy.gif" /></strong></a>
+	<a class="ctroBtn" href="#"><strong><img src="images/xy.gif" /></strong></a>
+	
+	</div>
+</div>
+
+<!--横切 over-->
+
+
+<!--右侧隐藏-->
+<div id="hidBlock">
+    
+	<div class="left">
+	 <ul>
+	 <li><a class="editBtn4" href="#"><strong>更换风格</strong></a></li>
+	 <li><a class="editBtn4" href="#"><strong>页面属性</strong></a></li>
+	 <li><a class="editBtn4" href="#"><strong>预览</strong></a></li>
+	 <li><a class="editBtn4" href="#"><strong>发布</strong></a></li>
+	 <li><a class="editBtn4" href="#"><strong>帮助</strong></a></li>
+	 </ul>
+	</div>
+	
+	<div class="right ctr">
+	</div>
+	
+	
+</div>
+
+<!--右侧隐藏 over-->
+
+
+</body>
+</html>

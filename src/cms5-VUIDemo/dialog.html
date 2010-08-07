@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>可视化专题-弹框</title>
+		<link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
+		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link>
+		<link rel="stylesheet" type="text/css" href="css/dialog.css"></link> 
+		<script src="js/jquery-1.4.2.js" type="text/javascript"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/jqModal.js"></script> 
+		<script type="text/javascript" src="js/sohu.diyDialog.js"></script>
+	</head>
+	<body>
+		<div id="main" class="area" style="height:600px;border:2px solid #eee;">
+			<button onclick="sohu.diyDialog.Show('#delMsg',{title:'提示信息',onOK:function(dlg,opts){alert('确认');}})">提示</button>
+			<button onclick="sohu.diyDialog.Show('#picMsg',{title:'图像',beforeShow:function(hash,dlg){alert('beforeShow');return true;},afterShow:function(hash,dlg){alert('afterShow');}})">图像</button>
+			<button onclick="sohu.diyDialog.Show('#txtMsg',{title:'文字'})">文字</button>
+			<button onclick="sohu.diyDialog.Show('#addBlock',{title:'添加横切',hideActions:true})">添加横切</button>
+			<hr/>		
+		</div>
+
+		<!--Dialog layout-->
+		<div id="jqmWin1" class="jqmWindow">
+			<div class="hd clear">
+	            <h4 class="title">...</h4>
+				<a href="#" class="jqmClose"></a>
+				<span class="draghdl"></span>
+	        </div>
+			<div class="ct">
+				
+			</div>
+			<div class="acts">
+				<div class="btnWrap clear">
+					<a class="btn jqmOk l" title="确定" href="#"><span>确定</span></a>
+					<a class="btn jqmClose r" title="取消" href="#"><span>取消</span></a>					
+				</div>
+			</div>	
+		</div>
+		<!--/Dialog layout-->
+		
+		<!--Dialog content-->
+		<div id="dialogList">
+			<div id="delMsg" class="jqmCT">		
+				 <div class="tip">
+				 	<span class="icon caution"></span>
+					<div class="txt">
+						<p>是否删除所有选中分栏及其内容？</p>
+						<p>注意：删除后无法恢复</p>
+					</div>
+				</div>
+			</div>
+			<!--图像 -->
+			<div id="picMsg" class="jqmCT">
+				 <div class="lineA">
+				   <div class="txt01">宽</div>
+				   <input id="picW" type="text" value="260" class="ipt01" name="picW"/>
+				   <div class="txt02">px</div>
+				   <div class="txt02">高</div>
+				   <input id="picH" type="text" value="130" class="ipt01" name="picH"/>
+				   <div class="txt02">px</div>
+				   <div class="txt01">边框</div>
+				   <input id="picBColor" type="text" value="" class="ipt02" name="picBColor"/>
+				   <div class="two"></div>
+				   <a class="editBtn editBtn1 elmAdd" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+				   <a class="editBtn elmDel" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+				   <a class="editBtn elmMove0" href="#"><strong><img src="images/up.gif" /></strong></a>
+				   <a class="editBtn elmMove1" href="#"><strong><img src="images/down.gif" /></strong></a>
+				 </div>
+				 <div class="lineA">
+				 	<div class="txt01">换图</div>
+					<input type="text" value="" class="ipt03" id="picSrc" name="picSrc"/>
+					<input type="button" class="browse"  value="浏览" id="picSwitch"/>
+			     </div>
+				 <div class="lineA">
+				 	<div class="txt01">链接</div>
+				 	<input type="text" value="" class="ipt03" id="picLink" name="picLink"/>
+					<select id="picTarget" class="selAuto" name="picTarget">
+						<option value="_blank" selected="selected">新窗口</option>
+						<option value="_self">本窗口</option>
+					</select>
+			     </div>
+				 <div class="lineA fontRed tipPicLink">请输入有效网址！</div>
+				 <div class="lineA">
+				 	<div class="txt01">Title</div>
+					<input type="text" value="" class="ipt03" name="picTitle" id="picTitle"/>
+			     </div>
+			</div>			
+			<!--文字 -->
+			 <div id="txtMsg" class="jqmCT">
+				  <div class="blank8"></div>
+				  <div class="wline">
+				   <a class="editBtn editBtn1 cmdBold" href="#"><strong><img src="images/w01.gif" /></strong></a>
+				   <a class="editBtn cmdUdl" href="#"><strong><img src="images/w02.gif" /></strong></a>
+				   <a class="editBtn cmdColor" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
+				   <a class="editBtn cmdAL" href="#"><strong><img src="images/w04.gif" /></strong></a>
+				   <a class="editBtn cmdAC" href="#"><strong><img src="images/w05.gif" /></strong></a>
+				   <a class="editBtn cmdAR" href="#"><strong><img src="images/w06.gif" /></strong></a>
+				   <a class="editBtn2 cmdVideo" href="#"><strong><img src="images/w07.gif" /></strong></a>
+				   <div class="two"></div>
+				   <a class="editBtn elmAdd" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+				   <a class="editBtn elmDel" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+				   <a class="editBtn elmMove0" href="#"><strong><img src="images/up.gif" /></strong></a>
+				   <a class="editBtn elmMove1" href="#"><strong><img src="images/down.gif" /></strong></a>
+				 </div>
+				  <div class="blank8"></div>
+				  <div class="bottom2line"></div>
+				  <div class="lineB"></div>
+				  <div class="lineA">
+				  	<div class="txt01">链接</div>
+					<input id="txtALink" name="txtALink" type="text" value="" class="ipt03"/>
+					<select id="txtATarget" name="txtATarget" class="selAuto">
+						<option value="_blank" selected="selected">新窗口</option>
+						<option value="_self">本窗口</option>
+					</select>
+			      </div>
+				  <div class="lineA fontRed tipTxtLink">请输入有效网址！</div>
+				  <div class="lineA">
+				 	 <div class="txt01">Title</div>
+					 <input id="txtATitle" name="txtATitle" type="text" value="" class="ipt03" value="与选中文本相同的默认内容" />
+			      </div>
+			</div>
+			<!--文字 结束-->
+			<!--添加横切 -->
+			 <div id="addBlock" class="jqmCT">
+				  <div class="lineB">
+				       <div class="block01"><a id="w0" href="#"></a></div>
+					   <div class="block02"><a id="w470_470" href="#"></a></div>
+					   <div class="block03"><a id="w270_670" href="#"></a></div>
+					   <div class="block04"><a id="w670_270" href="#"></a></div>
+					   <div class="block05"><a id="w430_510" href="#"></a></div>
+					   <div class="block06"><a id="w510_430" href="#"></a></div>
+					   <div class="block07"><a id="w190_270_470" href="#"></a></div>
+					   <div class="block08"><a id="w470_270_190" href="#"></a></div>
+					   <div class="block09"><a id="w310_390_230" href="#"></a></div>
+					   <div class="block10"><a id="w270_390_270" href="#"></a></div>
+				  </div>
+			</div>
+			<!--添加横切 结束-->		
+		</div>
+	</body>
+	<script type="text/javascript">
+	//<![CDATA[
+	sohu.diyDialog.Init({});
+	//]]>
+	</script>
+ 
+</html>
