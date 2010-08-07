@@ -247,59 +247,8 @@
 			<div id="pageTip"></div>
 			<!-- content temp wrapper临时存放编辑内容的容器 -->
 			<div id="ctWrap"></div>
-			<!--横切背景对话框-->
-			<div id="wAreaBG" class="skform skformx">
-				<label>背景图<span class="small tip tipAreaBG">请输图片网址</span></label>
-				<div class="field">
-					<input type="text" size="36" id="txtAreaBG" name="areaBG"/>
-					<button id="btnAreaBGBrowse" onclick="alert('hi');">浏览</button>
-				</div>
-				<label>对齐方式</label>
-				<div class="field">
-					<input type="radio" name="areaBGAlign" value="center" checked="checked" /><span>居中</span>
-					<input type="radio" name="areaBGAlign" value="left"/><span>靠左</span>
-					<input type="radio" name="areaBGAlign" value="right"/><span>靠右</span>	
-				</div>
-				<label>平铺方式</label>
-				<div class="field">
-					<input type="radio" name="areaBGRepeat" value="repeat"/><span>平铺</span>
-					<input type="radio" name="areaBGRepeat" value="no-repeat" checked="checked" /><span>不平铺</span>
-					<input type="radio" name="areaBGRepeat" value="repeat-x"/><span>横平铺</span>
-					<input type="radio" name="areaBGRepeat" value="repeat-y"/><span>纵平铺</span>
-				</div>
-				<label>横切ID<span class="small tip tipAreaID">字母、数字及下划线组成</span></label>
-				<input type="text" class="field" id="txtAreaID" name="areaID"/>
-                <div class="spacer"></div>				
-			</div>
-			<!--页面背景-->
-			<div id="wPageBG" class="skform skformx">
-				<label>背景图<span class="small tip tipPageBG">请输图片网址</span></label>
-				<div class="field">
-					<input type="text" size="36" id="txtPageBG" name="pageBG"/>
-					<button id="btnPageBGBrowse" onclick="alert('hi');">浏览</button>
-				</div>
-				<label>对齐方式</label>
-				<div class="field">
-					<input type="radio" name="pageBGAlign" value="center center" checked="checked" /><span>居中</span>
-					<input type="radio" name="pageBGAlign" value="left center"/><span>靠左</span>
-					<input type="radio" name="pageBGAlign" value="right center"/><span>靠右</span>	
-				</div>
-				<label>平铺方式</label>
-				<div class="field">
-					<input type="radio" name="pageBGRepeat" value="repeat"/><span>平铺</span>
-					<input type="radio" name="pageBGRepeat" value="no-repeat" checked="checked" /><span>不平铺</span>
-					<input type="radio" name="pageBGRepeat" value="repeat-x"/><span>横平铺</span>
-					<input type="radio" name="pageBGRepeat" value="repeat-y"/><span>纵平铺</span>
-				</div>
-				<label>背景高度<span class="small tip tipPageBGH">px</span></label>
-				<input type="text" id="txtPageBGH" name="pageBGH" class="field"/>
-				<label>背景色<span class="small tip tipPageBGC">页面背景色</span></label>
-				<div class="field">
-					<input type="text" size="36" id="txtPageBGC" name="pageBGC" readonly="readonly"/>
-				</div>
-				<div class="cpk"></div>
-                <div class="spacer"></div>				
-			</div>			
+
+					
 			<!--分栏设置对话框-->
 			<div id="wCfgSec" class="skform skformx">
 				<label>背景图<span class="small tip tipSecBG">请输图片网址</span></label>
@@ -447,7 +396,7 @@
 			<!--文字 结束-->
 			<!--添加横切 -->
 			 <div id="addBlock" class="jqmCT">
-				  <div class="lineB">
+				  <div class="lineB clear">
 				       <div class="block01"><a id="w0" href="#"></a></div>
 					   <div class="block02"><a id="w470_470" href="#"></a></div>
 					   <div class="block03"><a id="w270_670" href="#"></a></div>
@@ -460,7 +409,62 @@
 					   <div class="block10"><a id="w270_390_270" href="#"></a></div>
 				  </div>
 			</div>
-			<!--添加横切 结束-->		
+			<!--添加横切 结束-->
+			<!--横切设置-->
+			<div id="cfgArea" class="skform skformx">
+				<label>背景图<span class="small tip tipAreaBG">请输图片网址</span></label>
+				<div class="field">
+					<input type="text" size="25" id="txtAreaBG" name="areaBG"/>
+					<button id="btnAreaBGBrowse" onclick="alert('hi');">浏览</button>
+				</div>
+				<label>对齐方式</label>
+				<div class="field">
+					<input type="radio" name="areaBGAlign" value="center" checked="checked" /><span>居中</span>
+					<input type="radio" name="areaBGAlign" value="left"/><span>靠左</span>
+					<input type="radio" name="areaBGAlign" value="right"/><span>靠右</span>	
+				</div>
+				<label>平铺方式</label>
+				<div class="field">
+					<input type="radio" name="areaBGRepeat" value="repeat"/><span>平铺</span>
+					<input type="radio" name="areaBGRepeat" value="no-repeat" checked="checked" /><span>不平铺</span>
+					<input type="radio" name="areaBGRepeat" value="repeat-x"/><span>横平铺</span>
+					<input type="radio" name="areaBGRepeat" value="repeat-y"/><span>纵平铺</span>
+				</div>
+				<label>横切ID<span class="small tip tipAreaID">字母、数字及下划线组成</span></label>
+				<input type="text" class="field" id="txtAreaID" name="areaID"/>
+                <div class="spacer"></div>				
+			</div>
+			<!--/横切设置-->		
+			<!--页面背景-->
+			<div id="cfgPage" class="skform skformx">
+				<label>背景图<span class="small tip tipPageBG">请输图片网址</span></label>
+				<div class="field">
+					<input type="text" size="25" id="txtPageBG" name="pageBG"/>
+					<button id="btnPageBGBrowse" onclick="alert('hi');">浏览</button>
+				</div>
+				<label>对齐方式</label>
+				<div class="field">
+					<input type="radio" name="pageBGAlign" value="center center" checked="checked" /><span>居中</span>
+					<input type="radio" name="pageBGAlign" value="left center"/><span>靠左</span>
+					<input type="radio" name="pageBGAlign" value="right center"/><span>靠右</span>	
+				</div>
+				<label>平铺方式</label>
+				<div class="field">
+					<input type="radio" name="pageBGRepeat" value="repeat"/><span>平铺</span>
+					<input type="radio" name="pageBGRepeat" value="no-repeat" checked="checked" /><span>不平铺</span>
+					<input type="radio" name="pageBGRepeat" value="repeat-x"/><span>横平铺</span>
+					<input type="radio" name="pageBGRepeat" value="repeat-y"/><span>纵平铺</span>
+				</div>
+				<label>背景高度<span class="small tip tipPageBGH">px</span></label>
+				<input type="text" id="txtPageBGH" name="pageBGH" class="field"/>
+				<label>背景色<span class="small tip tipPageBGC">页面背景色</span></label>
+				<div class="field">
+					<input type="text" size="25" id="txtPageBGC" name="pageBGC" readonly="readonly"/>
+				</div>
+				<div class="cpk"></div>
+                <div class="spacer"></div>				
+			</div>	
+			<!--/页面背景-->
 		</div>
 		<!--横切工具条-->
 		<div id="areaTools">
@@ -472,8 +476,8 @@
 				<a id="lnkAreaAdd" class="ctroBtn" href="#"><strong><img src="images/hq.gif" /></strong></a>
 				<a id="lnkAreaDel" class="ctroBtn" href="#"><strong><img src="images/jhq.gif" /></strong></a>
 				<a id="lnkAreaBG" class="ctroBtn" href="#"><strong><img src="images/bj.gif" /></strong></a>
-				<a id="lnkAreaDown" class="ctroBtn" href="#"><strong><img src="images/sy.gif" /></strong></a>
-				<a id="lnkAreaUp" class="ctroBtn" href="#"><strong><img src="images/xy.gif" /></strong></a>
+				<a id="lnkAreaUp" class="ctroBtn" href="#"><strong><img src="images/sy.gif" /></strong></a>
+				<a id="lnkAreaDown" class="ctroBtn" href="#"><strong><img src="images/xy.gif" /></strong></a>
 				<a id="lnkPageBG" class="ctroBtn" href="#">页面背景</a>
 			</div>
 		</div>

@@ -117,6 +117,8 @@ sohu.diyDialog=function(){
 		//注册弹框实体
 		sohu.diyDialog.Register("addBlock",new sohu.diyDialog.Area(p.dlg));
 		sohu.diyDialog.Register("areaTools",new sohu.diyDialog.AreaTool(p.dlg));
+		sohu.diyDialog.Register("cfgArea",new sohu.diyDialog.CfgArea(p.dlg));
+		sohu.diyDialog.Register("cfgPage",new sohu.diyDialog.CfgPage(p.dlg));
 	};
 	/**
 	 * Show a dialog.
@@ -198,10 +200,211 @@ sohu.diyDialog.Area=function(dlg){
  * @param {Object} dlg
  */
 sohu.diyDialog.CfgArea=function(dlg){
-	var p={},pub={};
+	var _this=this;
+	var p={};
 	//DOM引用
+	this.$Layout=$("#cfgArea");
 	
-	return pub;
+	//私有变量÷函数
+	p._fm={
+		txtBG:$("#txtAreaBG"),
+		txtID:$("#txtAreaID"),
+		rbtnBGAlign:this.$Layout.find("input[name='areaBGAlign']"),
+		rbtnBGRepeat:this.$Layout.find("input[name='areaBGRepeat']"),
+		tipBG:this.$Layout.find(".tipAreaBG"),
+		tipID:this.$Layout.find("tipAreaID"),
+		reset:function(){this.$Layout.find("*").removeClass("alert").end().find(":text").val("");}
+	};
+	//事件处理
+	p.onOK=function(dlg0,cls){
+		cls=cls||true;
+		//bg image
+		var url=p._fm.txtBG.val();
+		if((url!="")&&(!StringUtils.isUrl(url))){
+			p._fm.txtBG.addClass("alert").select();
+			p._fm.tipBG.addClass("alert");
+			return false;
+		};
+		if(url==""){
+			//sohu.diyConsole.CurArea.$Layout.css("background-image","none");
+		}else{
+			sohu.diyConsole.CurArea.$Layout.css("background-image","url('"+url+"')");
+			//bg position
+			var al=p._fm.rbtnBGAlign.curVal;
+			al=al=="center"?al:al+" top";
+			sohu.diyConsole.CurArea.$Layout.css("background-position",al);
+			//bg repeat
+			var rp=p._fm.rbtnBGRepeat.curVal;
+			sohu.diyConsole.CurArea.$Layout.css("background-repeat",rp);
+		};
+		//area id
+		var id=p._fm.txtID.val();
+		if(!sohu.diyConsole.IsValidID(id)){
+			p._fm.txtID.addClass("alert");
+			p._fm.tipID.addClass("alert");
+			return false;
+		};
+		var isIDOK=sohu.diyConsole.CurArea.UpdateID(id);
+		
+		if(cls&&isIDOK)
+			dlg0.Hide();
+	};
+	p.afterShow=function(hash,dlg0){
+		//bg img
+		var img=sohu.diyConsole.CurArea.$Layout.css("background-image");
+		img=img.replace('url("',"").replace('")',"");
+		img=img=="none"?"":img;
+		p._fm.txtBG.val(img).select();
+		//area id
+		p._fm.txtID.val(sohu.diyConsole.CurArea.ID);
+	};
+	p.afterHide=function(hash,dlg0){
+		p._fm.reset();
+	};
+	p.preview=function(){
+		p.onOK(null,null,false);
+	};
+	//事件注册
+	p._fm.rbtnBGAlign.click(function(evt){
+		p._fm.rbtnBGAlign.curVal=this.value;
+		p.preview();
+	});
+	p._fm.rbtnBGRepeat.click(function(evt){
+		p._fm.rbtnBGRepeat.curVal=this.value;
+		p.preview();
+	});		
+	p._fm.rbtnBGAlign.curVal="center";
+	p._fm.rbtnBGRepeat.curVal="no-repeat";
+	//事件注册
+	
+	this.$Layout.jqmOpts={
+		afterShow:p.afterShow,
+		afterHide:p.afterHide,
+		onOK:p.onOK
+	};
+};
+/**
+ * 页面设置弹框
+ * @param {Object} dlg
+ */
+sohu.diyDialog.CfgPage=function(dlg){
+	var _this=this;
+	var p={};
+	//DOM引用
+	this.$Layout=$("#cfgPage");
+	
+	//私有变量÷函数
+	p._fm={
+		txtBG:$("#txtPageBG"),
+		txtBGH:$("#txtPageBGH"),
+		rbtnBGAlign:this.$Layout.find("input[name='pageBGAlign']"),
+		rbtnBGRepeat:this.$Layout.find("input[name='pageBGRepeat']"),
+		tipBG:this.$Layout.find(".tipPageBG"),
+		tipBGH:this.$Layout.find(".tipPageBGH"),
+		txtBGC:$("#txtPageBGC"),
+		cpk:this.$Layout.find(".cpk"),
+		reset:function(){this.$Layout.find("*").removeClass("alert").end().find(":text").val("");}
+	};
+	//事件处理
+	p.onOK=function(dlg0,cls){
+		cls=cls||true;
+		var url=p._fm.txtBG.val();
+		if((url!="")&&(!StringUtils.isUrl(url))){
+			p._fm.txtBG.addClass("alert").select();
+			p._fm.tipBG.addClass("alert");
+			return false;
+		};
+		var h=p._fm.txtBGH.val();
+		if((!StringUtils.isPlusInt(h))||(h=parseInt(h))<1){
+			p._fm.txtBGH.addClass("alert").select();
+			p._fm.tipBGH.addClass("alert");
+			return false;
+		};
+		
+		if(url==""){
+			sohu.diyConsole.$BodyBGA.css("background-image","none");
+		}else{
+			sohu.diyConsole.$BodyBGA.css("background-image","url('"+url+"')");
+		};
+		var al=p._fm.rbtnBGAlign.curVal;
+		sohu.diyConsole.$BodyBGA.css("background-position",al);
+		
+		var rp=p._fm.rbtnBGRepeat.curVal;
+		sohu.diyConsole.$BodyBGA.css("background-repeat",rp);
+		
+		sohu.diyConsole.$BodyBGA.css("height",h);
+		
+		if(cls&&isIDOK)
+			dlg0.Hide();
+	};
+	p.afterShow=function(hash,dlg0){
+		//背景图
+		var img=sohu.diyConsole.$BodyBGA.css("background-image");
+		img=img=="none"?"":img;
+		img=img.replace('url("',"").replace('")',"");
+		p._fm.txtBG.val(img).select();
+		//高度
+		var h=sohu.diyConsole.$BodyBGA.css("height");
+		h=parseInt(h);
+		p._fm.txtBGH.val(h);
+		//对齐方式
+		var bg_p=sohu.diyConsole.$BodyBGA.css("backgroundPosition");
+		bg_p=bg_p=="0% 0%"?"center center":bg_p;
+		var bg_a=sohu.diyConsole.$BodyBGA.css("backgroundRepeat");
+		p._fm.rbtnBGAlign.filter("[value='"+bg_p+"']").trigger("click");
+		//平铺方式
+		p._fm.rbtnBGRepeat.filter("[value='"+bg_a+"']").trigger("click");
+		//背景色
+		p._fm.txtBGC.css("backgroundColor",$("body").css("backgroundColor"));
+	};
+	p.afterHide=function(hash,dlg0){
+		p._fm.reset();
+	};
+	p.preview=function(){
+		p.onOK(null,null,false);
+	};
+	//事件注册
+	p._fm.cpk.ColorPicker({
+		flat:true,
+		color:"#ffffff",
+		onChange:function(hsb,hex,rgb){
+			var c="#"+hex;
+			p._fm.txtBGC.css("backgroundColor",c).attr("title",c);
+			$("body").css("backgroundColor",c);
+		},
+		onSubmit:function(hsb,hex,rgb){
+			$("body").css("backgroundColor","#"+hex);
+			p._fm.cpk.hide();
+		}
+	});
+	p._fm.rbtnBGAlign.click(function(evt){
+		p._fm.rbtnBGAlign.curVal=this.value;
+		p.preview();
+	});
+	p._fm.rbtnBGRepeat.click(function(evt){
+		p._fm.rbtnBGRepeat.curVal=this.value;
+		p.preview();
+	});		
+	p._fm.rbtnBGAlign.curVal="center center";
+	p._fm.rbtnBGRepeat.curVal="no-repeat";
+	p._fm.txtBGH.change(function(evt){
+		p.preview();
+	});
+	p._fm.txtBG.change(function(evt){p.preview();});
+	
+	//背景色
+	p._fm.txtBGC
+	.css("backgroundColor","transparent")
+	.click(function(evt){
+		p._fm.cpk.show();
+	});
+	//事件注册
+	
+	this.$Layout.jqmOpts={
+		afterShow:p.afterShow,
+		afterHide:p.afterHide,
+		onOK:p.onOK
+	};
 };
 /**
  * 横切工具条
@@ -238,11 +441,11 @@ sohu.diyDialog.AreaTool=function(dlg){
 	};
 	p.onCfgBG=function(evt){
 		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
-		sohu.diyDialog.Show("cfgAreaBG");
+		sohu.diyDialog.Show("cfgArea");
 	};
 	p.onCfgPageBG=function(evt){
 		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
-		sohu.diyDialog.Show("cfgPageBG");
+		sohu.diyDialog.Show("cfgPage");
 	};
 	p.onMove=function(evt){
 		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};	

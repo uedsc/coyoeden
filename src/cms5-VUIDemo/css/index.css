@@ -82,11 +82,14 @@ display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(25
 	
 /* =/#editMenu= */
 
-#wPageBG{position:relative;}
-#wPageBG .cpk{position:absolute;display:none;width:356px;top:20%;right:10px;}
+#cfgPage{position:relative;}
+#cfgPage .cpk{position:absolute;display:none;width:356px;top:20%;right:10px;}
 
 #wCfgSec{position:relative;}
 #wCfgSec .cpk{position:absolute;display:none;width:356px;top:20%;right:10px;}
+
+#cfgArea label,#cfgPage label{width:100px;}
+#cfgArea .field,#cfgPage .field{width:260px;}
 
 
 /* =Editor related style= */

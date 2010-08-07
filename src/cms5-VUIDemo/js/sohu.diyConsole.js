@@ -949,7 +949,7 @@ sohu.diyConsole=function(opts){
 		//更换图片对话框
 		p.initImgSwitch();
 		//横切背景对话框
-		p.initAreaBG();
+		//p.initAreaBG();
 		//分栏标题对话框
 		p.initSecHead();
 		//分栏设置对话框
@@ -959,7 +959,7 @@ sohu.diyConsole=function(opts){
 		//editMenu的事件注册
 		p.initEditMenu();
 		//页面背景设置
-		p.initPageBG();
+		//p.initPageBG();
 		//元素工具条
 		sohu.diyElementTool.Init({});
 		//弹框组件
