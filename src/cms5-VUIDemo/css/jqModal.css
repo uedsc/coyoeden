@@ -12,7 +12,7 @@
 /* 标题 */
 .jqmWindow .hd{position:relative;height: 14px;  border-bottom:1px solid #666; text-align:left; padding:3px 5px 2px 9px; color:#F0F0EE;  background:url(../images/titlebg.jpg) repeat-x;}
 .jqmWindow .title{font-weight:bold; vertical-align:middle; }
-.jqmWindow .draghdl{position:relative;display:block;margin:-14px auto auto;width:15px;height:14px;background:#f4f4f4;cursor:move;}
+.jqmWindow .draghdl{position:relative;display:block;margin:-14px auto auto;width:15px;height:14px;background: url(../images/jqtitlebg.jpg);cursor:move;}
 /* 右上角关闭 */
 .jqmWindow .hd .jqmClose{position:absolute;display:block;background: url(../images/close.jpg) no-repeat top; width:15px; height:13px;top:3px;right:5px;vertical-align:middle;}
 .jqmWindow .hd .jqmClose:hover{background-position: bottom;}

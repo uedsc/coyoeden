@@ -46,7 +46,7 @@
 <!--标准头 end-->
 <!--提示信息 -->
 <div id="delMsg">
-     <div class="titleA"><h1>提示信息</h1><span><div class="close"><a href="#"></a></div></span></div>
+     <div class="titleA"><h3>提示信息</h3><span><div class="close"><a href="#"></a></div></span></div>
 	 <div class="tip"><span class="icon caution"></span><p>是否删除所有选中分栏及其内容？</p><p>注意：删除后无法恢复</p></div>
 	 <div class="btnLine">
 	   <input type="button" class="Btn left"  onmouseover="this.className='Btn BtnM left'" onmouseout="this.className='Btn left'" value="确认" />
@@ -58,7 +58,7 @@
 
 <!--图像 -->
 <div id="picMsg">
-     <div class="titleA"><h1>图像</h1><span><div class="close"><a href="#"></a></div></span></div>
+     <div class="titleA"><h3>图像</h3><span><div class="close"><a href="#"></a></div></span></div>
 	 
 	 <div class="lineA">
 	   <div class="txt01">宽</div>
@@ -101,7 +101,7 @@
 
 <!--文字 -->
  <div id="fontMsg">
-      <div class="titleA"><h1>文字</h1><span><div class="close"><a href="#"></a></div></span></div>
+      <div class="titleA"><h3>文字</h3><span><div class="close"><a href="#"></a></div></span></div>
 	  
 	  <div class="blank8"></div>
 	  
@@ -147,7 +147,7 @@
 
 <!--添加横切 -->
  <div id="addBlock">
-      <div class="titleA"><h1>添加横切</h1><span><div class="close"><a href="#"></a></div></span></div>
+      <div class="titleA"><h3>添加横切</h3><span><div class="close"><a href="#"></a></div></span></div>
 	  <div class="lineB">
 	       <div class="block01"><a href="#"></a></div>
 		   <div class="block02"><a href="#"></a></div>
@@ -167,7 +167,7 @@
 
 <!--添加内容 -->
  <div id="addContent">
-      <div class="titleA"><h1>添加内容</h1><span><div class="close"><a href="#"></a></div></span></div>
+      <div class="titleA"><h3>添加内容</h3><span><div class="close"><a href="#"></a></div></span></div>
 	  <div class="lineC">
 	  <h2><img src="images/down01.gif" width="7" height="4" alt="" />空行</h2>
 	     <div class="lineA">
@@ -185,7 +185,9 @@
 <!--1-->	  
       <div class="lineC tLine">
 	    <div class="wrapDiv"> 
+		   
 		   <div class="focusPic"><img src="images/right01.gif" width="4" height="7" alt="" />焦点图</div>
+		   <div style="display:none"><!--hidden FocusPic content-->
 		   <div class="classify">
 		        <ul>
 			    <li class="now"><a href="">分类01</a></li>
@@ -215,6 +217,7 @@
 				<a id="a_movie_0" onclick="" target="_self" href="javascript://">5</a>
 			 </div>
 		   </div>
+		   </div><!--hidden FocusPic content over-->
 		</div>
 		
 	     
@@ -227,6 +230,8 @@
 <div class="lineC tLine">
 	    <div class="wrapDiv"> 
 		   <div class="focusPic"><img src="images/right01.gif" width="4" height="7" alt="" />图片</div>
+		   
+		   <div style="display:none"><!--hidden picture content-->
 		   <div class="classify">
 		        <ul>
 			    <li class="now"><a href="">分类01</a></li>
@@ -257,6 +262,7 @@
 				<a id="a_movie_0" onclick="" target="_self" href="javascript://">5</a>
 			 </div>
 		   </div>
+		   </div><!--hidden picture content over-->
 		</div>
 		
 	     
@@ -269,6 +275,8 @@
 <div class="lineC tLine">
 	    <div class="wrapDiv"> 
 		   <div class="focusPic"><img src="images/right01.gif" width="4" height="7" alt="" />文本</div>
+		   
+		   <div style="display:none"><!--hidden text content-->
 		   <div class="classify">
 		        <ul>
 			    <li class="now"><a href="">分类01</a></li>
@@ -298,6 +306,7 @@
 				<a id="a_movie_0" onclick="" target="_self" href="javascript://">5</a>
 			 </div>
 		   </div>
+		   </div><!--hidden text content-->
 		</div>
 		
 	     
@@ -314,7 +323,7 @@
 <!--更换风格 -->
 
  <div id="changeStyle">
-      <div class="titleA"><h1>更换风格</h1><span><div class="close"><a href="#"></a></div></span></div>
+      <div class="titleA"><h3>更换风格</h3><span><div class="close"><a href="#"></a></div></span></div>
 	  
 <!--1-->	  
       <div class="lineC tLine">
@@ -363,7 +372,7 @@
 
 <!--专题发布-->
 <div id="spPub">
-    <div class="titleA"><h1>专题发布</h1><span><div class="close"><a href="#"></a></div></span></div>
+    <div class="titleA"><h3>专题发布</h3><span><div class="close"><a href="#"></a></div></span></div>
 	<div class="lineA">
 	 <div class="txt01">状态：</div><select class="selAuto"><option value="txt">连接</option></select>
      </div>
@@ -384,7 +393,7 @@
 
 <!--页面属性-->
 <div id="pagePro">
-    <div class="titleA"><h1>页面属性</h1><span><div class="close"><a href="#"></a></div></span></div>
+    <div class="titleA"><h3>页面属性</h3><span><div class="close"><a href="#"></a></div></span></div>
 	
 	 <div class="lineA">
 	 <div class="txt01">title</div><input type="text" value="" class="ipt01"/>
@@ -412,7 +421,7 @@
 <div class="blank40"></div>
 <!--自动列表-->
 <div id="autoList">
-    <div class="titleA"><h1>自动列表</h1><span><div class="close"><a href="#"></a></div></span></div>
+    <div class="titleA"><h3>自动列表</h3><span><div class="close"><a href="#"></a></div></span></div>
 	
 	<div class="lineA">
 	 <div class="txt01">列表类型</div><select class="selAuto"><option value="txt">文字列表</option></select>
@@ -451,7 +460,7 @@
 <div class="blank40"></div>
 <!--栏目头-->
 <div id="colHead">
-     <div class="titleA"><h1>栏目头</h1><span><div class="close"><a href="#"></a></div></span></div>
+     <div class="titleA"><h3>栏目头</h3><span><div class="close"><a href="#"></a></div></span></div>
 		<div class="blank8"></div>
 	 <div class="lineA">
 	 <div class="txt01">背景</div><input type="text" value="" class="ipt03"/><input type="button" class="browse"  value="浏览" />
@@ -498,7 +507,7 @@
 <div class="blank40"></div>
 <!--横切-->
 <div id="ctroBlock">
-    <div class="titleA"><h1>横切</h1><span><div class="close"><a href="#"></a></div></span></div>
+    <div class="titleA"><h3>横切</h3><span><div class="close"><a href="#"></a></div></span></div>
 	<div class="ctroArea">
 	
 	<a class="ctroBtn" href="#"><strong><img src="images/hq.gif" /></strong></a>

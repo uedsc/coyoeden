@@ -1,6 +1,6 @@
 .blank40{height: 40px;}
 .titleA{ width:auto; height: 14px;  border-bottom:1px solid #666; text-align:left; padding:3px 5px 2px 9px; color:#F0F0EE;  background:url(../images/common.jpg) 0px -19px;}
-.titleA h1 { float:left; font-weight:bold; vertical-align:middle; }
+.titleA h3 { float:left; font-weight:bold; vertical-align:middle; }
 .titleA span { float:right; width:15px; height:13px;vertical-align:middle; }
 .close ,.close a{display: block;	background: url(../images/close.jpg) no-repeat top;	width: 15px;	height: 13px;}
 .close a:hover{background-position: bottom;}
