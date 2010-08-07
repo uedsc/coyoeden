@@ -16,7 +16,7 @@
 			<button onclick="sohu.diyDialog.Show('#delMsg',{title:'提示信息',onOK:function(dlg,opts){alert('确认');}})">提示</button>
 			<button onclick="sohu.diyDialog.Show('#picMsg',{title:'图像',beforeShow:function(hash,dlg){alert('beforeShow');return true;},afterShow:function(hash,dlg){alert('afterShow');}})">图像</button>
 			<button onclick="sohu.diyDialog.Show('#txtMsg',{title:'文字'})">文字</button>
-			<button onclick="sohu.diyDialog.Show('#addBlock',{title:'添加横切',hideActions:true})">添加横切</button>
+			<button onclick="sohu.diyDialog.Show('addBlock')">添加横切</button>
 			<hr/>		
 		</div>
 
@@ -27,9 +27,7 @@
 				<a href="#" class="jqmClose"></a>
 				<span class="draghdl"></span>
 	        </div>
-			<div class="ct">
-				
-			</div>
+			<div class="ct"></div>
 			<div class="acts">
 				<div class="btnWrap clear">
 					<a class="btn jqmOk l" title="确定" href="#"><span>确定</span></a>
@@ -123,7 +121,7 @@
 			<!--文字 结束-->
 			<!--添加横切 -->
 			 <div id="addBlock" class="jqmCT">
-				  <div class="lineB">
+				  <div class="lineB clear">
 				       <div class="block01"><a id="w0" href="#"></a></div>
 					   <div class="block02"><a id="w470_470" href="#"></a></div>
 					   <div class="block03"><a id="w270_670" href="#"></a></div>
@@ -136,12 +134,34 @@
 					   <div class="block10"><a id="w270_390_270" href="#"></a></div>
 				  </div>
 			</div>
-			<!--添加横切 结束-->		
+			<!--添加横切 结束-->
+			<!--横切工具条-->
+			<div id="ctroBlock">
+			    <div class="titleA">
+			    	<h3>横切</h3>
+					<span><div class="close"><a href="#"></a></div></span>
+				</div>
+				<div class="ctroArea">
+					<a class="ctroBtn" href="#"><strong><img src="images/hq.gif" /></strong></a>
+					<a class="ctroBtn" href="#"><strong><img src="images/jhq.gif" /></strong></a>
+					<a class="ctroBtn" href="#"><strong><img src="images/bj.gif" /></strong></a>
+					<a class="ctroBtn" href="#"><strong><img src="images/sy.gif" /></strong></a>
+					<a class="ctroBtn" href="#"><strong><img src="images/xy.gif" /></strong></a>
+				</div>
+			</div>
+			<!--/横切工具条-->		
 		</div>
 	</body>
 	<script type="text/javascript">
 	//<![CDATA[
-	sohu.diyDialog.Init({});
+	var dummyConsole={
+		ActiveArea:function(){},
+		$Layout:$("<div/>"),
+		Areas:[]
+	};
+	sohu.diyDialog.Init({
+		console:dummyConsole
+	});
 	//]]>
 	</script>
  

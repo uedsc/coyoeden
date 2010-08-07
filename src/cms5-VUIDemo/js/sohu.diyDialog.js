@@ -4,11 +4,15 @@
  * @dependency jqModal.js
  */
 if(!sohu){var sohu={};};
+/**
+ * 可视化专题弹框控件
+ */
 sohu.diyDialog=function(){
 	var p={},pub={};
 	//private
 	p.dialog=function(){
 		var _this=this;
+		this.Console=p.console;
 		this.$Layout=$(p.opts.cssLayout);
 		this.$Title=this.$Layout.find(p.opts.cssTitle);
 		this.$Acts=this.$Layout.find(p.opts.cssActs);
@@ -58,7 +62,7 @@ sohu.diyDialog=function(){
 	 * @param {Object} $dom
 	 */
 	p.dialog.prototype.SetBody=function($dom){
-		this.$Body.empty().append($dom);
+		this.$Body.append($dom);
 		//adjust margin-left
 		this.$Layout.css("margin-left",-(this.$Layout.width()/2));
 		return this;
@@ -107,7 +111,11 @@ sohu.diyDialog=function(){
 	//public 
 	pub.Init=function(opts){
 		p.opts=$.extend({cssLayout:".jqmWindow",cssTitle:".title",cssCT:".ct",cssOK:".jqmOk",draggable:true,cssDragHandle:".hd",cssDragCTM:"#main",cssCTWrap:"#dialogList",cssActs:".acts"},opts);
+		p.console=opts.console;/* diyConsole instance */
 		p.dlg=new p.dialog();
+		
+		//注册弹框实体
+		sohu.diyDialog.Register("addBlock",sohu.diyDialog.Area(p.dlg).$Layout);
 	};
 	/**
 	 * Show a dialog.
@@ -115,9 +123,74 @@ sohu.diyDialog=function(){
 	 * @param {Object} opts options
 	 */
 	pub.Show=function(dom,opts){
-		if(!dom.jquery){dom=$(dom);};
+		//fetch from cache firstly
+		var $dom=null;
+		if(typeof(dom)=="string"){
+			$dom=p[dom];
+			if ($dom) {
+				opts = $dom.jqmOpts;
+			};
+		};
+		//no cache,fetch from dom
+		if(!$dom){
+			if(!dom.jquery){
+				$dom=$(dom);
+			}else{
+				$dom=dom;
+			};
+		};
+		opts=opts||{};
 		opts.title=opts.title||"提示信息";
-		p.dlg.SetBody(dom).SetTitle(opts.title).Show(opts);
+		p.dlg.SetBody($dom).SetTitle(opts.title).Show(opts);
+	};
+	/**
+	 * Register a dialog content object,for the sake of cache
+	 * @param {Object} key key of the dialog
+	 * @param {Object} $dom a jquery object  
+	 */
+	pub.Register=function(key,$dom){
+		p[key]=$dom;
+		return this;
 	};
 	return pub;
 }();
+
+/**
+ * 横切弹框
+ */
+sohu.diyDialog.Area=function(dlg){
+	var p={},pub={};
+	//私有函数
+	p.afterShow=function(hash,dlg0){
+		p._curTpl=null;
+	};
+	//横切删除时的回调函数
+	p.onAreaRemove=function(area){
+		dlg.Console.ActiveArea(null);
+		dlg.Console.$Layout.animate({top:dlg.Console.__p.opts.dfTop});	
+	};
+	//DOM引用
+	p.$layout=$("#addBlock");
+	p.$layout.jqmOpts={title:"添加横切",afterShow:p.afterShow,hideActions:true};
+	//事件处理
+	p.selTpl=function(evt){
+		p._curTpl=this.id;
+		var obj=new sohu.diyArea({
+				tplID:p._curTpl,
+				console:dlg.Console,
+				onRemove:p.onAreaRemove
+		});
+		dlg.Console.Areas.push(obj);
+		dlg.Hide();	
+		return false;
+	};
+	//事件注册
+	p.initEvts=function(){
+		p.$layout.find("a").click(p.selTpl);
+	}();
+	
+	
+	pub.$Layout=p.$layout;
+	
+	return pub;
+};

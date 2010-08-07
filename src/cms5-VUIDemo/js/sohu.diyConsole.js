@@ -27,7 +27,6 @@ sohu.diyConsole=function(opts){
 	p._$btnPageBG=$("#lnkPageBG");
 	p._$btnDown=$("#lnkAreaDown");
 	p._$btnUp=$("#lnkAreaUp");
-	p._$areaSelector=$("#area_selector");
 	p._$pageTip=$("#pageTip");
 	p._$elmTool=$("#elmTool");
 	/* =顶部交互菜单= */
@@ -130,40 +129,10 @@ sohu.diyConsole=function(opts){
 		_this.ActiveArea(null);
 		_this.$Layout.animate({top:opts.dfTop});	
 	};
-	
-	/**
-	 * 显示横切选择器
-	 */
-	p.showSelector=function(){
-		var _onClose=function(evt,ui){
-			if(!p._curAreaTpl) return false;//未选中任何分栏
-			var obj=new sohu.diyArea({
-				tplID:p._curAreaTpl,
-				console:_this,
-				onRemove:p.onAreaRemove
-			});
-			_this.Areas.push(obj);
-		};
-		//显示选择框
-		p._$areaSelector.dialog({
-			title:"添加横切",
-			resizable:false,
-			modal:true,
-			width:430,
-			height:250,
-			position:[700,50],
-			close:_onClose
-			}
-		);
-	};
 	p.onAdd=function(evt){
 	///<summary>添加横切</summary>
-		p.showSelector();	
+		sohu.diyDialog.Show("addBlock");	
 		return false;
-	};
-	p.onSelectAreaTpl=function(evt){
-	///<summary>选择某个横切模板后</summary>
-		p._curAreaTpl=this.id;p._$areaSelector.dialog("close");	return false;
 	};
 	p.onRemove=function(evt){
 	///<summary>删除横切</summary>	
@@ -934,11 +903,7 @@ sohu.diyConsole=function(opts){
 		//sohu.diyConsole.$WinPageBG=p._$wPageBG;
 		sohu.diyConsole.$SecEditorModel=$("#area_editor");
 		sohu.diyConsole.$ScrollWrap=$("#scrollWrap");
-		sohu.diyConsole.$BodyBGA=$("#main .bodyBGA");
-		//横切选择器
-		$("li",p._$areaSelector).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");})
-			.click(p.onSelectAreaTpl);
-		
+		sohu.diyConsole.$BodyBGA=$("#main .bodyBGA");		
 		//分栏选择器
 		$('#hiddenTemplate .sec_selector li').click(function(evt){
 			if(!sohu.diyConsole.CurSec) return;
@@ -996,6 +961,8 @@ sohu.diyConsole=function(opts){
 		p.initPageBG();
 		//元素工具条
 		sohu.diyElementTool.Init({});
+		//弹框组件
+		sohu.diyDialog.Init({console:_this});
 		//on page loaded
 		$(document).ready(p.onLoaded);
 	};
