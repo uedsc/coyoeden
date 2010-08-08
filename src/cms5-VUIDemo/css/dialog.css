@@ -70,62 +70,6 @@ a.close:hover{background-position: bottom;}
 #addBlock .lineB .block10,#addBlock .lineB .block10 a{background: url(../images/addblock01.gif) 0px -252px no-repeat;}
 #addBlock .lineB .block10 a:hover{background: url(../images/addblock02.gif) 0px -252px no-repeat;}
 
-
-
-
-#addContent{ width:598px; height: auto; border:1px solid #666; background:#F0F0EE}
-#addContent .titleA{ background:url(../images/common.jpg) 0px -0px;}
-#addContent .lineC{margin:0 auto; width:570px;height:auto;border-bottom:1px solid #D6D6D6;vertical-align: middle;}
-#addContent .tLine{border-top:1px solid #F7F7F7;}
-#addContent .lineC h2{height:14px; text-align: left; vertical-align: middle; font-weight:bold; padding: 8px 0 8px 0; color:#000}
-#addContent .lineC h2 img{ margin-right: 8px;}
-#addContent .lineC .lineA{ vertical-align: middle; padding-bottom:8px;}
-#addContent .lineC .txt01{ width:40px; text-align: right; padding-right:5px; color:#000}
-#addContent .lineC .txt02{  padding-left:2px; color:#000}
-#addContent .lineC .txt04{ float:left;padding-left: 5px; padding-right: 20px;vertical-align: middle; color:#000}
-#addContent .lineC .lineA .cBox01{float:left;margin-left:15px;border:1px solid #F0F0EE;}
-#addContent .lineC .lineA .Btn,#addContent .lineC .lineA .BtnM{ width:45px; height:24px;}
-#addContent .lineC .wrapDiv{position: relative;}
-#addContent .lineC .focusPic{margin:0 auto; width:570px;height:14px; text-align: left; vertical-align: middle;font-weight:bold;padding: 8px 0 8px 0; color:#000;}
-#addContent .lineC .focusPic img{ margin-right: 8px;}
-#addContent .lineC .classify{width: auto;height: 20px;	position: absolute; right: 1px;	top: 4px; z-index:10;}
-#addContent .lineC .classify ul{width: auto;height: 20px; float:right}
-#addContent .lineC .classify ul li{float:left; width: 52px; height: 20px; line-height: 20px; margin-left: 4px;_margin-left:3px;}
-#addContent .lineC .classify ul li.now{ background: url(../images/pic07.gif) no-repeat;}
-#addContent .lineC .wrap01£¬#addContent .lineC .wrap02{width:570px; height:auto;}
-#addContent .lineC .wrap01 .left,#addContent .lineC .wrap01 .right,#addContent .lineC .wrap02 .left,#addContent .lineC .wrap02 .right{ width: 22px; height: 150px;}
-#addContent .lineC .wrap01 .left img,#addContent .lineC .wrap01 .right img,#addContent .lineC .wrap02 .left img,#addContent .lineC .wrap02 .right img{ width:22px;height:30px; margin-top: 50px;}
-
-
-
-
-#addContent .lineC .wrap01 .center,#addContent .lineC .wrap01 .center ul,#addContent .lineC .wrap02 .center,#addContent .lineC .wrap02 .center ul{ width:516px; height:150px;}
-#addContent .lineC .wrap01 .center,#addContent .lineC .wrap02 .center{ padding-left: 10px; _padding-left:10px;overflow:hidden}
-/**±³¾°Çé¿ö #addContent .lineC .wrap01 .center ul li{float:left; width:162px; height: 130px; margin-top: 10px; background: url(../images/picbg.gif) top center no-repeat; margin-right:10px;}**/
-/**#addContent .lineC .wrap01 .center ul li img{ margin:0 auto; width:146px; height:102px; padding:7px 9px 9px 7px;}**/
-
-
-
-#addContent .lineC .wrap01 .center ul li{float:left; width:162px; height: 130px; margin-top: 10px; margin-right:10px;}
-#addContent .lineC .wrap01 .center ul li img{ margin:0 auto; width:146px; height:102px; padding:6px; border:1px solid #CBCBCB; background:#fff}
-#addContent .lineC .wrap01 .center ul li a:hover img,#addContent .lineC .wrap02 .center ul li a:hover img{border:1px solid #69C3E5 }
-#addContent .lineC .wrap01 .center ul li span{margin:0 auto; width:162px; line-height: 20px;}
-#addContent .lineC .wrap01 .rollDot,#addContent .lineC .wrap02 .rollDot{ clear: both;margin:0 auto; margin-left: 230px; padding-top:10px; margin-bottom:10px; width:100px; height: 7px; text-align: center;  }
-#addContent .lineC .wrap01 .rollDot a,#addContent .lineC .wrap02 .rollDot a{ float:left; width:7px; height:7px; margin-left:10px; overflow:hidden; text-indent:-9999px; background:url(../images/sohu-toolbar-sprite.png) no-repeat -190px -5px;}
-#addContent .lineC .wrap01 .rollDot a.currA,#addContent .lineC .wrap01 .rollDot a:hover,#addContent .lineC .wrap02 .rollDot a.currA,#addContent .lineC .wrap02 .rollDot a:hover { background-position:-207px -5px; width: 7px; height: 7px; }
-#addContent .lineC .wrap02 .center ul{ margin-top: 10px; }
-
-#addContent .lineC .wrap02 .center ul li{float:left;display:inline;text-align:center; width:112px; height: 130px;margin-right:10px; vertical-align:middle;}
-#addContent .lineC .wrap02 .center ul li a{display:block; height:118px;overflow:hidden }
-#addContent .lineC .wrap02 .center ul li .middle {display:-moz-inline-box!important;display:inline-block;vertical-align:middle;height:130%;}
-#addContent .lineC .wrap02 .center ul li img{ margin:0 auto;display:inline;  padding:6px; border:1px solid #CBCBCB; background:#fff}
-#addContent .lineC .wrap02 .center ul li span{margin:0 auto; width:112px; line-height: 20px;display:inline;}
-
-
-
-
-
-
 /***editbtn***/
 .editBtn{float:left;display:inline-block;*display:inline;*zoom:1;}
 .editBtn,.editBtn strong{overflow:hidden;height:19px;line-height:19px;line-height:19px\9;_line-height:34px;padding:0;border:0;font-size:12px;background:url(../images/btn0.png) no-repeat}

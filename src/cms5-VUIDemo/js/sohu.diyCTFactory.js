@@ -614,7 +614,7 @@ sohu.diyCTFactory = function() {
 	};
     p.onLoaded = function() { 
 		var cfg=p.getAccordionCfg();
-		$("#contentAccordion").accordion(cfg);
+		$("#addContent").accordion(cfg);
 		$("#web_loading").remove();
 		parent.sohu.diyConsole.toggleLoading();
 	};

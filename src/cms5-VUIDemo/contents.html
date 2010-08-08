@@ -23,8 +23,8 @@
 	</head>
 	<body>
 		<div id="web_loading">Loading...</div>
-		<div id="contentAccordion">
-			<h3 id="tabHD_0"><a href="#">导航条</a></h3>
+		<div id="addContent">
+			<h3 id="tabHD_0">导航条</h3>
 			<div id="ctNav" class="ct tab clear">
 				<div class="skform skformx clear">
 					<label>模板<span class="small">导航条模板</span></label>
@@ -52,7 +52,7 @@
 					</div>
 				</div>
 			</div>
-			<h3 id="tabHD_1"><a href="#">栏目标题</a></h3>
+			<h3 id="tabHD_1">栏目标题</h3>
 			<div id="ctSecHead" class="ct tab clear">
 				<div class="clear">
 					<div class="left">
@@ -72,30 +72,24 @@
 					</div>					
 				</div>
 				<div class="ct_act">
-					<button class="btnOK">添加</button>
+					<a href="#" class="Btn btnOK l">确定</a>
 				</div>
 			</div>
-			<h3 id="tabHD_2"><a href="#">空行</a></h3>
-			<div id="ctEmptyLine" class="ct tab clear">
-				<div class="clear">
-					<div class="left">
-						<input type="text" class="cpk" size="9" name="lineColor" value="#808080" readonly="readonly"/>
-					</div>
-					<div class="left">
-						<label for="txtELH">高度(px)：</label><input id="txtELH" type="text" class="txtH" name="lineH" size="9" value="10"/>
-						<label for="txtELW">宽度(%)：</label><input id="txtELW" type="text" class="txtW" name="lineW" size="9" value="100"/>
-					</div>
-					<div class="left">
-						<input type="checkbox" class="cbxLine" name="showLine" />
-						<label for="cbxLine">带有垂直居中的分割线</label>	
-					</div>
-				</div>
-				<div class="ct_act">
-					<button class="btnOK">确定</button>
-				</div>
+			<h3 id="tabHD_2">空行</h3>
+			<div id="ctEmptyLine" class="lineC tab clear">
+				<div class="txt01">高度</div>
+				<input id="txtELH" name="lineH" type="text" value="10" class="ipt01 txtH"/>
+				<div class="txt02">px</div>
+				<div class="txt01">宽度</div>
+				<input id="txtELW" name="lineW" type="text" value="100" class="ipt01 txtW"/>
+				<div class="txt02">%</div>
+				<input type="checkbox" name="showLine" class="cBox01 cbxLine"/>
+				<div class="txt04">带有垂直居中的分割线</div>
+				<a href="#" class="Btn btnOK left">确定</a>
 			</div>
-			<h3 id="tabHD_3"><a href="#">焦点图</a></h3>
-			<div id="ctFocusImg" class="ct tab slider clear">
+			<h3 id="tabHD_3">焦点图</h3>
+			<div id="ctFocusImg" class="lineC tLine clear">
+				<!--
 				<div class="act left">
 					<a class="btnLeft" href="#">
 						<img alt="" src="img/pic10x42_left.gif"/>
@@ -173,10 +167,39 @@
 					<a class="btnRight" href="#">
 						<img alt="" src="img/pic10x42_right.gif"/>
 					</a>
-				</div>	
+				</div>
+				-->	
+				<div class="classify">
+					<ul>
+						<li class="now"><a href="">分类01</a></li>
+					</ul>
+				</div>
+				<div class="wrap01">
+					<div class="left">
+						<a href="#" class="l1btn l1btn0"></a>
+					</div>
+					<div id="focusImgSlide" class="center">
+						<ul id="cSlide_focusImg">
+							<li id="Flash01" class="item"><a href="#"><img src="images/pic146x101_1.jpg" width="146" height="101" alt="" /></a><span>焦点图形式说明标题</span></li>
+							<li id="Flash02" class="item"><a href="#"><img src="images/pic146x101_2.jpg" width="146" height="101" alt="" /></a><span>焦点图形式说明标题</span></li>
+							<li id="Flash03" class="item"><a href="#"><img src="images/pic146x101_3.jpg" width="146" height="101" alt="" /></a><span>焦点图形式说明标题</span></li>
+						</ul>
+					</div>
+					<div class="right">
+						<a href="#" class="r1btn"></a>
+					</div>
+					<div class="rollDot">
+						<a id="a_movie_0" class="currA" onclick="" target="_self" href="javascript://">1</a>
+						<a id="a_movie_0" onclick="" target="_self" href="javascript://">2</a>
+						<a id="a_movie_0" onclick="" target="_self" href="javascript://">3</a>
+						<a id="a_movie_0" onclick="" target="_self" href="javascript://">4</a>
+						<a id="a_movie_0" onclick="" target="_self" href="javascript://">5</a>
+					</div>
+				</div>			
 			</div>
-			<h3 id="tabHD_4"><a href="#">图片</a></h3>
-			<div id="ctImg" class="ct tab clear">
+			<h3 id="tabHD_4">图片</h3>
+			<div id="ctImg" class="lineC tLine clear">
+				<!--
 				<ul>
 					<li class="item" id="Image01" title="图左字右">
 						<div class="ctWrap">
@@ -231,6 +254,90 @@
 						</div>
 					</li>
 				</ul>
+				-->
+				<div class="classify">
+					<ul>
+					<li class="now"><a href="">分类01</a></li>
+					</ul>
+				</div>
+				<div class="wrap02">
+					<div class="left">
+						<a href="#" class="l1btn l1btn0"></a>
+					</div>
+					<div id="ctImgSlide" class="center">
+						<ul id="ctImgSlider" class="clear">
+							<li class="item" id="Image05">
+								<a href="#"><em class="middle"></em><img src="images/pic98x103_1.jpg" width="98" height="103" alt="" /></a>
+								<span>图上字下</span>
+								<div class="ctWrap">
+								<div class="pt pt_t ct">
+									<div>
+										<a href="#"><img class="elm" height="60" width="120" title="图片标题" alt="图片替代文字" src="static/img/img.jpg"/></a>
+									</div>
+								  	<h4 class="elm">图文标题...</h4>
+								  	<p class="elm">点击更改描述信息...</p>
+								</div>
+								</div>								
+							</li>
+							<li class="item" id="Image01">
+								<a href="#"><em class="middle"></em><img src="images/pic98x40_1.jpg" width="98" height="40" alt="" /></a>
+								<span>图左字右</span>
+								<div class="ctWrap">
+									<div class="pt ct">
+									  <div>
+									  	<a href="#"><img class="elm" height="60" width="80" title="图片的标题..." alt="图片的替代文字..." src="static/img/img.jpg" /></a>
+									  </div>
+									  <h4 class="elm">标题...</h4>
+									  <p class="elm">点击这里更改描述信息...</p>
+									</div>
+								</div>								
+							</li>
+							<li class="item" id="Image02">
+								<a href="#"><em class="middle"></em><img src="images/pic98x40_2.jpg" width="98" height="40" alt="" /></a>
+								<span>图右字左</span>
+								<div class="ctWrap">
+									<div class="pt pt_r ct">
+									  <div>	
+									  	<a href="#"><img class="elm" height="60" width="80" title="图片的标题..." alt="图片的替代文字..." src="static/img/img.jpg"/></a>
+									  </div>
+									  <h4 class='elm'>标题...</h4>
+									  <p class="elm">点击这里更改描述信息...</p>
+									</div>
+								</div>								
+							</li>
+							<li class="item" id="Image04">
+								<a href="#"><em class="middle"></em><img src="images/pic98x53_1.jpg" width="98" height="53" alt="" /></a>
+								<span>图片组图</span>
+								<div class="ctWrap">
+									<div class="pp ct">
+										<ul>
+											<li><a href="javascript:void(0)"><img class="elm" height="60" width="80" src="static/img/img.jpg" title="点击图片进行组图设置"/></a><span class="elm">文字说明</span></li>
+											<li><a href="javascript:void(0)"><img class="elm" height="60" width="80" src="static/img/img.jpg" title="点击图片进行组图设置"/></a><span class="elm">文字说明</span></li>
+										</ul>
+									</div>
+								</div>								
+							</li>
+							<li class="item" id="Image03">
+								<a href="#"><em class="middle"></em><img src="images/pic98x103_1.jpg" width="98" height="103" alt="" /></a>
+								<span>单张图片</span>
+								<div class="ctWrap">
+									<div class="pt pt_t ct">
+										<div>
+											<a href="#"><img class="elm" height="60" width="80" src="static/img/img.jpg"/></a>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="right">
+						<a href="#" class="r1btn"></a>
+					</div>
+					<div class="rollDot">
+						<a id="a_movie_0" class="currA" onclick="" target="_self" href="javascript://">1</a>
+						<a id="a_movie_0" onclick="" target="_self" href="javascript://">2</a>
+					</div>
+				</div>				
 				<div id="cfgImgList_ovl" class="cfgImgList"></div>
 				<div id="cfgImgList" class="cfgImgList skform skformx">
 					<label>组图设置<span class="small">当前分栏宽度(px):<em class="tip"></em></span></label>
@@ -254,8 +361,9 @@
 					<div class="spacer"></div>
 				</div>				
 			</div>
-			<h3 id="tabHD_5"><a href="#">文本</a></h3>
-			<div id="ctText" class="ct tab slider clear">
+			<h3 id="tabHD_5">文本</h3>
+			<div id="ctText" class="lineC tLine slider clear">
+				<!--
 				<div class="act left">
 					<a class="btnLeft" href="#">
 						<img alt="" src="img/pic10x42_left.gif"/>
@@ -277,7 +385,7 @@
 								<div class="ctWrap">
 								<div class="list ct">
 									<ul>
-										<li class="elm elmc">点击更改列表文字...</li><!--elmc=copyable element-->
+										<li class="elm elmc">点击更改列表文字...</li>
 										<li class="elm elmc">点击更改列表文字...</li>
 									</ul>
 								</div>
@@ -291,9 +399,51 @@
 						<img alt="" src="img/pic10x42_right.gif"/>
 					</a>
 				</div>
+				-->
+				<div class="classify">
+					<ul>
+						<li class="now"><a href="">分类01</a></li>
+					</ul>
+				</div>
+				<div class="wrap02">
+					<div class="left">
+						<a href="#" class="l1btn l1btn0"></a>
+					</div>
+					<div id="textSlide" class="center">
+						<ul id="cSlide_text" class="clear">
+							<li id="Text01" class="item">
+								<a href="#"><em class="middle"></em><img src="images/pic98x39_1.jpg" width="98" height="39" alt="" /></a>
+								<span>焦点新闻</span>
+								<div class="ctWrap">
+									<div class="news ct">
+										<h1 class="elm elmc">点击更改H1大标题</h1>
+									  	<h3 class="elm elmc">点击更改标题...</h3>
+									  	<p class="elm elmc">点击这里更改文本文字...</p>
+									</div>			
+								</div>								
+							</li>
+							<li id="Text02" class="item">
+								<a href="#"><em class="middle"></em><img src="images/pic98x40_3.jpg" width="98" height="40" alt="" /></a>
+								<span>文字列表</span>
+								<div class="ctWrap">
+									<div class="list ct">
+										<ul>
+											<li class="elm elmc">点击更改列表文字...</li>
+											<li class="elm elmc">点击更改列表文字...</li>
+										</ul>
+									</div>
+								</div>							
+							</li>
+						</ul>
+					</div>
+					<div class="right"><a href="#" class="r1btn"></a></div>
+					<div class="rollDot">
+						<a id="a_movie_0" class="currA" onclick="" target="_self" href="javascript://">1</a>
+					</div>
+				</div>
 			</div>
-			<h3 id="tabHD_6"><a href="#">自动列表</a></h3>
-			<div id="ctDynamicList" class="ct tab clear">
+			<h3 id="tabHD_6">自动列表</h3>
+			<div id="ctDynamicList" class="lineC tLine clear">
 				<div id="dlContent">
 					<div class="overlay"></div>
 				</div>

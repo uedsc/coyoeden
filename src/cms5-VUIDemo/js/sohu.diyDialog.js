@@ -119,6 +119,7 @@ sohu.diyDialog=function(){
 		sohu.diyDialog.Register("areaTools",new sohu.diyDialog.AreaTool(p.dlg));
 		sohu.diyDialog.Register("cfgArea",new sohu.diyDialog.CfgArea(p.dlg));
 		sohu.diyDialog.Register("cfgPage",new sohu.diyDialog.CfgPage(p.dlg));
+		sohu.diyDialog.Register("addContent",new sohu.diyDialog.AddContent(p.dlg));
 	};
 	/**
 	 * Show a dialog.
@@ -213,11 +214,12 @@ sohu.diyDialog.CfgArea=function(dlg){
 		rbtnBGRepeat:this.$Layout.find("input[name='areaBGRepeat']"),
 		tipBG:this.$Layout.find(".tipAreaBG"),
 		tipID:this.$Layout.find("tipAreaID"),
-		reset:function(){this.$Layout.find("*").removeClass("alert").end().find(":text").val("");}
+		reset:function(){_this.$Layout.find("*").removeClass("alert").end().find(":text").val("");}
 	};
 	//事件处理
 	p.onOK=function(dlg0,cls){
-		cls=cls||true;
+		var _undefined;
+		cls=cls==_undefined?true:cls;
 		//bg image
 		var url=p._fm.txtBG.val();
 		if((url!="")&&(!StringUtils.isUrl(url))){
@@ -262,7 +264,7 @@ sohu.diyDialog.CfgArea=function(dlg){
 		p._fm.reset();
 	};
 	p.preview=function(){
-		p.onOK(null,null,false);
+		p.onOK(null,false);
 	};
 	//事件注册
 	p._fm.rbtnBGAlign.click(function(evt){
@@ -278,6 +280,7 @@ sohu.diyDialog.CfgArea=function(dlg){
 	//事件注册
 	
 	this.$Layout.jqmOpts={
+		title:"横切设置",
 		afterShow:p.afterShow,
 		afterHide:p.afterHide,
 		onOK:p.onOK
@@ -303,11 +306,12 @@ sohu.diyDialog.CfgPage=function(dlg){
 		tipBGH:this.$Layout.find(".tipPageBGH"),
 		txtBGC:$("#txtPageBGC"),
 		cpk:this.$Layout.find(".cpk"),
-		reset:function(){this.$Layout.find("*").removeClass("alert").end().find(":text").val("");}
+		reset:function(){_this.$Layout.find("*").removeClass("alert").end().find(":text").val("");}
 	};
 	//事件处理
 	p.onOK=function(dlg0,cls){
-		cls=cls||true;
+		var _undefined;
+		cls=cls==_undefined?true:cls;
 		var url=p._fm.txtBG.val();
 		if((url!="")&&(!StringUtils.isUrl(url))){
 			p._fm.txtBG.addClass("alert").select();
@@ -334,7 +338,7 @@ sohu.diyDialog.CfgPage=function(dlg){
 		
 		sohu.diyConsole.$BodyBGA.css("height",h);
 		
-		if(cls&&isIDOK)
+		if(cls)
 			dlg0.Hide();
 	};
 	p.afterShow=function(hash,dlg0){
@@ -361,7 +365,7 @@ sohu.diyDialog.CfgPage=function(dlg){
 		p._fm.reset();
 	};
 	p.preview=function(){
-		p.onOK(null,null,false);
+		p.onOK(null,false);
 	};
 	//事件注册
 	p._fm.cpk.ColorPicker({
@@ -401,9 +405,24 @@ sohu.diyDialog.CfgPage=function(dlg){
 	//事件注册
 	
 	this.$Layout.jqmOpts={
+		title:"页面设置",
 		afterShow:p.afterShow,
 		afterHide:p.afterHide,
 		onOK:p.onOK
+	};
+};
+/**
+ * 添加内容弹框
+ * @param {Object} dlg
+ */
+sohu.diyDialog.AddContent=function(dlg){
+	var _this=this;
+	var p={};
+	//DOM引用
+	this.$Layout=$("#addContent");
+	
+	this.$Layout.jqmOpts={
+		title:"添加内容"
 	};
 };
 /**
