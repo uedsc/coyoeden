@@ -174,7 +174,7 @@ display:none;
 	.w134{width:134px;}
 
 /*内容模板*/
-#content_selector{width:680px;height:360px;overflow:hidden;}
+#addContent{width:600px;height:450px;overflow:hidden;}
 #ifContentList{width:100%;height:100%;border:none;}
 
 /* 以下css样式为专题发布后的样式-TODO:移到单独的css文件 */

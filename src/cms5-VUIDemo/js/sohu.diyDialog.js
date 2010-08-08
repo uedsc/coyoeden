@@ -420,9 +420,20 @@ sohu.diyDialog.AddContent=function(dlg){
 	var p={};
 	//DOM引用
 	this.$Layout=$("#addContent");
-	
+	//事件处理
+	p.beforeShow=function(hash,dlg0){
+		sohu.diyConsole.CurSec.Editor.Editing("on");
+		sohu.diyConsole.toggleLoading();
+		return true;
+	};
+	p.afterHide=function(hash,dlg0){
+		sohu.diyConsole.CurSec.Editor.Editing("off");
+	};
+	//jqm options
 	this.$Layout.jqmOpts={
-		title:"添加内容"
+		title:"添加内容",
+		beforeShow:p.beforeShow,
+		afterHide:p.afterHide
 	};
 };
 /**

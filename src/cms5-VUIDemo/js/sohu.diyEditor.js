@@ -110,6 +110,7 @@ sohu.diyEditor.prototype.DialogCode=function(){
  * @param {String} mode mode="update"时编辑html内容
  */
 sohu.diyEditor.prototype.DialogCT=function(mode){
+	/*
 	var _this=this;
 	this.Editing("on");
 	
@@ -142,6 +143,8 @@ sohu.diyEditor.prototype.DialogCT=function(mode){
 		sohu.diyConsole.CurCT.isNew=false;
 	}
 	this.CTDialog.dialog("open");
+	*/
+	sohu.diyDialog.Show("addContent");
 };
 /**
  * 关闭内容选择框
