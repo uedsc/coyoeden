@@ -14,7 +14,7 @@
 .lineA,.lineA span{ margin:0 auto;  height:22px; vertical-align: middle; margin-top:5px;}
 .width30{ width: 30px;}
 .fontRed{color:#ff0000; width:205px; padding-left: 30px; text-align: left; height:20px;}
-.ipt01,.ipt03{float:left; border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;} 
+.ipt01,.ipt03,.ipt04{float:left; border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;} 
 
 #delMsg{ width: 255px; height: 120px; border:1px solid #666; background:#F0F0EE}
 #delMsg .tip{ width:235px; height:40px; padding:15px 0px;}
@@ -254,12 +254,15 @@
 
 
 
-
-
-
-
-
-
+#trBg{ width:310px; height: auto; border:1px solid #666;padding-bottom:8px; background:#F0F0EE}
+#trBg .titleA{ background:url(../images/common.jpg) 0px -95px;}
+#trBg .lineA .txt01{float:left; vertical-align: middle; line-height:20px; width:60px; color:#383836; text-align:right; padding-right:5px;}
+#trBg .lineA .ipt03{ width: 168px;}
+#trBg .lineA .ipt04{ width: 40px;}
+#trBg .lineA .browse{ float:left;display: block; background: url(../images/ybtn.gif) top;width: 45px;height: 24px; border: 0px; cursor:pointer; margin-left:5px; }
+#trBg .lineA .rdo{ float:left; border:1px solid #F0F0EE;}
+#trBg .lineA .txt02{float:left; vertical-align: middle; line-height:20px; width:38px; color:#383836;}
+#trBg .lineA .txt03{float:left; vertical-align: middle; line-height:20px; width:20px; color:#383836;}
 
 #ctroBlock{ width:67px; height: 155px; border:1px solid #666; background:#F0F0EE}
 #ctroBlock .titleA{ background:url(../images/common.jpg) 0px -114px;}
@@ -324,15 +327,51 @@
 
 
 
+#submodule1,#submodule2,#submodule3,#submodule4,#submodule5,#submodule6{ width:230px; height: auto; border:1px solid #666; background:#F0F0EE;}
+#submodule1 .titleA,#submodule2 .titleA,#submodule3 .titleA,#submodule4 .titleA,#submodule5 .titleA,#submodule6 .titleA{ background:url(../images/common.jpg) 0px -57px;}
+#submodule1 .lineB,#submodule2 .lineB,#submodule3 .lineB,#submodule4 .lineB,#submodule5 .lineB,#submodule6 .lineB{ width:192px;  padding:15px;}
+#submodule1 .lineB .block01,#submodule1 .lineB .block02,#submodule1 .lineB .block03,#submodule2 .lineB .block01,#submodule2 .lineB .block02,#submodule2 .lineB .block03,#submodule3 .lineB .block01,#submodule3 .lineB .block02,#submodule3 .lineB .block03,#submodule3 .lineB .block04,#submodule4 .lineB .block01,#submodule5 .lineB .block01,#submodule5 .lineB .block02,#submodule5 .lineB .block03,#submodule6 .lineB .block01,#submodule6 .lineB .block02,#submodule6 .lineB .block03{display:block width: 192px;	height: 28px; margin-bottom: 10px; _margin-bottom: 10px; overflow:hidden;}
+#submodule1 .lineB .block01 a{display:block width: 192px;	height: 28px; margin-bottom: 10px; _margin-bottom: 10px; overflow:hidden;}
+#submodule1 .lineB .block01,#submodule1 .lineB .block01 a{background: url(../images/addblock01.gif) 0px -280px no-repeat;}
+#submodule1 .lineB .block01 a:hover{background: url(../images/addblock02.gif) 0px -280px no-repeat;}
+#submodule1 .lineB .block02,#submodule1 .lineB .block02 a{background: url(../images/addblock01.gif) 0px -308px no-repeat;}
+#submodule1 .lineB .block02 a:hover{background: url(../images/addblock02.gif) 0px -308px no-repeat;}
+#submodule1 .lineB .block03,#submodule1 .lineB .block03 a{background: url(../images/addblock01.gif) 0px -336px no-repeat;}
+#submodule1 .lineB .block03 a:hover{background: url(../images/addblock02.gif) 0px -336px no-repeat;}
+
+#submodule2 .lineB .block01,#submodule2 .lineB .block01 a{background: url(../images/addblock01.gif) 0px -364px no-repeat;}
+#submodule2 .lineB .block01 a:hover{background: url(../images/addblock02.gif) 0px -364px no-repeat;}
+#submodule2 .lineB .block02,#submodule2 .lineB .block02 a{background: url(../images/addblock01.gif) 0px -392px no-repeat;}
+#submodule2 .lineB .block02 a:hover{background: url(../images/addblock02.gif) 0px -392px no-repeat;}
+#submodule2 .lineB .block03,#submodule2 .lineB .block03 a{background: url(../images/addblock01.gif) 0px -420px no-repeat;}
+#submodule2 .lineB .block03 a:hover{background: url(../images/addblock02.gif) 0px -420px no-repeat;}
 
 
+#submodule3 .lineB .block01,#submodule3 .lineB .block01 a{background: url(../images/addblock01.gif) 0px -448px no-repeat;}
+#submodule3 .lineB .block01 a:hover{background: url(../images/addblock02.gif) 0px -448px no-repeat;}
+#submodule3 .lineB .block02,#submodule3 .lineB .block02 a{background: url(../images/addblock01.gif) 0px -476px no-repeat;}
+#submodule3 .lineB .block02 a:hover{background: url(../images/addblock02.gif) 0px -476px no-repeat;}
+#submodule3 .lineB .block03,#submodule3 .lineB .block03 a{background: url(../images/addblock01.gif) 0px -504px no-repeat;}
+#submodule3 .lineB .block03 a:hover{background: url(../images/addblock02.gif) 0px -504px no-repeat;}
+#submodule3 .lineB .block04,#submodule3 .lineB .block04 a{background: url(../images/addblock01.gif) 0px -728px no-repeat;}
+#submodule3 .lineB .block04 a:hover{background: url(../images/addblock02.gif) 0px -728px no-repeat;}
 
+#submodule4 .lineB .block01,#submodule4 .lineB .block01 a{background: url(../images/addblock01.gif) 0px -560px no-repeat;}
+#submodule4 .lineB .block01 a:hover{background: url(../images/addblock02.gif) 0px -560px no-repeat;}
 
+#submodule5 .lineB .block01,#submodule5 .lineB .block01 a{background: url(../images/addblock01.gif) 0px -588px no-repeat;}
+#submodule5 .lineB .block01 a:hover{background: url(../images/addblock02.gif) 0px -588px no-repeat;}
+#submodule5 .lineB .block02,#submodule5 .lineB .block01 a{background: url(../images/addblock01.gif) 0px -616px no-repeat;}
+#submodule5 .lineB .block02 a:hover{background: url(../images/addblock02.gif) 0px -616px no-repeat;}
+#submodule5 .lineB .block03,#submodule5 .lineB .block01 a{background: url(../images/addblock01.gif) 0px -616px no-repeat;}
+#submodule5 .lineB .block03 a:hover{background: url(../images/addblock02.gif) 0px -616px no-repeat;}
 
-
-
-
-
+#submodule6 .lineB .block01,#submodule6 .lineB .block01 a{background: url(../images/addblock01.gif) 0px -644px no-repeat;}
+#submodule6 .lineB .block01 a:hover{background: url(../images/addblock02.gif) 0px -644px no-repeat;}
+#submodule6 .lineB .block02,#submodule6 .lineB .block01 a{background: url(../images/addblock01.gif) 0px -672px no-repeat;}
+#submodule6 .lineB .block02 a:hover{background: url(../images/addblock02.gif) 0px -672px no-repeat;}
+#submodule6 .lineB .block03,#submodule6 .lineB .block01 a{background: url(../images/addblock01.gif) 0px -700px no-repeat;}
+#submodule6 .lineB .block03 a:hover{background: url(../images/addblock02.gif) 0px -700px no-repeat;}
 
 
 
