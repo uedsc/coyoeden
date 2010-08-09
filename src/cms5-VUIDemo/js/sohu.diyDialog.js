@@ -19,7 +19,7 @@ sohu.diyDialog=function(){
 		this.$BtnOK=this.$Layout.find(p.opts.cssOK);
 		this.$Body=this.$Layout.find(p.opts.cssCT);
 		this.$CTWrap=$(p.opts.cssCTWrap);/* Wrapper for all the dialog contents */
-		
+		this.jqmHash=null;
 		//default options for jqModal
 		this.jqmOpts={trigger:false,modal:true,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false};
 		this.jqmOpts.onShow=function(hash){
@@ -29,6 +29,7 @@ sohu.diyDialog=function(){
 			};
 			if(doShow){
 				hash.w.show();
+				_this.jqmHash=hash;
 				if(_this.jqmOpts.afterShow){
 					_this.jqmOpts.afterShow(hash,_this);
 				};
@@ -41,11 +42,10 @@ sohu.diyDialog=function(){
 				doHide=_this.jqmOpts.beforeHide(hash,_this);				
 			};
 			if(doHide){
-				hash.w.fadeOut('500',function(){ 
-					hash.o.remove(); 
-					//reset the dialog content
-					_this.$CTWrap.append(_this.$Body.children());
-				}); 
+				hash.w.hide();				
+				if(_this.jqmOpts.modal){hash.o.remove();}; 
+				//reset the dialog content
+				_this.$CTWrap.append(_this.$Body.children());	
 				//afterHide callback
 				if(_this.jqmOpts.afterHide)
 				{
@@ -110,16 +110,26 @@ sohu.diyDialog=function(){
 	};
 	//public 
 	pub.Init=function(opts){
-		p.opts=$.extend({cssLayout:".jqmWindow",cssTitle:".title",cssCT:".ct",cssOK:".jqmOk",draggable:true,cssDragHandle:".hd",cssDragCTM:"#main",cssCTWrap:"#dialogList",cssActs:".acts"},opts);
+		p.opts=$.extend({cssLayout:"#jqmWin1",cssTitle:".title",cssCT:".ct",cssOK:".jqmOk",draggable:true,cssDragHandle:".hd",cssDragCTM:"#main",cssCTWrap:"#dialogList",cssActs:".acts"},opts);
 		p.console=opts.console;/* diyConsole instance */
 		p.dlg=new p.dialog();
 		
 		//注册弹框实体
-		sohu.diyDialog.Register("addBlock",new sohu.diyDialog.Area(p.dlg));
-		sohu.diyDialog.Register("areaTools",new sohu.diyDialog.AreaTool(p.dlg));
-		sohu.diyDialog.Register("cfgArea",new sohu.diyDialog.CfgArea(p.dlg));
-		sohu.diyDialog.Register("cfgPage",new sohu.diyDialog.CfgPage(p.dlg));
-		sohu.diyDialog.Register("addContent",new sohu.diyDialog.AddContent(p.dlg));
+		sohu.diyDialog.Register("addBlock",new sohu.diyDialog.wArea(p.dlg));
+		sohu.diyDialog.Register("areaTools",new sohu.diyDialog.wAreaTool(p.dlg));
+		sohu.diyDialog.Register("cfgArea",new sohu.diyDialog.wCfgArea(p.dlg));
+		sohu.diyDialog.Register("cfgPage",new sohu.diyDialog.wCfgPage(p.dlg));
+		sohu.diyDialog.Register("addContent",new sohu.diyDialog.wAddContent(p.dlg));
+		sohu.diyDialog.Register("code",new sohu.diyDialog.wCode(p.dlg));
+		sohu.diyDialog.Register("cfgSec",new sohu.diyDialog.wCfgSec(p.dlg));
+		sohu.diyDialog.Register("subSec390",new sohu.diyDialog.wSubSec(p.dlg,390));
+		sohu.diyDialog.Register("subSec430",new sohu.diyDialog.wSubSec(p.dlg,430));
+		sohu.diyDialog.Register("subSec470",new sohu.diyDialog.wSubSec(p.dlg,470));
+		sohu.diyDialog.Register("subSec510",new sohu.diyDialog.wSubSec(p.dlg,510));
+		sohu.diyDialog.Register("subSec670",new sohu.diyDialog.wSubSec(p.dlg,670));
+		sohu.diyDialog.Register("subSec950",new sohu.diyDialog.wSubSec(p.dlg,950));
+		sohu.diyDialog.Register("msgBox",new sohu.diyDialog.wMsgBox(p.dlg));
+		sohu.diyDialog.Register("wText",new sohu.diyDialog.wText(p.dlg));
 	};
 	/**
 	 * Show a dialog.
@@ -149,20 +159,136 @@ sohu.diyDialog=function(){
 		p.dlg.SetBody($dom).SetTitle(opts.title).Show(opts);
 	};
 	/**
+	 * Hide the dialog
+	 */
+	pub.Hide=function(ignoreCbk){
+		if (ignoreCbk) {
+			//hide without executing callbacks
+			p.dlg.$Layout.hide();
+			p.dlg.jqmHash.a = false;
+		}
+		else 
+			p.dlg.Hide();
+	};
+	/**
 	 * Register a dialog content object,for the sake of cache
 	 * @param {Object} key key of the dialog
-	 * @param {Object} $dom a jquery object  
+	 * @param {Object} dlg a dialog instance object  
 	 */
-	pub.Register=function(key,$dom){
-		p[key]=$dom;
+	pub.Register=function(key,dlg){
+		p[key]=dlg;
+	};
+	/**
+	 * Update the jqm options of the specified dialog instance
+	 * @param {Object} key
+	 * @param {Object} jqmOpts
+	 */
+	pub.Update=function(key,jqmOpts){
+		var dlg=p[key];
+		if(!dlg) return;
+		if(!dlg.jqmOpts0)
+			dlg.jqmOpts0=dlg.$Layout.jqmOpts;
+		
+		if(jqmOpts){
+			$.extend(dlg.$Layout.jqmOpts,jqmOpts);
+		}else{
+			dlg.$Layout.jqmOpts=dlg.jqmOpts0;
+		};
+	};
+	/**
+	 * Get a specified dialog instance object
+	 * @param {Object} key
+	 */
+	pub.Get=function(key){
+		var dlg=p[key];
+		return dlg;
 	};
 	return pub;
 }();
 
+/* 静态方法 */
+/**
+ * 重置某个弹框的表单
+ * @param {Object} dlg
+ */
+sohu.diyDialog.resetForm=function(dlg,callback){
+	dlg.$Layout.find("*").removeClass("alert").end().find(":text").val("");
+	if(callback)
+		callback(dlg);
+};
+/**
+ * 弹出一个确认对话框
+ * @param {Object} opts
+ */
+sohu.diyDialog.doConfirm=function(opts){
+	opts=$.extend({},{
+		title:"提示信息",
+		text:"",
+		modal:true,
+		onOK:null,
+		afterHide:null,
+		beforeShow:null,
+		type:"caution"
+	},opts);
+	
+	//获取msgBox
+	var dlg=sohu.diyDialog.Get("msgBox");
+	//设置msgBox
+	dlg.$Text.empty().append(opts.text);
+	dlg.$Icon.attr("class","").addClass("icon "+opts.type);
+	
+	sohu.diyDialog.Update("msgBox",{
+		modal:opts.modal,
+		title:opts.title,
+		onOK:opts.onOK,
+		beforeShow:opts.beforeShow,
+		afterHide:opts.afterHide
+	});
+	
+	sohu.diyDialog.Show("msgBox");
+};
+/**
+ * 显示颜色弹框
+ * @param {Object} opts
+ */
+sohu.diyDialog.showColorPicker=function(opts){
+	if(!sohu.diyDialog.$jqmCpk){
+		sohu.diyDialog.$jqmCpk=$("#jqmCpk").jqm({
+			title:"颜色",
+			modal:true
+		}).draggable({handle:".hd",containment:"#main"});
+		
+		sohu.diyDialog.$jqmCpk.find(".cpk").ColorPicker({
+			flat:true,
+			color:"#000000",
+			onSubmit:function(hsb,hex,rgb){
+				if(opts.onSubmit){
+					opts.onSubmit("#"+hex);
+				};
+				sohu.diyDialog.$jqmCpk.jqmHide();
+			},
+			onChange:function(hsb,hex,rgb){
+				if(opts.onChange){
+					opts.onChange("#"+hex);
+				};
+			}
+		});
+		//margin-left
+		var ml=-(sohu.diyDialog.$jqmCpk.width()/2);
+		sohu.diyDialog.$jqmCpk.css("margin-left",ml)
+	};
+	
+	sohu.diyDialog.$jqmCpk.jqmShow();
+};
+/* /静态方法 */
+
+
+/* 以下为各个弹框的类 */
+
 /**
  * 添加横切弹框
  */
-sohu.diyDialog.Area=function(dlg){
+sohu.diyDialog.wArea=function(dlg){
 	var p={};
 	//私有函数
 	p.afterShow=function(hash,dlg0){
@@ -200,7 +326,7 @@ sohu.diyDialog.Area=function(dlg){
  * 横切设置弹框
  * @param {Object} dlg
  */
-sohu.diyDialog.CfgArea=function(dlg){
+sohu.diyDialog.wCfgArea=function(dlg){
 	var _this=this;
 	var p={};
 	//DOM引用
@@ -214,7 +340,7 @@ sohu.diyDialog.CfgArea=function(dlg){
 		rbtnBGRepeat:this.$Layout.find("input[name='areaBGRepeat']"),
 		tipBG:this.$Layout.find(".tipAreaBG"),
 		tipID:this.$Layout.find("tipAreaID"),
-		reset:function(){_this.$Layout.find("*").removeClass("alert").end().find(":text").val("");}
+		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
 	//事件处理
 	p.onOK=function(dlg0,cls){
@@ -290,7 +416,7 @@ sohu.diyDialog.CfgArea=function(dlg){
  * 页面设置弹框
  * @param {Object} dlg
  */
-sohu.diyDialog.CfgPage=function(dlg){
+sohu.diyDialog.wCfgPage=function(dlg){
 	var _this=this;
 	var p={};
 	//DOM引用
@@ -306,7 +432,7 @@ sohu.diyDialog.CfgPage=function(dlg){
 		tipBGH:this.$Layout.find(".tipPageBGH"),
 		txtBGC:$("#txtPageBGC"),
 		cpk:this.$Layout.find(".cpk"),
-		reset:function(){_this.$Layout.find("*").removeClass("alert").end().find(":text").val("");}
+		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
 	//事件处理
 	p.onOK=function(dlg0,cls){
@@ -415,32 +541,369 @@ sohu.diyDialog.CfgPage=function(dlg){
  * 添加内容弹框
  * @param {Object} dlg
  */
-sohu.diyDialog.AddContent=function(dlg){
+sohu.diyDialog.wAddContent=function(dlg){
 	var _this=this;
 	var p={};
 	//DOM引用
 	this.$Layout=$("#addContent");
+	this.$if=$("#ifContentList");
 	//事件处理
 	p.beforeShow=function(hash,dlg0){
 		sohu.diyConsole.CurSec.Editor.Editing("on");
 		sohu.diyConsole.toggleLoading();
+		_this.$if.attr("src",_this.$if.attr("rel")+"?t="+new Date().getTime());
 		return true;
 	};
 	p.afterHide=function(hash,dlg0){
 		sohu.diyConsole.CurSec.Editor.Editing("off");
+		sohu.diyConsole.CurSec.Deactive();
 	};
 	//jqm options
 	this.$Layout.jqmOpts={
 		title:"添加内容",
 		beforeShow:p.beforeShow,
-		afterHide:p.afterHide
+		afterHide:p.afterHide,
+		hideActions:true
+	};
+};
+/**
+ * 分栏代码弹框
+ * @param {Object} dlg
+ */
+sohu.diyDialog.wCode=function(dlg){
+	var _this=this;
+	var p={};
+	//DOM引用
+	this.$Layout=$("#wCode");
+	this.$TextArea=this.$Layout.find("textarea");
+	//事件处理
+	p.beforeShow=function(hash,dlg0){
+		sohu.diyConsole.CurSec.Editor.Editing("on");
+		return true;
+	};
+	p.afterHide=function(hash,dlg0){
+		sohu.diyConsole.CurSec.Editor.Editing("off");
+	};	
+	p.afterShow=function(hash,dlg0){
+		_this.$TextArea.val(sohu.diyConsole.CurSec.$Layout.html());
+	};
+	p.onOK=function(dlg0){
+		//更新分栏的html代码同时重新加载该分栏的内容
+		if (!window.confirm("确定更新当前分栏的HTML代码么?")) {return false;};
+		//重新加载该分栏的内容，利用.html(x)更新内容时，dom已经不是原来的dom
+		sohu.diyConsole.CurSec.$Layout.html(_this.$TextArea.val());
+		sohu.diyConsole.CurSec.LoadContents();
+		dlg0.Hide();
+	};
+	//jqm options
+	this.$Layout.jqmOpts={
+		title:"代码编辑",
+		beforeShow:p.beforeShow,
+		afterHide:p.afterHide,
+		afterShow:p.afterShow,
+		onOK:p.onOK
+	};
+};
+/**
+ * 分栏设置弹框
+ * @param {Object} dlg
+ */
+sohu.diyDialog.wCfgSec=function(dlg){
+	var _this=this;
+	var p={};
+	//DOM引用
+	this.$Layout=$("#wCfgSec");
+	//私有函数或变量
+	p._fm={
+		txtBG:$("#txtSecBG"),
+		tipBG:this.$Layout.find(".tipSecBG"),
+		txtBGC:$("#txtSecBGC"),
+		txtBorderC:$("#txtSecBorderColor"),
+		cpk:this.$Layout.find(".cpk"),
+		rbtnBGAlign:this.$Layout.find("input[name='secBGAlign']"),
+		rbtnBGRepeat:this.$Layout.find("input[name='secBGRepeat']"),
+		cbxBorder:this.$Layout.find("input[name='SecBorderDir']"),
+		reset:function(){sohu.diyDialog.resetForm(_this);}
+	};
+	//事件处理
+	p.beforeShow=function(hash,dlg0){
+		sohu.diyConsole.CurSec.Editor.Editing("on");
+		return true;
+	};
+	p.afterHide=function(hash,dlg0){
+		sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
+	};
+	p.onOK=function(dlg0,cls){
+		var _undefined;
+		cls=cls==_undefined?true:cls;
+		var url=$.trim(p._fm.txtBG.val());
+		if( (url!="") && (!StringUtils.isUrl(url)) ){
+			p._fm.txtBG.addClass("alert").select();
+			p._fm.tipBG.addClass("alert");
+			return false;
+		};
+		//更改图片属性
+		if(url!="")
+			sohu.diyConsole.CurSec.$Layout.css("background-image","url('"+url+"')");
+		
+		
+		//收起对话框
+		dlg0.Hide();
+		//重置表单
+		p._fm.reset();			
+	};
+	p.afterShow=function(hash,dlg0){
+		//背景图
+		var bgimg=sohu.diyConsole.CurSec.$Layout.css("background-image");
+		bgimg=bgimg=="none"?"":bgimg;
+		bgimg=bgimg.replace('url("',"").replace('")',"");
+		p._fm.txtBG.val(bgimg);
+		//背景色
+		p._fm.txtBGC.css("backgroundColor",sohu.diyConsole.CurSec.$Layout.css("backgroundColor"));
+		//边框色
+		var bdc=sohu.diyConsole.CurSec.$Layout.css("borderColor");
+		bdc=bdc==""?"#eeeeee":bdc;
+		p._fm.txtBorderC.css("backgroundColor",bdc);
+		//对齐方式
+		var bg_p=sohu.diyConsole.CurSec.$Layout.css("backgroundPosition");
+		bg_p=bg_p=="0% 0%"?"center center":bg_p;
+		var bg_a=sohu.diyConsole.CurSec.$Layout.css("backgroundRepeat");
+		p._fm.rbtnBGAlign.filter("[value='"+bg_p+"']").trigger("click");
+		//平铺方式
+		p._fm.rbtnBGRepeat.filter("[value='"+bg_a+"']").trigger("click");
+		//边框-根据边框色判断边框的有无
+		bdc=sohu.diyConsole.GetBorderColor(bdc);
+		if(!bdc){
+			p._fm.cbxBorder.each(function(i,o){
+				o.checked=false;
+			});
+		}else{
+			for(var x in bdc){
+				if(x)
+					p._fm.cbxBorder.filter("[value='"+x+"']")[0].checked=(bdc[x].indexOf("transparent")<0);
+			};//for
+		};//if			
+	};
+	//事件注册
+	//背景色
+	p._fm.txtBGC
+	.css("backgroundColor","transparent")
+	.click(function(evt){
+		p._fm.cpk.$t=p._fm.txtBGC;
+		p._fm.cpk.flag="bg"
+		p._fm.cpk.show();
+	});
+	//边框色
+	p._fm.txtBorderC
+	.css("borderColor","#eeeeee")
+	.click(function(evt){
+		p._fm.cpk.$t=p._fm.txtBorderC;
+		p._fm.cpk.flag="bdc"
+		p._fm.cpk.show();
+	});
+	//边框方向
+	p._fm.cbxBorder.click(function(evt){
+		if(this.checked){
+			sohu.diyConsole.CurSec.$Layout.css("border-"+this.value,"1px solid "+p._fm.txtBorderC.attr("title"));
+		}else{
+			sohu.diyConsole.CurSec.$Layout.css("border-"+this.value,"1px solid transparent");
+		};
+	});		
+	//背景图
+	p._fm.txtBG.change(function(evt){
+		var url=p._fm.txtBG.val();
+		if(!StringUtils.isUrl(url)){
+			p._fm.txtBG.addClass("alert").select();
+			p._fm.tipBG.addClass("alert");
+			return false;
+		};
+		p._fm.txtBG.removeClass("alert");
+		p._fm.tipBG.removeClass("alert");
+		//更改图片属性
+		sohu.diyConsole.CurSec.$Layout.css("background-image","url('"+url+"')");
+	});
+	//背景图对齐方式
+	p._fm.rbtnBGAlign.click(function(evt){
+		p._fm.rbtnBGAlign.curVal=this.value;
+		sohu.diyConsole.CurSec.$Layout.css("background-position",this.value);
+	});
+	//背景图平铺方式
+	p._fm.rbtnBGRepeat.click(function(evt){
+		p._fm.rbtnBGRepeat.curVal=this.value;
+		sohu.diyConsole.CurSec.$Layout.css("background-repeat",this.value);
+	});
+	//栏目背景色
+	p._fm.cpk.ColorPicker({
+		flat:true,
+		color:"#eeeeee",
+		onChange:function(hsb,hex,rgb){
+			var c="#"+hex;
+			p._fm.cpk.$t.css("backgroundColor",c).attr("title",c);
+			if(p._fm.cpk.flag=="bg"){
+				sohu.diyConsole.CurSec.$Layout.css("backgroundColor",c);
+			}else{
+				sohu.diyConsole.CurSec.$Layout.css("borderColor",c);
+			};
+		},
+		onSubmit:function(hsb,hex,rgb){
+			this.onChange(hsb,hex,rgb);
+			p._fm.cpk.hide();
+		}
+	});			
+	p._fm.rbtnBGAlign.curVal="center";
+	p._fm.rbtnBGRepeat.curVal="repeat";	
+	//jqm options
+	this.$Layout.jqmOpts={
+		title:"分栏设置",
+		beforeShow:p.beforeShow,
+		afterHide:p.afterHide,
+		afterShow:p.afterShow,
+		onOK:p.onOK
+	};
+};
+/**
+ * 添加分栏弹框
+ * @param {Object} dlg
+ * @param {Object} parentSize 父分栏的宽度
+ */
+sohu.diyDialog.wSubSec=function(dlg,parentSize){
+	var p={};
+	//DOM引用
+	this.$Layout=$("#subSec"+parentSize);
+	//事件处理
+	p.beforeShow=function(hash,dlg0){
+		sohu.diyConsole.CurSec.Editor.Editing("on");
+		return true;
+	};
+	p.afterHide=function(hash,dlg0){
+		sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
+	};	
+	//事件注册
+	this.$Layout.find('li').click(function(evt){
+		if(!sohu.diyConsole.CurSec) return;
+		sohu.diyConsole.CurSec.AddSub($(sohu.diyTp[this.id]));
+		dlg.Hide();
+		return false;
+	}).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");});
+	//jqm options
+	this.$Layout.jqmOpts={
+		title:"添加分栏",
+		beforeShow:p.beforeShow,
+		afterHide:p.afterHide,
+		hideActions:true
+	};
+};
+/**
+ * 信息弹框
+ * @param {Object} dlg
+ */
+sohu.diyDialog.wMsgBox=function(dlg){
+	var p={};
+	//DOM引用
+	this.$Layout=$("#commonMsg");
+	this.$Text=this.$Layout.find(".txt");
+	this.$Icon=this.$Layout.find(".icon");
+	
+	//jqm options
+	this.$Layout.jqmOpts={
+		title:"提示信息"
+	};
+};
+/**
+ * 文字编辑弹框
+ * @param {Object} dlg
+ */
+sohu.diyDialog.wText=function(dlg){
+	var _this=this;
+	var p={};
+	//DOM引用
+	this.$Layout=$("#txtMsg");
+	this.$ElmCAction=this.$Layout.find(".elmcActs");
+	p._fm={
+		txtATitle:$("#txtATitle"),
+		txtAHref:$("#txtAHref"),
+		ddlATarget:$("#ddlATarget"),
+		tipAHref:this.$Layout.find(".tipAHref"),
+		reset:function(){sohu.diyDialog.resetForm(_this);}
+	};
+	//事件处理
+	p.onIframeSelect=function(evt){
+		sohu.diyConsole.SnapSelection();
+		var a=sohu.diyConsole.DocSelection.getA();
+		if(a.isNull){
+			p._fm.isNew=true;
+			p.a=null;
+			p._fm.txtATitle.val(sohu.diyConsole.DocSelection.text);
+			return;
+		};
+		p._fm.txtATitle.val(a.title);
+		p._fm.txtAHref.val(a.href);
+		p._fm.ddlATarget.val(a.target);
+		p._fm.isNew=false;
+		p._fm.a=a;	
+	};
+	p.beforeShow=function(hash,dlg0){
+		sohu.diyConsole.CurSec.Editor.Editing("on");
+		return true;
+	};	
+	p.afterShow=function(hash,dlg0){
+		//dlg0.$Layout.css("top",25);
+		//判断是否是可复制元素
+		if(sohu.diyConsole.CurElm.Copyable){
+			_this.$ElmCAction.show();
+		}else{
+			_this.$ElmCAction.hide();
+		};
+		//捕捉iframe编辑器用户选定的内容
+		sohu.diyConsole.CurElm.i$frame[0].i$Body().unbind("mouseup").mouseup(p.onIframeSelect);
+	};
+	p.afterHide=function(hash,dlg0){
+		p._fm.reset();
+		sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
+		sohu.diyConsole.Preview();
+	};
+	p.onOK=function(dlg0){
+		var url=p._fm.txtAHref.val();
+		if(!StringUtils.isUrl(url)){
+			p._fm.txtAHref.addClass("alert").select();
+			p._fm.tipAHref.addClass("alert");
+			return false;
+		};
+		if(p._fm.isNew){
+			sohu.diyConsole.CurElm.i$frame[0].iDoCommand("createlink",url,null,function($iframe){
+				sohu.diyConsole.DocSelection.selectAndRelease();
+			});
+		}else{
+			p._fm.a.$obj.attr("title",p._fm.txtATitle.val())
+				.attr("href",p._fm.txtAHref.val())
+				.attr("target",p._fm.ddlATarget.curVal);
+		};
+		dlg0.Hide();
+	};
+	//事件注册
+	this.$Layout.find("input[type='text']").keyup(function(evt){
+		this.value=this.value.replace('"',"").replace("'","").replace('‘',"").replace('“',"").replace('”',"");
+	});
+	p._fm.ddlATarget.change(function(evt){
+		p._fm.ddlATarget.curVal=this.value;
+	});
+	p._fm.ddlATarget.curVal="_blank";
+	//jqm options
+	this.$Layout.jqmOpts={
+		title:"文字",
+		modal:false,
+		overlay:0,
+		beforeShow:p.beforeShow,
+		afterShow:p.afterShow,
+		afterHide:p.afterHide,
+		onOK:p.onOK
 	};
 };
 /**
  * 横切工具条
  * @param {Object} dlg
  */
-sohu.diyDialog.AreaTool=function(dlg){
+sohu.diyDialog.wAreaTool=function(dlg){
 	var p={};
 	//DOM引用
 	p.$layout=$("#areaTools");
@@ -459,6 +922,7 @@ sohu.diyDialog.AreaTool=function(dlg){
 	
 	//事件处理
 	p.onAdd=function(evt){
+		if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsEditing) return false;
 		sohu.diyDialog.Show("addBlock");
 	};
 	p.onDel=function(evt){
@@ -471,14 +935,17 @@ sohu.diyDialog.AreaTool=function(dlg){
 	};
 	p.onCfgBG=function(evt){
 		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
+		if(sohu.diyConsole.CurArea.IsEditing) return false;
 		sohu.diyDialog.Show("cfgArea");
 	};
 	p.onCfgPageBG=function(evt){
 		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
+		if(sohu.diyConsole.CurArea.IsEditing) return false;
 		sohu.diyDialog.Show("cfgPage");
 	};
 	p.onMove=function(evt){
-		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};	
+		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
+		if(sohu.diyConsole.CurArea.IsEditing) return false;	
 		var isUp=evt.data.up;
 		sohu.diyConsole.CurArea.Move(isUp);
 		p.rePosition();

@@ -44,7 +44,7 @@
 	      if0.allowTransparency = true ;
 	      if0.frameBorder = '0' ;
 	      if0.scrolling = 'no' ;
-		  if0.src= "";
+		  //if0.src= "";
 		  //insert the iframe and hide it
 		  $if=$(if0)
 		  $dom.after($if);
@@ -99,21 +99,31 @@
 
 		};
 		//we don't need any marign and border styles inside the iframe body tag 
-		$body.css({"margin":"0","border":"none","text-align":"left"});	
+		$body.css({"margin":"0","border":"none","text-align":"left","padding":"0","background":"none"});	
 		//maxWidth
 		if(!$.browser.msie)
 			dom.i$frame.css("maxWidth","inherit");
 		//overflow
 		dom.i$frame.css("overflow","hidden");
+		//show the original dom as the place holder!
+		$this.show().css("visibility","hidden");
+		//iframe position
+		dom.i$frame.css("position","absolute");
+		var pos=$this.position();
+		dom.i$frame.css({
+			"top":pos.top,
+			"left":pos.left,
+			"z-index":50
+		});
 		//visibility
-		$this.hide();
 		$body.show();
 		dom.i$frame.show();
 		
 	};
 	p.fixPosition=function(dom){
 		//TODO:finish this method
-		var $this=$(dom);
+		var $this=$(dom);		
+		//fix float siblings
 		var needfix=false,hasFloatPrev=false;
 		//If there's a floating element before it, make the element position absolute!
 		var $items=$this.prevAll();
@@ -127,18 +137,11 @@
 		
 		if(!needfix) return;
 		
-		//show the original dom as the place holder!
-		$this.show().css("visibility","hidden");
-		
 		$items=hasFloatPrev?$($items[0]):({width:function(){return 0;}});
-		var pos=$this.position();
+		
 		var floatWidth=$items.width();
 		var frameWidth=dom.i$frame.width()-floatWidth;
 		var css={
-			"position":"absolute",
-			"top":pos.top,
-			"left":pos.left,
-			"z-index":50,
 			"width":frameWidth
 		};
 		if($this.css("display")=="block"&&hasFloatPrev)

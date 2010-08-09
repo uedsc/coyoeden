@@ -56,25 +56,6 @@
 				</div>
 				<!--color picker-->
   				<div id="cpkWrap" class="win"></div>
-				<!--创建链接-->
-		        <div id="addLink" class="win">
-		        	<div class="skform skformx">
-		        		<label>Title<span class="tip small">title属性</span></label>
-		                <input name="atitle" id="txtATitle" type="text" class="field"/>
-		                <label>链接<span class="tip tipAHref small">请输入有效网址</span></label>
-		                <input name="ahref" id="txtAHref" type="text" class="field"/>
-		                <label>打开位置</label>
-						<div class="field">
-						    <input type="radio" name="atarget" value="_blank" checked="checked" /><span>新窗口</span>
-					   		<input type="radio" name="atarget" value="_self"/><span>本页</span>			
-						</div>
-		                <div class="acts">
-							<button id="btnAddLink" class="btnMWinOK">确定</button>
-							<button id="btnCloseLink" class="btnMWinNO">取消</button>
-						</div>
-		                <div class="spacer"></div>
-		        	</div>	      
-		        </div>
 				<!--图片属性-->
 		        <div id="imgPro" class="win">
 		        	<div class="skform skformx">
@@ -195,101 +176,11 @@
 					</div>
 					<div class="overlay"></div>
 				</div>
-			</div>
-			<!--分栏选择模板-->
-			<div id="sec_selector_390" class="area_selector sec_selector">
-				<ul>
-					<li class="clear" id="sw190_190"><div class="col0 w94">190</div><div class="w94">190</div></li>
-				</ul>
-			</div>
-			<div id="sec_selector_430" class="area_selector sec_selector">
-				<ul>
-					<li class="clear" id="sw210_210"><div class="col0 w94">210</div><div class="w94">210</div></li>
-					<li class="clear" id="sw190_230"><div class="col0 w84">190</div><div class="w104">230</div></li>
-					<li class="clear" id="sw230_190"><div class="col0 w104">190</div><div class="w84">230</div></li>
-				</ul>
-			</div>
-			<div id="sec_selector_470" class="area_selector sec_selector">
-				<ul>
-					<li class="clear" id="sw230_230"><div class="col0 w94">230</div><div class="w94">230</div></li>
-					<li class="clear" id="sw190_270"><div class="col0 w80">190</div><div class="w108">270</div></li>
-					<li class="clear" id="sw270_190"><div class="col0 w108">270</div><div class="w80">190</div></li>
-				</ul>
-			</div>
-			<div id="sec_selector_510" class="area_selector sec_selector">
-				<ul>
-					<li class="clear" id="sw250_250"><div class="col0 w94">250</div><div class="w94">250</div></li>
-					<li class="clear" id="sw190_310"><div class="col0 w80">190</div><div class="w108">310</div></li>
-					<li class="clear" id="sw310_190"><div class="col0 w108">310</div><div class="w80">190</div></li>
-				</ul>
-			</div>
-			<div id="sec_selector_670" class="area_selector sec_selector">
-				<ul>
-					<li class="clear" id="sw330_330"><div class="col0 w94">330</div><div class="w94">330</div></li>
-					<li class="clear" id="sw190_470"><div class="col0 w80">190</div><div class="w108">470</div></li>
-					<li class="clear" id="sw470_190"><div class="col0 w108">470</div><div class="w80">190</div></li>
-					<li class="clear" id="sw230_190_230"><div class="col0 w54">230</div><div class="w78">190</div><div class="w54">230</div></li>
-				</ul>
-			</div>
-			<div id="sec_selector_950" class="area_selector sec_selector">
-				<ul>
-					<li class="clear" id="sw310_310_310"><div class="col0 w62">310</div><div class="w62">310</div><div class="w62">310</div></li>
-					<li class="clear" id="sw230_230_230_230"><div class="col0 w46">230</div><div class="w46">230</div><div class="w46">230</div><div class="w46">230</div></li>
-					<li class="clear" id="sw182_182_182_182_182"><div class="col0 w36">182</div><div class="w36">182</div><div class="w36">182</div><div class="w36">182</div><div class="w36">182</div></li>
-				</ul>
 			</div>						
 			<!--page tip-->
 			<div id="pageTip"></div>
 			<!-- content temp wrapper临时存放编辑内容的容器 -->
-			<div id="ctWrap"></div>
-
-					
-			<!--分栏设置对话框-->
-			<div id="wCfgSec" class="skform skformx">
-				<label>背景图<span class="small tip tipSecBG">请输图片网址</span></label>
-				<div class="field">
-					<input type="text" size="36" id="txtSecBG" name="secBG"/>
-					<button id="btnCfgSecBrowse" onclick="alert('hi');">浏览</button>
-				</div>
-				<label>背景色<span class="small tip tipSecBGC">分栏背景色</span></label>
-				<div class="field">
-					<input type="text" size="36" id="txtSecBGC" name="secBGC" readonly="readonly"/>
-				</div>
-				<label>对齐方式</label>
-				<div class="field">
-					<input type="radio" name="secBGAlign" value="center center" checked="checked" /><span>居中</span>
-					<input type="radio" name="secBGAlign" value="left center"/><span>靠左</span>
-					<input type="radio" name="secBGAlign" value="right center"/><span>靠右</span>	
-				</div>
-				<label>平铺方式</label>
-				<div class="field">
-					<input type="radio" name="secBGRepeat" value="repeat" checked="checked" /><span>平铺</span>
-					<input type="radio" name="secBGRepeat" value="no-repeat" /><span>不平铺</span>
-					<input type="radio" name="secBGRepeat" value="repeat-x"/><span>横平铺</span>
-					<input type="radio" name="secBGRepeat" value="repeat-y"/><span>纵平铺</span>
-				</div>
-				<label>边框设置<span class="small">颜色及方向</span></label>
-				<div class="field">
-					<input type="text" size="4" id="txtSecBorderColor" name="SecBorderColor" readonly="readonly"/>
-					<input type="checkbox" name="SecBorderDir" value="top" checked="checked"/><span>上</span>
-					<input type="checkbox" name="SecBorderDir" value="right" checked="checked"/><span>右</span>
-					<input type="checkbox" name="SecBorderDir" value="bottom" checked="checked"/><span>下</span>
-					<input type="checkbox" name="SecBorderDir" value="left" checked="checked"/><span>左</span>
-				</div>
-				<div class="acts">
-					<button class="btnWinOK">确定</button>
-					<button class="btnWinNO">关闭</button>
-				</div>
-				<div class="cpk"></div>
-                <div class="spacer"></div>				
-			</div>	
-			<!--代码对话框-->
-			<div id="wCode">
-				<textarea cols="75" rows="20"></textarea>
-				<div class="acts">
-					<button class="btnOK">确认</button>
-				</div>
-			</div>	
+			<div id="ctWrap"></div>	
 		</div>
 		<!--Dialog layout-->
 		<div id="jqmWin1" class="jqmWindow">
@@ -306,10 +197,18 @@
 				</div>
 			</div>	
 		</div>
+		<div id="jqmCpk" class="jqmWindow">
+			<div class="hd clear">
+	            <h4 class="title">颜色拾取</h4>
+				<a href="#" class="jqmClose"></a>
+				<span class="draghdl"></span>
+	        </div>
+			<div class="ct"><div class="cpk"></div></div>			
+		</div>	
 		<!--/Dialog layout-->
 		<!--Dialog content-->
 		<div id="dialogList" class="hidden">
-			<div id="delMsg" class="jqmCT">		
+			<div id="commonMsg" class="jqmCT">		
 				 <div class="tip">
 				 	<span class="icon caution"></span>
 					<div class="txt">
@@ -358,34 +257,36 @@
 			 <div id="txtMsg" class="jqmCT">
 				  <div class="blank8"></div>
 				  <div class="wline">
-				   <a class="editBtn editBtn1 cmdBold" href="#"><strong><img src="images/w01.gif" /></strong></a>
-				   <a class="editBtn cmdUdl" href="#"><strong><img src="images/w02.gif" /></strong></a>
-				   <a class="editBtn cmdColor" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
-				   <a class="editBtn cmdAL" href="#"><strong><img src="images/w04.gif" /></strong></a>
-				   <a class="editBtn cmdAC" href="#"><strong><img src="images/w05.gif" /></strong></a>
-				   <a class="editBtn cmdAR" href="#"><strong><img src="images/w06.gif" /></strong></a>
-				   <a class="editBtn2 cmdVideo" href="#"><strong><img src="images/w07.gif" /></strong></a>
+				   <a class="editBtn editBtn1 cmdBold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
+				   <a class="editBtn cmdUdl cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
+				   <a class="editBtn cmdColor cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
+				   <a class="editBtn cmdAL cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
+				   <a class="editBtn cmdAC cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
+				   <a class="editBtn cmdAR cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
+				   <a class="editBtn2 cmdVideo cmdicon" href="#"><strong><img src="images/w07.gif" /></strong></a>
 				   <div class="two"></div>
-				   <a class="editBtn elmAdd" href="#"><strong><img src="images/addblock.gif" /></strong></a>
-				   <a class="editBtn elmDel" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
-				   <a class="editBtn elmMove0" href="#"><strong><img src="images/up.gif" /></strong></a>
-				   <a class="editBtn elmMove1" href="#"><strong><img src="images/down.gif" /></strong></a>
+				   <span class="elmcActs">
+				   		<a class="editBtn elmAdd cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+				   		<a class="editBtn elmDel cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+				   		<a class="editBtn elmMove0 cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
+				   		<a class="editBtn elmMove1 cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>
+				 	</span>
 				 </div>
 				  <div class="blank8"></div>
 				  <div class="bottom2line"></div>
 				  <div class="lineB"></div>
 				  <div class="lineA">
 				  	<div class="txt01">链接</div>
-					<input id="txtALink" name="txtALink" type="text" value="" class="ipt03"/>
-					<select id="txtATarget" name="txtATarget" class="selAuto">
+					<input id="txtAHref" name="txtAHref" type="text" value="" class="ipt03"/>
+					<select id="ddlATarget" name="ddlATarget" class="selAuto">
 						<option value="_blank" selected="selected">新窗口</option>
 						<option value="_self">本窗口</option>
 					</select>
 			      </div>
-				  <div class="lineA fontRed tipTxtLink">请输入有效网址！</div>
+				  <div class="lineA tipAHref">请输入有效网址！</div>
 				  <div class="lineA">
 				 	 <div class="txt01">Title</div>
-					 <input id="txtATitle" name="txtATitle" type="text" value="" class="ipt03" value="与选中文本相同的默认内容" />
+					 <input id="txtATitle" name="txtATitle" type="text" value="" class="ipt03"/>
 			      </div>
 			</div>
 			<!--文字 结束-->
@@ -463,8 +364,89 @@
 			<!--添加内容-->
 			<div id="addContent">
 				<div class="txtLoading">Loading...</div>
-				<iframe id="ifContentList" name="ifContentList" src="contents.html?v=1.2010.0806" frameborder="0" rel="contents.html" scrolling="no"></iframe>
+				<iframe id="ifContentList" name="ifContentList" src="" frameborder="0" rel="contents.html" scrolling="no"></iframe>
 			</div>
+			<!--代码对话框-->
+			<div id="wCode">
+				<textarea cols="75" rows="20"></textarea>
+			</div>
+			<!--分栏设置对话框-->
+			<div id="wCfgSec" class="skform skformx">
+				<label>背景图<span class="small tip tipSecBG">请输图片网址</span></label>
+				<div class="field">
+					<input type="text" size="36" id="txtSecBG" name="secBG"/>
+					<button id="btnCfgSecBrowse" onclick="alert('hi');">浏览</button>
+				</div>
+				<label>背景色<span class="small tip tipSecBGC">分栏背景色</span></label>
+				<div class="field">
+					<input type="text" size="36" id="txtSecBGC" name="secBGC" readonly="readonly"/>
+				</div>
+				<label>对齐方式</label>
+				<div class="field">
+					<input type="radio" name="secBGAlign" value="center center" checked="checked" /><span>居中</span>
+					<input type="radio" name="secBGAlign" value="left center"/><span>靠左</span>
+					<input type="radio" name="secBGAlign" value="right center"/><span>靠右</span>	
+				</div>
+				<label>平铺方式</label>
+				<div class="field">
+					<input type="radio" name="secBGRepeat" value="repeat" checked="checked" /><span>平铺</span>
+					<input type="radio" name="secBGRepeat" value="no-repeat" /><span>不平铺</span>
+					<input type="radio" name="secBGRepeat" value="repeat-x"/><span>横平铺</span>
+					<input type="radio" name="secBGRepeat" value="repeat-y"/><span>纵平铺</span>
+				</div>
+				<label>边框设置<span class="small">颜色及方向</span></label>
+				<div class="field">
+					<input type="text" size="4" id="txtSecBorderColor" name="SecBorderColor" readonly="readonly"/>
+					<input type="checkbox" name="SecBorderDir" value="top" checked="checked"/><span>上</span>
+					<input type="checkbox" name="SecBorderDir" value="right" checked="checked"/><span>右</span>
+					<input type="checkbox" name="SecBorderDir" value="bottom" checked="checked"/><span>下</span>
+					<input type="checkbox" name="SecBorderDir" value="left" checked="checked"/><span>左</span>
+				</div>
+				<div class="cpk"></div>
+                <div class="spacer"></div>				
+			</div>
+			<!--分栏选择模板-->
+			<div id="subSec390" class="sec_selector">
+				<ul>
+					<li class="clear" id="sw190_190"><div class="col0 w94">190</div><div class="w94">190</div></li>
+				</ul>
+			</div>
+			<div id="subSec430" class="sec_selector">
+				<ul>
+					<li class="clear" id="sw210_210"><div class="col0 w94">210</div><div class="w94">210</div></li>
+					<li class="clear" id="sw190_230"><div class="col0 w84">190</div><div class="w104">230</div></li>
+					<li class="clear" id="sw230_190"><div class="col0 w104">190</div><div class="w84">230</div></li>
+				</ul>
+			</div>
+			<div id="subSec470" class="sec_selector">
+				<ul>
+					<li class="clear" id="sw230_230"><div class="col0 w94">230</div><div class="w94">230</div></li>
+					<li class="clear" id="sw190_270"><div class="col0 w80">190</div><div class="w108">270</div></li>
+					<li class="clear" id="sw270_190"><div class="col0 w108">270</div><div class="w80">190</div></li>
+				</ul>
+			</div>
+			<div id="subSec510" class="sec_selector">
+				<ul>
+					<li class="clear" id="sw250_250"><div class="col0 w94">250</div><div class="w94">250</div></li>
+					<li class="clear" id="sw190_310"><div class="col0 w80">190</div><div class="w108">310</div></li>
+					<li class="clear" id="sw310_190"><div class="col0 w108">310</div><div class="w80">190</div></li>
+				</ul>
+			</div>
+			<div id="subSec670" class="sec_selector">
+				<ul>
+					<li class="clear" id="sw330_330"><div class="col0 w94">330</div><div class="w94">330</div></li>
+					<li class="clear" id="sw190_470"><div class="col0 w80">190</div><div class="w108">470</div></li>
+					<li class="clear" id="sw470_190"><div class="col0 w108">470</div><div class="w80">190</div></li>
+					<li class="clear" id="sw230_190_230"><div class="col0 w54">230</div><div class="w78">190</div><div class="w54">230</div></li>
+				</ul>
+			</div>
+			<div id="subSec950" class="sec_selector">
+				<ul>
+					<li class="clear" id="sw310_310_310"><div class="col0 w62">310</div><div class="w62">310</div><div class="w62">310</div></li>
+					<li class="clear" id="sw230_230_230_230"><div class="col0 w46">230</div><div class="w46">230</div><div class="w46">230</div><div class="w46">230</div></li>
+					<li class="clear" id="sw182_182_182_182_182"><div class="col0 w36">182</div><div class="w36">182</div><div class="w36">182</div><div class="w36">182</div><div class="w36">182</div></li>
+				</ul>
+			</div>										
 		</div>
 		<!--横切工具条-->
 		<div id="areaTools">
@@ -504,7 +486,8 @@
 	<script type="text/javascript" src="js/sohu.diySection.js"></script>
 	<script type="text/javascript" src="js/sohu.diyArea.js"></script>
 	<script src="js/sohu.diySelection.js" type="text/javascript"></script> 
-	<script type="text/javascript" src="js/sohu.diyElementTool.js"></script> 
+	<script type="text/javascript" src="js/sohu.diyElementTool.js"></script>
+	<script type="text/javascript" src="js/sohu.diyMenuBar.js"></script> 
 	<script type="text/javascript" src="js/sohu.diyDialog.js"></script>
 	<script type="text/javascript" src="js/sohu.diyConsole.js"></script>
 	

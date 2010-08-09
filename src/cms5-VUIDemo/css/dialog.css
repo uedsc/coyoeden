@@ -16,11 +16,11 @@ a.close:hover{background-position: bottom;}
 .fontRed{color:#ff0000; width:205px; padding-left: 30px; text-align: left; height:20px;}
 .ipt01,.ipt03{float:left; border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;} 
 
-#delMsg{ width: 255px;}
-#delMsg .tip{ width:235px; height:40px; padding:15px 0px;}
-#delMsg span.icon{display:block; float:left; width:35px; height:40px;}
-#delMsg span.caution{background: url(../images/caution.jpg) center no-repeat;}
-#delMsg .txt p{ text-align:left;line-height: 20px; color:#373737}
+#commonMsg{ width: 255px;}
+#commonMsg .tip{ width:235px;padding:15px 0px 10px;}
+#commonMsg span.icon{display:block; float:left; width:35px; height:40px;}
+#commonMsg span.caution{background: url(../images/caution.jpg) center no-repeat;}
+#commonMsg .txt p{ text-align:left;line-height: 20px; color:#373737;padding-left:40px;}
 
 #picMsg{ width: 310px;padding-bottom:8px;}
 #picMsg .titleA{ background:url(../images/common.jpg) 0px -95px;}

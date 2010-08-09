@@ -205,24 +205,12 @@ sohu.diyConsole=function(opts){
 		};
 	};
 	p.onBodyClick=function(evt){
-		if(!sohu.diyConsole.CurArea) return;
-		if(!sohu.diyConsole.CurArea.IsActive) return;
-		if(sohu.diyConsole.CurArea.IsEditing) return;
-		if(sohu.diyConsole.Dragger.ing) return;
 		//用户是否点击#editMenu
-		if($(evt.target).parents("#editMenu").length>0) return;
+		if($(evt.target).parents(".jqmWindow").length>0) return;
 		
 		var b=p.getWorkspaceBoundary();
 		if(evt.pageX<b.lbleft||evt.pageX>b.ubleft||evt.pageY>b.ubtop){//||evt.pageY<lbtop
-			//强制移除内联编辑器
-			if(sohu.diyConsole.EditingSec!=null&&sohu.diyConsole.CurElm!=null){
-				sohu.diyConsole.CurElm.HideEditor(false);
-			};
-			//反激活横切
-			sohu.diyConsole.CurArea.Deactive();
-			//反激活分栏
-			if(sohu.diyConsole.CurSec)
-				sohu.diyConsole.CurSec.Deactive();
+			sohu.diyConsole.Preview();			
 			//重置添加链接对话框表单
 			p._fmAddLink.reset();
 		};
@@ -287,6 +275,7 @@ sohu.diyConsole=function(opts){
 			}
 		});
 		//栏目背景色
+		/*
 		p._fmSec.cpk.ColorPicker({
 			flat:true,
 			color:"#eeeeee",
@@ -303,6 +292,7 @@ sohu.diyConsole=function(opts){
 				p._fmSec.cpk.hide();
 			}
 		});
+		*/
 		//页面背景色
 		p._fmPageBG.cpk.ColorPicker({
 			flat:true,
@@ -805,6 +795,7 @@ sohu.diyConsole=function(opts){
 				
 			return false;
 		});
+		/*
 		$("#imenu-b").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Bold",null);});
 		$("#imenu-i").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Italic",null);});
 		$("#imenu-u").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Underline",null);});
@@ -818,6 +809,7 @@ sohu.diyConsole=function(opts){
 		$("#imenu-ol").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("insertorderedlist",null);});
 		$("#imenu-z").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("undo",null);});
 		$("#imenu-r").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("redo",null);});
+		*/
 		//colorpicker
 		$("#imenu-cc").mousedown(function(evt){
 			p.saveSelection();
@@ -905,6 +897,7 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.$ScrollWrap=$("#scrollWrap");
 		sohu.diyConsole.$BodyBGA=$("#main .bodyBGA");		
 		//分栏选择器
+		/*
 		$('#hiddenTemplate .sec_selector li').click(function(evt){
 			if(!sohu.diyConsole.CurSec) return;
 			sohu.diyConsole.CurSec.Editor.SecSelector.Cur=this.id;
@@ -912,7 +905,7 @@ sohu.diyConsole=function(opts){
 			sohu.diyConsole.CurSec.AddSub($(sohu.diyTp[this.id]));
 			return false;
 		}).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");});
-		
+		*/
 		//功能按钮
 		/*
 		p._$btnAdd.bind("click",p.onAdd);
@@ -953,7 +946,7 @@ sohu.diyConsole=function(opts){
 		//分栏标题对话框
 		p.initSecHead();
 		//分栏设置对话框
-		p.initSec();
+		//p.initSec();
 		//html代码对话框
 		p.initCode();
 		//editMenu的事件注册
@@ -961,7 +954,8 @@ sohu.diyConsole=function(opts){
 		//页面背景设置
 		//p.initPageBG();
 		//元素工具条
-		sohu.diyElementTool.Init({});
+		//sohu.diyElementTool.Init({});
+		new sohu.diyMenuBar({});
 		//弹框组件
 		sohu.diyDialog.Init({console:_this});
 		//on page loaded
@@ -1176,4 +1170,32 @@ sohu.diyConsole.GetClassName=function($dom,idx){
 sohu.diyConsole.IsValidID=function(str){
 	if(!StringUtils.isAlphanumeric(str.replace("_",""))) return false;
 	return true;
+};
+/**
+ * 预览-退出编辑状态
+ */
+sohu.diyConsole.Preview=function(){
+	if(!sohu.diyConsole.CurArea) return;
+	if(!sohu.diyConsole.CurArea.IsActive) return;
+	if(sohu.diyConsole.CurArea.IsEditing) return;
+	if(sohu.diyConsole.Dragger.ing) return;
+	//强制移除内联编辑器
+	if(sohu.diyConsole.EditingSec!=null&&sohu.diyConsole.CurElm!=null){
+		sohu.diyConsole.CurElm.HideEditor(false);
+	};
+	//反激活横切
+	sohu.diyConsole.CurArea.Deactive();
+	//反激活分栏
+	if(sohu.diyConsole.CurSec)
+		sohu.diyConsole.CurSec.Deactive();
+};
+/**
+ * 元素选择快照
+ */
+sohu.diyConsole.SnapSelection=function(){
+	if(sohu.diyConsole.CurElm.InlineEditable){
+		sohu.diySelection.snap(sohu.diyConsole.CurElm.i$frame[0].iDoc());
+	}else{
+		sohu.diySelection.snap(document,sohu.diyConsole.CurElm.$Layout[0]);
+	};
 };

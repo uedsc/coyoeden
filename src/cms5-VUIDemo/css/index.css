@@ -82,14 +82,20 @@ display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(25
 	
 /* =/#editMenu= */
 
+#jqmWin1 .skform{border:none;}
+#jqmWin1 .skformx{background:#F0F0EE;}
+.jqmCT{position:relative;}
 #cfgPage{position:relative;}
 #cfgPage .cpk{position:absolute;display:none;width:356px;top:20%;right:10px;}
 
 #wCfgSec{position:relative;}
+#wCfgSec label{width:80px;}
+#wCfgSec .field{width:285px;}
 #wCfgSec .cpk{position:absolute;display:none;width:356px;top:20%;right:10px;}
 
 #cfgArea label,#cfgPage label{width:100px;}
 #cfgArea .field,#cfgPage .field{width:260px;}
+
 
 
 /* =Editor related style= */
@@ -150,14 +156,14 @@ display:none;
 /*隐藏模板*/
 #hiddenTemplate{display:none;}
 	#elmTool{display:none;position:absolute;border:1px solid #ccc;width:90px;}
-/*静态模板样式-横切选择模板*/
-.area_selector{width:404px;height:220px;}
-.area_selector ul{width:192px;padding:0;margin:0;}
-.area_selector ul.col0{margin-right:10px;}
-.area_selector li{margin-top:10px;width:190px;border:1px solid #c6deff;text-align:center;cursor:pointer;}
-.area_selector li.on{border:1px dotted red;}
-.area_selector div{float:left;padding:5px 0;border-left:1px solid #c6deff;}
-.area_selector div.col0{border-left:none;}
+/*静态模板样式-分栏选择模板*/
+.sec_selector{width:404px;height:150px;}
+.sec_selector ul{width:192px;padding:0;margin:0 auto;}
+.sec_selector ul.col0{margin-right:10px;}
+.sec_selector li{margin-top:10px;width:190px;border:1px solid #c6deff;text-align:center;cursor:pointer;}
+.sec_selector li.on{border:1px dotted red;}
+.sec_selector div{float:left;padding:5px 0;border-left:1px solid #c6deff;}
+.sec_selector div.col0{border-left:none;}
 	.w36{width:36px;}
 	.w38{width:38px;}
 	.w46{width:46px;}

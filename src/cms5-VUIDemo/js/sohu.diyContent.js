@@ -102,6 +102,7 @@ sohu.diyContent.prototype.InlineEdit=function(state){
 	}else{
 		this.Sec.InlineEditing=false;
 		this.Sec.Deactive();
+		this.$Layout.trigger("mouseleave");
 		sohu.diyConsole.EditingSec=null;
 		sohu.diyConsole.EditingCT=null;
 	}

@@ -12,6 +12,7 @@ sohu.diyElement=function(opts){
 	this.i$frame=null;/* Reference to the iframe editor */
 	this.InlineEditable=true;
 	this.tagName=this.$Layout[0].tagName.toLowerCase();
+	this.Copyable=this.$Layout.is(".elmc");
 	
 	/* private member variables */
 	var p={opts:opts};
@@ -28,6 +29,7 @@ sohu.diyElement=function(opts){
 			sohu.diyConsole.$MenuTxt.show();
 			sohu.diyConsole.$MenuImg.hide();
 			*/
+			/*
 			sohu.diyConsole.ShowEditMenu("$MenuTxt");
 			//栏目标题
 			if(_this.$Layout.parent().is(".sec_hd")){
@@ -37,7 +39,8 @@ sohu.diyElement=function(opts){
 			if(_this.$Layout.is(".elmc")||_this._$Layout.parent(".elmc").length>0){
 				sohu.diyConsole.ShowEditMenu("$MenuElmc",true);
 			};
-			
+			*/
+			sohu.diyDialog.Show("wText");
 			_this.CT.InlineEdit("on");
 		}else{
 			_this.i$frame=null;
@@ -82,33 +85,52 @@ sohu.diyElement=function(opts){
 	//鼠标事件
 	this.$Layout.mouseenter(function(evt){
 		_this.$Layout.addClass(opts.clOn);
+		/*
 		if(_this.$Layout.hasClass(opts.clCopyable))
 			sohu.diyElementTool.Trigger({type:"evtShow",elm:_this});
+		*/
 	});
 	this.$Layout.mouseleave(function(evt){
 		_this.$Layout.removeClass(opts.clOn);
+		/*
 		if(_this.$Layout.hasClass(opts.clCopyable))
 			sohu.diyElementTool.Trigger({type:"evtHide",elm:_this});
+		*/
 	});
 	this.$Layout.mousedown(function(evt){
 		sohu.diyConsole.$PopWins.hide();
 		sohu.diyConsole.$Menu.removeClass("on");
-		if(sohu.diyConsole.CurElm)
+		if (sohu.diyConsole.CurElm) {
 			sohu.diyConsole.CurElm.HideEditor(true);
-			
+			sohu.diyDialog.Hide(true);
+			//sohu.diyDialog.Hide();
+		};	
 		sohu.diyConsole.CurElm=_this;
 		
 	});
 	//屏蔽超链接
 	this.$Context.find("a").css("cursor","text").click(function(evt){return false;});
 };
+/**
+ * 关闭元素的编辑状态
+ * @param {Object} ignoreCbk
+ */
 sohu.diyElement.prototype.HideEditor=function(ignoreCbk){
 	if(this.InlineEditable){
-		this.$Layout[0].iEdit("off",ignoreCbk||false);
+		this.IFEdit("off",ignoreCbk);
 	}else{
 		sohu.diyConsole.$EditMenu.hide();
 		this.CT.InlineEdit("off");
 	}
 	
 	sohu.diyConsole.CurElm=null;
+};
+/**
+ * 开启/关闭内联iframe编辑
+ */
+sohu.diyElement.prototype.IFEdit=function(mode,ignoreCbk){
+	if(!this.InlineEditable) return;
+	mode=mode||"on";
+	mode=mode=="on"?mode:"off";
+	this.$Layout[0].iEdit(mode,ignoreCbk||false);
 };

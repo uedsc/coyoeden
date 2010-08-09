@@ -52,58 +52,22 @@ sohu.diyEditor=function(opts){
  * 弹出添加分栏选择框
  */
 sohu.diyEditor.prototype.DialogSec=function(){
-	var _this=this;
-	var templateID="#sec_selector_"+this.CurSec.Width;
-	this.CurTpl=null;
-	this.Editing("on");
-	//close callback
-	var _onClose=function(evt,ui){
-		if(!_this.SecSelector.Cur) return; /* _this.SecSelector.Cur赋值逻辑参考sohu.diyConsole.js */
-		_this.Editing("off");
-		_this.CurSec.Deactive();
-	};
-	//Open callback
-	var _onOpen=function(evt,ui){
-		var dim=_this.CurSec.Dim();
-		var pos=[dim.x-100,dim.y+dim.h/3];
-		_this.SecSelector.dialog("option","position",pos);
-	};
-	//open the dialog
-	this.SecSelector=$(templateID).dialog({
-		title:"添加分栏",
-		resizable:false,
-		modal:true,
-		width:430,
-		height:250,
-		close:_onClose,
-		open:_onOpen,
-		autoOpen:false//to reuse the dialog,we have to set autoOpen to false!
-	});
-	this.SecSelector.dialog("open");
+	if(this.CurArea.IsEditing) return;
+	sohu.diyDialog.Show("subSec"+this.CurSec.Width);
 };
 /**
  * 弹出分栏设置对话框
  */
 sohu.diyEditor.prototype.DialogSecCfg=function(){
-	var _this=this;
-	var _onClose=function(evt,ui){
-		_this.Editing("off").CurSec.Deactive();
-	};
-	this.Editing("on");
-	this.WSecCfg.dialog("option",{close:_onClose});
-	this.WSecCfg.dialog("open");
+	if(this.CurArea.IsEditing) return;
+	sohu.diyDialog.Show("cfgSec");
 };
 /**
  * 弹出代码对话框
  */
 sohu.diyEditor.prototype.DialogCode=function(){
-	var _this=this;
-	var _onClose=function(evt,ui){
-		_this.Editing("off").CurSec.Deactive();
-	};
-	this.Editing("on");
-	sohu.diyConsole.$WinCode.dialog("option",{close:_onClose});
-	sohu.diyConsole.$WinCode.dialog("open");
+	if(this.CurArea.IsEditing) return;
+	sohu.diyDialog.Show("code");
 };
 /**
  * 弹出添加内容选择框
@@ -144,6 +108,7 @@ sohu.diyEditor.prototype.DialogCT=function(mode){
 	}
 	this.CTDialog.dialog("open");
 	*/
+	if(this.CurArea.IsEditing) return;
 	sohu.diyDialog.Show("addContent");
 };
 /**
@@ -151,10 +116,11 @@ sohu.diyEditor.prototype.DialogCT=function(mode){
  * @param {Object} opts 选项
  */
 sohu.diyEditor.prototype.CloseCTDialog=function(opts){
-
+	/*
 	if(!this.CTDialog) return;
 	this.CTDialog.dialog("close");
-	
+	*/
+	sohu.diyDialog.Hide();
 };
 /**
  * 更新diyEditor的内容-用于分栏
@@ -185,19 +151,20 @@ sohu.diyEditor.prototype.UpdateCT=function(ct,mode){
  * 清空内容
  */
 sohu.diyEditor.prototype.Cls=function(){
-	var _this=this;
-	var d=this.CurSec.Dim();
-	var pos=[d.x+10,d.y+10];//对话框位置
-	this.Editing("on");
-	this.Console.Confirm({
-		title:"确认操作",
-		ct:"1,分栏有内容时将清除内容及其子分栏。<br/>2,分栏无内容时删除该分栏及其同级分栏",
-		yes:function(ui){
+	if(this.CurArea.IsEditing) return;
+	var _this=this;	
+	sohu.diyDialog.doConfirm({
+		text:"<p>1,分栏有内容时将清除内容及其子分栏。<br/>2,分栏无内容时删除该分栏及其同级分栏</p><p>注意：删除后无法恢复</p>",
+		onOK:function(dlg){
 			_this.CurSec.Cls();
+			dlg.Hide();
 		},
-		position:pos,
-		close:function(evt,ui){
-			_this.Editing("off");
+		beforeShow:function(hash,dlg){
+			_this.Editing("on");
+			return true;
+		},
+		afterHide:function(hash,dlg){
+			_this.Editing("off").CurSec.Deactive();
 		}
 	});
 	
