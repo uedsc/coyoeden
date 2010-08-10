@@ -216,6 +216,7 @@ sohu.diyConsole=function(opts){
 		return false;
 	};
 	p.setDocumentDim=function(){
+		return;
 		var fullheight, height;
 		fullheight = sohu.diyConsole.InnerHeight();        
 		height = fullheight - p.opts.scrollWrapMainginTop;
