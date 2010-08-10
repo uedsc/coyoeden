@@ -1287,8 +1287,8 @@ sohu.diyDialog.wAreaTool=function(dlg){
 		sohu.diyDialog.Show("cfgArea");
 	};
 	p.onCfgPageBG=function(evt){
-		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
-		if(sohu.diyConsole.CurArea.IsEditing) return false;
+		//if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
+		if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsEditing) return false;
 		sohu.diyDialog.Show("cfgPage");
 	};
 	p.onMove=function(evt){
