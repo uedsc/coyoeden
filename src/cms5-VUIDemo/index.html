@@ -22,107 +22,7 @@
 		<script src="js/sohu.stringUtils.js" type="text/javascript"></script> 
 		<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
 	</head>
-    <body>
-		<!--文本编辑菜单-->
-		<div id="editMenu">
-			<div id="editMenuIn">
-				<div id="editMenuChild" class="clear">
-					<a class="imenu mtxt" title="加粗" href="#" id="imenu-b"></a>
-					<a class="imenu" title="斜体" href="#" id="imenu-i"></a>
-					<a title="下划线" href="#" class="imenu mtxt" id="imenu-u"></a>
-					<a id="imenu-cc" title="颜色" href="#" class="imenu mtxt popwin"></a><input type="hidden" id="txtFontColor" />
-					<a title="增大尺寸" href="#" class="imenu" id="imenu-if"></a>
-					<a title="减少尺寸" href="#" class="imenu" id="imenu-df"></a>
-					<a title="加链接" href="#" class="imenu mcom popwin" id="imenu-cl"></a>
-					<a title="左对齐" href="#" class="imenu mtxt" id="imenu-al"></a>
-					<a title="居中对齐" href="#" class="imenu mtxt" id="imenu-ac"></a>
-					<a title="右对齐" href="#" class="imenu mtxt" id="imenu-ar"></a>
-					<a title="两边对齐" href="#" class="imenu mtxt" id="imenu-af"></a>
-					<a title="无序列表" href="#" class="imenu" id="imenu-ul"></a>
-					<a title="有序列表" href="#" class="imenu" id="imenu-ol"></a>
-					<a title="撤销" href="#" class="imenu" id="imenu-z"></a>
-					<a title="重做" href="#" class="imenu" id="imenu-r"></a>
-					<a title="替换图片" href="#" class="imenu mimg micon0 popwin" id="imenu-img">替换图片</a>
-					<a title="图片属性" href="#" class="imenu mimg micon0 popwin" id="imenu-imgp">图片属性</a>
-					<a title="栏目头设置" href="#" class="imenu msecHead micon0 popwin" id="imenu-secHead">设置</a>
-					<a title="删除父级内容块" href="#" class="imenu mcom micon0" id="imenu_delCT">删父内容</a>
-					<a title="复制增加元素" href="#" class="imenu melmc micon0" id="imenu_addElm">复制元素</a>
-					<a title="删除元素" href="#" class="imenu melmc micon0" id="imenu_delElm">删除元素</a>
-					<a title="上移元素" href="#" class="imenu melmc micon0" id="imenu_moveElmUp">上移元素</a>
-					<a title="下移元素" href="#" class="imenu melmc micon0" id="imenu_moveElmDwn">下移元素</a>
-					<div style="width: 0pt; height: 0pt; clear: both; overflow: hidden;"> </div>
-					<div class="bar_l"></div>
-					<div class="bar_r"></div>
-				</div>
-				<!--color picker-->
-  				<div id="cpkWrap" class="win"></div>
-				<!--图片属性-->
-		        <div id="imgPro" class="win">
-		        	<div class="skform skformx">
-		        		<label>图片尺寸<span class="tip small">高度和宽度(px)</span></label>
-						<div class="field">
-							<span>高度</span><input name="imgHeight" id="txtImgH" type="text" size="2"/>
-							<span>宽度</span><input name="imgWidth" id="txtImgW" type="text" size="2"/>
-						</div>
-		                <label>边框样式<span class="tip tipAHref small">请选择边框样式</span></label>
-		                <div class="field">
-		                	<select id="ddlImgBStyle" name="imgBStyle">
-		                		<option value="none" selected="selected">无</option>
-		                		<option value="dotted">虚线</option>
-								<option value="solid">实线</option>
-		                	</select>
-		                </div>
-		                <label>边框颜色</label>
-						<input name="imgBColor" id="txtImgBColor" type="text" class="field"/>
-						<label>边框内留白<span class="tip small">单位px</span></label>
-						<input name="imgPadding" id="txtImgPadding" type="text" class="field"/>
-		                <div class="acts">
-							<button id="btnAddLink1" class="btnMWinOK">确定</button>
-							<button id="btnCloseLink1" class="btnMWinNO">取消</button>
-						</div>
-						<div class="cpk"></div>
-		                <div class="spacer"></div>
-		        	</div>	      
-		        </div>
-				<!--更换图片-->
-				<div id="imgSwitch" class="win">
-					<div class="skform skformx">
-						<label>替代文字<span class="tip small">图片无法正常显示时的替代文字</span></label>
-						<input name="imgAlt" id="txtImgAlt" type="text" class="field"/>
-						<label>链接<span class="tip tipImgSrc small">请输入有效图片网址或从服务器选择</span></label>
-						<div class="field">
-							<input type="text" id="txtImgSrc" name="imgSrc" size="27"/>
-							<button id="btnUpload" onclick="alert('hi')">浏览</button>
-						</div>
-						<div class="acts">
-							<button class="btnMWinOK">确定</button>
-							<button class="btnMWinNO">取消</button>
-						</div>
-		                <div class="spacer"></div>
-					</div>
-				</div>
-				<!--栏目头设置-->
-				<div id="cfgSecHead" class="win">
-					<div class="skform skformx">
-						<label>背景色</label>
-						<input name="secHeadBGC" id="txtSecHeadBGC" type="text" class="field"/>
-						<label>背景图<span class="tip tipSecHeadImg small">请输入有效图片网址或从服务器选择</span></label>
-						<div class="field">
-							<input type="text" id="txtSecHeadImg" name="secHeadImg" size="27"/>
-							<button onclick="alert('hi')">浏览</button>
-						</div>
-						<div class="acts">
-							<button class="btnMWinOK">确定</button>
-							<button class="btnMWinDel" title="删除栏目头">删除</button>
-							<button class="btnMWinNO">关闭</button>
-						</div>
-						<div class="cpk"></div>
-		                <div class="spacer"></div>
-					</div>					
-				</div>				
-			</div>
-		</div>		
-		<!--/文本编辑菜单-->
+    <body>		
 		<!--#main-->
 		<div id="scrollWrap">
 			<div id="main">
@@ -182,6 +82,22 @@
 			<!-- content temp wrapper临时存放编辑内容的容器 -->
 			<div id="ctWrap"></div>	
 		</div>
+		<div id="secEditor" class="secEditor">
+			<div class="actions">
+				<div class="actions_body clear">
+					<div class="l"><span class="secTip"></span></div>
+					<div class="r">
+						<a class="a_code" href="#" title="查看当前分栏的代码">代码</a>
+						<a class="a_cfg" href="#" title="分栏设置">设置</a>
+						<a class="a_ret" href="#" title="返回上一级分栏">上级</a>
+						<a class="a_content" href="#" title="为分栏添加内容">内容</a>
+						<a class="a_sec" href="#" title="添加子分栏">分栏</a>
+						<a class="a_clear" href="#" title="清除分栏的子分栏以及内容">清除</a>
+					</div>
+				</div>
+			</div>
+			<div class="overlay"></div>
+		</div>		
 		<!--Dialog layout-->
 		<div id="jqmWin1" class="jqmWindow">
 			<div class="hd clear">
@@ -229,7 +145,7 @@
 					<div class="txt01">边框</div>
 					<input id="picBColor" type="text" value="" class="ipt02" name="picBColor"/>
 					<div class="two"></div> 
-					<span id="elmcActs">
+					<span class="elmcActs">
 						<a class="editBtn elmAdd cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
 						<a class="editBtn elmDel cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
 						<a class="editBtn elmMove0 cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
@@ -408,6 +324,98 @@
 				<div class="cpk"></div>
                 <div class="spacer"></div>				
 			</div>
+			<!--栏目头-->
+			<div id="wSecHead">
+				 <div class="lineA">
+				 	<div class="txt01">背景</div>
+					<input id="secHDBG" name="secHDBG" type="text" value="" class="ipt03"/><input type="button" class="browse"  value="浏览" />
+			     </div>
+			      <div class="blank8"></div>
+				  <div class="bottom3line"></div>
+				  <div class="blank8"></div>
+				  <div class="wline">
+				   <a class="editBtn cmdBold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
+				   <a class="editBtn cmdUnderline cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
+				   <a class="editBtn cmdColor cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
+				   <a class="editBtn cmdAL cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
+				   <a class="editBtn cmdAC editBtn2 cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
+				   <a class="editBtn cmdAR cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
+			       <input id="cbxSecHDMore" name="secHDMore" type="checkbox" class="cBox03" />
+				   <div class="txt05">更多</div>
+				 </div>
+				  <div class="blank8"></div>
+				  <div class="bottom3line"></div>		
+				  <div class="lineA">
+				  	<div class="txt01">链接</div><input id="secHDLink" type="text" value="" class="ipt03"/>
+					<select id="ddlSecHDTarget" class="selAuto">
+						<option value="_blank" selected="selected">新窗口</option>
+						<option value="_self">本窗口</option>
+					</select>
+			      </div>
+				  <div class="lineA tipSecHDLink">请输入有效网址！</div>
+				  <div class="lineA">
+				  	<div class="txt01">Title</div>
+					<input id="secHDTitle" type="text" value="" class="ipt03"/>
+			      </div>
+			</div>
+			
+			<!--栏目头 over-->
+			<!--页面属性-->
+			<div id="wPagePro">
+				 <div class="lineA">
+				 	<div class="txt01">title</div>
+					<input id="pTitle" type="text" value="" class="ipt01"/>
+			     </div>
+				 
+				 <div class="linep">请输入有效网址！</div>
+				 
+				 <div class="lineA">
+				 	<div class="txt01">keywords</div>
+				 	<input id="pKeyword" type="text" value="" class="ipt01"/>
+			     </div>
+				 
+				 <div class="lineA h60">
+				 	<div class="txt01">description</div>
+					<input id="pDesc" type="textarea" value="" class="area01"/>
+			     </div>
+			</div>
+			
+			<!--页面属性 over-->	
+			<!--更换风格 -->
+			 <div id="wTheme">	  
+			      <div class="lineC tLine">
+				    <div class="wrapDiv"> 
+					   <div class="focusPic"><img src="images/right01.gif" width="4" height="7" alt="" />常用专题风格</div>
+					   <div class="classify">
+					        <ul>
+						    <li class="now"><a href="">分类01</a></li>
+						    <li><a href="">分类02</a></li>
+						    <li><a href="">分类03</a></li>
+						    <li><a href="">分类04</a></li>
+						    </ul>
+					   </div>
+					   <div class="wrap01">
+					      <div class="left"><img src="images/lbtn01.gif" width="22" height="30" alt="" /></div>
+					      <div class="center">
+						     <ul>
+			                 <li><a href="#" target="_blank"><img src="images/pic146x151_1.jpg" width="146" height="151" alt="" /></a><span>焦点图形式说明标题</span></li>
+			                 <li><a href="#" target="_blank"><img src="images/pic146x151_1.jpg" width="146" height="151" alt="" /></a><span>焦点图形式说明标题</span></li>
+							 <li><a href="#" target="_blank"><img src="images/pic146x151_1.jpg" width="146" height="151" alt="" /></a><span>焦点图形式说明标题</span></li>
+							 </ul>
+			              </div>
+						 <div class="right"><input type="button" class="r1btn"  onmouseover="this.className='r1btn r1btnM'" onmouseout="this.className='r1btn'" value="" /></div>
+						 <div class="rollDot">
+						    <a id="a_movie_0" class="currA" onclick="" target="_self" href="javascript://">1</a>
+							<a id="a_movie_0" onclick="" target="_self" href="javascript://">2</a>
+							<a id="a_movie_0" onclick="" target="_self" href="javascript://">3</a>
+							<a id="a_movie_0" onclick="" target="_self" href="javascript://">4</a>
+							<a id="a_movie_0" onclick="" target="_self" href="javascript://">5</a>
+						 </div>
+					   </div>
+					</div>
+				  </div>
+			</div>
+			<!--更换风格 over-->					
 			<!--分栏选择模板-->
 			<div id="subSec390" class="sec_selector">
 				<ul>
@@ -467,13 +475,22 @@
 			</div>
 		</div>
 		<!--/横切工具条-->	
-		<!--元素增删移到工具条-->
-		<div id="elmTool">
-			<a class="add" href="#">增</a>
-			<a class="del" href="#">删</a>
-			<a class="up" href="#">上</a>
-			<a class="dwn" href="#">下</a>
+		<!--右侧隐藏-->
+		<div id="wSetting1">
+			<div class="close">
+				<div class="left">
+				 <ul>
+				 <li><a id="wsTheme" class="editBtn4" href="#"><strong>更换风格</strong></a></li>
+				 <li><a id="wsPagePro" class="editBtn4" href="#"><strong>页面属性</strong></a></li>
+				 <li><a id="wsPreview" class="editBtn4" href="#"><strong>预览</strong></a></li>
+				 <li><a id="wsPublish" class="editBtn4" href="#"><strong>发布</strong></a></li>
+				 <li><a id="wsHelp" class="editBtn4" href="#"><strong>帮助</strong></a></li>
+				 </ul>
+				</div>
+				<div class="right ctr"></div>
+			</div>	
 		</div>
+		<!--右侧隐藏 over-->
 		<!--内容拖拽助手-->
 		<div id="ctHandle" class="dragHandle">
 			<img src="img/move.gif" alt="移动" width="16" height="16"/>

@@ -210,9 +210,8 @@ sohu.diyConsole=function(opts){
 		
 		var b=p.getWorkspaceBoundary();
 		if(evt.pageX<b.lbleft||evt.pageX>b.ubleft||evt.pageY>b.ubtop){//||evt.pageY<lbtop
-			sohu.diyConsole.Preview();			
-			//重置添加链接对话框表单
-			p._fmAddLink.reset();
+			//sohu.diyDialog.Hide(true);
+			//sohu.diyConsole.Preview();			
 		};
 		return false;
 	};
@@ -934,21 +933,21 @@ sohu.diyConsole=function(opts){
 				sohu.diyConsole.CurSec.Editor.Reposition();
 		});
 		//color picker
-		p.initColorPicker();
+		//p.initColorPicker();
 		//create link popup window
-		p.initAddLink();
+		//p.initAddLink();
 		//图片属性对话框
-		p.initImgPro();
+		//p.initImgPro();
 		//更换图片对话框
-		p.initImgSwitch();
+		//p.initImgSwitch();
 		//横切背景对话框
 		//p.initAreaBG();
 		//分栏标题对话框
-		p.initSecHead();
+		//p.initSecHead();
 		//分栏设置对话框
 		//p.initSec();
 		//html代码对话框
-		p.initCode();
+		//p.initCode();
 		//editMenu的事件注册
 		p.initEditMenu();
 		//页面背景设置

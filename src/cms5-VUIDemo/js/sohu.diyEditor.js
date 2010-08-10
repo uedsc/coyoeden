@@ -74,40 +74,6 @@ sohu.diyEditor.prototype.DialogCode=function(){
  * @param {String} mode mode="update"时编辑html内容
  */
 sohu.diyEditor.prototype.DialogCT=function(mode){
-	/*
-	var _this=this;
-	this.Editing("on");
-	
-	//关闭回调
-	var _onClose=function(evt,ui){
-		_this.Editing("off");
-	};
-	//打开回调
-	var _onOpen=function(evt,ui){
-		var areaDim=_this.CurArea.Dim();
-		var pos=[areaDim.x+areaDim.w/2-300,areaDim.y+areaDim.h/3];
-		_this.CTDialog.dialog("option","position",pos);
-		//var ifr=_this.CTDialog.find("#ifContentList");
-		//ifr.attr("src",ifr.attr("rel")+"?t="+new Date().getTime());
-	};
-
-	sohu.diyConsole.toggleLoading();
-	if(!mode){
-		this.CTDialog=$(this.__p.opts.cssCTSelector).dialog({
-			title:"添加内容",
-			width:680,
-			height:550,
-			modal:true,
-			close:_onClose,
-			open:_onOpen,
-			autoOpen:false
-		});
-	}else{
-		if(!sohu.diyConsole.CurCT) return;
-		sohu.diyConsole.CurCT.isNew=false;
-	}
-	this.CTDialog.dialog("open");
-	*/
 	if(this.CurArea.IsEditing) return;
 	sohu.diyDialog.Show("addContent");
 };

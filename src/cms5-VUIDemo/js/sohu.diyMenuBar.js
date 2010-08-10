@@ -45,15 +45,32 @@ sohu.diyMenuBar=function(opts){
 	p.elmCmd={};
 	p.elmCmd.AddCopy=function(evt){
 		if(!sohu.diyConsole.CurElm) return;
-		var $dom=sohu.diyConsole.CurElm.$Layout.clone(false).attr("id","").removeClass(p._opts.clElmOn).show().css("visibility","visible");
-		var $if=sohu.diyConsole.CurElm.$Layout.next("iframe");
-		if($if.length>0){
-			$if.after($dom);
+		var $dom=sohu.diyConsole.CurElm.$CopyModel.clone(false).removeClass(p._opts.clElmOn).show().css("visibility","visible");
+		if($dom.attr("id")!="") $dom.attr("id","");
+		
+		if(sohu.diyConsole.CurElm.IsSelfCopyable){
+			var $if=sohu.diyConsole.CurElm.$CopyModel.next("iframe");
+			if($if.length>0){
+				$if.after($dom);
+			}else{
+				sohu.diyConsole.CurElm.$Layout.after($dom);
+			};
+			//apply diyElement features
+			new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$dom});
 		}else{
-			sohu.diyConsole.CurElm.$Layout.after($dom);
-		}	
-		//apply diyElement features
-		new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$dom});
+			//清楚iframe.editable
+			$dom.find(".editable").remove();
+			//清楚元素的id
+			$dom.find(".elm").attr("id","").css("visibility","visible");
+			
+			sohu.diyConsole.CurElm.$CopyModel.after($dom);
+			//apply diyElement features
+			$dom.find(".elm").each(function(i,o){
+				new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$(o)});
+			});
+		};
+		//重定位分栏编辑器
+		sohu.diyConsole.CurElm.CT.Editor.Reposition();
 	};
 	p.elmCmd.Del=function(evt){
 		if(!sohu.diyConsole.CurElm) return;
@@ -61,35 +78,34 @@ sohu.diyMenuBar=function(opts){
 		//关闭编辑对话框
 		sohu.diyDialog.Hide();
 		//删除元素
-		tempElm.$Layout.next("iframe").remove();
-		tempElm.$Layout.remove();
+		if(tempElm.IsSelfCopyable){
+			tempElm.$Layout.next("iframe").remove();
+			tempElm.$Layout.remove();		
+		}else{
+			tempElm.$CopyModel.remove();
+		};
+
+		//重定位分栏编辑器
+		//sohu.diyConsole.CurElm.CT.Editor.Reposition();
 	};
 	p.elmCmd.Move=function(evt){
 		p.elm=sohu.diyConsole.CurElm;
 		if(!p.elm) return;
 		//移动
-		var $obj=evt.data.up?p.elm.$Layout.prevAll("."+p._opts.clElmCopyable):p.elm.$Layout.nextAll("."+p._opts.clElmCopyable);
+		var $obj=evt.data.up?p.elm.$CopyModel.prevAll("."+p._opts.clElmCopyable):p.elm.$CopyModel.nextAll("."+p._opts.clElmCopyable);
 		if($obj.length==0) return;
 		$obj=$obj.eq(0);
-		//var $iframe0=$obj.next("iframe");
-		//var $iframe1=p.elm.$Layout.next("iframe");
 		if(evt.data.up){
-			$obj.before(p.elm.$Layout);
+			$obj.before(p.elm.$CopyModel);
 		}else{
-			/*
-			if($iframe0.length>0)
-				$iframe0.after(p.elm.$Layout);
-			else
-				$obj.after(p.elm.$Layout);
-			*/
-			$obj.after(p.elm.$Layout);
+			$obj.after(p.elm.$CopyModel);
 		};
-		/*
-		if($iframe1.length>0)
-			p.elm.$Layout.after($iframe1);
-		*/	
-		var pos=p.elm.$Layout.position();
-		p.elm.i$frame.css({top:pos.top,left:pos.left});
+		if(p.elm.i$frame){
+			var pos=p.elm.$Layout.position();
+			p.elm.i$frame.css({top:pos.top,left:pos.left});			
+		}else{
+			
+		};
 	};
 	
 	//图标的事件绑定

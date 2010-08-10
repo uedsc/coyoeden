@@ -26,7 +26,7 @@
 .area .center{margin-left:10px;}
 
 /* 分栏 */
-.sec .elm{border:1px solid transparent;border-bottom:none;}
+
 
 /* 
  * 列表-参考“global.css”及“统一模板.html” 
@@ -62,5 +62,5 @@
 .c6 li{width:16.6%;}
 /* 空行 */
 .vspace{position:relative;font-size:0;line-height:0;height:10px;}
-.vspace hr{position:absolute;top:49.9%;padding:0;margin:0 auto;border:1px dotted #808080;}
+.vspace hr{position:absolute;top:49.9%;padding:0;margin:0 auto;height:1px;border:none;border-top:1px dotted #808080;}
 

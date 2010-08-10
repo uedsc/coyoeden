@@ -107,40 +107,40 @@ a.close:hover{background-position: bottom;}
 
 .two{float:left;  margin:0 2px;width:0;height:16px;border-left:1px solid #D6D6D6;border-right:1px solid #F7F7F7;vertical-align:middle;margin-left:5px;}
 
-#changeStyle{ width:598px; height: auto; border:1px solid #666; background:#F0F0EE}
-#changeStyle .titleA{ background:url(../images/common.jpg) 0px -0px;}
-#changeStyle .lineC{margin:0 auto; width:570px;height:auto;border-bottom:1px solid #D6D6D6;vertical-align: middle;}
-#changeStyle .tLine{border-top:1px solid #F7F7F7;}
-#changeStyle .lineC h2{height:14px; text-align: left; vertical-align: middle; font-weight:bold; padding: 8px 0 8px 0; color:#000}
-#changeStyle .lineC h2 img{ margin-right: 8px;}
-#changeStyle .lineC .lineA{ vertical-align: middle; padding-bottom:8px;}
-#changeStyle .lineC .txt01{ width:40px; text-align: right; padding-right:5px; color:#000}
-#changeStyle .lineC .txt02{  padding-left:2px; color:#000}
-#changeStyle .lineC .txt04{ float:left;padding-left: 5px; padding-right: 20px;vertical-align: middle; color:#000}
-#changeStyle .lineC .lineA .cBox01{float:left;margin-left:15px;border:1px solid #F0F0EE;}
-#changeStyle .lineC .lineA .Btn,#changeStyle .lineC .lineA .BtnM{ width:45px; height:24px;}
-#changeStyle .lineC .wrapDiv{position: relative;}
-#changeStyle .lineC .focusPic{margin:0 auto; width:570px;height:14px; text-align: left; vertical-align: middle;font-weight:bold;padding: 8px 0 8px 0; color:#000;}
-#changeStyle .lineC .focusPic img{ margin-right: 8px;}
-#changeStyle .lineC .classify{width: auto;height: 20px;	position: absolute; right: 1px;	top: 4px; z-index:10;}
-#changeStyle .lineC .classify ul{width: auto;height: 20px; float:right}
-#changeStyle .lineC .classify ul li{float:left; width: 52px; height: 20px; line-height: 20px; margin-left: 4px;_margin-left:3px;}
-#changeStyle .lineC .classify ul li.now{ background: url(../images/pic07.gif) no-repeat;}
-#changeStyle .lineC .wrap01{width:570px; height:auto;}
-#changeStyle .lineC .wrap01 .left,#changeStyle .lineC .wrap01 .right{ width: 22px; height: 150px;}
-#changeStyle .lineC .wrap01 .left img,#changeStyle .lineC .wrap01 .right img{ width:22px;height:30px; margin-top: 70px;}
-#changeStyle .lineC .wrap01 .center,#changeStyle .lineC .wrap01 .center ul{ width:516px; height:178px;}
-#changeStyle .lineC .wrap01 .center{ padding-left: 10px; _padding-left:10px;overflow:hidden}
+#wTheme{ width:598px; height: auto; background:#F0F0EE}
+#wTheme .titleA{ background:url(../images/common.jpg) 0px -0px;}
+#wTheme .lineC{margin:0 auto; width:570px;height:auto;border-bottom:1px solid #D6D6D6;vertical-align: middle;}
+#wTheme .tLine{border-top:1px solid #F7F7F7;}
+#wTheme .lineC h2{height:14px; text-align: left; vertical-align: middle; font-weight:bold; padding: 8px 0 8px 0; color:#000}
+#wTheme .lineC h2 img{ margin-right: 8px;}
+#wTheme .lineC .lineA{ vertical-align: middle; padding-bottom:8px;}
+#wTheme .lineC .txt01{ width:40px; text-align: right; padding-right:5px; color:#000}
+#wTheme .lineC .txt02{  padding-left:2px; color:#000}
+#wTheme .lineC .txt04{ float:left;padding-left: 5px; padding-right: 20px;vertical-align: middle; color:#000}
+#wTheme .lineC .lineA .cBox01{float:left;margin-left:15px;border:1px solid #F0F0EE;}
+#wTheme .lineC .lineA .Btn,#wTheme .lineC .lineA .BtnM{ width:45px; height:24px;}
+#wTheme .lineC .wrapDiv{position: relative;}
+#wTheme .lineC .focusPic{margin:0 auto; width:570px;height:14px; text-align: left; vertical-align: middle;font-weight:bold;padding: 8px 0 8px 0; color:#000;}
+#wTheme .lineC .focusPic img{ margin-right: 8px;}
+#wTheme .lineC .classify{width: auto;height: 20px;	position: absolute; right: 1px;	top: 4px; z-index:10;}
+#wTheme .lineC .classify ul{width: auto;height: 20px; float:right}
+#wTheme .lineC .classify ul li{float:left; width: 52px; height: 20px; line-height: 20px; margin-left: 4px;_margin-left:3px;}
+#wTheme .lineC .classify ul li.now{ background: url(../images/pic07.gif) no-repeat;}
+#wTheme .lineC .wrap01{width:570px; height:auto;}
+#wTheme .lineC .wrap01 .left,#wTheme .lineC .wrap01 .right{ width: 22px; height: 150px;}
+#wTheme .lineC .wrap01 .left img,#wTheme .lineC .wrap01 .right img{ width:22px;height:30px; margin-top: 70px;}
+#wTheme .lineC .wrap01 .center,#wTheme .lineC .wrap01 .center ul{ width:516px; height:178px;}
+#wTheme .lineC .wrap01 .center{ padding-left: 10px; _padding-left:10px;overflow:hidden}
 /**±³¾°Çé¿ö #addContent .lineC .wrap01 .center ul li{float:left; width:162px; height: 130px; margin-top: 10px; background: url(../images/picbg.gif) top center no-repeat; margin-right:10px;}**/
 /**#addContent .lineC .wrap01 .center ul li img{ margin:0 auto; width:146px; height:102px; padding:7px 9px 9px 7px;}**/
-#changeStyle .lineC .wrap01 .center ul li{float:left; width:162px; height: 163px; margin-top: 10px; margin-right:10px;}
-#changeStyle .lineC .wrap01 .center ul li img{ margin:0 auto; width:146px; height:151px; padding:6px; border:1px solid #CBCBCB; background:#fff}
-#changeStyle .lineC .wrap01 .center ul li a:hover img{border:1px solid #69C3E5 }
-#changeStyle .lineC .wrap01 .center ul li span{margin:0 auto; width:162px; line-height: 20px;}
-#changeStyle .lineC .wrap01 .rollDot{ clear: both;margin:0 auto; margin-left: 230px; padding-top:10px; margin-bottom:10px; width:100px; height: 7px; text-align: center;  }
-#changeStyle .lineC .wrap01 .rollDot a{ float:left; width:7px; height:7px; margin-left:10px; overflow:hidden; text-indent:-9999px; background:url(../images/sohu-toolbar-sprite.png) no-repeat -190px -5px;}
-#changeStyle .lineC .wrap01 .rollDot a.currA,#changeStyle .lineC .wrap01 .rollDot a:hover { background-position:-207px -5px; width: 7px; height: 7px; }
-#changeStyle .lineC .wrap01 .left .r1btn,#changeStyle .lineC .wrap01 .right .r1btn{ margin-top: 70px;}
+#wTheme .lineC .wrap01 .center ul li{float:left; width:162px; height: 163px; margin-top: 10px; margin-right:10px;}
+#wTheme .lineC .wrap01 .center ul li img{ margin:0 auto; width:146px; height:151px; padding:6px; border:1px solid #CBCBCB; background:#fff}
+#wTheme .lineC .wrap01 .center ul li a:hover img{border:1px solid #69C3E5 }
+#wTheme .lineC .wrap01 .center ul li span{margin:0 auto; width:162px; line-height: 20px;}
+#wTheme .lineC .wrap01 .rollDot{ clear: both;margin:0 auto; margin-left: 230px; padding-top:10px; margin-bottom:10px; width:100px; height: 7px; text-align: center;  }
+#wTheme .lineC .wrap01 .rollDot a{ float:left; width:7px; height:7px; margin-left:10px; overflow:hidden; text-indent:-9999px; background:url(../images/sohu-toolbar-sprite.png) no-repeat -190px -5px;}
+#wTheme .lineC .wrap01 .rollDot a.currA,#wTheme .lineC .wrap01 .rollDot a:hover { background-position:-207px -5px; width: 7px; height: 7px; }
+#wTheme .lineC .wrap01 .left .r1btn,#wTheme .lineC .wrap01 .right .r1btn{ margin-top: 70px;}
 
 
 
@@ -150,15 +150,15 @@ a.close:hover{background-position: bottom;}
 #spPub .lineA .selAuto{float:left; width:61px;height:20px;font-size:12px; }
 #spPub .lineA .ipt01{float:left; width:60px;font-size:12px; }
 
-#pagePro{ width:405px; height: auto; border:1px solid #666; padding-bottom: 8px; background:#F0F0EE}
-#pagePro .titleA{ background:url(../images/common.jpg) 0px -133px;}
-#pagePro .lineA .txt01,#spPub .lineA .txt01{float:left; vertical-align: middle; line-height:20px;}
-#pagePro .lineA .txt01{ width:80px; color:#383836; text-align:right; padding-right: 5px;}
-#pagePro .lineA .ipt01{ width:305px;}
-#pagePro .lineA .area01{ width:305px; height:50px;}
-#pagePro .lineA .area01{ float:left; border: 0px;border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;background:#fff }
+#wPagePro{ width:405px; height: auto; padding-bottom: 8px; background:#F0F0EE}
+#wPagePro .titleA{ background:url(../images/common.jpg) 0px -133px;}
+#wPagePro .lineA .txt01,#spPub .lineA .txt01{float:left; vertical-align: middle; line-height:20px;}
+#wPagePro .lineA .txt01{ width:80px; color:#383836; text-align:right; padding-right: 5px;}
+#wPagePro .lineA .ipt01{ width:305px;}
+#wPagePro .lineA .area01{ width:305px; height:50px;}
+#wPagePro .lineA .area01{ float:left; border: 0px;border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;background:#fff }
 .h60{ height: 60px;}
-#pagePro .linep{ margin:0 auto;   height:22px; vertical-align: middle; margin-top:5px;padding-left:0px; width:230px;}
+#wPagePro .linep{ margin:0 auto;   height:22px; vertical-align: middle; margin-top:5px;padding-left:0px; width:230px;}
 
 
 #autoList{ width:285px; height: auto; border:1px solid #666; background:#F0F0EE; padding-bottom: 8px;}
@@ -180,17 +180,17 @@ a.close:hover{background-position: bottom;}
 
 
 
-#colHead{ width:285px; height: auto; border:1px solid #666;padding-bottom:8px; background:#F0F0EE}
-#colHead .titleA{ background:url(../images/common.jpg) 0px -38px;}
-#colHead .lineA .txt01{float:left; vertical-align: middle; line-height:20px; width:35px; color:#383836}
-#colHead .lineA .ipt03{ width: 168px;}
-#colHead .btnLine{margin-top:10px;}
-#colHead .lineA .selAuto{ float:left; width:62px;height:20px;font-size:12px; margin-left: 4px;}
-#colHead .wline{ margin:0 auto; width: 270px; height: 16px; }
-#colHead .wline a{float:left; margin-right: 3px;}
+#wSecHead{ width:285px; height: auto;padding-bottom:8px; background:#F0F0EE}
+#wSecHead .titleA{ background:url(../images/common.jpg) 0px -38px;}
+#wSecHead .lineA .txt01{float:left; vertical-align: middle; line-height:20px; width:35px; color:#383836}
+#wSecHead .lineA .ipt03{ width: 168px;}
+#wSecHead .btnLine{margin-top:10px;}
+#wSecHead .lineA .selAuto{ float:left; width:62px;height:20px;font-size:12px; margin-left: 4px;}
+#wSecHead .wline{ margin:0 auto; width: 270px; height: 16px; }
+#wSecHead .wline a{float:left; margin-right: 3px;}
 .bottom3line{margin:0 auto; width:265px;height:0px; overflow:hidden;border-bottom: 1px solid #fff;border-top: 1px solid #d6d6d6;}
-#colHead .lineA .ipt01{ width: 16px; background:#8D8D8D; border: 0px; float:left; cursor:pointer;}
-#colHead .lineA .browse{ float:left;display: block; background: url(../images/ybtn.gif) top;width: 45px;height: 24px; border: 0px; cursor:pointer; margin-left:5px; }
+#wSecHead .lineA .ipt01{ width: 16px; background:#8D8D8D; border: 0px; float:left; cursor:pointer;}
+#wSecHead .lineA .browse{ float:left;display: block; background: url(../images/ybtn.gif) top;width: 45px;height: 24px; border: 0px; cursor:pointer; margin-left:5px; }
 .txt05{ float:left;padding-left: 5px; vertical-align: middle; color:#000; vertical-align: middle; margin-top: 3px;}
 .cBox03{ float:left;  border:1px solid #F0F0EE; vertical-align: middle;}
 
@@ -225,11 +225,13 @@ a.close:hover{background-position: bottom;}
 
 
 /**hidBlock**/
-#hidBlock{float:left; width:87px; height: 162px; border:1px solid #666; background:#F0F0EE;}
-#hidBlock .left{ width: 80px; height: 162px; border-right:1px solid #ccc}
-#hidBlock .left ul{ margin:0 auto; width:70px; margin-top: 10px; padding-left: 5px;}
-#hidBlock .left ul li{width:70px; height:22px; margin-top: 5px; text-align: left;}
-#hidBlock .left ul li a:hover{ text-decoration: none; }
+#wSetting1{position:fixed;_position:absolute;top:25px;left:-82px;width:87px; height: 162px; border:1px solid #666; background:#F0F0EE;}
+#wSetting1 .left{ width: 80px; height: 162px; border-right:1px solid #ccc}
+#wSetting1 .left ul{ margin:0 auto; width:70px; margin-top: 10px; padding-left: 5px;}
+#wSetting1 .left ul li{width:70px; height:22px; margin-top: 5px; text-align: left;}
+#wSetting1 .left ul li a:hover{ text-decoration: none; }
+#wSetting1 .right{ width: 6px; height: 162px; background: url(../images/lr.jpg) 0 0 #D7D7D7; cursor: pointer;}
+#wSetting1 .ctr{ width: 6px; height: 162px; background: url(../images/lr.jpg) -7px 0 #D7D7D7; cursor: pointer;}
 /***hidbtn***/
 
 .editBtn4{float:left;display:inline-block;*display:inline;*zoom:1;width:54px;padding-left:12px;}
@@ -243,47 +245,3 @@ a.close:hover{background-position: bottom;}
 .editBtn4:focus{background-position:0 -40px\0}
 .editBtn4:focus strong{background-position:right -61px\0}
 /******/
-
-
-
-
-/******/
-
-
-
-#hidBlock .right{ width: 6px; height: 162px; background: url(../images/lr.jpg) 0 0 #D7D7D7; cursor: pointer;}
-#hidBlock .ctr{ width: 6px; height: 162px; background: url(../images/lr.jpg) -7px 0 #D7D7D7; cursor: pointer;}
-/******/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

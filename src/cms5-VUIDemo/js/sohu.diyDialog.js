@@ -115,6 +115,7 @@ sohu.diyDialog=function(){
 		p.dlg=new p.dialog();
 		
 		//注册弹框实体
+		new sohu.diyDialog.wSetting1(p.dlg);
 		sohu.diyDialog.Register("addBlock",new sohu.diyDialog.wArea(p.dlg));
 		sohu.diyDialog.Register("areaTools",new sohu.diyDialog.wAreaTool(p.dlg));
 		sohu.diyDialog.Register("cfgArea",new sohu.diyDialog.wCfgArea(p.dlg));
@@ -130,6 +131,10 @@ sohu.diyDialog=function(){
 		sohu.diyDialog.Register("subSec950",new sohu.diyDialog.wSubSec(p.dlg,950));
 		sohu.diyDialog.Register("msgBox",new sohu.diyDialog.wMsgBox(p.dlg));
 		sohu.diyDialog.Register("wText",new sohu.diyDialog.wText(p.dlg));
+		sohu.diyDialog.Register("wImage",new sohu.diyDialog.wImage(p.dlg));
+		sohu.diyDialog.Register("wSecHead",new sohu.diyDialog.wSecHead(p.dlg));	
+		sohu.diyDialog.Register("wPagePro",new sohu.diyDialog.wPagePro(p.dlg));
+		sohu.diyDialog.Register("wTheme",new sohu.diyDialog.wTheme(p.dlg));
 	};
 	/**
 	 * Show a dialog.
@@ -165,6 +170,7 @@ sohu.diyDialog=function(){
 		if (ignoreCbk) {
 			//hide without executing callbacks
 			p.dlg.$Layout.hide();
+			p.dlg.$CTWrap.append(p.dlg.$Body.children());
 			p.dlg.jqmHash.a = false;
 		}
 		else 
@@ -762,6 +768,122 @@ sohu.diyDialog.wCfgSec=function(dlg){
 	};
 };
 /**
+ * 栏目头设置弹框
+ * @param {Object} dlg
+ */
+sohu.diyDialog.wSecHead=function(dlg){
+	var _this=this;
+	var p={};
+	//DOM引用
+	this.$Layout=$("#wSecHead");
+	p._fm={
+		bg:$("#secHDBG"),
+		cbxMore:$("#cbxSecHDMore"),
+		link:$("#secHDLink"),
+		ddlTarget:$("#ddlSecHDTarget"),
+		title:$("#secHDTitle"),
+		tipLink:this.$Layout.find(".tipSecHDLink"),
+		reset:function(){sohu.diyDialog.resetForm(_this);}
+	};
+	//事件处理
+	p.onIframeSelect=function(evt){
+		sohu.diyConsole.SnapSelection();
+		var a=sohu.diyConsole.DocSelection.getA();
+		if(a.isNull){
+			p._fm.isNew=true;
+			p.a=null;
+			p._fm.title.val(sohu.diyConsole.DocSelection.text);
+			return;
+		};
+		p._fm.title.val(a.title);
+		p._fm.link.val(a.href);
+		p._fm.ddlTarget.val(a.target);
+		p._fm.isNew=false;
+		p._fm.a=a;	
+	};	
+	p.beforeShow=function(hash,dlg0){
+		sohu.diyConsole.CurSec.Editor.Editing("on");
+		return true;
+	};
+	p.afterHide=function(hash,dlg0){
+		p._fm.reset();
+		sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
+		sohu.diyConsole.Preview();		
+	};
+	p.afterShow=function(hash,dlg0){
+		//背景色
+		var bg=sohu.diyConsole.CurElm.CT.$Layout.css("background-image");
+		bg=bg=="none"?"":bg;
+		bg=bg.replace('url("',"").replace('")',"");
+		p._fm.bg.val(bg);
+		//是否显示更多
+		if(sohu.diyConsole.CurElm.CT.$Layout.find(".more").length>0){
+			p._fm.cbxMore.attr("checked",true);
+		}else{
+			p._fm.cbxMore.attr("checked",false);
+		};
+		//捕捉iframe编辑器用户选定的内容
+		sohu.diyConsole.CurElm.i$frame[0].i$Body().unbind("mouseup").mouseup(p.onIframeSelect);		
+	};
+	p.onOK=function(dlg0){
+		var url=p._fm.link.val();
+		if(!StringUtils.isUrl(url)){
+			p._fm.link.addClass("alert").select();
+			p._fm.tipLink.addClass("alert");
+			return false;
+		};
+		//背景图
+		var img=$.trim(p._fm.bg.val());
+		if(img==""){
+			sohu.diyConsole.CurElm.CT.$Layout.css("background-image","none");
+		}else{
+			if(!StringUtils.isUrl(img)){
+				p._fm.bg.addClass("alert").select();
+				return false;
+			};
+		};	
+		
+		//显示更多
+		if(p._fm.cbxMore[0].checked){
+			if(sohu.diyConsole.CurElm.CT.$Layout.find(".more").length==0){
+				var $more=$('<a class="more elm">更多>></a>');
+				sohu.diyConsole.CurElm.CT.$Layout.append($more);
+				new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$more});
+			};
+		}else{
+			sohu.diyConsole.CurElm.CT.$Layout.find(".more").remove();
+		};
+			
+		if(p._fm.isNew){
+			sohu.diyConsole.CurElm.i$frame[0].iDoCommand("createlink",url,null,function($iframe){
+				sohu.diyConsole.DocSelection.selectAndRelease();
+			});
+		}else{
+			p._fm.a.$obj.attr("title",p._fm.title.val())
+				.attr("href",p._fm.link.val())
+				.attr("target",p._fm.ddlTarget.curVal);
+		};
+
+		sohu.diyConsole.CurElm.CT.$Layout.css("background-image",img);
+		
+		dlg0.Hide();
+	};	
+	//事件注册
+	this.$Layout.find("input[type='text']").keyup(function(evt){
+		this.value=this.value.replace('"',"").replace("'","").replace('‘',"").replace('“',"").replace('”',"");
+	});
+	//jqm options
+	this.$Layout.jqmOpts={
+		title:"栏目头",
+		modal:false,
+		overlay:0,
+		beforeShow:p.beforeShow,
+		afterShow:p.afterShow,
+		afterHide:p.afterHide,
+		onOK:p.onOK		
+	};
+};
+/**
  * 添加分栏弹框
  * @param {Object} dlg
  * @param {Object} parentSize 父分栏的宽度
@@ -922,21 +1044,6 @@ sohu.diyDialog.wImage=function(dlg){
 		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
 	//事件处理
-	p.onIframeSelect=function(evt){
-		sohu.diyConsole.SnapSelection();
-		var a=sohu.diyConsole.DocSelection.getA();
-		if(a.isNull){
-			p._fm.isNew=true;
-			p.a=null;
-			p._fm.txtATitle.val(sohu.diyConsole.DocSelection.text);
-			return;
-		};
-		p._fm.txtATitle.val(a.title);
-		p._fm.txtAHref.val(a.href);
-		p._fm.ddlATarget.val(a.target);
-		p._fm.isNew=false;
-		p._fm.a=a;	
-	};
 	p.beforeShow=function(hash,dlg0){
 		sohu.diyConsole.CurSec.Editor.Editing("on");
 		return true;
@@ -949,6 +1056,24 @@ sohu.diyDialog.wImage=function(dlg){
 		}else{
 			_this.$ElmCAction.hide();
 		};
+		var $img=sohu.diyConsole.CurElm.$Layout;
+		//高宽
+		var h=$img.attr("height");
+		h=h==""?"auto":h;
+		var w=$img.attr("width");
+		w=h==""?"auto":w;
+		p._fm.h.val(h);
+		p._fm.w.val(w);
+		//边框色
+		p._fm.bcolor.css("backgroundColor",$img.css("backgroundColor"));
+		//src
+		p._fm.src.val($img.attr("src"));
+		//链接
+		var $a=$img.parent("a");
+		$a=$a.length>0?$a:$({href:"",title:""});
+		p._fm.link.val($a.attr("href"));
+		//图片标题
+		p._fm.title.val($img.attr("title"));
 	};
 	p.afterHide=function(hash,dlg0){
 		p._fm.reset();
@@ -956,20 +1081,47 @@ sohu.diyDialog.wImage=function(dlg){
 		sohu.diyConsole.Preview();
 	};
 	p.onOK=function(dlg0){
-		var url=p._fm.txtAHref.val();
-		if(!StringUtils.isUrl(url)){
-			p._fm.txtAHref.addClass("alert").select();
-			p._fm.tipAHref.addClass("alert");
+		//图片地址
+		var src=p._fm.src.val();
+		if(!StringUtils.isUrl(src)){
+			p._fm.src.addClass("alert").select();
 			return false;
 		};
-		if(p._fm.isNew){
-			sohu.diyConsole.CurElm.i$frame[0].iDoCommand("createlink",url,null,function($iframe){
-				sohu.diyConsole.DocSelection.selectAndRelease();
-			});
-		}else{
-			p._fm.a.$obj.attr("title",p._fm.txtATitle.val())
-				.attr("href",p._fm.txtAHref.val())
-				.attr("target",p._fm.ddlATarget.curVal);
+		p._fm.src.removeClass("alert");
+		//链接
+		var link=p._fm.link.val();
+		if(!StringUtils.isUrl(link)){
+			p._fm.link.addClass("alert").select();
+			p._fm.tipLink.addClass("alert");
+			return false;
+		};
+		p._fm.link.removeClass("alert");
+		p._fm.tipLink.removeClass("alert");
+		//高宽
+		var fine=true,v=["auto","auto"];
+		$.each([p._fm.h,p._fm.w],function(i,o){
+			var v0=o.val();
+			v[i]=v0;
+			v[i]=v0==""?"auto":v[i];
+			if((v0!="")&&(!StringUtils.isPlusInt(v0))){
+				o.addClass("alert");
+				fine=fine&&false;
+			};//if
+		});//each
+		if(!fine){
+			return false;
+		};
+		//边框色
+		var c=p._fm.bcolor.curVal;
+		//设置图片样式
+		sohu.diyConsole.CurElm.$Layout.css({
+			"border-color":c
+		}).attr("src",src).attr("height",v[0]).attr("width",v[1])
+		.attr("title",p._fm.title.val()).attr("alt",p._fm.title.val());
+		//设置链接
+		var a=sohu.diyConsole.CurElm.$Layout.parent("a");
+		if(a.length>0){
+			a.attr("target",p._fm.ddlTarget.val()).attr("href",p._fm.link.val());
 		};
 		dlg0.Hide();
 	};
@@ -977,13 +1129,22 @@ sohu.diyDialog.wImage=function(dlg){
 	this.$Layout.find("input[type='text']").keyup(function(evt){
 		this.value=this.value.replace('"',"").replace("'","").replace('‘',"").replace('“',"").replace('”',"");
 	});
-	p._fm.ddlATarget.change(function(evt){
-		p._fm.ddlATarget.curVal=this.value;
+	p._fm.bcolor.click(function(evt){
+		var _this=$(this);
+		sohu.diyDialog.showColorPicker({
+			onSubmit:function(c){
+				p._fm.bcolor.css("backgroundColor",c);
+				p._fm.bcolor.curVal=c;
+			},
+			onChange:function(c){
+				p._fm.bcolor.css("backgroundColor",c);
+				p._fm.bcolor.curVal=c;
+			}
+		});		
 	});
-	p._fm.ddlATarget.curVal="_blank";
 	//jqm options
 	this.$Layout.jqmOpts={
-		title:"文字",
+		title:"图像",
 		modal:false,
 		overlay:0,
 		beforeShow:p.beforeShow,
@@ -991,6 +1152,100 @@ sohu.diyDialog.wImage=function(dlg){
 		afterHide:p.afterHide,
 		onOK:p.onOK
 	};
+};
+/**
+ * 页面属性
+ * @param {Object} dlg
+ */
+sohu.diyDialog.wPagePro=function(dlg){
+	var p={},_this=this;
+	//DOM引用
+	this.$Layout=$("#wPagePro");
+	//事件处理
+	p._fm={
+		title:$("#pTitle"),
+		kwd:$("#pKeywords"),
+		desc:$("#pDesc")
+	};
+	p.afterShow=function(hash,dlg0){
+		p._fm.title.val($("title").html());
+	};
+	p.onOK=function(dlg0){
+		dlg0.Hide();
+	};
+	//事件注册
+	//jqm options
+	this.$Layout.jqmOpts={
+		title:"页面属性",
+		afterShow:p.afterShow,
+		onOK:p.onOK
+	};
+};
+/**
+ * 页面风格
+ * @param {Object} dlg
+ */
+sohu.diyDialog.wTheme=function(dlg){
+	var p={},_this=this;
+	//DOM引用
+	this.$Layout=$("#wTheme");
+	//事件处理
+	p.afterShow=function(hash,dlg0){
+	};
+	p.onOK=function(dlg0){
+		dlg0.Hide();
+	};
+	//事件注册
+	//jqm options
+	this.$Layout.jqmOpts={
+		title:"更换风格",
+		afterShow:p.afterShow,
+		onOK:p.onOK
+	};
+};
+/**
+ * 左侧隐藏设置菜单
+ * @param {Object} dlg
+ */
+sohu.diyDialog.wSetting1=function(dlg){
+	var p={},_this=this;
+	//DOM引用
+	this.$Layout=$("#wSetting1");
+	this.$Body=this.$Layout.children();
+	this.IsOpen=false;
+	//事件处理
+	p.onTheme=function(evt){
+		if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsEditing) return false;
+		sohu.diyDialog.Show("wTheme");
+	};
+	p.onPagePro=function(evt){
+		if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsEditing) return false;
+		sohu.diyDialog.Show("wPagePro");
+	};
+	p.onPreview=function(evt){alert("preview");};
+	p.onPublish=function(evt){alert("publish");};
+	p.onHelp=function(evt){alert("help");};
+	p.onToggle=function(evt){
+		if(_this.IsOpen){
+			_this.$Body.addClass("close");
+			_this.$Layout.animate({left:-82},"normal");
+			_this.IsOpen=false;
+		}else{
+			_this.$Body.removeClass("close");
+			_this.$Layout.animate({left:1},"normal");
+			_this.IsOpen=true;
+		};
+		return false;
+	};
+	//事件注册
+	this.$Layout.find("a").click(function(evt){return false;});
+	$("#wsTheme").click(p.onTheme);
+	$("#wsPagePro").click(p.onPagePro);
+	$("#wsPreview").click(p.onPreview);
+	$("#wsPublish").click(p.onPublish);
+	$("#wsHelp").click(p.onHelp);
+	this.$Layout.find(".ctr").click(p.onToggle);
+	
 };
 /**
  * 横切工具条

@@ -125,18 +125,20 @@ display:none;
 .confirm{color:blue;}
 .alert{color:red;}
 /* 分栏样式 -Editing */
-.sec{border-bottom:1px dashed transparent;}
-.sec .elmOn{border:1px dotted #4455AA;/*background:#FFDBA8;*/}
+.sec{min-height:22px;height:auto !important;height:25px;}
+.sec .elmOn,.sec .pp img.elmOn{border:1px solid #eee;/*background:#FFDBA8;*/}
 .area_active{background:transparent;}
-.area_active .sec,.area_empty .sec{min-height:22px;height:auto !important;height:25px;border-color:#FC0055;}
+.area_empty .sec{border-bottom:1px dotted #FC0055;}
+.area_active .sec{border:none;}
 /*.area_active .subsec .sec,.area_empty .subsec .sec{border-bottom:none;}*/
 /*.area_active .secOn,.area_active .subsec .secOn{border:1px solid #84ADDE;}*/
 .area_active .ing,.area_active .subsec .ing{border-color:#FF0084;}
 /* 内容样式-Editing */
-.ct{position:relative;border:1px solid transparent;}
+.ct{position:relative;border:none;}
 .area_active .ctOn{border-color:#FFDBA8;}
 .col{overflow:hidden;}
 /*分栏编辑器*/
+#secEditor{display:none;}
 .secEditor .actions{position:absolute;padding:3px 6px;border:1px solid #bbd2ea;border-bottom:none;z-index:300;height:18px;background:#e2ecf8;}
 .secEditor .actions .r a{padding-left:4px;}
 .secEditor .actions .l a{padding-right:4px;}

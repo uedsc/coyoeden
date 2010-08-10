@@ -12,7 +12,9 @@ sohu.diyElement=function(opts){
 	this.i$frame=null;/* Reference to the iframe editor */
 	this.InlineEditable=true;
 	this.tagName=this.$Layout[0].tagName.toLowerCase();
-	this.Copyable=this.$Layout.is(".elmc");
+	this.Copyable=false;
+	this.IsSelfCopyable=false;
+	this.$CopyModel=null;
 	
 	/* private member variables */
 	var p={opts:opts};
@@ -20,6 +22,21 @@ sohu.diyElement=function(opts){
 	p.detectType=function(){
 		if(_this.tagName=="img")
 			_this.InlineEditable=false;
+		
+		//Copyable
+		if(_this.$Layout.is(".elmc")){
+			_this.Copyable=true;
+			_this.IsSelfCopyable=true;
+			_this.$CopyModel=_this.$Layout;
+		}else{
+			var o0=_this.$Layout.parents(".elmc");
+			if(o0.length>0){
+				o0=o0.eq(0);
+				_this.Copyable=true;
+				_this.IsSelfCopyable=false;
+				_this.$CopyModel=o0;
+			};
+		};
 	};
 	p.onEditModeChange=function(dom){
 		if (dom.iEditing) {
@@ -40,7 +57,12 @@ sohu.diyElement=function(opts){
 				sohu.diyConsole.ShowEditMenu("$MenuElmc",true);
 			};
 			*/
-			sohu.diyDialog.Show("wText");
+			if(_this.$Layout.parent().is(".sec_hd")){
+				sohu.diyDialog.Show("wSecHead");
+			}else{
+				sohu.diyDialog.Show("wText");
+			};
+			
 			_this.CT.InlineEdit("on");
 		}else{
 			_this.i$frame=null;

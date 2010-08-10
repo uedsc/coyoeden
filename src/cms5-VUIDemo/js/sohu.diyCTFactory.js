@@ -71,7 +71,7 @@ sohu.diyTplFactory.SecHead=function(opts){
 	//属性-用户变量
 	this.Style="sec_hd";
 	this.ShowMore=true;
-	this.ShowMoreTpl='<em class="elm">更多>></em>';
+	this.ShowMoreTpl='<a class="more elm">更多>></a>';
 	//属性-dom引用
 	this.$Layout=$("#ctSecHead");
 	this.$ddlSecHeadCss=$("#ddlSecHeadCss");
@@ -91,7 +91,7 @@ sohu.diyTplFactory.SecHead=function(opts){
 		});
 		_this.$Layout.find("#cbxSecHeadMore").click(function(evt){
 			_this.ShowMore=this.checked;
-			var items=_this.$tplObj.find("em");
+			var items=_this.$tplObj.find(".more");
 			if(!_this.ShowMore){
 				items.remove();
 			}else{
@@ -286,7 +286,7 @@ sohu.diyTplFactory.Image=function(opts){
 			//如果是组图，弹出组图设置框
 			_this.IsImgList=_this.tplObj.find(".ct").hasClass("pp");
 			if(_this.IsImgList){
-				_this.$WinCfg.ovl.css("opacity","0.8").show();
+				_this.$WinCfg.ovl.css("opacity","0.7").show();
 				_this.$WinCfg.$tip.html(_this.CurColSize);
 				_this.$WinCfg.slideDown();
 				_this.$WinCfg.$imgCol.trigger("change");

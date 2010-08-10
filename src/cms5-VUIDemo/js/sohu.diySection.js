@@ -152,9 +152,7 @@ sohu.diySection.prototype.Cls=function(){
 	};
 	//内容不为空则删除内容和子分栏
 	//删除内容
-	this.$Layout.find(">."+this.__p.opts.clContent).remove();
-	//删除子分栏
-	this.$Layout.find("."+this.__p.opts.clSecSub).remove();
+	this.$Layout.empty();
 	this.$Layout.removeClass("hasSub");
 	this.Contents=[];
 };
@@ -263,6 +261,9 @@ sohu.diySection.prototype.LoadContents=function(){
 		});
 	});
 	this.Contents=items;
+	if(items.length>0){
+		this.CurArea.$Layout.removeClass("area_empty");
+	};
 	//return items;
 };
 /**
