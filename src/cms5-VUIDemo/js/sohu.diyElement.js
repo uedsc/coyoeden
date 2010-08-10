@@ -61,13 +61,15 @@ sohu.diyElement=function(opts){
 		//img
 		if(_this.tagName=="img"){
 			_this.$Layout.click(function(evt){
-				sohu.diyConsole.ShowEditMenu("$MenuImg");
+				//sohu.diyConsole.ShowEditMenu("$MenuImg");
 				/*
 				sohu.diyConsole.$EditMenu.show();
 				sohu.diyConsole.$Menu.not(".mcom").hide();
 				sohu.diyConsole.$MenuImg.show();
 				*/
+				sohu.diyDialog.Show("wImage");
 				_this.CT.InlineEdit("on");
+				return false;
 			});
 			return;
 		};

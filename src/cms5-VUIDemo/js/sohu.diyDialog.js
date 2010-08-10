@@ -21,7 +21,7 @@ sohu.diyDialog=function(){
 		this.$CTWrap=$(p.opts.cssCTWrap);/* Wrapper for all the dialog contents */
 		this.jqmHash=null;
 		//default options for jqModal
-		this.jqmOpts={trigger:false,modal:true,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false};
+		this.jqmOpts={trigger:false,modal:true,overlay:50,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false};
 		this.jqmOpts.onShow=function(hash){
 			var doShow=true;
 			if(_this.jqmOpts.beforeShow){
@@ -106,7 +106,7 @@ sohu.diyDialog=function(){
 	 */
 	p.dialog.prototype.ResetOptions=function(){
 		//default options for jqModal
-		$.extend(this.jqmOpts,{trigger:false,modal:true,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false});
+		$.extend(this.jqmOpts,{trigger:false,modal:true,overlay:50,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false});
 	};
 	//public 
 	pub.Init=function(opts){
@@ -856,6 +856,99 @@ sohu.diyDialog.wText=function(dlg){
 		};
 		//捕捉iframe编辑器用户选定的内容
 		sohu.diyConsole.CurElm.i$frame[0].i$Body().unbind("mouseup").mouseup(p.onIframeSelect);
+	};
+	p.afterHide=function(hash,dlg0){
+		p._fm.reset();
+		sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
+		sohu.diyConsole.Preview();
+	};
+	p.onOK=function(dlg0){
+		var url=p._fm.txtAHref.val();
+		if(!StringUtils.isUrl(url)){
+			p._fm.txtAHref.addClass("alert").select();
+			p._fm.tipAHref.addClass("alert");
+			return false;
+		};
+		if(p._fm.isNew){
+			sohu.diyConsole.CurElm.i$frame[0].iDoCommand("createlink",url,null,function($iframe){
+				sohu.diyConsole.DocSelection.selectAndRelease();
+			});
+		}else{
+			p._fm.a.$obj.attr("title",p._fm.txtATitle.val())
+				.attr("href",p._fm.txtAHref.val())
+				.attr("target",p._fm.ddlATarget.curVal);
+		};
+		dlg0.Hide();
+	};
+	//事件注册
+	this.$Layout.find("input[type='text']").keyup(function(evt){
+		this.value=this.value.replace('"',"").replace("'","").replace('‘',"").replace('“',"").replace('”',"");
+	});
+	p._fm.ddlATarget.change(function(evt){
+		p._fm.ddlATarget.curVal=this.value;
+	});
+	p._fm.ddlATarget.curVal="_blank";
+	//jqm options
+	this.$Layout.jqmOpts={
+		title:"文字",
+		modal:false,
+		overlay:0,
+		beforeShow:p.beforeShow,
+		afterShow:p.afterShow,
+		afterHide:p.afterHide,
+		onOK:p.onOK
+	};
+};
+/**
+ * 图片编辑弹框
+ * @param {Object} dlg
+ */
+sohu.diyDialog.wImage=function(dlg){
+	var _this=this;
+	var p={};
+	//DOM引用
+	this.$Layout=$("#picMsg");
+	this.$ElmCAction=this.$Layout.find(".elmcActs");
+	p._fm={
+		h:$("#picH"),
+		w:$("#picW"),
+		bcolor:$("#picBColor"),
+		src:$("#picSrc"),
+		btnSwitch:$("#picSwitch"),
+		link:$("#picLink"),
+		tipLink:this.$Layout.find(".tipPicLink"),
+		ddlTarget:$("#picTarget"),
+		title:$("#picTitle"),
+		reset:function(){sohu.diyDialog.resetForm(_this);}
+	};
+	//事件处理
+	p.onIframeSelect=function(evt){
+		sohu.diyConsole.SnapSelection();
+		var a=sohu.diyConsole.DocSelection.getA();
+		if(a.isNull){
+			p._fm.isNew=true;
+			p.a=null;
+			p._fm.txtATitle.val(sohu.diyConsole.DocSelection.text);
+			return;
+		};
+		p._fm.txtATitle.val(a.title);
+		p._fm.txtAHref.val(a.href);
+		p._fm.ddlATarget.val(a.target);
+		p._fm.isNew=false;
+		p._fm.a=a;	
+	};
+	p.beforeShow=function(hash,dlg0){
+		sohu.diyConsole.CurSec.Editor.Editing("on");
+		return true;
+	};	
+	p.afterShow=function(hash,dlg0){
+		//dlg0.$Layout.css("top",25);
+		//判断是否是可复制元素
+		if(sohu.diyConsole.CurElm.Copyable){
+			_this.$ElmCAction.show();
+		}else{
+			_this.$ElmCAction.hide();
+		};
 	};
 	p.afterHide=function(hash,dlg0){
 		p._fm.reset();
