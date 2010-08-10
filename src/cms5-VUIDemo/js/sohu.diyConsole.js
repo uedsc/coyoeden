@@ -894,7 +894,8 @@ sohu.diyConsole=function(opts){
 		//sohu.diyConsole.$WinPageBG=p._$wPageBG;
 		sohu.diyConsole.$SecEditorModel=$("#area_editor");
 		sohu.diyConsole.$ScrollWrap=$("#scrollWrap");
-		sohu.diyConsole.$BodyBGA=$("#main .bodyBGA");		
+		sohu.diyConsole.$BodyBGA=$("#main .bodyBGA");	
+		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});	
 		//·ÖÀ¸Ñ¡ÔñÆ÷
 		/*
 		$('#hiddenTemplate .sec_selector li').click(function(evt){

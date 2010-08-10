@@ -63,6 +63,7 @@ sohu.diyArea=function(opts){
  * ¼¤»î
  */
 sohu.diyArea.prototype.Active=function(){
+	if(sohu.diyConsole.CurSec&&(sohu.diyConsole.CurSec.IsAddingContent||sohu.diyConsole.CurSec.InlineEditing)) return;
 	var _this=this;
 	//if(this.IsActive) return;
 	//if(this.$Layout.hasClass(this.__p.opts.clActive)) return;

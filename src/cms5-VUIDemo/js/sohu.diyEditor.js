@@ -6,13 +6,13 @@ sohu.diyEditor=function(opts){
 	var _this=this;
 	opts=$.extend({},{cssSecHelper:".secTip",cssCTSelector:"#content_selector"},opts);
 	//属性
-	this.$LayoutModel=sohu.diyConsole.$SecEditorModel;/* 工具条的dom模型 */
-	this.$Layout=$(this.$LayoutModel.html());
-	this.Console=window.bos;
-	this.CurArea=opts.curArea;//当前横切
-	this.CurSec=opts.curSec;//当前分栏
+	//this.$LayoutModel=sohu.diyConsole.$SecEditorModel;/* 工具条的dom模型 */
+	this.$Layout=$("#secEditor");
+	this.Console=opts.bos;
+	this.CurArea=null;//当前横切
+	this.CurSec=null;//当前分栏
 	this.CurCT=null;//当前内容
-	this.WSecCfg=sohu.diyConsole.$WinSec;
+	//this.WSecCfg=sohu.diyConsole.$WinSec;
 	
 	var p={opts:opts};
 	this.__p=p;
@@ -35,17 +35,11 @@ sohu.diyEditor=function(opts){
 	this.$Toolbar.btn.editCode.click(function(evt){_this.DialogCode();return false;});
 	this.$Toolbar.btn.prevLevel.click(function(evt){_this.CurSec.ActiveParent();return false;});
 	this.$Toolbar.btn.cfg.click(function(evt){_this.DialogSecCfg();return false;});
-	//如果没有父分栏，隐藏“上级”按钮
-	if(!this.CurSec.HasParent()){
-		this.$Toolbar.btn.prevLevel.hide();
-	};
-	// sec tip事件注册
-	this.$ToolbarTip.click(function(evt){$(this).hide();});
 
 	this.$CTWrap=$("#ctWrap");
 	
 	//persist the editor dom
-	this.$Layout.attr("id",this.CurSec.ID+"_t").hide().appendTo(this.CurArea.$Layout);
+	//this.$Layout.attr("id",this.CurSec.ID+"_t").hide().appendTo(this.CurArea.$Layout);
 	_this.$Toolbar.isNew=true;
 };
 /**
@@ -136,12 +130,15 @@ sohu.diyEditor.prototype.Cls=function(){
 	
 };
 sohu.diyEditor.prototype.Reposition=function(){
-		var d=this.CurSec.Dim();
-		var st=sohu.diyConsole.$ScrollWrap.scrollTop();/* 上滚动距离 */
-		this.$Toolbar.css({width:d.w-11,top:d.y+st-25,left:d.x-1,opacity:0.9});/*宽要减去11个像素的留白;25是工具条高度*/
-		this.$ToolbarTip.css({width:d.w}).html(d.mw+"px");
-		//overlay
-		this.$Overlay.css({width:d.w+1,top:d.y+st,left:d.x-1,opacity:0.9,height:d.h+1});
+	//获取当前的横切、分栏
+	this.CurArea=sohu.diyConsole.CurArea;
+	this.CurSec=sohu.diyConsole.CurSec;
+	var d=this.CurSec.Dim();
+	var st=sohu.diyConsole.$ScrollWrap.scrollTop();/* 上滚动距离 */
+	this.$Toolbar.css({width:d.w-11,top:d.y-25,left:d.x-1,opacity:0.9});/*宽要减去11个像素的留白;25是工具条高度*/
+	this.$ToolbarTip.css({width:d.w}).html(d.mw+"px");
+	//overlay
+	this.$Overlay.css({width:d.w+1,top:d.y,left:d.x-1,opacity:0.9,height:d.h+1});
 };
 /**
  * 显示编辑器-即激活编辑器
@@ -152,6 +149,13 @@ sohu.diyEditor.prototype.Show=function(){
 		this.Reposition();
 	}
 	this.$Layout.show();
+	
+	//如果没有父分栏，隐藏“上级”按钮
+	if(!this.CurSec.HasParent()){
+		this.$Toolbar.btn.prevLevel.hide();
+	}else{
+		this.$Toolbar.btn.prevLevel.show();
+	};
 		
 	if(!this.CurSec.Divisible){
 		this.$Toolbar.btn.addSec.hide();	

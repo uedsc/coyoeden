@@ -25,10 +25,7 @@ sohu.diySection = function(opts) {
 	this.IsAddingContent=false;
 	this.InlineEditing=false;
 	this.CurArea=opts.curArea;//当前分栏所在的横切。调用LoadCurArea方法时更新该属性
-	this.Editor=new sohu.diyEditor({
-		curArea:this.CurArea,
-		curSec:this	
-	});
+	this.Editor=sohu.diyConsole.SecEditor;
 
 	var p={};
 	p.mouseOver=function(evt){
@@ -70,6 +67,7 @@ sohu.diySection = function(opts) {
  * 激活分栏
  */
 sohu.diySection.prototype.Active=function(){
+	if(sohu.diyConsole.CurSec&&(sohu.diyConsole.CurSec.IsAddingContent||sohu.diyConsole.CurSec.InlineEditing)) return;
 	if(this.IsActive) return;
 	//看看当前横切是否激活，没激活的话激活
 	if(!this.CurArea.IsActive){
@@ -79,10 +77,10 @@ sohu.diySection.prototype.Active=function(){
 	if(sohu.diyConsole.CurSec){sohu.diyConsole.CurSec.Deactive();};
 	this.IsActive=true;
 	this.$Layout.addClass(this.__p.opts.clSecOn);
-	//Show the toolbar
-	this.Editor.Show();
 	//Update sohu.diyConsole.CurSec
 	sohu.diyConsole.CurSec=this;
+	//Show the toolbar
+	this.Editor.Show();
 	//激活对应横切
 	//TODO:将横切的激活完全放在diySection内部进行，移除横切的mouseenter事件
 	this.CurArea.Active();
