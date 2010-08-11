@@ -10,6 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="css/index.css"></link> 
 		<style type="text/css">
 			.on{border:1px dotted blue;}
+			.wrap{width:500px;height:100px;border:1px solid #ccc;padding:10px;}
 		</style>  
 	</head>
 	<body>
@@ -20,11 +21,11 @@
 		<button onclick="i[0].iDoCommand('Italic')">Italic</button>
 		<button onclick="i[0].iDoCommand('Underline')">Underline</button>
 		<br/>
-		<iframe id="test1" name="name" src="" class="editable" scrolling="no" frameborder="1" width="500" height="100"></iframe>
+		<iframe id="ifTest1" name="name" src="" class="editable" scrolling="no" frameborder="1" width="500" height="100"></iframe>
 		<br/>
 		
-		<h1>DEMO2-Inline editor with iframe</h1>
-		<div id="test3" style="width:500px;height:100px;border:1px solid #ccc;padding:10px;">
+		<h1>DEMO2-Inline editor with iframe-One element per iframe</h1>
+		<div id="test3" class="wrap">
 			<div>
 				<button onclick="items[0].i$frame[0].iSetData('xxxxxxxxxxxxxxxxxxxx')">SetData</button>
 				<button onclick="alert(items[0].i$frame[0].iGetData());return false;">GetData</button>
@@ -37,20 +38,35 @@
 			<h2 class="elm">点击编辑内容...</h2>
 			<div class="elm">点击编辑内容...</div>
 		</div>
+		
+		<h1>DEMO3-Inline editor with iframe-Multiple elment one iframe</h1>
+		<div id="test4" class="wrap">
+			<h2 class="elm">点击编辑内容...</h2>
+			<div class="elm" style="width:200px;">点击编辑内容...</div>
+		</div>
+		<iframe id="ifTest4" class="editable" scrolling="no" frameborder="0"></iframe>
 	</body>
 	<script type="text/javascript">
 	//<![CDATA[
 		//1,demo1
-		var i=$(".editable").iframeEX();
+		var i=$("#ifTest1").iframeEX();
 
 		
 		//2,demo2
-		var items=$(".elm").hover(function(evt){
+		var _on=function(evt){
 			$(this).addClass("on");
-		},function(evt){
+		};
+		var _out=function(evt){
 			$(this).removeClass("on");
-		}).iEditable();
+		};
+		var items=$("#test3 .elm").hover(_on,_out).iEditable();
 		
+		//3,demo3
+		var i3=$("#ifTest4");
+		i3.iframeEX();
+		var items1=$("#test4 .elm").hover(_on,_out).iEditable({
+			i$frame:i3
+		});
 	//]]>
 	</script>
 	

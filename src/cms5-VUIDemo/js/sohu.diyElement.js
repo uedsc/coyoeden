@@ -41,22 +41,6 @@ sohu.diyElement=function(opts){
 	p.onEditModeChange=function(dom){
 		if (dom.iEditing) {
 			_this.i$frame=_this.$Layout[0].i$frame;
-			/*
-			sohu.diyConsole.$EditMenu.show();
-			sohu.diyConsole.$MenuTxt.show();
-			sohu.diyConsole.$MenuImg.hide();
-			*/
-			/*
-			sohu.diyConsole.ShowEditMenu("$MenuTxt");
-			//栏目标题
-			if(_this.$Layout.parent().is(".sec_hd")){
-				sohu.diyConsole.ShowEditMenu("$MenuSecHead",true);
-			};
-			//可复制元素
-			if(_this.$Layout.is(".elmc")||_this._$Layout.parent(".elmc").length>0){
-				sohu.diyConsole.ShowEditMenu("$MenuElmc",true);
-			};
-			*/
 			if(_this.$Layout.parent().is(".sec_hd")){
 				sohu.diyDialog.Show("wSecHead");
 			}else{
@@ -83,12 +67,6 @@ sohu.diyElement=function(opts){
 		//img
 		if(_this.tagName=="img"){
 			_this.$Layout.click(function(evt){
-				//sohu.diyConsole.ShowEditMenu("$MenuImg");
-				/*
-				sohu.diyConsole.$EditMenu.show();
-				sohu.diyConsole.$Menu.not(".mcom").hide();
-				sohu.diyConsole.$MenuImg.show();
-				*/
 				sohu.diyDialog.Show("wImage");
 				_this.CT.InlineEdit("on");
 				return false;
@@ -122,8 +100,8 @@ sohu.diyElement=function(opts){
 		*/
 	});
 	this.$Layout.mousedown(function(evt){
-		sohu.diyConsole.$PopWins.hide();
-		sohu.diyConsole.$Menu.removeClass("on");
+		//sohu.diyConsole.$PopWins.hide();
+		//sohu.diyConsole.$Menu.removeClass("on");
 		if (sohu.diyConsole.CurElm) {
 			sohu.diyConsole.CurElm.HideEditor(true);
 			sohu.diyDialog.Hide(true);

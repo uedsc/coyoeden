@@ -7,8 +7,13 @@
 ;(function($) {
     // Private functions.
     var p = {};
-    p.onClick = function(evt) { 
+    p.onClick = function(evt) {
+		if(this.iGlobalIF&&this.i$frame.t){
+			this.i$frame.t.iEdit("off");
+			this.i$frame.t=null;
+		};
 		this.iEdit("on");
+		this.i$frame.t=this;
 	};
 	p.bindEvents=function(dom){
 		dom.i$frame[0].i$Doc().keyup(function(evt){
@@ -186,6 +191,7 @@
 	var pub={
 		iEditing:false,
 		i$frame:null,		/* Cache the iframe editor */
+		iGlobalIF:false,	/* whether use a global iframe as the editor */
 		iEdit:function(mode,ignoreCbk){
 			ignoreCbk=ignoreCbk||false;
 			var cbkOpt={
@@ -194,12 +200,12 @@
 				ignoreCbk:ignoreCbk
 			};
 			if (!this.i$frame) {
+				var _this=this;
 				p.initIframe(this, function(){
 					p.doEditing(cbkOpt);
 				});
 				return this;
-			}
-				
+			};
 			p.doEditing(cbkOpt);
 			return this;
 		}//iEdit
@@ -221,6 +227,11 @@
 			$this.click(p.onClick);	
 			/* 3,Extent the element */
 			pub._opts=opts;
+			/* 4,whether use a global iframe editor */
+			if(opts.i$frame){
+				pub.i$frame=opts.i$frame;
+				pub.iGlobalIF=true;
+			};
 			$.extend(this,pub);
 			
 				
@@ -229,12 +240,9 @@
     // Public defaults.
     $.fn.iEditable.defaults = {
         excludeTags: 'table,input,select,button,tr,iframe' /* tags that don't support inline editable */,
-		onModeChange:null /* callback handler when the iEdit function was invoked */,
-		accurateWidth:true /* convert auto with to an accurate value when in editing mode */,
-		cssFloat:'.l,.r,.left,.right' /* floating css selectors */
-    };
-    // Public functions.
-    $.fn.iEditable.method1 = function(skinName) {
-        return;
+		onModeChange:null 				/* callback handler when the iEdit function was invoked */,
+		accurateWidth:true 				/* convert auto with to an accurate value when in editing mode */,
+		cssFloat:'.l,.r,.left,.right',	/* floating css selectors */
+		i$frame:null 					/* specify an iframe editor to the element */
     };
 })(jQuery);  
