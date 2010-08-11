@@ -60,7 +60,8 @@ sohu.diyElement=function(opts){
 		//inline editable element
 		if(_this.InlineEditable){
 			_this.$Layout.iEditable({
-				onModeChange:p.onEditModeChange
+				onModeChange:p.onEditModeChange,
+				i$frame:sohu.diyConsole.$ifEditor
 			});
 			return;
 		};

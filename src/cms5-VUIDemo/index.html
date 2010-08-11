@@ -25,7 +25,10 @@
     <body>		
 		<!--#main-->
 		<div id="main">
+			<!--通栏背景-->
 			<div class="bodyBGA"></div>
+			<div class="bodyBGB"></div>
+			<!--/通栏背景-->
 			<!--频道头-->
 			<div id="channelNav" class="area static">
 			    <a target="_blank" href="http://www.sohu.com/"><img height="22" border="0" class="left" alt="搜狐网站" src="http://images.sohu.com/uiue/sohu_logo/2005/sohu_logo2.gif"/></a><a target="_blank" href="http://yule.sohu.com/"><img height="22" border="0" class="left" alt="搜狐娱乐" src="http://images.sohu.com/uiue/sohu_logo/2009/cs/yule_logo2.gif"/></a>
@@ -314,10 +317,10 @@
 				<label>边框设置<span class="small">颜色及方向</span></label>
 				<div class="field">
 					<input type="text" size="4" id="txtSecBorderColor" name="SecBorderColor" readonly="readonly"/>
-					<input type="checkbox" name="SecBorderDir" value="top" checked="checked"/><span>上</span>
-					<input type="checkbox" name="SecBorderDir" value="right" checked="checked"/><span>右</span>
-					<input type="checkbox" name="SecBorderDir" value="bottom" checked="checked"/><span>下</span>
-					<input type="checkbox" name="SecBorderDir" value="left" checked="checked"/><span>左</span>
+					<input type="checkbox" name="SecBorderDir" value="top"/><span>上</span>
+					<input type="checkbox" name="SecBorderDir" value="right"/><span>右</span>
+					<input type="checkbox" name="SecBorderDir" value="bottom"/><span>下</span>
+					<input type="checkbox" name="SecBorderDir" value="left"/><span>左</span>
 				</div>
 				<div class="cpk"></div>
                 <div class="spacer"></div>				
@@ -469,17 +472,17 @@
 				<a id="lnkAreaBG" class="ctroBtn" href="#"><strong><img src="images/bj.gif" /></strong></a>
 				<a id="lnkAreaUp" class="ctroBtn" href="#"><strong><img src="images/sy.gif" /></strong></a>
 				<a id="lnkAreaDown" class="ctroBtn" href="#"><strong><img src="images/xy.gif" /></strong></a>
-				<a id="lnkPageBG" class="ctroBtn" href="#">页面背景</a>
 			</div>
 		</div>
 		<!--/横切工具条-->	
 		<!--右侧隐藏-->
 		<div id="wSetting1">
-			<div class="close">
+			<div class="clear close">
 				<div class="left">
 				 <ul>
 				 <li><a id="wsTheme" class="editBtn4" href="#"><strong>更换风格</strong></a></li>
 				 <li><a id="wsPagePro" class="editBtn4" href="#"><strong>页面属性</strong></a></li>
+				 <li><a id="wsPageBG" class="editBtn4" href="#">页面背景</a></li>
 				 <li><a id="wsPreview" class="editBtn4" href="#"><strong>预览</strong></a></li>
 				 <li><a id="wsPublish" class="editBtn4" href="#"><strong>发布</strong></a></li>
 				 <li><a id="wsHelp" class="editBtn4" href="#"><strong>帮助</strong></a></li>
@@ -493,6 +496,7 @@
 		<div id="ctHandle" class="dragHandle">
 			<img src="img/move.gif" alt="移动" width="16" height="16"/>
 		</div>
+		<iframe id="ifEditor" name="ifEditor" scrolling="no" frameborder="0" width="0" height="0"></iframe>
     </body>
 	<script src="js/jquery.cssEX.js" type="text/javascript"></script>
 	<script src="js/sohu.iframeEX.js" type="text/javascript"></script>

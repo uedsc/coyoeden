@@ -225,8 +225,8 @@ a.close:hover{background-position: bottom;}
 
 
 /**hidBlock**/
-#wSetting1{position:fixed;_position:absolute;top:25px;left:-82px;width:87px; height: 162px; border:1px solid #666; background:#F0F0EE;}
-#wSetting1 .left{ width: 80px; height: 162px; border-right:1px solid #ccc}
+#wSetting1{position:fixed;_position:absolute;top:25px;left:-82px;width:87px;border:1px solid #666; background:#F0F0EE;}
+#wSetting1 .left{ width: 80px;border-right:1px solid #ccc}
 #wSetting1 .left ul{ margin:0 auto; width:70px; margin-top: 10px; padding-left: 5px;}
 #wSetting1 .left ul li{width:70px; height:22px; margin-top: 5px; text-align: left;}
 #wSetting1 .left ul li a:hover{ text-decoration: none; }

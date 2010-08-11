@@ -12,8 +12,8 @@
 			this.i$frame.t.iEdit("off");
 			this.i$frame.t=null;
 		};
-		this.iEdit("on");
 		this.i$frame.t=this;
+		this.iEdit("on");
 	};
 	p.bindEvents=function(dom){
 		dom.i$frame[0].i$Doc().keyup(function(evt){
@@ -63,13 +63,31 @@
 		  	 callback(dom);
 		  };
 	};
+	/**
+	 * ¶¨Î»iframe±à¼­Æ÷
+	 * @param {Object} dom
+	 */
+	p.seatIframe=function(dom){
+		var $this=$(dom);
+		dom.i$frame.css("position","absolute");
+		var pos=null;
+		if(dom.iGlobalIF){
+			pos=$this.offset();
+		}else{
+			pos=$this.position();
+		};
+		dom.i$frame.css({
+			"top":pos.top,
+			"left":pos.left,
+			"z-index":50
+		});
+	};
 	p.cssToIframe=function(dom){
 		var $this=$(dom);
 		var $body=dom.i$frame[0].i$Body();
 		//copy styles to the iframe document
 		$this.copyCss($body).copyCss(dom.i$frame);
 		//override height or width process
-		
 		if($this.css("height")=="auto"){
 			var h=$this.height();
 			dom.i$frame.css("height",h);
@@ -81,11 +99,16 @@
 		dom.i$frame.css("height",h);
 		$body.css("height",h);
 		*/	
-		if(($this.css("width")=="auto"&&dom._opts.accurateWidth)/*||($this.css("display")=="block")*/){
+		/*
+		if(($this.css("width")=="auto"&&dom._opts.accurateWidth)){
 			var w=$this.parent().width();
 			dom.i$frame.css("width",w);
 			$body.css("width",w);
 		};
+		*/
+		var w=$this.width();
+		dom.i$frame.css("width",w);
+		$body.css("width",w);
 
 		//update iframe lineheight
 		if(!$.browser.msie){
@@ -113,13 +136,7 @@
 		//show the original dom as the place holder!
 		$this.show().css("visibility","hidden");
 		//iframe position
-		dom.i$frame.css("position","absolute");
-		var pos=$this.position();
-		dom.i$frame.css({
-			"top":pos.top,
-			"left":pos.left,
-			"z-index":50
-		});
+		p.seatIframe(dom);
 		//visibility
 		$body.show();
 		dom.i$frame.show();
@@ -186,6 +203,18 @@
 			opts.dom._opts.onModeChange(opts.dom);
 		};
 	};
+	/**
+	 * Listen to window's resize event when using a global absolute position iframe as editor!
+	 */
+	p.fixResize=function(i$frame){
+		if(!i$frame) return;
+		if(i$frame.onWindowResize) return;
+		$(window).resize(function(evt){
+			if(i$frame&&i$frame.t)
+				p.seatIframe(i$frame.t);
+		});
+		i$frame.onWindowResize=true;
+	};
 	/* Public functions that will be merged into the raw element. */
 	/* Add the prefix 'i' to all the functions to avoid name conflicts with other jquery plugins... */
 	var pub={
@@ -216,7 +245,8 @@
     $.fn.iEditable = function(opts) {
         // Set the options.
         opts = $.extend({}, $.fn.iEditable.defaults, opts);
-
+		// Listen to window's resize event when using a global absolute position iframe as editor!
+		p.fixResize(opts.i$frame);
         // Go through the matched elements and return the jQuery object.
         return this.each(function() {
 			var $this=$(this);
@@ -233,8 +263,6 @@
 				pub.iGlobalIF=true;
 			};
 			$.extend(this,pub);
-			
-				
         });
     };
     // Public defaults.

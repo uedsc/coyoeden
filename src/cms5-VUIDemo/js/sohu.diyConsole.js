@@ -895,7 +895,8 @@ sohu.diyConsole=function(opts){
 		//sohu.diyConsole.$WinPageBG=p._$wPageBG;
 		sohu.diyConsole.$SecEditorModel=$("#area_editor");
 		sohu.diyConsole.$ScrollWrap=$("#scrollWrap");
-		sohu.diyConsole.$BodyBGA=$("#main .bodyBGA");	
+		sohu.diyConsole.$BodyBGA=$("#main .bodyBGA");
+		sohu.diyConsole.$ifEditor=$("#ifEditor").iframeEX();	
 		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});	
 		//分栏选择器
 		/*
@@ -1117,6 +1118,11 @@ sohu.diyConsole.GetBorderColor=function(c){
 	var reg=/\b,\s\b/g;
 	c=c.replace(reg,",");//将", "替换为","
 	var cList=c.split(" "),retVal={};
+	$.each(cList,function(i,o){
+		if(o.indexOf("#")!=0&&o.indexOf("rgb")!=0)
+			cList[i]="none";
+			
+	});
 	switch(cList.length){
 		case 0:
 			retVal= null;

@@ -649,10 +649,11 @@ sohu.diyDialog.wCfgSec=function(dlg){
 			return false;
 		};
 		//更改图片属性
-		if(url!="")
-			sohu.diyConsole.CurSec.$Layout.css("background-image","url('"+url+"')");
-		
-		
+		if (url != "") {
+			sohu.diyConsole.CurSec.$Layout.css("background-image", "url('" + url + "')");
+		}else{
+			sohu.diyConsole.CurSec.$Layout.css("background-image", "none");
+		};
 		//收起对话框
 		dlg0.Hide();
 		//重置表单
@@ -668,7 +669,6 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		p._fm.txtBGC.css("backgroundColor",sohu.diyConsole.CurSec.$Layout.css("backgroundColor"));
 		//边框色
 		var bdc=sohu.diyConsole.CurSec.$Layout.css("borderColor");
-		bdc=bdc==""?"#eeeeee":bdc;
 		p._fm.txtBorderC.css("backgroundColor",bdc);
 		//对齐方式
 		var bg_p=sohu.diyConsole.CurSec.$Layout.css("backgroundPosition");
@@ -680,13 +680,16 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		//边框-根据边框色判断边框的有无
 		bdc=sohu.diyConsole.GetBorderColor(bdc);
 		if(!bdc){
+			/*
 			p._fm.cbxBorder.each(function(i,o){
 				o.checked=false;
 			});
+			*/
+			p._fm.cbxBorder.attr("checked",false);
 		}else{
 			for(var x in bdc){
 				if(x)
-					p._fm.cbxBorder.filter("[value='"+x+"']")[0].checked=(bdc[x].indexOf("transparent")<0);
+					p._fm.cbxBorder.filter("[value='"+x+"']")[0].checked=(bdc[x]!="transparent"&&bdc[x]!="none");
 			};//for
 		};//if			
 	};
@@ -707,18 +710,21 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		p._fm.cpk.flag="bdc"
 		p._fm.cpk.show();
 	});
-	//边框方向
-	p._fm.cbxBorder.click(function(evt){
+	//边框方向-自定义事件的精妙之处-参考行722和762
+	p._fm.cbxBorder.bind("evtClick",function(evt){
 		if(this.checked){
 			sohu.diyConsole.CurSec.$Layout.css("border-"+this.value,"1px solid "+p._fm.txtBorderC.attr("title"));
 		}else{
-			sohu.diyConsole.CurSec.$Layout.css("border-"+this.value,"1px solid transparent");
-		};
+			sohu.diyConsole.CurSec.$Layout.css("border-"+this.value,"none");
+		};	
+	});
+	p._fm.cbxBorder.click(function(evt){
+		$(this).trigger("evtClick");
 	});		
 	//背景图
 	p._fm.txtBG.change(function(evt){
-		var url=p._fm.txtBG.val();
-		if(!StringUtils.isUrl(url)){
+		var url=$.trim(p._fm.txtBG.val());
+		if((url!="")&&!StringUtils.isUrl(url)){
 			p._fm.txtBG.addClass("alert").select();
 			p._fm.tipBG.addClass("alert");
 			return false;
@@ -726,7 +732,12 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		p._fm.txtBG.removeClass("alert");
 		p._fm.tipBG.removeClass("alert");
 		//更改图片属性
-		sohu.diyConsole.CurSec.$Layout.css("background-image","url('"+url+"')");
+		if(url!=""){
+			sohu.diyConsole.CurSec.$Layout.css("background-image","url('"+url+"')");
+		}else{
+			sohu.diyConsole.CurSec.$Layout.css("background-image","none");
+		};
+		
 	});
 	//背景图对齐方式
 	p._fm.rbtnBGAlign.click(function(evt){
@@ -748,7 +759,7 @@ sohu.diyDialog.wCfgSec=function(dlg){
 			if(p._fm.cpk.flag=="bg"){
 				sohu.diyConsole.CurSec.$Layout.css("backgroundColor",c);
 			}else{
-				sohu.diyConsole.CurSec.$Layout.css("borderColor",c);
+				p._fm.cbxBorder.trigger("evtClick");
 			};
 		},
 		onSubmit:function(hsb,hex,rgb){
@@ -1222,6 +1233,11 @@ sohu.diyDialog.wSetting1=function(dlg){
 		if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsEditing) return false;
 		sohu.diyDialog.Show("wPagePro");
 	};
+	p.onPageBG=function(evt){
+		//if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
+		if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsEditing) return false;
+		sohu.diyDialog.Show("cfgPage");
+	};	
 	p.onPreview=function(evt){alert("preview");};
 	p.onPublish=function(evt){alert("publish");};
 	p.onHelp=function(evt){alert("help");};
@@ -1241,6 +1257,7 @@ sohu.diyDialog.wSetting1=function(dlg){
 	this.$Layout.find("a").click(function(evt){return false;});
 	$("#wsTheme").click(p.onTheme);
 	$("#wsPagePro").click(p.onPagePro);
+	$("#wsPageBG").click(p.onPageBG);
 	$("#wsPreview").click(p.onPreview);
 	$("#wsPublish").click(p.onPublish);
 	$("#wsHelp").click(p.onHelp);
@@ -1258,7 +1275,6 @@ sohu.diyDialog.wAreaTool=function(dlg){
 	p._$btnAdd=$("#lnkAreaAdd");
 	p._$btnDel=$("#lnkAreaDel");
 	p._$btnBG=$("#lnkAreaBG");
-	p._$btnPageBG=$("#lnkPageBG");
 	p._$btnDown=$("#lnkAreaDown");
 	p._$btnUp=$("#lnkAreaUp");
 	
@@ -1286,11 +1302,6 @@ sohu.diyDialog.wAreaTool=function(dlg){
 		if(sohu.diyConsole.CurArea.IsEditing) return false;
 		sohu.diyDialog.Show("cfgArea");
 	};
-	p.onCfgPageBG=function(evt){
-		//if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
-		if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsEditing) return false;
-		sohu.diyDialog.Show("cfgPage");
-	};
 	p.onMove=function(evt){
 		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
 		if(sohu.diyConsole.CurArea.IsEditing) return false;	
@@ -1304,7 +1315,6 @@ sohu.diyDialog.wAreaTool=function(dlg){
 		p._$btnAdd.click(p.onAdd);
 		p._$btnDel.click(p.onDel);
 		p._$btnBG.click(p.onCfgBG);
-		p._$btnPageBG.click(p.onCfgPageBG);
 		p._$btnUp.bind("click",{up:true},p.onMove);
 		p._$btnDown.bind("click",{up:false},p.onMove);
 	}();
