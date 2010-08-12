@@ -125,7 +125,7 @@ display:none;
 .confirm{color:blue;}
 .alert{color:red;}
 /* ·ÖÀ¸ÑùÊ½ -Editing */
-.sec{min-height:22px;height:auto !important;height:25px;}
+.sec{position:relative;min-height:22px;height:auto !important;height:25px;}
 .sec .elmOn,.sec .pp img.elmOn{border:1px solid #eee;/*background:#FFDBA8;*/}
 .area_empty .sec{/*border:1px dotted #FC0055;*/}
 	.secHolder{display:none;height:23px;}

@@ -248,7 +248,8 @@ sohu.diyDialog.doConfirm=function(opts){
 		title:opts.title,
 		onOK:opts.onOK,
 		beforeShow:opts.beforeShow,
-		afterHide:opts.afterHide
+		afterHide:opts.afterHide,
+		afterShow:opts.afterShow
 	});
 	
 	sohu.diyDialog.Show("msgBox");
@@ -1082,7 +1083,9 @@ sohu.diyDialog.wImage=function(dlg){
 		//Á´½Ó
 		var $a=$img.parent("a");
 		$a=$a.length>0?$a:$({href:"",title:""});
-		p._fm.link.val($a.attr("href"));
+		var href=$a.attr("href");
+		href=href=="#"?"":href;
+		p._fm.link.val(href);
 		//Í¼Æ¬±êÌâ
 		p._fm.title.val($img.attr("title"));
 	};
@@ -1094,14 +1097,16 @@ sohu.diyDialog.wImage=function(dlg){
 	p.onOK=function(dlg0){
 		//Í¼Æ¬µØÖ·
 		var src=p._fm.src.val();
-		if(!StringUtils.isUrl(src)){
+		/*
+		if(src!=""&&!StringUtils.isUrl(src)){
 			p._fm.src.addClass("alert").select();
 			return false;
 		};
 		p._fm.src.removeClass("alert");
+		*/
 		//Á´½Ó
 		var link=p._fm.link.val();
-		if(!StringUtils.isUrl(link)){
+		if(link!=""&&!StringUtils.isUrl(link)){
 			p._fm.link.addClass("alert").select();
 			p._fm.tipLink.addClass("alert");
 			return false;
@@ -1132,7 +1137,9 @@ sohu.diyDialog.wImage=function(dlg){
 		//ÉèÖÃÁ´½Ó
 		var a=sohu.diyConsole.CurElm.$Layout.parent("a");
 		if(a.length>0){
-			a.attr("target",p._fm.ddlTarget.val()).attr("href",p._fm.link.val());
+			if(link!=""){
+				a.attr("target",p._fm.ddlTarget.val()).attr("href",link);
+			};	
 		};
 		dlg0.Hide();
 	};

@@ -76,10 +76,6 @@ sohu.diyEditor.prototype.DialogCT=function(mode){
  * @param {Object} opts 选项
  */
 sohu.diyEditor.prototype.CloseCTDialog=function(opts){
-	/*
-	if(!this.CTDialog) return;
-	this.CTDialog.dialog("close");
-	*/
 	sohu.diyDialog.Hide();
 };
 /**
@@ -123,8 +119,13 @@ sohu.diyEditor.prototype.Cls=function(){
 			_this.Editing("on");
 			return true;
 		},
+		afterShow:function(hash,dlg){
+			//显示红色蒙层
+			_this.CurSec.Overlay("on");
+		},
 		afterHide:function(hash,dlg){
 			_this.Editing("off").CurSec.Deactive();
+			_this.CurSec.Overlay("off");
 		}
 	});
 	

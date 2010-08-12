@@ -12,20 +12,23 @@ sohu.diySection = function(opts) {
 		clSecRoot:"col",
 		clArea:"area",
 		clContent:"ct",
-		clTip:"secTip"
+		clTip:"secTip",
+		pSec:null
 		},opts);
 	var p={opts:opts};
 	this.__p=p;
 	//属性
 	this.ID="sec_"+StringUtils.RdStr(8);
 	this.$Layout=opts.$obj;
+	this.$Holder=this.$Layout.children(".secHolder");
 	this.Width=this.Size();
-	this.Divisible=(this.Width>=390);//可继续分栏
+	this.Divisible=(this.Width>=390);		/* 可继续分栏 */
 	this.IsActive=false;
 	this.IsAddingContent=false;
 	this.InlineEditing=false;
-	this.CurArea=opts.curArea;//当前分栏所在的横切。调用LoadCurArea方法时更新该属性
+	this.CurArea=opts.curArea;				/* 当前分栏所在的横切。调用LoadCurArea方法时更新该属性 */
 	this.Editor=sohu.diyConsole.SecEditor;
+	this.PSec=opts.pSec||null;							/* parent section */
 
 	var p={};
 	p.mouseOver=function(evt){
@@ -102,7 +105,8 @@ sohu.diySection.prototype.AddSub=function($secSub){
 	subSecs.each(function(i,sec){
 		sohu.diySection.New({
 			$obj:$(sec),
-			curArea:_this.CurArea
+			curArea:_this.CurArea,
+			pSec:_this
 		});
 	});
 };
@@ -139,19 +143,24 @@ sohu.diySection.prototype.AddContent=function(ct){
  * 清楚分栏内容
  */
 sohu.diySection.prototype.Cls=function(){
-	var isEmpty=(this.$Layout.children().length==0);
 	//内容为空，删除该分栏和同级分栏
-	if(isEmpty){
+	if(this.IsEmpty()){
 		var p=this.$Layout.closest("."+this.__p.opts.clSecSub);
 		if(p.length>0){
 			p.remove();
+		};
+		//循环看父级分栏是否为空，为空则移除hasSub类
+		var me=this;
+		while(me&&me.PSec&&me.PSec.IsEmpty()){
+			me.PSec.SetAsEmpty();
+			me=me.PSec.PSec;
 		};
 		return;
 	};
 	//内容不为空则删除内容和子分栏
 	//删除内容
-	this.$Layout.empty();
-	this.$Layout.removeClass("hasSub");
+	this.$Layout.children(":not(.secHolder)").remove();
+	this.SetAsEmpty();
 	this.Contents=[];
 };
 /**
@@ -270,6 +279,45 @@ sohu.diySection.prototype.LoadContents=function(){
 sohu.diySection.prototype.ActiveParent=function(){
 	var $psec=this.$Layout.parent().closest("."+this.__p.opts.clSec);//this.$Layout.parents("."+this.__p.opts.clSec+":last");
 	$psec.trigger("evtActive");
+};
+/**
+ * 当前分栏是否为空
+ */
+sohu.diySection.prototype.IsEmpty=function(){
+	return (this.$Layout.children(":not(.secHolder)").length==0);
+};
+/**
+ * 设置当前分栏是空分栏
+ * @param {Function} cbk callback function
+ */
+sohu.diySection.prototype.SetAsEmpty=function(cbk){
+	this.$Layout.removeClass("hasSub");
+	if(cbk){
+		cbk(this);
+	};
+};
+/**
+ * switch the overlay of the section
+ * @param {Object} mode possible values may be "on" or "off"
+ */
+sohu.diySection.prototype.Overlay=function(mode){
+	mode=mode||"on";
+	mode=="on"?mode:"off";
+	if(mode=="on"){
+		var css={
+			display:"block",
+			border:"1px solid red",
+			background:"#f9bfc0",
+			position:"absolute",
+			top:0,
+			left:0,
+			height:this.$Layout.height(),
+			width:"100%"
+		};
+		this.$Holder.css(css);
+	}else{
+		this.$Holder.attr("style","");
+	};
 };
 /*静态方法*/
 /**
