@@ -37,7 +37,7 @@ sohu.diyContent=function(opts){
 		//ÍÏ×§ÖúÊÖÊÂ¼ş
 		_this.$Layout.find(sohu.diyConsole.Dragger.cssHandle).remove().end()
 			.append(sohu.diyConsole.Dragger.handle.show());
-
+			
 		sohu.diyConsole.Dragger.handle
 		.unbind()
 		.bind("mousedown",function(evt){

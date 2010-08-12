@@ -970,6 +970,7 @@ sohu.diyDialog.wText=function(dlg){
 			p._fm.txtATitle.val(sohu.diyConsole.DocSelection.text);
 			return;
 		};
+		a.href=a.href=="#"?"":a.href;
 		p._fm.txtATitle.val(a.title);
 		p._fm.txtAHref.val(a.href);
 		p._fm.ddlATarget.val(a.target);
@@ -998,19 +999,21 @@ sohu.diyDialog.wText=function(dlg){
 	};
 	p.onOK=function(dlg0){
 		var url=p._fm.txtAHref.val();
-		if(!StringUtils.isUrl(url)){
+		if(url!=""&&!StringUtils.isUrl(url)){
 			p._fm.txtAHref.addClass("alert").select();
 			p._fm.tipAHref.addClass("alert");
 			return false;
 		};
-		if(p._fm.isNew){
+		if(p._fm.isNew&&url!=""){
 			sohu.diyConsole.CurElm.i$frame[0].iDoCommand("createlink",url,null,function($iframe){
 				sohu.diyConsole.DocSelection.selectAndRelease();
 			});
 		}else{
-			p._fm.a.$obj.attr("title",p._fm.txtATitle.val())
-				.attr("href",p._fm.txtAHref.val())
-				.attr("target",p._fm.ddlATarget.curVal);
+			if(p._fm.a){
+				p._fm.a.$obj.attr("title",p._fm.txtATitle.val())
+					.attr("href",url)
+					.attr("target",p._fm.ddlATarget.curVal);				
+			};
 		};
 		dlg0.Hide();
 	};

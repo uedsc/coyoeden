@@ -795,21 +795,6 @@ sohu.diyConsole=function(opts){
 				
 			return false;
 		});
-		/*
-		$("#imenu-b").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Bold",null);});
-		$("#imenu-i").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Italic",null);});
-		$("#imenu-u").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Underline",null);});
-		$("#imenu-if").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("increasefontsize",null);});
-		$("#imenu-df").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("decreasefontsize",null);});
-		$("#imenu-al").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("justifyleft",null,fontStyleCbk);});
-		$("#imenu-ac").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("justifycenter",null,fontStyleCbk);});
-		$("#imenu-ar").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("justifyright",null,fontStyleCbk);});
-		$("#imenu-af").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("justifyfull",null,fontStyleCbk);});
-		$("#imenu-ul").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("insertunorderedlist",null);});
-		$("#imenu-ol").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("insertorderedlist",null);});
-		$("#imenu-z").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("undo",null);});
-		$("#imenu-r").click(function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("redo",null);});
-		*/
 		//colorpicker
 		$("#imenu-cc").mousedown(function(evt){
 			p.saveSelection();
@@ -897,26 +882,8 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.$ScrollWrap=$("#scrollWrap");
 		sohu.diyConsole.$BodyBGA=$("#main .bodyBGA");
 		sohu.diyConsole.$ifEditor=$("#ifEditor").iframeEX();	
-		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});	
-		//分栏选择器
-		/*
-		$('#hiddenTemplate .sec_selector li').click(function(evt){
-			if(!sohu.diyConsole.CurSec) return;
-			sohu.diyConsole.CurSec.Editor.SecSelector.Cur=this.id;
-			sohu.diyConsole.CurSec.Editor.SecSelector.dialog("close");
-			sohu.diyConsole.CurSec.AddSub($(sohu.diyTp[this.id]));
-			return false;
-		}).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");});
-		*/
-		//功能按钮
-		/*
-		p._$btnAdd.bind("click",p.onAdd);
-		p._$btnDel.click(p.onRemove);
-		p._$btnBG.click(p.onAddBG);
-		p._$btnPageBG.click(p.onPageBG);
-		p._$btnUp.bind("click",{up:true},p.onMove);
-		p._$btnDown.bind("click",{up:false},p.onMove);
-		*/
+		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});
+		sohu.diyConsole.$EHolder=$('#eHolder');	
 		//已有横切
 		_this.Areas=_this.AreaList().map(function(i,o){
 			var a=new sohu.diyArea({
@@ -952,14 +919,14 @@ sohu.diyConsole=function(opts){
 		//html代码对话框
 		//p.initCode();
 		//editMenu的事件注册
-		p.initEditMenu();
+		//p.initEditMenu();
 		//页面背景设置
 		//p.initPageBG();
 		//元素工具条
 		//sohu.diyElementTool.Init({});
 		new sohu.diyMenuBar({});
 		//弹框组件
-		sohu.diyDialog.Init({console:_this});
+		sohu.diyDialog.Init({console:_this,cssDragCTM:false});
 		//on page loaded
 		$(document).ready(p.onLoaded);
 	};

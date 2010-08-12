@@ -22,66 +22,6 @@ display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(25
 }
 */
 /* =/editable iframe= */
-
-/* =#editMenu= */
-#editMenu{display: block; position: absolute; height: 35px;width: 100%;top:35px; z-index: 999;}
-	#editMenuIn{position:relative;width:500px;margin:0 auto;}
-	#editMenuChild{margin: 0pt auto; width: 400px; position: relative; background: url("../img/menubar-c.gif") repeat-x scroll left bottom transparent; padding: 4px 15px 6px;}
-	.imenu{float:left;background:url("../img/menubar.gif") no-repeat;display:block;height:25px;width:25px;text-decoration:none;}
-#editMenu .on{border-bottom:1px solid red;}	
-	#imenu-b {background-position: 0px 0; width:26px;}
-	#imenu-i {display:none;background-position: -26px 0; }
-	#imenu-u {background-position: -51px 0; }
-	#imenu-cc { background-position: -76px 0;width: 32px; }
-	#imenu-if { display:none;background-position: -108px 0; }
-	#imenu-df { display:none;background-position: -133px 0;width: 27px;margin-right: 12px; }
-	#imenu-cl { background-position: -160px 0; width: 28px; margin-right: 12px;}
-	#imenu-al { background-position: -188px 0;width: 26px; }
-	#imenu-ac { background-position: -214px 0; }
-	#imenu-ar { background-position: -239px 0; }
-	#imenu-af { background-position: -264px 0;width: 27px; margin-right: 12px; }
-	#imenu-ul { background-position: -291px 0;width: 26px; display: none; }
-	#imenu-ol { background-position: -317px 0;width: 27px; margin-right: 12px; display: none; }
-	#imenu-z { display:none;background-position: -344px 0; width: 26px;}
-	#imenu-r { display:none;background-position: -370px 0;width: 27px; }
-	.micon0{background:none;font-size:11px; margin-right:5px;border:1px solid #7EA3BF;}
-	
-	#imenu-b:hover { background-position: -397px 0; }
-	#imenu-i:hover { background-position: -423px 0; }
-	#imenu-u:hover { background-position: -448px 0; }
-	#imenu-cc:hover { background-position: -473px 0; }
-	#imenu-if:hover { background-position: -505px 0; }
-	#imenu-df:hover { background-position: -530px 0; }
-	#imenu-cl:hover { background-position: -557px 0; }
-	#imenu-al:hover { background-position: -585px 0; }
-	#imenu-ac:hover { background-position: -611px 0; }
-	#imenu-ar:hover { background-position: -636px 0; }
-	#imenu-af:hover { background-position: -661px 0; }
-	#imenu-ul:hover { background-position: -688px 0; }
-	#imenu-ol:hover { background-position: -714px 0; }
-	#imenu-z:hover { background-position: -741px 0; }
-	#imenu-r:hover { background-position: -767px 0; }
-
-	/* popup windows style */
-	#editMenuIn .win{position:relative;display:none;width:356px;margin:0 auto;}
-	#editMenuIn .skform{width:100%;padding:10px 0;}
-	#editMenuIn .skform label{width:25%;}
-	#editMenuIn .skform .field{width:65%;}
-	
-	#editMenuChild .bar_l,#editMenuChild .bar_r{width: 5px; height: 35px;position: absolute; bottom: 0px;}
-	#editMenuChild .bar_l{ background: url("../img/menubar-l.gif") no-repeat scroll left bottom transparent;  left: 0px; margin-left: -5px;}
-	#editMenuChild .bar_r{background: url("../img/menubar-r.gif") no-repeat scroll right bottom transparent; right: 0px; margin-right: -5px;}
-
-	/* colorpicker wrapper */
-	#editMenu .colorpicker{background-image:url("../images/custom_background.png");}
-	/* Img property & SecHead cfg */
-	#imgPro,#cfgSecHead{position:relative;}
-	#imgPro .skform,#cfgSecHead .skform{position:relative;}
-	#imgPro .cpk,#cfgSecHead .cpk{position:absolute;display:none;width:356px;top:20%;right:-250px;}	
-	#cfgSecHead .cpk{top:20px;}
-	
-/* =/#editMenu= */
-
 #jqmWin1 .skform{border:none;}
 #jqmWin1 .skformx{background:#F0F0EE;}
 .jqmCT{position:relative;}
@@ -126,7 +66,7 @@ display:none;
 .alert{color:red;}
 /* 分栏样式 -Editing */
 .sec{position:relative;min-height:22px;height:auto !important;height:25px;}
-.sec .elmOn,.sec .pp img.elmOn{border:1px solid #eee;/*background:#FFDBA8;*/}
+/*.sec .elmOn,.sec .pp img.elmOn{border:1px solid #eee;}*/
 .area_empty .sec{/*border:1px dotted #FC0055;*/}
 	.secHolder{display:none;height:23px;}
 .area_empty .secHolder{display:block;border:1px dotted #FC0055;}
@@ -138,8 +78,8 @@ display:none;
 /*.area_active .secOn,.area_active .subsec .secOn{border:1px solid #84ADDE;}*/
 .area_active .ing,.area_active .subsec .ing{border-color:#FF0084;}
 /* 内容样式-Editing */
-.ct{position:relative;border:none;}
-.area_active .ctOn{border-color:#FFDBA8;}
+.ct{position:relative;}
+#eHolder{position:absolute;z-index:-99;border:1px solid #FC0055;}
 /*.col{overflow:hidden;}*/
 /* iframe编辑器 */
 #ifEditor{display:none;}

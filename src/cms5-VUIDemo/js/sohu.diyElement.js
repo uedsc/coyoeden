@@ -15,6 +15,7 @@ sohu.diyElement=function(opts){
 	this.Copyable=false;
 	this.IsSelfCopyable=false;
 	this.$CopyModel=null;
+	this.IsEditing=false;
 	
 	/* private member variables */
 	var p={opts:opts};
@@ -46,13 +47,15 @@ sohu.diyElement=function(opts){
 			}else{
 				sohu.diyDialog.Show("wText");
 			};
-			
+			_this.Overlay("on");
+			sohu.diyConsole.$EHolder.IsBusy=_this.IsEditing=true;
 			_this.CT.InlineEdit("on");
+			
 		}else{
 			_this.i$frame=null;
-			sohu.diyConsole.$CPKWrap.hide();
-			sohu.diyConsole.$EditMenu.hide();
 			_this.CT.InlineEdit("off");
+			sohu.diyConsole.$EHolder.IsBusy=_this.IsEditing=false;
+			
 		}
 			
 	};
@@ -69,6 +72,8 @@ sohu.diyElement=function(opts){
 		if(_this.tagName=="img"){
 			_this.$Layout.click(function(evt){
 				sohu.diyDialog.Show("wImage");
+				_this.Overlay("on");
+				sohu.diyConsole.$EHolder.IsBusy=_this.IsEditing=true;
 				_this.CT.InlineEdit("on");
 				return false;
 			});
@@ -88,21 +93,15 @@ sohu.diyElement=function(opts){
 	//鼠标事件
 	this.$Layout.mouseenter(function(evt){
 		_this.$Layout.addClass(opts.clOn);
-		/*
-		if(_this.$Layout.hasClass(opts.clCopyable))
-			sohu.diyElementTool.Trigger({type:"evtShow",elm:_this});
-		*/
+		//占位蒙层
+		_this.Overlay("on");
 	});
 	this.$Layout.mouseleave(function(evt){
 		_this.$Layout.removeClass(opts.clOn);
-		/*
-		if(_this.$Layout.hasClass(opts.clCopyable))
-			sohu.diyElementTool.Trigger({type:"evtHide",elm:_this});
-		*/
+		//占位蒙层
+		_this.Overlay("off");
 	});
 	this.$Layout.mousedown(function(evt){
-		//sohu.diyConsole.$PopWins.hide();
-		//sohu.diyConsole.$Menu.removeClass("on");
 		if (sohu.diyConsole.CurElm) {
 			sohu.diyConsole.CurElm.HideEditor(true);
 			sohu.diyDialog.Hide(true);
@@ -122,10 +121,10 @@ sohu.diyElement.prototype.HideEditor=function(ignoreCbk){
 	if(this.InlineEditable){
 		this.IFEdit("off",ignoreCbk);
 	}else{
-		sohu.diyConsole.$EditMenu.hide();
 		this.CT.InlineEdit("off");
 	}
-	
+	sohu.diyConsole.$EHolder.IsBusy=this.IsEditing=false;/* 是否某个元素正在被编辑 */
+	this.Overlay("off");
 	sohu.diyConsole.CurElm=null;
 };
 /**
@@ -136,4 +135,37 @@ sohu.diyElement.prototype.IFEdit=function(mode,ignoreCbk){
 	mode=mode||"on";
 	mode=mode=="on"?mode:"off";
 	this.$Layout[0].iEdit(mode,ignoreCbk||false);
+};
+/**
+ * dimension info of the element
+ */
+sohu.diyElement.prototype.Dim=function(){
+	var of=this.$Layout.offset();
+	return {
+		x:of.left,
+		y:of.top,
+		h:this.$Layout.height(),
+		w:this.$Layout.width()
+	};
+};
+/**
+ * 蒙层开关
+ * @param {Object} mode "on"或"off"
+ */
+sohu.diyElement.prototype.Overlay=function(mode){
+	if(sohu.diyConsole.$EHolder.IsBusy) return;
+	mode=mode||"on";
+	mode=mode=="on"?mode:"off";
+	if(mode=="on"){
+		var d=this.Dim();
+		sohu.diyConsole.$EHolder.css({
+			top:d.y-1,
+			left:d.x-1,
+			width:d.w+1,
+			height:d.h+1,
+			display:"block"
+		});
+	}else{
+		sohu.diyConsole.$EHolder.attr("style","");
+	};
 };
