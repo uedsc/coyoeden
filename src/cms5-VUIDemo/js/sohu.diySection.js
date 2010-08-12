@@ -312,7 +312,9 @@ sohu.diySection.prototype.Overlay=function(mode){
 			top:0,
 			left:0,
 			height:this.$Layout.height(),
-			width:"100%"
+			width:"100%",
+			"z-index":50,
+			opacity:0.7
 		};
 		this.$Holder.css(css);
 	}else{
