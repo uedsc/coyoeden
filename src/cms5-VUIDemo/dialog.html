@@ -5,18 +5,22 @@
 		<title>可视化专题-弹框</title>
 		<link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
 		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link>
+		<link rel="stylesheet" type="text/css" href="css/colorpicker.css"></link>
 		<link rel="stylesheet" type="text/css" href="css/dialog.css"></link> 
 		<script src="js/jquery-1.4.2.js" type="text/javascript"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="js/jqModal.js"></script> 
+		<script type="text/javascript" src="js/sohu.jqModal.js"></script> 
+		<script type="text/javascript" src="js/colorpicker.js"></script> 
 		<script type="text/javascript" src="js/sohu.diyDialog.js"></script>
 	</head>
 	<body>
 		<div id="main" class="area" style="height:600px;border:2px solid #eee;">
-			<button onclick="sohu.diyDialog.Show('#delMsg',{title:'提示信息',onOK:function(dlg,opts){alert('确认');}})">提示</button>
+			<button onclick="sohu.diyDialog.Show('#commonMsg',{title:'提示信息',onOK:function(dlg,opts){alert('确认');}})">提示</button>
 			<button onclick="sohu.diyDialog.Show('#picMsg',{title:'图像',beforeShow:function(hash,dlg){alert('beforeShow');return true;},afterShow:function(hash,dlg){alert('afterShow');}})">图像</button>
 			<button onclick="sohu.diyDialog.Show('#txtMsg',{title:'文字'})">文字</button>
 			<button onclick="sohu.diyDialog.Show('addBlock')">添加横切</button>
+			<button onclick="sohu.diyDialog.Show('cfgArea')">横切设置</button>
+			<button onclick="sohu.diyDialog.Show('cfgPage')">页面设置</button>
 			<hr/>		
 		</div>
 
@@ -39,7 +43,7 @@
 		
 		<!--Dialog content-->
 		<div id="dialogList">
-			<div id="delMsg" class="jqmCT">		
+			<div id="commonMsg" class="jqmCT">		
 				 <div class="tip">
 				 	<span class="icon caution"></span>
 					<div class="txt">
@@ -134,7 +138,84 @@
 					   <div class="block10"><a id="w270_390_270" href="#"></a></div>
 				  </div>
 			</div>
-			<!--添加横切 结束-->	
+			<!--添加横切 结束-->
+			<!--横切背景-->
+			<div id="cfgArea" class="jqmCT formx">
+				<div class="blank8"></div>
+				<div class="lineA">
+					<div class="txt01">背景图</div>
+					<input id="txtAreaBG" name="areaBG" type="text" value="" class="ipt03"/>
+					<input id="btnAreaBGBrowse" type="button" class="btn btnL"  value="浏览" />
+				</div>
+				<div class="lineA">
+					<div class="txt01">对齐方式</div>
+					<input name="areaBGAlign" checked="checked" type="radio" value="" class="rdo"  />
+					<div class="txt02">居中</div>
+					<input name="areaBGAlign" type="radio" value="" class="rdo"  />
+					<div class="txt02">靠左</div>
+					<input name="areaBGAlign" type="radio" value="" class="rdo"  />
+					<div class="txt02">靠右</div>
+				</div>
+				<div class="lineA">
+					<div class="txt01">平铺方式</div>
+					<input name="areaBGRepeat" type="radio" value="" class="rdo"  />
+					<div class="txt02">平铺</div>
+					<input name="areaBGRepeat" type="radio" value="" class="rdo"  />
+					<div class="txt02">不平铺</div>
+					<input name="areaBGRepeat" type="radio" value="" class="rdo"  />
+					<div class="txt02">横铺</div>
+					<input name="areaBGRepeat" type="radio" value="" class="rdo"  />
+					<div class="txt02">纵铺</div>
+				</div>
+				<div class="lineA">
+					<div class="txt01">横切ID</div>
+					<input id="txtAreaID" name="areaID" type="text" value="" class="ipt03"/>
+				</div>
+				<div class="blank8"></div>
+				<div class="bottom3line"></div>			
+			</div>
+			<!--/横切背景-->	
+			<!--页面背景-->
+			<div id="cfgPage" class="jqmCT formx">
+				<div class="blank8"></div>
+				<div class="lineA">
+					<div class="txt01">背景图</div>
+					<input type="text" value="" class="ipt03"/>
+					<input type="button" class="btn btnL"  value="浏览" />
+				</div>
+				<div class="lineA">
+					<div class="txt01">对齐方式</div>
+					<input type="radio" value="" class="rdo"  />
+					<div class="txt02">居中</div>
+					<input type="radio" value="" class="rdo"  />
+					<div class="txt02">靠左</div>
+					<input type="radio" value="" class="rdo"  />
+					<div class="txt02">靠右</div>
+				</div>
+				<div class="lineA">
+					<div class="txt01">平铺方式</div>
+					<input type="radio" value="" class="rdo"  />
+					<div class="txt02">平铺</div>
+					<input type="radio" value="" class="rdo"  />
+					<div class="txt02">不平铺</div>
+					<input type="radio" value="" class="rdo"  />
+					<div class="txt02">横铺</div>
+					<input type="radio" value="" class="rdo"  />
+					<div class="txt02">纵铺</div>
+				</div>
+				<div class="lineA">
+					<div class="txt01">背景高度</div>
+					<input type="text" value="" class="ipt04"/>
+					<div class="txt02">px</div>
+				</div>
+				<div class="lineA">
+					<div class="txt01">背景色</div>
+					<input type="text" value="" class="ipt03"/>
+				</div>
+				<div class="blank8"></div>
+				<div class="bottom3line"></div>				
+			</div>
+			<!--/页面背景-->	
 		</div>
 		<!--横切工具条-->
 		<div id="areaTools">

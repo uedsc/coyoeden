@@ -14,7 +14,18 @@ a.close:hover{background-position: bottom;}
 .lineA,.lineA span{ margin:0 auto;  height:22px; vertical-align: middle; margin-top:5px;}
 .width30{ width: 30px;}
 .fontRed{color:#ff0000; width:205px; padding-left: 30px; text-align: left; height:20px;}
-.ipt01,.ipt03{float:left; border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;} 
+.ipt01,.ipt03,.ipt04{float:left; border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;} 
+.bottom3line{margin:0 auto; width:265px;height:0px; overflow:hidden;border-bottom: 1px solid #fff;border-top: 1px solid #d6d6d6;}
+
+.formx{width:310px;}
+.formx .txt01,.formx .txt02{color:#383836;float:left;line-height:20px;vertical-align:middle;padding-right:5px;}
+.formx .txt01{text-align:right;width:60px;}
+.formx .txt02{padding:0 5px;}
+.formx .rdo{border:1px solid #f0f0ee;float:left;}
+.formx .btn{display: block; background: url(../images/ybtn.gif) top;width: 45px;height: 24px; border: 0px; cursor:pointer; }
+.formx .btnL{float:left;margin-left:5px;}
+.formx .ipt03{width:168px;}
+.formx .ipt04{width:40px;}
 
 #commonMsg{ width: 255px;}
 #commonMsg .tip{ width:235px;padding:15px 0px 10px;}
@@ -160,7 +171,6 @@ a.close:hover{background-position: bottom;}
 .h60{ height: 60px;}
 #wPagePro .linep{ margin:0 auto;   height:22px; vertical-align: middle; margin-top:5px;padding-left:0px; width:230px;}
 
-
 #autoList{ width:285px; height: auto; border:1px solid #666; background:#F0F0EE; padding-bottom: 8px;}
 #autoList .titleA{ background:url(../images/common.jpg) 0px -38px;}
 #autoList .lineA .txt01{ width:60px; color:#383836; text-align:right; padding-right: 5px;}
@@ -170,16 +180,6 @@ a.close:hover{background-position: bottom;}
 #autoList .lineA .selAuto1{float:left; width:89px;height:20px;font-size:12px; }
 .bottom1line{margin:0 auto; width:258px;height:0px; overflow:hidden;border-bottom: 1px solid #fff;border-top: 1px solid #d6d6d6; margin-top: 5px;}
 
-
-
-
-
-
-
-
-
-
-
 #wSecHead{ width:285px; height: auto;padding-bottom:8px; background:#F0F0EE}
 #wSecHead .titleA{ background:url(../images/common.jpg) 0px -38px;}
 #wSecHead .lineA .txt01{float:left; vertical-align: middle; line-height:20px; width:35px; color:#383836}
@@ -188,19 +188,10 @@ a.close:hover{background-position: bottom;}
 #wSecHead .lineA .selAuto{ float:left; width:62px;height:20px;font-size:12px; margin-left: 4px;}
 #wSecHead .wline{ margin:0 auto; width: 270px; height: 16px; }
 #wSecHead .wline a{float:left; margin-right: 3px;}
-.bottom3line{margin:0 auto; width:265px;height:0px; overflow:hidden;border-bottom: 1px solid #fff;border-top: 1px solid #d6d6d6;}
 #wSecHead .lineA .ipt01{ width: 16px; background:#8D8D8D; border: 0px; float:left; cursor:pointer;}
 #wSecHead .lineA .browse{ float:left;display: block; background: url(../images/ybtn.gif) top;width: 45px;height: 24px; border: 0px; cursor:pointer; margin-left:5px; }
 .txt05{ float:left;padding-left: 5px; vertical-align: middle; color:#000; vertical-align: middle; margin-top: 3px;}
 .cBox03{ float:left;  border:1px solid #F0F0EE; vertical-align: middle;}
-
-
-
-
-
-
-
-
 
 
 #areaTools{position:fixed;_position:absolute;top:100px;right:60px; width:67px; border:1px solid #666; background:#F0F0EE}
@@ -221,9 +212,6 @@ a.close:hover{background-position: bottom;}
 .ctroBtn:focus strong{background-position:right -61px\0}
 
 /******/
-
-
-
 /**hidBlock**/
 #wSetting1{position:fixed;_position:absolute;top:25px;left:-82px;width:87px;border:1px solid #666; background:#F0F0EE;}
 #wSetting1 .left{ width: 80px;border-right:1px solid #ccc}
