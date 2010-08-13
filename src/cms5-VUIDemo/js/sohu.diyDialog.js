@@ -21,7 +21,7 @@ sohu.diyDialog=function(){
 		this.$CTWrap=$(p.opts.cssCTWrap);/* Wrapper for all the dialog contents */
 		this.jqmHash=null;
 		//default options for jqModal
-		this.jqmOpts={trigger:false,modal:true,overlay:50,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false};
+		this.jqmOpts={trigger:false,modal:true,overlay:50,autoFocus:false,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false};
 		this.jqmOpts.onShow=function(hash){
 			var doShow=true;
 			if(_this.jqmOpts.beforeShow){
@@ -34,7 +34,6 @@ sohu.diyDialog=function(){
 					_this.jqmOpts.afterShow(hash,_this);
 				};
 			};
-				
 		};
 		this.jqmOpts.onHide=function(hash){
 			var doHide=true;
