@@ -561,8 +561,9 @@ sohu.diyDialog.wAddContent=function(dlg){
 		return true;
 	};
 	p.afterHide=function(hash,dlg0){
-		sohu.diyConsole.CurSec.Editor.Editing("off");
-		sohu.diyConsole.CurSec.Deactive();
+		//sohu.diyConsole.CurSec.Editor.Editing("off");
+		//sohu.diyConsole.CurSec.Deactive();
+		sohu.diyConsole.Preview();
 	};
 	//jqm options
 	this.$Layout.jqmOpts={
@@ -588,7 +589,8 @@ sohu.diyDialog.wCode=function(dlg){
 		return true;
 	};
 	p.afterHide=function(hash,dlg0){
-		sohu.diyConsole.CurSec.Editor.Editing("off");
+		//sohu.diyConsole.CurSec.Editor.Editing("off");
+		sohu.diyConsole.Preview();
 	};	
 	p.afterShow=function(hash,dlg0){
 		_this.$TextArea.val(sohu.diyConsole.CurSec.$Layout.html());
@@ -637,7 +639,8 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		return true;
 	};
 	p.afterHide=function(hash,dlg0){
-		sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
+		//sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
+		sohu.diyConsole.Preview();
 	};
 	p.onOK=function(dlg0,cls){
 		var _undefined;
@@ -806,6 +809,7 @@ sohu.diyDialog.wSecHead=function(dlg){
 			p._fm.title.val(sohu.diyConsole.DocSelection.text);
 			return;
 		};
+		a.href=a.href=="#"?"":a.href;
 		p._fm.title.val(a.title);
 		p._fm.link.val(a.href);
 		p._fm.ddlTarget.val(a.target);
@@ -818,7 +822,6 @@ sohu.diyDialog.wSecHead=function(dlg){
 	};
 	p.afterHide=function(hash,dlg0){
 		p._fm.reset();
-		sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
 		sohu.diyConsole.Preview();		
 	};
 	p.afterShow=function(hash,dlg0){
@@ -833,31 +836,30 @@ sohu.diyDialog.wSecHead=function(dlg){
 		}else{
 			p._fm.cbxMore.attr("checked",false);
 		};
+		//标题连接
+		var $a=sohu.diyConsole.CurElm.CT.$Layout.find("a[href!='']");
+		if($a.length>0){
+			p._fm.link.val($a[0].href);
+		};
 		//捕捉iframe编辑器用户选定的内容
 		sohu.diyConsole.CurElm.i$frame[0].i$Body().unbind("mouseup").mouseup(p.onIframeSelect);		
 	};
 	p.onOK=function(dlg0){
-		var url=p._fm.link.val();
-		if(!StringUtils.isUrl(url)){
+		var url=$.trim(p._fm.link.val());
+		if((url!="")&&!StringUtils.isUrl(url)){
 			p._fm.link.addClass("alert").select();
 			p._fm.tipLink.addClass("alert");
 			return false;
 		};
 		//背景图
 		var img=$.trim(p._fm.bg.val());
-		if(img==""){
-			sohu.diyConsole.CurElm.CT.$Layout.css("background-image","none");
-		}else{
-			if(!StringUtils.isUrl(img)){
-				p._fm.bg.addClass("alert").select();
-				return false;
-			};
-		};	
+		img=img==""?"none":img;
+		sohu.diyConsole.CurElm.CT.$Layout.css("background-image",img);	
 		
 		//显示更多
 		if(p._fm.cbxMore[0].checked){
 			if(sohu.diyConsole.CurElm.CT.$Layout.find(".more").length==0){
-				var $more=$('<a class="more elm">更多>></a>');
+				var $more=$('<strong class="more elm">更多>></strong>');
 				sohu.diyConsole.CurElm.CT.$Layout.append($more);
 				new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$more});
 			};
@@ -865,18 +867,16 @@ sohu.diyDialog.wSecHead=function(dlg){
 			sohu.diyConsole.CurElm.CT.$Layout.find(".more").remove();
 		};
 			
-		if(p._fm.isNew){
+		if(p._fm.isNew&&url!=""){
 			sohu.diyConsole.CurElm.i$frame[0].iDoCommand("createlink",url,null,function($iframe){
 				sohu.diyConsole.DocSelection.selectAndRelease();
 			});
-		}else{
+		}else if(p._fm.a){
 			p._fm.a.$obj.attr("title",p._fm.title.val())
-				.attr("href",p._fm.link.val())
 				.attr("target",p._fm.ddlTarget.curVal);
+			if(url!=""){p._fm.a.$obj.attr("href",url)};
 		};
 
-		sohu.diyConsole.CurElm.CT.$Layout.css("background-image",img);
-		
 		dlg0.Hide();
 	};	
 	//事件注册
@@ -993,7 +993,6 @@ sohu.diyDialog.wText=function(dlg){
 	};
 	p.afterHide=function(hash,dlg0){
 		p._fm.reset();
-		sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
 		sohu.diyConsole.Preview();
 	};
 	p.onOK=function(dlg0){
@@ -1093,7 +1092,6 @@ sohu.diyDialog.wImage=function(dlg){
 	};
 	p.afterHide=function(hash,dlg0){
 		p._fm.reset();
-		sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
 		sohu.diyConsole.Preview();
 	};
 	p.onOK=function(dlg0){
@@ -1247,7 +1245,13 @@ sohu.diyDialog.wSetting1=function(dlg){
 		if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsEditing) return false;
 		sohu.diyDialog.Show("cfgPage");
 	};	
-	p.onPreview=function(evt){alert("preview");};
+	p.onPreview=function(evt){
+		if((!sohu.diyConsole.CurArea)||(!sohu.diyConsole.CurArea.IsEditing))
+			return false;
+			
+		sohu.diyDialog.Hide();
+		return false;
+	};
 	p.onPublish=function(evt){alert("publish");};
 	p.onHelp=function(evt){alert("help");};
 	p.onToggle=function(evt){

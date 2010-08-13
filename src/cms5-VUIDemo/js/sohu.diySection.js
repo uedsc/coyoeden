@@ -73,9 +73,10 @@ sohu.diySection.prototype.Active=function(){
 	if(sohu.diyConsole.CurSec&&(sohu.diyConsole.CurSec.IsAddingContent||sohu.diyConsole.CurSec.InlineEditing)) return;
 	if(this.IsActive) return;
 	//看看当前横切是否激活，没激活的话激活
-	if(!this.CurArea.IsActive){
-		this.CurArea.Active();
+	if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsActive){
+		sohu.diyConsole.CurArea.Deactive();
 	};
+	this.CurArea.Active();
 	/* 反激活上一个分栏 */
 	if(sohu.diyConsole.CurSec){sohu.diyConsole.CurSec.Deactive();};
 	this.IsActive=true;
@@ -84,12 +85,9 @@ sohu.diySection.prototype.Active=function(){
 	sohu.diyConsole.CurSec=this;
 	//Show the toolbar
 	this.Editor.Show();
-	//激活对应横切
-	//TODO:将横切的激活完全放在diySection内部进行，移除横切的mouseenter事件
-	this.CurArea.Active();
 };
 sohu.diySection.prototype.Deactive=function(){
-	if(this.IsAddingContent||this.InlineEditing) return;/* 正在编辑内容 */
+	if((!this.IsActive)||this.IsAddingContent||this.InlineEditing) return;/* 正在编辑内容 */
 	this.Editor.Hide();
 	this.IsActive=false;
 	this.$Layout.removeClass(this.__p.opts.clSecOn);

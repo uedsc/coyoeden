@@ -1150,9 +1150,14 @@ sohu.diyConsole.IsValidID=function(str){
  */
 sohu.diyConsole.Preview=function(){
 	if(!sohu.diyConsole.CurArea) return;
+	/*
 	if(!sohu.diyConsole.CurArea.IsActive) return;
 	if(sohu.diyConsole.CurArea.IsEditing) return;
+	*/
 	if(sohu.diyConsole.Dragger.ing) return;
+	//ÒÆ³ý·ÖÀ¸±à¼­Æ÷
+	if(sohu.diyConsole.CurSec)
+		sohu.diyConsole.CurSec.Editor.Editing("off");
 	//Ç¿ÖÆÒÆ³ýÄÚÁª±à¼­Æ÷
 	if(sohu.diyConsole.EditingSec!=null&&sohu.diyConsole.CurElm!=null){
 		sohu.diyConsole.CurElm.HideEditor(false);

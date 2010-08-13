@@ -30,6 +30,8 @@ sohu.diyArea=function(opts){
 			_this.Console.CurArea.$Layout.after(_this.$Layout);
 		};		
 	};
+	/*
+	 横切的激活由分栏控制
 	//绑定事件
 	p.bindEvts=function(){
 		_this.$Layout.mouseenter(function(evt){_this.Active();});
@@ -40,6 +42,7 @@ sohu.diyArea=function(opts){
 		//_this.$Layout.unbind("mouseenter mouseleave");
 		_this.$Layout.unbind("mouseenter");
 	};
+	*/
 	//行为
 	if(opts.isNew){
 		this.TemplateID=opts.tplID;
@@ -50,9 +53,8 @@ sohu.diyArea=function(opts){
 		this.ID=this.$Layout.attr("id");
 		this.TemplateID=this.ID.substr(0,this.ID.lastIndexOf("_"));
 	};
-	//横切事件-注：当横切具有分栏时，如果分栏的鼠标事件函数返回false，停止了事件的冒泡，横切的鼠标事件将不被触发
-	this.$Layout.effect("highlight",null,"fast");
-	p.bindEvts();
+	//this.$Layout.effect("highlight",null,"fast");
+	//p.bindEvts();
 	
 	this.__p=p;
 	
@@ -63,6 +65,7 @@ sohu.diyArea=function(opts){
  * 激活
  */
 sohu.diyArea.prototype.Active=function(){
+	if(this.IsActive) return;
 	if(sohu.diyConsole.CurSec&&(sohu.diyConsole.CurSec.IsAddingContent||sohu.diyConsole.CurSec.InlineEditing)) return;
 	var _this=this;
 	//if(this.IsActive) return;

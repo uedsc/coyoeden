@@ -12,7 +12,9 @@
 			this.i$frame.t.iEdit("off");
 			this.i$frame.t=null;
 		};
-		this.i$frame.t=this;
+		if(this.i$frame)
+			this.i$frame.t=this;
+			
 		this.iEdit("on");
 	};
 	p.bindEvents=function(dom){
@@ -87,52 +89,33 @@
 		var $body=dom.i$frame[0].i$Body();
 		//copy styles to the iframe document
 		$this.copyCss($body).copyCss(dom.i$frame);
+		//we don't need any marign and border styles inside the iframe body tag 
+		var ovrCss0={"margin":"0","border":"none","text-align":"left","padding":"0","background":"none"},ovrCss1={margin:0};
 		//override height or width process
 		if($this.css("height")=="auto"){
-			var h=$this.height();
-			dom.i$frame.css("height",h);
-			$body.css("height",h);
+			ovrCss0.height=ovrCss1.height=$this.height();
 		};
-		
-		/*
-		var h=$this.height();
-		dom.i$frame.css("height",h);
-		$body.css("height",h);
-		*/	
-		/*
-		if(($this.css("width")=="auto"&&dom._opts.accurateWidth)){
-			var w=$this.parent().width();
-			dom.i$frame.css("width",w);
-			$body.css("width",w);
-		};
-		*/
-		var w=$this.width();
-		dom.i$frame.css("width",w);
-		$body.css("width",w);
-
+		ovrCss0.width=ovrCss1.width=$this.width();
 		//update iframe lineheight
 		if(!$.browser.msie){
 			if($this.css("display")!="block"){
-				dom.i$frame.css("lineHeight", "normal");
-              	$body.css("lineHeight","normal");
+				ovrCss0.lineHeight=ovrCss1.lineHeight="normal";
 			}else{
 				var fs = $this.css('fontSize').replace('px', '');
 	            var lh = $this.css('lineHeight').replace('px', '');
 	            if(fs && lh){
-	                var newHeight = ''+(lh/fs);
-	                dom.i$frame.css("lineHeight", newHeight);
-	              	$body.css("lineHeight",newHeight);
+	               ovrCss0.lineHeight=ovrCss1.lineHeight= ''+(lh/fs);
 	            };				
 			};
-
 		};
-		//we don't need any marign and border styles inside the iframe body tag 
-		$body.css({"margin":"0","border":"none","text-align":"left","padding":"0","background":"none"});	
 		//maxWidth
 		if(!$.browser.msie)
-			dom.i$frame.css("maxWidth","inherit");
+			ovrCss1.maxWidth="inherit";
 		//overflow
-		dom.i$frame.css("overflow","hidden");
+		ovrCss1.overflow="hidden";
+		//overide css
+		$body.css(ovrCss0);
+		dom.i$frame.css(ovrCss1);
 		//show the original dom as the place holder!
 		$this.show().css("visibility","hidden");
 		//iframe position
@@ -143,34 +126,29 @@
 		
 	};
 	p.fixPosition=function(dom){
-		//TODO:finish this method
-		var $this=$(dom);		
-		//fix float siblings
-		var needfix=false,hasFloatPrev=false;
-		//If there's a floating element before it, make the element position absolute!
-		var $items=$this.prevAll();
-		$items=$.grep($items,function(o,i){
-			var fl=$(o).css("float");
-			return (fl=="left"||fl=="right");
-			//return $(o).is(dom._opts.cssFloat);
+		var $this=$(dom);
+		if($this.css("position")=="absolute") return;
+		//fix the iframe when it has floating elements arround
+		var objs=$.grep($this.prevAll(),function(o,i){
+			o._fl=$(o).css("float");
+			return (o._fl=="left"||o._fl=="right");
 		});
-		hasFloatPrev=($items.length>0);
-		needfix=hasFloatPrev||($this.css("float")!="none");
-		
-		if(!needfix) return;
-		
-		$items=hasFloatPrev?$($items[0]):({width:function(){return 0;}});
-		
-		var floatWidth=$items.width();
-		var frameWidth=dom.i$frame.width()-floatWidth;
-		var css={
-			"width":frameWidth
+		if(objs.length==0) return;
+		objs=$(objs[0]);
+		objs._d={
+			w:objs.width(),
+			ml:parseInt(objs.css("marginLeft")),
+			mr:parseInt(objs.css("marginRight"))
 		};
-		if($this.css("display")=="block"&&hasFloatPrev)
-			css["padding-"+$items.css("float")]=floatWidth+'px';
-		
+		var wFrame=dom.i$frame.width()-objs._d.w-objs._d.ml-objs._d.mr;
+		var css={
+			width:wFrame
+		};
+		if($this.css("display")=="block"&&objs[0]._fl=="left"){
+			css.left=objs.offset().left+objs._d.w+objs._d.ml+objs._d.mr;
+		};
 		dom.i$frame.css(css);
-		dom.i$frame[0].i$Body().css("width",frameWidth);
+		dom.i$frame[0].i$Body().css("width",wFrame);
 		
 	};
 	p.doEditing=function(opts){

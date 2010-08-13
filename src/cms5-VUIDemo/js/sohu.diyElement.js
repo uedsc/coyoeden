@@ -60,6 +60,7 @@ sohu.diyElement=function(opts){
 			
 	};
 	p.initEditable=function(){
+		_this.$Layout.click(function(evt){return false;});
 		//inline editable element
 		if(_this.InlineEditable){
 			_this.$Layout.iEditable({
@@ -75,7 +76,6 @@ sohu.diyElement=function(opts){
 				_this.Overlay("on");
 				sohu.diyConsole.$EHolder.IsBusy=_this.IsEditing=true;
 				_this.CT.InlineEdit("on");
-				return false;
 			});
 			return;
 		};
@@ -166,6 +166,27 @@ sohu.diyElement.prototype.Overlay=function(mode){
 			display:"block"
 		});
 	}else{
-		sohu.diyConsole.$EHolder.attr("style","");
+		sohu.diyConsole.$EHolder.hide();
 	};
+};
+/**
+ * 上移或者下移
+ * @param {Object} isUp 是否上移
+ */
+sohu.diyElement.prototype.Move=function(isUp){
+	//移动
+	var $obj=isUp?this.$CopyModel.prevAll("."+this.__p.opts.clCopyable):this.$CopyModel.nextAll("."+this.__p.opts.clCopyable);
+	if($obj.length==0) return;
+	$obj=$obj.eq(0);
+	if(isUp){
+		$obj.before(this.$CopyModel);
+	}else{
+		$obj.after(this.$CopyModel);
+	};
+	var d=this.Dim();
+	if(this.i$frame){
+		this.i$frame.css({top:d.y,left:d.x});			
+	};
+	//蒙层重定位
+	sohu.diyConsole.$EHolder.css({top:d.y-1,left:d.x-1});
 };

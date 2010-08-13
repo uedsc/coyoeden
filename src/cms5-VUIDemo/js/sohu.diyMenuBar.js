@@ -89,23 +89,9 @@ sohu.diyMenuBar=function(opts){
 		//sohu.diyConsole.CurElm.CT.Editor.Reposition();
 	};
 	p.elmCmd.Move=function(evt){
-		p.elm=sohu.diyConsole.CurElm;
-		if(!p.elm) return;
+		if(!sohu.diyConsole.CurElm) return;
 		//移动
-		var $obj=evt.data.up?p.elm.$CopyModel.prevAll("."+p._opts.clElmCopyable):p.elm.$CopyModel.nextAll("."+p._opts.clElmCopyable);
-		if($obj.length==0) return;
-		$obj=$obj.eq(0);
-		if(evt.data.up){
-			$obj.before(p.elm.$CopyModel);
-		}else{
-			$obj.after(p.elm.$CopyModel);
-		};
-		if(p.elm.i$frame){
-			var pos=p.elm.$Layout.position();
-			p.elm.i$frame.css({top:pos.top,left:pos.left});			
-		}else{
-			
-		};
+		sohu.diyConsole.CurElm.Move(evt.data.up);
 	};
 	
 	//图标的事件绑定
