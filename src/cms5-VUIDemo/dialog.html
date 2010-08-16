@@ -21,6 +21,7 @@
 			<button onclick="sohu.diyDialog.Show('addBlock')">添加横切</button>
 			<button onclick="sohu.diyDialog.Show('cfgArea')">横切设置</button>
 			<button onclick="sohu.diyDialog.Show('cfgPage')">页面设置</button>
+			<button onclick="sohu.diyDialog.Show('#wCfgSec',{title:'分栏设置'})">分栏设置</button>
 			<hr/>		
 		</div>
 
@@ -216,6 +217,53 @@
 				<div class="bottom3line"></div>				
 			</div>
 			<!--/页面背景-->	
+			<!--分栏设置-->
+			<div id="wCfgSec" class="jqmCT formx">
+				<div class="blank8"></div>
+				<div class="lineA">
+					<div class="txt01">背景图</div>
+					<input id="txtSecBG" type="text" class="ipt03"/>
+					<input id="btnCfgSecBrowse" type="button" class="btn btnL"  value="浏览" />
+				</div>
+				<div class="lineA">
+					<div class="txt01">背景色</div>
+					<input id="txtSecBGC" type="text" class="ipt03"/>
+				</div>
+				<div class="lineA">
+					<div class="txt01">对齐方式</div>
+					<input name="secBGAlign" checked="checked" type="radio" value="center center" class="rdo"  />
+					<div class="txt02">居中</div>
+					<input name="secBGAlign" type="radio" value="left center" class="rdo"  />
+					<div class="txt02">靠左</div>
+					<input name="secBGAlign" type="radio" value="right center" class="rdo"  />
+					<div class="txt02">靠右</div>
+				</div>
+				<div class="lineA">
+					<div class="txt01">平铺方式</div>
+					<input name="secBGRepeat" checked="checked" type="radio" value="repeat" class="rdo"  />
+					<div class="txt02">平铺</div>
+					<input name="secBGRepeat" type="radio" value="no-repeat" class="rdo"  />
+					<div class="txt02">不平铺</div>
+					<input name="secBGRepeat" type="radio" value="repeat-x" class="rdo"  />
+					<div class="txt02">横铺</div>
+					<input name="secBGRepeat" type="radio" value="repeat-y" class="rdo"  />
+					<div class="txt02">纵铺</div>
+				</div>
+				<div class="lineA">
+					<div class="txt01">边框设置</div>
+					<input id="txtSecBorderColor" name="SecBorderColor" type="text" class="ipt04"/>
+					<input name="SecBorderDir" type="checkbox" class="cBox03"/>
+					<div class="txt03">上</div>
+					<input name="SecBorderDir" type="checkbox" class="cBox03"/>
+					<div class="txt03">下</div>
+					<input name="SecBorderDir" type="checkbox" class="cBox03"/>
+					<div class="txt03">左</div>
+					<input name="SecBorderDir" type="checkbox" class="cBox03"/>
+					<div class="txt03">右</div>
+				</div>
+				<div class="cpk"></div>				
+			</div>
+			<!--/分栏设置-->
 		</div>
 		<!--横切工具条-->
 		<div id="areaTools">

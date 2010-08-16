@@ -1246,10 +1246,20 @@ sohu.diyDialog.wSetting1=function(dlg){
 		sohu.diyDialog.Show("cfgPage");
 	};	
 	p.onPreview=function(evt){
+		var $b=$("body");
+		if ($b.hasClass("preview")) {
+			$(this).find("strong").html("‘§¿¿");
+			$b.removeClass("preview");
+		}else{
+			$b.addClass("preview");
+			$(this).find("strong").html("πÿ±’‘§¿¿");
+		};
+			
 		if((!sohu.diyConsole.CurArea)||(!sohu.diyConsole.CurArea.IsEditing))
 			return false;
 			
 		sohu.diyDialog.Hide();
+			
 		return false;
 	};
 	p.onPublish=function(evt){alert("publish");};

@@ -68,12 +68,21 @@ display:none;
 .sec{position:relative;min-height:22px;height:auto !important;height:25px;}
 /*.sec .elmOn,.sec .pp img.elmOn{border:1px solid #eee;}*/
 .area_empty .sec{/*border:1px dotted #FC0055;*/}
-	.secHolder{display:none;height:23px;}
+	.secHolder{position:absolute;display:none;height:100%/*23px*/;width:100%;}
+/*2010.08.16
 .area_empty .secHolder{display:block;border:1px dotted #FC0055;}
+*/
+.secHolder{display:block;border:1px dotted #FC0055;}
+.preview .secHolder{display:none;}
+
 .area_empty .sec .sec{border-bottom:none;}
 .area_active .sec{border:none;}
+
+/*2010.08.16
 .secOn > .secHolder{display:none;}
 .hasSub > .secHolder{display:none;}
+*/
+
 /*.area_active .subsec .sec,.area_empty .subsec .sec{border-bottom:none;}*/
 /*.area_active .secOn,.area_active .subsec .secOn{border:1px solid #84ADDE;}*/
 .area_active .ing,.area_active .subsec .ing{border-color:#FF0084;}

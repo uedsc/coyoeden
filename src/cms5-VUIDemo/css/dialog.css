@@ -18,9 +18,10 @@ a.close:hover{background-position: bottom;}
 .bottom3line{margin:0 auto; width:265px;height:0px; overflow:hidden;border-bottom: 1px solid #fff;border-top: 1px solid #d6d6d6;}
 
 .formx{width:310px;}
-.formx .txt01,.formx .txt02{color:#383836;float:left;line-height:20px;vertical-align:middle;padding-right:5px;}
+.formx .txt01,.formx .txt02,.formx .txt03{color:#383836;float:left;line-height:20px;vertical-align:middle;padding-right:5px;}
 .formx .txt01{text-align:right;width:60px;}
 .formx .txt02{padding:0 5px;}
+.formx .txt03{padding:0;width:20px;}
 .formx .rdo{border:1px solid #f0f0ee;float:left;}
 .formx .btn{display: block; background: url(../images/ybtn.gif) top;width: 45px;height: 24px; border: 0px; cursor:pointer; }
 .formx .btnL{float:left;margin-left:5px;}
@@ -233,3 +234,5 @@ a.close:hover{background-position: bottom;}
 .editBtn4:focus{background-position:0 -40px\0}
 .editBtn4:focus strong{background-position:right -61px\0}
 /******/
+
+#wCfgSec .cpk{position:absolute;display:none;width:356px;top:20%;right:10px;}
