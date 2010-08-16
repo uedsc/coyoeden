@@ -912,7 +912,7 @@ sohu.diyDialog.wSubSec=function(dlg,parentSize){
 		sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
 	};	
 	//事件注册
-	this.$Layout.find('li').click(function(evt){
+	this.$Layout.find('.item').click(function(evt){
 		if(!sohu.diyConsole.CurSec) return;
 		sohu.diyConsole.CurSec.AddSub($(sohu.diyTp[this.id]));
 		dlg.Hide();
@@ -1230,7 +1230,7 @@ sohu.diyDialog.wSetting1=function(dlg){
 	//DOM引用
 	this.$Layout=$("#wSetting1");
 	this.$Body=this.$Layout.children();
-	this.IsOpen=false;
+	this.IsOpen=true;
 	//事件处理
 	p.onTheme=function(evt){
 		if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsEditing) return false;
@@ -1271,7 +1271,7 @@ sohu.diyDialog.wSetting1=function(dlg){
 			_this.IsOpen=false;
 		}else{
 			_this.$Body.removeClass("close");
-			_this.$Layout.animate({left:1},"normal");
+			_this.$Layout.animate({left:-1},"normal");
 			_this.IsOpen=true;
 		};
 		return false;

@@ -113,29 +113,6 @@ display:none;
 /*隐藏模板*/
 #hiddenTemplate{display:none;}
 	#elmTool{display:none;position:absolute;border:1px solid #ccc;width:90px;}
-/*静态模板样式-分栏选择模板*/
-.sec_selector{width:404px;height:150px;}
-.sec_selector ul{width:192px;padding:0;margin:0 auto;}
-.sec_selector ul.col0{margin-right:10px;}
-.sec_selector li{margin-top:10px;width:190px;border:1px solid #c6deff;text-align:center;cursor:pointer;}
-.sec_selector li.on{border:1px dotted red;}
-.sec_selector div{float:left;padding:5px 0;border-left:1px solid #c6deff;}
-.sec_selector div.col0{border-left:none;}
-	.w36{width:36px;}
-	.w38{width:38px;}
-	.w46{width:46px;}
-	.w54{width:54px;}
-	.w62{width:62px;}
-	.w78{width:78px;}
-	.w80{width:80px;}
-	.w84{width:84px;}
-	.w86{width:86px;}
-	.w94{width:94px;}
-	.w102{width:102px;}
-	.w104{width:104px;}
-	.w108{width:108px;}
-	.w134{width:134px;}
-
 /*内容模板*/
 #addContent{width:600px;height:450px;overflow:hidden;}
 #ifContentList{width:100%;height:100%;border:none;}
