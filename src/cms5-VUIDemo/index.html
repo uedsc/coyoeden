@@ -213,55 +213,53 @@
 			<!--添加横切 -->
 			 <div id="addBlock" class="jqmCT">
 				  <div class="lineB clear">
-				       <div class="block01"><a id="w0" href="#"></a></div>
-					   <div class="block02"><a id="w470_470" href="#"></a></div>
-					   <div class="block03"><a id="w270_670" href="#"></a></div>
-					   <div class="block04"><a id="w670_270" href="#"></a></div>
-					   <div class="block05"><a id="w430_510" href="#"></a></div>
-					   <div class="block06"><a id="w510_430" href="#"></a></div>
-					   <div class="block07"><a id="w190_270_470" href="#"></a></div>
-					   <div class="block08"><a id="w470_270_190" href="#"></a></div>
-					   <div class="block09"><a id="w310_390_230" href="#"></a></div>
-					   <div class="block10"><a id="w270_390_270" href="#"></a></div>
+				       <div class="item block01"><a id="w0" href="#"></a></div>
+					   <div class="item block02"><a id="w470_470" href="#"></a></div>
+					   <div class="item block03"><a id="w270_670" href="#"></a></div>
+					   <div class="item block04"><a id="w670_270" href="#"></a></div>
+					   <div class="item block05"><a id="w430_510" href="#"></a></div>
+					   <div class="item block06"><a id="w510_430" href="#"></a></div>
+					   <div class="item block07"><a id="w190_270_470" href="#"></a></div>
+					   <div class="item block08"><a id="w470_270_190" href="#"></a></div>
+					   <div class="item block09"><a id="w310_390_230" href="#"></a></div>
+					   <div class="item block10"><a id="w270_390_270" href="#"></a></div>
 				  </div>
 			</div>
 			<!--添加横切 结束-->
 			<!--横切设置-->
-			<div id="cfgArea" class="skform skformx">
-				<label>背景图<span class="small tip tipAreaBG">请输图片网址</span></label>
-				<div class="field">
-					<input type="text" size="25" id="txtAreaBG" name="areaBG"/>
-					<button id="btnAreaBGBrowse" onclick="alert('hi');">浏览</button>
-				</div>
-				<label>对齐方式</label>
-				<div class="field">
-					<input type="radio" name="areaBGAlign" value="center" checked="checked" /><span>居中</span>
-					<input type="radio" name="areaBGAlign" value="left"/><span>靠左</span>
-					<input type="radio" name="areaBGAlign" value="right"/><span>靠右</span>	
-				</div>
-				<label>平铺方式</label>
-				<div class="field">
-					<input type="radio" name="areaBGRepeat" value="repeat"/><span>平铺</span>
-					<input type="radio" name="areaBGRepeat" value="no-repeat" checked="checked" /><span>不平铺</span>
-					<input type="radio" name="areaBGRepeat" value="repeat-x"/><span>横平铺</span>
-					<input type="radio" name="areaBGRepeat" value="repeat-y"/><span>纵平铺</span>
-				</div>
-				<label>横切ID<span class="small tip tipAreaID">字母、数字及下划线组成</span></label>
-				<input type="text" class="field" id="txtAreaID" name="areaID"/>
-                <div class="spacer"></div>
-				
+			<div id="cfgArea" class="jqmCT formx">
 				<div class="blank8"></div>
-				<div class="lineA"><div class="txt01">背景图</div><input type="text" value="" class="ipt03"/><input type="button" class="browse"  value="浏览" /></div>
 				<div class="lineA">
-				<div class="txt01">对齐方式</div><input type="radio" value="" class="rdo"  /><div class="txt02">居中</div><input type="radio" value="" class="rdo"  /><div class="txt02">靠左</div><input type="radio" value="" class="rdo"  /><div class="txt02">靠右</div>
+					<div class="txt txt01">背景图</div>
+					<input id="txtAreaBG" name="areaBG" type="text" class="ipt03"/>
+					<input id="btnAreaBGBrowse" type="button" class="btn btnL"  value="浏览" />
 				</div>
 				<div class="lineA">
-				<div class="txt01">平铺方式</div><input type="radio" value="" class="rdo"  /><div class="txt02">平铺</div><input type="radio" value="" class="rdo"  /><div class="txt02">不平铺</div><input type="radio" value="" class="rdo"  /><div class="txt02">横铺</div><input type="radio" value="" class="rdo"  /><div class="txt02">纵铺</div>
+					<div class="txt txt01">对齐方式</div>
+					<input name="areaBGAlign" checked="checked" type="radio" value="center" class="rdo"  />
+					<div class="txt txt02">居中</div>
+					<input name="areaBGAlign" type="radio" value="left" class="rdo"  />
+					<div class="txt txt02">靠左</div>
+					<input name="areaBGAlign" type="radio" value="right" class="rdo"  />
+					<div class="txt txt02">靠右</div>
+				</div>
+				<div class="lineA">
+					<div class="txt txt01">平铺方式</div>
+					<input name="areaBGRepeat" type="radio" value="repeat" class="rdo"  />
+					<div class="txt txt02">平铺</div>
+					<input name="areaBGRepeat" type="radio" value="no-repeat" class="rdo" checked="checked" />
+					<div class="txt txt02">不平铺</div>
+					<input name="areaBGRepeat" type="radio" value="repeat-x" class="rdo"  />
+					<div class="txt txt02">横铺</div>
+					<input name="areaBGRepeat" type="radio" value="repeat-y" class="rdo"  />
+					<div class="txt txt02">纵铺</div>
+				</div>
+				<div class="lineA">
+					<div class="txt txt01">横切ID</div>
+					<input id="txtAreaID" name="areaID" type="text" class="ipt03"/>
 				</div>
 				<div class="blank8"></div>
-				<div class="bottom3line"></div>
-				<div class="blank8"></div>
-								
+				<div class="bottom3line"></div>			
 			</div>
 			<!--/横切设置-->		
 			<!--页面背景-->
@@ -304,39 +302,50 @@
 				<textarea cols="75" rows="20"></textarea>
 			</div>
 			<!--分栏设置对话框-->
-			<div id="wCfgSec" class="skform skformx">
-				<label>背景图<span class="small tip tipSecBG">请输图片网址</span></label>
-				<div class="field">
-					<input type="text" size="36" id="txtSecBG" name="secBG"/>
-					<button id="btnCfgSecBrowse" onclick="alert('hi');">浏览</button>
+			<div id="wCfgSec" class="jqmCT formx">
+				<div class="blank8"></div>
+				<div class="lineA">
+					<div class="txt txt01">背景图</div>
+					<input id="txtSecBG" type="text" class="ipt03"/>
+					<input id="btnCfgSecBrowse" type="button" class="btn btnL"  value="浏览" />
 				</div>
-				<label>背景色<span class="small tip tipSecBGC">分栏背景色</span></label>
-				<div class="field">
-					<input type="text" size="36" id="txtSecBGC" name="secBGC" readonly="readonly"/>
+				<div class="lineA">
+					<div class="txt txt01">背景色</div>
+					<input id="txtSecBGC" type="text" readonly="readonly" class="ipt03"/>
 				</div>
-				<label>对齐方式</label>
-				<div class="field">
-					<input type="radio" name="secBGAlign" value="center center" checked="checked" /><span>居中</span>
-					<input type="radio" name="secBGAlign" value="left center"/><span>靠左</span>
-					<input type="radio" name="secBGAlign" value="right center"/><span>靠右</span>	
+				<div class="lineA">
+					<div class="txt txt01">对齐方式</div>
+					<input name="secBGAlign" checked="checked" type="radio" value="center center" class="rdo"  />
+					<div class="txt txt02">居中</div>
+					<input name="secBGAlign" type="radio" value="left center" class="rdo"  />
+					<div class="txt txt02">靠左</div>
+					<input name="secBGAlign" type="radio" value="right center" class="rdo"  />
+					<div class="txt txt02">靠右</div>
 				</div>
-				<label>平铺方式</label>
-				<div class="field">
-					<input type="radio" name="secBGRepeat" value="repeat" checked="checked" /><span>平铺</span>
-					<input type="radio" name="secBGRepeat" value="no-repeat" /><span>不平铺</span>
-					<input type="radio" name="secBGRepeat" value="repeat-x"/><span>横平铺</span>
-					<input type="radio" name="secBGRepeat" value="repeat-y"/><span>纵平铺</span>
+				<div class="lineA">
+					<div class="txt txt01">平铺方式</div>
+					<input name="secBGRepeat" checked="checked" type="radio" value="repeat" class="rdo"  />
+					<div class="txt txt02">平铺</div>
+					<input name="secBGRepeat" type="radio" value="no-repeat" class="rdo"  />
+					<div class="txt txt02">不平铺</div>
+					<input name="secBGRepeat" type="radio" value="repeat-x" class="rdo"  />
+					<div class="txt txt02">横铺</div>
+					<input name="secBGRepeat" type="radio" value="repeat-y" class="rdo"  />
+					<div class="txt txt02">纵铺</div>
 				</div>
-				<label>边框设置<span class="small">颜色及方向</span></label>
-				<div class="field">
-					<input type="text" size="4" id="txtSecBorderColor" name="SecBorderColor" readonly="readonly"/>
-					<input type="checkbox" name="SecBorderDir" value="top"/><span>上</span>
-					<input type="checkbox" name="SecBorderDir" value="right"/><span>右</span>
-					<input type="checkbox" name="SecBorderDir" value="bottom"/><span>下</span>
-					<input type="checkbox" name="SecBorderDir" value="left"/><span>左</span>
+				<div class="lineA">
+					<div class="txt txt01">边框设置</div>
+					<input id="txtSecBorderColor" readonly="readonly" name="SecBorderColor" type="text" class="ipt04"/>
+					<input name="SecBorderDir" type="checkbox" class="cBox03" value="top"/>
+					<div class="txt txt03">上</div>
+					<input name="SecBorderDir" type="checkbox" class="cBox03" value="bottom"/>
+					<div class="txt txt03">下</div>
+					<input name="SecBorderDir" type="checkbox" class="cBox03" value="left"/>
+					<div class="txt txt03">左</div>
+					<input name="SecBorderDir" type="checkbox" class="cBox03" value="right"/>
+					<div class="txt txt03">右</div>
 				</div>
-				<div class="cpk"></div>
-                <div class="spacer"></div>				
+				<div class="cpk"></div>				
 			</div>
 			<!--栏目头-->
 			<div id="wSecHead">
@@ -376,13 +385,12 @@
 			<!--栏目头 over-->
 			<!--页面属性-->
 			<div id="wPagePro">
+				 <div class="blank8"></div>
 				 <div class="lineA">
 				 	<div class="txt01">title</div>
 					<input id="pTitle" type="text" value="" class="ipt01"/>
 			     </div>
-				 
 				 <div class="linep">请输入有效网址！</div>
-				 
 				 <div class="lineA">
 				 	<div class="txt01">keywords</div>
 				 	<input id="pKeyword" type="text" value="" class="ipt01"/>
@@ -393,7 +401,6 @@
 					<input id="pDesc" type="textarea" value="" class="area01"/>
 			     </div>
 			</div>
-			
 			<!--页面属性 over-->	
 			<!--更换风格 -->
 			 <div id="wTheme">	  
@@ -477,7 +484,6 @@
 		<div id="areaTools">
 		    <div class="titleA">
 		    	<h3>横切</h3>
-				<a href="#" class="close"></a>
 			</div>
 			<div class="ctroArea">
 				<a id="lnkAreaAdd" class="ctroBtn" href="#"><strong><img src="images/hq.gif" /></strong></a>
@@ -495,7 +501,7 @@
 				 <ul>
 				 <li><a id="wsTheme" class="editBtn4" href="#"><strong>更换风格</strong></a></li>
 				 <li><a id="wsPagePro" class="editBtn4" href="#"><strong>页面属性</strong></a></li>
-				 <li><a id="wsPageBG" class="editBtn4" href="#">页面背景</a></li>
+				 <li><a id="wsPageBG" class="editBtn4" href="#"><strong>页面背景</strong></a></li>
 				 <li><a id="wsPreview" class="editBtn4" href="#"><strong>预览</strong></a></li>
 				 <li><a id="wsPublish" class="editBtn4" href="#"><strong>发布</strong></a></li>
 				 <li><a id="wsHelp" class="editBtn4" href="#"><strong>帮助</strong></a></li>

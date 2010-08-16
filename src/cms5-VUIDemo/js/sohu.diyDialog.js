@@ -281,7 +281,7 @@ sohu.diyDialog.showColorPicker=function(opts){
 		});
 		//margin-left
 		var ml=-(sohu.diyDialog.$jqmCpk.width()/2);
-		sohu.diyDialog.$jqmCpk.css("margin-left",ml)
+		sohu.diyDialog.$jqmCpk.css("margin-left",ml);
 	};
 	
 	sohu.diyDialog.$jqmCpk.jqmShow();
@@ -344,8 +344,6 @@ sohu.diyDialog.wCfgArea=function(dlg){
 		txtID:$("#txtAreaID"),
 		rbtnBGAlign:this.$Layout.find("input[name='areaBGAlign']"),
 		rbtnBGRepeat:this.$Layout.find("input[name='areaBGRepeat']"),
-		tipBG:this.$Layout.find(".tipAreaBG"),
-		tipID:this.$Layout.find("tipAreaID"),
 		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
 	//事件处理
@@ -356,11 +354,10 @@ sohu.diyDialog.wCfgArea=function(dlg){
 		var url=p._fm.txtBG.val();
 		if((url!="")&&(!StringUtils.isUrl(url))){
 			p._fm.txtBG.addClass("alert").select();
-			p._fm.tipBG.addClass("alert");
 			return false;
 		};
 		if(url==""){
-			//sohu.diyConsole.CurArea.$Layout.css("background-image","none");
+			sohu.diyConsole.CurArea.$Layout.css("background-image","");//shouldn't use 'none' here
 		}else{
 			sohu.diyConsole.CurArea.$Layout.css("background-image","url('"+url+"')");
 			//bg position
@@ -375,7 +372,6 @@ sohu.diyDialog.wCfgArea=function(dlg){
 		var id=p._fm.txtID.val();
 		if(!sohu.diyConsole.IsValidID(id)){
 			p._fm.txtID.addClass("alert");
-			p._fm.tipID.addClass("alert");
 			return false;
 		};
 		var isIDOK=sohu.diyConsole.CurArea.UpdateID(id);
@@ -399,6 +395,9 @@ sohu.diyDialog.wCfgArea=function(dlg){
 		p.onOK(null,false);
 	};
 	//事件注册
+	p._fm.txtBG.change(function(evt){
+		p.preview();
+	});
 	p._fm.rbtnBGAlign.click(function(evt){
 		p._fm.rbtnBGAlign.curVal=this.value;
 		p.preview();
@@ -669,7 +668,7 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		bgimg=bgimg.replace('url("',"").replace('")',"");
 		p._fm.txtBG.val(bgimg);
 		//背景色
-		p._fm.txtBGC.css("backgroundColor",sohu.diyConsole.CurSec.$Layout.css("backgroundColor"));
+		p._fm.txtBGC.val("").css("backgroundColor",sohu.diyConsole.CurSec.$Layout.css("backgroundColor"));
 		//边框色
 		var bdc=sohu.diyConsole.CurSec.$Layout.css("borderColor");
 		p._fm.txtBorderC.css("backgroundColor",bdc);
@@ -702,7 +701,7 @@ sohu.diyDialog.wCfgSec=function(dlg){
 	.css("backgroundColor","transparent")
 	.click(function(evt){
 		p._fm.cpk.$t=p._fm.txtBGC;
-		p._fm.cpk.flag="bg"
+		p._fm.cpk.flag="bg";
 		p._fm.cpk.show();
 	});
 	//边框色
@@ -710,7 +709,7 @@ sohu.diyDialog.wCfgSec=function(dlg){
 	.css("borderColor","#eeeeee")
 	.click(function(evt){
 		p._fm.cpk.$t=p._fm.txtBorderC;
-		p._fm.cpk.flag="bdc"
+		p._fm.cpk.flag="bdc";
 		p._fm.cpk.show();
 	});
 	//边框方向-自定义事件的精妙之处-参考行722和762
@@ -874,7 +873,7 @@ sohu.diyDialog.wSecHead=function(dlg){
 		}else if(p._fm.a){
 			p._fm.a.$obj.attr("title",p._fm.title.val())
 				.attr("target",p._fm.ddlTarget.curVal);
-			if(url!=""){p._fm.a.$obj.attr("href",url)};
+			if(url!=""){p._fm.a.$obj.attr("href",url);};
 		};
 
 		dlg0.Hide();

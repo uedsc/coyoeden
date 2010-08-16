@@ -68,7 +68,7 @@ display:none;
 .sec{position:relative;min-height:22px;height:auto !important;height:25px;}
 /*.sec .elmOn,.sec .pp img.elmOn{border:1px solid #eee;}*/
 .area_empty .sec{/*border:1px dotted #FC0055;*/}
-	.secHolder{position:absolute;display:none;height:100%/*23px*/;width:100%;}
+	.secHolder{position:absolute;display:none;height:100%/*23px*/;width:100%;top:0;left:-1px;}
 /*2010.08.16
 .area_empty .secHolder{display:block;border:1px dotted #FC0055;}
 */

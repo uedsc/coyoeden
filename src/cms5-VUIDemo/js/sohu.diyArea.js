@@ -101,7 +101,8 @@ sohu.diyArea.prototype.Deactive=function(){
  * @param {Object} newID
  */
 sohu.diyArea.prototype.UpdateID=function(newID){
-	if((!newID)||(newID==this.ID)||(!sohu.diyConsole.IsValidID(newID))) return;
+	if((!newID)||(!sohu.diyConsole.IsValidID(newID))) return false;
+	if(newID==this.ID) return true;
 	//遍历判断该ID是否已经存在
 	var isOk=true;
 	$.each(this.Console.Areas,function(i,o){

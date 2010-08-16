@@ -38,6 +38,8 @@
 .w182 .list li,.w190 .list li,.w210 .list li,.w230 .list li,.w250 .list li,.w270 .list li,.w310 .list li,.w330 .list li{font-size:12px;background-position:-1px -2px;padding-left:12px;} /* list12 */
 
 /* À¸Ä¿±êÌâ */
+h2 .more{font-weight:normal;}
+h2 .more span{float:none;font-weight:normal;}
 .w950 h2 span,.w670 h2 span,.w510 h2 span,.w470 h2 span,.w430 h2 span,.w390 h2 span{font-size:16px;}
 .w330 h2 span,.w310 h2 span,.w270 h2 span,.w250 h2 span,.w230 h2 span,.w210 h2 span,.w190 h2 span,.w182 h2 span{font-size:14px;}
 /*

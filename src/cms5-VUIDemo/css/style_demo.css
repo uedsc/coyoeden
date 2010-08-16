@@ -52,9 +52,10 @@ em{font-style:normal}
 #contentA .right .r h2 span{font:14px/16px "ËÎÌו"}
 #contentA .right .r h2 a{color:#94C9FF}
 #contentA .right .info{width:220px;margin:4px auto 0;color:#000;text-align:left;line-height:20px}
-#contentA .right .info h3{font-weight: bold;}
+#contentA .right .info h3{font-weight: bold;padding:0;}
+#contentA .right .info p{padding:0;line-height:inherit;}
 #contentA .right .info p span{color:#00177C}
-#contentA .right .info .line{background:url(../images/xx1.gif);margin:0 auto 3px}
+#contentA .right .info .line,#contentA .right .vspace{background:url(../images/xx1.gif);margin:0 auto 3px}
 
 /* b */
 #contentB{margin:0 auto 8px;background:url(../images/bgy01.gif)}
