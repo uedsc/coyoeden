@@ -99,7 +99,7 @@ sohu.diyElement=function(opts){
 	this.$Layout.mouseleave(function(evt){
 		_this.$Layout.removeClass(opts.clOn);
 		//占位蒙层
-		_this.Overlay("off");
+		//_this.Overlay("off");
 	});
 	this.$Layout.mousedown(function(evt){
 		if (sohu.diyConsole.CurElm) {
@@ -165,8 +165,10 @@ sohu.diyElement.prototype.Overlay=function(mode){
 			height:d.h+1,
 			display:"block"
 		});
+		sohu.diyConsole.$EHolder.t=this;
 	}else{
 		sohu.diyConsole.$EHolder.hide();
+		sohu.diyConsole.$EHolder.t=null;
 	};
 };
 /**
@@ -189,4 +191,10 @@ sohu.diyElement.prototype.Move=function(isUp){
 	};
 	//蒙层重定位
 	sohu.diyConsole.$EHolder.css({top:d.y-1,left:d.x-1});
+};
+/**
+ * Force the element to switch on the edit state
+ */
+sohu.diyElement.prototype.ForceEdit=function(){
+	this.$Layout.trigger("mousedown").trigger("click");
 };
