@@ -275,8 +275,9 @@ sohu.diySection.prototype.LoadContents=function(){
  * 激活父级分栏
  */
 sohu.diySection.prototype.ActiveParent=function(){
-	var $psec=this.$Layout.parent().closest("."+this.__p.opts.clSec);//this.$Layout.parents("."+this.__p.opts.clSec+":last");
-	$psec.trigger("evtActive");
+	//var $psec=this.$Layout.parents("."+this.__p.opts.clSec);//.closest("."+this.__p.opts.clSec);//this.$Layout.parents("."+this.__p.opts.clSec+":last");
+	if(this.PSec)
+		this.PSec.$Layout.trigger("evtActive");
 };
 /**
  * 当前分栏是否为空
