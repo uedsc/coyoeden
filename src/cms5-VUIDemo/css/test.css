@@ -104,10 +104,10 @@
 #addContent .lineC .wrapDiv{position: relative;}
 #addContent .lineC .focusPic{margin:0 auto; width:570px;height:14px; text-align: left; vertical-align: middle;font-weight:bold;padding: 8px 0 8px 0; color:#000;}
 #addContent .lineC .focusPic img{ margin-right: 8px;}
-#addContent .lineC .classify{width: auto;height: 20px;	position: absolute; right: 1px;	top:-23px; z-index:10;}
-#addContent .lineC .classify ul{width: auto;height: 20px; float:right}
-#addContent .lineC .classify ul li{float:left; width: 52px; height: 20px; line-height: 20px; margin-left: 4px;_margin-left:3px;}
-#addContent .lineC .classify ul li.now{ background: url(../images/pic07.gif) no-repeat;}
+#addContent .lineC #classify{width: auto;height: 20px;	position: absolute; right: 1px;	top:-23px; z-index:10;}
+#addContent .lineC #classify ul{width: auto;height: 20px; float:right}
+#addContent .lineC #classify ul li{float:left; width: 52px; height: 20px; line-height: 20px; margin-left: 4px;_margin-left:3px;}
+#addContent .lineC #classify ul li.now{ background: url(../images/pic07.gif) no-repeat;}
 #addContent .lineC .wrap01£¬#addContent .lineC .wrap02{width:570px; height:auto;}
 #addContent .lineC .wrap01 .left,#addContent .lineC .wrap01 .right,#addContent .lineC .wrap02 .left,#addContent .lineC .wrap02 .right{ width: 22px; height: 150px;}
 #addContent .lineC .wrap01 .left img,#addContent .lineC .wrap01 .right img,#addContent .lineC .wrap02 .left img,#addContent .lineC .wrap02 .right img{ width:22px;height:30px; margin-top: 50px;}

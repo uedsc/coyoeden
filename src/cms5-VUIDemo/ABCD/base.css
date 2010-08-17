@@ -1,0 +1,71 @@
+*{ padding:0; margin:0}
+body{ background:#E6E6E6}
+a{ color:#fff}
+a:hover{ color:#fff;text-decoration:underline;}
+/****/
+#topNav{ width:auto; height:27px; padding-top:3px; margin:0; background:#000000}
+#topNav .area{ color:#fff; line-height:24px; }
+.login, .psd{float:left; width:129px; padding-left:4px; height:16px; padding:3px 1px 1px 18px; border:1px solid #C7C7C7; margin-right:5px; }
+.login{background:url(images/user.gif) no-repeat left center #fff;}
+.psd{background:url(images/psd.gif) no-repeat left center #fff;}
+.loginBtn{float:left; width:53px; height:20px; background:url(images/r1btn.gif) top; cursor:pointer; border:0; line-height:20px; argin-top:2px; color:#fff}
+.loginBtnM{background:url(images/r1btn.gif) bottom;}
+#topNav .area .left span{ display:block; float:left; vertical-align:middle; width:auto; margin-left:10px;  height:20px;}
+#contentC .cut11 a:hover{ text-decoration:underline;}
+
+/****/
+#match{ width:auto; height:87px;  background:url(images/pic01.jpg) repeat-x; _margin-bottom:-5px;}
+#match .area{ width:950px; height:66px; padding:13px; 0px 8px 0px; }
+#match .area .right{ width:783px; height:66px; background:url(images/pubPic.png) 0 0 no-repeat;}
+#match .area .right ul{ padding-left:32px; width:751px; height:22px; }
+#match .area .right ul li{ float:left; width:60px; height:22px; line-height:22px; color:#fff}
+#match .area .right ul li a{ display:block; width:100%; height:100%;}
+#match .area .right ul li a:hover{ background:url(images/skbg.gif) center;}
+#match .area .right ul li.sk{ width:40px; background:url(images/sk.gif) no-repeat right center;}
+#match .area .right ul li.more a:hover{ width:48px; background:none;}
+#match .area .right ul li.more { width:48px; background:none}
+#match .area .right ul li.hover {  background:url(images/skbg.gif) center; text-decoration:none;}
+
+/****/
+.skMsg{ width:733px; height:32px; padding:6px 32px 6px 18px;}
+.skMsg .l,.skMsg .r{ width:26px; height:23px; padding-top:5px;}
+.skMsg .l a,.skMsg .r a{ display:block; width:26px; height:17px;}
+.skMsg .l a:hover,.skMsg .r a:hover{ width:26px; height:17px;}
+.skMsg .l a{ background:url(images/sk_l.jpg) top;}
+.skMsg .l a.noNav{ width:26px; height:17px; background:url(images/btnL.gif)}
+.skMsg .r a.noNav{ width:26px; height:17px; background:url(images/btnR.gif)}
+.skMsg .l a:hover{ background:url(images/sk_l.jpg) bottom;}
+.skMsg .r a{ background:url(images/sk_r.jpg) top;}
+.skMsg .r a:hover{ background:url(images/sk_r.jpg) bottom;}
+.skMsg .r a{ background:url(images/sk_r.jpg) top;}
+.skMsg .c{width:675px; height:32px; float:left;overflow:hidden; position:relative;}
+.skMsg .c .team{ float:left; width:130px; height:32px; padding-right:5px; background:url(images/teambg.jpg) right no-repeat;}
+.skMsg .c .team span.date{ display:block; width:130px; height:16px; color:#F0BEBD}
+.skMsg .c .team span.score{ display:block; width:130px; height:16px;  color:#fff; overflow:hidden}
+.skMsg .slider{position:relative;width:2000px;}
+
+/****/
+#nav{ width:auto; padding:0px; margin:0px; height:37px; background:url(images/bannerbg.jpg) repeat-x;}
+#nav .area ul li{ float:left; font-size:14px; border-right:1px solid #A90101; line-height:36px; padding-left:44px; padding-right:44px;}
+#nav .area ul li.none{ border:0px;}
+
+/****/
+#footer{  height:80px; padding-top:20px; margin-top:10px; background:#414141}
+#footer .area p{ height:24px; line-height:24px; color:#fff}
+
+/****/
+.martop10{ margin-top:10px;_margin-top:5px;}
+.marbtm10{ margin-bottom:10px; _margin-bottom:3px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
