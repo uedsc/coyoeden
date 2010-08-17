@@ -152,7 +152,7 @@ em{font-style:normal}
 .public .center h2 span{font:14px/16px "ËÎÌו"}
 .public .center h2 a{color:#94C9FF}
 .public .center .list12 ul{width:330px;margin:5px auto}
-.public .center .list12 li{background:url(http://images.sohu.com/uiue/dot.gif) no-repeat 41px 0;padding:5px 0}
+.public .center .list12 li{background:url(http://images.sohu.com/uiue/dot.gif) no-repeat 41px 0;padding:5px 0;font-size:12px;}
 .public .center .list12 li span{margin-right:12px}
 
 .public .right h2{height:22px;padding:8px 10px 0 75px;background:#2A2E3A url(../images/bg04.jpg) no-repeat left;line-height:16px;color:#94C9FF}
