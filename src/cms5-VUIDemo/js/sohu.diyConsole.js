@@ -76,6 +76,10 @@ sohu.diyConsole=function(opts){
 			//反激活分栏
 			if(sohu.diyConsole.CurSec)
 				sohu.diyConsole.CurSec.Deactive();
+				
+			//移除拖拽助手和内容蒙层
+			sohu.diyConsole.Dragger.handle.hide();
+			sohu.diyConsole.$EHolder.hide();	
 		};
 	};
 	p.onBodyClick=function(evt){
@@ -141,9 +145,9 @@ sohu.diyConsole=function(opts){
 			return a;
 		});
 		//body鼠标事件
-		$("body").mousemove(p.onMousemove).click(p.onBodyClick);
+		sohu.diyConsole.$Body=$("body").mousemove(p.onMousemove).click(p.onBodyClick);
 		//window resize事件
-		$(window).resize(function(evt){
+		sohu.diyConsole.$Window=$(window).resize(function(evt){
 			p.setDocumentDim();
 			if(sohu.diyConsole.CurSec)
 				sohu.diyConsole.CurSec.Editor.Reposition();
@@ -162,8 +166,7 @@ sohu.diyConsole=function(opts){
  * 重定位
  */
 sohu.diyConsole.prototype.RePosition=function(){
-	if(!this.CurArea){this.$Layout.attr("style","");return;};
-	this.$Layout.css("top",this.CurArea.$Layout.offset().top);
+	sohu.diyDialog.wAreaTool.Reposition();
 };
 /**
  * 设定激活的横切对象

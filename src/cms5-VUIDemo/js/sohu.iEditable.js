@@ -126,7 +126,7 @@
 		
 	};
 	p.fixPosition=function(dom){
-		var $this=$(dom);
+		var $this=$(dom),isAutoWidth=($this.css("width")=="auto");
 		if($this.css("position")=="absolute") return;
 		//fix the iframe when it has floating elements arround
 		var objs=$.grep($this.prevAll(),function(o,i){
@@ -137,10 +137,15 @@
 		objs=$(objs[0]);
 		objs._d={
 			w:objs.width(),
+			h:objs.height(),
 			ml:parseInt(objs.css("marginLeft")),
-			mr:parseInt(objs.css("marginRight"))
+			mr:parseInt(objs.css("marginRight")),
+			y:objs.offset().top
 		};
-		var wFrame=dom.i$frame.width()-objs._d.w-objs._d.ml-objs._d.mr;
+		var wFrame=dom.i$frame.width();
+		if($this.offset().top<(objs._d.y+objs._d.h)&&isAutoWidth){
+			wFrame=wFrame-objs._d.w-objs._d.ml-objs._d.mr;
+		};
 		var css={
 			width:wFrame
 		};

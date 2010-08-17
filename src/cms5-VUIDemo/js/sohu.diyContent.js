@@ -51,7 +51,7 @@ sohu.diyContent=function(opts){
 	p.mouseLeave=function(evt){
 		if(_this.Editor.CurArea.IsEditing) return false;
 		_this.$Layout.removeClass(opts.clOn);
-		sohu.diyConsole.Dragger.handle.remove();
+		//sohu.diyConsole.Dragger.handle.remove();
 		sohu.diyConsole.CurCT=null;
 	};
 	

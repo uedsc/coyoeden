@@ -101,6 +101,7 @@ sohu.diyElement=function(opts){
 		//Õ¼Î»ÃÉ²ã
 		//_this.Overlay("off");
 	});
+	
 	this.$Layout.mousedown(function(evt){
 		if (sohu.diyConsole.CurElm) {
 			sohu.diyConsole.CurElm.HideEditor(true);
@@ -108,10 +109,13 @@ sohu.diyElement=function(opts){
 			//sohu.diyDialog.Hide();
 		};	
 		sohu.diyConsole.CurElm=_this;
-		
+		return false;
 	});
 	//ÆÁ±Î³¬Á´½Ó
-	this.$Context.find("a").css("cursor","text").click(function(evt){return false;});
+	this.$Context.find("a").css("cursor","text").click(function(evt){
+		evt.preventDefault();
+		return true;
+	});
 };
 /**
  * ¹Ø±ÕÔªËØµÄ±à¼­×´Ì¬
@@ -196,5 +200,6 @@ sohu.diyElement.prototype.Move=function(isUp){
  * Force the element to switch on the edit state
  */
 sohu.diyElement.prototype.ForceEdit=function(){
-	this.$Layout.trigger("mousedown").trigger("click");
+	this.$Layout.trigger("mousedown");
+	this.$Layout.trigger("click");
 };

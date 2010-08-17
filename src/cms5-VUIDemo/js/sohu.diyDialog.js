@@ -170,7 +170,9 @@ sohu.diyDialog=function(){
 			//hide without executing callbacks
 			p.dlg.$Layout.hide();
 			p.dlg.$CTWrap.append(p.dlg.$Body.children());
-			p.dlg.jqmHash.a = false;
+			if(p.dlg.jqmHash){
+				p.dlg.jqmHash.a = false;
+			};	
 		}
 		else 
 			p.dlg.Hide();
@@ -1300,13 +1302,14 @@ sohu.diyDialog.wAreaTool=function(dlg){
 	p._$btnDown=$("#lnkAreaDown");
 	p._$btnUp=$("#lnkAreaUp");
 	
-	//私有函数
-	p.rePosition=function(){
-		if(!dlg.Console.CurArea){p.$layout.attr("style","");return;};
-		p.$layout.css("top",dlg.Console.CurArea.$Layout.offset().top);
+	//事件处理
+	p.onReposition=function(evt){
+		if(!sohu.diyConsole.CurArea){p.$layout.attr("style","");return;};
+		var top=sohu.diyConsole.CurArea.$Layout.position().top-sohu.diyConsole.$Window.scrollTop();
+		top=top<0?0:top;
+		p.$layout.css("top",top);	
 	};
 	
-	//事件处理
 	p.onAdd=function(evt){
 		if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsEditing) return false;
 		sohu.diyDialog.Show("addBlock");
@@ -1329,11 +1332,11 @@ sohu.diyDialog.wAreaTool=function(dlg){
 		if(sohu.diyConsole.CurArea.IsEditing) return false;	
 		var isUp=evt.data.up;
 		sohu.diyConsole.CurArea.Move(isUp);
-		p.rePosition();
+		p.onReposition();
 	};
 	//事件注册
 	p.initEvts=function(){
-		p.$layout.find("a").click(function(evt){return false;});
+		p.$layout.bind("evtReposition",p.onReposition).find("a").click(function(evt){return false;});
 		p._$btnAdd.click(p.onAdd);
 		p._$btnDel.click(p.onDel);
 		p._$btnBG.click(p.onCfgBG);
@@ -1342,5 +1345,13 @@ sohu.diyDialog.wAreaTool=function(dlg){
 	}();
 	
 	this.$Layout=p.$layout;
-	this.RePosition=p.rePosition;	
+	this.RePosition=p.onReposition;	
+};
+/**
+ * 横切助手重定位
+ */
+sohu.diyDialog.wAreaTool.Reposition=function(){
+	var dlg=sohu.diyDialog.Get("areaTools");
+	if(!dlg) return;
+	dlg.RePosition();
 };
