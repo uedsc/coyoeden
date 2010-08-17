@@ -431,12 +431,14 @@ sohu.diyDialog.wCfgPage=function(dlg){
 	
 	//私有变量÷函数
 	p._fm={
-		txtBG:$("#txtPageBG"),
-		txtBGH:$("#txtPageBGH"),
-		rbtnBGAlign:this.$Layout.find("input[name='pageBGAlign']"),
-		rbtnBGRepeat:this.$Layout.find("input[name='pageBGRepeat']"),
-		tipBG:this.$Layout.find(".tipPageBG"),
-		tipBGH:this.$Layout.find(".tipPageBGH"),
+		txtBGA:$("#txtPageBGA"),
+		txtBGB:$("#txtPageBGB"),
+		txtBGHA:$("#txtPageBGHA"),
+		txtBGHB:$("#txtPageBGHB"),
+		ddlBGAlignA:$("#pageBGAlignA"),
+		ddlBGAlignB:$("#pageBGAlignB"),
+		ddlBGRepeatA:$("#pageBGRepeatA"),
+		ddlBGRepeatB:$("#pageBGRepeatB"),
 		txtBGC:$("#txtPageBGC"),
 		cpk:this.$Layout.find(".cpk"),
 		reset:function(){sohu.diyDialog.resetForm(_this);}
@@ -445,54 +447,83 @@ sohu.diyDialog.wCfgPage=function(dlg){
 	p.onOK=function(dlg0,cls){
 		var _undefined;
 		cls=cls==_undefined?true:cls;
-		var url=p._fm.txtBG.val();
+		//页头背景图
+		var url=p._fm.txtBGA.val();
 		if((url!="")&&(!StringUtils.isUrl(url))){
-			p._fm.txtBG.addClass("alert").select();
-			p._fm.tipBG.addClass("alert");
+			p._fm.txtBGA.addClass("alert").select();
 			return false;
 		};
-		var h=p._fm.txtBGH.val();
-		if((!StringUtils.isPlusInt(h))||(h=parseInt(h))<1){
-			p._fm.txtBGH.addClass("alert").select();
-			p._fm.tipBGH.addClass("alert");
+		//页尾背景图
+		var url1=p._fm.txtBGB.val();
+		if((url1!="")&&(!StringUtils.isUrl(url1))){
+			p._fm.txtBGB.addClass("alert").select();
 			return false;
 		};
-		
+		//设置页头背景
+		var h=p._fm.txtBGHA.val();
+		if(!StringUtils.isPlusInt(h)){
+			h=0;
+		};
+		sohu.diyConsole.$BodyBGA.css("height",h+'px');
 		if(url==""){
 			sohu.diyConsole.$BodyBGA.css("background-image","none");
 		}else{
 			sohu.diyConsole.$BodyBGA.css("background-image","url('"+url+"')");
 		};
-		var al=p._fm.rbtnBGAlign.curVal;
-		sohu.diyConsole.$BodyBGA.css("background-position",al);
+		sohu.diyConsole.$BodyBGA.css("background-position",p._fm.ddlBGAlignA.curVal);
+		sohu.diyConsole.$BodyBGA.css("background-repeat",p._fm.ddlBGRepeatA.curVal);
 		
-		var rp=p._fm.rbtnBGRepeat.curVal;
-		sohu.diyConsole.$BodyBGA.css("background-repeat",rp);
-		
-		sohu.diyConsole.$BodyBGA.css("height",h);
+		//设置页尾背景
+		h=p._fm.txtBGHB.val();
+		if(!StringUtils.isPlusInt(h)){
+			h=0;
+		};
+		sohu.diyConsole.$BodyBGB.css("height",h+'px');
+		if(url1==""){
+			sohu.diyConsole.$BodyBGB.css("background-image","none");
+		}else{
+			sohu.diyConsole.$BodyBGB.css("background-image","url('"+url1+"')");
+		};
+		sohu.diyConsole.$BodyBGB.css("background-position",p._fm.ddlBGAlignB.curVal);
+		sohu.diyConsole.$BodyBGB.css("background-repeat",p._fm.ddlBGRepeatB.curVal);
 		
 		if(cls)
 			dlg0.Hide();
 	};
 	p.afterShow=function(hash,dlg0){
 		//背景图
-		var img=sohu.diyConsole.$BodyBGA.css("background-image");
-		img=img=="none"?"":img;
-		img=img.replace('url("',"").replace('")',"");
-		p._fm.txtBG.val(img).select();
+		var img=sohu.diyConsole.ParseBGImg(sohu.diyConsole.$BodyBGA.css("background-image"));
+		p._fm.txtBGA.val(img).select();
+		img=sohu.diyConsole.ParseBGImg(sohu.diyConsole.$BodyBGB.css("background-image"));
+		p._fm.txtBGB.val(img);
 		//高度
-		var h=sohu.diyConsole.$BodyBGA.css("height");
-		h=parseInt(h);
-		p._fm.txtBGH.val(h);
+		var h=parseInt(sohu.diyConsole.$BodyBGA.css("height"));
+		h=isNaN(h)?0:h;
+		p._fm.txtBGHA.val(h);
+		h=parseInt(sohu.diyConsole.$BodyBGB.css("height"));
+		h=isNaN(h)?0:h;
+		p._fm.txtBGHB.val(h);
+		//页头
 		//对齐方式
 		var bg_p=sohu.diyConsole.$BodyBGA.css("backgroundPosition");
 		bg_p=bg_p=="0% 0%"?"center center":bg_p;
 		var bg_a=sohu.diyConsole.$BodyBGA.css("backgroundRepeat");
-		p._fm.rbtnBGAlign.filter("[value='"+bg_p+"']").trigger("click");
+		p._fm.ddlBGAlignA.val(bg_p);
 		//平铺方式
-		p._fm.rbtnBGRepeat.filter("[value='"+bg_a+"']").trigger("click");
+		p._fm.ddlBGRepeatA.val(bg_a);
+		p._fm.ddlBGAlignA.curVal=bg_p;
+		p._fm.ddlBGRepeatA.curVal=bg_a;
+		//页尾
+		bg_p=sohu.diyConsole.$BodyBGB.css("backgroundPosition");
+		bg_p=bg_p=="0% 0%"?"center center":bg_p;
+		bg_a=sohu.diyConsole.$BodyBGB.css("backgroundRepeat");
+		p._fm.ddlBGAlignB.val(bg_p);
+		//平铺方式
+		p._fm.ddlBGRepeatB.val(bg_a);
+		p._fm.ddlBGAlignB.curVal=bg_p;
+		p._fm.ddlBGRepeatB.curVal=bg_a;
 		//背景色
-		p._fm.txtBGC.css("backgroundColor",$("body").css("backgroundColor"));
+		p._fm.txtBGC.css("backgroundColor",sohu.diyConsole.$Body.css("backgroundColor"));
 	};
 	p.afterHide=function(hash,dlg0){
 		p._fm.reset();
@@ -507,27 +538,34 @@ sohu.diyDialog.wCfgPage=function(dlg){
 		onChange:function(hsb,hex,rgb){
 			var c="#"+hex;
 			p._fm.txtBGC.css("backgroundColor",c).attr("title",c);
-			$("body").css("backgroundColor",c);
+			sohu.diyConsole.$Body.css("backgroundColor",c);
 		},
 		onSubmit:function(hsb,hex,rgb){
-			$("body").css("backgroundColor","#"+hex);
+			sohu.diyConsole.$Body.css("backgroundColor","#"+hex);
 			p._fm.cpk.hide();
 		}
 	});
-	p._fm.rbtnBGAlign.click(function(evt){
-		p._fm.rbtnBGAlign.curVal=this.value;
+	p._fm.ddlBGAlignA.click(function(evt){
+		p._fm.ddlBGAlignA.curVal=this.value;
 		p.preview();
 	});
-	p._fm.rbtnBGRepeat.click(function(evt){
-		p._fm.rbtnBGRepeat.curVal=this.value;
+	p._fm.ddlBGAlignB.click(function(evt){
+		p._fm.ddlBGAlignB.curVal=this.value;
+		p.preview();
+	});
+	p._fm.ddlBGRepeatA.click(function(evt){
+		p._fm.ddlBGRepeatA.curVal=this.value;
+		p.preview();
+	});
+	p._fm.ddlBGRepeatB.click(function(evt){
+		p._fm.ddlBGRepeatB.curVal=this.value;
 		p.preview();
 	});		
-	p._fm.rbtnBGAlign.curVal="center center";
-	p._fm.rbtnBGRepeat.curVal="no-repeat";
-	p._fm.txtBGH.change(function(evt){
-		p.preview();
-	});
-	p._fm.txtBG.change(function(evt){p.preview();});
+
+	p._fm.txtBGHA.change(p.preview);
+	p._fm.txtBGHB.change(p.preview);
+	p._fm.txtBGA.change(p.preview);
+	p._fm.txtBGB.change(p.preview);
 	
 	//背景色
 	p._fm.txtBGC

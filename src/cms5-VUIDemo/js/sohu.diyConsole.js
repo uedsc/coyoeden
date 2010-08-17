@@ -131,6 +131,7 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.$SecEditorModel=$("#area_editor");
 		sohu.diyConsole.$ScrollWrap=$("#scrollWrap");
 		sohu.diyConsole.$BodyBGA=$("#main .bodyBGA");
+		sohu.diyConsole.$BodyBGB=$("#main .bodyBGB");
 		sohu.diyConsole.$ifEditor=$("#ifEditor").iframeEX();	
 		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});
 		sohu.diyConsole.$EHolder=$('#eHolder').click(p.onEHolderClick);	
@@ -391,4 +392,13 @@ sohu.diyConsole.SnapSelection=function(){
 	}else{
 		sohu.diySelection.snap(document,sohu.diyConsole.CurElm.$Layout[0]);
 	};
+};
+/**
+ * Ω‚Œˆ±≥æ∞Õºµÿ÷∑
+ * @param {Object} img
+ */
+sohu.diyConsole.ParseBGImg=function(img){
+	img=img=="none"?"":img;
+	img=img.replace('url("',"").replace('")',"");
+	return img;
 };
