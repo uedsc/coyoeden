@@ -17,11 +17,12 @@ sohu.diyDialog=function(){
 		this.$Title=this.$Layout.find(p.opts.cssTitle);
 		this.$Acts=this.$Layout.find(p.opts.cssActs);
 		this.$BtnOK=this.$Layout.find(p.opts.cssOK);
+		this.$BtnNO=this.$Layout.find(".jqmClose");
 		this.$Body=this.$Layout.find(p.opts.cssCT);
 		this.$CTWrap=$(p.opts.cssCTWrap);/* Wrapper for all the dialog contents */
 		this.jqmHash=null;
 		//default options for jqModal
-		this.jqmOpts={trigger:false,modal:true,overlay:50,autoFocus:false,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false};
+		this.jqmOpts={trigger:false,modal:true,overlay:50,autoFocus:false,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false,txtBtnOK:'确定',txtBtnNO:'取消',btnNO:true};
 		this.jqmOpts.onShow=function(hash){
 			var doShow=true;
 			if(_this.jqmOpts.beforeShow){
@@ -79,6 +80,16 @@ sohu.diyDialog=function(){
 		this.ResetOptions();
 		$.extend(this.jqmOpts,opts);
 		
+		//Set buttons' texts
+		this.$BtnOK.attr("title",this.jqmOpts.txtBtnOK).attr("style",'').find("span").html(this.jqmOpts.txtBtnOK);
+		this.$BtnNO.attr("title",this.jqmOpts.txtBtnNO).attr("style",'').find("span").html(this.jqmOpts.txtBtnNO);
+		
+		//Hide the close button
+		if(!this.jqmOpts.btnNO){
+			this.$BtnNO.hide();
+			this.$BtnOK.css("float","none");
+		};
+		
 		if(this.jqmOpts.hideActions){
 			this.$Acts.hide();
 		}else{
@@ -105,7 +116,7 @@ sohu.diyDialog=function(){
 	 */
 	p.dialog.prototype.ResetOptions=function(){
 		//default options for jqModal
-		$.extend(this.jqmOpts,{trigger:false,modal:true,overlay:50,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false});
+		$.extend(this.jqmOpts,{trigger:false,modal:true,overlay:50,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false,txtBtnOK:'确定',txtBtnNO:'取消',btnNO:true});
 	};
 	//public 
 	pub.Init=function(opts){
@@ -128,7 +139,6 @@ sohu.diyDialog=function(){
 		sohu.diyDialog.Register("subSec510",new sohu.diyDialog.wSubSec(p.dlg,510));
 		sohu.diyDialog.Register("subSec670",new sohu.diyDialog.wSubSec(p.dlg,670));
 		sohu.diyDialog.Register("subSec950",new sohu.diyDialog.wSubSec(p.dlg,950));
-		sohu.diyDialog.Register("msgBox",new sohu.diyDialog.wMsgBox(p.dlg));
 		sohu.diyDialog.Register("wText",new sohu.diyDialog.wText(p.dlg));
 		sohu.diyDialog.Register("wImage",new sohu.diyDialog.wImage(p.dlg));
 		sohu.diyDialog.Register("wSecHead",new sohu.diyDialog.wSecHead(p.dlg));	
@@ -220,6 +230,7 @@ sohu.diyDialog=function(){
  */
 sohu.diyDialog.resetForm=function(dlg,callback){
 	dlg.$Layout.find("*").removeClass("alert").end().find(":text").val("");
+	dlg.$Layout.find(".tip").hide();
 	if(callback)
 		callback(dlg);
 };
@@ -232,28 +243,93 @@ sohu.diyDialog.doConfirm=function(opts){
 		title:"提示信息",
 		text:"",
 		modal:true,
+		trigger:false,
+		overlay:50,
+		autoFocus:false,
 		onOK:null,
 		afterHide:null,
 		beforeShow:null,
-		type:"caution"
+		type:"caution",
+		btnNO:true
 	},opts);
 	
-	//获取msgBox
-	var dlg=sohu.diyDialog.Get("msgBox");
-	//设置msgBox
-	dlg.$Text.empty().append(opts.text);
-	dlg.$Icon.attr("class","").addClass("icon "+opts.type);
+	var jqmOpts={trigger:opts.trigger,modal:opts.modal,overlay:opts.overlay,autoFocus:opts.autoFocus};
+	jqmOpts.onShow=function(hash){
+		var doShow=true;
+		if(opts.beforeShow){
+			doShow=opts.beforeShow(hash);
+		};
+		if(doShow){
+			hash.w.show();
+			
+			sohu.diyDialog.$jqmConfirm.$txt.empty().append(opts.text);
+			sohu.diyDialog.$jqmConfirm.$title.html(opts.title);
+			sohu.diyDialog.$jqmConfirm.$icon.attr("class","").addClass("icon "+opts.type);
+			sohu.diyDialog.$jqmConfirm.$btnOK.attr("style",'');
+			sohu.diyDialog.$jqmConfirm.$btnNO.attr("style",'');
+			if(!opts.btnNO){
+				sohu.diyDialog.$jqmConfirm.$btnNO.hide();
+				sohu.diyDialog.$jqmConfirm.$btnOK.css("float","none");
+			};
+			
+			sohu.diyDialog.$jqmConfirm.css("margin-left",-(sohu.diyDialog.$jqmConfirm.width()/2));
+			
+			if(opts.afterShow){
+				opts.afterShow(hash);
+			};
+		};
+	};
+	jqmOpts.onHide=function(hash){
+		var doHide=true;
+		if(opts.beforeHide){
+			doHide=opts.beforeHide(hash);				
+		};
+		if(doHide){
+			hash.w.hide();				
+			if(opts.modal){hash.o.remove();}; 
+			//afterHide callback
+			if(opts.afterHide)
+			{
+				opts.afterHide(hash);
+			};
+		};	
+	};
 	
-	sohu.diyDialog.Update("msgBox",{
-		modal:opts.modal,
-		title:opts.title,
-		onOK:opts.onOK,
-		beforeShow:opts.beforeShow,
-		afterHide:opts.afterHide,
-		afterShow:opts.afterShow
-	});
 	
-	sohu.diyDialog.Show("msgBox");
+	if(!sohu.diyDialog.$jqmConfirm){
+		sohu.diyDialog.$jqmConfirm=$("#jqmConfirm").jqm(jqmOpts).draggable({handle:".hd",containment:'window'});
+		sohu.diyDialog.$jqmConfirm.$txt=sohu.diyDialog.$jqmConfirm.find(".txt");
+		sohu.diyDialog.$jqmConfirm.$icon=sohu.diyDialog.$jqmConfirm.find(".icon");
+		sohu.diyDialog.$jqmConfirm.$title=sohu.diyDialog.$jqmConfirm.find(".title");
+		sohu.diyDialog.$jqmConfirm.$acts=sohu.diyDialog.$jqmConfirm.find(".acts");
+		sohu.diyDialog.$jqmConfirm.$btnOK=sohu.diyDialog.$jqmConfirm.find(".jqmOk");
+		sohu.diyDialog.$jqmConfirm.$btnNO=sohu.diyDialog.$jqmConfirm.find(".jqmClose");
+	};
+	
+	sohu.diyDialog.$jqmConfirm.$btnOK.unbind("click");
+	if(opts.onOK){
+		sohu.diyDialog.$jqmConfirm.$btnOK.click(function(evt){
+			opts.onOK(sohu.diyDialog.$jqmConfirm,opts);
+			return false;
+		});
+	};
+	
+	sohu.diyDialog.$jqmConfirm.jqm(jqmOpts).jqmShow();
+	
+};
+/**
+ * 弹出一个提示框.代替windows.alert
+ * @param {Object} opts
+ */
+sohu.diyDialog.doAlert=function(opts){
+	opts=$.extend({},{
+		btnNO:false,
+		onOK:function($jqm){
+			$jqm.jqmHide();
+		},
+	},opts);
+	opts.btnNO=false;
+	sohu.diyDialog.doConfirm(opts);
 };
 /**
  * 显示颜色弹框
@@ -264,7 +340,7 @@ sohu.diyDialog.showColorPicker=function(opts){
 		sohu.diyDialog.$jqmCpk=$("#jqmCpk").jqm({
 			title:"颜色",
 			modal:true
-		}).draggable({handle:".hd",containment:"#main"});
+		}).draggable({handle:".hd",containment:'window'});
 		
 		sohu.diyDialog.$jqmCpk.find(".cpk").ColorPicker({
 			flat:true,
@@ -635,12 +711,16 @@ sohu.diyDialog.wCode=function(dlg){
 		_this.$TextArea.val(sohu.diyConsole.CurSec.$Layout.html());
 	};
 	p.onOK=function(dlg0){
-		//更新分栏的html代码同时重新加载该分栏的内容
-		if (!window.confirm("确定更新当前分栏的HTML代码么?")) {return false;};
-		//重新加载该分栏的内容，利用.html(x)更新内容时，dom已经不是原来的dom
-		sohu.diyConsole.CurSec.$Layout.html(_this.$TextArea.val());
-		sohu.diyConsole.CurSec.LoadContents();
-		dlg0.Hide();
+		sohu.diyDialog.doConfirm({
+			text:'确定更新当前分栏的HTML代码么?',
+			onOK:function($jqm){
+				sohu.diyConsole.CurSec.$Layout.html(_this.$TextArea.val());
+				//重新加载该分栏的内容，利用.html(x)更新内容时，dom已经不是原来的dom
+				sohu.diyConsole.CurSec.LoadContents();
+				$jqm.jqmHide();
+				dlg0.Hide();
+			}
+		});
 	};
 	//jqm options
 	this.$Layout.jqmOpts={
@@ -663,7 +743,6 @@ sohu.diyDialog.wCfgSec=function(dlg){
 	//私有函数或变量
 	p._fm={
 		txtBG:$("#txtSecBG"),
-		tipBG:this.$Layout.find(".tipSecBG"),
 		txtBGC:$("#txtSecBGC"),
 		txtBorderC:$("#txtSecBorderColor"),
 		cpk:this.$Layout.find(".cpk"),
@@ -687,7 +766,6 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		var url=$.trim(p._fm.txtBG.val());
 		if( (url!="") && (!StringUtils.isUrl(url)) ){
 			p._fm.txtBG.addClass("alert").select();
-			p._fm.tipBG.addClass("alert");
 			return false;
 		};
 		//更改图片属性
@@ -887,9 +965,11 @@ sohu.diyDialog.wSecHead=function(dlg){
 		var url=$.trim(p._fm.link.val());
 		if((url!="")&&!StringUtils.isUrl(url)){
 			p._fm.link.addClass("alert").select();
-			p._fm.tipLink.addClass("alert");
+			p._fm.tipLink.addClass("alert").show();
 			return false;
 		};
+		p._fm.link.removeClass("alert");
+		p._fm.tipLink.removeClass("alert").hide();
 		//背景图
 		var img=$.trim(p._fm.bg.val());
 		img=img==""?"none":img;
@@ -966,22 +1046,6 @@ sohu.diyDialog.wSubSec=function(dlg,parentSize){
 	};
 };
 /**
- * 信息弹框
- * @param {Object} dlg
- */
-sohu.diyDialog.wMsgBox=function(dlg){
-	var p={};
-	//DOM引用
-	this.$Layout=$("#commonMsg");
-	this.$Text=this.$Layout.find(".txt");
-	this.$Icon=this.$Layout.find(".icon");
-	
-	//jqm options
-	this.$Layout.jqmOpts={
-		title:"提示信息"
-	};
-};
-/**
  * 文字编辑弹框
  * @param {Object} dlg
  */
@@ -1038,9 +1102,11 @@ sohu.diyDialog.wText=function(dlg){
 		var url=p._fm.txtAHref.val();
 		if(url!=""&&!StringUtils.isUrl(url)){
 			p._fm.txtAHref.addClass("alert").select();
-			p._fm.tipAHref.addClass("alert");
+			p._fm.tipAHref.addClass("alert").show();
 			return false;
 		};
+		p._fm.txtAHref.removeClass("alert");
+		p._fm.tipAHref.removeClass("alert").hide();	
 		if(p._fm.isNew&&url!=""){
 			sohu.diyConsole.CurElm.i$frame[0].iDoCommand("createlink",url,null,function($iframe){
 				sohu.diyConsole.DocSelection.selectAndRelease();
@@ -1147,11 +1213,11 @@ sohu.diyDialog.wImage=function(dlg){
 		var link=p._fm.link.val();
 		if(link!=""&&!StringUtils.isUrl(link)){
 			p._fm.link.addClass("alert").select();
-			p._fm.tipLink.addClass("alert");
+			p._fm.tipLink.addClass("alert").show();
 			return false;
 		};
 		p._fm.link.removeClass("alert");
-		p._fm.tipLink.removeClass("alert");
+		p._fm.tipLink.removeClass("alert").hide();
 		//高宽
 		var fine=true,v=["auto","auto"];
 		$.each([p._fm.h,p._fm.w],function(i,o){
@@ -1353,7 +1419,10 @@ sohu.diyDialog.wAreaTool=function(dlg){
 		sohu.diyDialog.Show("addBlock");
 	};
 	p.onDel=function(evt){
-		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
+		if(!sohu.diyConsole.CurArea){
+			sohu.diyDialog.doAlert({text:'未选中任何横切!'});
+			return false;
+		};
 		dlg.Console.Areas=$.grep(dlg.Console.Areas,function(o,i){
 			if(o.ID==dlg.Console.CurArea.ID) return false;
 			return true;
@@ -1361,12 +1430,12 @@ sohu.diyDialog.wAreaTool=function(dlg){
 		sohu.diyConsole.CurArea.Remove();
 	};
 	p.onCfgBG=function(evt){
-		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
+		if(!sohu.diyConsole.CurArea){sohu.diyDialog.doAlert({text:'未选中任何横切!'});return false;};
 		if(sohu.diyConsole.CurArea.IsEditing) return false;
 		sohu.diyDialog.Show("cfgArea");
 	};
 	p.onMove=function(evt){
-		if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
+		if(!sohu.diyConsole.CurArea){sohu.diyDialog.doAlert({text:'未选中任何横切!'});return false;};
 		if(sohu.diyConsole.CurArea.IsEditing) return false;	
 		var isUp=evt.data.up;
 		sohu.diyConsole.CurArea.Move(isUp);

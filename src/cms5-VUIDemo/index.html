@@ -121,19 +121,32 @@
 				<span class="draghdl"></span>
 	        </div>
 			<div class="ct"><div class="cpk"></div></div>			
-		</div>	
-		<!--/Dialog layout-->
-		<!--Dialog content-->
-		<div id="dialogList" class="hidden">
-			<div id="commonMsg" class="jqmCT">		
+		</div>
+		<div id="jqmConfirm" class="jqmWindow">
+			<div class="hd clear">
+	            <h4 class="title">提示信息</h4>
+				<a href="#" class="jqmClose"></a>
+				<span class="draghdl"></span>
+	        </div>
+			<div class="ct">
 				 <div class="tip">
 				 	<span class="icon caution"></span>
 					<div class="txt">
 						<p>是否删除所有选中分栏及其内容？</p>
 						<p>注意：删除后无法恢复</p>
 					</div>
-				</div>
+				</div>				
 			</div>
+			<div class="acts">
+				<div class="btnWrap clear">
+					<a class="btn jqmOk l" title="确定" href="#"><span>确定</span></a>
+					<a class="btn jqmClose r" title="取消" href="#"><span>取消</span></a>					
+				</div>
+			</div>			
+		</div>		
+		<!--/Dialog layout-->
+		<!--Dialog content-->
+		<div id="dialogList" class="hidden">
 			<!--图像 -->
 			<div id="picMsg" class="jqmCT">
 				<div class="lineA">
@@ -167,7 +180,7 @@
 						<option value="_self">本窗口</option>
 					</select>
 				</div>
-				<div class="lineA tipPicLink">请输入有效网址！</div>
+				<div class="lineA tip tipPicLink">请输入有效网址！</div>
 				<div class="lineA">
 					<div class="txt01">Title</div>
 					<input type="text" value="" class="ipt03" name="picTitle" id="picTitle"/>
@@ -203,7 +216,7 @@
 						<option value="_self">本窗口</option>
 					</select>
 			      </div>
-				  <div class="lineA tipAHref">请输入有效网址！</div>
+				  <div class="lineA tip tipAHref">请输入有效网址！</div>
 				  <div class="lineA">
 				 	 <div class="txt01">Title</div>
 					 <input id="txtATitle" name="txtATitle" type="text" value="" class="ipt03"/>
@@ -410,7 +423,7 @@
 						<option value="_self">本窗口</option>
 					</select>
 			      </div>
-				  <div class="lineA tipSecHDLink">请输入有效网址！</div>
+				  <div class="lineA tip tipSecHDLink">请输入有效网址！</div>
 				  <div class="lineA">
 				  	<div class="txt01">Title</div>
 					<input id="secHDTitle" type="text" value="" class="ipt03"/>
@@ -552,6 +565,9 @@
 		</div>
 		<!--元素占位-->
 		<div id="eHolder"></div>
+		<!--横切蒙层-->
+		<div id="areaHolder"></div>
+		<!--iframe编辑器-->
 		<iframe id="ifEditor" name="ifEditor" scrolling="no" frameborder="0" width="0" height="0"></iframe>
     </body>
 	<script src="js/jquery.cssEX.js" type="text/javascript"></script>

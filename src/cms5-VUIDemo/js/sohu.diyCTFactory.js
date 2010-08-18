@@ -227,11 +227,14 @@ sohu.diyTplFactory.Line.prototype.Submit=function(opt){
  */
 sohu.diyTplFactory.FocusImg=function(opts){
 		//焦点图选择
-		this.$Layout=$("#cSlide_focusImg").cycleSlide({
-			cssBtnPrev:"#ctFocusImg .l1btn",
-			cssBtnNext:"#ctFocusImg .r1btn",
-			step:172,
-			cloneItem:true
+		this.$Layout=$("#focusImgSlide").abcdSlider({
+			showNum:1,
+			total:6,
+			externalBtn:true,
+			cssBtnL:'#ctFocusImg .btnL',
+			cssBtnR:'#ctFocusImg .btnR',
+			cssPanel:'#cSlide_focusImg',
+			step:540
 		});
 		this.tplID=null;//flash 模板号
 		var _this=this;
@@ -262,12 +265,16 @@ sohu.diyTplFactory.FocusImg.prototype.Submit=function(opt){
  */
 sohu.diyTplFactory.Image=function(opts){
 		//焦点图选择
-		this.$Layout=$("#ctImgSlider").cycleSlide({
-			cssBtnPrev:"#ctImg .l1btn",
-			cssBtnNext:"#ctImg .r1btn",
-			step:122,
-			cloneItem:true
-		});		
+		this.$Layout=$("#ctImgSlide").abcdSlider({
+			step:488,
+			showNum:1,
+			total:2,
+			externalBtn:true,
+			cssBtnL:'#ctImg .btnL',
+			cssBtnR:'#ctImg .btnR',
+			cssPanel:'#ctImgSlider'
+		});
+				
 		//组图设置弹框
 		this.$WinCfg=$("#cfgImgList");
 		this.$WinCfg.ovl=$("#cfgImgList_ovl");
@@ -377,12 +384,7 @@ sohu.diyTplFactory.Image.prototype.Submit=function(opt){
  */
 sohu.diyTplFactory.Text=function(opts){
 		//文本选择
-		this.$Layout=$("#cSlide_text").cycleSlide({
-			cssBtnPrev:"#ctText .l1btn",
-			cssBtnNext:"#ctText .r1btn",
-			step:122,
-			cloneItem:true
-		});
+		this.$Layout=$("#cSlide_text");
 		this.tplID=null;//模板号
 		var _this=this;
 		var p={};
@@ -398,7 +400,8 @@ sohu.diyTplFactory.Text=function(opts){
 			function(evt){$(this).removeClass("on");}
 		).click(p.onAddText);
 		//a标签
-		//this.$Layout.find("a").click(sohu.diyTplFactory.r);	
+		//this.$Layout.find("a").click(sohu.diyTplFactory.r);
+		$("#ctText .navBtn").click(sohu.diyTplFactory.r);	
 };
 sohu.diyTplFactory.Text.prototype.Submit=function(opt){
 	var ct={html0:this.tplObj.html()};

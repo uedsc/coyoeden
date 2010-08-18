@@ -30,12 +30,13 @@ z-index:60;
 #addContent .wrap02 li img{margin:0 auto;display:inline;  padding:6px; border:1px solid #CBCBCB; background:#fff}
 .Btn{display: block; background: url(../images/ybtn.gif) top;width: 45px;height: 24px;line-height:24px; border: 0px; cursor:pointer;text-decoration:none;}
 .Btn:hover{background-position:bottom;text-decoration:none;}
-.r1btn {display: block; background: url(../images/r1btn.gif) top;width: 22px;height: 30px;margin-top: 50px; border: 0px; cursor:pointer;}
-.r1btn:hover{background-position: bottom;}
-.r1btn0{background-image:url('../images/rbtn01.gif');cursor:default;}
-.l1btn {display: block; background: url(../images/l1btn.gif) top;width: 22px;height: 30px;margin-top: 50px; border: 0px; cursor:pointer;}
-.l1btn:hover{background-position: bottom;}
-.l1btn0{background-image:url('../images/lbtn01.gif');cursor:default;}
+.navBtn{display: block;width: 22px;height: 30px;margin-top: 50px; border:none;}
+.btnR {background: url(../images/r1btn.gif) top;}
+.btnR:hover{background-position: bottom;}
+.right .noNav{background-image:url('../images/rbtn01.gif');cursor:default;}
+.btnL {background: url(../images/l1btn.gif) top;}
+.btnL:hover{background-position: bottom;}
+.left .noNav{background-image:url('../images/lbtn01.gif');cursor:default;}
 .ipt01,.ipt03{float:left; border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;} 
 
 #addContent{ width:598px; height: auto;background:#F0F0EE}
@@ -95,7 +96,7 @@ z-index:60;
 #ctFocusImg{height:200px; overflow:hidden;}
 #ctFocusImg .item{margin-bottom:5px;}
    	#focusImgSlide{position:relative;width:356px;overflow:hidden;padding-left:8px;}
-		#cSlide_focusImg{position:relative;width:2000px;}
+		#cSlide_focusImg{position:relative;width:3000px;}
 		#cSlide_focusImg li img{padding:4px;}
 		#cSlide_focusImg li{position:relative;float:left;display:inline;padding-bottom:8px;padding-right:8px;}
 #ctImg{position:relative;text-align:left;}
@@ -110,6 +111,7 @@ z-index:60;
 		#cSlide_text li{position:relative;float:left;display:inline;}
 		#cSlide_text li li{float:none;display:block;padding-left:12px;}
 
+#ctText .classify,#ctImg .classify{display:none;}
 #ctText .act{height:148px;}
 #ctText .list12 ul,#ctText .list14 ul{margin:0;}
 #ctText .item{margin-bottom:8px;margin-right:8px;border:2px solid #eee;height:58px;width:175px;cursor:pointer;}

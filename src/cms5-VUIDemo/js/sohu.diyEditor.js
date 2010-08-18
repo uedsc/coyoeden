@@ -110,20 +110,20 @@ sohu.diyEditor.prototype.Cls=function(){
 	if(this.CurArea.IsEditing) return;
 	var _this=this;	
 	sohu.diyDialog.doConfirm({
-		text:"<p>1,分栏有内容时将清除内容及其子分栏。<br/>2,分栏无内容时删除该分栏及其同级分栏</p><p>注意：删除后无法恢复</p>",
-		onOK:function(dlg){
+		text:"1,分栏有内容时将清除内容及其子分栏。<br/>2,分栏无内容时删除该分栏及其同级分栏<br/>注意：删除后无法恢复！",
+		onOK:function($jqm){
 			_this.CurSec.Cls();
-			dlg.Hide();
+			$jqm.jqmHide();
 		},
-		beforeShow:function(hash,dlg){
+		beforeShow:function(hash){
 			_this.Editing("on");
 			return true;
 		},
-		afterShow:function(hash,dlg){
+		afterShow:function(hash){
 			//显示红色蒙层
 			_this.CurSec.Overlay("on");
 		},
-		afterHide:function(hash,dlg){
+		afterHide:function(hash){
 			_this.Editing("off").CurSec.Deactive();
 			_this.CurSec.Overlay("off");
 		}

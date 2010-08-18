@@ -18,6 +18,8 @@ a.close:hover{background-position: bottom;}
 .bottom3line{margin:0 auto; width:265px;height:0px; overflow:hidden;border-bottom: 1px solid #fff;border-top: 1px solid #d6d6d6;}
 .ipt02{width: 19px;height:17px; background:#fff; border: 1px solid #bbb; float:left;}
 
+.jqmCT .tip{display:none;}
+
 .formx{width:310px;}
 .formx .txt{color:#383836;float:left;line-height:20px;vertical-align:middle;padding-right:5px;text-align:right;}
 .formx .txt01{width:60px;}
@@ -31,11 +33,11 @@ a.close:hover{background-position: bottom;}
 .formx .ipt04{width:40px;}
 .formx select{float:left; width:62px;height:20px;font-size:12px; margin-left: 4px; margin-top: 2px;}
 
-#commonMsg{ width: 300px;}
-#commonMsg .tip{ /*width:235px;*/padding:15px 0px 10px;}
-#commonMsg span.icon{display:block; float:left; width:35px; height:40px;}
-#commonMsg span.caution{background: url(../images/caution.jpg) center no-repeat;}
-#commonMsg .txt p{ text-align:left;line-height: 20px; color:#373737;padding-left:40px;}
+#jqmConfirm{z-index:3005;top: 25%}
+#jqmConfirm .tip{ width:300px;padding:15px 0px 10px;}
+#jqmConfirm span.icon{display:block; float:left; width:35px; height:40px;}
+#jqmConfirm span.caution{background: url(../images/caution.jpg) center no-repeat;}
+#jqmConfirm .txt{ text-align:left;line-height: 20px; color:#373737;padding-left:40px;}
 
 #picMsg{ width: 310px;padding-bottom:8px;}
 #picMsg .titleA{ background:url(../images/common.jpg) 0px -95px;}

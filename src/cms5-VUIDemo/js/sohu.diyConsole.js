@@ -135,6 +135,7 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.$ifEditor=$("#ifEditor").iframeEX();	
 		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});
 		sohu.diyConsole.$EHolder=$('#eHolder').click(p.onEHolderClick);	
+		sohu.diyConsole.$AreaHolder=$("#areaHolder");
 		//已有横切
 		_this.Areas=_this.AreaList().map(function(i,o){
 			var a=new sohu.diyArea({
@@ -155,7 +156,7 @@ sohu.diyConsole=function(opts){
 		});
 		new sohu.diyMenuBar({});
 		//弹框组件
-		sohu.diyDialog.Init({console:_this,cssDragCTM:false});
+		sohu.diyDialog.Init({console:_this,cssDragCTM:'window'});
 		//on page loaded
 		$(document).ready(p.onLoaded);
 	};

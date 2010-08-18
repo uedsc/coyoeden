@@ -138,11 +138,30 @@ sohu.diyArea.prototype.Move=function(isUp){
  * 移除
  */
 sohu.diyArea.prototype.Remove=function(){
-	if(!window.confirm("确定删除选中的横切么?")) return false;
-	this.$Layout.remove();
-	if(this.__p.opts.onRemove){
-		this.__p.opts.onRemove(this);
-	};
+	var _this=this;
+	sohu.diyDialog.doConfirm({
+		text:'确定删除选中的横切么?',
+		afterShow:function(hash){
+			var d=_this.Dim();
+			sohu.diyConsole.$AreaHolder.css({
+				top:d.y-1,
+				left:d.x-1,
+				height:d.h+1,
+				width:d.w+1,
+				opacity:0.5
+			}).show();
+		},
+		onOK:function($jqm){
+			_this.$Layout.remove();
+			if(_this.__p.opts.onRemove){
+				_this.__p.opts.onRemove(_this);
+			};
+			$jqm.jqmHide();
+		},
+		afterHide:function(hash){
+			sohu.diyConsole.$AreaHolder.hide();
+		}
+	});
 	return false;	
 };
 /**

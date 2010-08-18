@@ -18,5 +18,5 @@
 .jqmWindow .hd .jqmClose:hover{background-position: bottom;}
 /* °´Å¥À¸ */
 .jqmWindow .btnWrap{height:25px;margin:10px auto;width:105px;}
-.jqmWindow .btn {display:block;width: 45px;height: 24px;line-height:25px; background: url(../images/ybtn.gif) top;text-decoration:none;}
+.jqmWindow .btn {display:block;margin:0 auto;width: 45px;height: 24px;line-height:25px; background: url(../images/ybtn.gif) top;text-decoration:none;}
 .jqmWindow .btn:hover{background-position:bottom;}

@@ -89,6 +89,7 @@ display:none;
 /* 内容样式-Editing */
 .ct{position:relative;}
 #eHolder{position:absolute;z-index:49;border:1px solid #FC0055;}
+#areaHolder{position:absolute;display:none;z-index:50;border:1px solid red;background:#f9bfc0;}
 /*.col{overflow:hidden;}*/
 /* iframe编辑器 */
 #ifEditor{display:none;}
@@ -112,7 +113,6 @@ display:none;
 
 /*隐藏模板*/
 #hiddenTemplate{display:none;}
-	#elmTool{display:none;position:absolute;border:1px solid #ccc;width:90px;}
 /*内容模板*/
 #addContent{width:600px;height:450px;overflow:hidden;}
 #ifContentList{width:100%;height:100%;border:none;}
