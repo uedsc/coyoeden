@@ -86,7 +86,11 @@ z-index:60;
 #addContent .lineC .wrap01 .rollDot a.currA,#addContent .lineC .wrap01 .rollDot a:hover,#addContent .lineC .wrap02 .rollDot a.currA,#addContent .lineC .wrap02 .rollDot a:hover { background-position:-207px -5px; width: 7px; height: 7px; }
 
 /* 导航条 */
-#ctNavTpl{display:none;}
+#navList{padding-left:30px;}
+#navList li{float:left;display:inline;height:130px;margin-right:10px;margin-bottom:8px;text-align:center;width:112px;}
+#navList li a{display:block;height:80px;overflow:hidden;}
+#navList .ctWrap{display:none;}
+#navList .middle {display:-moz-inline-box!important;display:inline-block;vertical-align:middle;height:130%;}
 /* 栏目标题 */
 #ctSecHead{text-align:left;}
 #ctSecHead .left{padding-right:30px;}

@@ -44,19 +44,16 @@ sohu.diyTplFactory={
 sohu.diyTplFactory.Nav=function(opts){
 	var _this=this;
 	this.$Layout=$("#ctNav");
-	this.$TplList=this.$Layout.find(".nav");
+	this.CurNav=null;
 	//ÊÂ¼þ×¢²á
-	$("#ddlNavTpl").change(function(evt){
-		_this.CurIndex=this.value;
-	}).trigger("change");
-	
-	this.$Layout.find(".btnOK").click(function(evt){
+	$("#navList li").click(function(evt){
+		_this.CurNav=$(this).find(".ctWrap").html();
 		_this.Submit();
 	});
 };
 sohu.diyTplFactory.Nav.prototype.Submit=function(){
 	var ct={};
-	ct.html0=$.outerHtml(this.$TplList.eq(this.CurIndex));
+	ct.html0=this.CurNav;
 	ct.flash=false;
 	ct.isNew=true;
 	ct.type="nav";

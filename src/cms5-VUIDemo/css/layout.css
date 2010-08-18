@@ -37,6 +37,9 @@
 .w390 .list li,.w430 .list li,.w470 .list li,.w510 .list li,.w670 .list li,.w950 .list li{padding:4px 0;font-size:14px;background-position:0 -1px;padding-left:14px;} /* list14 */
 .w182 .list li,.w190 .list li,.w210 .list li,.w230 .list li,.w250 .list li,.w270 .list li,.w310 .list li,.w330 .list li{font-size:12px;background-position:-1px -2px;padding-left:12px;} /* list12 */
 
+/* 导航 */
+.nav{text-align:center;font-size:14px;font-weight:bold;line-height:30px;}
+
 /* 栏目标题 */
 h2 .more{font-weight:normal;}
 h2 .more span{float:none;font-weight:normal;}
