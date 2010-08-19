@@ -33,8 +33,8 @@ display: block; float: none; clear: none; bottom: 0px; clip: auto; color: rgb(25
 #wCfgSec .field{width:285px;}
 #wCfgSec .cpk{position:absolute;display:none;width:356px;top:20%;right:10px;}
 
-#cfgArea label,#cfgPage label{width:100px;}
-#cfgArea .field,#cfgPage .field{width:260px;}
+#cfgPage label{width:100px;}
+#cfgPage .field{width:260px;}
 
 
 

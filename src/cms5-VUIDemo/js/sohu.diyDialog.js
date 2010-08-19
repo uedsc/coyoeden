@@ -95,7 +95,6 @@ sohu.diyDialog=function(){
 		}else{
 			this.$Acts.show();
 		};
-		
 		this.$Layout.jqm(this.jqmOpts).jqmShow();
 		//button events
 		if(this.jqmOpts.onOK){
@@ -420,8 +419,8 @@ sohu.diyDialog.wCfgArea=function(dlg){
 	p._fm={
 		txtBG:$("#txtAreaBG"),
 		txtID:$("#txtAreaID"),
-		rbtnBGAlign:this.$Layout.find("input[name='areaBGAlign']"),
-		rbtnBGRepeat:this.$Layout.find("input[name='areaBGRepeat']"),
+		ddlBGAlign:$("#ddlAreaBGAlign"),
+		ddlBGRepeat:$("#ddlAreaBGRepeat"),
 		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
 	//事件处理
@@ -439,11 +438,11 @@ sohu.diyDialog.wCfgArea=function(dlg){
 		}else{
 			sohu.diyConsole.CurArea.$Layout.css("background-image","url('"+url+"')");
 			//bg position
-			var al=p._fm.rbtnBGAlign.curVal;
+			var al=p._fm.ddlBGAlign.curVal;
 			al=al=="center"?al:al+" top";
 			sohu.diyConsole.CurArea.$Layout.css("background-position",al);
 			//bg repeat
-			var rp=p._fm.rbtnBGRepeat.curVal;
+			var rp=p._fm.ddlBGRepeat.curVal;
 			sohu.diyConsole.CurArea.$Layout.css("background-repeat",rp);
 		};
 		//area id
@@ -465,6 +464,10 @@ sohu.diyDialog.wCfgArea=function(dlg){
 		p._fm.txtBG.val(img).select();
 		//area id
 		p._fm.txtID.val(sohu.diyConsole.CurArea.ID);
+		//对齐
+		p._fm.ddlBGAlign.val(p._fm.ddlBGAlign.curVal);
+		//平铺
+		p._fm.ddlBGRepeat.val(p._fm.ddlBGRepeat.curVal);
 	};
 	p.afterHide=function(hash,dlg0){
 		p._fm.reset();
@@ -476,16 +479,16 @@ sohu.diyDialog.wCfgArea=function(dlg){
 	p._fm.txtBG.change(function(evt){
 		p.preview();
 	});
-	p._fm.rbtnBGAlign.click(function(evt){
-		p._fm.rbtnBGAlign.curVal=this.value;
+	p._fm.ddlBGAlign.change(function(evt){
+		p._fm.ddlBGAlign.curVal=this.value;
 		p.preview();
 	});
-	p._fm.rbtnBGRepeat.click(function(evt){
-		p._fm.rbtnBGRepeat.curVal=this.value;
+	p._fm.ddlBGRepeat.change(function(evt){
+		p._fm.ddlBGRepeat.curVal=this.value;
 		p.preview();
 	});		
-	p._fm.rbtnBGAlign.curVal="center";
-	p._fm.rbtnBGRepeat.curVal="no-repeat";
+	p._fm.ddlBGAlign.curVal="center";
+	p._fm.ddlBGRepeat.curVal="no-repeat";
 	//事件注册
 	
 	this.$Layout.jqmOpts={
@@ -935,6 +938,8 @@ sohu.diyDialog.wSecHead=function(dlg){
 	};	
 	p.beforeShow=function(hash,dlg0){
 		sohu.diyConsole.CurSec.Editor.Editing("on");
+		//clear the selected style of the diyMenuBar icons
+		_this.$Layout.find('.cmdicon').removeClass("editBtn1");		
 		return true;
 	};
 	p.afterHide=function(hash,dlg0){
@@ -1081,6 +1086,10 @@ sohu.diyDialog.wText=function(dlg){
 	};
 	p.beforeShow=function(hash,dlg0){
 		sohu.diyConsole.CurSec.Editor.Editing("on");
+		//clear the selected style of the diyMenuBar icons
+		_this.$Layout.find('.cmdicon').removeClass("editBtn1");
+		p._fm.txtATitle.val("");
+		p._fm.txtAHref.val("");
 		return true;
 	};	
 	p.afterShow=function(hash,dlg0){
@@ -1164,6 +1173,8 @@ sohu.diyDialog.wImage=function(dlg){
 	//事件处理
 	p.beforeShow=function(hash,dlg0){
 		sohu.diyConsole.CurSec.Editor.Editing("on");
+		//clear the selected style of the diyMenuBar icons
+		_this.$Layout.find('.cmdicon').removeClass("editBtn1");		
 		return true;
 	};	
 	p.afterShow=function(hash,dlg0){

@@ -23,8 +23,14 @@ sohu.diyMenuBar=function(opts){
 	p.txtCmd.Undo=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("undo",null);};
 	p.txtCmd.Redo=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("redo",null);};
 	p.txtCmd.AddVideoIcon=function(evt){
-		sohu.diyConsole.CurElm.$Layout.append(sohu.diyMenuBar.Tpl.video);
-		sohu.diyConsole.CurElm.i$frame[0].i$Body().append(sohu.diyMenuBar.Tpl.video);
+		var vd=null;
+		if((vd=sohu.diyConsole.CurElm.$Layout.find('.vdIcon')).length==0){
+			sohu.diyConsole.CurElm.$Layout.append(sohu.diyMenuBar.Tpl.video);
+			sohu.diyConsole.CurElm.i$frame[0].i$Body().append(sohu.diyMenuBar.Tpl.video);			
+		}else{
+			vd.remove();
+			sohu.diyConsole.CurElm.i$frame[0].i$Body().find('.vdIcon').remove();
+		};
 	};
 	p.txtCmd.SetColor=function(evt){
 		var _this=$(this);
@@ -119,5 +125,5 @@ sohu.diyMenuBar=function(opts){
 	this.IsInit=true;
 };
 sohu.diyMenuBar.Tpl={
-	video:'<a target="_blank" href="#" title=""><img height="10" width="16" alt="" src="images/vd.gif"/></a>'
+	video:'<a class="vdIcon" target="_blank" href="#" title=""><img height="10" width="16" alt="" src="images/vd.gif"/></a>'
 };

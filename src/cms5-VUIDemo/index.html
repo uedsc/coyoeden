@@ -248,31 +248,28 @@
 					<input id="btnAreaBGBrowse" type="button" class="btn btnL"  value="浏览" />
 				</div>
 				<div class="lineA">
-					<div class="txt txt01">对齐方式</div>
-					<input name="areaBGAlign" checked="checked" type="radio" value="center" class="rdo"  />
-					<div class="txt txt02">居中</div>
-					<input name="areaBGAlign" type="radio" value="left" class="rdo"  />
-					<div class="txt txt02">靠左</div>
-					<input name="areaBGAlign" type="radio" value="right" class="rdo"  />
-					<div class="txt txt02">靠右</div>
-				</div>
-				<div class="lineA">
-					<div class="txt txt01">平铺方式</div>
-					<input name="areaBGRepeat" type="radio" value="repeat" class="rdo"  />
+					<div class="txt txt01">对齐</div>
+					<select id="ddlAreaBGAlign" name="areaBGAlign">
+						<option value="center" selected="selected">居中</option>
+						<option value="left">靠左</option>
+						<option value="right">靠右</option>
+					</select>	
 					<div class="txt txt02">平铺</div>
-					<input name="areaBGRepeat" type="radio" value="no-repeat" class="rdo" checked="checked" />
-					<div class="txt txt02">不平铺</div>
-					<input name="areaBGRepeat" type="radio" value="repeat-x" class="rdo"  />
-					<div class="txt txt02">横铺</div>
-					<input name="areaBGRepeat" type="radio" value="repeat-y" class="rdo"  />
-					<div class="txt txt02">纵铺</div>
+					<select id="ddlAreaBGRepeat" name="areaBGRepeat">
+						<option value="repeat" selected="selected">平铺</option>
+						<option value="no-repeat">不平铺</option>
+						<option value="repeat-x">横铺</option>
+						<option value="repeat-y">纵铺</option>
+					</select>					
 				</div>
+				<div class="blank5"></div>
+				<div class="bottom3line"></div>
+				<div class="blank5"></div>
 				<div class="lineA">
 					<div class="txt txt01">横切ID</div>
 					<input id="txtAreaID" name="areaID" type="text" class="ipt03"/>
 				</div>
-				<div class="blank8"></div>
-				<div class="bottom3line"></div>			
+				
 			</div>
 			<!--/横切设置-->		
 			<!--页面背景-->
@@ -432,13 +429,13 @@
 			
 			<!--栏目头 over-->
 			<!--页面属性-->
-			<div id="wPagePro">
+			<div id="wPagePro" class="jqmCT">
 				 <div class="blank8"></div>
 				 <div class="lineA">
 				 	<div class="txt01">title</div>
 					<input id="pTitle" type="text" value="" class="ipt01"/>
 			     </div>
-				 <div class="linep">请输入有效网址！</div>
+				 <div class="linep tip">请输入有效网址！</div>
 				 <div class="lineA">
 				 	<div class="txt01">keywords</div>
 				 	<input id="pKeyword" type="text" value="" class="ipt01"/>
