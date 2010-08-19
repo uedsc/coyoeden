@@ -39,7 +39,8 @@
 
 /* 导航 */
 .nav{text-align:center;font-size:14px;font-weight:bold;line-height:30px;}
-
+.imgNav{line-height:normal;}
+.imgNav li{float:left;display:inline;}
 /* 栏目标题 */
 h2 .more{font-weight:normal;}
 h2 .more span{float:none;font-weight:normal;}
