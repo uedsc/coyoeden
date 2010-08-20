@@ -749,8 +749,8 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		txtBGC:$("#txtSecBGC"),
 		txtBorderC:$("#txtSecBorderColor"),
 		cpk:this.$Layout.find(".cpk"),
-		rbtnBGAlign:this.$Layout.find("input[name='secBGAlign']"),
-		rbtnBGRepeat:this.$Layout.find("input[name='secBGRepeat']"),
+		ddlBGAlign:$("#ddlSecBGAlign"),
+		ddlBGRepeat:$("#ddlSecBGRepeat"),
 		cbxBorder:this.$Layout.find("input[name='SecBorderDir']"),
 		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
@@ -797,9 +797,9 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		var bg_p=sohu.diyConsole.CurSec.$Layout.css("backgroundPosition");
 		bg_p=bg_p=="0% 0%"?"center center":bg_p;
 		var bg_a=sohu.diyConsole.CurSec.$Layout.css("backgroundRepeat");
-		p._fm.rbtnBGAlign.filter("[value='"+bg_p+"']").trigger("click");
+		p._fm.ddlBGAlign.val(bg_p).trigger("change");
 		//平铺方式
-		p._fm.rbtnBGRepeat.filter("[value='"+bg_a+"']").trigger("click");
+		p._fm.ddlBGRepeat.val(bg_a).trigger("change");
 		//边框-根据边框色判断边框的有无
 		bdc=sohu.diyConsole.GetBorderColor(bdc);
 		if(!bdc){
@@ -863,13 +863,13 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		
 	});
 	//背景图对齐方式
-	p._fm.rbtnBGAlign.click(function(evt){
-		p._fm.rbtnBGAlign.curVal=this.value;
+	p._fm.ddlBGAlign.change(function(evt){
+		p._fm.ddlBGAlign.curVal=this.value;
 		sohu.diyConsole.CurSec.$Layout.css("background-position",this.value);
 	});
 	//背景图平铺方式
-	p._fm.rbtnBGRepeat.click(function(evt){
-		p._fm.rbtnBGRepeat.curVal=this.value;
+	p._fm.ddlBGRepeat.click(function(evt){
+		p._fm.ddlBGRepeat.curVal=this.value;
 		sohu.diyConsole.CurSec.$Layout.css("background-repeat",this.value);
 	});
 	//栏目背景色
@@ -890,8 +890,8 @@ sohu.diyDialog.wCfgSec=function(dlg){
 			p._fm.cpk.hide();
 		}
 	});			
-	p._fm.rbtnBGAlign.curVal="center";
-	p._fm.rbtnBGRepeat.curVal="repeat";	
+	p._fm.ddlBGAlign.curVal="center center";
+	p._fm.ddlBGRepeat.curVal="repeat";	
 	//jqm options
 	this.$Layout.jqmOpts={
 		title:"分栏设置",

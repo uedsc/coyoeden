@@ -355,31 +355,26 @@
 					<input id="btnCfgSecBrowse" type="button" class="btn btnL"  value="浏览" />
 				</div>
 				<div class="lineA">
+					<div class="txt txt01">对齐</div>
+					<select id="ddlSecBGAlign" name="secBGAlign">
+						<option value="center center" selected="selected">居中</option>
+						<option value="left center">靠左</option>
+						<option value="right center">靠右</option>
+					</select>
+					<div class="txt txt02">平铺</div>
+					<select id="ddlSecBGRepeat" name="secBGRepeat">
+						<option value="repeat" selected="selected">平铺</option>
+						<option value="no-repeat">不平铺</option>
+						<option value="repeat-x">横铺</option>
+						<option value="repeat-y">纵铺</option>
+					</select>					
+				</div>
+				<div class="lineA">
 					<div class="txt txt01">背景色</div>
 					<input id="txtSecBGC" type="text" readonly="readonly" class="ipt03"/>
-				</div>
+				</div>				
 				<div class="lineA">
-					<div class="txt txt01">对齐方式</div>
-					<input name="secBGAlign" checked="checked" type="radio" value="center center" class="rdo"  />
-					<div class="txt txt02">居中</div>
-					<input name="secBGAlign" type="radio" value="left center" class="rdo"  />
-					<div class="txt txt02">靠左</div>
-					<input name="secBGAlign" type="radio" value="right center" class="rdo"  />
-					<div class="txt txt02">靠右</div>
-				</div>
-				<div class="lineA">
-					<div class="txt txt01">平铺方式</div>
-					<input name="secBGRepeat" checked="checked" type="radio" value="repeat" class="rdo"  />
-					<div class="txt txt02">平铺</div>
-					<input name="secBGRepeat" type="radio" value="no-repeat" class="rdo"  />
-					<div class="txt txt02">不平铺</div>
-					<input name="secBGRepeat" type="radio" value="repeat-x" class="rdo"  />
-					<div class="txt txt02">横铺</div>
-					<input name="secBGRepeat" type="radio" value="repeat-y" class="rdo"  />
-					<div class="txt txt02">纵铺</div>
-				</div>
-				<div class="lineA">
-					<div class="txt txt01">边框设置</div>
+					<div class="txt txt01">边框色</div>
 					<input id="txtSecBorderColor" readonly="readonly" name="SecBorderColor" type="text" class="ipt04"/>
 					<input name="SecBorderDir" type="checkbox" class="cBox03" value="top"/>
 					<div class="txt txt03">上</div>

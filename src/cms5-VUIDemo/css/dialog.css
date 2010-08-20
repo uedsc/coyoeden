@@ -236,7 +236,7 @@ a.close:hover{background-position: bottom;}
 /******/
 
 #wCfgSec .cpk{position:absolute;display:none;width:356px;top:20%;right:10px;}
-#cfgArea select{margin-left:0;}
+#cfgArea select,#wCfgSec select{margin-left:0;}
 
 /* ·ÖÀ¸¶Ô»°¿ò */
 .formss{width:230px;}
