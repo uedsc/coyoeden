@@ -827,7 +827,6 @@ sohu.diyDialog.wCfgSec=function(dlg){
 	});
 	//边框色
 	p._fm.txtBorderC
-	.css("borderColor","#eeeeee")
 	.click(function(evt){
 		p._fm.cpk.$t=p._fm.txtBorderC;
 		p._fm.cpk.flag="bdc";
@@ -849,11 +848,9 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		var url=$.trim(p._fm.txtBG.val());
 		if((url!="")&&!StringUtils.isUrl(url)){
 			p._fm.txtBG.addClass("alert").select();
-			p._fm.tipBG.addClass("alert");
 			return false;
 		};
 		p._fm.txtBG.removeClass("alert");
-		p._fm.tipBG.removeClass("alert");
 		//更改图片属性
 		if(url!=""){
 			sohu.diyConsole.CurSec.$Layout.css("background-image","url('"+url+"')");
