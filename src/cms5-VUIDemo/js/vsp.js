@@ -50,6 +50,31 @@ var this$ = function() {
 		return false;
 	};
 	/**
+	 * 添加元素
+	 * @param {Object} evt
+	 */
+	p.onAddElm=function(evt){
+		if(!evt.data.$obj) return false;
+		var txt0=$(document.createTextNode(" "));
+		var a0=$(p._aTplStr);
+		evt.data.$obj.after(a0).after(txt0);
+		
+		var tpl=p._$rowTxtA.clone();
+		tpl.find("input").val(" ");
+		tpl.find(".btnDel").bind("click",{$obj:txt0,$tpl:tpl},p.onDelElm);
+		var tpl1=$([p._$rowTitleA.clone()[0],p._$rowLnkA.clone()[0]]);
+		//输入框回填内容
+		tpl1.eq(0).find("input").val(a0.html());
+		tpl1.eq(1).find("input").val(a0.attr("href"));
+		//删除按钮
+		tpl1.find(".btnDel").bind("click",{$obj:a0,$tpl:tpl1},p.onDelElm);
+		//复制按钮
+		tpl1.find(".btnAdd").bind("click",{$obj:a0,$tpl:tpl1},p.onAddElm);
+		evt.data.$tpl.eq(1).after(tpl1).after(tpl);
+		
+		return false;
+	};
+	/**
 	 * 编辑碎片的元素
 	 * @param {Object} evt
 	 */
@@ -80,11 +105,17 @@ var this$ = function() {
 						p._$elmA.append(tpl);
 						
 					}else if($o.is("a")){
-						tpl=p._$rowTitleA.clone();
-						tpl.find("input").val($o.attr("title"));
-						p._$elmA.append(tpl).append(p._$rowLnkA.clone().find("input").val($o.attr("href")).end());
+						tpl=$([p._$rowTitleA.clone()[0],p._$rowLnkA.clone()[0]]);
+						tpl.eq(0).find("input").val($o.attr("title"));
+						tpl.eq(1).find("input").val($o.attr("href"));
+						p._$elmA.append(tpl);
+						
 					};
-					tpl.find(".btnDel").bind("click",{$obj:$o,$tpl:tpl},p.onDelElm).end();
+					//删除按钮
+					tpl.find(".btnDel").bind("click",{$obj:$o,$tpl:tpl},p.onDelElm);
+					//复制按钮
+					tpl.find(".btnAdd").bind("click",{$obj:$o,$tpl:tpl},p.onAddElm);
+					
 				});
 				p._$elmA.show();
 			break;
@@ -131,7 +162,8 @@ var this$ = function() {
 		p._$rowTitleA=$("#elmATpl .rowTitle");
 		p._$rowTxtA0=$("#elmATpl .rowTxt0");
 		p._$rowTitleA0=$("#elmATpl .rowTitle0");		
-		p._$rowLnkA=$("#elmATpl .rowLnk");;
+		p._$rowLnkA=$("#elmATpl .rowLnk");
+		p._aTplStr=opts.aTplStr||'<a href="http://sohu.com" title="">sohu</a>';
 	};
     p.onLoaded = function() { 
 
