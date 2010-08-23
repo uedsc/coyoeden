@@ -156,7 +156,7 @@ sohu.diyConsole=function(opts){
 		});
 		new sohu.diyMenuBar({});
 		//µ¯¿ò×é¼þ
-		sohu.diyDialog.Init({console:_this,cssDragCTM:'window'});
+		sohu.diyDialog.Init({console:_this,cssDragCTM:'window',onInit:sohu.diyDialog.onInit});
 		//on page loaded
 		$(document).ready(p.onLoaded);
 	};

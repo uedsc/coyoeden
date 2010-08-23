@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>碎片编辑</title>
+		<link rel="stylesheet" type="text/css" href="css/global1.3.css"></link>
+		<link media="all" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet"></link> 
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/flick/jquery-ui.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link>
+		<link rel="stylesheet" type="text/css" href="css/vsp.css"></link>  
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> 
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script> 
+		<script type="text/javascript" src="js/sohu.jqModal.js"></script>
+	</head>
+	<body>
+		<div id="contentA" class="area">
+			<div class="flag">
+				<div class="list12 ct">
+					<ul>
+						<li><a href="#">北京野外穿越六条经典路线</a></li>
+						<li><a href="#">自驾车越野官厅水库闯天漠</a></li>
+						<li><a href="#">相约京西</a><a href="#">最美的高山草原</a></li>
+						<li><a href="#">相约京西</a>&nbsp;广告1&nbsp;<a href="#">最美的高山草原</a></li>
+					</ul>
+				</div>
+				<div class="txt ct">
+					<p>北京野外穿越六条经典路线<a href="#">[详细]</a></p>
+				</div>
+				<div class="pp ct">
+					<ul class="clear">
+						<li><a href="#"><img src="images/star.jpg" /></a></li>
+						<li><a href="#"><img src="images/star.jpg" /></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--jqModal-->
+		<div id="jqmWin1" class="jqmWindow">
+			<div class="hd clear">
+	            <h4 class="title">...</h4>
+				<a href="#" class="jqmClose"></a>
+				<span class="draghdl"></span>
+	        </div>
+			<div class="ct"></div>
+			<div class="acts">
+				<div class="btnWrap clear">
+					<a class="btn jqmOk l" title="确定" href="#"><span>确定</span></a>
+					<a class="btn jqmClose r" title="取消" href="#"><span>取消</span></a>					
+				</div>
+			</div>	
+		</div>
+		<div id="wVsp" class="jqmCT">
+			<ul>
+				<li><a href="#wVsp_tab1">可视化修改</a></li>
+				<li><a href="#wVsp_tab2">代码修改</a></li>
+				<li><a href="#wVsp_tab3">修改记录</a></li>
+				<li><a href="#wVsp_tab4">排序状态</a></li>
+			</ul>
+			<div id="wVsp_tab1">
+				<!--元素模板.文字链-->
+				<div class="elmTpl elmA"></div>
+				<div class="elmTpl elmImg">
+					<div class="row clear">
+						<label class="l">图片:</label>
+						<input type="text" class="imgSrc l"/>
+						<div class="icons l clear">
+							<a href="#"><span>上传</span></a>
+						</div>
+						<div class="r icons1">
+							<a href="#" class="btnDel"><img src="images/icn_del.gif"/></a>
+							<a href="#" class="btnAdd"><img src="images/icn_add.gif"/></a>
+						</div>						
+					</div>
+					<div class="row clear">
+						<label class="l">ALT:</label>
+						<input type="text" class="imgAlt l"/>
+					</div>
+					<div class="row clear">
+						<label class="l">链接:</label>
+						<input type="text" class="imgLnk l"/>
+					</div>
+				</div>
+			</div>
+			<div id="wVsp_tab2">
+				<div class="row">
+					<input type="text" id="txtVspCS" name="vspCS"/>
+					<button id="btnVspCS">搜索</button>
+					<button id="btnVspCBTipAdd">加Blog纸条</button>
+					<button id="btnVspCBTipDel">删Blog纸条</button>
+				</div>
+				<textarea id="txtVspC" name="vspC"></textarea>
+			</div>
+			<div id="wVsp_tab3">
+				adsfasd
+			</div>
+			<div id="wVsp_tab4">
+				asdfasdfsd
+			</div>
+			<div id="wVsp_acts" class="clear">
+				<a href="#" class="test">整体测试</a>
+				<a href="#" class="save">保存碎片</a>
+				<a href="#" class="cls">取消</a>
+				<a href="#" class="globalRes hide">统一资源库</a>
+				<a href="#" class="external hide">外包</a>
+			</div>
+		</div>
+		<!--/jqModal-->
+		
+		<div id="elmATpl" class="hidden">
+			<div class="row rowTxt clear">
+				<label class="l">文字:</label>
+				<input type="text" class="txt l"/>
+				<div class="r icons1">
+					<a href="#" class="btnDel btnDelTxt"><img src="images/icn_del.gif"/></a>
+				</div>
+			</div>
+			<div class="row rowTxt0 clear">
+				<label class="l">文字:</label>
+				<input type="text" class="txt l"/>
+			</div>				
+			<div class="row rowTitle clear">
+				<label class="l">标题:</label>
+				<input type="text" class="title l"/>
+				<div class="l icons clear">
+					<a href="#" class="bold"><span>B</span></a>
+					<a href="#" class="color"><span>A</span></a>
+					<a href="#" class="icon"><span>图标</span></a>
+				</div>
+				<div class="r icons1">
+					<a href="#" class="btnDel btnDelA"><img src="images/icn_del.gif"/></a>
+					<a href="#" class="btnAdd"><img src="images/icn_add.gif"/></a>
+				</div>
+			</div>
+			<div class="row rowTitle0 clear">
+				<label class="l">标题:</label>
+				<input type="text" class="title l"/>
+			</div>			
+			<div class="row rowLnk clear">
+				<label class="l">链接:</label>
+				<input type="text" class="lnk l"/>
+			</div>				
+		</div>
+		
+		<script type="text/javascript" src="js/sohu.diyDialog.js"></script>
+		<script type="text/javascript" src="js/vsp.js"></script>
+		<script type="text/javascript">
+		//<![CDATA[
+		this$.Init({});
+		//]]>
+		</script>
+ 
+	</body>
+</html>
