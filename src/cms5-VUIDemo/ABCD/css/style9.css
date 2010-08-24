@@ -98,8 +98,10 @@
 #contentK .block2 a.stop:hover{ background:url(../images/stop.gif) bottom no-repeat;}
 
 
-#contentK .block3{ margin:0 auto; margin-top:10px; width:870px; height:750px; background:#F6F6F4; border:1px solid #EAEAEA}
+#contentK .block3{ margin:0 auto; margin-top:10px; width:870px; height:auto; background:#F6F6F4;  border:1px solid #EAEAEA; position:relative;}
 #contentK .block3 p{  text-align:center;}
+#contentK .block3 .plistL{ position:absolute; width:39px; height:30px; left:40px; top:240px;}
+#contentK .block3 .plistR{ position:absolute; width:39px; height:30px; right:40px; top:240px;}
 #contentK .block3 .pages{ margin:0 auto; width:750px; margin-top:15px; text-align:left; font-size:14px; color:#333}
 #contentK .block3 .pages strong{ font-size:22px; color:#000}
 
