@@ -8,25 +8,28 @@ a{color:blue;}
 /* /JQuery UI Style*/
 
 #contentA{min-height:618px;height:auto !important;height:718px;background:#fff;padding-top:30px;}
-#wVsp{min-width:465px;}
-#wVsp .row{text-align:left;}
-#wVsp .rowTitle,#wVsp .rowTxt{padding-top:4px;border-top:1px dashed #ccc;}
-#wVsp .ui-widget-header{background:#eee;border:none;}
-#wVsp .elmTpl label{width:42px;text-align:center;}
-#wVsp .elmTpl input{width:245px;border-top:2px solid #C4C4C5;border-left:2px solid #C4C4C5;}
-#wVsp .icons{width:94px;margin-left:5px;}
-#wVsp .icons a{display:inline-block;border:1px solid #eee;text-decoration:none;}
-#wVsp .icons span{display:block;font-weight:bold;font-size:0.9em;padding:0.2em 0.5em;}
-#wVsp .color span{border-bottom:2px solid red;padding-bottom:0;}
-#wVsp .icon{background:url("../images/pic01.jpg") no-repeat right center;}
-#wVsp .icon span{padding-right:0.6em;}
-#wVsp .icons1{width:34px;line-height:22px;}
-#wVsp_acts{margin-bottom:10px;}
-#wVsp_acts .hide{display:none;}
-#wVsp_tab2 textarea{width:100%;height:180px;}
-
-.jqmCT{display:none;}
-.jqmWindow .jqmCT{display:block;}
+#contentA h2{padding:10px 30px;font-size:1.2em;background:#eee;text-align:left;margin:5px 0;}
+.chipEdt{min-width:465px;}
+.chipEdt .row{text-align:left;}
+.chipEdt .rowTitle,.chipEdt .rowTxt{padding-top:4px;border-top:1px dashed #ccc;}
+.chipEdt .ui-widget-header{background:#eee;border:none;}
+.chipEdt .elmTpl label{width:42px;text-align:center;}
+.chipEdt .elmTpl input{width:245px;border-top:2px solid #C4C4C5;border-left:2px solid #C4C4C5;}
+.chipEdt .icons{position:relative;width:94px;margin-left:5px;}
+.chipEdt .icons a{display:inline-block;border:1px solid #eee;text-decoration:none;}
+.chipEdt .icons span{display:block;font-weight:bold;font-size:0.9em;padding:0.2em 0.5em;}
+.chipEdt .color span{border-bottom:2px solid red;padding-bottom:0;}
+.chipEdt .icon{background:url("../images/pic01.jpg") no-repeat right center;}
+.chipEdt .others{position:absolute;top:20px;right:-20px;width:50px;}
+.chipEdt .others a{width:100%;padding:1px 2px 2px 5px;font-size:0.9em;}
+.chipEdt .others a:hover{background:#1F84EC;color:#fff;}
+.chipEdt .icon span{padding-right:0.6em;}
+.chipEdt .icons1{width:34px;line-height:22px;}
+.chipEdt input.bb{font-weight:bold;}
+.chipEdt input.cc{color:red;}
+.chipEdt .acts{margin-bottom:10px;}
+.chipEdt .hide{display:none;}
+.chipEdt textarea{width:100%;height:180px;}
 
 /* ÀÈ∆¨ */
 .flag{width:480px;margin:0 auto;text-align:left;padding:10px;border:1px solid #eee;}
