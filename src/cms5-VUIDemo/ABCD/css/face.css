@@ -1,0 +1,33 @@
+#contentB .textFace{ width:725px;margin:15px auto; }
+#contentB .textFace h2{height:24px;padding:0 22px;;color:#333;line-height:24px}
+#contentB .textFace h2 span{font-size:14px}
+#contentB .textFace #facePB{width:720px;height:80px;margin:0 auto}
+#contentB .textFace .facePre{height:60px;width:725px;margin:6px auto 0}
+#contentB .textFace .facePre li{float:left;width:60px;margin:0 6px;display:inline; text-align:center;}
+#contentB .textFace .facePre li a{width:60px;display:block;height:70px;padding-top:15px;font:12px/22px "宋体";text-decoration:none}
+#contentB .textFace .facePre li a:hover{height:70px;background:url(../images/face/face_bg01.gif);font-weight:bold;color:#C00}
+#contentB .textFace .facePre .visited a,#contentB .textFace .facePre .visited a:hover{height:70px;background:url(../images/face/face_bg02.gif);font-weight:bold;color:#C00}
+#contentB .textFace .facePre li img{display:block;margin:0 auto 14px}
+#contentB .textFace #cj{position:absolute; color:#C00;font:600 16px/16px "Arial";position:absolute;width:28px;display:block;filter:alpha(opacity=100);z-index:1;opacity:1}
+
+
+
+
+#contentB .textFace .faceBack{height:90px;width:725px;margin:6px auto 0;}
+#contentB .textFace .faceBack li{width:70px; float:left; display:inline}
+#contentB .textFace .faceBack li span{display:block;color:#666}
+#contentB .textFace .faceBack .face{width:66px;margin:6px 0px 0 auto;font:12px/26px "宋体"}
+#contentB .textFace .faceBack .face img{float:left}
+#contentB .textFace .faceBack .now .face img{background:url(../images/face/face_bg05.gif) no-repeat right bottom;padding:0 6px 8px 0;}
+#contentB .textFace .faceBack .num{width:60px;height:16px;margin:0 auto 0 3px;line-height:14px;}
+#contentB .textFace .faceBack .now .num{font-weight:bold;color:#C00}
+#contentB .textFace .faceBack .plan{position:relative;height:43px;width:12px;margin:0 auto 0 8px;border:1px #FFB584 solid;background:url(../images/face/face_bg03.gif)}
+#contentB .textFace .faceBack .plan img{position:absolute;bottom:-1px;left:-1px;display:block;width:12px;border:1px #F60 solid}
+
+#contentB .textFace .faceRank{width:705px;margin:6px auto 0}
+#contentB .textFace .faceRank .faceList{width:700px;float:left;text-align:left}
+#contentB .textFace .faceRank .faceList h3{height:28px;font:12px/28px "宋体";color:#333}
+#contentB .textFace .faceRank .faceList h3 img{float:left;margin-right:4px;}
+#contentB .textFace .faceRank .faceList ul{width:710px;margin:6px auto 0;font:14px/26px "宋体"}
+#contentB .textFace .faceRank .faceList ul span{float:left;width:14px;height:10px;margin:4px 8px 0 0;border:1px #999 solid;background:#FFF;font:10px/10px "Arial";text-align:center;color:#999}
+#contentB .textFace .faceRank .faceMore{float:right;padding-left:22px;background:url(../images/face/face_bg04.gif) no-repeat left top;line-height:26px}	

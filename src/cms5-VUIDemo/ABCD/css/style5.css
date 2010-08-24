@@ -1,0 +1,35 @@
+/**列表公用样式**/
+#contentE .block01{ margin:0 auto; width:735px; height:22px;padding:12px 0 0 0px;color:#b20c0e; text-align:left; font-size:16px; font-weight:bold;}
+#contentE .block01 a,.block01 strong a{ color:#b20c0e}
+#contentE .block01 strong{ font-size:18px;}
+
+/**newslist begin**/
+#contentE .left{ width:790px;  text-align:left; }
+#contentE .left a:hover{ color:#CB0003}
+#contentE .wrap1{ background:#fff; padding-bottom:20px;}
+#contentE .wrap2{ width:790px; height:100px; background:#fff; margin:10px 0px 10px 0px;}
+#contentE .right{ width:150px;}
+#contentE .location{ height:22px;padding:10px 0 0 13px;color:#0D56AE; text-align:left;}
+#contentE .location a{ color:#004277}
+/**列表标准样式**/
+#contentE .pt{ margin:0 auto; width:735px; margin-top:13px; background:url(../images/dot_d5.jpg) repeat-x bottom; padding-top:2px; padding-bottom:18px}
+#contentE .pt div{ float:left; width:152px height:112px; padding-right:10px; position:relative;}
+#contentE .pt div .play{ position:absolute; bottom:3px; left:5px; border:0}
+#contentE .pt div img{width:150px height:110px; border:1px solid #dcdcdc}
+#contentE h4{ height:36px; line-height:36px; color:#999}
+#contentE h4 a{ font-size:20px; font-weight:bold; color:#024174}
+#contentE .pt p{ font-size:14px; color:#666; line-height:24px; text-indent:2em;}
+#contentE p a{color:#004277}
+/**翻页**/
+#contentE .turnPage{ margin:0 auto; width:735px; text-align:right; font-size:14px; line-height:20px; margin-top:10px; color:#333}
+#contentE .turnPage a{color:#004277}
+#contentE .turnPage span.cl{ color:#d6d6d6}
+/**newslist over**/
+
+
+
+
+
+
+
+

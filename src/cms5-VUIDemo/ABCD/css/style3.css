@@ -1,0 +1,87 @@
+/**图片标记定位**/
+.picMark{ width:44px; height:auto; float:right; position:absolute; right:0px; }
+.picMark ul li{ position:relative; width:44px; height:16px; background:url(../images/news-pics/redtag.gif);}
+
+/***图片新闻CSS begin***/
+#contentC{ margin:0 auto; padding-bottom:20px; background:#fff}
+#contentC .location{ height:22px;padding:10px 0 0 13px;color:#0D56AE; text-align:left;}
+#contentC  a{ color:#333}
+#contentC  a:hover{ color:#CB0003}
+#contentC h1{ margin:0 auto; width:890px; text-align:left; font-size:24px; font-weight:bold;  line-height:24px; margin-top:22px;color:#004277}
+#contentC h1 span{ font-size:14px; font-weight:normal; padding-left:15px; color:#666}
+#contentC p.intro{ margin:0 auto; width:890px; text-align:left; font-size:14px; line-height:24px; margin-top:20px;}
+#contentC p{margin-top:10px; font-size:14px; color:#333}
+#contentC p img{ margin-top:20px;}
+#contentC .ad1{ margin:0 auto; margin-top:15px; width:885px; height:auto; border-top:1px dotted #ccc; border-bottom:1px dotted #ccc }
+#contentC .ad1 img{ padding:10px 0 10px 0;}
+
+/****/
+#picComment{  text-align:left; background:#fff}
+#picComment .comMsg{ margin:0 auto; width:885px; margin-bottom:10px; _margin-bottom:1px;  overflow:hidden;}
+#picComment .comMsg .left{ float:left; width:42px; height:40px; padding-left:25px }
+#picComment .comMsg .left img{ width:40px; height:40px;  border:1px solid #fff}
+#picComment .comMsg .right{ float:right; width:815px; height:auto; overflow:hidden; }
+#picComment .comMsg .right span.rtop{ display:block; width:815px; height:10px; background:url(../images/news-pics/sprite.png) 0px -305px;}
+#picComment .comMsg .right span.rc{display:block; width:790px; padding-left:30px;  height:auto; background:url(../images/news-pics/picbg.gif) repeat-y;}
+#picComment .comMsg .right span.rc h2{display:block; padding-right:25px;   height:20px; color:#999}
+#picComment .comMsg .right span.rc p{ text-indent:0; font-size:14px; color:#333; line-height:24px; padding-right:20px; padding-bottom:5px}
+#picComment .comMsg .right span.rbottom{display:block; width:815px; height:4px; background:url(../images/news-pics/sprite.png) 0px -321px no-repeat;}
+
+/****/
+#picComment h4{margin:0 auto; width:885px; height:20px; line-height:20px;  margin-top:10px; margin-bottom:10px; _margin-top:0px;}
+#picComment h4 .l{color:#999; font-weight:bold;}
+#picComment h4 .r{color:#059BE6; padding-left:20px; background:url(../images/news-pics/sprite.png) 0px -258px;}
+#picComment h4 .r strong{ font-size:15px;}
+
+/****/
+#contentC .newsInfo{ margin:0 auto; width:885px; height:36px; line-height:36px; color:#999; background:url(../images/news-pics/sprite.png) 0px -220px;}
+#contentC .newsInfo .r span{  float:left; padding-left:10px; padding-right:5px;}
+#contentC .newsInfo span.Ico{padding-left:3px; width:18px;color:#039BE4; vertical-align:middle;  background:url(../images/news-pics/sprite.png) -1px -261px;}
+#contentC .newsInfo span.s{ color:#039BE4; vertical-align:middle;}
+#contentC .newsInfo span strong{ font-size:15px;  line-height:30px;}
+#contentC .newsInfo span a{ color:#039BE4;}
+#contentC .newsInfo a.cutIco,#contentC .newsInfo a.addIco,#contentC .newsInfo a.renren,#contentC .newsInfo a.qzone,#contentC .newsInfo a.kaixin001,#contentC .newsInfo a.tsina,#contentC .newsInfo a.t139,#contentC .newsInfo a.tsohu{ display:block; float:left; width:16px; height:16px; margin-top:10px; color:#039BE4; background:url(../images/news-pics/sprite.png); margin-left:5px;}
+#contentC .newsInfo a.cutIco{ background-position:-175px -25px;}
+#contentC .newsInfo a.cutIco:hover{ background-position:-175px -41px;}
+#contentC .newsInfo a.addIco{ background-position:-191px -25px;}
+#contentC .newsInfo a.addIco:hover{ background-position:-191px -41px;}
+#contentC .newsInfo a.renren{ background-position:-216px -27px;}
+#contentC .newsInfo a.qzone{ background-position:-237px -27px;}
+#contentC .newsInfo a.kaixin001{ background-position:-258px -27px;}
+#contentC .newsInfo a.tsina{ background-position:-278px -27px;}
+#contentC .newsInfo a.t139{ background-position:-298px -27px;}
+#contentC .newsInfo a.tsohu{ background-position:-318px -27px;}
+#contentC .turnPage{ margin:0 auto; width:888px; height:32px; font-size:14px; line-height:32px; text-align:center; margin-top:10px}
+#contentC .turnPage a{ color:#004276}
+#contentC .turnPage span.cl{ color:#d6d6d6}
+/****/
+#contentC .newsInfo .l span.cl{ color:#d6d6d6;}
+#contentC .newsInfo .r span.cl{ color:#d6d6d6; padding:0; margin:0}
+
+/****/
+#picComment .newMsg{ margin:0 auto; width:885px;  height:auto;  margin-top:13px; overflow:hidden;}
+#picComment a{ color:#000}
+#picComment a:hover{ color:#CB0003}
+#picComment .newMsg .left{ float:left; width:42px; height:40px; }
+#picComment .newMsg .left img{ width:40px; height:40px; margin-left:8px; border:1px solid #fff}
+#picComment .newMsg .right{ float:right; width:815px; height:auto; }
+#picComment .newMsg .right span.rtop{ display:block; width:815px; height:14px; background:url(../images/news-pics/sprite.png) -2px -125px;}
+#picComment .newMsg .right span.rc{display:block; width:785px; padding-left:30px;  height:auto; background:url(../images/news-pics/pic13.gif) repeat-y;}
+#picComment .newMsg .right span.rc h2{display:block; height:24px; text-align:left; margin-bottom:8px; }
+#picComment .newIpt,#picComment .newIpt1{ width:77px; height:17px; padding-top:3px; padding-left:19px; border:1px solid #C4C4C4;  background:url(../images/news-pics/sprite.png) -3px -156px;}
+#picComment .newIpt{ background:url(../images/news-pics/sprite.png) -3px -173px;}
+#picComment .newIpt1{ background:url(../images/news-pics/sprite.png) -3px -156px;}
+#picComment .newBtn{ width:53px; height:21px; line-height:22px; text-align:center; border:0px; color:#fff; background:url(../images/news-pics/sprite.png) -175px -64px; cursor:pointer }
+#picComment .newBtnM{ background:url(../images/news-pics/sprite.png) -175px -86px; }
+#picComment .newcBox{ border:0;}
+#picComment .newArea{float:left; width:695px; height:71px; padding:12px 10px 12px 10px; border:0px;background:url(../images/news-pics/sprite.png) 0px -357px; overflow:hidden;}
+#picComment .newsmtBtn{ float:left; width:43px; height:95px; background:url(../images/news-pics/sprite.png) -30px -22px; border:0; cursor:pointer}
+#picComment .newsmtMBtn{ background:url(../images/news-pics/sprite.png) -77px -22px; }
+#picComment .newMsg .right span.rc p{ text-indent:0; font-size:14px; line-height:24px; padding-right:20px; padding-bottom:20px;}
+#picComment .newMsg .right span.rbottom{display:block; width:815px; height:6px; background:url(../images/news-pics/sprite.png) -2px -147px ; overflow:hidden;}
+#contentC .newsInfo .l span.a a{color:#039BE4;}
+#contentC .newsInfo .l span.a a:hover{ color:#CB0003}
+#picComment  h4 .r a{color:#039BE4;}
+#picComment  h4 .r a:hover{ color:#CB0003}
+
+/***图片新闻CSS over***/

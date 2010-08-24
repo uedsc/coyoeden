@@ -1,0 +1,42 @@
+/**piclist begin**/
+#contentH .left{ width:790px;  text-align:left; }
+#contentH .block01{ margin:0 auto; width:735px; height:22px;padding:12px 0 0 0px;color:#019BE5; text-align:left; font-size:16px; font-weight:bold;}
+#contentH .block01 a,.block01 strong a{ color:#019BE5}
+#contentH .block01 a.on{color:#cb0003; text-decoration:underline;}
+#contentH .block01 strong{ font-size:18px;}
+#contentH .block01 span.cl{ color:#c0c0c0; font-weight:normal;}
+#contentH .left a:hover{ color:#CB0003}
+#contentH .wrap1{ background:#fff; padding-bottom:20px;}
+#contentH .wrap2{ width:790px; height:100px; background:#fff; margin:10px 0px 10px 0px;}
+#contentH .right{ width:150px;}
+#contentH .location{ height:22px;padding:10px 0 0 13px;color:#0D56AE; text-align:left;}
+#contentH .location a{ color:#004277}
+/**列表标准样式**/
+#contentH .pt{ margin:0 auto; width:735px; margin-top:13px; background:url(../images/dot_d5.jpg) repeat-x bottom; padding-top:2px; padding-bottom:18px}
+#contentH .nmb{ font-size:22px; font-weight:bold; color:#B30D0D; padding-right:18px}
+#contentH .pt div{ float:left; width:161px height:161px; padding-right:10px; text-align:center;display:inline;}
+#contentH .pt div a{display:block;border:1px solid #dcdcdc; width:161px; height:161px;border:1px #e6e6e6 solid;}
+#contentH .pt .middle{display:-moz-inline-box!important;display:inline-block;vertical-align:middle;height:100%;}
+#contentH .pt div img{vertical-align:middle;margin:0 auto;display:inline;}
+#contentH h4{ height:36px; font-size:12px; line-height:36px; color:#999}
+#contentH h4 a{ font-size:20px; font-weight:bold; color:#024174}
+#contentH .pt p{ text-indent:2em; font-size:14px; color:#666; line-height:24px;}
+#contentH p a{color:#004277}
+/**翻页**/
+#contentH .turnPage{ margin:0 auto; width:735px; text-align:right; font-size:14px; line-height:20px; margin-top:10px; color:#333}
+#contentH .turnPage a{color:#004277}
+#contentH .turnPage span.cl{ color:#d6d6d6}
+/**piclist over**/
+#contentH .block01 a.hotnews,#contentH .block01 a.hotpics,#contentH .block01 a.hotvideo{ display:block; float:left; width:70px; height:21px;}
+
+#contentH .block01 a.hotnews{ background:url(../images/hotnews.gif) top;}
+#contentH .block01 a.hotnews:hover,#contentH .block01 .hotnews a.on{ background:url(../images/hotnews.gif) bottom;}
+
+#contentH .block01 a.hotpics{ background:url(../images/hotpics.gif) top;}
+#contentH .block01 a.hotpics:hover{ background:url(../images/hotpics.gif) bottom;}
+
+#contentH .block01 a.hotvideo{ background:url(../images/hotvideo.gif) top;}
+#contentH .block01 a.hotvideo:hover{ background:url(../images/hotvideo.gif) bottom;}
+#contentH .block01 span.crl{display:block; float:left; width:40px; color:#d6d6d6; text-align:center; height:21px; font-size:18px; font-weight:normal;}
+
+#contentH .block01 a.on{ background:url(../images/hotnews.gif) bottom;}

@@ -1,0 +1,31 @@
+#contentJ .block01{ margin:0 auto; width:710px; height:22px;padding:12px 0 0 0px;color:#b20c0e; text-align:left; font-size:16px; font-weight:bold;}
+#contentJ .block01 a,.block01 strong a{ color:#b20c0e}
+#contentJ .block01 strong{ font-size:18px;}
+
+/**piclist begin**/
+#contentJ .left{ width:790px;  text-align:left; }
+
+#contentJ .left a:hover{ color:#CB0003}
+#contentJ .wrap1{ background:#fff; padding-bottom:20px;}
+#contentJ .wrap2{ width:790px; height:100px; background:#fff; margin:10px 0px 10px 0px;}
+#contentJ .right{ width:150px;}
+#contentJ .location{ height:22px;padding:10px 0 0 13px;color:#0D56AE; text-align:left;}
+#contentJ .location a{ color:#004277}
+
+
+/**翻页**/
+#contentJ .turnPage{ margin:0 auto; width:710px; padding-bottom:8px; text-align:right; font-size:14px; line-height:20px; margin-top:10px; color:#333; background:url(../images/dot_d5.jpg) repeat-x bottom;}
+#contentJ .turnPage a{color:#004277}
+#contentJ .turnPage span.cl{ color:#d6d6d6}
+
+/**标准样式**/
+#contentJ .pp{ width:710px; margin-top:15px;}
+
+#contentJ .pp li{float:left; width:162px;height:auto; text-align:center;display:inline;  color:#871314; padding-right:20px; background:url(../images/dot_d5.jpg) repeat-x bottom; padding-bottom:15px; margin-bottom:20px}
+#contentJ .pp li a{display:block;height:162px;border:1px #e6e6e6 solid; color:#000;}
+#contentJ .pp li .middle {display:-moz-inline-box!important;display:inline-block;vertical-align:middle;height:100%;}
+#contentJ .pp li img {vertical-align:middle;margin:0 auto;display:inline;}
+#contentJ .pp li span a{display:inline;border:0;}
+#contentJ .pp li.none{ padding-right:0px}
+#contentJ .pp span{ text-align:left; line-height:20px; margin-top:5px;}
+#contentJ .bgnone{  background:none}

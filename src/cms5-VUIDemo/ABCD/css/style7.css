@@ -1,0 +1,40 @@
+/**piclist begin**/
+#contentG .left{ width:790px;  text-align:left; }
+#contentG .block01{ margin:0 auto; width:735px; height:22px;padding:12px 0 0 0px;color:#019BE5; text-align:left; font-size:16px; font-weight:bold;}
+#contentG .block01 a,.block01 strong a{ color:#019BE5}
+#contentG .block01 a.on{color:#cb0003; text-decoration:underline;}
+#contentG .block01 strong{ font-size:18px;}
+#contentG .block01 span.cl{ color:#c0c0c0; font-weight:normal;}
+#contentG .left a:hover{ color:#CB0003}
+#contentG .wrap1{ background:#fff; padding-bottom:20px;}
+#contentG .wrap2{ width:790px; height:100px; background:#fff; margin:10px 0px 10px 0px;}
+#contentG .right{ width:150px;}
+#contentG .location{ height:22px;padding:10px 0 0 13px;color:#0D56AE; text-align:left;}
+#contentG .location a{ color:#004277}
+/**列表标准样式**/
+#contentG .nmb{ font-size:22px; font-weight:bold; color:#B30D0D; padding-right:18px}
+#contentG .pt{ margin:0 auto; width:735px; margin-top:13px; background:url(../images/dot_d5.jpg) repeat-x bottom; padding-top:2px; padding-bottom:18px}
+#contentG .pt div{ float:left; width:152px height:112px; padding-right:10px; position:relative;}
+#contentG .pt div img{width:150px height:110px; border:1px solid #dcdcdc}
+#contentG .pt div .play{ position:absolute; bottom:3px; left:5px; clear:both;}
+#contentG .pt div .play img{border:none}
+#contentG h4{ height:36px; line-height:36px; color:#999}
+#contentG h4 a{ font-size:20px; font-weight:bold; color:#024174}
+#contentG .pt p{ font-size:14px; color:#666; line-height:24px; text-indent:2em;}
+#contentG p a{color:#004277}
+/**翻页**/
+#contentG .turnPage{ margin:0 auto; width:735px; text-align:right; font-size:14px; line-height:20px; margin-top:10px; color:#333}
+#contentG .turnPage a{color:#004277}
+#contentG .turnPage span.cl{ color:#d6d6d6}
+/**piclist over**/
+#contentG .block01 a.hotnews,#contentG .block01 a.hotpics,#contentG .block01 a.hotvideo{ display:block; float:left; width:70px; height:21px;}
+
+#contentG .block01 a.hotnews{ background:url(../images/hotnews.gif) top;}
+#contentG .block01 a.hotnews:hover{ background:url(../images/hotnews.gif) bottom;}
+
+#contentG .block01 a.hotpics{ background:url(../images/hotpics.gif) top;}
+#contentG .block01 a.hotpics:hover{ background:url(../images/hotpics.gif) bottom;}
+
+#contentG .block01 a.hotvideo{ background:url(../images/hotvideo.gif) top;}
+#contentG .block01 a.on{ background:url(../images/hotvideo.gif) bottom;}
+#contentG .block01 span.crl{display:block; float:left; width:40px; color:#d6d6d6; text-align:center; height:21px; font-size:18px; font-weight:normal;}

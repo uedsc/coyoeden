@@ -1,0 +1,149 @@
+
+/***图片新闻形式 2 CSS begin***/
+#contentK{ margin:0 auto; padding-bottom:20px; background:#fff}
+#contentK .location{ height:22px;padding:10px 0 0 13px;color:#0D56AE; text-align:left;}
+#contentK  a{ color:#333}
+#contentK  a:hover{ color:#CB0003}
+#contentK h1{ margin:0 auto; width:890px; text-align:left; font-size:24px; font-weight:bold;  line-height:24px; margin-top:22px;color:#004277}
+#contentK h1 span{ font-size:14px; font-weight:normal; padding-left:15px; color:#666}
+#contentK p.intro{ margin:0 auto; width:890px; text-indent:2em; text-align:left; font-size:14px; line-height:24px; margin-top:20px;}
+#contentK p{margin-top:10px; font-size:14px; color:#333}
+#contentK p img{ margin-top:20px;}
+#contentK .ad1{ margin:0 auto; margin-top:15px; width:885px; height:auto; border-top:1px dotted #ccc; border-bottom:1px dotted #ccc }
+#contentK .ad1 img{ padding:10px 0 10px 0;}
+
+/****/
+#picComment{  text-align:left; background:#fff}
+#picComment .comMsg{ margin:0 auto; width:885px; margin-bottom:10px; _margin-bottom:1px;  overflow:hidden;}
+#picComment .comMsg .left{ float:left; width:42px; height:40px; padding-left:25px }
+#picComment .comMsg .left img{ width:40px; height:40px;  border:1px solid #fff}
+#picComment .comMsg .right{ float:right; width:815px; height:auto; overflow:hidden; }
+#picComment .comMsg .right span.rtop{ display:block; width:815px; height:10px; background:url(../images/news-pics/sprite.png) 0px -305px;}
+#picComment .comMsg .right span.rc{display:block; width:790px; padding-left:30px;  height:auto; background:url(../images/news-pics/picbg.gif) repeat-y;}
+#picComment .comMsg .right span.rc h2{display:block; padding-right:25px;   height:20px; color:#999}
+#picComment .comMsg .right span.rc p{ text-indent:0; font-size:14px; color:#333; line-height:24px; padding-right:20px; padding-bottom:5px}
+#picComment .comMsg .right span.rbottom{display:block; width:815px; height:4px; background:url(../images/news-pics/sprite.png) 0px -321px no-repeat;}
+
+/****/
+#picComment h4{margin:0 auto; width:885px; height:20px; line-height:20px;  margin-top:10px; margin-bottom:10px; _margin-top:0px;}
+#picComment h4 .l{color:#999; font-weight:bold;}
+#picComment h4 .r{color:#059BE6; padding-left:20px; background:url(../images/news-pics/sprite.png) 0px -258px;}
+#picComment h4 .r strong{ font-size:15px;}
+
+/****/
+#contentK .newsInfo{ margin:0 auto; width:885px; height:36px; line-height:36px; color:#999; background:url(../images/news-pics/sprite.png) 0px -220px;}
+#contentK .newsInfo .r span{  float:left; padding-left:10px; padding-right:5px;}
+#contentK .newsInfo span.Ico{padding-left:3px; width:18px;color:#039BE4; vertical-align:middle;  background:url(../images/news-pics/sprite.png) -1px -261px;}
+#contentK .newsInfo span.s{ color:#039BE4; vertical-align:middle;}
+#contentK .newsInfo span strong{ font-size:15px;  line-height:30px;}
+#contentK .newsInfo span a{ color:#039BE4;}
+#contentK .newsInfo a.cutIco,#contentK .newsInfo a.addIco,#contentK .newsInfo a.renren,#contentK .newsInfo a.qzone,#contentK .newsInfo a.kaixin001,#contentK .newsInfo a.tsina,#contentK .newsInfo a.t139,#contentK .newsInfo a.tsohu{ display:block; float:left; width:16px; height:16px; margin-top:10px; color:#039BE4; background:url(../images/news-pics/sprite.png); margin-left:5px;}
+#contentK .newsInfo a.cutIco{ background-position:-175px -25px;}
+#contentK .newsInfo a.cutIco:hover{ background-position:-175px -41px;}
+#contentK .newsInfo a.addIco{ background-position:-191px -25px;}
+#contentK .newsInfo a.addIco:hover{ background-position:-191px -41px;}
+#contentK .newsInfo a.renren{ background-position:-216px -27px;}
+#contentK .newsInfo a.qzone{ background-position:-237px -27px;}
+#contentK .newsInfo a.kaixin001{ background-position:-258px -27px;}
+#contentK .newsInfo a.tsina{ background-position:-278px -27px;}
+#contentK .newsInfo a.t139{ background-position:-298px -27px;}
+#contentK .newsInfo a.tsohu{ background-position:-318px -27px;}
+
+/****/
+#contentK .newsInfo .l span.cl{ color:#d6d6d6;}
+#contentK .newsInfo .r span.cl{ color:#d6d6d6; padding:0; margin:0}
+
+/****/
+#picComment .newMsg{ margin:0 auto; width:885px;  height:auto;  margin-top:13px; overflow:hidden;}
+#picComment a{ color:#000}
+#picComment a:hover{ color:#CB0003}
+#picComment .newMsg .left{ float:left; width:42px; height:40px; }
+#picComment .newMsg .left img{ width:40px; height:40px; margin-left:8px; border:1px solid #fff}
+#picComment .newMsg .right{ float:right; width:815px; height:auto; }
+#picComment .newMsg .right span.rtop{ display:block; width:815px; height:14px; background:url(../images/news-pics/sprite.png) -2px -125px;}
+#picComment .newMsg .right span.rc{display:block; width:785px; padding-left:30px;  height:auto; background:url(../images/news-pics/pic13.gif) repeat-y;}
+#picComment .newMsg .right span.rc h2{display:block; height:24px; text-align:left; margin-bottom:8px; }
+#picComment .newIpt,#picComment .newIpt1{ width:77px; height:17px; padding-top:3px; padding-left:19px; border:1px solid #C4C4C4;  background:url(../images/news-pics/sprite.png) -3px -156px;}
+#picComment .newIpt{ background:url(../images/news-pics/sprite.png) -3px -173px;}
+#picComment .newIpt1{ background:url(../images/news-pics/sprite.png) -3px -156px;}
+#picComment .newBtn{ width:53px; height:21px; line-height:22px; text-align:center; border:0px; color:#fff; background:url(../images/news-pics/sprite.png) -175px -64px; cursor:pointer }
+#picComment .newBtnM{ background:url(../images/news-pics/sprite.png) -175px -86px; }
+#picComment .newcBox{ border:0;}
+#picComment .newArea{float:left; width:695px; height:71px; padding:12px 10px 12px 10px; border:0px;background:url(../images/news-pics/sprite.png) 0px -357px; overflow:hidden;}
+#picComment .newsmtBtn{ float:left; width:43px; height:95px; background:url(../images/news-pics/sprite.png) -30px -22px; border:0; cursor:pointer}
+#picComment .newsmtMBtn{ background:url(../images/news-pics/sprite.png) -77px -22px; }
+#picComment .newMsg .right span.rc p{ text-indent:0; font-size:14px; line-height:24px; padding-right:20px; padding-bottom:20px;}
+#picComment .newMsg .right span.rbottom{display:block; width:815px; height:6px; background:url(../images/news-pics/sprite.png) -2px -147px ; overflow:hidden;}
+#contentK .newsInfo .l span.a a{color:#039BE4;}
+#contentK .newsInfo .l span.a a:hover{ color:#CB0003}
+#picComment  h4 .r a{color:#039BE4;}
+#picComment  h4 .r a:hover{ color:#CB0003}
+
+/***图片新闻CSS over***/
+#contentK .block2{ margin:0 auto; width:870px; margin-top:20px;}
+#contentK .block2 span.crl{display:block; float:left; width:15px; color:#d6d6d6; text-align:left; margin-right:5px; height:23px; font-size:22px}
+#contentK .block2 a.full{ display:block; float:left; width:80px; margin-right:10px; height:23px; background:url(../images/full.gif) top no-repeat;}
+#contentK .block2 a.full:hover{background:url(../images/full.gif) bottom no-repeat;}
+#contentK .block2 a.playL{ display:block; float:left; width:30px; margin-right:10px; height:23px; background:url(../images/play_l.gif) top no-repeat;}
+#contentK .block2 a.playL:hover{background:url(../images/play_l.gif) bottom no-repeat;}
+#contentK .block2 a.playR{ display:block; float:left; width:30px; margin-right:10px; height:23px; background:url(../images/play_r.gif) top no-repeat;}
+#contentK .block2 a.playR:hover{background:url(../images/play_r.gif) bottom no-repeat;}
+#contentK .block2 a.playList{display:block; float:left; width:31px; height:23px; background:url(../images/playList.gif) top no-repeat;}
+#contentK .block2 a.playList:hover{ background:url(../images/playList.gif) bottom no-repeat;}
+#contentK .block2 a.playNow{display:block; float:left; width:30px;margin-right:10px; height:23px; background:url(../images/playNow.gif) top no-repeat;}
+#contentK .block2 a.playNow:hover{ background:url(../images/playNow.gif) bottom no-repeat;}
+
+
+#contentK .block2 a.stop{display:block; float:left; width:30px;margin-right:10px; height:23px; background:url(../images/stop.gif) top no-repeat;}
+#contentK .block2 a.stop:hover{ background:url(../images/stop.gif) bottom no-repeat;}
+
+
+#contentK .block3{ margin:0 auto; margin-top:10px; width:870px; height:750px; background:#F6F6F4; border:1px solid #EAEAEA}
+#contentK .block3 p{  text-align:center;}
+#contentK .block3 .pages{ margin:0 auto; width:750px; margin-top:15px; text-align:left; font-size:14px; color:#333}
+#contentK .block3 .pages strong{ font-size:22px; color:#000}
+
+#picItems{ margin:0 auto; width:855px; height:155px; margin-top:35px;}
+
+
+#picItems .ps{ float:left; width:100px; height:115px;}
+#picItems .ps span{ display:block; width:100px; height:74px; margin-top:20px; background:url(../images/tubg.gif) no-repeat;}
+#picItems .ps span img{ padding-top:9px; padding-left:3px}
+#picItems .ps p{ font-size:12px}
+#picItems .pc{float:left; width:650px; height:115px; position:relative; margin-right:5px; }
+#picItems .pc ul{ margin:0 auto; width:584px;height:95px;  border:1px solid #eaeaea; background:#fff; padding:10px 0px 10px 19px; overflow:hidden;}
+#picItems .pc ul li{ float:left; margin-right:25px}
+
+#Ptn_l,#Ptn_r{ position:absolute; width:31px; height:30px;}
+#Ptn_l{ top:40px;left:7px}
+#Ptn_l a{ display:block; width:31px; height:30px; background:url(../images/pbtnL.gif) top}
+#Ptn_l a:hover{ background:url(../images/pbtnL.gif) bottom}
+#Ptn_r{ top:40px;right:5px}
+#Ptn_r a{ display:block; width:31px; height:30px; background:url(../images/pbtnR.gif) top}
+#Ptn_r a:hover{ background:url(../images/pbtnR.gif) bottom}
+
+#picLists{ margin:0 auto; width:870px; margin-top:20px; height:auto; background:#F6F6F4; border:1px solid #eaeaea}
+
+
+#contentK .pp{ width:870px; margin-top:15px;}
+
+#contentK .pp li{float:left; width:162px;height:auto; text-align:center;display:inline;  color:#871314; padding-left:10px; /* background:url(../images/dot_d5.jpg) repeat-x bottom;*/ padding-bottom:15px; margin-bottom:20px}
+#contentK .pp li a{display:block;height:162px;border:1px #e6e6e6 solid; color:#000;}
+#contentK .pp li .middle {display:-moz-inline-box!important;display:inline-block;vertical-align:middle;height:100%;}
+#contentK .pp li img {vertical-align:middle;margin:0 auto;display:inline;}
+#contentK .pp li span a{display:inline;border:0;}
+#contentK .pp li.none{ padding-right:0px}
+#contentK .pp span{ text-align:left; line-height:20px; margin-top:5px;}
+#contentK .bgnone{  background:none}
+
+
+
+
+
+
+
+
+
+
+
+

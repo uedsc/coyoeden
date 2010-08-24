@@ -1,0 +1,81 @@
+/***评论页面CSS begin***/
+
+#contentD .left{ width:790px; text-align:left; padding-bottom:20px; background:#fff}
+#contentD .left a{ color:#333}
+#contentD .left a:hover,#contentD .left .turnPage a:hover{ color:#CB0003}
+#contentD .right{ width:150px;}
+#contentD .location{height:22px;padding:10px 0 0 13px;color:#0D56AE; text-align:left;}
+#contentD .location a{color:#004277}
+#contentD .left .layout{ width:725px; padding:0 25px 0 40px; }
+#contentD .left .layout h1{ text-align:left; font-size:24px; line-height:40px; margin:10px auto 15px 0; font-weight:bold;}
+#contentD .left h1,#contentD .left .turnPage a{ color:#004277}
+#contentD .left p{ line-height:24px; text-indent:2em; font-size:14px;}
+#contentD .left p a{ font-size:12px; color:#004277}
+#contentD .left .function{  height:35px; line-height:35px; background:url(../images/news-pics/sprite.png) 0px -220px; margin-top:15px;}
+#contentD .left .function span{ float:left;}
+#contentD .left .function span.commentLink{ width:12px; height:10px;  margin-top:12px; background:url(../images/news-pics/sprite.png) -15px -34px;}
+#contentD .left .function span strong{ float:left; width:32px; text-align:left; font-size:14px; color:#333}
+#contentD .left .function span.share{ width:120px; height:18px; margin-top:8px;  background:url(../images/news-pics/sprite.png) -215px -26px; overflow:hidden;}
+#contentD .left .function span.share a{ display:block; float:left; width:20px; height:20px;}
+#contentD .left .turnPage{ width:725px; text-align:right; height:22px; line-height:22px; margin-top:18px; _margin-top:2px; color:#333}
+#contentD .left .turnPage span.cl{ color:#d6d6d6}
+#contentD .newsInfo .r span.cl{ color:#d6d6d6; padding-left:0px; padding-right:0; margin-left:0px}
+
+/****/
+#contentD .left .comMsg{ margin:0 auto; width:725px;  height:auto;  margin-top:13px; overflow:hidden;}
+#contentD .left .comMsg .left{ float:left; width:42px; height:40px; }
+#contentD .left .comMsg .left img{ width:40px; height:40px; margin-left:8px; border:1px solid #fff}
+#contentD .left .comMsg .right{ float:right; width:675px; height:auto; }
+#contentD .left .comMsg .right span.rtop{ display:block; width:675px; height:10px; background:url(../images/news-pics/sprite.png) -141px -189px;}
+#contentD .left .comMsg .right span.rc{display:block; width:645px; padding-left:30px;  height:auto; background:url(../images/news-pics/combg.jpg) repeat-y;}
+#contentD .left .comMsg .right span.rc h2{display:block; padding-right:15px;   height:20px; color:#999}
+#contentD .left .comMsg .right span.rc p{ text-indent:0; font-size:14px; line-height:24px; padding-right:20px; color:#333}
+#contentD .left .comMsg .right span.rbottom{display:block; width:675px; height:8px; background:url(../images/news-pics/sprite.png) -141px -199px;}
+
+/****/
+#contentD .left .newMsg{ margin:0 auto; width:725px;  height:auto;  margin-top:13px; overflow:hidden;}
+#contentD .left .newMsg .left{ float:left; width:42px; height:40px; }
+#contentD .left .newMsg .left img{ width:40px; height:40px; margin-left:8px; border:1px solid #fff}
+#contentD .left .newMsg .right{ float:right; width:675px; height:auto; }
+#contentD .left .newMsg .right span.rtop{ display:block; width:675px; height:14px; background:url(../images/news-pics/sprite.png) -141px -155px;}
+#contentD .left .newMsg .right span.rc{display:block; width:645px; padding-left:30px;  height:auto; background:url(../images/news-pics/newbg.jpg) repeat-y;}
+#contentD .left .newMsg .right span.rc h2{display:block; height:24px; text-align:left; margin-bottom:8px; }
+#contentD .left .newIpt,#contentD .left .newIpt1{ width:77px; height:17px; padding-top:3px; padding-left:19px; border:1px solid #C4C4C4;  background:url(../images/news-pics/sprite.png) -3px -156px;}
+#contentD .left .newIpt{ background:url(../images/news-pics/sprite.png) -3px -173px;}
+#contentD .left .newIpt1{ background:url(../images/news-pics/sprite.png) -3px -156px;}
+#contentD .left .newBtn{ width:53px; height:21px; line-height:22px; text-align:center; border:0px; color:#fff; background:url(../images/news-pics/sprite.png) -175px -64px; cursor:pointer }
+#contentD .left .newBtnM{ background:url(../images/news-pics/sprite.png) -175px -86px; }
+#contentD .left .newcBox{ border:0;}
+#contentD .left .newArea{float:left; width:555px; height:71px; padding:12px 10px 12px 10px; border:0px;background:url(../images/news-pics/textarea.jpg); overflow:hidden;}
+#contentD .left .newsmtBtn{ float:left; width:43px; height:95px; background:url(../images/news-pics/sprite.png) -30px -22px; border:0; cursor:pointer}
+#contentD .left .newsmtMBtn{ background:url(../images/news-pics/sprite.png) -77px -22px; }
+#contentD .left .newMsg .right span.rc p{ text-indent:0; font-size:14px; line-height:24px; padding-right:20px; padding-bottom:20px;}
+#contentD .left .newMsg .right span.rbottom{display:block; width:675px; height:8px; background:url(../images/news-pics/sprite.png) -141px -175px ;}
+#contentD .left .tip{ width:715px;}
+#contentD .left .tip .left{ float:left; width:45px}
+#contentD .left .tip .right{ float:left; width:500px; font-size:12px;}
+#contentD .left .tip .right p{font-size:12px;}
+#contentD .left .comBtn{  display:block; width:63px; height:21px; margin-top:7px; border:0px; cursor:pointer; background:url(../images/news-pics/sprite.png) -255px -59px;}
+#contentD .left .comBtnM{ background:url(../images/news-pics/sprite.png) -255px -83px;}
+#contentD .newsInfo a.ping,#contentD .newsInfo a.ping:hover{ display:block; width:63px; height:21px; margin-top:7px; border:0px; cursor:pointer;}
+#contentD .newsInfo a.ping{ background:url(../images/news-pics/ping.jpg) top;}
+#contentD .newsInfo a.ping:hover{ background:url(../images/news-pics/ping.jpg) bottom;}
+#contentD .newsInfo{ margin:0 auto; width:725px; height:36px; line-height:36px; color:#999; background:url(../images/news-pics/sprite.png) 0px -220px;}
+#contentD .newsInfo .r span{  float:left; padding-left:10px; padding-right:5px; color:#666}
+#contentD .newsInfo span.a{ width:180px; height:20px; padding-left:20px; color:#039BE4; vertical-align:middle;  background:url(../images/news-pics/sprite.png) 0px -261px;}
+#contentD .newsInfo span strong{ font-size:15px;  line-height:30px; background:url(../images/news-pics/sprite.png) -358px -27px #fff; padding-left:20px; color:#333}
+#contentD .newsInfo a.cutIco,#contentD .newsInfo a.addIco,#contentD .newsInfo a.renren,#contentD .newsInfo a.qzone,#contentD .newsInfo a.kaixin001,#contentD .newsInfo a.tsina,#contentD .newsInfo a.t139,#contentD .newsInfo a.tsohu{ display:block; float:left; width:16px; height:16px; margin-top:10px; color:#039BE4; background:url(../images/news-pics/sprite.png); margin-left:5px;}
+#contentD .newsInfo a.cutIco{ background-position:-175px -25px;}
+#contentD .newsInfo a.cutIco:hover{ background-position:-175px -41px;}
+#contentD .newsInfo a.addIco{ background-position:-191px -25px;}
+#contentD .newsInfo a.addIco:hover{ background-position:-191px -41px;}
+#contentD .newsInfo a.renren{ background-position:-216px -27px;}
+#contentD .newsInfo a.qzone{ background-position:-237px -27px;}
+#contentD .newsInfo a.kaixin001{ background-position:-258px -27px;}
+#contentD .newsInfo a.tsina{ background-position:-278px -27px;}
+#contentD .newsInfo a.t139{ background-position:-298px -27px;}
+#contentD .newsInfo a.tsohu{ background-position:-318px -27px;}
+
+/***评论页面CSS over***/
+
+#contentD .left .turnPage a:hover{ color:#CB0003}
