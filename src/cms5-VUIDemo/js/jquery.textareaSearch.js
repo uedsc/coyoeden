@@ -13,26 +13,37 @@
 			this.Search(this.value);
 		};
 	};
-	p.onSearch=function(str){
-		str=$.trim(str);
+	p.onSearch=function(i){
+		var str=$.trim(i.value);
 		if(str=="") return;
+		
+		var v=i.$t.val();
+		if(v.indexOf(str)==-1) return;
+		
 		var num = 0;
-	    if (document.selection)　　
-			num = document.selection.createRange().text.length;
-	    this.txtRange.moveStart("character", num);
-	    this.txtRange.moveEnd("character", str.length);
-	    if (this.txtRange.findText(str))
-			this.txtRange.select();
-	    
-		if (this.txtRange.text != str) {　　
-			this.txtRange = this.$t[0].createTextRange();
-	    };
+		if($.browser.msie){
+		    if (document.selection)　　
+				num = document.selection.createRange().text.length;
+		    i._rng.moveStart("character", num);
+		    i._rng.moveEnd("character", str.length);
+		    if (i._rng.findText(str))
+				i._rng.select();
+		    
+			if (i._rng.text != str) {　　
+				i._rng = i.$t[0].createTextRange();
+		    };
+		}else{
+			i.$t.focus();
+			num=v.indexOf(str,i.$t[0].selectionEnd);
+			num=num<0?v.indexOf(str):num;
+			i.$t[0].setSelectionRange(num,num+str.length);
+		};
 
 	};
 	p.initEvts = function(i) { 
 		$(i).focus(p.onFocus).keyup(p.onKeyup);
 		i.$btn.click(function(evt){
-			p.onSearch(i.value);
+			p.onSearch(i);
 			return false;
 		});
 	};
@@ -45,8 +56,9 @@
         return this.each(function() {
 			pub.$t=$(opts.cssTextArea);
 			pub.$btn=$(opts.cssBtn);
-			pub.Search=p.onSearch;
-			pub.txtRange=document.selection.createRange();
+			if($.browser.msie)
+				pub._rng=pub.$t[0].createTextRange();
+			
 			$.extend(this,pub);
 			p.initEvts(this);
         });
