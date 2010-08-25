@@ -172,6 +172,7 @@ var chipEditor = function() {
 		var flagID=p.getFlagID($curFlag);
 		
 		$curElm.addClass("ing");
+		$curFlag.addClass("on");
 		//检查元素类型
 		if($curElm.find("img").length>0){
 			_t=1;//图片
@@ -304,6 +305,8 @@ var chipEditor = function() {
 		};//onShow
 		var onHide=function(hash,dlg){
 			dlg.CurElm.removeClass("ing");
+			dlg.CurFlag.removeClass("on");
+			p._$chipCover_t.bind("mouseenter",p.onFlagMEnter).trigger("mouseenter");
 		};//onHide
 		chipEditor.Show({afterShow:onShow,afterHide:onHide,flagID:flagID});
 	};
@@ -311,7 +314,23 @@ var chipEditor = function() {
 	 * 焦点图元素编辑
 	 */
 	p.onEditFlashElm=function(){
-		alert("hi");
+		//if(p._$chipCover_t.hasClass("on")) return;
+		var flagID=p.getFlagID(p._$chipCover_t);
+		var $curFlag=p._$chipCover_t;
+		var onShow=function(hash,dlg){
+			dlg.CurFlag=$curFlag;
+			//hide the first tab
+			dlg.$CT.tabs("select",1);
+			dlg.$TabM.eq(0).hide();
+			//show the flash tip
+			dlg.$TabC.eq(1).find(".row").hide().filter(".flashTip").show();
+			//content of tab no2
+			dlg.$Layout.find('.txtVspC').val(dlg.CurFlag.html());
+		};
+		var onHide=function(hash,dlg){
+			//p._$chipCover_t.removeClass("on");
+		};
+		chipEditor.Show({afterShow:onShow,afterHide:onHide,flagID:flagID});
 	};
 	/**
 	 * 碎片元素排序
@@ -341,7 +360,7 @@ var chipEditor = function() {
 	};
 	p.onFlagMEnter=function(evt){	
 		var $i=$(this);
-		//if($i.hasClass("on")) return;
+		if($i.hasClass("on")) return;/* 在编辑某个元素时碎片会加上on */
 		var d=p.getDim($i);
 		p._$chipCover.css({
 			opacity:0.5,
@@ -402,19 +421,24 @@ var chipEditor = function() {
 	p.initFlagEvts=function(){
 		$(p._cssFlag+" a,.jqmCT a").bind('click.noNav',p.stopNav);
 		$(p._cssFlag+" a").bind("click.edit",p.onEditFlagElem);
-		$(p._cssFlag).bind("mouseenter",p.onFlagMEnter);
+		$(p._cssFlag).bind("mouseenter",p.onFlagMEnter).mouseleave(function(evt){
+			p._$chipCover_t.unbind("mouseenter").bind("mouseenter",p.onFlagMEnter);
+		});
 		
 		p._$chipCover.click(function(evt){
 			if(p._$chipCover_t.is(p._cssFlash)){
 				//进入焦点图编辑界面
 				p.onEditFlashElm();	
+				return;
 			};
-			//TODO
+			
 			p._$chipCover.trigger("mouseleave");
 			p._$chipCover_t.unbind("mouseenter");
+			/*
 			window.setTimeout(function(){
 				p._$chipCover_t.bind("mouseenter",p.onFlagMEnter);
 			},500);
+			*/
 			
 		});
 	};
