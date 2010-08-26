@@ -70,13 +70,13 @@
 					var swf_height=show_text==1?pic_height+20:pic_height;
 					
 					var pics="", mylinks="", texts="";
-					pics='http://photocdn.sohu.com/focusUp/20100713/172739313454441044.jpg|http://photocdn.sohu.com/focusUp/20100712/140811552183145090.jpg|http://photocdn.sohu.com/focusUp/20100712/140813992219672509.jpg|http://photocdn.sohu.com/focusUp/20100712/140816512183145090.jpg'
+					pics='vsFocus/images/allfocus4_0.jpg|vsFocus/images/allfocus4_1.jpg|vsFocus/images/allfocus4_2.jpg|vsFocus/images/allfocus4_3.jpg'
 					
 					mylinks='http://pic.yule.sohu.com/group-222714.shtml|http://yule.sohu.com/20100706/n273301501.shtml|http://yule.sohu.com/20100625/n273063715.shtml|http://yule.sohu.com/20100122/n269770598.shtml';
 					
 					texts='《婚姻保卫战》官网启动 赵宝刚携搜狐视频维权|《婚姻保卫战》即将打响 佟大为马伊琍演夫妻|《婚姻保卫战》首轮卫视签约 众星到场助阵|《婚姻保卫战》超豪华落幕 打造时尚唯美秀场';
 					
-					var sohuFlash2 = new sohuFlash("http://images.sohu.com/uiue/FlashFocus/allfocus4.swf", "sasFlashFocus201", pic_width, swf_height, "6");
+					var sohuFlash2 = new sohuFlash("vsFocus/swf/allfocus4.swf", "sasFlashFocus201", pic_width, swf_height, "6");
 					sohuFlash2.addParam("quality", "high");
 					sohuFlash2.addParam("wmode", "opaque");
 					sohuFlash2.addVariable("pics",pics);
@@ -141,7 +141,7 @@
 						<textarea class="txtVspC" name="vspC"></textarea>
 					</div>
 					<div id="wVsp_tab3" class="tabC">
-						adsfasd
+						loading...
 					</div>
 					<div  id="wVsp_tab4" class="tabC">
 						<strong class="alert">碎片交换状态</strong>
@@ -223,9 +223,24 @@
 		<script type="text/javascript">
 		//<![CDATA[
 		chipEditor.Init({
-			onUpPic:function(dlg){
-				alert("hi");
-			}
+			/* 需要使用chipEditor的碎片的css class */
+			cssFlag:'.chip',
+			/* 焦点图随笔的css class */
+			cssFlash:'.flash',
+			/* 上传图片 */
+			onUpPic:function(dlg){alert("hi");},
+			/* 修改记录 */
+			onLoadHis:function(dlg){alert("onLoadHis");},
+			/* 整体测试 */
+			onTest:function(dlg){alert("hi");},
+			/* 保存 */
+			onSave:function(dlg){alert("hi");},
+			/* 取消 */
+			onCancel:function(dlg){alert("hi");},
+			/* 外包 */
+			onExternal:function(dlg){alert("hi");},
+			/* 焦点图编辑 */
+			onFlashEdit:function(dlg){alert("hi");}
 		});
 		//]]>
 		</script>

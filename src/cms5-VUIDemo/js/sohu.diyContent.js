@@ -4,7 +4,7 @@
  * @param {Object} opts СЎПо{$obj,sec}
  */
 sohu.diyContent=function(opts){
-	opts=$.extend({},{cl:"ct",clOn:"ctOn",scale:true,clElm:"elm",isNew:true},opts||{});
+	opts=$.extend({},{cl:"ct",clOn:"ctOn",scale:false,clElm:"elm",isNew:true},opts||{});
 	var _this=this;
 	this.Meta=opts.ct;
 	this.IsNew=opts.isNew;
@@ -46,6 +46,16 @@ sohu.diyContent=function(opts){
 			_this.Sec.Deactive();	
 		}).bind("mouseup",function(evt){
 			sohu.diyConsole.Dragger.ing=false;
+		});
+		
+		var d=_this.Dim();
+		sohu.diyConsole.$FlashHolder.css({
+			top:d.y-1+17,
+			left:d.x-1,
+			height:d.h-17,
+			width:d.w,
+			opacity:0.5,
+			display:'block'
 		});
 	};
 	p.mouseLeave=function(evt){

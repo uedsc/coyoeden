@@ -2,6 +2,9 @@
  * JS interactive logic for editing fragments
  * 碎片编辑器
  * @author levinhuang
+ * @TODO:
+ * 1，cms在点击黄框后调用chipEditor
+ * 2，传递的参数：碎片ID或者dom对象、要显示的tab、各种按钮的回调函数
  */
 var chipEditor = function() {
     var p={},pub={};
@@ -334,7 +337,8 @@ var chipEditor = function() {
 			onCancel:p.onCancel,
 			onGlobalRes:p.onGlobalRes,
 			onExternal:p.onExternal,
-			onFlashEdit:p.onFlashEdit		
+			onFlashEdit:p.onFlashEdit,
+			onLoadHis:p.onLoadHis		
 		});
 	};
 	/**
@@ -372,7 +376,8 @@ var chipEditor = function() {
 			onCancel:p.onCancel,
 			onGlobalRes:p.onGlobalRes,
 			onExternal:p.onExternal,
-			onFlashEdit:p.onFlashEdit		
+			onFlashEdit:p.onFlashEdit,
+			onLoadHis:p.onLoadHis		
 		});
 	};
 	/**
@@ -512,6 +517,7 @@ var chipEditor = function() {
 		p.onGlobalRes=opts.onGlobalRes;
 		p.onExternal=opts.onExternal;
 		p.onFlashEdit=opts.onFlashEdit;
+		p.onLoadHis=opts.onLoadHis;
 		/* /用户的回调函数 */
 	};
     p.onLoaded = function() { 
@@ -540,7 +546,8 @@ var chipEditor = function() {
 				onCancel:opts.onCancel,
 				onGlobalRes:opts.onGlobalRes,
 				onExternal:opts.onExternal,
-				onFlashEdit:opts.onFlashEdit
+				onFlashEdit:opts.onFlashEdit,
+				onLoadHis:opts.onLoadHis
 			});
 			p.editors[opts.flagID]=dlg;
 			opts.isNew=true;
@@ -567,7 +574,8 @@ chipEditor.Dialog=function(opts){
 		onCancel:null,
 		onGlobalRes:null,
 		onExternal:null,
-		onFlashEdit:null
+		onFlashEdit:null,
+		onLoadHis:null
 		},opts||{});
 	var _this=this;
 	this.Sorting=false;
@@ -577,7 +585,7 @@ chipEditor.Dialog=function(opts){
 	this.SortElm=null;//当前排序元素
 	//setup layout
 	this.$Layout=opts.dlgModel.clone().appendTo(opts.$body);
-	this.$btnCode=this.$Layout.find(".globalRes,.external");
+	this.$btnCode=this.$Layout.find(".external");//.globalRes,
 	//事件处理
 	//整体测试
 	this.$Layout.find(".test").click(function(evt){
@@ -645,6 +653,12 @@ chipEditor.Dialog=function(opts){
 				_this.$btnCode.removeClass("hide");
 			}else{
 				_this.$btnCode.addClass("hide");
+			};
+			//修改记录
+			if(ui.index==2){
+				if(opts.onLoadHis){
+					opts.onLoadHis(_this);
+				};
 			};
 		}
 	});
@@ -716,7 +730,8 @@ chipEditor.Dialog.prototype.ToggleSorting=function($i){
 		this.Sorting=false;
 		//绑定click.edit事件
 		this.CurFlag.find("a").unbind("click.sort").bind("click.edit",chipEditor.OnEditFlagElm);
-		
+		//重置"可视化修改"和"代码修改"(由于元素发生了变化)
+		this.$TabC.find(".elmA,.elmImg").empty().html(this._opts.lblTab0);
 	}else{
 		$i.prev().trigger("click");
 		$i.addClass("btnSort1").find("span").html(this._opts.lblSort1);
@@ -724,7 +739,5 @@ chipEditor.Dialog.prototype.ToggleSorting=function($i){
 		this.Sorting=true;
 		//移除碎片a标签的click.edit事件处理
 		this.CurFlag.find("a").unbind("click.edit").bind("click.sort",{dlg:this},chipEditor.OnSortFlagElm);
-		//重置"可视化修改"和"代码修改"(由于元素发生了变化)
-		this.$TabC.find(".elmA,.elmImg").empty().html(this._opts.lblTab0);
 	};
 };

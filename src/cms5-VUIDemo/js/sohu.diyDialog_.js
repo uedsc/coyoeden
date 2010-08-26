@@ -1036,6 +1036,20 @@ sohu.diyDialog.wSetting1=function(dlg){
 	
 };
 /**
+ * FLASH编辑框
+ * @param {Object} dlg
+ */
+sohu.diyDialog.wFlash=function(dlg){
+	var p={},_this=this;
+	//DOM引用
+	this.$Layout=$("#wFlash");
+	
+	//jqm options
+	this.$Layout.jqmOpts={
+		title:"焦点图"
+	};
+};
+/**
  * 横切工具条
  * @param {Object} dlg
  */

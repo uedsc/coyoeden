@@ -24,7 +24,7 @@ sohu.diyConsole=function(opts){
 	p._$pageTip=$("#pageTip");
 	p._$elmTool=$("#elmTool");
 	/* 对话框jq对象 */
-	p._$wAreaBG=$("#wAreaBG")
+	p._$wAreaBG=$("#wAreaBG");
 	p._$wPageBG=$("#wPageBG");
 	p._$wCpkWrap=$("#cpkWrap");
 	p._$wAddLink=$("#addLink");
@@ -136,6 +136,7 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});
 		sohu.diyConsole.$EHolder=$('#eHolder').click(p.onEHolderClick);	
 		sohu.diyConsole.$AreaHolder=$("#areaHolder");
+		sohu.diyConsole.$FlashHolder=$("#flashHolder").mouseleave(function(evt){$(this).hide();});;
 		//已有横切
 		_this.Areas=_this.AreaList().map(function(i,o){
 			var a=new sohu.diyArea({

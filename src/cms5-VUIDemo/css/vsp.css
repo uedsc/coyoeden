@@ -39,6 +39,8 @@ a{color:blue;}
 .chipEdt .upp_m{margin:10px 0;} 
 .chipEdt .upp_m input{background:#fff;width:200px;}
 .chipEdt .flashTip,.jqmFlash .btnSort{display:none;}
+/* 隐藏暂时不需要的按钮 */
+.chipEdt .btnVspCBTipAdd,.chipEdt .btnVspCBTipDel,.chipEdt .globalRes{display:none;}
 
 #chipCover{position:absolute;z-index:500;border:2px solid red;background:#ffffc2;cursor:pointer;}
 

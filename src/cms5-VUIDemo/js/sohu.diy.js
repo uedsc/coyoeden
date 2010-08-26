@@ -73,35 +73,33 @@ sohu.diyTp.Flash=function(opts){
 			salign:"t"
 		},
 		Var:{
-			b:"vsFocus/images/01.jpg|vsFocus/images/02.jpg|vsFocus/images/03.jpg|vsFocus/images/04.jpg|vsFocus/images/05.jpg",
-			p:"vsFocus/images/01.jpg|vsFocus/images/02.jpg|vsFocus/images/03.jpg|vsFocus/images/04.jpg|vsFocus/images/05.jpg",
-			p_s:"vsFocus/images/01.jpg|vsFocus/images/02.jpg|vsFocus/images/03.jpg|vsFocus/images/04.jpg|vsFocus/images/05.jpg",
-			l:"http://www.sohu.com|http://www.sogou.com|http://news.sohu.com|http://women.sohu.com|http://it.sohu.com",
-			icon:"标题1|标题2|标题3|标题4|标题5",
-			icon_2:"内容1|内容2|内容3|内容4|内容5",
-			icon2:"内容1|内容2|内容3|内容4|内容5"
+			/* 大图 */
+			pics:"vsFocus/images/allfocus4_0.jpg|vsFocus/images/allfocus4_1.jpg|vsFocus/images/allfocus4_2.jpg|vsFocus/images/allfocus4_3.jpg",
+			/* 链接 */
+			links:"http://www.sohu.com|http://www.sogou.com|http://news.sohu.com|http://women.sohu.com|http://it.sohu.com",
+			/* 标题 */
+			texts:"官网启动 赵宝刚携搜狐视频维权|即将打响 佟大为马伊琍演夫妻|首轮卫视签约 众星到场助阵|超豪华落幕 打造时尚唯美秀场"
 		},
 		w:opts.w,
 		h:opts.h
 	};
 	var m = {};
-	m.Flash01={swf:"vsFocus/swf/0501.swf",h0:359,/*默认高*/w0:662/*默认宽*/,Var:{b:"NULL",p_s:"NULL",icon_2:"NULL"}};
-	m.Flash02={swf:"vsFocus/swf/0502.swf",h0:440,w0:780,interval:6,Param:{salign:"NULL"},Var:{b:"NULL",p_s:"NULL",l:"NULL",icon:"NULL",icon2:"NULL",icon_2:"NULL"}};
-	m.Flash03={swf:"vsFocus/swf/0601.swf",h0:270,w0:320,Var:{b:"NULL",p_s:"NULL",icon2:"NULL",icon_2:"NULL"}};
-	m.Flash04={swf:"vsFocus/swf/0602.swf",h0:340,w0:520,Var:{b:"NULL",p_s:"NULL",icon_2:"NULL"}};
-	m.Flash05={swf:"vsFocus/swf/0603.swf",h0:388,w0:950,bg:"#000000",interval:8,Var:{b:"NULL"}};
-	m.Flash06={swf:"vsFocus/swf/1001.swf",h0:360,w0:616,Var:{p_s:"NULL",icon2:"NULL",icon_2:"NULL"}};
-	m.Flash07={swf:"vsFocus/swf/1102.swf",h0:330,w0:685,Var:{p:"NULL",p_s:"NULL",icon:"NULL",icon2:"NULL",icon_2:"NULL"}};
-	m.Flash08={swf:"vsFocus/swf/1103.swf",h0:295,w0:635,Var:{b:"NULL",p_s:"NULL",l:"NULL",icon:"NULL",icon_2:"NULL",icon2:"NULL"}};
-	m.Flash08.Var.p="vsFocus/images/c4.jpg|vsFocus/images/a.jpg|vsFocus/images/b1.jpg|vsFocus/images/c3.jpg|vsFocus/images/1.png|vsFocus/images/a.jpg|vsFocus/images/b1.jpg|images/c3.jpg";
-	m.Flash09={swf:"vsFocus/swf/1105.swf",h0:340,w0:520,bg:"#000000",Var:{b:"NULL",icon_2:"NULL",icon2:"NULL"}};
-	m.Flash10={swf:"vsFocus/swf/1203.swf",h0:375,w0:620,bg:"#000000",interval:8,Var:{b:"NULL",icon2:"NULL"}};
-	m.Flash11={swf:"vsFocus/swf/1204.swf",h0:210,w0:948,bg:"#000000",interval:8,Var:{b:"NULL",p:"NULL",icon:"NULL",icon2:"NULL"}};
-	m.Flash12={swf:"vsFocus/swf/1205.swf",h0:290,w0:395,Var:{b:"NULL",p:"NULL",p_s:"NULL",l:"NULL",icon2:"NULL",icon_2:"NULL",pics:opts0.Var.p,links:opts0.Var.l}};
-	m.Flash13={swf:"vsFocus/swf/1207.swf",h0:340,w0:590,bg:"#000000",Var:{b:"NULL",p_s:"NULL",l:"NULL",icon:"NULL",icon_2:"NULL",icon2:"NULL",mylinks:opts0.Var.l,texts:opts0.Var.icon}};
-	m.Flash14={swf:"vsFocus/swf/0203.swf",h0:230,w0:690,interval:7,Var:{b:"NULL",p_s:"NULL"}};
-	m.Flash15={swf:"vsFocus/swf/0205.swf",h0:299,w0:298,Var:{b:"NULL",p:"NULL",p_s:"NULL",l:"NULL",icon2:"NULL",icon_2:"NULL",pics:opts0.Var.p,links:opts0.Var.l,text:opts0.Var.icon}};
-	m.Flash16={swf:"vsFocus/swf/0207.swf",h0:469,w0:980,Var:{p_s:"NULL",icon2:"NULL",icon_2:"NULL"}};
+	m.Flash01={swf:"vsFocus/swf/allfocus4.swf",h0:320,/*默认高*/w0:290/*默认宽*/,Var:{pic_width:290,pic_height:300,show_text:1,txtcolor:'000000',bgcolor:'ffffff',button_pos:2,stop_time:5000}};
+	m.Flash02=m.Flash01;
+	m.Flash03=m.Flash01;
+	m.Flash04=m.Flash01;
+	m.Flash05=m.Flash01;
+	m.Flash06=m.Flash01;
+	m.Flash07=m.Flash01;
+	m.Flash08=m.Flash01;
+	m.Flash09=m.Flash01;
+	m.Flash10=m.Flash01;
+	m.Flash11=m.Flash01;
+	m.Flash12=m.Flash01;
+	m.Flash13=m.Flash01;
+	m.Flash14=m.Flash01;
+	m.Flash15=m.Flash01;
+	m.Flash16=m.Flash01;
 	//属性
 	this.tid=new Date().getTime();
 	this.tplID=opts.tplID;
@@ -154,7 +152,7 @@ sohu.diyTp.Flash.prototype.Render=function($t,reRender){
 	if(!this.FLASH) return;
 	try{
 		this.FLASH.write(this.DomID);	
-		$t.css({width:this.width,height:this.height});
+		//$t.css({width:this.width,height:this.height});
 	}catch(e){
 		$t.html(e.message);
 	};

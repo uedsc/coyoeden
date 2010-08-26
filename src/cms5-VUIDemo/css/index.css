@@ -90,6 +90,7 @@ display:none;
 .ct{position:relative;}
 #eHolder{position:absolute;z-index:49;border:1px solid #FC0055;}
 #areaHolder{position:absolute;display:none;z-index:50;border:1px solid red;background:#f9bfc0;}
+#flashHolder{position:absolute;display:none;z-index:51;border:2px solid red;background:#ffffc2;}
 /*.col{overflow:hidden;}*/
 /* iframe±à¼­Æ÷ */
 #ifEditor{display:none;}
