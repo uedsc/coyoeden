@@ -117,6 +117,16 @@
 						<!--元素模板.文字链-->
 						<div class="elmTpl elmA"></div>
 						<div class="elmTpl elmImg"></div>
+						<div class="uppic">
+							<div class="upp_t"><strong>上传图片</strong></div>
+							<div class="upp_m">
+								<input type="file" name="uppic" size="35"/>
+							</div>
+							<div class="upp_btn">
+								<button class="up">上传</button>
+								<button class="cls">取消</button>
+							</div>
+						</div>
 					</div>
 					<div id="wVsp_tab2" class="tabC">
 						<div class="row searchTip">
@@ -126,7 +136,7 @@
 							<button class="btnVspCBTipDel">删Blog纸条</button>
 						</div>
 						<div class="row flashTip">
-							<a href="#"><strong>点击进入编辑器的可视化修改状态>></strong></a>
+							<a href="#" class="btnFlashEdit"><strong>点击进入编辑器的可视化修改状态>></strong></a>
 						</div>
 						<textarea class="txtVspC" name="vspC"></textarea>
 					</div>
@@ -140,7 +150,7 @@
 					<div class="acts clear">
 						<a href="#" class="test">整体测试</a>
 						<a href="#" class="save">保存碎片</a>
-						<a href="#" class="cls">取消</a>
+						<a href="#" class="cancel">取消</a>
 						<a href="#" class="globalRes hide">统一资源库</a>
 						<a href="#" class="external hide">外包</a>
 					</div>
@@ -191,7 +201,7 @@
 				<label class="l">图片:</label>
 				<input type="text" class="imgSrc l"/>
 				<div class="icons l clear">
-					<a href="#"><span>上传</span></a>
+					<a href="#" class="btnUpl"><span>上传</span></a>
 				</div>
 				<div class="r icons1">
 					<a href="#" class="btnDel"><img src="images/icn_del.gif"/></a>
@@ -212,7 +222,11 @@
 		<script type="text/javascript" src="js/chipEditor.js"></script>
 		<script type="text/javascript">
 		//<![CDATA[
-		chipEditor.Init({});
+		chipEditor.Init({
+			onUpPic:function(dlg){
+				alert("hi");
+			}
+		});
 		//]]>
 		</script>
  

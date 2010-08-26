@@ -130,6 +130,10 @@ var chipEditor = function() {
 			$tpl.eq(2).find("input").change(function(evt){
 				data.$obj.attr("href",this.value);
 			}).focus(p.focusSelect);
+			//上传按钮
+			$tpl.eq(0).find(".btnUpl").click(function(evt){
+				
+			});
 		};
 
 	};
@@ -172,7 +176,7 @@ var chipEditor = function() {
 		var flagID=p.getFlagID($curFlag);
 		
 		$curElm.addClass("ing");
-		$curFlag.addClass("on");
+		
 		//检查元素类型
 		if($curElm.find("img").length>0){
 			_t=1;//图片
@@ -187,7 +191,8 @@ var chipEditor = function() {
 		var onShow=function(hash,dlg){
 			if(dlg.curElm)
 				dlg.curElm.removeClass("ing");
-				
+			
+			$curFlag.addClass("on");	
 			dlg.CurElm=$curElm;
 			dlg.CurFlag=$curFlag;
 			//第一个tab
@@ -301,14 +306,36 @@ var chipEditor = function() {
 			dlg.$Layout.find('.txtVspCS').textareaSearch({
 				cssTextArea:dlg.$Layout.find('textarea'),
 				cssBtn:dlg.$Layout.find('.btnVspCS')
-			});			
+			});
+			//上传按钮
+			dlg.$Layout.find(".btnUpl").click(function(evt){
+				dlg.$UpPic.show().effect("highlight");
+				return false;
+			});
+			//复制碎片以便取消时恢复
+			if(dlg.IsNew){
+				dlg.$Backup=dlg.CurFlag.clone(true).removeClass("on").find("a").removeClass("ing").end();
+				dlg.$Backup.bind("mouseenter",p.onFlagMEnter);
+			};
+						
 		};//onShow
 		var onHide=function(hash,dlg){
 			dlg.CurElm.removeClass("ing");
 			dlg.CurFlag.removeClass("on");
-			p._$chipCover_t.bind("mouseenter",p.onFlagMEnter).trigger("mouseenter");
+			p._$chipCover_t.bind("mouseenter",p.onFlagMEnter);//.trigger("mouseenter");
 		};//onHide
-		chipEditor.Show({afterShow:onShow,afterHide:onHide,flagID:flagID});
+		chipEditor.Show({
+			afterShow:onShow,
+			afterHide:onHide,
+			flagID:flagID,
+			onUpPic:p.onUpPic,
+			onTest:p.onTest,
+			onSave:p.onSave,
+			onCancel:p.onCancel,
+			onGlobalRes:p.onGlobalRes,
+			onExternal:p.onExternal,
+			onFlashEdit:p.onFlashEdit		
+		});
 	};
 	/**
 	 * 焦点图元素编辑
@@ -326,11 +353,27 @@ var chipEditor = function() {
 			dlg.$TabC.eq(1).find(".row").hide().filter(".flashTip").show();
 			//content of tab no2
 			dlg.$Layout.find('.txtVspC').val(dlg.CurFlag.html());
+			dlg.$CT.addClass("jqmFlash");
+			//复制碎片以便取消时恢复
+			if(dlg.IsNew){
+				dlg.$Backup=dlg.CurFlag.clone(true).removeClass("on").find("a").removeClass("ing").end();
+				dlg.$Backup.bind("mouseenter",p.onFlagMEnter);
+			};
 		};
 		var onHide=function(hash,dlg){
 			//p._$chipCover_t.removeClass("on");
 		};
-		chipEditor.Show({afterShow:onShow,afterHide:onHide,flagID:flagID});
+		chipEditor.Show({
+			afterShow:onShow,
+			afterHide:onHide,
+			flagID:flagID,
+			onTest:p.onTest,
+			onSave:p.onSave,
+			onCancel:p.onCancel,
+			onGlobalRes:p.onGlobalRes,
+			onExternal:p.onExternal,
+			onFlashEdit:p.onFlashEdit		
+		});
 	};
 	/**
 	 * 碎片元素排序
@@ -461,6 +504,15 @@ var chipEditor = function() {
 		p._dlgModel=$(".chipEdt");
 		p._$body=$("body");
 		p._$chipCover=$("#chipCover");
+		/* 用户的回调函数 */
+		p.onUpPic=opts.onUpPic;
+		p.onTest=opts.onTest;
+		p.onSave=opts.onSave;
+		p.onCancel=opts.onCancel;
+		p.onGlobalRes=opts.onGlobalRes;
+		p.onExternal=opts.onExternal;
+		p.onFlashEdit=opts.onFlashEdit;
+		/* /用户的回调函数 */
 	};
     p.onLoaded = function() { 
 
@@ -479,7 +531,17 @@ var chipEditor = function() {
 		var dlg=null;
 		opts.isNew=false;
 		if(!(dlg=p.editors[opts.flagID])){
-			dlg=new chipEditor.Dialog({dlgModel:p._dlgModel,$body:p._$body});
+			dlg=new chipEditor.Dialog({
+				dlgModel:p._dlgModel,
+				$body:p._$body,
+				onUpPic:opts.onUpPic,
+				onTest:opts.onTest,
+				onSave:opts.onSave,
+				onCancel:opts.onCancel,
+				onGlobalRes:opts.onGlobalRes,
+				onExternal:opts.onExternal,
+				onFlashEdit:opts.onFlashEdit
+			});
 			p.editors[opts.flagID]=dlg;
 			opts.isNew=true;
 		};
@@ -498,7 +560,14 @@ chipEditor.Dialog=function(opts){
 		tabIDTpl:'wVsp_tab',
 		lblSort:'排序状态',
 		lblSort1:'结束排序',
-		lblTab0:'<strong class="alert">行修改状态</strong><em>请选择行</em>'
+		lblTab0:'<strong class="alert">行修改状态</strong><em>请选择行</em>',
+		onUpPic:null,
+		onTest:null,
+		onSave:null,
+		onCancel:null,
+		onGlobalRes:null,
+		onExternal:null,
+		onFlashEdit:null
 		},opts||{});
 	var _this=this;
 	this.Sorting=false;
@@ -510,17 +579,62 @@ chipEditor.Dialog=function(opts){
 	this.$Layout=opts.dlgModel.clone().appendTo(opts.$body);
 	this.$btnCode=this.$Layout.find(".globalRes,.external");
 	//事件处理
-	
-	//内容tab菜单
+	//整体测试
+	this.$Layout.find(".test").click(function(evt){
+		if(opts.onTest){
+			opts.onTest(_this);
+		};
+		return false;
+	});
+	//保存碎片
+	this.$Layout.find(".save").click(function(evt){
+		if(opts.onSave){
+			opts.onSave(_this);
+		};
+		return false;
+	});
+	//取消
+	this.$Layout.find(".cancel").click(function(evt){
+		_this.CurFlag.replaceWith(_this.$Backup.clone(true));
+		_this.$Layout.jqmHide();
+		if(opts.onCancel){
+			opts.onCancel(_this);
+		};
+		return false;
+	});
+	//统一资源库
+	this.$Layout.find(".globalRes").click(function(evt){
+		if(opts.onGlobalRes){
+			opts.onGlobalRes(_this);
+		};
+		return false;
+	});
+	//外包
+	this.$Layout.find(".external").click(function(evt){
+		if(opts.onExternal){
+			opts.onExternal(_this);
+		};
+		return false;
+	});
+	//flash编辑
+	this.$Layout.find(".btnFlashEdit").click(function(evt){
+		if(opts.onFlashEdit){
+			opts.onFlashEdit(_this);
+		};
+		return false;
+	});
+	//tab菜单
 	var tabID="tab"+StringUtils.RdStr(8);
 	this.$TabM=this.$Layout.find(".tabM").each(function(i,o){
 		var $o=$(o);
 		$o.attr("href",$o.attr("href").replace(opts.tabIDTpl,tabID));
 	});
+	//tab内容
 	this.$TabC=this.$Layout.find(".tabC").each(function(i,o){
 		var $o=$(o);
 		$o.attr("id",$o.attr("id").replace(opts.tabIDTpl,tabID));
 	});
+	//排序按钮
 	this.$Layout.find('.btnSort').click(function(evt){
 		_this.ToggleSorting($(this));return false;
 	});
@@ -533,6 +647,16 @@ chipEditor.Dialog=function(opts){
 				_this.$btnCode.addClass("hide");
 			};
 		}
+	});
+	//上传浮层
+	this.$UpPic=this.$CT.find(".uppic").draggable({handle:".upp_t",containment:'parent',axis:'y'});
+	this.$UpPic.find(".up").click(function(evt){
+		if(opts.onUpPic){
+			opts.onUpPic(_this);
+		};
+	});
+	this.$UpPic.find(".cls").click(function(evt){
+		_this.$UpPic.slideUp("fast");
 	});
 	//jqm options
 	this.jqmOpts={trigger:false,modal:false,overlay:false,autoFocus:false,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null};
@@ -566,12 +690,13 @@ chipEditor.Dialog=function(opts){
 	};
 	
 	//draggable
-	this.$Layout.draggable({handle:".hd",containment:'window'});
+	this.$Layout.draggable({handle:".hd",containment:'body'});
 	//margin-left
 	this.$Layout.css("margin-left",-(this.$Layout.width()/2));
 }; 
 chipEditor.Dialog.prototype.Show=function(opts){
 	$.extend(this.jqmOpts,opts||{});
+	this.IsNew=opts.isNew;
 	if(!opts.isNew)
 		this.Hide(opts);
 		
