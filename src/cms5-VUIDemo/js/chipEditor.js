@@ -2,430 +2,22 @@
  * JS interactive logic for editing fragments
  * 碎片编辑器
  * @author levinhuang
- * @TODO:
- * 1，cms在点击黄框后调用chipEditor
- * 2，传递的参数：碎片ID或者dom对象、要显示的tab、各种按钮的回调函数
  */
 var chipEditor = function() {
     var p={},pub={};
 	p.editors={};
-	/* 事件处理 */
-	/**
-	 * 删除元素
-	 * @param {Object} evt
-	 */
-	p.onDelElm=function(evt){
-		if(evt.data.$obj){
-			evt.data.$obj.remove();
-			evt.data.$tpl.remove();
-		};
-		return false;
-	};
-	/**
-	 * 加粗字体
-	 * @param {Object} evt
-	 */
-	p.onBold=function(evt){
-		if(!evt.data.$obj) return false;
-		if(evt.data.$obj.hasClass(p._cssBold)){
-			evt.data.$obj.removeClass(p._cssBold).css("font-weight","normal");
-			evt.data.$tpl.eq(0).find("input").removeClass(p._cssBold);
-		}else{
-			evt.data.$obj.addClass(p._cssBold).css("font-weight","bold");
-			evt.data.$tpl.eq(0).find("input").addClass(p._cssBold);
-		};
-		return false;
-	};
-	/**
-	 * 着色
-	 * @param {Object} evt
-	 */
-	p.onColor=function(evt){
-		if(!evt.data.$obj) return false;
-		if(evt.data.$obj.hasClass(p._cssColor)){
-			evt.data.$obj.removeClass(p._cssColor).css("color",p._rawColor);
-			evt.data.$tpl.eq(0).find("input").removeClass(p._cssColor);
-		}else{
-			if(!p._rawColor)
-				p._rawColor=evt.data.$obj.css("color");
-			
-			evt.data.$obj.addClass(p._cssColor).css("color","red");
-			evt.data.$tpl.eq(0).find("input").addClass(p._cssColor);			
-		};
-		return false;
-	};
-	/**
-	 * 添加元素
-	 * @param {Object} evt
-	 */
-	p.onAddElm=function(evt){
-		if(!evt.data.$obj) return false;
-		var txt0=$(document.createTextNode(" "));
-		var a0=$(p._aTplStr);
-		evt.data.$obj.after(a0).after(txt0);
-		a0.bind('click.noNav',p.stopNav);
-		
-		var tpl=p._$rowTxtA.clone();
-		var data={$obj:txt0,$tpl:tpl};
-		//文字输入框事件(闭包的应用)
-		tpl.find("input").val(" ").bind("keyup",function(evt){
-			var obj0=$(document.createTextNode(this.value));
-			data.$obj.replaceWith(obj0);
-			data.$obj=obj0;
-		}).focus(p.focusSelect);
-		tpl.find(".btnDel").bind("click",function(evt){
-			data.$obj.remove();
-			tpl.remove();
-		});
-		var tpl1=$([p._$rowTitleA.clone()[0],p._$rowLnkA.clone()[0]]);
-		//输入框回填内容
-		tpl1.eq(0).find("input").val(a0.html());
-		tpl1.eq(1).find("input").val(a0.attr("href"));
-		var data1={$obj:a0,$tpl:tpl1,t:0};
-		//图标事件处理
-		p.bindIconEvts(tpl1,data1);
-		
-		evt.data.$tpl.eq(1).after(tpl1).after(tpl);
-		return false;
-	};
-	/**
-	 * 图标事件处理
-	 * @param {Object} $tpl
-	 * @param {Object} data
-	 */
-	p.bindIconEvts=function($tpl,data){
-		//删除按钮
-		$tpl.find(".btnDel").bind("click",data,p.onDelElm);
-		//复制按钮
-		$tpl.find(".btnAdd").bind("click",data,p.onAddElm);
-		//加粗
-		$tpl.find(".bold").bind("click",data,p.onBold);
-		//颜色
-		$tpl.find(".color").bind("click",data,p.onColor);
-		if(data.t==0){
-			//标题输入框
-			$tpl.eq(0).find("input").keyup(function(evt){
-				data.$obj.html(this.value);
-			}).focus(p.focusSelect);
-			//链接输入框
-			$tpl.eq(1).find("input").keyup(function(evt){
-				data.$obj.attr("href",this.value);
-			}).focus(p.focusSelect);
-			//其他图标
-			$tpl.eq(0).find('.icon').click(function(evt){
-				$(this).next().toggle();
-				return false;
-			});
-			//视频前
-			$tpl.eq(0).find(".videoL").bind("click",{$obj:data.$obj,before:true},p.onInsertVDIcon);
-			//视频后
-			$tpl.eq(0).find(".videoR").bind("click",{$obj:data.$obj,before:false},p.onInsertVDIcon);			
-		}else{
-			//图片地址输入框
-			$tpl.eq(0).find("input").change(function(evt){
-				data.$img.attr("src",this.value);
-			}).focus(p.focusSelect);
-			//ALT输入框
-			$tpl.eq(1).find("input").change(function(evt){
-				data.$img.attr("alt",this.value);
-			}).focus(p.focusSelect);
-			//链接输入框
-			$tpl.eq(2).find("input").change(function(evt){
-				data.$obj.attr("href",this.value);
-			}).focus(p.focusSelect);
-			//上传按钮
-			$tpl.eq(0).find(".btnUpl").click(function(evt){
-				
-			});
-		};
-
-	};
+	/* 事件处理 */	
 	/**
 	 * 获取碎片编号的逻辑
-	 * @param {Object} $flag
+	 * @param {Object} $chip 碎片的jq dom对象
 	 */
-	p.getFlagID=function($flag){
-		var id=$flag.attr("id");
-		if(id==""){
+	p.getChipID=function($chip){
+		var id=$chip.attr("cid");
+		if((!id)||(id=="")){
 			id="flag"+StringUtils.RdStr(8);
-			$flag.attr("id",id);
+			$chip.attr("cid",id);
 		};
 		return id;	
-	};
-	/**
-	 * 插入视频小图片
-	 * @param {Object} evt
-	 */
-	p.onInsertVDIcon=function(evt){
-		var a=$(p._vdTplStr).bind("click.noNav",p.stopNav).bind('click.edit',p.onEditFlagElem);
-		if(evt.data.before){
-			evt.data.$obj.before(a);
-		}else{
-			evt.data.$obj.after(a);
-		};
-		return false;
-	};
-	/**
-	 * 编辑碎片的元素
-	 * @param {Object} evt
-	 */
-	p.onEditFlagElem=function(evt){
-		var $curElm=$(this),_t=0;
-		
-		//改元素是否在编辑中
-		if($curElm.hasClass("ing")) return;
-		
-		var $curFlag=$curElm.parents(p._cssFlag);
-		var flagID=p.getFlagID($curFlag);
-		
-		$curElm.addClass("ing");
-		
-		//检查元素类型
-		if($curElm.find("img").length>0){
-			_t=1;//图片
-		}else if($curElm.parent().is("li")){
-			_t=0;//列表
-		}else{
-			_t=2;//段落
-		};
-		
-		var $elmList=$curElm.parent().contents();
-		
-		var onShow=function(hash,dlg){
-			if(dlg.curElm)
-				dlg.curElm.removeClass("ing");
-			
-			$curFlag.addClass("on");	
-			dlg.CurElm=$curElm;
-			dlg.CurFlag=$curFlag;
-			//第一个tab
-			dlg.$Layout.find(".elmTpl").hide();
-			var _$elmA=dlg.$Layout.find(".elmA").empty();
-			var _$elmImg=dlg.$Layout.find(".elmImg").empty();
-			switch(_t){
-				case 0:
-					$elmList.each(function(i,o){
-						var $o=$(o);
-						var tpl=null;
-						if(o.nodeType!=1){
-							//文本
-							tpl=p._$rowTxtA.clone();
-							_$elmA.append(tpl);
-							var data={$obj:$o,$tpl:tpl};
-							tpl.find("input").val($o.text()).bind("keyup",function(evt){
-								var obj0=$(document.createTextNode(this.value));
-								data.$obj.replaceWith(obj0);
-								data.$obj=obj0;
-							}).focus(p.focusSelect);
-							//删除按钮
-							tpl.find(".btnDel").bind("click",function(evt){
-								data.$obj.remove();
-								tpl.remove();
-							});
-						}else if($o.is("a")){
-							tpl=$([p._$rowTitleA.clone()[0],p._$rowLnkA.clone()[0]]);
-							tpl.eq(0).find("input").val($o.html());//attr("title")
-							tpl.eq(1).find("input").val($o.attr("href"));
-							_$elmA.append(tpl);
-							p.bindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:_t});
-						};
-	
-					});
-					_$elmA.show();
-				break;
-				case 1:
-					$elmList.each(function(i,o){
-						var $o=$(o),tpl=null;
-						if(o.nodeType!=1){
-							//文本
-							tpl=p._$rowTxtA.clone();
-							_$elmImg.append(tpl);
-							var data={$obj:$o,$tpl:tpl,t:_t};
-							tpl.find("input").val($o.text()).bind("keyup",function(evt){
-								var obj0=$(document.createTextNode(this.value));
-								data.$obj.replaceWith(obj0);
-								data.$obj=obj0;
-							}).focus(p.focusSelect);
-							//删除按钮
-							tpl.find(".btnDel").bind("click",function(evt){
-								data.$obj.remove();
-								tpl.remove();
-								return false;
-							});								
-						}else if($o.is("a")){
-							var $img=$o.find("img");
-							if($img.length>0){
-								//图片链接
-								tpl=$([p._$rowImg.clone()[0],p._$rowALT.clone()[0],p._$rowLnkImg.clone()[0]]);
-								tpl.eq(0).find("input").val($img.attr("src"));
-								tpl.eq(1).find("input").val($img.attr("alt"));
-								tpl.eq(2).find("input").val($o.attr("href"));
-								_$elmImg.append(tpl);
-								p.bindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:_t,$img:$img});								
-							}else{
-								//文字链接
-								tpl=$([p._$rowTitleA.clone()[0],p._$rowLnkA.clone()[0]]);
-								tpl.eq(0).find("input").val($o.html());
-								tpl.eq(1).find("input").val($o.attr("href"));
-								_$elmImg.append(tpl);
-								p.bindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:0});								
-							};
-						};
-					});//each
-					_$elmImg.show();
-				break;
-				case 2:
-					$elmList.each(function(i,o){
-						var $o=$(o),tpl=null;
-						if(o.nodeType!=1){
-							//文本
-							tpl=p._$rowTxtA0.clone();
-							_$elmA.append(tpl);
-							var data={$obj:$o,$tpl:tpl,t:_t};
-							tpl.find("input").val($o.text()).bind("keyup",function(evt){
-								var obj0=$(document.createTextNode(this.value));
-								data.$obj.replaceWith(obj0);
-								data.$obj=obj0;
-							}).focus(p.focusSelect);						
-						}else if($o.is("a")){
-							tpl=$([p._$rowTitleA0.clone()[0],p._$rowLnkA.clone()[0]]);
-							_$elmA.append(tpl);
-							//输入框事件处理
-							tpl.eq(0).find("input").val($o.html()).keyup(function(evt){
-								$o.html(this.value);
-							}).focus(p.focusSelect);
-							tpl.eq(1).find("input").val($o.attr("href")).keyup(function(evt){
-								$o.attr("href",this.value);
-							}).focus(p.focusSelect);
-							
-							
-						};
-					});			
-					_$elmA.show();
-				break;
-			};//switch
-			//第二个tab
-			dlg.$Layout.find('.txtVspC').val($curElm.parents(p._cssFlag).html());
-			dlg.$Layout.find('.txtVspCS').textareaSearch({
-				cssTextArea:dlg.$Layout.find('textarea'),
-				cssBtn:dlg.$Layout.find('.btnVspCS')
-			});
-			//上传按钮
-			dlg.$Layout.find(".btnUpl").click(function(evt){
-				dlg.$UpPic.show().effect("highlight");
-				return false;
-			});
-			//复制碎片以便取消时恢复
-			if(dlg.IsNew){
-				dlg.$Backup=dlg.CurFlag.clone(true).removeClass("on").find("a").removeClass("ing").end();
-				dlg.$Backup.bind("mouseenter",p.onFlagMEnter);
-			};
-						
-		};//onShow
-		var onHide=function(hash,dlg){
-			dlg.CurElm.removeClass("ing");
-			dlg.CurFlag.removeClass("on");
-			p._$chipCover_t.bind("mouseenter",p.onFlagMEnter);//.trigger("mouseenter");
-		};//onHide
-		chipEditor.Show({
-			afterShow:onShow,
-			afterHide:onHide,
-			flagID:flagID,
-			onUpPic:p.onUpPic,
-			onTest:p.onTest,
-			onSave:p.onSave,
-			onCancel:p.onCancel,
-			onGlobalRes:p.onGlobalRes,
-			onExternal:p.onExternal,
-			onFlashEdit:p.onFlashEdit,
-			onLoadHis:p.onLoadHis		
-		});
-	};
-	/**
-	 * 焦点图元素编辑
-	 */
-	p.onEditFlashElm=function(){
-		//if(p._$chipCover_t.hasClass("on")) return;
-		var flagID=p.getFlagID(p._$chipCover_t);
-		var $curFlag=p._$chipCover_t;
-		var onShow=function(hash,dlg){
-			dlg.CurFlag=$curFlag;
-			//hide the first tab
-			dlg.$CT.tabs("select",1);
-			dlg.$TabM.eq(0).hide();
-			//show the flash tip
-			dlg.$TabC.eq(1).find(".row").hide().filter(".flashTip").show();
-			//content of tab no2
-			dlg.$Layout.find('.txtVspC').val(dlg.CurFlag.html());
-			dlg.$CT.addClass("jqmFlash");
-			//复制碎片以便取消时恢复
-			if(dlg.IsNew){
-				dlg.$Backup=dlg.CurFlag.clone(true).removeClass("on").find("a").removeClass("ing").end();
-				dlg.$Backup.bind("mouseenter",p.onFlagMEnter);
-			};
-		};
-		var onHide=function(hash,dlg){
-			//p._$chipCover_t.removeClass("on");
-		};
-		chipEditor.Show({
-			afterShow:onShow,
-			afterHide:onHide,
-			flagID:flagID,
-			onTest:p.onTest,
-			onSave:p.onSave,
-			onCancel:p.onCancel,
-			onGlobalRes:p.onGlobalRes,
-			onExternal:p.onExternal,
-			onFlashEdit:p.onFlashEdit,
-			onLoadHis:p.onLoadHis		
-		});
-	};
-	/**
-	 * 碎片元素排序
-	 * @param {Object} evt
-	 */
-	p.onSortFlagElm=function(evt){
-		var $i=$(this);
-		var dlg=evt.data.dlg;
-		if($i.hasClass("sort")) return;
-		if(!dlg.SortElm){
-			dlg.SortElm=$i.addClass("sort");
-			return;
-		};
-		//调换内容
-		var temp=dlg.SortElm.html();
-		dlg.SortElm.html($i.html());
-		$i.html(temp);
-		
-		//结束本次操作
-		dlg.SortElm.removeClass("sort");
-		dlg.SortElm=null;
-		dlg.CurElm.removeClass('ing');
-		//更新CurFlag属性
-		dlg.CurFlag=$i.parents(p._cssFlag);
-		//更新代码textarea
-		dlg.$Layout.find("textarea").val(dlg.CurFlag.html());
-	};
-	p.onFlagMEnter=function(evt){	
-		var $i=$(this);
-		if($i.hasClass("on")) return;/* 在编辑某个元素时碎片会加上on */
-		var d=p.getDim($i);
-		p._$chipCover.css({
-			opacity:0.5,
-			top:d.y-1,
-			left:d.x-1,
-			height:d.h+d.pt+d.pb,
-			width:d.w+d.pl+d.pr,
-			display:'block'
-		}).one("mouseleave",function(evt){
-			p._$chipCover.hide();
-			//p._$chipCover_t.removeClass("on");
-			//$i.bind("mouseenter",p.onFlagMEnter);
-		});
-		
-		
-		p._$chipCover_t=$i;
-		//p._$chipCover_t.addClass("on");
 	};
 	/**
 	 * 禁用a标签的默认导航行为
@@ -435,80 +27,14 @@ var chipEditor = function() {
 		evt.preventDefault();
 		return true;		
 	};
-	p.focusSelect=function(evt){
-		$(this).select();
-	};
-	p.getDim=function($i){
-		var of=$i.offset();
-		var pt=parseInt($i.css("padding-top"));
-		pt=isNaN(pt)?0:pt;
-		var pb=parseInt($i.css("padding-bottom"));
-		pb=isNaN(pb)?0:pb;
-		var pl=parseInt($i.css("padding-left"));
-		pl=isNaN(pl)?0:pl;
-		var pr=parseInt($i.css("padding-right"));
-		pr=isNaN(pr)?0:pr;
-		
-		var dim={
-			y:of.top,
-			x:of.left,
-			h:$i.height(),
-			w:$i.width(),
-			pt:pt,
-			pb:pb,
-			pl:pl,
-			pr:pr
-		};
-		
-		return dim;
-	};
-	
-	/**
-	 * 碎片事件注册
-	 */
-	p.initFlagEvts=function(){
-		$(p._cssFlag+" a,.jqmCT a").bind('click.noNav',p.stopNav);
-		$(p._cssFlag+" a").bind("click.edit",p.onEditFlagElem);
-		$(p._cssFlag).bind("mouseenter",p.onFlagMEnter).mouseleave(function(evt){
-			p._$chipCover_t.unbind("mouseenter").bind("mouseenter",p.onFlagMEnter);
-		});
-		
-		p._$chipCover.click(function(evt){
-			if(p._$chipCover_t.is(p._cssFlash)){
-				//进入焦点图编辑界面
-				p.onEditFlashElm();	
-				return;
-			};
-			
-			p._$chipCover.trigger("mouseleave");
-			p._$chipCover_t.unbind("mouseenter");
-			/*
-			window.setTimeout(function(){
-				p._$chipCover_t.bind("mouseenter",p.onFlagMEnter);
-			},500);
-			*/
-			
-		});
-	};
     //private area
-    p.initVar = function(opts) { 
-		p._cssFlag=opts.cssFlag||".chip";
-		p._cssFlash=opts.cssFlash||'.flash';
+    p.initVar = function(opts) {
 		p._cssBold=opts.cssBold||'bb';
 		p._cssColor=opts.cssColor||'cc';
-		p._$rowTxtA=$("#elmATpl .rowTxt");
-		p._$rowTitleA=$("#elmATpl .rowTitle");
-		p._$rowTxtA0=$("#elmATpl .rowTxt0");
-		p._$rowTitleA0=$("#elmATpl .rowTitle0");		
-		p._$rowLnkA=$("#elmATpl .rowLnk");
-		p._$rowImg=$("#elmImgTpl .rowImg");
-		p._$rowALT=$("#elmImgTpl .rowALT");
-		p._$rowLnkImg=$("#elmImgTpl .rowLnk");
-		p._aTplStr=opts.aTplStr||'<a href="http://sohu.com" title="">sohu</a>';
-		p._vdTplStr=opts.vdTplStr||'<a href="http://sohu.com" title=""><img src="http://images.sohu.com/uiue/vd.gif" alt="Video"/></a>';
+		chipEditor.aTplStr=opts.aTplStr||'<a href="http://sohu.com" title="">sohu</a>';
+		chipEditor.vdTplStr=opts.vdTplStr||'<a href="http://sohu.com" title=""><img src="http://images.sohu.com/uiue/vd.gif" alt="Video"/></a>';
 		p._dlgModel=$(".chipEdt");
 		p._$body=$("body");
-		p._$chipCover=$("#chipCover");
 		/* 用户的回调函数 */
 		p.onUpPic=opts.onUpPic;
 		p.onTest=opts.onTest;
@@ -526,36 +52,52 @@ var chipEditor = function() {
     p.initEvents = function(opts) {
         $(document).ready(p.onLoaded);
 		$(".acts a,button").button();
-		p.initFlagEvts();
+		$(".jqmCT a").bind('click.noNav',p.stopNav);
     };
     //public area
     pub.Init = function(opts) {
         p.initVar(opts);
         p.initEvents(opts);
     };
-	pub.Show=function(opts){
-		var dlg=null;
+	/**
+	 * 显示碎片编辑器
+	 * @param {Object} chip 碎片的dom对象
+	 * @param {Object} opts 其他选项
+	 */
+	pub.Show=function(chip,opts){
+		opts=$.extend({tabs:[0,1,2]},opts||{});
+		var dlg=null,$chip=$(chip),id=p.getChipID($chip);
 		opts.isNew=false;
-		if(!(dlg=p.editors[opts.flagID])){
-			dlg=new chipEditor.Dialog({
+		if(!(dlg=p.editors[id])){
+			opts.isNew=true;
+			opts=$.extend({
 				dlgModel:p._dlgModel,
 				$body:p._$body,
-				onUpPic:opts.onUpPic,
-				onTest:opts.onTest,
-				onSave:opts.onSave,
-				onCancel:opts.onCancel,
-				onGlobalRes:opts.onGlobalRes,
-				onExternal:opts.onExternal,
-				onFlashEdit:opts.onFlashEdit,
-				onLoadHis:opts.onLoadHis
-			});
-			p.editors[opts.flagID]=dlg;
-			opts.isNew=true;
+				$chip:$chip,
+				onUpPic:p.onUpPic,
+				onTest:p.onTest,
+				onSave:p.onSave,
+				onCancel:p.onCancel,
+				onGlobalRes:p.onGlobalRes,
+				onExternal:p.onExternal,
+				onFlashEdit:p.onFlashEdit,
+				onLoadHis:p.onLoadHis								
+			},opts);
+			dlg=new chipEditor.Dialog(opts);
+			p.editors[id]=dlg;
+			
 		};
 		dlg.Show(opts);
 	};
-	pub.OnEditFlagElm=p.onEditFlagElem;
-	pub.OnSortFlagElm=p.onSortFlagElm;
+	pub.StopNav=p.stopNav;
+	pub.$RowTxtA=$("#elmATpl .rowTxt");
+	pub.$RowTitleA=$("#elmATpl .rowTitle");
+	pub.$RowTxtA0=$("#elmATpl .rowTxt0");
+	pub.$RowTitleA0=$("#elmATpl .rowTitle0");		
+	pub.$RowLnkA=$("#elmATpl .rowLnk");
+	pub.$RowImg=$("#elmImgTpl .rowImg");
+	pub.$RowALT=$("#elmImgTpl .rowALT");
+	pub.$RowLnkImg=$("#elmImgTpl .rowLnk");
     return pub;
 } ();
 /**
@@ -568,6 +110,8 @@ chipEditor.Dialog=function(opts){
 		lblSort:'排序状态',
 		lblSort1:'结束排序',
 		lblTab0:'<strong class="alert">行修改状态</strong><em>请选择行</em>',
+		clBold:'bb',
+		clColor:'cc',
 		onUpPic:null,
 		onTest:null,
 		onSave:null,
@@ -580,13 +124,25 @@ chipEditor.Dialog=function(opts){
 	var _this=this;
 	this.Sorting=false;
 	this._opts=opts;
-	this.CurElm=null;//当前元素
-	this.CurFlag=null;//当前碎片
+	this.$Elm=null;//当前元素
+	this.$Chip=opts.$chip;//当前碎片
+	this.$Backup=this.$Chip.clone(true);
 	this.SortElm=null;//当前排序元素
-	//setup layout
+	
+	//DOM引用
 	this.$Layout=opts.dlgModel.clone().appendTo(opts.$body);
+	this.$Code=this.$Layout.find('.txtVspC').val(this.$Chip.html());
+	this.$Layout.find('.txtVspCS').textareaSearch({
+		cssTextArea:_this.$Code,
+		cssBtn:_this.$Layout.find('.btnVspCS')
+	});
 	this.$btnCode=this.$Layout.find(".external");//.globalRes,
+	this.$ElmA=this.$Layout.find(".elmA");
+	this.$ElmImg=this.$Layout.find(".elmImg");
 	//事件处理
+	this.$Chip.find("a").click(chipEditor.StopNav).click(function(evt){
+		_this.Edit($(this));
+	});
 	//整体测试
 	this.$Layout.find(".test").click(function(evt){
 		if(opts.onTest){
@@ -603,7 +159,7 @@ chipEditor.Dialog=function(opts){
 	});
 	//取消
 	this.$Layout.find(".cancel").click(function(evt){
-		_this.CurFlag.replaceWith(_this.$Backup.clone(true));
+		_this.$Chip.replaceWith(_this.$Backup.clone(true));
 		_this.$Layout.jqmHide();
 		if(opts.onCancel){
 			opts.onCancel(_this);
@@ -646,6 +202,7 @@ chipEditor.Dialog=function(opts){
 	this.$Layout.find('.btnSort').click(function(evt){
 		_this.ToggleSorting($(this));return false;
 	});
+	//tab
 	this.$CT=this.$Layout.find(".jqmCT").tabs({
 		select:function(evt,ui){
 			//按钮的显隐
@@ -709,10 +266,22 @@ chipEditor.Dialog=function(opts){
 	this.$Layout.css("margin-left",-(this.$Layout.width()/2));
 }; 
 chipEditor.Dialog.prototype.Show=function(opts){
-	$.extend(this.jqmOpts,opts||{});
+	var _this=this;
+	opts=$.extend({tabs:[0,1,2]},opts||{});
+	$.extend(this.jqmOpts,opts);
 	this.IsNew=opts.isNew;
 	if(!opts.isNew)
 		this.Hide(opts);
+	
+	if((!opts.tabs)||opts.tabs.length==0){
+		this.$CT.hide();
+	}else{
+		this.$TabM.hide();
+		$.each(opts.tabs,function(i,o){
+			_this.$TabM.eq(o).show();
+		});
+		this.$CT.tabs("select",opts.tabs[0]);
+	};
 		
 	this.$Layout.jqm(this.jqmOpts).jqmShow();
 };
@@ -722,6 +291,7 @@ chipEditor.Dialog.prototype.Hide=function(opts){
 	return this;
 };
 chipEditor.Dialog.prototype.ToggleSorting=function($i){
+	var _this=this;
 	if(this.Sorting){
 		$i.removeClass("btnSort1").find("span").html(this._opts.lblSort);
 		this.$CT.tabs("option","disabled",[]);
@@ -729,15 +299,349 @@ chipEditor.Dialog.prototype.ToggleSorting=function($i){
 		
 		this.Sorting=false;
 		//绑定click.edit事件
-		this.CurFlag.find("a").unbind("click.sort").bind("click.edit",chipEditor.OnEditFlagElm);
+		this.$Chip.find("a").unbind("click.sort").bind("click.edit",this.Edit);
 		//重置"可视化修改"和"代码修改"(由于元素发生了变化)
-		this.$TabC.find(".elmA,.elmImg").empty().html(this._opts.lblTab0);
+		this.$ElmA.empty().html(this._opts.lblTab0);
+		this.$ElmImg.empty().html(this._opts.lblTab0);
 	}else{
 		$i.prev().trigger("click");
 		$i.addClass("btnSort1").find("span").html(this._opts.lblSort1);
 		this.$CT.tabs("option","disabled",[0,1,2]);
 		this.Sorting=true;
 		//移除碎片a标签的click.edit事件处理
-		this.CurFlag.find("a").unbind("click.edit").bind("click.sort",{dlg:this},chipEditor.OnSortFlagElm);
+		this.$Chip.find("a").unbind("click.edit").bind("click.sort",function(evt){
+			_this.Sort($(this));
+		});
 	};
+};
+/**
+ * 编辑某个元素
+ * @param {Object} $elm
+ */
+chipEditor.Dialog.prototype.Edit=function($elm){
+	var _t=0,_this=this;
+	//改元素是否在编辑中
+	if($elm.hasClass("ing")) return;
+	
+	$elm.addClass("ing");
+	
+	//检查元素类型
+	if($elm.find("img").length>0){
+		_t=1;//图片
+	}else if($elm.parent().is("li")){
+		_t=0;//列表
+	}else{
+		_t=2;//段落
+	};
+	
+	var $elmList=$elm.parent().contents();
+	
+	if(this.$Elm) this.$Elm.removeClass("ing");
+	this.$Elm=$elm;
+	this.$Chip.addClass("on");
+	
+	var onShow=function(hash,dlg){	
+		//第一个tab
+		dlg.$ElmA.hide().empty();
+		dlg.$ElmImg.hide().empty();
+		switch(_t){
+			case 0:
+				$elmList.each(function(i,o){
+					var $o=$(o);
+					var tpl=null;
+					if(o.nodeType!=1){
+						//文本
+						tpl=chipEditor.$RowTxtA.clone();
+						dlg.$ElmA.append(tpl);
+						var data={$obj:$o,$tpl:tpl};
+						tpl.find("input").val($o.text()).bind("keyup",function(evt){
+							var obj0=$(document.createTextNode(this.value));
+							data.$obj.replaceWith(obj0);
+							data.$obj=obj0;
+						}).focus(_this.focusSelect);
+						//删除按钮
+						tpl.find(".btnDel").bind("click",function(evt){
+							data.$obj.remove();
+							tpl.remove();
+						});
+					}else if($o.is("a")){
+						tpl=$([chipEditor.$RowTitleA.clone()[0],chipEditor.$RowLnkA.clone()[0]]);
+						tpl.eq(0).find("input").val($o.html());//attr("title")
+						tpl.eq(1).find("input").val($o.attr("href"));
+						dlg.$ElmA.append(tpl);
+						_this.BindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:_t});
+					};
+
+				});
+				_this.$ElmA.show();
+			break;
+			case 1:
+				$elmList.each(function(i,o){
+					var $o=$(o),tpl=null;
+					if(o.nodeType!=1){
+						//文本
+						tpl=chipEditor.$RowTxtA.clone();
+						_this.$ElmImg.append(tpl);
+						var data={$obj:$o,$tpl:tpl,t:_t};
+						tpl.find("input").val($o.text()).bind("keyup",function(evt){
+							var obj0=$(document.createTextNode(this.value));
+							data.$obj.replaceWith(obj0);
+							data.$obj=obj0;
+						}).focus(_this.focusSelect);
+						//删除按钮
+						tpl.find(".btnDel").bind("click",function(evt){
+							data.$obj.remove();
+							tpl.remove();
+							return false;
+						});								
+					}else if($o.is("a")){
+						var $img=$o.find("img");
+						if($img.length>0){
+							//图片链接
+							tpl=$([chipEditor.$RowImg.clone()[0],chipEditor.$RowALT.clone()[0],chipEditor.$RowLnkImg.clone()[0]]);
+							tpl.eq(0).find("input").val($img.attr("src"));
+							tpl.eq(1).find("input").val($img.attr("alt"));
+							tpl.eq(2).find("input").val($o.attr("href"));
+							_this.$ElmImg.append(tpl);
+							_this.BindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:_t,$img:$img});								
+						}else{
+							//文字链接
+							tpl=$([chipEditor.$RowTitleA.clone()[0],chipEditor.$RowLnkA.clone()[0]]);
+							tpl.eq(0).find("input").val($o.html());
+							tpl.eq(1).find("input").val($o.attr("href"));
+							_this.$ElmImg.append(tpl);
+							_this.BindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:0});								
+						};
+					};
+				});//each
+				_this.$ElmImg.show();
+			break;
+			case 2:
+				$elmList.each(function(i,o){
+					var $o=$(o),tpl=null;
+					if(o.nodeType!=1){
+						//文本
+						tpl=chipEditor.$RowTxtA0.clone();
+						_this.$ElmA.append(tpl);
+						var data={$obj:$o,$tpl:tpl,t:_t};
+						tpl.find("input").val($o.text()).bind("keyup",function(evt){
+							var obj0=$(document.createTextNode(this.value));
+							data.$obj.replaceWith(obj0);
+							data.$obj=obj0;
+						}).focus(_this.focusSelect);						
+					}else if($o.is("a")){
+						tpl=$([chipEditor.$RowTitleA0.clone()[0],chipEditor.$RowLnkA.clone()[0]]);
+						_this.$ElmA.append(tpl);
+						//输入框事件处理
+						tpl.eq(0).find("input").val($o.html()).keyup(function(evt){
+							$o.html(this.value);
+						}).focus(_this.focusSelect);
+						tpl.eq(1).find("input").val($o.attr("href")).keyup(function(evt){
+							$o.attr("href",this.value);
+						}).focus(_this.focusSelect);
+						
+						
+					};
+				});			
+				_this.$ElmA.show();
+			break;
+		};//switch
+		//第二个tab
+		dlg.$Code.val(dlg.$Chip.html());
+		//上传按钮
+		dlg.$Layout.find(".btnUpl").click(function(evt){
+			dlg.$UpPic.show().effect("highlight");
+			return false;
+		});
+					
+	};//onShow
+	var onHide=function(hash,dlg){
+		if(dlg.$Elm){
+			dlg.$Elm.removeClass("ing");
+			dlg.$Elm=null;			
+		};
+		dlg.$Chip.removeClass("on");
+	};//onHide
+	this.Show({
+		afterShow:onShow,
+		afterHide:onHide,
+	});
+};
+/**
+ * 排序
+ * @param {Object} $i
+ */
+chipEditor.Dialog.prototype.Sort=function($i){
+	if($i.hasClass("sort")) return;
+	if(!this.SortElm){
+		this.SortElm=$i.addClass("sort");
+		return;
+	};
+	//调换内容
+	var temp=this.SortElm.html();
+	this.SortElm.html($i.html());
+	$i.html(temp);
+	
+	//结束本次操作
+	this.SortElm.removeClass("sort");
+	this.SortElm=null;
+	if(this.$Elm)
+		this.$Elm.removeClass('ing');
+	//更新代码textarea
+	this.$Code.val(this.$Chip.html());
+};
+/**
+ * 图标事件处理
+ * @param {Object} $tpl
+ * @param {Object} data
+ */
+chipEditor.Dialog.prototype.BindIconEvts=function($tpl,data){
+	var _this=this;
+	//删除按钮
+	$tpl.find(".btnDel").bind("click",function(evt){
+		_this.DelElm(data);return false;
+	});
+	//复制按钮
+	$tpl.find(".btnAdd").bind("click",function(evt){
+		_this.AddElm(data);return false;
+	});
+	//加粗
+	$tpl.find(".bold").bind("click",function(evt){
+		_this.Bold(data);return false;
+	});
+	//颜色
+	$tpl.find(".color").bind("click",function(evt){
+		_this.Color(data);return false;
+	});
+	if(data.t==0){
+		//标题输入框
+		$tpl.eq(0).find("input").keyup(function(evt){
+			data.$obj.html(this.value);
+		}).focus(this.focusSelect);
+		//链接输入框
+		$tpl.eq(1).find("input").keyup(function(evt){
+			data.$obj.attr("href",this.value);
+		}).focus(this.focusSelect);
+		//其他图标
+		$tpl.eq(0).find('.icon').click(function(evt){
+			$(this).next().toggle();
+			return false;
+		});
+		//视频前
+		$tpl.eq(0).find(".videoL").bind("click",function(evt){
+			_this.InsertVDIcon({$obj:data.$obj,before:true});return false;
+		});
+		//视频后
+		$tpl.eq(0).find(".videoR").bind("click",function(evt){
+			_this.InsertVDIcon({$obj:data.$obj,before:false});return false;
+		});			
+	}else{
+		//图片地址输入框
+		$tpl.eq(0).find("input").change(function(evt){
+			data.$img.attr("src",this.value);
+		}).focus(this.focusSelect);
+		//ALT输入框
+		$tpl.eq(1).find("input").change(function(evt){
+			data.$img.attr("alt",this.value);
+		}).focus(this.focusSelect);
+		//链接输入框
+		$tpl.eq(2).find("input").change(function(evt){
+			data.$obj.attr("href",this.value);
+		}).focus(this.focusSelect);
+	};
+
+};
+/**
+ * 删除元素
+ * @param {Object} data
+ */
+chipEditor.Dialog.prototype.DelElm=function(data){
+	if(data.$obj){
+		data.$obj.remove();
+		data.$tpl.remove();
+	};
+};
+/**
+ * 加粗字体
+ * @param {Object} data
+ */
+chipEditor.Dialog.prototype.Bold=function(data){
+	if(!data.$obj) return false;
+	if(data.$obj.hasClass(this._opts.clBold)){
+		data.$obj.removeClass(this._opts.clBold).css("font-weight","normal");
+		data.$tpl.eq(0).find("input").removeClass(this._opts.clBold);
+	}else{
+		data.$obj.addClass(this._opts.clBold).css("font-weight","bold");
+		data.$tpl.eq(0).find("input").addClass(this._opts.clBold);
+	};
+};
+/**
+ * 着色
+ * @param {Object} data
+ */
+chipEditor.Dialog.prototype.Color=function(data){
+	if(!data.$obj) return false;
+	if(data.$obj.hasClass(this._opts.clColor)){
+		data.$obj.removeClass(this._opts.clColor).css("color",this._rawColor);
+		data.$tpl.eq(0).find("input").removeClass(this._opts.clColor);
+	}else{
+		if(!this._rawColor)
+			this._rawColor=data.$obj.css("color");
+		
+		data.$obj.addClass(this._opts.clColor).css("color","red");
+		data.$tpl.eq(0).find("input").addClass(this._opts.clColor);			
+	};
+};
+/**
+ * 添加元素
+ * @param {Object} data
+ */
+chipEditor.Dialog.prototype.AddElm=function(data){
+	if(!data.$obj) return false;
+	var txt0=$(document.createTextNode(" "));
+	var a0=$(chipEditor.aTplStr);
+	data.$obj.after(a0).after(txt0);
+	a0.bind('click.noNav',chipEditor.StopNav);
+	
+	var tpl=chipEditor.$RowTxtA.clone();
+	var data1={$obj:txt0,$tpl:tpl};
+	//文字输入框事件(闭包的应用)
+	tpl.find("input").val(" ").bind("keyup",function(evt){
+		var obj0=$(document.createTextNode(this.value));
+		data1.$obj.replaceWith(obj0);
+		data1.$obj=obj0;
+	}).focus(this.focusSelect);
+	tpl.find(".btnDel").bind("click",function(evt){
+		data1.$obj.remove();
+		tpl.remove();
+	});
+	var tpl1=$([chipEditor.$RowTitleA.clone()[0],chipEditor.$RowLnkA.clone()[0]]);
+	//输入框回填内容
+	tpl1.eq(0).find("input").val(a0.html());
+	tpl1.eq(1).find("input").val(a0.attr("href"));
+	var data2={$obj:a0,$tpl:tpl1,t:0};
+	//图标事件处理
+	this.BindIconEvts(tpl1,data2);
+	
+	data.$tpl.eq(1).after(tpl1).after(tpl);
+	return false;
+};
+chipEditor.Dialog.prototype.focusSelect=function(evt){
+	$(this).select();
+};
+/**
+ * 插入视频小图片
+ * @param {Object} data
+ */
+chipEditor.Dialog.prototype.InsertVDIcon=function(data){
+	var _this=this;
+	var a=$(chipEditor.vdTplStr).bind("click.noNav",chipEditor.StopNav).bind('click.edit',function(evt){
+		_this.Edit($(this));
+	});
+	if(data.before){
+		data.$obj.before(a);
+	}else{
+		data.$obj.after(a);
+	};
+	return false;
 };

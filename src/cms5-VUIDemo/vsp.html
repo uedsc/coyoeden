@@ -96,7 +96,7 @@
 				</div>				
 			</div>
 		</div>
-		
+		<div id="chipCover"></div>
 		<!--碎片编辑器-->
 		<!--jqModal-->
 		<div class="jqmWindow chipEdt">
@@ -115,8 +115,8 @@
 					</ul>
 					<div id="wVsp_tab1" class="tabC">
 						<!--元素模板.文字链-->
-						<div class="elmTpl elmA"></div>
-						<div class="elmTpl elmImg"></div>
+						<div class="elmTpl elmA"><strong class="alert">行修改状态</strong><em>请选择行</em></div>
+						<div class="elmTpl elmImg"><strong class="alert">行修改状态</strong><em>请选择行</em></div>
 						<div class="uppic">
 							<div class="upp_t"><strong>上传图片</strong></div>
 							<div class="upp_m">
@@ -217,11 +217,10 @@
 				<input type="text" class="imgLnk l"/>
 			</div>						
 		</div>
-		<div id="chipCover"></div>
-		<!--/碎片编辑器-->
 		<script type="text/javascript" src="js/chipEditor.js"></script>
-		<script type="text/javascript">
+		<script type="text/javascript">	
 		//<![CDATA[
+		/* 碎片编辑器的初始化 */
 		chipEditor.Init({
 			/* 需要使用chipEditor的碎片的css class */
 			cssFlag:'.chip',
@@ -244,6 +243,7 @@
 		});
 		//]]>
 		</script>
- 
+		<!--/碎片编辑器-->
+		<script type="text/javascript" src="js/chipEditor.test.js"></script> 
 	</body>
 </html>
