@@ -27,6 +27,12 @@ var chipEditor = function() {
 		evt.preventDefault();
 		return true;		
 	};
+	p.initTinyMCE=function(){
+		p._$mce=$("#tinymce1").tinymce({
+			script_url:'editor/tiny_mce/tiny_mce.js',
+			theme:'simple'
+		}).hide();
+	};
     //private area
     p.initVar = function(opts) {
 		p._cssBold=opts.cssBold||'bb';
@@ -47,7 +53,7 @@ var chipEditor = function() {
 		/* /用户的回调函数 */
 	};
     p.onLoaded = function() { 
-
+		p.initTinyMCE();
 	};
     p.initEvents = function(opts) {
         $(document).ready(p.onLoaded);
@@ -88,6 +94,9 @@ var chipEditor = function() {
 			
 		};
 		dlg.Show(opts);
+	};
+	pub.MCE=function(){
+		return p._$mce.tinymce();
 	};
 	pub.StopNav=p.stopNav;
 	pub.$RowTxtA=$("#elmATpl .rowTxt");
@@ -130,7 +139,9 @@ chipEditor.Dialog=function(opts){
 	
 	//DOM引用
 	this.$Layout=opts.dlgModel.clone().appendTo(opts.$body);
-	this.$Code=this.$Layout.find('.txtVspC').val(this.$Chip.html());
+	chipEditor.MCE().setContent(this.$Chip.html());
+	this.$Code=this.$Layout.find('.txtVspC').val(chipEditor.MCE().getContent());
+
 	this.$Layout.find('.txtVspCS').textareaSearch({
 		cssTextArea:_this.$Code,
 		cssBtn:_this.$Layout.find('.btnVspCS')
@@ -139,7 +150,7 @@ chipEditor.Dialog=function(opts){
 	this.$ElmA=this.$Layout.find(".elmA");
 	this.$ElmImg=this.$Layout.find(".elmImg");
 	//事件处理
-	this.$Chip.find("a").click(chipEditor.StopNav).click(function(evt){
+	this.$Chip.find("a").click(chipEditor.StopNav).bind("click.edit",function(evt){
 		_this.Edit($(this));
 	});
 	this.$Backup=this.$Chip.clone(true);
@@ -255,6 +266,11 @@ chipEditor.Dialog=function(opts){
 			hash.w.hide();				
 			if(_this.jqmOpts.modal){hash.o.remove();}; 
 			//afterHide callback
+			_this.$Chip.removeClass("on");
+			//重置第一个tab的内容
+			_this.$ElmA.empty().html(_this._opts.lblTab0);
+			_this.$ElmImg.empty().html(_this._opts.lblTab0);
+			
 			if(_this.jqmOpts.afterHide)
 			{
 				_this.jqmOpts.afterHide(hash,_this);
@@ -270,6 +286,7 @@ chipEditor.Dialog=function(opts){
 chipEditor.Dialog.prototype.Show=function(opts){
 	var _this=this;
 	opts=$.extend({tabs:[0,1,2]},opts||{});
+	$.extend(this.jqmOpts,{trigger:false,modal:false,overlay:false,autoFocus:false,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null});//reset
 	$.extend(this.jqmOpts,opts);
 	this.IsNew=opts.isNew;
 	if(!opts.isNew)
@@ -292,7 +309,6 @@ chipEditor.Dialog.prototype.Show=function(opts){
 chipEditor.Dialog.prototype.Hide=function(opts){
 	$.extend(this.jqmOpts,opts||{});
 	this.$Layout.jqm(this.jqmOpts).jqmHide();
-	this.$Chip.removeClass("on");
 	return this;
 };
 chipEditor.Dialog.prototype.ToggleSorting=function($i){
@@ -304,7 +320,9 @@ chipEditor.Dialog.prototype.ToggleSorting=function($i){
 		
 		this.Sorting=false;
 		//绑定click.edit事件
-		this.$Chip.find("a").unbind("click.sort").bind("click.edit",this.Edit);
+		this.$Chip.find("a").unbind("click.sort").bind("click.edit",function(evt){
+			_this.Edit($(this));
+		});
 		//重置"可视化修改"和"代码修改"(由于元素发生了变化)
 		this.$ElmA.empty().html(this._opts.lblTab0);
 		this.$ElmImg.empty().html(this._opts.lblTab0);
@@ -463,7 +481,8 @@ chipEditor.Dialog.prototype.Edit=function($elm){
 			break;
 		};//switch
 		//第二个tab
-		dlg.$Code.val(dlg.$Chip.html());
+		chipEditor.MCE().setContent(dlg.$Chip.html());
+		dlg.$Code.val(chipEditor.MCE().getContent());
 		//上传按钮
 		dlg.$Layout.find(".btnUpl").click(function(evt){
 			dlg.$UpPic.show().effect("highlight");
@@ -504,7 +523,8 @@ chipEditor.Dialog.prototype.Sort=function($i){
 	if(this.$Elm)
 		this.$Elm.removeClass('ing');
 	//更新代码textarea
-	this.$Code.val(this.$Chip.html());
+	chipEditor.MCE().setContent(this.$Chip.html());
+	this.$Code.val(chipEditor.MCE().getContent());
 };
 /**
  * 图标事件处理

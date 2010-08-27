@@ -56,7 +56,7 @@ var test = function() {
 	p.onLoaded = function() { };
 	p.initEvents = function(opts) {
 		$(document).ready(p.onLoaded);
-		$(".chip").bind("mouseenter",p.onFlagMEnter).mouseleave(function(evt){
+		$(".chip").live("mouseenter",p.onFlagMEnter).mouseleave(function(evt){
 			p._$chipCover_t.unbind("mouseenter").bind("mouseenter",p.onFlagMEnter);
 		});
 		//蒙层的单击事件
