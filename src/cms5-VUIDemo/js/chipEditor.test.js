@@ -69,7 +69,8 @@ var test = function() {
 					//show the flash tip
 					dlg.$TabC.eq(1).find(".row").hide().filter(".flashTip").show();
 					//content of tab no2
-					dlg.$Code.val(dlg.$Chip.html());
+					chipEditor.MCE().setContent(dlg.$Chip.html());
+					dlg.$Code.val(chipEditor.MCE().getContent());
 					dlg.$CT.addClass("jqmFlash");/* 控制排序按钮的显示 */
 				}
 			});
