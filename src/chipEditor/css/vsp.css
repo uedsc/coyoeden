@@ -1,0 +1,53 @@
+/* Styles for vsp.html */
+body{background:#000;}
+a{color:blue;}
+.alert{color:red;}
+/* JQuery UI Style */
+.ui-button-text-only .ui-button-text{padding:0.2em 0.5em;color:#929292;font-size:0.9em;}
+.ui-tabs .ui-tabs-nav li a{padding:0.3em 0.6em;}
+.ui-tabs .ui-tabs-panel{padding:1em;}
+/* /JQuery UI Style*/
+
+#contentA{/*min-height:618px;height:auto !important;height:718px;*/background:#fff;padding:30px 0;}
+#contentA h2{padding:10px 30px;font-size:1.2em;background:#eee;text-align:left;margin:5px 0;}
+.chipEdt{min-width:465px;}
+.chipEdt .tabC{position:relative;}
+.chipEdt .row{text-align:left;}
+.chipEdt .rowTitle,.chipEdt .rowTxt{padding-top:4px;border-top:1px dashed #ccc;}
+.chipEdt .ui-widget-header{background:#eee;border:none;}
+.chipEdt .ui-tabs-nav li.last{float:right;margin-right:10px;}
+.chipEdt .ui-tabs-nav .ui-button{margin-right:0;background:#FF8400;}
+.chipEdt .elmTpl label{width:42px;text-align:center;}
+.chipEdt .elmTpl input{width:245px;border-top:2px solid #C4C4C5;border-left:2px solid #C4C4C5;}
+.chipEdt .icons{position:relative;width:96px;margin-left:3px;}
+.chipEdt .icons a{display:inline-block;border:1px solid #eee;text-decoration:none;}
+.chipEdt .icons span{display:block;font-weight:bold;font-size:0.9em;padding:0.2em 0.5em;}
+.chipEdt .color span{border-bottom:2px solid red;padding-bottom:0;}
+.chipEdt .icon{background:url("../images/pic01.jpg") no-repeat right center;}
+.chipEdt .others{position:absolute;top:20px;right:-20px;width:50px;}
+.chipEdt .others a{width:100%;padding:1px 2px 2px 5px;font-size:0.9em;}
+.chipEdt .others a:hover{background:#1F84EC;color:#fff;}
+.chipEdt .icon span{padding-right:0.6em;}
+.chipEdt .icons1{width:34px;line-height:22px;}
+.chipEdt input.bb{font-weight:bold;}
+.chipEdt input.cc{color:red;}
+.chipEdt .acts{margin-bottom:10px;}
+.chipEdt .hide{display:none;}
+.chipEdt textarea{width:100%;height:180px;}
+.chipEdt .uppic{position:absolute;display:none;top:10px;border:2px solid #eee;width:92%;z-index:20;background:#f4f4f4;text-align:left;padding:5px;}
+.chipEdt .upp_t{cursor:move;}
+.chipEdt .upp_m{margin:10px 0;} 
+.chipEdt .upp_m input{background:#fff;width:200px;}
+.chipEdt .flashTip,.jqmFlash .btnSort{display:none;}
+.chipEdt .elmImg{display:none;}
+/* 隐藏暂时不需要的按钮 */
+.chipEdt .btnVspCBTipAdd,.chipEdt .btnVspCBTipDel,.chipEdt .globalRes{display:none;}
+
+#chipCover{position:absolute;z-index:500;border:2px solid red;background:#ffffc2;cursor:pointer;}
+
+/* 碎片 */
+.chip{width:480px;margin:0 auto;text-align:left;padding:10px;border:1px solid #eee;}
+.chip .ct{margin:20px 0;}
+.chip .pp li{float:left;display:inline;width:70px;}
+.chip .pp img{padding:1px;background:#fff;border:1px solid #ccc;}
+.chip .sort{background:red;}
