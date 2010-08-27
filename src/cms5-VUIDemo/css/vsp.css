@@ -10,7 +10,7 @@ a{color:blue;}
 
 #contentA{/*min-height:618px;height:auto !important;height:718px;*/background:#fff;padding:30px 0;}
 #contentA h2{padding:10px 30px;font-size:1.2em;background:#eee;text-align:left;margin:5px 0;}
-.chipEdt{min-width:465px;}
+.chipEdt{width:465px;}
 .chipEdt .tabC{position:relative;}
 .chipEdt .row{text-align:left;}
 .chipEdt .rowTitle,.chipEdt .rowTxt{padding-top:4px;border-top:1px dashed #ccc;}

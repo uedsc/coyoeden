@@ -3,6 +3,7 @@
  * 碎片编辑器
  * @author levinhuang
  */
+
 var chipEditor = function() {
     var p={},pub={};
 	p.editors={};
@@ -28,10 +29,20 @@ var chipEditor = function() {
 		return true;		
 	};
 	p.initTinyMCE=function(){
+		/*这种异步加载tiny_mce.js的方式在ie下有问题，需要移到chipEditor.js外面。否则需要用原生的tinymce.init方法。
 		p._$mce=$("#tinymce1").tinymce({
 			script_url:'editor/tiny_mce/tiny_mce.js',
 			theme:'simple'
 		}).hide();
+		*/
+		tinymce.init({
+			mode:'specific_textareas',
+			editor_selector:'mceEditor',
+			theme:'simple',
+			oninit:function(){
+				tinymce.activeEditor.hide();
+			}
+		});
 	};
     //private area
     p.initVar = function(opts) {
@@ -96,7 +107,8 @@ var chipEditor = function() {
 		dlg.Show(opts);
 	};
 	pub.MCE=function(){
-		return p._$mce.tinymce();
+		//return p._$mce.tinymce();
+		return tinymce.activeEditor;
 	};
 	pub.StopNav=p.stopNav;
 	pub.$RowTxtA=$("#elmATpl .rowTxt");
