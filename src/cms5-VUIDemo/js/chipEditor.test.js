@@ -62,17 +62,17 @@ var test = function() {
 		//蒙层的单击事件
 		p._$chipCover.click(function(evt){
 			if(p._$chipCover_t.is(p._cssFlash)){
-				//进入焦点图编辑界面
-				chipEditor.Show(p._$chipCover_t,{
-					tabs:[1,2],
-					afterShow:function(hash,dlg){
-						//show the flash tip
-						dlg.$TabC.eq(1).find(".row").hide().filter(".flashTip").show();
-						//content of tab no2
-						dlg.$Code.val(dlg.$Chip.html());
-						dlg.$CT.addClass("jqmFlash");/* 控制排序按钮的显示 */
-					}
-				});
+			//进入焦点图编辑界面
+			chipEditor.Show(p._$chipCover_t,{
+				tabs:[1,2],
+				afterShow:function(hash,dlg){
+					//show the flash tip
+					dlg.$TabC.eq(1).find(".row").hide().filter(".flashTip").show();
+					//content of tab no2
+					dlg.$Code.val(dlg.$Chip.html());
+					dlg.$CT.addClass("jqmFlash");/* 控制排序按钮的显示 */
+				}
+			});
 				return;
 			};
 			
