@@ -126,7 +126,6 @@ chipEditor.Dialog=function(opts){
 	this._opts=opts;
 	this.$Elm=null;//当前元素
 	this.$Chip=opts.$chip;//当前碎片
-	this.$Backup=this.$Chip.clone(true);
 	this.SortElm=null;//当前排序元素
 	
 	//DOM引用
@@ -143,6 +142,7 @@ chipEditor.Dialog=function(opts){
 	this.$Chip.find("a").click(chipEditor.StopNav).click(function(evt){
 		_this.Edit($(this));
 	});
+	this.$Backup=this.$Chip.clone(true);
 	//整体测试
 	this.$Layout.find(".test").click(function(evt){
 		if(opts.onTest){
@@ -159,7 +159,9 @@ chipEditor.Dialog=function(opts){
 	});
 	//取消
 	this.$Layout.find(".cancel").click(function(evt){
-		_this.$Chip.replaceWith(_this.$Backup.clone(true));
+		var c=_this.$Backup.clone(true);
+		_this.$Chip.replaceWith(c);
+		_this.$Chip=c;
 		_this.$Layout.jqmHide();
 		if(opts.onCancel){
 			opts.onCancel(_this);
@@ -282,12 +284,15 @@ chipEditor.Dialog.prototype.Show=function(opts){
 		});
 		this.$CT.tabs("select",opts.tabs[0]);
 	};
+	
+	this.$Chip.addClass("on");
 		
 	this.$Layout.jqm(this.jqmOpts).jqmShow();
 };
 chipEditor.Dialog.prototype.Hide=function(opts){
 	$.extend(this.jqmOpts,opts||{});
 	this.$Layout.jqm(this.jqmOpts).jqmHide();
+	this.$Chip.removeClass("on");
 	return this;
 };
 chipEditor.Dialog.prototype.ToggleSorting=function($i){
@@ -365,11 +370,22 @@ chipEditor.Dialog.prototype.Edit=function($elm){
 							tpl.remove();
 						});
 					}else if($o.is("a")){
-						tpl=$([chipEditor.$RowTitleA.clone()[0],chipEditor.$RowLnkA.clone()[0]]);
-						tpl.eq(0).find("input").val($o.html());//attr("title")
-						tpl.eq(1).find("input").val($o.attr("href"));
-						dlg.$ElmA.append(tpl);
-						_this.BindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:_t});
+						var $img=$o.find("img");
+						if($img.length>0){
+							//图片链接
+							tpl=$([chipEditor.$RowImg.clone()[0],chipEditor.$RowALT.clone()[0],chipEditor.$RowLnkImg.clone()[0]]);
+							tpl.eq(0).find("input").val($img.attr("src"));
+							tpl.eq(1).find("input").val($img.attr("alt"));
+							tpl.eq(2).find("input").val($o.attr("href"));
+							_this.$ElmImg.append(tpl);
+							_this.BindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:_t,$img:$img});								
+						}else{
+							tpl=$([chipEditor.$RowTitleA.clone()[0],chipEditor.$RowLnkA.clone()[0]]);
+							tpl.eq(0).find("input").val($o.html());//attr("title")
+							tpl.eq(1).find("input").val($o.attr("href"));
+							dlg.$ElmA.append(tpl);
+							_this.BindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:_t});							
+						};
 					};
 
 				});
@@ -464,7 +480,7 @@ chipEditor.Dialog.prototype.Edit=function($elm){
 	};//onHide
 	this.Show({
 		afterShow:onShow,
-		afterHide:onHide,
+		afterHide:onHide
 	});
 };
 /**
