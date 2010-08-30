@@ -76,6 +76,7 @@ sohu.diyContent=function(opts){
 	//内容的鼠标事件
 	this.$Layout.mouseenter(p.mouseEnter).mouseleave(p.mouseLeave);
 	//是否flash
+	//TODO:如果是现有的flash怎么处理?需要修改sohu.diy.js，让它可以构建一个sohu.diyTp.Flash实体而不调用write方法
 	if((this.IsFlash=this.$Layout.flash)){
 		this.ID+="_fl";
 		//将flash对象呈现出来
