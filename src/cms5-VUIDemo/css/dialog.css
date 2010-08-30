@@ -285,7 +285,8 @@ a.close:hover{background-position: bottom;}
 
 /* Ωπµ„Õº */
 #wFlash{width:405px;padding:0 10px;}
-#wFlash .cfg{border-top:1px solid #D6D6D6;padding-top:8px;margin-top:8px;}
+#wFlash .cfg{display:none;border-top:1px solid #D6D6D6;padding-top:8px;margin-top:8px;}
+#wFlash .cfg1{display:block;}
 #wFlash .left{width:110px;text-align:right;}
 #wFlash .center{width:192px;margin-left:5px;text-align:left;}
 #wFlash .center .l,#wFlash .center .r{width:50%;}

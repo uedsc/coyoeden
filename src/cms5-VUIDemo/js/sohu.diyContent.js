@@ -14,6 +14,8 @@ sohu.diyContent=function(opts){
 	this.Editor=this.Sec.Editor;//分栏编辑器
 	this.MaxWidth=this.Sec.Width;
 	this.onDomed=null;/* 被添加到dom树后的回调函数 */
+	this.IsFlash=false;/* 是否flash焦点图内容 */
+	this.FlashObj=null;/* flash对象 */
 	
 	//private property
 	var p={opts:opts};
@@ -48,15 +50,21 @@ sohu.diyContent=function(opts){
 			sohu.diyConsole.Dragger.ing=false;
 		});
 		
-		var d=_this.Dim();
-		sohu.diyConsole.$FlashHolder.css({
-			top:d.y-1+17,
-			left:d.x-1,
-			height:d.h-17,
-			width:d.w,
-			opacity:0.5,
-			display:'block'
-		});
+		if(_this.IsFlash){
+			var d=_this.Dim();
+			sohu.diyConsole.$FlashHolder.css({
+				top:d.y-1+17,
+				left:d.x-1,
+				height:d.h-17,
+				width:d.w,
+				opacity:0.5,
+				display:'block'
+			}).unbind("click").bind("click",function(evt){
+				_this.InlineEdit("on");
+				sohu.diyConsole.CurCT=_this;
+				_this.EditFlash();
+			});
+		};
 	};
 	p.mouseLeave=function(evt){
 		if(_this.Editor.CurArea.IsEditing) return false;
@@ -68,14 +76,14 @@ sohu.diyContent=function(opts){
 	//内容的鼠标事件
 	this.$Layout.mouseenter(p.mouseEnter).mouseleave(p.mouseLeave);
 	//是否flash
-	if(this.$Layout.flash){
+	if((this.IsFlash=this.$Layout.flash)){
 		this.ID+="_fl";
 		//将flash对象呈现出来
 		var fOpt={tplID:this.$Layout.tplID};
 		if(opts.scale){fOpt.w=this.MaxWidth;};
 		this.onDomed=function(mode){
-			this.$Layout.flashObj=new sohu.diyTp.Flash(fOpt);
-			this.$Layout.flashObj.Render(this.$Layout);
+			this.FlashObj=this.$Layout.flashObj=new sohu.diyTp.Flash(fOpt);
+			this.FlashObj.Render(this.$Layout);
 		};
 	};
 	this.$Layout.attr("id",this.ID);
@@ -97,6 +105,12 @@ sohu.diyContent.prototype.Dim=function(){
  */
 sohu.diyContent.prototype.DoEdit=function(){
 	this.Editor.DialogCT("update");
+};
+/**
+ * 编辑焦点图内容
+ */
+sohu.diyContent.prototype.EditFlash=function(){
+	sohu.diyDialog.Show('wFlash');
 };
 /**
  * Notice related objects that current element is being edited.

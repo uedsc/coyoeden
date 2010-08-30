@@ -172,7 +172,7 @@ sohu.diyTp.Flash.prototype.Attr=function(n,v){
  * @param {Object} n
  * @param {Object} v
  */
-sohu.diyTp.Flash.prototype.Var=function(n,v){
+sohu.diyTp.Flash.prototype.Vari=function(n,v){
 	this.FLASH.variables[n]=v;
 	this.Var[n]=v;
 	this.Render(null,true);
