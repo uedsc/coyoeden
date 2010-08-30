@@ -23,6 +23,7 @@
 			<button onclick="sohu.diyDialog.Show('cfgPage')">页面设置</button>
 			<button onclick="sohu.diyDialog.Show('#wCfgSec',{title:'分栏设置'})">分栏设置</button>
 			<button onclick="sohu.diyDialog.Show('#subSec950',{title:'添加分栏',hideActions:true})">添加分栏</button>
+			<button onclick="sohu.diyDialog.Show('#wFlash',{title:'焦点图'})">焦点图设置</button>
 			<hr/>		
 		</div>
 
@@ -342,10 +343,10 @@
 				</div>
 				<div class="cfg clear">
 					<div class="left">
-						<label for="flashImg">图片</label>
-						<label for="flashTxt">标题</label>
-						<label for="flashHref">链接</label>
 						<img class="thumb" alt="" width="57" height="44" src="images/pic57x44.gif"/>
+						<label class="lbl1" for="flashImg">图片</label>
+						<label class="lbl1" for="flashTxt">标题</label>
+						<label class="lbl1" for="flashHref">链接</label>
 					</div>
 					<div class="center">
 						<input class="ipt00" type="text" name="flashImg" id="flashImg" onclick="alert('hi')"/>
@@ -356,10 +357,12 @@
 					</div>
 					<div class="right">
 						<input type="button" class="btn" value="浏览" />
-					   	<a class="add" href="#"><strong><img src="images/addblock.gif" /></strong></a>
-					   	<a class="del" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
-					   	<a class="up" href="#"><strong><img src="images/up.gif" /></strong></a>
-					   	<a class="down" href="#"><strong><img src="images/down.gif" /></strong></a>						
+						<div class="icons">
+					   		<a class="add" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+					   		<a class="del" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+					   		<a class="up" href="#"><strong><img src="images/up.gif" /></strong></a>
+					   		<a class="down" href="#"><strong><img src="images/down.gif" /></strong></a>									
+						</div>				
 					</div>
 				</div>
 			</div>
