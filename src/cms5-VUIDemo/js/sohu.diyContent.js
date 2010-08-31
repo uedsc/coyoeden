@@ -37,8 +37,7 @@ sohu.diyContent=function(opts){
 		_this.Editor.CurCT=_this;
 		sohu.diyConsole.CurCT=_this;
 		//ÍÏ×§ÖúÊÖÊÂ¼ş
-		_this.$Layout.find(sohu.diyConsole.Dragger.cssHandle).remove().end()
-			.append(sohu.diyConsole.Dragger.handle.show());
+		sohu.diyConsole.Dragger.handle.show().appendTo(_this.$Layout);	
 			
 		sohu.diyConsole.Dragger.handle
 		.unbind()

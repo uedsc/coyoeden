@@ -226,7 +226,7 @@ sohu.diyTplFactory.FocusImg=function(opts){
 		//Ωπµ„Õº—°‘Ò
 		this.$Layout=$("#focusImgSlide").abcdSlider({
 			showNum:1,
-			total:6,
+			total:2,
 			externalBtn:true,
 			cssBtnL:'#ctFocusImg .btnL',
 			cssBtnR:'#ctFocusImg .btnR',

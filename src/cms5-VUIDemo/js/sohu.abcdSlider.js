@@ -26,7 +26,10 @@
 			//ZUO边按钮变灰，同时移除绑定的事件
 			$dom._p.btnL.addClass(opts.clNoNav).unbind("click.nav");
 		};
-		
+		$dom._p.dir="-1";
+		if(opts.autoSlide&&$dom._p.t==null){
+			p.autoSlide($dom,opts);
+		};
 		if(opts.onSlide)
 			opts.onSlide($dom,"-1");			
 	};
@@ -52,8 +55,30 @@
 			$dom._p.btnR.addClass(opts.clNoNav).unbind("click.nav");
 		};
 		
+		$dom._p.dir="1";
+		if(opts.autoSlide&&$dom._p.t==null){
+			p.autoSlide($dom,opts);
+		};
+		
 		if(opts.onSlide)
 			opts.onSlide($dom,"1");			
+	};
+	p.autoSlide=function($dom,opts){
+		if(!opts.autoSlide) return;
+		if($dom._p.total<=opts.showNum) return;
+		$dom._p.t=window.setInterval(function(){
+			if($dom._p.btnR.hasClass(opts.clNoNav)){
+				$dom._p.btnL.trigger("click");
+			}else if($dom._p.btnL.hasClass(opts.clNoNav)){
+				$dom._p.btnR.trigger("click");
+			}else{
+				if((!$dom._p.dir)||$dom._p.dir=="1"){
+					$dom._p.btnR.trigger("click");
+				}else{
+					$dom._p.btnL.trigger("click");
+				};//if
+			};//if
+		},opts.autoSlide);
 	};
     p.goSlide = function($dom,opts) {
 		$dom._p.btnR.bind("click",p.daddy);
@@ -65,7 +90,16 @@
 			return;
 		}; 
 		$dom._p.btnR.bind("click.nav",{$t:$dom,opts:opts},p.navR);
-		$dom._p.btnL.bind("click.nav",{$t:$dom,opts:opts},p.navL);
+		//$dom._p.btnL.bind("click.nav",{$t:$dom,opts:opts},p.navL);
+		$dom._p.items.click(function(evt){
+			if(opts.autoSlide){
+				window.clearInterval($dom._p.t);
+				$dom._p.t=null;
+			};
+			if(opts.onClick){
+				opts.onClick($dom,opts);
+			};
+		});
 	};
     //main plugin body
     $.fn.abcdSlider = function(opts) {
@@ -78,11 +112,15 @@
 			$this._p={
 				btnL:opts.externalBtn?$(opts.cssBtnL):$this.find(opts.cssBtnL),
 				btnR:opts.externalBtn?$(opts.cssBtnR):$this.find(opts.cssBtnR),
+				items:$this.find(opts.cssItem),
 				total:opts.total?opts.total:$this.find(opts.cssItem).length,
 				panel:$this.find(opts.cssPanel),
-				slideNum:0
+				slideNum:0,
+				t:null,
+				dir:null
 			};
 			p.goSlide($this,opts);
+			p.autoSlide($this,opts);
         });
     };
     // Public defaults.
@@ -98,6 +136,8 @@
 		total:null,			/* 滑动元素数 */
 		cssItem:'.item',	/* 滑动元素css选择器,如果设定了total则元素数以total为准 */
 		cssPanel:'.slider',	/* 滑动容器 */
-		onSlide:null		/* 滑动后的回调函数 */
+		onSlide:null,		/* 滑动后的回调函数 */
+		onClick:null,		/* 元素点击事件的回调 */
+		autoSlide:false		/* 自动滚动 */
     };
 })(jQuery);  
