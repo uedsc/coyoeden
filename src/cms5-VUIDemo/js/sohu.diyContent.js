@@ -26,7 +26,7 @@ sohu.diyContent=function(opts){
 	if(!this.Validation.valid) return;
 	
 	/* ID */
-	if(this.$Layout.attr("id")=="")
+	if((this.ID=this.$Layout.attr("id"))=="")
 		this.ID="ct_"+this.Type+"_"+StringUtils.RdStr(8);
 	
 	/* Load elements */
@@ -76,9 +76,10 @@ sohu.diyContent=function(opts){
 	//内容的鼠标事件
 	this.$Layout.mouseenter(p.mouseEnter).mouseleave(p.mouseLeave);
 	//是否flash
+	this.IsFlash=this.$Layout.flash;
 	//TODO:如果是现有的flash怎么处理?需要修改sohu.diy.js，让它可以构建一个sohu.diyTp.Flash实体而不调用write方法
+	/*
 	if((this.IsFlash=this.$Layout.flash)){
-		this.ID+="_fl";
 		//将flash对象呈现出来
 		var fOpt={tplID:this.$Layout.tplID};
 		if(opts.scale){fOpt.w=this.MaxWidth;};
@@ -86,6 +87,17 @@ sohu.diyContent=function(opts){
 			this.FlashObj=this.$Layout.flashObj=new sohu.diyTp.Flash(fOpt);
 			this.FlashObj.Render(this.$Layout);
 		};
+	};
+	*/
+	if(this.IsFlash){
+		if(this.IsNew){
+			this.onDomed=function(mode){
+				this.FlashObj=window["F_"+this.FlashData.pid];
+			};	
+		}else{
+			this.FlashObj=window["F_"+this.FlashData.pid];
+		};
+		
 	};
 	this.$Layout.attr("id",this.ID);
 };
@@ -166,6 +178,8 @@ sohu.diyContent.prototype.Validate=function(){
 		break;
 		case "flash":
 			this.$Layout=this.IsNew?$(this.Meta.html0):this.Meta.$dom;
+			this.$FlashData=this.$Layout.find(".flashData");
+			this.FlashData=$.evalJSON(this.$FlashData.html());
 		break;
 		default:
 			commonValidate(this,"Html内容不符合模板规范");

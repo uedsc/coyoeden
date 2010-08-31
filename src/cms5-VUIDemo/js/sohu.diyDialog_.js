@@ -1047,7 +1047,8 @@ sohu.diyDialog.wFlash=function(dlg){
 	
 	p._fm={
 		w:$("#txtWFlash"),
-		h:$("#txtHFlash")
+		h:$("#txtHFlash"),
+		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
 	//事件处理
 	p.onChangeImg=function(evt){
@@ -1079,12 +1080,12 @@ sohu.diyDialog.wFlash=function(dlg){
 	};
 	p.afterShow=function(hash,dlg0){
 		_this.$Layout.find('.cfg1').remove();
-		p._fm.w.val(sohu.diyConsole.CurCT.FlashObj.width);
-		p._fm.h.val(sohu.diyConsole.CurCT.FlashObj.height);
+		p._fm.w.val(sohu.diyConsole.CurCT.FlashData.w);
+		p._fm.h.val(sohu.diyConsole.CurCT.FlashData.h);
 		//图片列表
-		p._pics=sohu.diyConsole.CurCT.FlashObj.Var.pics.split('|');
-		p._links=sohu.diyConsole.CurCT.FlashObj.Var.links.split('|');
-		p._texts=sohu.diyConsole.CurCT.FlashObj.Var.texts.split('|');
+		p._pics=sohu.diyConsole.CurCT.FlashData.v.pics.split('|');
+		p._links=sohu.diyConsole.CurCT.FlashData.v.links.split('|');
+		p._texts=sohu.diyConsole.CurCT.FlashData.v.texts.split('|');
 		$.each(p._pics,function(i,o){
 			var $t0=_this.$t.clone(true).addClass('cfg1');
 			$t0.find('.flashImg').val(o).end()
@@ -1098,6 +1099,17 @@ sohu.diyDialog.wFlash=function(dlg){
 		sohu.diyConsole.CurCT.InlineEdit('off');
 	};
 	p.onOK=function(dlg0){
+		//验证
+		var h=p._fm.h.val(),w=p._fm.w.val();
+		if(!StringUtils.isPlusInt(h)){
+			p._fm.h.addClass("alert");
+			return false;
+		};
+		if(!StringUtils.isPlusInt(w)){
+			p._fm.w.addClass("alert");
+			return false;
+		};
+		
 		p._pics=_this.$Layout.find('.cfg1 .flashImg').map(function(){
 			return this.value;
 		}).get().join("|");
@@ -1108,12 +1120,20 @@ sohu.diyDialog.wFlash=function(dlg){
 			return this.value;
 		}).get().join("|");
 		
+		p._fm.reset();		
 		//更新flash
-		sohu.diyConsole.CurCT.FlashObj.Attr('height',p._fm.h.val());
-		sohu.diyConsole.CurCT.FlashObj.Attr('width',p._fm.w.val());
-		sohu.diyConsole.CurCT.FlashObj.Vari("pics",p._pics);
-		sohu.diyConsole.CurCT.FlashObj.Vari("links",p._links);
-		sohu.diyConsole.CurCT.FlashObj.Vari("texts",p._texts);
+		sohu.diyConsole.CurCT.FlashData.h=h;
+		sohu.diyConsole.CurCT.FlashData.w=w;
+		sohu.diyConsole.CurCT.FlashData.v.pics=p._pics;
+		sohu.diyConsole.CurCT.FlashData.v.links=p._links;
+		sohu.diyConsole.CurCT.FlashData.v.texts=p._texts;
+		sohu.diyConsole.CurCT.$FlashData.html($.toJSON(sohu.diyConsole.CurCT.FlashData));
+		sohu.diyConsole.CurCT.FlashObj.setAttribute("height",h);
+		sohu.diyConsole.CurCT.FlashObj.setAttribute("width",w);
+		sohu.diyConsole.CurCT.FlashObj.variables["pics"]=p._pics;
+		sohu.diyConsole.CurCT.FlashObj.variables["links"]=p._links;
+		sohu.diyConsole.CurCT.FlashObj.variables["texts"]=p._texts;
+		sohu.diyConsole.CurCT.FlashObj.write(sohu.diyConsole.CurCT.FlashData.pid);
 		dlg0.Hide();
 	};
 	//事件注册

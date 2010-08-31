@@ -259,6 +259,9 @@ sohu.diySection.prototype.LoadContents=function(){
 			type:sohu.diyConsole.GetClassName($dom),
 			$dom:$dom
 		};
+		if(ct.type=="flash"){
+			ct.flash=true;
+		};
 		return sohu.diyContent.New({
 			ct:ct,
 			sec:_this,

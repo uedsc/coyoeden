@@ -34,6 +34,7 @@ a.close:hover{background-position: bottom;}
 .formx .ipt03{width:168px;}
 .formx .ipt04{width:40px;}
 .formx .ipt58{width:58px;}
+.formx .alert{color:red;};
 .formx select{float:left; width:62px;height:20px;font-size:12px; margin-left: 4px; margin-top: 2px;}
 
 #jqmConfirm{z-index:3005;top: 25%}

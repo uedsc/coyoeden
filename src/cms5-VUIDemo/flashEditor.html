@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>flash editor demo</title>
+		<link rel="stylesheet" type="text/css" href="http://css.sohu.com/upload/global1.3.css"></link> 
+		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
+		<script src="js/jquery.json-2.2.min.js" type="text/javascript"></script> 
+		<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script> 
+		<style type="text/css">
+		#contentA{padding:30px 0;}
+		</style>  
+	</head>
+	<body>
+		<div id="contentA" class="area">
+			<div class="flash ct">
+				<div id="FLASHID" class="flashWrap">《婚姻保卫战》</div>
+				<div id="FLASHID_data" class="flashData hidden">
+					{
+						"swf":"http://images.sohu.com/uiue/FlashFocus/allfocus4.swf",
+						"pid":"FLASHID",
+						"id":"FLASHID_obj",
+						"w":290,
+						"h":320,
+						"interval":6,
+						"v":{
+							"pics":"http://photocdn.sohu.com/focusUp/20100713/172739313454441044.jpg|http://photocdn.sohu.com/focusUp/20100712/140811552183145090.jpg|http://photocdn.sohu.com/focusUp/20100712/140813992219672509.jpg|http://photocdn.sohu.com/focusUp/20100712/140816512183145090.jpg",
+							"links":"http://pic.yule.sohu.com/group-222714.shtml|http://yule.sohu.com/20100706/n273301501.shtml|http://yule.sohu.com/20100625/n273063715.shtml|http://yule.sohu.com/20100122/n269770598.shtml",
+							"texts":"《婚姻保卫战》官网启动 赵宝刚携搜狐视频维权|《婚姻保卫战》即将打响 佟大为马伊琍演夫妻|《婚姻保卫战》首轮卫视签约 众星到场助阵|《婚姻保卫战》超豪华落幕 打造时尚唯美秀场",
+							"pic_width":"290",
+							"pic_height":"300",
+							"show_text":"1",
+							"txtcolor":"000000",
+							"bgcolor":"ffffff",
+							"button_pos":"2",
+							"stop_time":"5000"
+						},
+						"dummy":false
+					}
+				</div>
+				<script type="text/javascript">
+				<!--
+				(function(){
+					var d=$.evalJSON($("#FLASHID_data").html());
+					if(d.dummy) return;
+					var f=new sohuFlash(d.swf,d.id,d.w,d.h,d.interval);
+					f.addParam("quality", "high");
+					f.addParam("wmode", "opaque");
+					for(var n in d.v){
+						f.addVariable(n,d.v[n]);
+					};
+					f.data=d;
+					f.write(d.pid);
+					window['F_FLASHID']=f;
+				})();
+				//-->
+				</script>
+			</div>
+		</div>
+	</body>
+</html>

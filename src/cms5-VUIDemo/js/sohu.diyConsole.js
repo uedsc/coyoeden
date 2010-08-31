@@ -102,6 +102,22 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.$ScrollWrap.css("height",height);
 		_this.$Workspace.css("minHeight",height);
 	};
+	p.loadFlash=function(){
+		$(".flashWrap").each(function(i,o){
+			var $o=$(o);
+			var d=$.evalJSON($o.next().html());
+			if(d.dummy) return;
+			var f=new sohuFlash(d.swf,d.id,d.w,d.h,d.interval);
+			f.addParam("quality", "high");
+			f.addParam("wmode", "opaque");
+			for(var n in d.v){
+				f.addVariable(n,d.v[n]);
+			};
+			f.write(d.pid);
+			f.data=d;
+			window['F_'+d.pid]=f;
+		});
+	};
 	p.onLoaded=function(){
 		//文档高度适应处理
 		p.setDocumentDim();
@@ -136,7 +152,9 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});
 		sohu.diyConsole.$EHolder=$('#eHolder').click(p.onEHolderClick);	
 		sohu.diyConsole.$AreaHolder=$("#areaHolder");
-		sohu.diyConsole.$FlashHolder=$("#flashHolder").mouseleave(function(evt){$(this).hide();});;
+		sohu.diyConsole.$FlashHolder=$("#flashHolder").mouseleave(function(evt){$(this).hide();});
+		//加载现有的焦点图flash
+		p.loadFlash();
 		//已有横切
 		_this.Areas=_this.AreaList().map(function(i,o){
 			var a=new sohu.diyArea({

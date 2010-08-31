@@ -238,6 +238,11 @@ sohu.diyTplFactory.FocusImg=function(opts){
 		var p={};
 		p.onAddFlash=function(evt){
 			_this.tplID=this.id;
+			_this.tplObj=$(this).find('.ctWrap').clone();
+			_this.$jsonData=_this.tplObj.find('.flashData');
+			_this.flashData=$.evalJSON(_this.$jsonData.html());
+			_this.flashData.dummy=false;
+			_this.$jsonData.html($.toJSON(_this.flashData));
 			_this.Submit();
 			return false;
 		};
@@ -250,9 +255,12 @@ sohu.diyTplFactory.FocusImg=function(opts){
 };
 sohu.diyTplFactory.FocusImg.prototype.Submit=function(opt){
 	var ct={};
-	ct.html0='<div class="flash ct"></div>';
+	var id='flash'+StringUtils.RdStr(8);
+	ct.html0=this.tplObj.html().replace(/FLASHID/g,id);
 	ct.flash=true;
+	/*
 	ct.tplID=this.tplID;
+	*/
 	ct.isNew=true;
 	ct.type='flash';
 	sohu.diyTplFactory.submit(ct,true);

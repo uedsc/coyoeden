@@ -20,6 +20,7 @@ z-index:60;
 .ct li img{border:1px solid #ccc;cursor:pointer;}
 .ct .on{background:#FF0084;opacity:0.5;}
 .alert{color:red;}
+.ctWrap{display:none;}
 
 #addContent .wrap02 ul{position:relative;width:2000px;margin-top: 10px;}
 #addContent .wrap02 .item{float:left;display:inline;text-align:center; width:112px; height: 130px;margin-right:10px; vertical-align:middle;cursor:pointer;}

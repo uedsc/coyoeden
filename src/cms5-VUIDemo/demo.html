@@ -8,14 +8,15 @@
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/flick/jquery-ui.css" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/layout.css"></link> 
 		<link type="text/css" rel="stylesheet" href="css/index.css"></link>
-		<link rel="stylesheet" type="text/css" href="css/dialog.css"></link>
-		<link rel="stylesheet" type="text/css" href="css/style_demo.css"></link> 
+		<link rel="stylesheet" type="text/css" href="css/dialog.css"></link> 
+		<link rel="stylesheet" type="text/css" href="css/style_demo.css"></link>
 		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link> 
 		<link rel="stylesheet" type="text/css" href="css/colorpicker.css"></link>
 		<link rel="stylesheet" type="text/css" href="css/vs.skinform.css"></link> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
 		<!--<script src="js/jquery-1.4.2.js" type="text/javascript"></script>--> 
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script> 
+		<!--<script type="text/javascript" src="js/jquery-ui.min.js"></script>-->  
 		<script src="js/jquery.json-2.2.min.js" type="text/javascript"></script> 
 		<script type="text/javascript" src="js/sohu.jqModal.js"></script>
 		<script type="text/javascript" src="js/colorpicker.js"></script> 
@@ -97,45 +98,30 @@
 						<h2 class="sec_hd ct"><span class="elm">《婚姻保卫战》图集</span><strong class="elm more">[更多]</strong></h2>
 						<div class="vspace ct" style="height:5px;"></div>
 						<div class="flash ct">
-							<div id="sasFlashFocus195">《婚姻保卫战》</div>
-							<script type="text/javascript">
-							<!--
-							//可编辑内容开始（可放置特版中）
-							var pic_width=290; //图片宽度
-							var pic_height=300; //图片高度
-							var button_pos=2; //按扭位置 1左 2右 3上 4下
-							var stop_time=5000; //图片停留时间(1000为1秒钟)
-							var show_text=1; //是否显示文字标签 1显示 0不显示
-							var txtcolor="000000"; //文字色
-							var bgcolor="ffffff"; //背景色
-							
-							//可编辑内容结束
-							var swf_height=show_text==1?pic_height+20:pic_height;
-							
-							var pics="", mylinks="", texts="";
-							pics='http://photocdn.sohu.com/focusUp/20100713/172739313454441044.jpg|http://photocdn.sohu.com/focusUp/20100712/140811552183145090.jpg|http://photocdn.sohu.com/focusUp/20100712/140813992219672509.jpg|http://photocdn.sohu.com/focusUp/20100712/140816512183145090.jpg'
-							
-							mylinks='http://pic.yule.sohu.com/group-222714.shtml|http://yule.sohu.com/20100706/n273301501.shtml|http://yule.sohu.com/20100625/n273063715.shtml|http://yule.sohu.com/20100122/n269770598.shtml';
-							
-							texts='《婚姻保卫战》官网启动 赵宝刚携搜狐视频维权|《婚姻保卫战》即将打响 佟大为马伊琍演夫妻|《婚姻保卫战》首轮卫视签约 众星到场助阵|《婚姻保卫战》超豪华落幕 打造时尚唯美秀场';
-							
-							var sohuFlash2 = new sohuFlash("http://images.sohu.com/uiue/FlashFocus/allfocus4.swf", "sasFlashFocus201", pic_width, swf_height, "6");
-							sohuFlash2.addParam("quality", "high");
-							sohuFlash2.addParam("wmode", "opaque");
-							sohuFlash2.addVariable("pics",pics);
-							sohuFlash2.addVariable("links",mylinks);
-							sohuFlash2.addVariable("texts",texts);
-							sohuFlash2.addVariable("pic_width",pic_width);
-							sohuFlash2.addVariable("pic_height",pic_height);
-							sohuFlash2.addVariable("show_text",show_text);
-							sohuFlash2.addVariable("txtcolor",txtcolor);
-							sohuFlash2.addVariable("bgcolor",bgcolor);
-							sohuFlash2.addVariable("button_pos",button_pos);
-							sohuFlash2.addVariable("stop_time",stop_time);
-							sohuFlash2.write("sasFlashFocus195");
-							//-->
-							</script>
-
+							<div id="FLASH100" class="flashWrap">《婚姻保卫战》</div>
+							<div id="FLASH100_data" class="flashData hidden">
+								{
+									"swf":"http://images.sohu.com/uiue/FlashFocus/allfocus4.swf",
+									"pid":"FLASH100",
+									"id":"FLASH100_obj",
+									"w":290,
+									"h":320,
+									"interval":6,
+									"v":{
+										"pics":"http://photocdn.sohu.com/focusUp/20100713/172739313454441044.jpg|http://photocdn.sohu.com/focusUp/20100712/140811552183145090.jpg|http://photocdn.sohu.com/focusUp/20100712/140813992219672509.jpg|http://photocdn.sohu.com/focusUp/20100712/140816512183145090.jpg",
+										"links":"http://pic.yule.sohu.com/group-222714.shtml|http://yule.sohu.com/20100706/n273301501.shtml|http://yule.sohu.com/20100625/n273063715.shtml|http://yule.sohu.com/20100122/n269770598.shtml",
+										"texts":"《婚姻保卫战》官网启动 赵宝刚携搜狐视频维权|《婚姻保卫战》即将打响 佟大为马伊琍演夫妻|《婚姻保卫战》首轮卫视签约 众星到场助阵|《婚姻保卫战》超豪华落幕 打造时尚唯美秀场",
+										"pic_width":"290",
+										"pic_height":"300",
+										"show_text":"1",
+										"txtcolor":"000000",
+										"bgcolor":"ffffff",
+										"button_pos":"2",
+										"stop_time":"5000"
+									},
+									"dummy":false
+								}
+							</div>
 						</div>
 						
 					</div>
@@ -600,19 +586,32 @@
 				<span class="draghdl"></span>
 	        </div>
 			<div class="ct"><div class="cpk"></div></div>			
-		</div>	
-		<!--/Dialog layout-->
-		<!--Dialog content-->
-		<div id="dialogList" class="hidden">
-			<div id="commonMsg" class="jqmCT">		
+		</div>
+		<div id="jqmConfirm" class="jqmWindow">
+			<div class="hd clear">
+	            <h4 class="title">提示信息</h4>
+				<a href="#" class="jqmClose"></a>
+				<span class="draghdl"></span>
+	        </div>
+			<div class="ct">
 				 <div class="tip">
 				 	<span class="icon caution"></span>
 					<div class="txt">
 						<p>是否删除所有选中分栏及其内容？</p>
 						<p>注意：删除后无法恢复</p>
 					</div>
-				</div>
+				</div>				
 			</div>
+			<div class="acts">
+				<div class="btnWrap clear">
+					<a class="btn jqmOk l" title="确定" href="#"><span>确定</span></a>
+					<a class="btn jqmClose r" title="取消" href="#"><span>取消</span></a>					
+				</div>
+			</div>			
+		</div>				
+		<!--/Dialog layout-->
+		<!--Dialog content-->
+		<div id="dialogList" class="hidden">
 			<!--图像 -->
 			<div id="picMsg" class="jqmCT">
 				<div class="lineA">
@@ -646,7 +645,7 @@
 						<option value="_self">本窗口</option>
 					</select>
 				</div>
-				<div class="lineA tipPicLink">请输入有效网址！</div>
+				<div class="lineA tip tipPicLink">请输入有效网址！</div>
 				<div class="lineA">
 					<div class="txt01">Title</div>
 					<input type="text" value="" class="ipt03" name="picTitle" id="picTitle"/>
@@ -682,7 +681,7 @@
 						<option value="_self">本窗口</option>
 					</select>
 			      </div>
-				  <div class="lineA tipAHref">请输入有效网址！</div>
+				  <div class="lineA tip tipAHref">请输入有效网址！</div>
 				  <div class="lineA">
 				 	 <div class="txt01">Title</div>
 					 <input id="txtATitle" name="txtATitle" type="text" value="" class="ipt03"/>
@@ -709,66 +708,98 @@
 			<div id="cfgArea" class="jqmCT formx">
 				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt01">背景图</div>
+					<div class="txt txt01">背景图</div>
 					<input id="txtAreaBG" name="areaBG" type="text" class="ipt03"/>
 					<input id="btnAreaBGBrowse" type="button" class="btn btnL"  value="浏览" />
 				</div>
 				<div class="lineA">
-					<div class="txt01">对齐方式</div>
-					<input name="areaBGAlign" checked="checked" type="radio" value="center" class="rdo"  />
-					<div class="txt02">居中</div>
-					<input name="areaBGAlign" type="radio" value="left" class="rdo"  />
-					<div class="txt02">靠左</div>
-					<input name="areaBGAlign" type="radio" value="right" class="rdo"  />
-					<div class="txt02">靠右</div>
+					<div class="txt txt01">对齐</div>
+					<select id="ddlAreaBGAlign" name="areaBGAlign">
+						<option value="center" selected="selected">居中</option>
+						<option value="left">靠左</option>
+						<option value="right">靠右</option>
+					</select>	
+					<div class="txt txt02">平铺</div>
+					<select id="ddlAreaBGRepeat" name="areaBGRepeat">
+						<option value="repeat" selected="selected">平铺</option>
+						<option value="no-repeat">不平铺</option>
+						<option value="repeat-x">横铺</option>
+						<option value="repeat-y">纵铺</option>
+					</select>					
 				</div>
+				<div class="blank5"></div>
+				<div class="bottom3line"></div>
+				<div class="blank5"></div>
 				<div class="lineA">
-					<div class="txt01">平铺方式</div>
-					<input name="areaBGRepeat" type="radio" value="repeat" class="rdo"  />
-					<div class="txt02">平铺</div>
-					<input name="areaBGRepeat" type="radio" value="no-repeat" class="rdo" checked="checked" />
-					<div class="txt02">不平铺</div>
-					<input name="areaBGRepeat" type="radio" value="repeat-x" class="rdo"  />
-					<div class="txt02">横铺</div>
-					<input name="areaBGRepeat" type="radio" value="repeat-y" class="rdo"  />
-					<div class="txt02">纵铺</div>
-				</div>
-				<div class="lineA">
-					<div class="txt01">横切ID</div>
+					<div class="txt txt01">横切ID</div>
 					<input id="txtAreaID" name="areaID" type="text" class="ipt03"/>
 				</div>
-				<div class="blank8"></div>
-				<div class="bottom3line"></div>			
+				
 			</div>
 			<!--/横切设置-->		
 			<!--页面背景-->
-			<div id="cfgPage" class="skform skformx">
-				<label>背景图<span class="small tip tipPageBG">请输图片网址</span></label>
-				<div class="field">
-					<input type="text" size="25" id="txtPageBG" name="pageBG"/>
-					<button id="btnPageBGBrowse" onclick="alert('hi');">浏览</button>
+			<div id="cfgPage" class="jqmCT formx">
+				<div class="blank8"></div>
+				<div class="lineA">
+					<div class="txt txt06">页面背景色</div>
+					<input type="text" id="txtPageBGC" name="pageBGC" readonly="readonly" class="ipt02"/>
 				</div>
-				<label>对齐方式</label>
-				<div class="field">
-					<input type="radio" name="pageBGAlign" value="center center" checked="checked" /><span>居中</span>
-					<input type="radio" name="pageBGAlign" value="left center"/><span>靠左</span>
-					<input type="radio" name="pageBGAlign" value="right center"/><span>靠右</span>	
+				<div class="blank8"></div>
+				<div class="bottom3line"></div>
+				<div class="blank8"></div>
+				<div class="lineA">
+					<div class="txt txt06">页头背景图</div>
+					<input type="text" class="ipt03" id="txtPageBGA" name="pageBGA"/>
+					<input id="btnPageBGBrowseA" type="button" class="btn btnL"  value="浏览" />
 				</div>
-				<label>平铺方式</label>
-				<div class="field">
-					<input type="radio" name="pageBGRepeat" value="repeat"/><span>平铺</span>
-					<input type="radio" name="pageBGRepeat" value="no-repeat" checked="checked" /><span>不平铺</span>
-					<input type="radio" name="pageBGRepeat" value="repeat-x"/><span>横平铺</span>
-					<input type="radio" name="pageBGRepeat" value="repeat-y"/><span>纵平铺</span>
+				<div class="blank8"></div>
+				<div class="lineA">
+					<div class="txt txt02">高度</div>
+					<input type="text" class="ipt02" id="txtPageBGHA" name="pageBGHA"/>
+					<div class="txt txt03">px</div>
+					<div class="txt txt02">对齐</div>
+					<select id="pageBGAlignA" name="pageBGAlignA" class="selAuto">
+						<option value="center center" selected="selected">居中</option>
+						<option value="left center">靠左</option>
+						<option value="right center">靠右</option>
+					</select>
+					<div class="txt txt02">平铺</div>
+					<select id="pageBGRepeatA" name="pageBGRepeatA" class="selAuto">
+						<option value="no-repeat">不平铺</option>
+						<option value="repeat">平铺</option>
+						<option value="repeat-x">横铺</option>
+						<option value="repeat-y">纵铺</option>
+					</select>
 				</div>
-				<label>背景高度<span class="small tip tipPageBGH">px</span></label>
-				<input type="text" id="txtPageBGH" name="pageBGH" class="field"/>
-				<label>背景色<span class="small tip tipPageBGC">页面背景色</span></label>
-				<div class="field">
-					<input type="text" size="25" id="txtPageBGC" name="pageBGC" readonly="readonly"/>
+				<div class="blank8"></div>
+				<div class="bottom3line"></div>
+				<div class="blank8"></div>
+				<div class="lineA">
+					<div class="txt txt06">页脚背景图</div>
+					<input type="text" class="ipt03" id="txtPageBGB" name="pageBGB"/>
+					<input id="btnPageBGBrowseB" type="button" class="btn btnL"  value="浏览" />
 				</div>
-				<div class="cpk"></div>
-                <div class="spacer"></div>				
+				<div class="blank8"></div>
+				<div class="lineA">
+					<div class="txt txt02">高度</div>
+					<input type="text" class="ipt02" id="txtPageBGHB" name="pageBGHB"/>
+					<div class="txt txt03">px</div>
+					<div class="txt txt02">对齐</div>
+					<select id="pageBGAlignB" name="pageBGAlignB" class="selAuto">
+						<option value="center center">居中</option>
+						<option value="left center">靠左</option>
+						<option value="right center">靠右</option>						
+					</select>
+					<div class="txt txt02">平铺</div>
+					<select id="pageBGRepeatB" name="pageBGRepeatB" class="selAuto">
+						<option value="no-repeat">不平铺</option>
+						<option value="repeat">平铺</option>
+						<option value="repeat-x">横铺</option>
+						<option value="repeat-y">纵铺</option>
+					</select>
+				</div>
+				<div class="blank8"></div>	
+				<div class="cpk"></div> 								
 			</div>	
 			<!--/页面背景-->
 			<!--添加内容-->
@@ -784,45 +815,40 @@
 			<div id="wCfgSec" class="jqmCT formx">
 				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt01">背景图</div>
+					<div class="txt txt01">背景图</div>
 					<input id="txtSecBG" type="text" class="ipt03"/>
 					<input id="btnCfgSecBrowse" type="button" class="btn btnL"  value="浏览" />
 				</div>
 				<div class="lineA">
-					<div class="txt01">背景色</div>
-					<input id="txtSecBGC" type="text" readonly="readonly" class="ipt03"/>
+					<div class="txt txt01">对齐</div>
+					<select id="ddlSecBGAlign" name="secBGAlign">
+						<option value="center center" selected="selected">居中</option>
+						<option value="left center">靠左</option>
+						<option value="right center">靠右</option>
+					</select>
+					<div class="txt txt02">平铺</div>
+					<select id="ddlSecBGRepeat" name="secBGRepeat">
+						<option value="repeat" selected="selected">平铺</option>
+						<option value="no-repeat">不平铺</option>
+						<option value="repeat-x">横铺</option>
+						<option value="repeat-y">纵铺</option>
+					</select>					
 				</div>
 				<div class="lineA">
-					<div class="txt01">对齐方式</div>
-					<input name="secBGAlign" checked="checked" type="radio" value="center center" class="rdo"  />
-					<div class="txt02">居中</div>
-					<input name="secBGAlign" type="radio" value="left center" class="rdo"  />
-					<div class="txt02">靠左</div>
-					<input name="secBGAlign" type="radio" value="right center" class="rdo"  />
-					<div class="txt02">靠右</div>
-				</div>
+					<div class="txt txt01">背景色</div>
+					<input id="txtSecBGC" type="text" readonly="readonly" class="ipt02"/>
+				</div>				
 				<div class="lineA">
-					<div class="txt01">平铺方式</div>
-					<input name="secBGRepeat" checked="checked" type="radio" value="repeat" class="rdo"  />
-					<div class="txt02">平铺</div>
-					<input name="secBGRepeat" type="radio" value="no-repeat" class="rdo"  />
-					<div class="txt02">不平铺</div>
-					<input name="secBGRepeat" type="radio" value="repeat-x" class="rdo"  />
-					<div class="txt02">横铺</div>
-					<input name="secBGRepeat" type="radio" value="repeat-y" class="rdo"  />
-					<div class="txt02">纵铺</div>
-				</div>
-				<div class="lineA">
-					<div class="txt01">边框设置</div>
-					<input id="txtSecBorderColor" readonly="readonly" name="SecBorderColor" type="text" class="ipt04"/>
+					<div class="txt txt01">边框色</div>
+					<input id="txtSecBorderColor" readonly="readonly" name="SecBorderColor" type="text" class="ipt02"/>
 					<input name="SecBorderDir" type="checkbox" class="cBox03" value="top"/>
-					<div class="txt03">上</div>
+					<div class="txt txt03">上</div>
 					<input name="SecBorderDir" type="checkbox" class="cBox03" value="bottom"/>
-					<div class="txt03">下</div>
+					<div class="txt txt03">下</div>
 					<input name="SecBorderDir" type="checkbox" class="cBox03" value="left"/>
-					<div class="txt03">左</div>
+					<div class="txt txt03">左</div>
 					<input name="SecBorderDir" type="checkbox" class="cBox03" value="right"/>
-					<div class="txt03">右</div>
+					<div class="txt txt03">右</div>
 				</div>
 				<div class="cpk"></div>				
 			</div>
@@ -854,7 +880,7 @@
 						<option value="_self">本窗口</option>
 					</select>
 			      </div>
-				  <div class="lineA tipSecHDLink">请输入有效网址！</div>
+				  <div class="lineA tip tipSecHDLink">请输入有效网址！</div>
 				  <div class="lineA">
 				  	<div class="txt01">Title</div>
 					<input id="secHDTitle" type="text" value="" class="ipt03"/>
@@ -863,13 +889,13 @@
 			
 			<!--栏目头 over-->
 			<!--页面属性-->
-			<div id="wPagePro">
+			<div id="wPagePro" class="jqmCT">
 				 <div class="blank8"></div>
 				 <div class="lineA">
 				 	<div class="txt01">title</div>
 					<input id="pTitle" type="text" value="" class="ipt01"/>
 			     </div>
-				 <div class="linep">请输入有效网址！</div>
+				 <div class="linep tip">请输入有效网址！</div>
 				 <div class="lineA">
 				 	<div class="txt01">keywords</div>
 				 	<input id="pKeyword" type="text" value="" class="ipt01"/>
@@ -957,7 +983,52 @@
 				   <div id="sw190_310" class="item block02"><a href="#"></a></div>
 				   <div id="sw310_190" class="item block03"><a href="#"></a></div>
 				</div>
-			</div>										
+			</div>
+			<!--焦点图-->
+			<div id="wFlash" class="jqmCT formx">
+				<div class="blank8"></div>
+				<div class="lineA clear">
+					<div class="left"><label for="txtWFlash">宽度</label></div>
+					<div class="center clear">
+						<div class="l">
+							<input class="ipt00 ipt58" id="txtWFlash" type="text" name="wFlash"/>
+							<label for="txtWFlash">px</label>
+						</div>
+						<div class="r">
+							<label for="txtHFlash">高度</label>
+							<input class="ipt00 ipt58" id="txtHFlash" type="text" name="hFlash"/>
+						</div> 
+					</div>
+					<div class="right">
+						<label for="txtHFlash">px</label>
+					</div>
+				</div>
+				<div class="cfg clear">
+					<div class="left">
+						<img class="thumb" alt="" width="57" height="44" src="images/pic57x44.gif"/>
+						<label class="lbl1">图片</label>
+						<label class="lbl1">标题</label>
+						<label class="lbl1">链接</label>
+					</div>
+					<div class="center">
+						<input class="ipt00 flashImg" type="text"/>
+						<div class="blank8"></div>
+						<input class="ipt00 flashTxt" type="text"/>
+						<div class="blank8"></div>
+						<input class="ipt00 flashHref" type="text"/>
+					</div>
+					<div class="right">
+						<input type="button" class="btn" value="浏览" />
+						<div class="icons">
+					   		<a class="add" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+					   		<a class="del" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+					   		<a class="up" href="#"><strong><img src="images/up.gif" /></strong></a>
+					   		<a class="down" href="#"><strong><img src="images/down.gif" /></strong></a>									
+						</div>				
+					</div>
+				</div>
+			</div>
+			<!--/焦点图-->													
 		</div>
 		<!--横切工具条-->
 		<div id="areaTools">
@@ -992,10 +1063,14 @@
 		<!--左侧菜单 over-->
 		<!--内容拖拽助手-->
 		<div id="ctHandle" class="dragHandle">
-			<img src="img/move.gif" alt="移动" width="16" height="16"/>
+			<img src="img/move.gif" alt="移动" width="15" height="15"/>
 		</div>
 		<!--元素占位-->
 		<div id="eHolder"></div>
+		<!--横切蒙层-->
+		<div id="areaHolder"></div>
+		<!--flash蒙层-->
+		<div id="flashHolder"></div>
 		<iframe id="ifEditor" name="ifEditor" scrolling="no" frameborder="0" width="0" height="0"></iframe>
     </body>
 	<script src="js/jquery.cssEX.js" type="text/javascript"></script>
@@ -1011,6 +1086,7 @@
 	<script type="text/javascript" src="js/sohu.diyElementTool.js"></script>
 	<script type="text/javascript" src="js/sohu.diyMenuBar.js"></script> 
 	<script type="text/javascript" src="js/sohu.diyDialog.js"></script>
+	<script type="text/javascript" src="js/sohu.diyDialog_.js"></script>
 	<script type="text/javascript" src="js/sohu.diyConsole.js"></script>
 	
 	<script type="text/javascript">
