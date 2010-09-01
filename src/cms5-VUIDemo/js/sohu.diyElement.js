@@ -145,12 +145,52 @@ sohu.diyElement.prototype.IFEdit=function(mode,ignoreCbk){
  */
 sohu.diyElement.prototype.Dim=function(){
 	var of=this.$Layout.offset();
-	return {
+	var pl=0,pr=0;
+	pl=parseInt(this.$Layout.css("padding-left"));
+	pl=isNaN(pl)?0:pl;
+	pr=parseInt(this.$Layout.css("padding-right"));
+	pr=isNaN(pr)?0:pr;
+	var d={
 		x:of.left,
 		y:of.top,
 		h:this.$Layout.height(),
-		w:this.$Layout.width()
+		w:this.$Layout.width(),
+		pl:pl,	/* 左留白 */
+		pr:pr,	/* 右留白 */
+		fl:0,	/* 左边浮动元素的宽度 */
+		fr:0	/* 右边浮动元素的宽度 */
 	};
+	
+	//获取左边浮动的元素
+	var fl=$.grep(this.$Layout.prevAll(),function(o,i){
+		if($(o).css("float")!="none") return true;
+		return false;
+	});
+	if(fl.length==0) return d;
+	
+	fl=$(fl[0]);
+	//宽度
+	var w0=fl.width();
+	//边距
+	var ml=parseInt(fl.css("margin-left"));
+	ml=isNaN(ml)?0:ml;
+	var mr=parseInt(fl.css("margin-right"));
+	mr=isNaN(mr)?0:ml;
+	//留白
+	pl=parseInt(fl.css("padding-left"));
+	pl=isNaN(pl)?0:pl;
+	pr=parseInt(fl.css("padding-right"));
+	pr=isNaN(pr)?0:pr;
+	//实际宽度
+	w0+=ml+mr+pl+pr;
+	
+	if(fl.css("float")=="left")
+		d.fl=w0;
+	else
+		d.fr=w0;
+		
+	return d;
+	 
 };
 /**
  * 蒙层开关
@@ -164,8 +204,8 @@ sohu.diyElement.prototype.Overlay=function(mode){
 		var d=this.Dim();
 		sohu.diyConsole.$EHolder.css({
 			top:d.y-1,
-			left:d.x-1,
-			width:d.w+1,
+			left:d.x-1+d.fl,
+			width:d.w+1-d.fl-d.fr+d.pl+d.pr,
 			height:d.h+1,
 			display:"block"
 		});

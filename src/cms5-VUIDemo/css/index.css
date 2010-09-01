@@ -88,7 +88,7 @@ display:none;
 .area_active .ing,.area_active .subsec .ing{border-color:#FF0084;}
 /* ÄÚÈÝÑùÊ½-Editing */
 .ct{position:relative;}
-#eHolder{position:absolute;z-index:49;border:1px solid #FC0055;}
+#eHolder{position:absolute;z-index:49;border-top:1px dotted #CCC;;border-left:1px dotted #CCC;;border-right:1px dotted #eee;;border-bottom:1px dotted #eee;}
 #areaHolder{position:absolute;display:none;z-index:50;border:1px solid red;background:#f9bfc0;}
 #flashHolder{position:absolute;display:none;z-index:51;border:2px solid red;background:#ffffc2;cursor:pointer;}
 /*.col{overflow:hidden;}*/
