@@ -1057,7 +1057,12 @@ sohu.diyDialog.wFlash=function(dlg){
 	};
 	p.onAdd=function(evt){
 		var t0=$(this).parents('.cfg');
-		t0.after(t0.clone(true));
+		var o=t0.clone(true);
+		o.find(".thumb").attr("src","").end()
+			.find(".flashImg").val("").end()
+			.find(".flashTxt").val("").end()
+			.find(".flashHref").val("");
+		t0.after(o);
 		return false;
 	};
 	p.onDel=function(evt){
@@ -1122,17 +1127,31 @@ sohu.diyDialog.wFlash=function(dlg){
 		
 		p._fm.reset();		
 		//¸üÐÂflash
-		sohu.diyConsole.CurCT.FlashData.h=h;
+		sohu.diyConsole.CurCT.FlashData.v.pic_width=w;
+		sohu.diyConsole.CurCT.FlashData.v.pic_height=h;
 		sohu.diyConsole.CurCT.FlashData.w=w;
+		sohu.diyConsole.CurCT.FlashData.h=h;
+		if(sohu.diyConsole.CurCT.FlashData.v.show_text){
+			sohu.diyConsole.CurCT.FlashData.h=parseInt(h)+20;	
+		};
+		
 		sohu.diyConsole.CurCT.FlashData.v.pics=p._pics;
 		sohu.diyConsole.CurCT.FlashData.v.links=p._links;
 		sohu.diyConsole.CurCT.FlashData.v.texts=p._texts;
+		
 		sohu.diyConsole.CurCT.$FlashData.html($.toJSON(sohu.diyConsole.CurCT.FlashData));
-		sohu.diyConsole.CurCT.FlashObj.setAttribute("height",h);
 		sohu.diyConsole.CurCT.FlashObj.setAttribute("width",w);
+		sohu.diyConsole.CurCT.FlashObj.setAttribute("height",sohu.diyConsole.CurCT.FlashData.h);
+		
 		sohu.diyConsole.CurCT.FlashObj.variables["pics"]=p._pics;
 		sohu.diyConsole.CurCT.FlashObj.variables["links"]=p._links;
 		sohu.diyConsole.CurCT.FlashObj.variables["texts"]=p._texts;
+		
+		if(sohu.diyConsole.CurCT.FlashData.v.pic_width){
+			sohu.diyConsole.CurCT.FlashObj.variables["pic_width"]=w;
+			sohu.diyConsole.CurCT.FlashObj.variables["pic_height"]=h;
+		};
+		
 		sohu.diyConsole.CurCT.FlashObj.write(sohu.diyConsole.CurCT.FlashData.pid);
 		dlg0.Hide();
 	};
