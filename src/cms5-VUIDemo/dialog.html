@@ -12,6 +12,7 @@
 		<script type="text/javascript" src="js/sohu.jqModal.js"></script> 
 		<script type="text/javascript" src="js/colorpicker.js"></script> 
 		<script type="text/javascript" src="js/sohu.diyDialog.js"></script>
+		<script type="text/javascript" src="js/sohu.diyDialog_.js"></script>
 	</head>
 	<body>
 		<div id="main" class="area" style="height:600px;border:2px solid #eee;">
@@ -37,7 +38,7 @@
 			<div class="ct"></div>
 			<div class="acts">
 				<div class="btnWrap clear">
-					<a class="btn jqmOk l" title="确定" href="#"><span>确定</span></a>
+					<a class="btn jqmOk l" title="确认" href="#"><span>确认</span></a>
 					<a class="btn jqmClose r" title="取消" href="#"><span>取消</span></a>					
 				</div>
 			</div>	
@@ -57,40 +58,48 @@
 			</div>
 			<!--图像 -->
 			<div id="picMsg" class="jqmCT">
-				 <div class="lineA">
-				   <div class="txt01">宽</div>
-				   <input id="picW" type="text" value="260" class="ipt01" name="picW"/>
-				   <div class="txt02">px</div>
-				   <div class="txt02">高</div>
-				   <input id="picH" type="text" value="130" class="ipt01" name="picH"/>
-				   <div class="txt02">px</div>
-				   <div class="txt01">边框</div>
-				   <input id="picBColor" type="text" value="" class="ipt02" name="picBColor"/>
-				   <div class="two"></div>
-				   <a class="editBtn editBtn1 elmAdd" href="#"><strong><img src="images/addblock.gif" /></strong></a>
-				   <a class="editBtn elmDel" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
-				   <a class="editBtn elmMove0" href="#"><strong><img src="images/up.gif" /></strong></a>
-				   <a class="editBtn elmMove1" href="#"><strong><img src="images/down.gif" /></strong></a>
-				 </div>
-				 <div class="lineA">
-				 	<div class="txt01">换图</div>
+				<div class="lineA">
+					<label class="txt01">宽</label>
+					<input id="picW" type="text" value="260" class="ipt01" name="picW"/>
+					<label class="txt02">px</label>
+					<label class="txt02">高</label>
+					<input id="picH" type="text" value="130" class="ipt01" name="picH"/>
+					<label class="txt02">px</label>
+					<label class="txt01" for="picBColor">边框</label>
+					<input id="picBColor" type="text" value="" class="ipt02" name="picBColor"/>
+					<div class="two"></div> 
+					<span class="elmcActs">
+						<a class="editBtn elmAdd cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+						<a class="editBtn elmDel cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+						<a class="editBtn elmMove0 cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
+						<a class="editBtn elmMove1 cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>								
+					</span>
+				</div>
+				<div class="blank5"></div>
+				<div class="bottom2line"></div>
+				<div class="lineA">
+					<label class="txt01" for="picSrc">换图</label>
 					<input type="text" value="" class="ipt03" id="picSrc" name="picSrc"/>
 					<input type="button" class="browse"  value="浏览" id="picSwitch"/>
-			     </div>
-				 <div class="lineA">
-				 	<div class="txt01">链接</div>
-				 	<input type="text" value="" class="ipt03" id="picLink" name="picLink"/>
+				</div>
+				<div class="lineA">
+					<label class="txt01" for="picLink">链接</label>
+					<input type="text" value="" class="ipt03" id="picLink" name="picLink"/>
 					<select id="picTarget" class="selAuto" name="picTarget">
 						<option value="_blank" selected="selected">新窗口</option>
 						<option value="_self">本窗口</option>
 					</select>
-			     </div>
-				 <div class="lineA fontRed tipPicLink">请输入有效网址！</div>
-				 <div class="lineA">
-				 	<div class="txt01">Title</div>
+				</div>
+				<div class="lineA tip tipPicLink">请输入有效网址！</div>
+				<div class="lineA">
+					<label for="picAlt" class="txt01">Alt</label>
+					<input type="text" value="" class="ipt03" name="picAlt" id="picAlt"/>
+				</div>				
+				<div class="lineA">
+					<label for="picTitle" class="txt01">Title</label>
 					<input type="text" value="" class="ipt03" name="picTitle" id="picTitle"/>
-			     </div>
-			</div>			
+				</div>								
+			</div>				
 			<!--文字 -->
 			 <div id="txtMsg" class="jqmCT">
 				  <div class="blank8"></div>
@@ -142,143 +151,188 @@
 				  </div>
 			</div>
 			<!--添加横切 结束-->
-			<!--横切背景-->
+			<!--横切设置-->
 			<div id="cfgArea" class="jqmCT formx">
 				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt txt01">背景图</div>
-					<input id="txtAreaBG" name="areaBG" type="text" class="ipt03"/>
-					<input id="btnAreaBGBrowse" type="button" class="btn btnL"  value="浏览" />
+					<label class="left">背景图</label>
+					<div class="center">
+						<input id="txtAreaBG" name="areaBG" type="text" class="ipt03"/>
+					</div>
+					<div class="right">
+						<input id="btnAreaBGBrowse" type="button" class="btn btnL"  value="浏览" />
+					</div>
 				</div>
 				<div class="lineA">
-					<div class="txt txt01">对齐方式</div>
-					<input name="areaBGAlign" checked="checked" type="radio" value="center" class="rdo"  />
-					<div class="txt txt02">居中</div>
-					<input name="areaBGAlign" type="radio" value="left" class="rdo"  />
-					<div class="txt txt02">靠左</div>
-					<input name="areaBGAlign" type="radio" value="right" class="rdo"  />
-					<div class="txt txt02">靠右</div>
+					<label class="left">对齐</label>
+					<div class="center">
+						<select id="ddlAreaBGAlign" name="areaBGAlign">
+							<option value="center" selected="selected">居中</option>
+							<option value="left">靠左</option>
+							<option value="right">靠右</option>
+						</select>						
+					</div>
 				</div>
 				<div class="lineA">
-					<div class="txt txt01">平铺方式</div>
-					<input name="areaBGRepeat" type="radio" value="repeat" class="rdo"  />
-					<div class="txt txt02">平铺</div>
-					<input name="areaBGRepeat" type="radio" value="no-repeat" class="rdo"  />
-					<div class="txt txt02">不平铺</div>
-					<input name="areaBGRepeat" type="radio" value="repeat-x" class="rdo"  />
-					<div class="txt txt02">横铺</div>
-					<input name="areaBGRepeat" type="radio" value="repeat-y" class="rdo"  />
-					<div class="txt txt02">纵铺</div>
-				</div>
+					<label class="left">平铺</label>
+					<div class="center">
+						<select id="ddlAreaBGRepeat" name="areaBGRepeat">
+							<option value="repeat" selected="selected">平铺</option>
+							<option value="no-repeat">不平铺</option>
+							<option value="repeat-x">横铺</option>
+							<option value="repeat-y">纵铺</option>
+						</select>						
+					</div>				
+				</div>	
+				<div class="blank5"></div>
+				<div class="bottom3line"></div>
+				<div class="blank5"></div>
 				<div class="lineA">
-					<div class="txt txt01">横切ID</div>
-					<input id="txtAreaID" name="areaID" type="text" class="ipt03"/>
+					<label class="left">横切ID</label>
+					<div class="center">
+						<input id="txtAreaID" name="areaID" type="text" class="ipt03"/>
+					</div>
 				</div>
-				<div class="blank8"></div>
-				<div class="bottom3line"></div>			
+				
 			</div>
-			<!--/横切背景-->	
+			<!--/横切设置-->	
 			<!--页面背景-->
 			<div id="cfgPage" class="jqmCT formx">
 				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt txt06">页面背景色</div>
-					<input type="text" value="" class="ipt02"/>
+					<label class="left">页面背景色</label>
+					<div class="center"><input type="text" value="" class="ipt02"/></div>
 				</div>
 				<div class="blank8"></div>
 				<div class="bottom3line"></div>
 				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt txt06">页头背景图</div>
-					<input type="text" value="" class="ipt03"/>
-					<input type="button" class="btn btnL"  value="浏览" />
+					<label class="left">页头背景图</label>
+					<div class="center"><input type="text" value="" class="ipt03"/></div>
+					<div class="right"><input type="button" class="btn btnL"  value="浏览" /></div>
 				</div>
-				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt txt02">高度</div>
-					<input type="text" value="" class="ipt02"/>
-					<div class="txt txt03">px</div>
-					<div class="txt txt02">对齐</div>
-					<select class="selAuto">
-						<option value="txt">居中</option>
-					</select>
-					<div class="txt txt02">平铺</div>
-					<select class="selAuto">
-						<option value="txt">不平铺</option>
-					</select>
+					<label class="left">对齐</label>
+					<div class="center">
+						<select class="selAuto">
+							<option value="txt">居中</option>
+						</select>					
+					</div>
+				</div>
+				<div class="lineA">
+					<label class="left">平铺</label>
+					<div class="center">
+						<select class="selAuto">
+							<option value="txt">不平铺</option>
+						</select>						
+					</div>
+				</div>
+				<div class="lineA">
+					<label class="left">高度</label>
+					<div class="center">
+						<input type="text" value="" class="ipt58"/>
+						<label>px</label>
+					</div>
 				</div>
 				<div class="blank8"></div>
 				<div class="bottom3line"></div>
 				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt txt06">页脚背景图</div>
-					<input type="text" value="" class="ipt03"/>
-					<input type="button" class="btn btnL"  value="浏览" />
+					<label class="left">页脚背景图</label>
+					<div class="center">
+						<input type="text" value="" class="ipt03"/>
+					</div>
+					<div class="right">
+						<input type="button" class="btn btnL"  value="浏览" />
+					</div>
 				</div>
 				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt txt02">高度</div>
-					<input type="text" value="" class="ipt02"/>
-					<div class="txt txt03">px</div>
-					<div class="txt txt02">对齐</div>
-					<select class="selAuto">
-						<option value="txt">居中</option>
-					</select>
-					<div class="txt txt02">平铺</div>
-					<select class="selAuto">
-						<option value="txt">不平铺</option>
-					</select>
+					<label class="left">高度</label>
+					<div class="center">
+						<input type="text" value="" class="ipt58"/>
+						<label>px</label>
+					</div>
+				</div>				
+				<div class="lineA">
+					<label class="left">对齐</label>
+					<div class="center">
+						<select class="selAuto">
+							<option value="txt">居中</option>
+						</select>						
+					</div>				
+				</div>	
+				<div class="lineA">
+					<label class="left">平铺</label>
+					<div class="center">
+						<select class="selAuto">
+							<option value="txt">不平铺</option>
+						</select>					
+					</div>				
 				</div>
 				<div class="blank8"></div>	 
 			</div>
 			<!--/页面背景-->	
-			<!--分栏设置-->
+			<!--分栏设置对话框-->
 			<div id="wCfgSec" class="jqmCT formx">
 				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt txt01">背景图</div>
-					<input id="txtSecBG" type="text" class="ipt03"/>
-					<input id="btnCfgSecBrowse" type="button" class="btn btnL"  value="浏览" />
+					<label class="left">背景色</label>
+					<div class="center">
+						<input id="txtSecBGC" type="text" readonly="readonly" class="ipt02"/>
+					</div>
+				</div>				
+				<div class="lineA">
+					<label class="left">边框色</label>
+					<div class="center">
+						<input id="txtSecBorderColor" readonly="readonly" name="SecBorderColor" type="text" class="ipt02"/>
+					</div>	
 				</div>
 				<div class="lineA">
-					<div class="txt txt01">背景色</div>
-					<input id="txtSecBGC" type="text" class="ipt03"/>
+					<label class="left">边框</label>
+					<div class="center clear">
+						<input name="SecBorderDir" type="checkbox" class="cbx" value="top"/>
+						<label class="cbxLbl">上</label>
+						<input name="SecBorderDir" type="checkbox" class="cbx" value="bottom"/>
+						<label class="cbxLbl">下</label>
+						<input name="SecBorderDir" type="checkbox" class="cbx" value="left"/>
+						<label class="cbxLbl">左</label>
+						<input name="SecBorderDir" type="checkbox" class="cbx" value="right"/>
+						<label class="cbxLbl">右</label>
+					</div>
+				</div>	
+				<div class="lineA">
+					<label class="left">背景图</label>
+					<div class="center">
+						<input id="txtSecBG" type="text" class="ipt03"/>
+					</div>
+					<div class="right">
+						<input id="btnCfgSecBrowse" type="button" class="btn btnL"  value="浏览" />
+					</div>	
 				</div>
 				<div class="lineA">
-					<div class="txt txt01">对齐方式</div>
-					<input name="secBGAlign" checked="checked" type="radio" value="center center" class="rdo"  />
-					<div class="txt txt02">居中</div>
-					<input name="secBGAlign" type="radio" value="left center" class="rdo"  />
-					<div class="txt txt02">靠左</div>
-					<input name="secBGAlign" type="radio" value="right center" class="rdo"  />
-					<div class="txt txt02">靠右</div>
+					<label class="left">对齐</label>
+					<div class="center">
+						<select id="ddlSecBGAlign" name="secBGAlign">
+							<option value="center center" selected="selected">居中</option>
+							<option value="left center">靠左</option>
+							<option value="right center">靠右</option>
+						</select>						
+					</div>					
 				</div>
 				<div class="lineA">
-					<div class="txt txt01">平铺方式</div>
-					<input name="secBGRepeat" checked="checked" type="radio" value="repeat" class="rdo"  />
-					<div class="txt txt02">平铺</div>
-					<input name="secBGRepeat" type="radio" value="no-repeat" class="rdo"  />
-					<div class="txt txt02">不平铺</div>
-					<input name="secBGRepeat" type="radio" value="repeat-x" class="rdo"  />
-					<div class="txt txt02">横铺</div>
-					<input name="secBGRepeat" type="radio" value="repeat-y" class="rdo"  />
-					<div class="txt txt02">纵铺</div>
-				</div>
-				<div class="lineA">
-					<div class="txt txt01">边框设置</div>
-					<input id="txtSecBorderColor" name="SecBorderColor" type="text" class="ipt04"/>
-					<input name="SecBorderDir" type="checkbox" class="cBox03"/>
-					<div class="txt txt03">上</div>
-					<input name="SecBorderDir" type="checkbox" class="cBox03"/>
-					<div class="txt txt03">下</div>
-					<input name="SecBorderDir" type="checkbox" class="cBox03"/>
-					<div class="txt txt03">左</div>
-					<input name="SecBorderDir" type="checkbox" class="cBox03"/>
-					<div class="txt txt03">右</div>
-				</div>
+					<label class="left">平铺</label>
+					<div class="center">
+						<select id="ddlSecBGRepeat" name="secBGRepeat">
+							<option value="repeat" selected="selected">平铺</option>
+							<option value="no-repeat">不平铺</option>
+							<option value="repeat-x">横铺</option>
+							<option value="repeat-y">纵铺</option>
+						</select>					
+					</div>
+				</div>	
 				<div class="cpk"></div>				
 			</div>
-			<!--/分栏设置-->
 			<!--添加分栏-->
 			<div id="subSec950" class="jqmCT formss">
 				  <div class="lineB">
@@ -391,7 +445,8 @@
 		Areas:[]
 	};
 	sohu.diyDialog.Init({
-		console:dummyConsole
+		console:dummyConsole,
+		onInit:sohu.diyDialog.onInit
 	});
 	//]]>
 	</script>

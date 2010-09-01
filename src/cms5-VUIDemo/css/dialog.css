@@ -1,9 +1,14 @@
+/* 弹框不显示取消按钮-09-01 */
+.jqmWindow .btnWrap{width:47px;}
+.jqmWindow .btnWrap .jqmClose{display:none;}
+/* /弹框不显示取消按钮-09-01 */
 .blank40{height: 40px;}
 .titleA{position:relative; width:auto; height: 14px;  border-bottom:1px solid #666; text-align:left; padding:3px 5px 2px 9px; color:#F0F0EE;  background:url(../images/common.jpg) 0px -19px;}
 .titleA h1 { float:left; font-weight:bold; vertical-align:middle; }
 .titleA span { float:right; width:15px; height:13px;vertical-align:middle; }
 a.close{position:absolute;top:3px;right:5px;display: block;background: url(../images/close.jpg) no-repeat top;	width: 15px;	height: 13px;}
 a.close:hover{background-position: bottom;}
+a.btn:hover{color:#333333;}
 .btnLine{margin:0 auto; width: 105px; height:25px;}
 .Btn {display: block; background: url(../images/ybtn.gif) top;width: 45px;height: 24px; border: 0px; cursor:pointer;}
 .BtnM {background-position: bottom;}
@@ -11,6 +16,8 @@ a.close:hover{background-position: bottom;}
 .r1btnM {background-position: bottom; clear:both}
 .l1btn {display: block; background: url(../images/l1btn.gif) top;width: 22px;height: 30px;margin-top: 50px; border: 0px; cursor:pointer;}
 .l1btnM {background-position: bottom;}
+.lineA{zoom:1;}
+.lineA:after{content:'\20';display:block;clear:both;}
 .lineA,.lineA span{ margin:0 auto;  height:22px; vertical-align: middle; margin-top:5px;}
 .width30{ width: 30px;}
 .fontRed{color:#ff0000; width:205px; padding-left: 30px; text-align: left; height:20px;}
@@ -21,7 +28,7 @@ a.close:hover{background-position: bottom;}
 
 .jqmCT .tip{display:none;}
 
-.formx{width:310px;}
+.formx{width:320px;}
 .formx .txt{color:#383836;float:left;line-height:20px;vertical-align:middle;padding-right:5px;text-align:right;}
 .formx .txt01{width:60px;}
 .formx .txt02{padding:0 5px;}
@@ -36,6 +43,11 @@ a.close:hover{background-position: bottom;}
 .formx .ipt58{width:58px;}
 .formx .alert{color:red;};
 .formx select{float:left; width:62px;height:20px;font-size:12px; margin-left: 4px; margin-top: 2px;}
+.formx label.left{width:75px;margin-right:5px;text-align:right;line-height:20px;}
+.formx .center{width:170px;text-align:left;}
+.formx .right{width:70px;text-align:left;}
+.formx .cbx,.formx .cbxLbl{float:left;line-height:20px;margin-right:8px;}
+.formx .cbx{padding:0;margin:3px 5px 0 0;}
 
 #jqmConfirm{z-index:3005;top: 25%}
 #jqmConfirm .tip{ width:300px;padding:15px 0px 10px;}
@@ -43,14 +55,14 @@ a.close:hover{background-position: bottom;}
 #jqmConfirm span.caution{background: url(../images/caution.jpg) center no-repeat;}
 #jqmConfirm .txt{ text-align:left;line-height: 20px; color:#373737;padding-left:40px;}
 
-#picMsg{ width: 310px;padding-bottom:8px;}
+#picMsg{padding:8px;}
 #picMsg .titleA{ background:url(../images/common.jpg) 0px -95px;}
 #picMsg .lineA .txt01,#addContent .lineC .txt01,#picMsg .lineA .txt02,#addContent .lineC .txt02,#addContent .lineC .txt04,#autoList .lineA .txt01,#spPub .lineA .txt01,#colHead .lineA .txt01{float:left; vertical-align: middle; line-height:20px;}
 #picMsg .lineA .txt01{ width:35px; color:#383836}
 #picMsg .lineA .ipt01,#addContent .lineC .ipt01{ width:26px;}
 #picMsg .lineA .txt02{ width:20px;}
-#picMsg .lineA .ipt02{ width: 16px;height:auto; background:#8D8D8D; border: 0px; float:left; cursor:pointer;}
-#picMsg .lineA .ipt03{ width: 195px; margin-top:4px;}
+#picMsg .ipt02{ background:#8D8D8D;cursor:pointer;}
+#picMsg .ipt03{ width: 213px; margin-top:4px;}
 #picMsg .lineA .browse{ float:left;display: block; background: url(../images/ybtn.gif) top;width: 45px;height: 24px; border: 0px; cursor:pointer; margin-left:5px; }
 #picMsg .lineA .selAuto{ float:left; width:62px;height:20px;font-size:12px; margin-left: 4px; margin-top: 2px;}
 
@@ -63,7 +75,7 @@ a.close:hover{background-position: bottom;}
 #txtMsg .lineA .selAuto{ float:left; width:62px;height:20px;font-size:12px; margin-left: 4px;}
 #txtMsg .wline{ margin:0 auto; width: 270px; height: 16px; }
 #txtMsg .wline a{float:left; margin-right: 3px;}
-.bottom2line{margin:0 auto; width:258px;height:0px; overflow:hidden;border-bottom: 1px solid #fff;border-top: 1px solid #d6d6d6;}
+.bottom2line{margin:0 auto;height:0px;border-bottom: 1px solid #fff;border-top: 1px solid #d6d6d6;}
 
 
 #addBlock{ width:430px;}

@@ -97,8 +97,8 @@ display:none;
 /* 分栏编辑器 */
 #secEditor{display:none;}
 .secEditor .actions{position:absolute;padding:3px 6px;border:1px solid #bbd2ea;border-bottom:none;z-index:300;height:18px;background:#e2ecf8;}
-.secEditor .actions .r a{padding-left:4px;}
-.secEditor .actions .l a{padding-right:4px;}
+.secEditor .actions .r a{padding-left:1px;color:#0858a6;}
+.secEditor .actions .l a{padding-right:1px;}
 .secEditor .actions .secTip{font-size:98%;}
 .secEditor .overlay{position:absolute;border:1px solid #bbd2ea;border-top:none;background:transparent;z-index:-100;}
 /* 圆角效果-(已停用) */

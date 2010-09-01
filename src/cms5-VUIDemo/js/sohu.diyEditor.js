@@ -137,7 +137,7 @@ sohu.diyEditor.prototype.Reposition=function(){
 	var d=this.CurSec.Dim();
 	var st=sohu.diyConsole.$ScrollWrap.scrollTop();/* 上滚动距离 */
 	this.$Toolbar.css({width:d.w-11,top:d.y-25,left:d.x-1,opacity:0.9});/*宽要减去11个像素的留白;25是工具条高度*/
-	this.$ToolbarTip.css({width:d.w}).html(d.mw+"px");
+	this.$ToolbarTip.css({width:d.w}).html(d.mw);
 	//overlay
 	this.$Overlay.css({width:d.w+1,top:d.y,left:d.x-1,opacity:0.9,height:d.h+1});
 };
