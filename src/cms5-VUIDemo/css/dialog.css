@@ -21,13 +21,21 @@ a.btn:hover{color:#333333;}
 .lineA,.lineA span{ margin:0 auto;  height:22px; vertical-align: middle; margin-top:5px;}
 .width30{ width: 30px;}
 .fontRed{color:#ff0000; width:205px; padding-left: 30px; text-align: left; height:20px;}
+/* 输入框 */
 .ipt00,.ipt01,.ipt02,.ipt03,.ipt04{border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;color:#666;} 
 .ipt01,.ipt02,.ipt03,.ipt04{float:left;height:16px;padding-top:2px;} 
 .ipt02{width: 19px;height:17px;padding-top:0; background:#fff;}
-.bottom3line{margin:0 auto; width:265px;height:0px; overflow:hidden;border-bottom: 1px solid #fff;border-top: 1px solid #d6d6d6;}
+/* 文字标签 */
+.txt01,.txt02,.txt04{float:left;vertical-align: middle; line-height:20px; color:#383836;}
+/* 下拉框 */
+.selAuto{ float:left; width:62px;height:20px;font-size:12px; margin-left: 4px;}
+/* 分割线 */
+.bottom2line,.bottom3line{margin:0 auto;height:0px;border-bottom: 1px solid #fff;border-top: 1px solid #d6d6d6;}
 
+.jqmCT{padding:8px;}
 .jqmCT .tip{display:none;}
 
+/* 通用表单 */
 .formx{width:320px;}
 .formx .txt{color:#383836;float:left;line-height:20px;vertical-align:middle;padding-right:5px;text-align:right;}
 .formx .txt01{width:60px;}
@@ -41,43 +49,42 @@ a.btn:hover{color:#333333;}
 .formx .ipt03{width:168px;}
 .formx .ipt04{width:40px;}
 .formx .ipt58{width:58px;}
-.formx .alert{color:red;};
-.formx select{float:left; width:62px;height:20px;font-size:12px; margin-left: 4px; margin-top: 2px;}
+.formx .alert{color:red;}
 .formx label.left{width:75px;margin-right:5px;text-align:right;line-height:20px;}
 .formx .center{width:170px;text-align:left;}
 .formx .right{width:70px;text-align:left;}
 .formx .cbx,.formx .cbxLbl{float:left;line-height:20px;margin-right:8px;}
 .formx .cbx{padding:0;margin:3px 5px 0 0;}
+.formx select{width:72px;height:20px;font-size:12px;}
 
 #jqmConfirm{z-index:3005;top: 25%}
 #jqmConfirm .tip{ width:300px;padding:15px 0px 10px;}
 #jqmConfirm span.icon{display:block; float:left; width:35px; height:40px;}
 #jqmConfirm span.caution{background: url(../images/caution.jpg) center no-repeat;}
 #jqmConfirm .txt{ text-align:left;line-height: 20px; color:#373737;padding-left:40px;}
-
-#picMsg{padding:8px;}
+/* 图片编辑 */
 #picMsg .titleA{ background:url(../images/common.jpg) 0px -95px;}
-#picMsg .lineA .txt01,#addContent .lineC .txt01,#picMsg .lineA .txt02,#addContent .lineC .txt02,#addContent .lineC .txt04,#autoList .lineA .txt01,#spPub .lineA .txt01,#colHead .lineA .txt01{float:left; vertical-align: middle; line-height:20px;}
-#picMsg .lineA .txt01{ width:35px; color:#383836}
-#picMsg .lineA .ipt01,#addContent .lineC .ipt01{ width:26px;}
-#picMsg .lineA .txt02{ width:20px;}
+#picMsg .txt01{ width:35px; color:#383836}
+#picMsg .ipt01,#addContent .ipt01{ width:26px;}
+#picMsg .txt02{ width:20px;}
 #picMsg .ipt02{ background:#8D8D8D;cursor:pointer;}
 #picMsg .ipt03{ width: 213px; margin-top:4px;}
-#picMsg .lineA .browse{ float:left;display: block; background: url(../images/ybtn.gif) top;width: 45px;height: 24px; border: 0px; cursor:pointer; margin-left:5px; }
-#picMsg .lineA .selAuto{ float:left; width:62px;height:20px;font-size:12px; margin-left: 4px; margin-top: 2px;}
+#picMsg .browse{ float:left;display: block; background: url(../images/ybtn.gif) top;width: 45px;height: 24px; border: 0px; cursor:pointer; margin-left:5px; }
+#picMsg .selAuto{margin-top: 2px;}
 
-
-#txtMsg{ width:285px;padding-bottom:8px;}
+/* 文字编辑 */
+#txtMsg{ width:285px;}
 #txtMsg .titleA{ background:url(../images/common.jpg) 0px -38px;}
-#txtMsg .lineA .txt01{float:left; vertical-align: middle; line-height:20px; width:35px; color:#383836}
-#txtMsg .lineA .ipt03{ width: 168px;}
+/* 隐藏Title-09-02 */
+#txtMsg .rowTitle{display:none;}
+/* /隐藏Title-09-02 */
+#txtMsg .txt01{width:35px; }
+#txtMsg .ipt03{ width: 168px;}
 #txtMsg .btnLine{margin-top:10px;}
-#txtMsg .lineA .selAuto{ float:left; width:62px;height:20px;font-size:12px; margin-left: 4px;}
 #txtMsg .wline{ margin:0 auto; width: 270px; height: 16px; }
 #txtMsg .wline a{float:left; margin-right: 3px;}
-.bottom2line{margin:0 auto;height:0px;border-bottom: 1px solid #fff;border-top: 1px solid #d6d6d6;}
 
-
+/* 添加横切 */
 #addBlock{ width:430px;}
 #addBlock .titleA{ background:url(../images/common.jpg) 0px -57px;}
 #addBlock .lineB{ width:410px;  padding:15px 0px 15px 17px;}
@@ -94,43 +101,34 @@ a.btn:hover{color:#333333;}
 #addBlock .block08 a{background-position:0px -196px;}
 #addBlock .block09 a{background-position:0px -224px;}
 #addBlock .block10 a{background-position:0px -252px;}
-/***editbtn***/
-.editBtn{float:left;display:inline-block;*display:inline;*zoom:1;}
-.editBtn,.editBtn strong{overflow:hidden;height:19px;line-height:19px;line-height:19px\9;_line-height:34px;padding:0;border:0;font-size:12px;background:url(../images/btn0.png) no-repeat}
-.editBtn{ margin:0 0 0.2em;padding:0 0 0 4px;vertical-align:middle;white-space:nowrap;cursor:pointer;cursor:hand}
-.editBtn strong{display:block;*display:inline;*zoom:1;padding:0px;margin:0;color:#fff;background-position:right -21px;*vertical-align:top}
-.editBtn:hover{background-position:0 -80px;text-decoration:none}
-.editBtn:hover strong{background-position:right -101px;text-decoration:none}
-.editBtn:active{background-position:0 -40px}
-.editBtn:active strong{background-position:right -61px}
-.editBtn:focus{background-position:0 -40px\0}
-.editBtn:focus strong{background-position:right -61px\0}
-/******/
-.editBtn1,.editBtn1 strong{overflow:hidden;height:19px;line-height:19px;line-height:19px\9;_line-height:34px;padding:0;border:0;font-size:12px;background:url(../images/btn1.png) no-repeat}
-.editBtn1{ margin:0 0 0.2em;padding:0 0 0 4px;}
-.editBtn1 strong{display:block;*display:inline;*zoom:1;padding:0px;margin:0;color:#fff;background-position:right -61px;*vertical-align:top}
 
-.editBtn3,.editBtn3 strong{width:30px; overflow:hidden;height:19px;line-height:19px;line-height:19px\9;_line-height:34px;padding:0;border:0;font-size:12px;background:url(../images/btn1.png) no-repeat}
-.editBtn3{ margin:0 0 0.2em;padding:0 0 0 4px;}
-.editBtn3 strong{display:block;*display:inline;*zoom:1;padding:0px;margin:0;color:#fff;background-position:right -61px;*vertical-align:top}
-
-
-.editBtn2,.editBtn3 strong{width:22px; overflow:hidden;height:19px;line-height:19px;line-height:19px\9;_line-height:34px;padding:0;border:0;font-size:12px;background:url(../images/btn1.png) no-repeat}
-.editBtn2{ margin:0 0 0.2em;padding:0 0 0 4px;}
-.editBtn2 strong{display:block;*display:inline;*zoom:1;padding:0px;margin:0;color:#fff;background-position:right -61px;*vertical-align:top}
-.editBtn2{float:left;display:inline-block;*display:inline;*zoom:1;}
-.editBtn2,.editBtn2 strong{overflow:hidden;height:19px;line-height:19px;line-height:19px\9;_line-height:34px;padding:0;border:0;font-size:12px;background:url(../images/btn0.png) no-repeat}
-.editBtn2{ margin:0 0 0.2em;padding:0 0 0 4px;vertical-align:middle;white-space:nowrap;cursor:pointer;cursor:hand}
-.editBtn2:hover{background-position:0 -80px;text-decoration:none}
-.editBtn2:hover strong{background-position:right -101px;text-decoration:none}
-.editBtn2:active{background-position:0 -40px}
-.editBtn2:active strong{background-position:right -61px}
-.editBtn2:focus{background-position:0 -40px\0}
-.editBtn2:focus strong{background-position:right -61px\0}
-
+/* 文字编辑的各种按钮 */
+.cmdicon,.cmdicon strong,.editBtn1,.editBtn1 strong,.editBtn2,.editBtn2 strong,.editBtn3,.editBtn3 strong{overflow:hidden;height:19px;line-height:19px;line-height:19px\9;_line-height:34px;padding:0;border:0;font-size:12px;background-repeat:no-repeat;}
+.cmdicon,.editBtn2{float:left;display:inline-block;*display:inline;*zoom:1;}
+.cmdicon,.cmdicon strong,.editBtn2,.editBtn2 strong{background-image:url("../images/btn0.png");}
+.cmdicon,.editBtn1,.editBtn2,.editBtn3{margin:0 0 0.2em;padding:0 0 0 4px;}
+.cmdicon strong,.editBtn1 strong,.editBtn2 strong,.editBtn3 strong{display:block;*display:inline;*zoom:1;padding:0px;margin:0;color:#fff;*vertical-align:top;}
+.cmdicon,.editBtn2{vertical-align:middle;white-space:nowrap;cursor:pointer;cursor:hand;}
+.cmdicon strong{background-position:right -21px;}
+.cmdicon:hover{background-position:0 -80px;text-decoration:none;}
+.cmdicon:hover strong{background-position:right -101px;text-decoration:none;}
+.cmdicon:active{background-position:0 -40px;}
+.cmdicon:active strong{background-position:right -61px;}
+.cmdicon:focus{background-position:0 -40px\0;}
+.cmdicon:focus strong{background-position:right -61px\0;}
+.editBtn1,.editBtn1 strong,.editBtn2,.editBtn2 strong,.editBtn3,.editBtn3 strong{background-image:url("../images/btn1.png");}
+.editBtn1 strong,.editBtn2 strong,.editBtn3 strong{background-position:right -61px;}
+.editBtn3,.editBtn3 strong{width:30px;}
+.editBtn2,.editBtn2 strong{width:22px;}
+.editBtn2:hover{background-position:0 -80px;text-decoration:none;}
+.editBtn2:hover strong{background-position:right -101px;text-decoration:none;}
+.editBtn2:active{background-position:0 -40px;}
+.editBtn2:active strong{background-position:right -61px;}
+.editBtn2:focus{background-position:0 -40px\0;}
+.editBtn2:focus strong{background-position:right -61px\0;}
 
 .two{float:left;  margin:0 2px;width:0;height:16px;border-left:1px solid #D6D6D6;border-right:1px solid #F7F7F7;vertical-align:middle;margin-left:5px;}
-
+/* 更换风格 */
 #wTheme{ width:598px; height: auto; background:#F0F0EE}
 #wTheme .titleA{ background:url(../images/common.jpg) 0px -0px;}
 #wTheme .lineC{margin:0 auto; width:570px;height:auto;border-bottom:1px solid #D6D6D6;vertical-align: middle;}
@@ -252,7 +250,6 @@ a.btn:hover{color:#333333;}
 /******/
 
 #wCfgSec .cpk{position:absolute;display:none;width:356px;top:20%;right:10px;}
-#cfgArea select,#wCfgSec select{margin-left:0;}
 
 /* 分栏对话框 */
 .formss{width:230px;}

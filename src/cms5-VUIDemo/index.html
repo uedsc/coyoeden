@@ -139,7 +139,7 @@
 			</div>
 			<div class="acts">
 				<div class="btnWrap clear">
-					<a class="btn jqmOk l" title="确定" href="#"><span>确定</span></a>
+					<a class="btn jqmOk l" title="确认" href="#"><span>确认</span></a>
 					<a class="btn jqmClose r" title="取消" href="#"><span>取消</span></a>					
 				</div>
 			</div>			
@@ -150,13 +150,13 @@
 			<!--图像 -->
 			<div id="picMsg" class="jqmCT">
 				<div class="lineA">
-					<div class="txt01">宽</div>
+					<label class="txt01">宽</label>
 					<input id="picW" type="text" value="260" class="ipt01" name="picW"/>
-					<div class="txt02">px</div>
-					<div class="txt02">高</div>
+					<label class="txt02">px</label>
+					<label class="txt02">高</label>
 					<input id="picH" type="text" value="130" class="ipt01" name="picH"/>
-					<div class="txt02">px</div>
-					<div class="txt01">边框</div>
+					<label class="txt02">px</label>
+					<label class="txt01" for="picBColor">边框</label>
 					<input id="picBColor" type="text" value="" class="ipt02" name="picBColor"/>
 					<div class="two"></div> 
 					<span class="elmcActs">
@@ -165,15 +165,16 @@
 						<a class="editBtn elmMove0 cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
 						<a class="editBtn elmMove1 cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>								
 					</span>
-				
 				</div>
+				<div class="blank5"></div>
+				<div class="bottom2line"></div>
 				<div class="lineA">
-					<div class="txt01">换图</div>
+					<label class="txt01" for="picSrc">换图</label>
 					<input type="text" value="" class="ipt03" id="picSrc" name="picSrc"/>
 					<input type="button" class="browse"  value="浏览" id="picSwitch"/>
 				</div>
 				<div class="lineA">
-					<div class="txt01">链接</div>
+					<label class="txt01" for="picLink">链接</label>
 					<input type="text" value="" class="ipt03" id="picLink" name="picLink"/>
 					<select id="picTarget" class="selAuto" name="picTarget">
 						<option value="_blank" selected="selected">新窗口</option>
@@ -182,13 +183,16 @@
 				</div>
 				<div class="lineA tip tipPicLink">请输入有效网址！</div>
 				<div class="lineA">
-					<div class="txt01">Title</div>
+					<label for="picAlt" class="txt01">Alt</label>
+					<input type="text" value="" class="ipt03" name="picAlt" id="picAlt"/>
+				</div>				
+				<div class="lineA">
+					<label for="picTitle" class="txt01">Title</label>
 					<input type="text" value="" class="ipt03" name="picTitle" id="picTitle"/>
-				</div>
+				</div>								
 			</div>			
 			<!--文字 -->
 			 <div id="txtMsg" class="jqmCT">
-				  <div class="blank8"></div>
 				  <div class="wline">
 				   <a class="editBtn cmdBold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
 				   <a class="editBtn cmdUdl cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
@@ -196,7 +200,7 @@
 				   <a class="editBtn cmdAL cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
 				   <a class="editBtn cmdAC cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
 				   <a class="editBtn cmdAR cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
-				   <a class="editBtn2 cmdVideo cmdicon" href="#"><strong><img src="images/w07.gif" /></strong></a>
+				   <a class="editBtn cmdVideo cmdicon" href="#"><strong><img src="images/w07.gif" /></strong></a>
 				   <div class="two"></div>
 				   <span class="elmcActs">
 				   		<a class="editBtn elmAdd cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
@@ -207,9 +211,8 @@
 				 </div>
 				  <div class="blank8"></div>
 				  <div class="bottom2line"></div>
-				  <div class="lineB"></div>
 				  <div class="lineA">
-				  	<div class="txt01">链接</div>
+				  	<label class="txt01" for="txtAHref">链接</label>
 					<input id="txtAHref" name="txtAHref" type="text" value="" class="ipt03"/>
 					<select id="ddlATarget" name="ddlATarget" class="selAuto">
 						<option value="_blank" selected="selected">新窗口</option>
@@ -217,8 +220,8 @@
 					</select>
 			      </div>
 				  <div class="lineA tip tipAHref">请输入有效网址！</div>
-				  <div class="lineA">
-				 	 <div class="txt01">Title</div>
+				  <div class="lineA rowTitle">
+				 	 <label class="txt01" for="txtATitle">Title</label>
 					 <input id="txtATitle" name="txtATitle" type="text" value="" class="ipt03"/>
 			      </div>
 			</div>
@@ -241,40 +244,54 @@
 			<!--添加横切 结束-->
 			<!--横切设置-->
 			<div id="cfgArea" class="jqmCT formx">
-				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt txt01">背景图</div>
-					<input id="txtAreaBG" name="areaBG" type="text" class="ipt03"/>
-					<input id="btnAreaBGBrowse" type="button" class="btn btnL"  value="浏览" />
+					<label class="left" for="txtAreaBG">背景图</label>
+					<div class="center">
+						<input id="txtAreaBG" name="areaBG" type="text" class="ipt03"/>
+					</div>
+					<div class="right">
+						<input id="btnAreaBGBrowse" type="button" class="btn btnL"  value="浏览" />
+					</div>
 				</div>
 				<div class="lineA">
-					<div class="txt txt01">对齐</div>
-					<select id="ddlAreaBGAlign" name="areaBGAlign">
-						<option value="center" selected="selected">居中</option>
-						<option value="left">靠左</option>
-						<option value="right">靠右</option>
-					</select>	
-					<div class="txt txt02">平铺</div>
-					<select id="ddlAreaBGRepeat" name="areaBGRepeat">
-						<option value="repeat" selected="selected">平铺</option>
-						<option value="no-repeat">不平铺</option>
-						<option value="repeat-x">横铺</option>
-						<option value="repeat-y">纵铺</option>
-					</select>					
+					<label class="left" for="ddlAreaBGAlign">对齐</label>
+					<div class="center">
+						<select id="ddlAreaBGAlign" name="areaBGAlign">
+							<option value="center" selected="selected">水平-中</option>
+							<option value="left">水平-左</option>
+							<option value="right">水平-右</option>
+						</select>
+						<select id="ddlAreaBGAlignV" name="areaBGAlignV">
+							<option value="top" selected="selected">垂直-上</option>
+							<option value="center">垂直-中</option>
+							<option value="bottom">垂直-下</option>
+						</select>												
+					</div>
 				</div>
+				<div class="lineA">
+					<label class="left" for="ddlAreaBGRepeat">平铺</label>
+					<div class="center">
+						<select id="ddlAreaBGRepeat" name="areaBGRepeat">
+							<option value="repeat" selected="selected">平铺</option>
+							<option value="no-repeat">不平铺</option>
+							<option value="repeat-x">横铺</option>
+							<option value="repeat-y">纵铺</option>
+						</select>						
+					</div>				
+				</div>	
 				<div class="blank5"></div>
 				<div class="bottom3line"></div>
 				<div class="blank5"></div>
 				<div class="lineA">
-					<div class="txt txt01">横切ID</div>
-					<input id="txtAreaID" name="areaID" type="text" class="ipt03"/>
+					<label class="left" for="txtAreaID">横切ID</label>
+					<div class="center">
+						<input id="txtAreaID" name="areaID" type="text" class="ipt03"/>
+					</div>
 				</div>
-				
 			</div>
 			<!--/横切设置-->		
 			<!--页面背景-->
 			<div id="cfgPage" class="jqmCT formx">
-				<div class="blank8"></div>
 				<div class="lineA">
 					<div class="txt txt06">页面背景色</div>
 					<input type="text" id="txtPageBGC" name="pageBGC" readonly="readonly" class="ipt02"/>

@@ -22,7 +22,7 @@ sohu.diyDialog=function(){
 		this.$CTWrap=$(p.opts.cssCTWrap);/* Wrapper for all the dialog contents */
 		this.jqmHash=null;
 		//default options for jqModal
-		this.jqmOpts={trigger:false,modal:true,overlay:50,autoFocus:false,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false,txtBtnOK:'确定',txtBtnNO:'取消',btnNO:true};
+		this.jqmOpts={trigger:false,modal:true,overlay:50,autoFocus:false,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false,txtBtnOK:'确认',txtBtnNO:'取消',btnNO:true};
 		this.jqmOpts.onShow=function(hash){
 			var doShow=true;
 			if(_this.jqmOpts.beforeShow){
@@ -115,7 +115,7 @@ sohu.diyDialog=function(){
 	 */
 	p.dialog.prototype.ResetOptions=function(){
 		//default options for jqModal
-		$.extend(this.jqmOpts,{trigger:false,modal:true,overlay:50,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false,txtBtnOK:'确定',txtBtnNO:'取消',btnNO:true});
+		$.extend(this.jqmOpts,{trigger:false,modal:true,overlay:50,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,hideActions:false,txtBtnOK:'确认',txtBtnNO:'取消',btnNO:true});
 	};
 	//public 
 	pub.Init=function(opts){
