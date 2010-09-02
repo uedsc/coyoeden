@@ -12,6 +12,7 @@
 .w270{width:270px;}
 .w310{width:310px;}
 .w330{width:330px;}
+.w350{width:350px;}
 .w390{width:390px;}
 .w430{width:430px;}
 .w470{width:470px;}
@@ -26,7 +27,8 @@
 .area .center{margin-left:10px;}
 
 /* 分栏 */
-
+.subsec{zoom:1;}
+.subsec:after{content:'\20';display:block;clear:both;}
 
 /* 
  * 列表-参考“global.css”及“统一模板.html” 

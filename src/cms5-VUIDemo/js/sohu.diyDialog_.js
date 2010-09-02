@@ -150,7 +150,9 @@ sohu.diyDialog.wCfgPage=function(dlg){
 		txtBGHA:$("#txtPageBGHA"),
 		txtBGHB:$("#txtPageBGHB"),
 		ddlBGAlignA:$("#pageBGAlignA"),
+		ddlBGAlignAV:$("#pageBGAlignAV"),
 		ddlBGAlignB:$("#pageBGAlignB"),
+		ddlBGAlignBV:$("#pageBGAlignBV"),
 		ddlBGRepeatA:$("#pageBGRepeatA"),
 		ddlBGRepeatB:$("#pageBGRepeatB"),
 		txtBGC:$("#txtPageBGC"),
@@ -184,7 +186,7 @@ sohu.diyDialog.wCfgPage=function(dlg){
 		}else{
 			sohu.diyConsole.$BodyBGA.css("background-image","url('"+url+"')");
 		};
-		sohu.diyConsole.$BodyBGA.css("background-position",p._fm.ddlBGAlignA.curVal);
+		sohu.diyConsole.$BodyBGA.css("background-position",p._fm.ddlBGAlignA.curVal+" "+p._fm.ddlBGAlignAV.curVal);
 		sohu.diyConsole.$BodyBGA.css("background-repeat",p._fm.ddlBGRepeatA.curVal);
 		
 		//设置页尾背景
@@ -198,7 +200,7 @@ sohu.diyDialog.wCfgPage=function(dlg){
 		}else{
 			sohu.diyConsole.$BodyBGB.css("background-image","url('"+url1+"')");
 		};
-		sohu.diyConsole.$BodyBGB.css("background-position",p._fm.ddlBGAlignB.curVal);
+		sohu.diyConsole.$BodyBGB.css("background-position",p._fm.ddlBGAlignB.curVal+" "+p._fm.ddlBGAlignBV.curVal);
 		sohu.diyConsole.$BodyBGB.css("background-repeat",p._fm.ddlBGRepeatB.curVal);
 		
 		if(cls)
@@ -220,21 +222,32 @@ sohu.diyDialog.wCfgPage=function(dlg){
 		//页头
 		//对齐方式
 		var bg_p=sohu.diyConsole.$BodyBGA.css("backgroundPosition");
-		bg_p=bg_p=="0% 0%"?"center center":bg_p;
+		bg_p=bg_p=="0% 0%"?"center top":bg_p;
+		bg_p=bg_p.split(" ");
 		var bg_a=sohu.diyConsole.$BodyBGA.css("backgroundRepeat");
-		p._fm.ddlBGAlignA.val(bg_p);
+		if(bg_p.length==2){
+			p._fm.ddlBGAlignA.val(bg_p[0]);
+			p._fm.ddlBGAlignA.curVal=bg_p[0];
+			p._fm.ddlBGAlignAV.val(bg_p[1]);
+			p._fm.ddlBGAlignAV.curVal=bg_p[1];
+		};
+		
 		//平铺方式
 		p._fm.ddlBGRepeatA.val(bg_a);
-		p._fm.ddlBGAlignA.curVal=bg_p;
 		p._fm.ddlBGRepeatA.curVal=bg_a;
 		//页尾
 		bg_p=sohu.diyConsole.$BodyBGB.css("backgroundPosition");
-		bg_p=bg_p=="0% 0%"?"center center":bg_p;
+		bg_p=bg_p=="0% 0%"?"center top":bg_p;
+		bg_p=bg_p.split(" ");
 		bg_a=sohu.diyConsole.$BodyBGB.css("backgroundRepeat");
-		p._fm.ddlBGAlignB.val(bg_p);
+		if(bg_p.length==2){
+			p._fm.ddlBGAlignB.val(bg_p[0]);
+			p._fm.ddlBGAlignB.curVal=bg_p[0];
+			p._fm.ddlBGAlignBV.val(bg_p[1]);
+			p._fm.ddlBGAlignBV.curVal=bg_p[1];
+		};		
 		//平铺方式
 		p._fm.ddlBGRepeatB.val(bg_a);
-		p._fm.ddlBGAlignB.curVal=bg_p;
 		p._fm.ddlBGRepeatB.curVal=bg_a;
 		//背景色
 		p._fm.txtBGC.css("backgroundColor",sohu.diyConsole.$Body.css("backgroundColor"));
@@ -259,19 +272,27 @@ sohu.diyDialog.wCfgPage=function(dlg){
 			p._fm.cpk.hide();
 		}
 	});
-	p._fm.ddlBGAlignA.click(function(evt){
+	p._fm.ddlBGAlignA.change(function(evt){
 		p._fm.ddlBGAlignA.curVal=this.value;
 		p.preview();
 	});
-	p._fm.ddlBGAlignB.click(function(evt){
+	p._fm.ddlBGAlignAV.change(function(evt){
+		p._fm.ddlBGAlignAV.curVal=this.value;
+		p.preview();
+	});
+	p._fm.ddlBGAlignB.change(function(evt){
 		p._fm.ddlBGAlignB.curVal=this.value;
 		p.preview();
 	});
-	p._fm.ddlBGRepeatA.click(function(evt){
+	p._fm.ddlBGAlignBV.change(function(evt){
+		p._fm.ddlBGAlignBV.curVal=this.value;
+		p.preview();
+	});	
+	p._fm.ddlBGRepeatA.change(function(evt){
 		p._fm.ddlBGRepeatA.curVal=this.value;
 		p.preview();
 	});
-	p._fm.ddlBGRepeatB.click(function(evt){
+	p._fm.ddlBGRepeatB.change(function(evt){
 		p._fm.ddlBGRepeatB.curVal=this.value;
 		p.preview();
 	});		
@@ -670,7 +691,8 @@ sohu.diyDialog.wSubSec=function(dlg,parentSize){
 	//事件注册
 	this.$Layout.find('.item').click(function(evt){
 		if(!sohu.diyConsole.CurSec) return;
-		sohu.diyConsole.CurSec.AddSub($(sohu.diyTp[this.id]));
+		//sohu.diyConsole.CurSec.AddSub($(sohu.diyTp[this.id]));
+		sohu.diyConsole.CurSec.AddSub($(this).find(".subsec").clone());
 		dlg.Hide();
 		return false;
 	}).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");});
@@ -1252,6 +1274,10 @@ sohu.diyDialog.onInit=function(dlg){
 	sohu.diyDialog.Register("addContent",new sohu.diyDialog.wAddContent(dlg));
 	sohu.diyDialog.Register("code",new sohu.diyDialog.wCode(dlg));
 	sohu.diyDialog.Register("cfgSec",new sohu.diyDialog.wCfgSec(dlg));
+	sohu.diyDialog.Register("subSec190",new sohu.diyDialog.wSubSec(dlg,190));
+	sohu.diyDialog.Register("subSec230",new sohu.diyDialog.wSubSec(dlg,230));
+	sohu.diyDialog.Register("subSec270",new sohu.diyDialog.wSubSec(dlg,270));
+	sohu.diyDialog.Register("subSec310",new sohu.diyDialog.wSubSec(dlg,310));
 	sohu.diyDialog.Register("subSec390",new sohu.diyDialog.wSubSec(dlg,390));
 	sohu.diyDialog.Register("subSec430",new sohu.diyDialog.wSubSec(dlg,430));
 	sohu.diyDialog.Register("subSec470",new sohu.diyDialog.wSubSec(dlg,470));

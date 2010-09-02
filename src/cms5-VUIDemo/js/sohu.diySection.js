@@ -7,7 +7,7 @@ sohu.diySection = function(opts) {
 	var _this=this;
 	opts=$.extend({},{
 		clSecSub:"subsec",
-		limitSec:390,clSec:"sec",clSecOn:"secOn",
+		limitSec:190,clSec:"sec",clSecOn:"secOn",
 		clHasSub:"hasSub",
 		clSecRoot:"col",
 		clArea:"area",
@@ -22,7 +22,7 @@ sohu.diySection = function(opts) {
 	this.$Layout=opts.$obj;
 	this.$Holder=this.$Layout.children(".secHolder");
 	this.Width=this.Size();
-	this.Divisible=(this.Width>=390);		/* 可继续分栏 */
+	this.Divisible=(this.Width>=190);		/* 可继续分栏 */
 	this.IsActive=false;
 	this.IsAddingContent=false;
 	this.InlineEditing=false;

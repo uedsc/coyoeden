@@ -7,9 +7,9 @@
 		<link media="all" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet"></link> 
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/flick/jquery-ui.css" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/layout.css"></link> 
-		<link type="text/css" rel="stylesheet" href="css/index.css"></link>
+		<link type="text/css" rel="stylesheet" href="css/index.css"></link> 
+		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link>
 		<link rel="stylesheet" type="text/css" href="css/dialog.css"></link> 
-		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link> 
 		<link rel="stylesheet" type="text/css" href="css/colorpicker.css"></link>
 		<link rel="stylesheet" type="text/css" href="css/vs.skinform.css"></link> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
@@ -160,10 +160,10 @@
 					<input id="picBColor" type="text" value="" class="ipt02" name="picBColor"/>
 					<div class="two"></div> 
 					<span class="elmcActs">
-						<a class="editBtn elmAdd cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
-						<a class="editBtn elmDel cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
-						<a class="editBtn elmMove0 cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
-						<a class="editBtn elmMove1 cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>								
+						<a class="elmAdd cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+						<a class="elmDel cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+						<a class="elmMove0 cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
+						<a class="elmMove1 cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>								
 					</span>
 				</div>
 				<div class="blank5"></div>
@@ -194,23 +194,24 @@
 			<!--文字 -->
 			 <div id="txtMsg" class="jqmCT">
 				  <div class="wline">
-				   <a class="editBtn cmdBold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
-				   <a class="editBtn cmdUdl cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
-				   <a class="editBtn cmdColor cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
-				   <a class="editBtn cmdAL cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
-				   <a class="editBtn cmdAC cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
-				   <a class="editBtn cmdAR cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
-				   <a class="editBtn cmdVideo cmdicon" href="#"><strong><img src="images/w07.gif" /></strong></a>
+				   <a class="cmdBold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
+				   <a class="cmdUdl cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
+				   <a class="cmdColor cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
+				   <a class="cmdAL cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
+				   <a class="cmdAC cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
+				   <a class="cmdAR cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
+				   <a class="cmdVideo cmdicon" href="#"><strong><img src="images/w07.gif" /></strong></a>
 				   <div class="two"></div>
 				   <span class="elmcActs">
-				   		<a class="editBtn elmAdd cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
-				   		<a class="editBtn elmDel cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
-				   		<a class="editBtn elmMove0 cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
-				   		<a class="editBtn elmMove1 cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>
+				   		<a class="elmAdd cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+				   		<a class="elmDel cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+				   		<a class="elmMove0 cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
+				   		<a class="elmMove1 cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>
 				 	</span>
 				 </div>
 				  <div class="blank8"></div>
 				  <div class="bottom2line"></div>
+				  <div class="blank5"></div>
 				  <div class="lineA">
 				  	<label class="txt01" for="txtAHref">链接</label>
 					<input id="txtAHref" name="txtAHref" type="text" value="" class="ipt03"/>
@@ -293,65 +294,96 @@
 			<!--页面背景-->
 			<div id="cfgPage" class="jqmCT formx">
 				<div class="lineA">
-					<div class="txt txt06">页面背景色</div>
-					<input type="text" id="txtPageBGC" name="pageBGC" readonly="readonly" class="ipt02"/>
+					<label class="left" for="txtPageBGC">页面背景色</label>
+					<div class="center"><input type="text" id="txtPageBGC" name="pageBGC" readonly="readonly" class="ipt02"/></div>
 				</div>
 				<div class="blank8"></div>
 				<div class="bottom3line"></div>
 				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt txt06">页头背景图</div>
-					<input type="text" class="ipt03" id="txtPageBGA" name="pageBGA"/>
-					<input id="btnPageBGBrowseA" type="button" class="btn btnL"  value="浏览" />
+					<label class="left" for="txtPageBGA">页头背景图</label>
+					<div class="center"><input type="text" class="ipt03" id="txtPageBGA" name="pageBGA"/></div>
+					<div class="right"><input id="btnPageBGBrowseA" type="button" class="btn btnL"  value="浏览" /></div>
 				</div>
-				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt txt02">高度</div>
-					<input type="text" class="ipt02" id="txtPageBGHA" name="pageBGHA"/>
-					<div class="txt txt03">px</div>
-					<div class="txt txt02">对齐</div>
-					<select id="pageBGAlignA" name="pageBGAlignA" class="selAuto">
-						<option value="center center" selected="selected">居中</option>
-						<option value="left center">靠左</option>
-						<option value="right center">靠右</option>
-					</select>
-					<div class="txt txt02">平铺</div>
-					<select id="pageBGRepeatA" name="pageBGRepeatA" class="selAuto">
-						<option value="no-repeat">不平铺</option>
-						<option value="repeat">平铺</option>
-						<option value="repeat-x">横铺</option>
-						<option value="repeat-y">纵铺</option>
-					</select>
+					<label class="left" for="pageBGAlignA">对齐</label>
+					<div class="center">
+						<select id="pageBGAlignA" name="pageBGAlignA">
+							<option value="center" selected="selected">水平-中</option>
+							<option value="left">水平-左</option>
+							<option value="right">水平-右</option>
+						</select>
+						<select id="pageBGAlignAV" name="pageBGAlignAV">
+							<option value="top" selected="selected">垂直-上</option>
+							<option value="center">垂直-中</option>
+							<option value="bottom">垂直-下</option>
+						</select>										
+					</div>
+				</div>
+				<div class="lineA">
+					<label class="left" for="pageBGRepeatA">平铺</label>
+					<div class="center">
+						<select id="pageBGRepeatA" name="pageBGRepeatA">
+							<option value="no-repeat">不平铺</option>
+							<option value="repeat">平铺</option>
+							<option value="repeat-x">横铺</option>
+							<option value="repeat-y">纵铺</option>
+						</select>					
+					</div>
+				</div>
+				<div class="lineA">
+					<label class="left" for="txtPageBGHA">高度</label>
+					<div class="center">
+						<input type="text" class="ipt58" id="txtPageBGHA" name="pageBGHA"/>
+						<label>px</label>
+					</div>
 				</div>
 				<div class="blank8"></div>
 				<div class="bottom3line"></div>
 				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt txt06">页脚背景图</div>
-					<input type="text" class="ipt03" id="txtPageBGB" name="pageBGB"/>
-					<input id="btnPageBGBrowseB" type="button" class="btn btnL"  value="浏览" />
-				</div>
-				<div class="blank8"></div>
+					<label class="left" for="txtPageBGB">页脚背景图</label>
+					<div class="center">
+						<input type="text" class="ipt03" id="txtPageBGB" name="pageBGB"/>
+					</div>
+					<div class="right">
+						<input id="btnPageBGBrowseB" type="button" class="btn btnL"  value="浏览" />
+					</div>
+				</div>				
 				<div class="lineA">
-					<div class="txt txt02">高度</div>
-					<input type="text" class="ipt02" id="txtPageBGHB" name="pageBGHB"/>
-					<div class="txt txt03">px</div>
-					<div class="txt txt02">对齐</div>
-					<select id="pageBGAlignB" name="pageBGAlignB" class="selAuto">
-						<option value="center center">居中</option>
-						<option value="left center">靠左</option>
-						<option value="right center">靠右</option>						
-					</select>
-					<div class="txt txt02">平铺</div>
-					<select id="pageBGRepeatB" name="pageBGRepeatB" class="selAuto">
-						<option value="no-repeat">不平铺</option>
-						<option value="repeat">平铺</option>
-						<option value="repeat-x">横铺</option>
-						<option value="repeat-y">纵铺</option>
-					</select>
+					<label class="left" for="pageBGAlignB">对齐</label>
+					<div class="center">
+						<select id="pageBGAlignB" name="pageBGAlignB">
+							<option value="center">水平-中</option>
+							<option value="left">水平-左</option>
+							<option value="right">水平-右</option>						
+						</select>
+						<select id="pageBGAlignBV" name="pageBGAlignBV">
+							<option value="top">垂直-上</option>
+							<option value="center">垂直-中</option>
+							<option value="bottom">垂直-下</option>						
+						</select>												
+					</div>				
+				</div>	
+				<div class="lineA">
+					<label class="left" for="pageBGRepeatB">平铺</label>
+					<div class="center">
+						<select id="pageBGRepeatB" name="pageBGRepeatB">
+							<option value="no-repeat">不平铺</option>
+							<option value="repeat">平铺</option>
+							<option value="repeat-x">横铺</option>
+							<option value="repeat-y">纵铺</option>
+						</select>				
+					</div>				
 				</div>
-				<div class="blank8"></div>	
-				<div class="cpk"></div> 								
+				<div class="lineA">
+					<label class="left" for="txtPageBGHB">高度</label>
+					<div class="center">
+						<input type="text" class="ipt58" id="txtPageBGHB" name="pageBGHB"/>
+						<label>px</label>
+					</div>
+				</div>
+				<div class="cpk"></div>		 
 			</div>	
 			<!--/页面背景-->
 			<!--添加内容-->
@@ -365,80 +397,105 @@
 			</div>
 			<!--分栏设置对话框-->
 			<div id="wCfgSec" class="jqmCT formx">
-				<div class="blank8"></div>
 				<div class="lineA">
-					<div class="txt txt01">背景图</div>
-					<input id="txtSecBG" type="text" class="ipt03"/>
-					<input id="btnCfgSecBrowse" type="button" class="btn btnL"  value="浏览" />
+					<label class="left" for="txtSecBGC">背景色</label>
+					<div class="center">
+						<input id="txtSecBGC" type="text" readonly="readonly" class="ipt02"/>
+					</div>
+				</div>
+				<div class="blank5"></div>
+				<div class="bottom3line"></div>				
+				<div class="lineA">
+					<label class="left" for="txtSecBorderColor">边框色</label>
+					<div class="center">
+						<input id="txtSecBorderColor" readonly="readonly" name="SecBorderColor" type="text" class="ipt02"/>
+					</div>	
 				</div>
 				<div class="lineA">
-					<div class="txt txt01">对齐</div>
-					<select id="ddlSecBGAlign" name="secBGAlign">
-						<option value="center center" selected="selected">居中</option>
-						<option value="left center">靠左</option>
-						<option value="right center">靠右</option>
-					</select>
-					<div class="txt txt02">平铺</div>
-					<select id="ddlSecBGRepeat" name="secBGRepeat">
-						<option value="repeat" selected="selected">平铺</option>
-						<option value="no-repeat">不平铺</option>
-						<option value="repeat-x">横铺</option>
-						<option value="repeat-y">纵铺</option>
-					</select>					
+					<label class="left">边框</label>
+					<div class="center clear">
+						<input name="SecBorderDir" type="checkbox" class="cbx" value="top"/>
+						<label class="cbxLbl">上</label>
+						<input name="SecBorderDir" type="checkbox" class="cbx" value="bottom"/>
+						<label class="cbxLbl">下</label>
+						<input name="SecBorderDir" type="checkbox" class="cbx" value="left"/>
+						<label class="cbxLbl">左</label>
+						<input name="SecBorderDir" type="checkbox" class="cbx" value="right"/>
+						<label class="cbxLbl">右</label>
+					</div>
+				</div>
+				<div class="blank5"></div>
+				<div class="bottom3line"></div>		
+				<div class="lineA">
+					<label class="left" for="txtSecBG">背景图</label>
+					<div class="center">
+						<input id="txtSecBG" type="text" class="ipt03"/>
+					</div>
+					<div class="right">
+						<input id="btnCfgSecBrowse" type="button" class="btn btnL"  value="浏览" />
+					</div>	
 				</div>
 				<div class="lineA">
-					<div class="txt txt01">背景色</div>
-					<input id="txtSecBGC" type="text" readonly="readonly" class="ipt02"/>
-				</div>				
-				<div class="lineA">
-					<div class="txt txt01">边框色</div>
-					<input id="txtSecBorderColor" readonly="readonly" name="SecBorderColor" type="text" class="ipt02"/>
-					<input name="SecBorderDir" type="checkbox" class="cBox03" value="top"/>
-					<div class="txt txt03">上</div>
-					<input name="SecBorderDir" type="checkbox" class="cBox03" value="bottom"/>
-					<div class="txt txt03">下</div>
-					<input name="SecBorderDir" type="checkbox" class="cBox03" value="left"/>
-					<div class="txt txt03">左</div>
-					<input name="SecBorderDir" type="checkbox" class="cBox03" value="right"/>
-					<div class="txt txt03">右</div>
+					<label class="left" for="ddlSecBGAlign">对齐</label>
+					<div class="center">
+						<select id="ddlSecBGAlign" name="secBGAlign">
+							<option value="center center" selected="selected">水平-中</option>
+							<option value="left center">水平-左</option>
+							<option value="right center">水平-右</option>
+						</select>
+						<select id="ddlSecBGAlignV" name="secBGAlignV">
+							<option value="center center" selected="selected">垂直-上</option>
+							<option value="left center">垂直-中</option>
+							<option value="right center">垂直-下</option>
+						</select>													
+					</div>					
 				</div>
+				<div class="lineA">
+					<label class="left" for="ddlSecBGRepeat">平铺</label>
+					<div class="center">
+						<select id="ddlSecBGRepeat" name="secBGRepeat">
+							<option value="repeat" selected="selected">平铺</option>
+							<option value="no-repeat">不平铺</option>
+							<option value="repeat-x">横铺</option>
+							<option value="repeat-y">纵铺</option>
+						</select>					
+					</div>
+				</div>	
 				<div class="cpk"></div>				
 			</div>
 			<!--栏目头-->
-			<div id="wSecHead">
-				 <div class="lineA">
-				 	<div class="txt01">背景</div>
-					<input id="secHDBG" name="secHDBG" type="text" value="" class="ipt03"/><input type="button" class="browse"  value="浏览" />
-			     </div>
-			      <div class="blank8"></div>
-				  <div class="bottom3line"></div>
-				  <div class="blank8"></div>
-				  <div class="wline">
-				   <a class="editBtn cmdBold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
-				   <a class="editBtn cmdUnderline cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
-				   <a class="editBtn cmdColor cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
-				   <a class="editBtn cmdAL cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
-				   <a class="editBtn cmdAC editBtn2 cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
-				   <a class="editBtn cmdAR cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
-			       <input id="cbxSecHDMore" name="secHDMore" type="checkbox" class="cBox03" />
-				   <div class="txt05">更多</div>
-				 </div>
-				  <div class="blank8"></div>
-				  <div class="bottom3line"></div>		
-				  <div class="lineA">
-				  	<div class="txt01">链接</div><input id="secHDLink" type="text" value="" class="ipt03"/>
+			<div id="wSecHead" class="jqmCT">
+				<div class="wline">
+					<a class="cmdBold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
+					<a class="cmdUnderline cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
+					<a class="cmdColor cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
+					<a class="cmdAL cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
+					<a class="cmdAC cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
+					<a class="cmdAR cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
+					<input id="cbxSecHDMore" name="secHDMore" type="checkbox" class="cBox03" />
+					<label class="txt05" for="cbxSecHDMore">更多</label>
+				</div>
+				<div class="lineA">
+					<label class="txt01" for="secHDLink">链接</label>
+					<input id="secHDLink" type="text" value="" class="ipt03"/>
 					<select id="ddlSecHDTarget" class="selAuto">
 						<option value="_blank" selected="selected">新窗口</option>
 						<option value="_self">本窗口</option>
 					</select>
-			      </div>
-				  <div class="lineA tip tipSecHDLink">请输入有效网址！</div>
-				  <div class="lineA">
-				  	<div class="txt01">Title</div>
+				</div>
+				<div class="lineA tip tipSecHDLink">请输入有效网址！</div>
+				<div class="lineA hidden">
+					<label class="txt01" for="secHDTitle">Title</label>
 					<input id="secHDTitle" type="text" value="" class="ipt03"/>
-			      </div>
+				</div>
+				<div class="blank8"></div>
+				<div class="bottom3line"></div>
+				<div class="lineA">
+					<label class="txt01" for="secHDBG">背景</label>
+					<input id="secHDBG" name="secHDBG" type="text" value="" class="ipt03"/>
+					<input type="button" class="browse"  value="浏览" />
+				</div>
 			</div>
-			
 			<!--栏目头 over-->
 			<!--页面属性-->
 			<div id="wPagePro" class="jqmCT">
@@ -494,48 +551,202 @@
 				  </div>
 			</div>
 			<!--更换风格 over-->					
-			<!--分栏选择模板-->
+			<!--添加分栏-->			
 			<div id="subSec950" class="jqmCT formss">
-				<div class="lineB">
-				   <div id="sw310_310_310" class="item block01"><a href="#"></a></div>
-				   <div id="sw230_230_230_230" class="item block02"><a href="#"></a></div>
-				   <div id="sw182_182_182_182_182" class="item block03"><a href="#"></a></div>
+				<div id="sw310_310_310" class="item block01">
+					<a href="#"></a>
+					<div class="subsec"><div class="col w310 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w310 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w310 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+				</div>
+				<div id="sw230_230_230_230" class="item block02">
+					<a href="#"></a>
+					<div class="subsec"><div class="col w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+				</div>
+				<div id="sw182_182_182_182_182" class="item block03 hidden">
+					<a href="#"></a>
+					<div class="subsec"><div class="col w182 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w182 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w182 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w182 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w182 r"><div class="sec"><div class="secHolder"></div></div></div></div>
 				</div>
 			</div>
 			<div id="subSec470" class="jqmCT formss">
-				<div class="lineB">
-				   <div id="sw230_230" class="item block01"><a href="#"></a></div>
-				   <div id="sw190_270" class="item block02"><a href="#"></a></div>
-				   <div id="sw270_190" class="item block03"><a href="#"></a></div>
+				<div class="left">
+					<div id="sw470" class="item block04">
+						<a href="#"></a>
+						<div class="subsec"><div class="w470"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw270_190" class="item block03">
+						<a href="#"></a>
+						<div class="subsec"><div class="col w270 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+				</div>
+				<div class="right">
+					<div id="sw230_230" class="item block01">
+						<a href="#"></a>
+						<div class="subsec"><div class="col w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw190_270" class="item block02">
+						<a href="#"></a>
+						<div class="subsec"><div class="col w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w270 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
 				</div>
 			</div>
 			<div id="subSec670" class="jqmCT formss">
-				<div class="lineB">
-				   <div id="sw330_330" class="item block01"><a href="#"></a></div>
-				   <div id="sw190_470" class="item block02"><a href="#"></a></div>
-				   <div id="sw470_190" class="item block03"><a href="#"></a></div>
-				   <div id="sw230_190_230" class="item block04"><a href="#"></a></div>
+				<div class="left">
+					<div id="sw670" class="item block05">
+						<a href="#"></a>
+						<div class="subsec"><div class="w670"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw470_190" class="item block03">
+						<a href="#"></a>
+						<div class="subsec"><div class="col w470 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw430_230" class="item block06">
+						<a href="#"></a>
+						<div class="subsec"><div class="w430 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw390_270" class="item block08">
+						<a href="#"></a>
+						<div class="subsec"><div class="w390 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w270 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw350_310" class="item block10">
+						<a href="#"></a>
+						<div class="subsec"><div class="w350 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w310 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw190_230_230" class="item block12">
+						<a href="#"></a>
+						<div class="subsec"><div class="w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w230 center"><div class="sec"><div class="secHolder"></div></div></div><div class="w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>	
+					<div id="sw270_190_190" class="item block14">
+						<a href="#"></a>
+						<div class="subsec"><div class="w270 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 center"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>	
+				</div>
+				<div class="center">
+					<div id="sw330_330" class="item block01">
+						<a href="#"></a>
+						<div class="subsec"><div class="col w330 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w330 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw190_470" class="item block02">
+						<a href="#"></a>
+						<div class="subsec"><div class="col w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w470 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw230_430" class="item block07">
+						<a href="#"></a>
+						<div class="subsec"><div class="w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w430 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw270_390" class="item block09">
+						<a href="#"></a>
+						<div class="subsec"><div class="w270 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w390 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw310_350" class="item block11">
+						<a href="#"></a>
+						<div class="subsec"><div class="w310 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w350 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw230_190_230" class="item block04">
+						<a href="#"></a>
+						<div class="subsec"><div class="col w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw190_270_190" class="item block15">
+						<a href="#"></a>
+						<div class="subsec"><div class="w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w270 center"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>					
+				</div>
+				<div class="right">
+					<div id="sw230_230_190" class="item block13">
+						<a href="#"></a>
+						<div class="subsec"><div class="w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w230 center"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw190_190_270" class="item block16">
+						<a href="#"></a>
+						<div class="subsec"><div class="w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 center"><div class="sec"><div class="secHolder"></div></div></div><div class="w270 r"><div class="sec"><div class="secHolder"></div></div></div></div>	
+					</div>	
 				</div>
 			</div>
 			<div id="subSec390" class="jqmCT formss">
-				<div class="lineB">
-				   <div id="sw190_190" class="item block01"><a href="#"></a></div>
+				<div id="sw390" class="item block02">
+					<a href="#"></a>
+					<div class="subsec"><div class="w390"><div class="sec"><div class="secHolder"></div></div></div></div>
+				</div>
+				<div id="sw190_190" class="item block01">
+					<a href="#"></a>
+					<div class="subsec"><div class="col w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
 				</div>
 			</div>
 			<div id="subSec430" class="jqmCT formss">
-				<div class="lineB">
-				   <div id="sw190_190" class="item block01"><a href="#"></a></div>
-				   <div id="sw190_230" class="item block02"><a href="#"></a></div>
-				   <div id="sw230_190" class="item block03"><a href="#"></a></div>
+				<div class="left">
+					<div id="sw430" class="item block04">
+						<a href="#"></a>
+						<div class="subsec"><div class="w430"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw230_190" class="item block03">
+						<a href="#"></a>
+						<div class="subsec"><div class="w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+				</div>
+				<div class="right">
+					<div id="sw210_210" class="item block01">
+						<a href="#"></a>
+						<div class="subsec"><div class="w210 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w210 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw190_230" class="item block02">
+						<a href="#"></a>
+						<div class="subsec"><div class="w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>	
+					</div>
 				</div>
 			</div>
 			<div id="subSec510" class="jqmCT formss">
-				<div class="lineB">
-				   <div id="sw250_250" class="item block01"><a href="#"></a></div>
-				   <div id="sw190_310" class="item block02"><a href="#"></a></div>
-				   <div id="sw310_190" class="item block03"><a href="#"></a></div>
+				<div class="left">
+					<div id="sw510" class="item block04">
+						<a href="#"></a>
+						<div class="subsec"><div class="w510"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw270_230" class="item block05">
+						<a href="#"></a>
+						<div class="subsec"><div class="w270 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw310_190" class="item block03">
+						<a href="#"></a>
+						<div class="subsec"><div class="w310 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+				</div>
+				<div class="right">
+					<div id="sw250_250" class="item block01">
+						<a href="#"></a>
+						<div class="subsec"><div class="w250 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w250 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw230_270" class="item block06">
+						<a href="#"></a>
+						<div class="subsec"><div class="w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w270 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+					<div id="sw190_310" class="item block02">
+						<a href="#"></a>
+						<div class="subsec"><div class="w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w310 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					</div>
+				</div>
+			</div>		
+			<div id="subSec310" class="jqmCT formss">
+				<div class="item block01" id="sw310">
+					<a href="#"></a>
+					<div class="subsec"><div class="w310"><div class="sec"><div class="secHolder"></div></div></div></div>
 				</div>
 			</div>
+			<div id="subSec270" class="jqmCT formss">
+				<div class="item block01" id="sw270">
+					<a href="#"></a>
+					<div class="subsec"><div class="w270"><div class="sec"><div class="secHolder"></div></div></div></div>
+				</div>
+			</div>
+			<div id="subSec230" class="jqmCT formss">
+				<div class="item block01" id="sw230">
+					<a href="#"></a>
+					<div class="subsec"><div class="w230"><div class="sec"><div class="secHolder"></div></div></div></div>
+				</div>
+			</div>
+			<div id="subSec190" class="jqmCT formss">
+				<div class="item block01" id="sw190">
+					<a href="#"></a>
+					<div class="subsec"><div class="w190"><div class="sec"><div class="secHolder"></div></div></div></div>
+				</div>
+			</div>									
+			<!--/添加分栏-->
 			<!--焦点图-->
 			<div id="wFlash" class="jqmCT formx">
 				<div class="blank8"></div>
