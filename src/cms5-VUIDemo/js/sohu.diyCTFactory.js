@@ -212,7 +212,7 @@ sohu.diyTplFactory.FocusImg=function(opts){
 			}
 		});
 		this.tplID=null;//flash Ä£°åºÅ
-		this.$btnDots=$("#ctImg .btnDot").click(function(evt){return false;});
+		this.$btnDots=$("#ctFocusImg .btnDot").click(function(evt){return false;});
 	
 		var p={};
 		p.onAddFlash=function(evt){
