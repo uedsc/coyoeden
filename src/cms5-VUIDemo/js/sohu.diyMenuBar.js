@@ -23,6 +23,7 @@ sohu.diyMenuBar=function(opts){
 	p.txtCmd.Undo=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("undo",null);};
 	p.txtCmd.Redo=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("redo",null);};
 	p.txtCmd.AddVideoIcon=function(evt){
+		/*
 		var vd=null;
 		if((vd=sohu.diyConsole.CurElm.$Layout.find('.vdIcon')).length==0){
 			sohu.diyConsole.CurElm.$Layout.append(sohu.diyMenuBar.Tpl.video);
@@ -31,6 +32,9 @@ sohu.diyMenuBar=function(opts){
 			vd.remove();
 			sohu.diyConsole.CurElm.i$frame[0].i$Body().find('.vdIcon').remove();
 		};
+		*/
+		sohu.diyConsole.CurElm.$Layout.append(sohu.diyMenuBar.Tpl.video);
+		sohu.diyConsole.CurElm.i$frame[0].i$Body().append(sohu.diyMenuBar.Tpl.video);	
 	};
 	p.txtCmd.SetColor=function(evt){
 		var _this=$(this);

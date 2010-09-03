@@ -65,45 +65,19 @@ sohu.diyTplFactory.Nav.prototype.Submit=function(){
  */
 sohu.diyTplFactory.SecHead=function(opts){
 	var _this=this;
-	//属性-用户变量
-	this.Style="sec_hd";
-	this.ShowMore=true;
-	this.ShowMoreTpl='<a class="more elm">更多>></a>';
 	//属性-dom引用
 	this.$Layout=$("#ctSecHead");
-	this.$ddlSecHeadCss=$("#ddlSecHeadCss");
-	this.$tplObj=this.$Layout.find(".ctWrap");
 	//私有成员
-	var p={};
-	p.defaultStyle="sec_hd ct";
-	p.initLayout=function(){
-		_this.$ddlSecHeadCss.change(function(evt){
-			_this.Style=this.value;
-			_this.$tplObj.find("h2").attr("class","").addClass(p.defaultStyle).addClass(_this.Style);
-		});
-		
-		_this.$Layout.find(".btnOK").click(function(evt){
-			_this.Submit({});
-			return false;
-		});
-		_this.$Layout.find("#cbxSecHeadMore").click(function(evt){
-			_this.ShowMore=this.checked;
-			var items=_this.$tplObj.find(".more");
-			if(!_this.ShowMore){
-				items.remove();
-			}else{
-				if(items.length==0)
-					_this.$tplObj.find("h2").append(_this.ShowMoreTpl);
-			}
-		});
-	};
-	
-	p.initLayout();
+	//事件注册
+	$("#secHeadList li").click(function(evt){
+		_this.CurHtml=$(this).find(".ctWrap").html();
+		_this.Submit();
+	});
 };
 sohu.diyTplFactory.SecHead.prototype.Submit=function(opts){
 	var ct={
 		flash:false,
-		html0:this.$tplObj.html(),
+		html0:this.CurHtml,
 		isNew:true,
 		type:"sec_hd"
 	};
@@ -123,7 +97,7 @@ sohu.diyTplFactory.Line=function(opts){
 	this.css_cbkLine=opts.css_cbkLine||".cbxLine";
 	this.color=opts.color||"#808080";
 	this.height=opts.height||10;
-	this.width=opts.width||100;/* 高度％ */
+	this.width=opts.width||96;/* 高度％ */
 	this.cLine=opts.cLine||false;//是否中间显示分割线
 	//属性定义-dom引用
 	this.html=null;//模板html
@@ -223,6 +197,7 @@ sohu.diyTplFactory.Line.prototype.Submit=function(opt){
  * 焦点图选择类
  */
 sohu.diyTplFactory.FocusImg=function(opts){
+		var _this=this;
 		//焦点图选择
 		this.$Layout=$("#focusImgSlide").abcdSlider({
 			showNum:1,
@@ -231,10 +206,14 @@ sohu.diyTplFactory.FocusImg=function(opts){
 			cssBtnL:'#ctFocusImg .btnL',
 			cssBtnR:'#ctFocusImg .btnR',
 			cssPanel:'#cSlide_focusImg',
-			step:540
+			step:540,
+			onSlide:function($dom,mode){
+				_this.$btnDots.removeClass("currA").eq($dom._p.slideNum).addClass("currA");
+			}
 		});
 		this.tplID=null;//flash 模板号
-		var _this=this;
+		this.$btnDots=$("#ctImg .btnDot").click(function(evt){return false;});
+	
 		var p={};
 		p.onAddFlash=function(evt){
 			_this.tplID=this.id;
@@ -269,6 +248,7 @@ sohu.diyTplFactory.FocusImg.prototype.Submit=function(opt){
  * 图片选择类
  */
 sohu.diyTplFactory.Image=function(opts){
+		var _this=this;
 		//焦点图选择
 		this.$Layout=$("#ctImgSlide").abcdSlider({
 			step:488,
@@ -277,18 +257,23 @@ sohu.diyTplFactory.Image=function(opts){
 			externalBtn:true,
 			cssBtnL:'#ctImg .btnL',
 			cssBtnR:'#ctImg .btnR',
-			cssPanel:'#ctImgSlider'
+			cssPanel:'#ctImgSlider',
+			onSlide:function($dom,mode){
+				_this.$btnDots.removeClass("currA").eq($dom._p.slideNum).addClass("currA");
+			}
 		});
 				
 		//组图设置弹框
+		this.$btnDots=$("#ctImg .btnDot").click(function(evt){return false;});
 		this.$WinCfg=$("#cfgImgList");
 		this.$WinCfg.ovl=$("#cfgImgList_ovl");
 		this.$WinCfg.$imgWidth=$("#txtImgWidth");
 		this.$WinCfg.$imgCol=$("#ddlImgListCol");
 		this.$WinCfg.$tip=this.$WinCfg.find(".tip");
+		this.$WinCfg.$tip1=this.$WinCfg.find(".tip1");
 		this.tplID=null;//模板号
 		this.IsImgList=false;//是否组图
-		var _this=this;
+		
 		var p={};
 		p.onAddImg=function(evt){
 			_this.tplID=this.id;
@@ -300,8 +285,11 @@ sohu.diyTplFactory.Image=function(opts){
 			if(_this.IsImgList){
 				_this.$WinCfg.ovl.css("opacity","0.7").show();
 				_this.$WinCfg.$tip.html(_this.CurColSize);
+				_this.$WinCfg.$tip1.html(_this.CurSecSize-10-6);
 				_this.$WinCfg.slideDown();
 				_this.$WinCfg.$imgCol.trigger("change");
+				_this.$WinCfg.$imgWidth.removeClass("alert");
+				_this.$WinCfg.$tip1.removeClass("alert");
 				return false;
 			};
 			_this.Submit();
@@ -336,31 +324,36 @@ sohu.diyTplFactory.Image=function(opts){
 			return false;
 		};
 		p.setPPCol=function(evt){
-			var v=_this.$WinCfg.$imgCol.val();
-			var w=Math.floor(_this.CurSecSize/v-10-6);
+			_this.$WinCfg.$imgCol.curVal=this.value;
+			var w=Math.floor(_this.CurSecSize/this.value-10-6);
 			_this.$WinCfg.$imgWidth.removeClass("alert").val(w).effect("highlight");
 		};
 		p.setPPWidth=function(evt){
 			var v=this.value;
 			if(!StringUtils.isPlusInt(v)){
 				_this.$WinCfg.$imgWidth.addClass("alert");
+				_this.$WinCfg.$tip1.addClass("alert");
 				//_this.$WinCfg.$imgCol.trigger("change");
 				_this.$WinCfg.$imgWidth.select();
 				return false;
 			};
-			_this.$WinCfg.$imgWidth.removeClass("alert");
 			//根据图片宽度推算列数
 			v=parseInt(v);
 			var col=Math.floor(_this.CurSecSize/(v+10+6));
-			col=col==0?1:col;
-			if(col>6){
-				alert("图片宽度"+v+"px对应的图片列数是"+col+"列,超过了组图列数上限6！");
+			if(col==0){
 				_this.$WinCfg.$imgWidth.addClass("alert");
-				//_this.$WinCfg.$imgCol.trigger("change");
-				_this.$WinCfg.$imgWidth.select();
+				_this.$WinCfg.$tip1.addClass("alert").effect("highlight");				
 				return false;
 			};
-			_this.$WinCfg.$imgCol.val(col);
+			_this.$WinCfg.$imgWidth.removeClass("alert");
+			_this.$WinCfg.$tip1.removeClass("alert");
+			
+			col=col>6?6:col;
+			if(_this.$WinCfg.$imgCol.curVal>col){
+				_this.$WinCfg.$imgCol.val(col);
+				_this.$WinCfg.$imgCol.curVal=col;
+			};
+			
 		};
 		//鼠标事件
 		this.$Layout.find(".item").hover(

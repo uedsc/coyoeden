@@ -41,11 +41,12 @@
 
 /* 导航 */
 .nav{text-align:center;font-size:14px;font-weight:bold;line-height:30px;}
+.nav12{font-size:12px;}
 .imgNav{line-height:normal;}
 .imgNav li{float:left;display:inline;}
 /* 栏目标题 */
 h2 .more{font-weight:normal;}
-h2 .more span{float:none;font-weight:normal;}
+h2 .more span{float:none;font-weight:normal;font-size:12px;}
 .w950 h2 span,.w670 h2 span,.w510 h2 span,.w470 h2 span,.w430 h2 span,.w390 h2 span{font-size:14px;}
 .w330 h2 span,.w310 h2 span,.w270 h2 span,.w250 h2 span,.w230 h2 span,.w210 h2 span,.w190 h2 span,.w182 h2 span{font-size:12px;}
 /*
@@ -56,7 +57,9 @@ h1,.h1{font-family:'黑体';font-size:18px;line-height:34px;}
 /* 文本 */
 .sec_hd,.hd{zoom:1} /* 文本标题 */
 .sec_hd:after,.hd:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
-.txt p{line-height:24px;text-align:left;} /* 文本段落 */
+.sec_hd{height:26px;line-height:26px;}/* 高26px */
+.txt p{line-height:24px;text-align:left;font-size:12px;} /* 文本段落 */
+.txt14 p{font-size:14px;}
 
 /* 
  * 图片列表
@@ -64,7 +67,7 @@ h1,.h1{font-family:'黑体';font-size:18px;line-height:34px;}
  */
 .pp li{float:left;display:inline;}
 .pp li img,.sec .pp img.elm{border:1px solid #eeeeee;padding:2px;} /* 组图图片默认样式 */
-.c1 li{width;100%;}
+.c1 li{width:100%;}
 .c2 li{width:50%;}
 .c3 li{width:33.3%;}
 .c4 li{width:25%;}
