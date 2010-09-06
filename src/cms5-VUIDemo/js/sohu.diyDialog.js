@@ -321,11 +321,10 @@ sohu.diyDialog.showColorPicker=function(opts){
 	if(!sohu.diyDialog.$jqmCpk){
 		sohu.diyDialog.$jqmCpk=$("#jqmCpk").jqm({
 			title:"ÑÕÉ«",
-			modal:true,
-			toTop:true
+			modal:true
 		}).draggable({handle:".hd",containment:'window'});
 		
-		sohu.diyDialog.$jqmCpk.find(".cpk").ColorPicker({
+		var x=sohu.diyDialog.$jqmCpk.find(".cpk").ColorPicker({
 			flat:true,
 			color:"#000000",
 			onSubmit:function(hsb,hex,rgb){
@@ -340,6 +339,7 @@ sohu.diyDialog.showColorPicker=function(opts){
 				};
 			}
 		});
+		
 		//margin-left
 		var ml=-(sohu.diyDialog.$jqmCpk.width()/2);
 		sohu.diyDialog.$jqmCpk.css("margin-left",ml);
