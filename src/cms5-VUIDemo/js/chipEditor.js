@@ -186,6 +186,7 @@ chipEditor.Dialog=function(opts){
 		_this.$Chip.replaceWith(c);
 		_this.$Chip=c;
 		_this.$Layout.jqmHide();
+		_this.UpdateCode();
 		if(opts.onCancel){
 			opts.onCancel(_this);
 		};
@@ -435,11 +436,13 @@ chipEditor.Dialog.prototype.Edit=function($elm){
 							var obj0=jQuery(document.createTextNode(this.value));
 							data.$obj.replaceWith(obj0);
 							data.$obj=obj0;
+							dlg.UpdateCode();
 						}).focus(_this.focusSelect);
 						//删除按钮
 						tpl.find(".btnDel").bind("click",function(evt){
 							data.$obj.remove();
 							tpl.remove();
+							dlg.UpdateCode();
 							return false;
 						});								
 					}else if($o.is("a")){
@@ -476,6 +479,7 @@ chipEditor.Dialog.prototype.Edit=function($elm){
 							var obj0=jQuery(document.createTextNode(this.value));
 							data.$obj.replaceWith(obj0);
 							data.$obj=obj0;
+							dlg.UpdateCode();
 						}).focus(_this.focusSelect);						
 					}else if($o.is("a")){
 						tpl=jQuery([chipEditor.$RowTitleA0.clone()[0],chipEditor.$RowLnkA.clone()[0]]);
@@ -483,9 +487,11 @@ chipEditor.Dialog.prototype.Edit=function($elm){
 						//输入框事件处理
 						tpl.eq(0).find("input").val($o.html()).keyup(function(evt){
 							$o.html(this.value);
+							dlg.UpdateCode();
 						}).focus(_this.focusSelect);
 						tpl.eq(1).find("input").val($o.attr("href")).keyup(function(evt){
 							$o.attr("href",this.value);
+							dlg.UpdateCode();
 						}).focus(_this.focusSelect);
 						
 						
@@ -691,6 +697,7 @@ chipEditor.Dialog.prototype.AddElm=function(data){
 	this.BindIconEvts(tpl1,data2);
 	
 	data.$tpl.eq(1).after(tpl1).after(tpl);
+	this.UpdateCode();
 	return false;
 };
 chipEditor.Dialog.prototype.focusSelect=function(evt){
@@ -710,7 +717,7 @@ chipEditor.Dialog.prototype.InsertVDIcon=function(data){
 	}else{
 		data.$obj.after(a);
 	};
-	_this.UpdateCode();
+	this.UpdateCode();
 	return false;
 };
 /**
