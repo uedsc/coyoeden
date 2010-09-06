@@ -109,7 +109,7 @@ a.btn:hover{color:#333333;}
 .cmdicon,.editBtn2{float:left;display:inline-block;*display:inline;*zoom:1;}
 .cmdicon,.cmdicon strong,.editBtn2,.editBtn2 strong{background-image:url("../images/btn0.png");}
 .cmdicon,.editBtn1,.editBtn2,.editBtn3{margin:0 0 0.2em;padding:0 0 0 4px;}
-.cmdicon strong,.editBtn1 strong,.editBtn2 strong,.editBtn3 strong{display:block;*display:inline;*zoom:1;padding:0px;margin:0;color:#fff;*vertical-align:top;}
+.cmdicon strong,.editBtn1 strong,.editBtn2 strong,.editBtn3 strong{display:block;*display:inline;*zoom:1;padding:0px;margin:0;*vertical-align:top;}
 .cmdicon,.editBtn2{vertical-align:middle;white-space:nowrap;cursor:pointer;cursor:hand;}
 .cmdicon strong{background-position:right -21px;}
 .cmdicon:hover{background-position:0 -80px;text-decoration:none;}

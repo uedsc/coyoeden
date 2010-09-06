@@ -321,7 +321,8 @@ sohu.diyDialog.showColorPicker=function(opts){
 	if(!sohu.diyDialog.$jqmCpk){
 		sohu.diyDialog.$jqmCpk=$("#jqmCpk").jqm({
 			title:"ÑÕÉ«",
-			modal:true
+			modal:true,
+			toTop:true
 		}).draggable({handle:".hd",containment:'window'});
 		
 		sohu.diyDialog.$jqmCpk.find(".cpk").ColorPicker({

@@ -28,7 +28,7 @@ var test = function() {
 		return dim;
 	};
 	p.onFlagMEnter=function(evt){	
-		var $i=$(this);
+		var $i=jQuery(this);
 		if($i.hasClass("on")) return;/* 在编辑某个元素时碎片会加上on */
 		var d=p.getDim($i);
 		p._$chipCover.css({
@@ -50,13 +50,13 @@ var test = function() {
 	};	
 	//private area
 	p.initVar = function(opts) { 
-		p._$chipCover=$("#chipCover");
+		p._$chipCover=jQuery("#chipCover");
 		p._cssFlash=".flash";
 	};
 	p.onLoaded = function() { };
 	p.initEvents = function(opts) {
-		$(document).ready(p.onLoaded);
-		$(".chip").live("mouseenter",p.onFlagMEnter).mouseleave(function(evt){
+		jQuery(document).ready(p.onLoaded);
+		jQuery(".chip").live("mouseenter",p.onFlagMEnter).mouseleave(function(evt){
 			p._$chipCover_t.unbind("mouseenter").bind("mouseenter",p.onFlagMEnter);
 		});
 		//蒙层的单击事件
@@ -72,6 +72,10 @@ var test = function() {
 					chipEditor.MCE().setContent(dlg.$Chip.html());
 					dlg.$Code.val(chipEditor.MCE().getContent());
 					dlg.$CT.addClass("jqmFlash");/* 控制排序按钮的显示 */
+					//按钮绑定
+					dlg.$BtnTest.click(function(evt){
+						alert("整体测试");
+					});
 				}
 			});
 				return;
@@ -81,7 +85,14 @@ var test = function() {
 			p._$chipCover_t.unbind("mouseenter");
 			
 			//显示碎片编辑器
-			chipEditor.Show(p._$chipCover_t);
+			chipEditor.Show(p._$chipCover_t,{
+				afterShow:function(hash,dlg){
+					//按钮绑定
+					dlg.$BtnTest.click(function(evt){
+						alert("整体测试");
+					});
+				}
+			});
 		});
 	};
 	//public area

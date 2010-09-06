@@ -78,8 +78,7 @@ sohu.diyConsole=function(opts){
 				sohu.diyConsole.CurSec.Deactive();
 				
 			//移除拖拽助手和内容蒙层
-			sohu.diyConsole.Dragger.handle.hide();
-			sohu.diyConsole.$EHolder.hide();	
+			sohu.diyConsole.Dragger.handle.hide();	
 		};
 	};
 	p.onBodyClick=function(evt){
@@ -134,11 +133,6 @@ sohu.diyConsole=function(opts){
 			sohu.diySelection.snap(document,sohu.diyConsole.CurElm.$Layout[0]);
 		};
 	};
-	p.onEHolderClick=function(evt){
-		if((!sohu.diyConsole.$EHolder)||(!sohu.diyConsole.$EHolder.t)) return false;
-		sohu.diyConsole.$EHolder.t.ForceEdit();
-		return false; 
-	};
 	p.Init=function(){
 		//公有属性引用
 		sohu.diyConsole.$WinSec=p._$wSec;
@@ -149,8 +143,7 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.$BodyBGA=$("#main .bodyBGA");
 		sohu.diyConsole.$BodyBGB=$("#main .bodyBGB");
 		sohu.diyConsole.$ifEditor=$("#ifEditor").iframeEX();	
-		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});
-		sohu.diyConsole.$EHolder=$('#eHolder').click(p.onEHolderClick);	
+		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});	
 		sohu.diyConsole.$AreaHolder=$("#areaHolder");
 		sohu.diyConsole.$FlashHolder=$("#flashHolder").mouseleave(function(evt){$(this).hide();});
 		//加载现有的焦点图flash
@@ -176,6 +169,8 @@ sohu.diyConsole=function(opts){
 		new sohu.diyMenuBar({});
 		//弹框组件
 		sohu.diyDialog.Init({console:_this,cssDragCTM:'window',onInit:sohu.diyDialog.onInit});
+		//碎片编辑组件
+		sohu.diyChipEditor.Init({});
 		//on page loaded
 		$(document).ready(p.onLoaded);
 	};

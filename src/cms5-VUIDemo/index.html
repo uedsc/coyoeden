@@ -19,7 +19,8 @@
 		<script src="js/jquery.json-2.2.min.js" type="text/javascript"></script> 
 		<script type="text/javascript" src="js/sohu.jqModal.js"></script>
 		<script type="text/javascript" src="js/colorpicker.js"></script> 
-		<script src="js/sohu.stringUtils.js" type="text/javascript"></script> 
+		<script src="js/sohu.stringUtils.js" type="text/javascript"></script>
+		<script type="text/javascript" src="editor/tiny_mce/tiny_mce.js"></script> 
 		<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
 	</head>
     <body>		
@@ -143,7 +144,82 @@
 					<a class="btn jqmClose r" title="取消" href="#"><span>取消</span></a>					
 				</div>
 			</div>			
-		</div>		
+		</div>
+		<div class="jqmWindow chipEdt">
+			<div class="hd clear">
+	            <h4 class="title">碎片编辑</h4>
+				<a href="#" class="jqmClose"></a>
+				<span class="draghdl"></span>
+	        </div>
+			<div class="ct">
+				<div class="jqmCT">
+					<ul class="hidden">
+						<li><a class="tabM" href="#wVsp_tab1">可视化修改</a></li>
+						<li><a class="tabM" href="#wVsp_tab2">代码修改</a></li>
+						<li><a class="tabM" href="#wVsp_tab3">修改记录</a></li>
+						<li class="last"><a class="tabM hidden" href="#wVsp_tab4">排序状态</a><button class="btnSort">排序状态</button></li>
+					</ul>
+					<div id="wVsp_tab1" class="tabC">
+						<div class="elmActs clear">
+							<a class="cmdBold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
+							<a class="cmdUdl cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
+							<a class="cmdColor cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
+							<a class="cmdAL cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
+							<a class="cmdAC cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
+							<a class="cmdAR cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
+							<a class="cmdVideo cmdicon" href="#"><strong><img src="images/w07.gif" /></strong></a>
+							<span class="elmcActs">
+								<a class="elmAdd cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+								<a class="elmDel cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+								<a class="elmMove0 cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
+								<a class="elmMove1 cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>								
+							</span>							
+						</div>						
+						<!--元素模板.文字链-->
+						<div class="elmTpl"></div>
+						<div class="uppic">
+							<div class="upp_t"><strong>上传图片</strong></div>
+							<div class="upp_m">
+								<input type="file" name="uppic" size="35"/>
+							</div>
+							<div class="upp_btn">
+								<button class="up">上传</button>
+								<button class="cls">取消</button>
+							</div>
+						</div>
+					</div>
+					<div id="wVsp_tab2" class="tabC hidden">
+						<div class="row searchTip">
+							<input type="text" class="txtVspCS" name="vspCS"/>
+							<button class="btnVspCS">搜索</button>
+							<button class="btnVspCBTipAdd">加Blog纸条</button>
+							<button class="btnVspCBTipDel">删Blog纸条</button>
+						</div>
+						<div class="row flashTip">
+							<a href="#" class="btnFlashEdit"><strong>点击进入编辑器的可视化修改状态>></strong></a>
+						</div>
+						<textarea class="txtVspC" name="vspC"></textarea>
+					</div>
+					<div id="wVsp_tab3" class="tabC hidden">
+						loading...
+					</div>
+					<div  id="wVsp_tab4" class="tabC hidden">
+						<strong class="alert">碎片交换状态</strong>
+						<em>请选择要交换的链接</em>
+					</div>
+					<div class="acts">
+						<div class="btnWrap clear">
+							<a href="#" class="test hidden">整体测试</a>
+							<a href="#" class="btn jqmOK save l"><span>确认</span></a>
+							<a href="#" class="btn jqmClose cancel r"><span>取消</span></a>
+							<a href="#" class="globalRes hidden">统一资源库</a>
+							<a href="#" class="external hidden">外包</a>							
+						</div>
+
+					</div>
+				</div>
+			</div>	
+		</div>				
 		<!--/Dialog layout-->
 		<!--Dialog content-->
 		<div id="dialogList" class="hidden">
@@ -828,14 +904,74 @@
 		<div id="ctHandle" class="dragHandle">
 			<img src="img/move.gif" alt="移动" width="15" height="15"/>
 		</div>
-		<!--元素占位-->
-		<div id="eHolder"></div>
 		<!--横切蒙层-->
 		<div id="areaHolder"></div>
 		<!--flash蒙层-->
 		<div id="flashHolder"></div>
 		<!--iframe编辑器-->
 		<iframe id="ifEditor" name="ifEditor" scrolling="no" frameborder="0" width="0" height="0"></iframe>
+		<!--chipEditor模板-->
+		<div id="elmATpl" class="hidden">
+			<div class="row rowTxt clear">
+				<label class="l">文字:</label>
+				<input type="text" class="txt l"/>
+				<div class="r icons1">
+					<a href="#" class="btnDel btnDelTxt"><img src="images/icn_del.gif"/></a>
+				</div>
+			</div>
+			<div class="row rowTxt0 clear">
+				<label class="l">文字:</label>
+				<input type="text" class="txt l"/>
+			</div>				
+			<div class="row rowTitle clear">
+				<label class="l">标题:</label>
+				<input type="text" class="tt l"/>
+				<div class="l icons clear">
+				    <a class="bold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
+				    <a class="udl cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
+				    <a class="color cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
+					<a href="#" class="icon"><span>图标</span></a>
+					<ul class="others clear hidden">
+						<li><a class="cmdicon videoL " href="#">视频前</a></li>
+						<li><a class="cmdicon videoR " href="#">视频后</a></li>
+					</ul>
+				</div>
+				<div class="r icons1">
+					<a href="#" class="btnDel btnDelA"><img src="images/icn_del.gif"/></a>
+					<a href="#" class="btnAdd"><img src="images/icn_add.gif"/></a>
+				</div>
+			</div>
+			<div class="row rowTitle0 clear">
+				<label class="l">标题:</label>
+				<input type="text" class="tt l"/>
+			</div>			
+			<div class="row rowLnk clear">
+				<label class="l">链接:</label>
+				<input type="text" class="lnk l"/>
+			</div>				
+		</div>
+		<div id="elmImgTpl" class="hidden">
+			<div class="row rowImg clear">
+				<label class="l">图片:</label>
+				<input type="text" class="imgSrc l"/>
+				<div class="icons l clear">
+					<a href="#" class="btnUpl"><span>上传</span></a>
+				</div>
+				<div class="r icons1">
+					<a href="#" class="btnDel"><img src="images/icn_del.gif"/></a>
+					<a href="#" class="btnAdd"><img src="images/icn_add.gif"/></a>
+				</div>						
+			</div>
+			<div class="row rowALT clear">
+				<label class="l">ALT:</label>
+				<input type="text" class="imgAlt l"/>
+			</div>
+			<div class="row rowLnk clear">
+				<label class="l">链接:</label>
+				<input type="text" class="imgLnk l"/>
+			</div>						
+		</div>
+		<textarea id="tinymce1" name="tinymce" class="mceEditor hidden" rows="10" cols="60"></textarea>
     </body>
 	<script src="js/jquery.cssEX.js" type="text/javascript"></script>
 	<script src="js/sohu.iframeEX.js" type="text/javascript"></script>
@@ -852,7 +988,7 @@
 	<script type="text/javascript" src="js/sohu.diyDialog.js"></script>
 	<script type="text/javascript" src="js/sohu.diyDialog_.js"></script>
 	<script type="text/javascript" src="js/sohu.diyConsole.js"></script>
-	
+	<script type="text/javascript" src="js/sohu.diyChipEditor.js"></script>
 	<script type="text/javascript">
 	//<![CDATA[
 	var bos = new sohu.diyConsole({});

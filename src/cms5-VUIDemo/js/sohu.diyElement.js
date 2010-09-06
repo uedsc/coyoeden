@@ -60,15 +60,14 @@ sohu.diyElement=function(opts){
 			
 	};
 	p.initEditable=function(){
-		_this.$Layout.click(function(evt){return false;});
-		//inline editable element
-		if(_this.InlineEditable){
-			_this.$Layout.iEditable({
-				onModeChange:p.onEditModeChange,
-				i$frame:sohu.diyConsole.$ifEditor
+		_this.$Layout.click(function(evt){
+			sohu.diyChipEditor.Show(_this.$Context,{
+				tabs:[0],
+				$elm:_this.$Layout
 			});
-			return;
-		};
+			return false;
+		});
+		/*
 		//img
 		if(_this.tagName=="img"){
 			_this.$Layout.click(function(evt){
@@ -79,6 +78,8 @@ sohu.diyElement=function(opts){
 			});
 			return;
 		};
+		*/
+		
 	};
 	/* /private member variables */
 	
@@ -93,13 +94,9 @@ sohu.diyElement=function(opts){
 	//鼠标事件
 	this.$Layout.mouseenter(function(evt){
 		_this.$Layout.addClass(opts.clOn);
-		//占位蒙层
-		_this.Overlay("on");
 	});
 	this.$Layout.mouseleave(function(evt){
 		_this.$Layout.removeClass(opts.clOn);
-		//占位蒙层
-		//_this.Overlay("off");
 	});
 	
 	this.$Layout.mousedown(function(evt){
@@ -122,23 +119,14 @@ sohu.diyElement=function(opts){
  * @param {Object} ignoreCbk
  */
 sohu.diyElement.prototype.HideEditor=function(ignoreCbk){
+	/*
 	if(this.InlineEditable){
 		this.IFEdit("off",ignoreCbk);
 	}else{
 		this.CT.InlineEdit("off");
 	}
-	sohu.diyConsole.$EHolder.IsBusy=this.IsEditing=false;/* 是否某个元素正在被编辑 */
-	this.Overlay("off");
+	*/
 	sohu.diyConsole.CurElm=null;
-};
-/**
- * 开启/关闭内联iframe编辑
- */
-sohu.diyElement.prototype.IFEdit=function(mode,ignoreCbk){
-	if(!this.InlineEditable) return;
-	mode=mode||"on";
-	mode=mode=="on"?mode:"off";
-	this.$Layout[0].iEdit(mode,ignoreCbk||false);
 };
 /**
  * dimension info of the element
@@ -193,29 +181,6 @@ sohu.diyElement.prototype.Dim=function(){
 	 
 };
 /**
- * 蒙层开关
- * @param {Object} mode "on"或"off"
- */
-sohu.diyElement.prototype.Overlay=function(mode){
-	if(sohu.diyConsole.$EHolder.IsBusy) return;
-	mode=mode||"on";
-	mode=mode=="on"?mode:"off";
-	if(mode=="on"){
-		var d=this.Dim();
-		sohu.diyConsole.$EHolder.css({
-			top:d.y-1,
-			left:d.x-1+d.fl,
-			width:d.w+1-d.fl-d.fr+d.pl+d.pr,
-			height:d.h+1,
-			display:"block"
-		});
-		sohu.diyConsole.$EHolder.t=this;
-	}else{
-		sohu.diyConsole.$EHolder.hide();
-		sohu.diyConsole.$EHolder.t=null;
-	};
-};
-/**
  * 上移或者下移
  * @param {Object} isUp 是否上移
  */
@@ -233,8 +198,6 @@ sohu.diyElement.prototype.Move=function(isUp){
 	if(this.i$frame){
 		this.i$frame.css({top:d.y,left:d.x});			
 	};
-	//蒙层重定位
-	sohu.diyConsole.$EHolder.css({top:d.y-1,left:d.x-1});
 };
 /**
  * Force the element to switch on the edit state

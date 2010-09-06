@@ -8,46 +8,54 @@ sohu.diyMenuBar=function(opts){
 	p._opts=$.extend(opts,{clElmCopyable:"elmc",clElmOn:"elmOn"});
 	//文本图片命令
 	p.txtCmd={};
-	p.txtCmd.fontCbk=function(iframeEditor){sohu.diyConsole.CurElm.$Layout.css(iframeEditor.iCurCss);};
-	p.txtCmd.Bold=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Bold",null);};
-	p.txtCmd.Italic=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Italic",null);};
-	p.txtCmd.Underline=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("Underline",null);};
-	p.txtCmd.SizeUp=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("increasefontsize",null);};
-	p.txtCmd.SizeDown=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("decreasefontsize",null);};
-	p.txtCmd.AlignLeft=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("justifyleft",null,p.txtCmd.fontCbk);};
-	p.txtCmd.AlignCenter=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("justifycenter",null,p.txtCmd.fontCbk);};
-	p.txtCmd.AlignRight=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("justifyright",null,p.txtCmd.fontCbk);};
-	p.txtCmd.AlignFull=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("justifyfull",null,p.txtCmd.fontCbk);};
-	p.txtCmd.AddUL=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("insertunorderedlist",null);};
-	p.txtCmd.AddOL=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("insertorderedlist",null);};
-	p.txtCmd.Undo=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("undo",null);};
-	p.txtCmd.Redo=function(evt){sohu.diyConsole.CurElm.i$frame[0].iDoCommand("redo",null);};
+	p.txtCmd.Bold=function(evt){
+		if(sohu.diyConsole.CurElm.$Layout.css("font-weight")=="bold")
+			sohu.diyConsole.CurElm.$Layout.css("font-weight","normal");
+		else
+			sohu.diyConsole.CurElm.$Layout.css("font-weight","bold");
+		
+	};
+	p.txtCmd.Italic=function(evt){
+		if(sohu.diyConsole.CurElm.$Layout.css("font-style")=="italic")
+			sohu.diyConsole.CurElm.$Layout.css("font-style","normal");
+		else
+			sohu.diyConsole.CurElm.$Layout.css("font-style","italic");
+	};
+	p.txtCmd.Underline=function(evt){
+		if(sohu.diyConsole.CurElm.$Layout.css("text-decoration")=="underline")
+			sohu.diyConsole.CurElm.$Layout.css("text-decoration","none")
+		else
+			sohu.diyConsole.CurElm.$Layout.css("text-decoration","underline")
+	};
+	p.txtCmd.AlignLeft=function(evt){
+		if(sohu.diyConsole.CurElm.$Layout.css("text-align")=="left")
+			sohu.diyConsole.CurElm.$Layout.css("text-align","");
+		else
+			sohu.diyConsole.CurElm.$Layout.css("text-align","left");
+	};
+	p.txtCmd.AlignCenter=function(evt){
+		if(sohu.diyConsole.CurElm.$Layout.css("text-align")=="center")
+			sohu.diyConsole.CurElm.$Layout.css("text-align","");
+		else
+			sohu.diyConsole.CurElm.$Layout.css("text-align","center");
+	};
+	p.txtCmd.AlignRight=function(evt){
+		if(sohu.diyConsole.CurElm.$Layout.css("text-align")=="right")
+			sohu.diyConsole.CurElm.$Layout.css("text-align","");
+		else
+			sohu.diyConsole.CurElm.$Layout.css("text-align","right");
+	};
 	p.txtCmd.AddVideoIcon=function(evt){
-		/*
-		var vd=null;
-		if((vd=sohu.diyConsole.CurElm.$Layout.find('.vdIcon')).length==0){
-			sohu.diyConsole.CurElm.$Layout.append(sohu.diyMenuBar.Tpl.video);
-			sohu.diyConsole.CurElm.i$frame[0].i$Body().append(sohu.diyMenuBar.Tpl.video);			
-		}else{
-			vd.remove();
-			sohu.diyConsole.CurElm.i$frame[0].i$Body().find('.vdIcon').remove();
-		};
-		*/
-		sohu.diyConsole.CurElm.$Layout.append(sohu.diyMenuBar.Tpl.video);
-		sohu.diyConsole.CurElm.i$frame[0].i$Body().append(sohu.diyMenuBar.Tpl.video);	
+		sohu.diyConsole.CurElm.$Layout.append(sohu.diyMenuBar.Tpl.video);	
 	};
 	p.txtCmd.SetColor=function(evt){
 		var _this=$(this);
 		sohu.diyDialog.showColorPicker({
 			onSubmit:function(c){
-				sohu.diyConsole.CurElm.i$frame[0].iDoCommand("foreColor",c,null,function($iframe){
-				sohu.diyConsole.DocSelection.selectAndRelease();
-				_this.find("img").css("border-color",c);
-			});
+				sohu.diyConsole.CurElm.$Layout.css("color",c);
 			},
 			onChange:function(c){
-				sohu.diyConsole.DocSelection.select();
-				_this.find("img").css("border-color",c);
+				sohu.diyConsole.CurElm.$Layout.css("color",c);
 			}
 		});
 	};
@@ -55,24 +63,16 @@ sohu.diyMenuBar=function(opts){
 	p.elmCmd={};
 	p.elmCmd.AddCopy=function(evt){
 		if(!sohu.diyConsole.CurElm) return;
-		var $dom=sohu.diyConsole.CurElm.$CopyModel.clone(false).removeClass(p._opts.clElmOn).show().css("visibility","visible");
-		if($dom.attr("id")!="") $dom.attr("id","");
+		var $dom=sohu.diyConsole.CurElm.$CopyModel.clone(false).removeClass(p._opts.clElmOn).show();
+		$dom.removeAttr("id");
 		
 		if(sohu.diyConsole.CurElm.IsSelfCopyable){
-			var $if=sohu.diyConsole.CurElm.$CopyModel.next("iframe");
-			if($if.length>0){
-				$if.after($dom);
-			}else{
-				sohu.diyConsole.CurElm.$Layout.after($dom);
-			};
+			sohu.diyConsole.CurElm.$Layout.after($dom);
 			//apply diyElement features
 			new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$dom});
 		}else{
-			//清楚iframe.editable
-			$dom.find(".editable").remove();
-			//清楚元素的id
+			//清除元素的id
 			$dom.find(".elm").attr("id","").css("visibility","visible");
-			
 			sohu.diyConsole.CurElm.$CopyModel.after($dom);
 			//apply diyElement features
 			$dom.find(".elm").each(function(i,o){
@@ -88,15 +88,10 @@ sohu.diyMenuBar=function(opts){
 		//关闭编辑对话框
 		sohu.diyDialog.Hide();
 		//删除元素
-		if(tempElm.IsSelfCopyable){
-			tempElm.$Layout.next("iframe").remove();
-			tempElm.$Layout.remove();		
-		}else{
-			tempElm.$CopyModel.remove();
+		tempElm.$CopyModel.remove();
+		if(opts.onDel){
+			opts.onDel();
 		};
-
-		//重定位分栏编辑器
-		//sohu.diyConsole.CurElm.CT.Editor.Reposition();
 	};
 	p.elmCmd.Move=function(evt){
 		if(!sohu.diyConsole.CurElm) return;
@@ -105,7 +100,7 @@ sohu.diyMenuBar=function(opts){
 	};
 	
 	//图标的事件绑定
-	p.$cmdItems=$(".cmdicon");
+	p.$cmdItems=opts.$cmdItems||$(".cmdicon");
 	p.yourDaddy=function(evt){
 		p.$cmdItems.removeClass("editBtn1");
 		$(this).addClass("editBtn1");
