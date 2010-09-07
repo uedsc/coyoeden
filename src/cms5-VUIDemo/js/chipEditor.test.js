@@ -86,12 +86,20 @@ var test = function() {
 			
 			//显示碎片编辑器
 			chipEditor.Show(p._$chipCover_t,{
-				afterShow:function(hash,dlg){
-					//按钮绑定
-					dlg.$BtnTest.click(function(evt){
-						alert("整体测试");
-					});
-				}
+				/* 上传图片 */
+				onUpPic:function(dlg){alert("onUpPic");},
+				/* 修改记录 */
+				onLoadHis:function(dlg){alert("onLoadHis");},
+				/* 整体测试 */
+				onTest:function(dlg){alert("onTest");},
+				/* 保存 */
+				onSave:function(dlg){alert("onSave");},
+				/* 取消 */
+				onCancel:function(dlg){alert("onCancel");},
+				/* 外包 */
+				onExternal:function(dlg){alert("onExternal");},
+				/* 焦点图编辑 */
+				onFlashEdit:function(dlg){alert("onFlashEdit");}
 			});
 		});
 	};

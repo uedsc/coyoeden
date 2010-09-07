@@ -167,52 +167,24 @@ chipEditor.Dialog=function(opts){
 	});
 	this.$Backup=this.$Chip.clone(true);
 	//整体测试
-	this.$BtnTest=this.$Layout.find(".test").click(function(evt){
-		if(opts.onTest){
-			opts.onTest(_this);
-		};
-		return false;
-	});
+	this.$BtnTest=this.$Layout.find(".test");
 	//保存碎片
-	this.$BtnSave=this.$Layout.find(".save").click(function(evt){
-		if(opts.onSave){
-			opts.onSave(_this);
-		};
-		return false;
-	});
+	this.$BtnSave=this.$Layout.find(".save");
 	//取消
-	this.$Layout.find(".cancel").click(function(evt){
+	this.$BtnCancel=this.$Layout.find(".cancel").click(function(evt){
 		var c=_this.$Backup.clone(true);
 		_this.$Chip.replaceWith(c);
 		_this.$Chip=c;
 		_this.$Layout.jqmHide();
 		_this.UpdateCode();
-		if(opts.onCancel){
-			opts.onCancel(_this);
-		};
 		return false;
 	});
 	//统一资源库
-	this.$BtnGlobalRes=this.$Layout.find(".globalRes").click(function(evt){
-		if(opts.onGlobalRes){
-			opts.onGlobalRes(_this);
-		};
-		return false;
-	});
+	this.$BtnGlobalRes=this.$Layout.find(".globalRes");
 	//外包
-	this.$BtnExternal=this.$Layout.find(".external").click(function(evt){
-		if(opts.onExternal){
-			opts.onExternal(_this);
-		};
-		return false;
-	});
+	this.$BtnExternal=this.$Layout.find(".external");
 	//flash编辑
-	this.$BtnFlashEdit=this.$Layout.find(".btnFlashEdit").click(function(evt){
-		if(opts.onFlashEdit){
-			opts.onFlashEdit(_this);
-		};
-		return false;
-	});
+	this.$BtnFlashEdit=this.$Layout.find(".btnFlashEdit");
 	//tab菜单
 	var tabID="tab"+StringUtils.RdStr(8);
 	this.$TabM=this.$Layout.find(".tabM").each(function(i,o){
@@ -239,19 +211,15 @@ chipEditor.Dialog=function(opts){
 			};
 			//修改记录
 			if(ui.index==2){
-				if(opts.onLoadHis){
-					opts.onLoadHis(_this);
+				if(_this.onLoadHis){
+					_this.onLoadHis(_this);
 				};
 			};
 		}
 	});
 	//上传浮层
 	this.$UpPic=this.$CT.find(".uppic").draggable({handle:".upp_t",containment:'parent',axis:'y'});
-	this.$UpPic.find(".up").click(function(evt){
-		if(opts.onUpPic){
-			opts.onUpPic(_this);
-		};
-	});
+	this.$BtnUpPic=this.$UpPic.find(".up");
 	this.$UpPic.find(".cls").click(function(evt){
 		_this.$UpPic.slideUp("fast");
 	});
@@ -304,7 +272,7 @@ chipEditor.Dialog.prototype.Show=function(opts){
 	this.IsNew=opts.isNew;
 	if(!opts.isNew)
 		this.Hide(opts);
-	
+	//tabs
 	if((!opts.tabs)||opts.tabs.length==0){
 		this.$CT.hide();
 	}else{
@@ -314,7 +282,31 @@ chipEditor.Dialog.prototype.Show=function(opts){
 		});
 		this.$CT.tabs("select",opts.tabs[0]);
 	};
-	
+	//按钮回调
+	if(opts.onTest){
+		this.$BtnTest.unbind("click.a").bind("click.a",function(evt){opts.onTest(_this);return false;});
+	};
+	if(opts.onSave){
+		this.$BtnSave.unbind("click.a").bind("click.a",function(evt){opts.onSave(_this);return false;});
+	};
+	if(opts.onCancel){
+		this.$BtnCancel.unbind("click.a").bind("click.a",function(evt){opts.onCancel(_this);return false;});
+	};
+	if(opts.onGlobalRes){
+		this.$BtnGlobalRes.unbind("click.a").bind("click.a",function(evt){opts.onGlobalRes(_this);return false;});
+	};
+	if(opts.onExternal){
+		this.$BtnExternal.unbind("click.a").bind("click.a",function(evt){opts.onExternal(_this);return false;});
+	};
+	if(opts.onFlashEdit){
+		this.$BtnFlashEdit.unbind("click.a").bind("click.a",function(evt){opts.onFlashEdit(_this);return false;});
+	};
+	if(opts.onUpPic){
+		this.$BtnUpPic.unbind("click.a").bind("click.a",function(evt){opts.onUpPic(_this);return false;});
+	};
+	if(opts.onLoadHis){
+		this.onLoadHis=opts.onLoadHis;
+	};
 	this.$Chip.addClass("on");
 		
 	this.$Layout.jqm(this.jqmOpts).jqmShow();
