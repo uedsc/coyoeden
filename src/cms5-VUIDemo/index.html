@@ -174,8 +174,21 @@
 								<a class="elmMove0 cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
 								<a class="elmMove1 cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>								
 							</span>							
-						</div>						
-						<!--元素模板.文字链-->
+						</div>				
+						<div class="chipTpl hidden">
+							<div class="row rowChip">
+								<label class="l">背景图</label>
+								<input type="text" class="chipBG l"/>
+								<select name="chipBGAlign" class="chipBGAlign selAuto">
+									<option selected="selected" value="repeat">平铺</option>
+									<option value="repeat-y">纵平铺</option>
+									<option value="repeat-x">横平铺</option>
+									<option value="no-repeat">不平铺</option>
+								</select>
+								<button class="btnUpl browse">浏览</button>
+							</div>						
+						</div>					
+						<!--元素模板-->
 						<div class="elmTpl"></div>
 						<div class="uppic">
 							<div class="upp_t"><strong>上传图片</strong></div>
@@ -911,20 +924,18 @@
 		<!--iframe编辑器-->
 		<iframe id="ifEditor" name="ifEditor" scrolling="no" frameborder="0" width="0" height="0"></iframe>
 		<!--chipEditor模板-->
-		<div id="elmATpl" class="hidden">
-			<div class="row rowTxt clear">
-				<label class="l">文字:</label>
+		<div id="elmTxtTpl" class="hidden">
+			<div class="row rowTxt">
+				<label class="l">文字</label>
 				<input type="text" class="txt l"/>
 				<div class="r icons1">
 					<a href="#" class="btnDel btnDelTxt"><img src="images/icn_del.gif"/></a>
 				</div>
-			</div>
-			<div class="row rowTxt0 clear">
-				<label class="l">文字:</label>
-				<input type="text" class="txt l"/>
-			</div>				
-			<div class="row rowTitle clear">
-				<label class="l">标题:</label>
+			</div>		
+		</div>
+		<div id="elmATpl" class="hidden">				
+			<div class="row rowTitle">
+				<label class="l">标题</label>
 				<input type="text" class="tt l"/>
 				<div class="l icons clear">
 				    <a class="bold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
@@ -940,36 +951,52 @@
 					<a href="#" class="btnDel btnDelA"><img src="images/icn_del.gif"/></a>
 					<a href="#" class="btnAdd"><img src="images/icn_add.gif"/></a>
 				</div>
-			</div>
-			<div class="row rowTitle0 clear">
-				<label class="l">标题:</label>
-				<input type="text" class="tt l"/>
-			</div>			
-			<div class="row rowLnk clear">
-				<label class="l">链接:</label>
+			</div>		
+			<div class="row rowLnk">
+				<label class="l">链接</label>
 				<input type="text" class="lnk l"/>
+				<select name="aTarget" class="aTarget selAuto">
+					<option selected="selected" value="_blank">新窗口</option>
+					<option value="_self">本窗口</option>
+				</select>
 			</div>				
 		</div>
 		<div id="elmImgTpl" class="hidden">
-			<div class="row rowImg clear">
-				<label class="l">图片:</label>
+			<div class="row rowImg">
+				<label class="l">换图</label>
 				<input type="text" class="imgSrc l"/>
 				<div class="icons l clear">
-					<a href="#" class="btnUpl"><span>上传</span></a>
+					<button class="btnUpl browse">浏览</button>
 				</div>
 				<div class="r icons1">
 					<a href="#" class="btnDel"><img src="images/icn_del.gif"/></a>
 					<a href="#" class="btnAdd"><img src="images/icn_add.gif"/></a>
 				</div>						
 			</div>
-			<div class="row rowALT clear">
-				<label class="l">ALT:</label>
+			<div class="row rowLnk">
+				<label class="l">链接</label>
+				<input type="text" class="imgLnk l"/>
+				<select name="picTarget" class="imgTarget selAuto">
+					<option selected="selected" value="_blank">新窗口</option>
+					<option value="_self">本窗口</option>
+				</select>				
+			</div>
+			<div class="row rowALT">
+				<label class="l">Alt</label>
 				<input type="text" class="imgAlt l"/>
 			</div>
-			<div class="row rowLnk clear">
-				<label class="l">链接:</label>
-				<input type="text" class="imgLnk l"/>
-			</div>						
+			<div class="row rowTit">
+				<label class="l">Title</label>
+				<input type="text" class="imgTitle l"/>
+			</div>
+			<div class="row rowDim">
+				<label class="l">宽(px)</label>
+				<input type="text" class="imgW ipt01"/>
+				<label class="center">高(px)</label>
+				<input type="text" class="imgH ipt01"/>
+				<label class="center">边框</label>
+				<input type="text" class="imgBColor ipt02"/>
+			</div>									
 		</div>
 		<textarea id="tinymce1" name="tinymce" class="mceEditor hidden" rows="10" cols="60"></textarea>
     </body>

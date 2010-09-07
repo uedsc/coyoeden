@@ -323,19 +323,19 @@ sohu.diyDialog.showColorPicker=function(opts){
 			title:"颜色",
 			modal:true
 		}).draggable({handle:".hd",containment:'window'});
-		
-		var x=sohu.diyDialog.$jqmCpk.find(".cpk").ColorPicker({
+				
+		sohu.diyDialog.$jqmCpk.find(".cpk").ColorPicker({
 			flat:true,
 			color:"#000000",
 			onSubmit:function(hsb,hex,rgb){
-				if(opts.onSubmit){
-					opts.onSubmit("#"+hex);
+				if(sohu.diyDialog.$jqmCpk._onSubmit){
+					sohu.diyDialog.$jqmCpk._onSubmit("#"+hex);
 				};
 				sohu.diyDialog.$jqmCpk.jqmHide();
 			},
 			onChange:function(hsb,hex,rgb){
-				if(opts.onChange){
-					opts.onChange("#"+hex);
+				if(sohu.diyDialog.$jqmCpk._onChange){
+					sohu.diyDialog.$jqmCpk._onChange("#"+hex);
 				};
 			}
 		});
@@ -344,7 +344,9 @@ sohu.diyDialog.showColorPicker=function(opts){
 		var ml=-(sohu.diyDialog.$jqmCpk.width()/2);
 		sohu.diyDialog.$jqmCpk.css("margin-left",ml);
 	};
-	
+	//缓存及更新回调
+	sohu.diyDialog.$jqmCpk._onSubmit=opts.onSubmit;
+	sohu.diyDialog.$jqmCpk._onChange=opts.onChange;
 	sohu.diyDialog.$jqmCpk.jqmShow();
 };
 /* /静态方法 */

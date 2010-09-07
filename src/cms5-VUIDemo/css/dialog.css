@@ -16,14 +16,14 @@ a.btn:hover{color:#333333;}
 .r1btnM {background-position: bottom; clear:both}
 .l1btn {display: block; background: url(../images/l1btn.gif) top;width: 22px;height: 30px;margin-top: 50px; border: 0px; cursor:pointer;}
 .l1btnM {background-position: bottom;}
-.lineA,.wline,.formss{zoom:1;}
-.lineA:after,.wline:after,.formss:after{content:'\20';display:block;clear:both;}
+.lineA,.wline,.formss,.row{zoom:1;}
+.lineA:after,.wline:after,.formss:after,.row:after{content:'\20';display:block;clear:both;}
 .lineA,.lineA span{ margin:0 auto;  height:22px; vertical-align: middle; margin-top:5px;}
 .width30{ width: 30px;}
 .fontRed{color:#ff0000; width:205px; padding-left: 30px; text-align: left; height:20px;}
 /* 输入框 */
 .ipt00,.ipt01,.ipt02,.ipt03,.ipt04{border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;color:#666;} 
-.ipt01,.ipt02,.ipt03,.ipt04{float:left;height:16px;padding-top:2px;} 
+.ipt01,.ipt02,.ipt03,.ipt04{float:left;height:20px;} 
 .ipt02{width: 19px;height:17px;padding-top:0; background:#fff;}
 /* 文字标签 */
 .txt01,.txt02,.txt04,.txt05{float:left;vertical-align: middle; line-height:20px; color:#383836;}
@@ -318,3 +318,48 @@ a.btn:hover{color:#333333;}
 #wFlash .lbl1{display:block;margin-bottom:8px;height:22px;line-height:22px;}
 #wFlash .thumb{float:left;border:1px solid #cbcbcb;padding:3px;}
 #wFlash .icons{margin-top:38px;}
+
+/* 碎片编辑器 */
+/* chipEditor */
+.chipEdt{width:490px;}
+.chipEdt .tabC{position:relative;}
+.chipEdt .row{text-align:left;margin-bottom:8px;}
+.chipEdt .rowTitle,.chipEdt .rowTxt,.chipEdt .rowImg,.chipEdt .rowChip{padding-top:5px;margin-top:5px;border-top:1px solid #d6d6d6;}
+.chipEdt .ui-widget-header{background:#eee;border:none;}
+.chipEdt .ui-tabs-nav li.last{float:right;margin-right:10px;}
+.chipEdt .ui-tabs-nav .ui-button{margin-right:0;background:#FF8400;}
+.chipEdt .ipt01{width:26px;}
+.chipEdt .ipt02{width:19px;}
+.chipEdt .elmTpl{max-height:500px;overflow:auto;}
+.chipEdt .elmTpl label,.chipEdt .chipTpl label{width:42px;text-align:center;line-height:20px;}
+.chipEdt .elmTpl input,.chipEdt .chipTpl input{width:245px;height:20px;border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;color:#666;}
+.chipEdt .elmTpl input.ipt01{width:26px;}
+.chipEdt .elmTpl input.ipt02{width:19px;}
+.chipEdt .icons{position:relative;width:120px;margin-left:8px;}
+.chipEdt .icons a{display:inline-block;border:1px solid #eee;text-decoration:none;}
+.chipEdt .icons span{display:block;font-weight:bold;font-size:0.9em;padding:0.2em 0.5em;}
+.chipEdt .color span{border-bottom:2px solid red;padding-bottom:0;}
+.chipEdt .icon{background:url("../images/pic01.jpg") no-repeat right center;}
+.chipEdt .others{position:absolute;top:20px;right:-20px;width:90px;border:1px solid #ccc;background:#F0F0EE;}
+.chipEdt .others li{display:inline;float:left;}
+.chipEdt .others a{font-size:0.9em;}
+.chipEdt .videoL:hover,.chipEdt .videoR:hover{background-position:0 -120px;background-repeat:repeat-x;border-left:1px solid #a3a3a3;border-right:1px solid #737373;}
+.chipEdt .icon span{padding-right:0.6em;}
+.chipEdt .icons1{width:34px;line-height:22px;}
+.chipEdt input.bb{font-weight:bold;}
+.chipEdt input.cc{color:red;}
+.chipEdt .selAuto{margin-left:8px;}
+.chipEdt .browse{margin-left:0px;}
+.chipEdt .chipTpl .browse{margin-left:8px;}
+.chipEdt .acts{margin-bottom:10px;}
+.chipEdt .hide{display:none;}
+.chipEdt textarea{width:100%;height:180px;}
+.chipEdt .uppic{position:absolute;display:none;top:10px;border:2px solid #eee;width:92%;z-index:20;background:#f4f4f4;text-align:left;padding:5px;}
+.chipEdt .upp_t{cursor:move;}
+.chipEdt .upp_m{margin:10px 0;} 
+.chipEdt .upp_m input{background:#fff;width:200px;}
+.chipEdt .flashTip,.jqmFlash .btnSort{display:none;}
+.chipEdt .elmImg{display:none;}
+/* 隐藏暂时不需要的按钮 */
+.chipEdt .btnVspCBTipAdd,.chipEdt .btnVspCBTipDel,.chipEdt .globalRes{display:none;}
+/* /chipEditor */

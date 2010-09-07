@@ -40,16 +40,6 @@ sohu.diyChipEditor = function() {
 		sohu.diyChipEditor.vdTplStr=opts.vdTplStr||'<a href="http://sohu.com" title=""><img src="http://images.sohu.com/uiue/vd.gif" alt="Video"/></a>';
 		p._dlgModel=$(".chipEdt");
 		p._$body=$("body");
-		/* 用户的回调函数 */
-		p.onUpPic=opts.onUpPic;
-		p.onTest=opts.onTest;
-		p.onSave=opts.onSave;
-		p.onCancel=opts.onCancel;
-		p.onGlobalRes=opts.onGlobalRes;
-		p.onExternal=opts.onExternal;
-		p.onFlashEdit=opts.onFlashEdit;
-		p.onLoadHis=opts.onLoadHis;
-		/* /用户的回调函数 */
 	};
     p.onLoaded = function() { 
 		p.initTinyMCE();
@@ -73,41 +63,37 @@ sohu.diyChipEditor = function() {
 		opts=$.extend({tabs:[0,1,2]},opts||{});
 		var dlg=null,$chip=$(chip),id=$chip.attr("id");
 		opts.isNew=false;
+		opts=$.extend({
+			dlgModel:p._dlgModel,
+			$body:p._$body,
+			$chip:$chip,				/* 碎片 */
+			$elm:opts.$elm,				/* 元素 */
+			onUpPic:opts.onUpPic,
+			onTest:opts.onTest,
+			onSave:opts.onSave,
+			onCancel:opts.onCancel,
+			onGlobalRes:opts.onGlobalRes,
+			onExternal:opts.onExternal,
+			onFlashEdit:opts.onFlashEdit,
+			onLoadHis:opts.onLoadHis								
+		},opts);		
 		if(!(dlg=p.editors[id])){
 			opts.isNew=true;
-			opts=$.extend({
-				dlgModel:p._dlgModel,
-				$body:p._$body,
-				$chip:$chip,				/* 碎片 */
-				$elm:opts.$elm,				/* 元素 */
-				onUpPic:p.onUpPic,
-				onTest:p.onTest,
-				onSave:p.onSave,
-				onCancel:p.onCancel,
-				onGlobalRes:p.onGlobalRes,
-				onExternal:p.onExternal,
-				onFlashEdit:p.onFlashEdit,
-				onLoadHis:p.onLoadHis								
-			},opts);
 			dlg=new sohu.diyChipEditor.Dialog(opts);
 			p.editors[id]=dlg;
 			
 		};
 		//dlg.Show(opts);
-		dlg.Edit(opts.$elm,{tabs:opts.tabs});
+		dlg.Edit(opts.$elm,opts);
 	};
 	pub.MCE=function(){
 		return tinymce.activeEditor;
 	};
 	pub.StopNav=p.stopNav;
-	pub.$RowTxtA=$("#elmATpl .rowTxt");
-	pub.$RowTitleA=$("#elmATpl .rowTitle");
-	pub.$RowTxtA0=$("#elmATpl .rowTxt0");
-	pub.$RowTitleA0=$("#elmATpl .rowTitle0");		
-	pub.$RowLnkA=$("#elmATpl .rowLnk");
-	pub.$RowImg=$("#elmImgTpl .rowImg");
-	pub.$RowALT=$("#elmImgTpl .rowALT");
-	pub.$RowLnkImg=$("#elmImgTpl .rowLnk");
+	pub.$ElmChipTpl=$("#elmChipTpl");
+	pub.$ElmATpl=$("#elmATpl");
+	pub.$ElmImgTpl=$("#elmImgTpl");
+	pub.$ElmTxtTpl=$("#elmTxtTpl");
     return pub;
 } ();
 /**
@@ -141,6 +127,7 @@ sohu.diyChipEditor.Dialog=function(opts){
 	//DOM引用
 	this.$Layout=opts.dlgModel.clone().appendTo(opts.$body);
 	this.$CmdItems=this.$Layout.find(".cmdicon");
+	this.$ElmcActs=this.$Layout.find(".elmcActs");
 	//初始化文本命令菜单
 	new sohu.diyMenuBar({$cmdItems:this.$CmdItems,onDel:function(){
 		_this.Hide();
@@ -155,56 +142,51 @@ sohu.diyChipEditor.Dialog=function(opts){
 	*/
 	this.$btnCode=this.$Layout.find(".external");//.globalRes,
 	this.$ElmTpl=this.$Layout.find(".elmTpl");
+	this.$ChipTpl=this.$Layout.find(".chipTpl");
 	
 	//事件处理
 	this.$Backup=this.$Chip.clone(true);
+	
+	//背景图设置
+	this.$ChipTpl.find(".chipBG").change(function(evt){
+		if(this.value==""){
+			_this.$Chip.css("background-image","none");
+			return;
+		};
+		_this.$Chip.css("background-image","url('"+this.value+"')");
+	});
+	this.$ChipTpl.find(".chipBGAlign").change(function(evt){
+		_this.$Chip.css("background-repeat",this.value);
+	});
+	this.$ChipTpl.find(".btnUpl").click(function(evt){
+		if(_this.onUpChipBG){
+			_this.onUpChipBG(_this);
+		};
+		return false;
+	});
+	//是否栏目标题
+	if(this.$Chip.is(".sec_hd")){
+		this.$ChipTpl.show();
+	};
 
 	//整体测试
-	this.$Layout.find(".test").click(function(evt){
-		if(opts.onTest){
-			opts.onTest(_this);
-		};
-		return false;
-	});
+	this.$BtnTest=this.$Layout.find(".test");
 	//保存碎片
-	this.$Layout.find(".save").click(function(evt){
-		if(opts.onSave){
-			opts.onSave(_this);
-		};
-		return false;
-	});
+	this.$BtnSave=this.$Layout.find(".save");
 	//取消
-	this.$Layout.find(".cancel").click(function(evt){
+	this.$BtnCancel=this.$Layout.find(".cancel").click(function(evt){
 		var c=_this.$Backup.clone(true);
 		_this.$Chip.replaceWith(c);
 		_this.$Chip=c;
 		_this.$Layout.jqmHide();
-		if(opts.onCancel){
-			opts.onCancel(_this);
-		};
 		return false;
 	});
 	//统一资源库
-	this.$Layout.find(".globalRes").click(function(evt){
-		if(opts.onGlobalRes){
-			opts.onGlobalRes(_this);
-		};
-		return false;
-	});
+	this.$BtnGlobalRes=this.$Layout.find(".globalRes");
 	//外包
-	this.$Layout.find(".external").click(function(evt){
-		if(opts.onExternal){
-			opts.onExternal(_this);
-		};
-		return false;
-	});
+	this.$BtnExternal=this.$Layout.find(".external");
 	//flash编辑
-	this.$Layout.find(".btnFlashEdit").click(function(evt){
-		if(opts.onFlashEdit){
-			opts.onFlashEdit(_this);
-		};
-		return false;
-	});
+	this.$BtnFlashEdit=this.$Layout.find(".btnFlashEdit");
 	//tab菜单
 	var tabID="tab"+StringUtils.RdStr(8);
 	this.$TabM=this.$Layout.find(".tabM").each(function(i,o){
@@ -242,11 +224,7 @@ sohu.diyChipEditor.Dialog=function(opts){
 	*/
 	//上传浮层
 	this.$UpPic=this.$CT.find(".uppic").draggable({handle:".upp_t",containment:'parent',axis:'y'});
-	this.$UpPic.find(".up").click(function(evt){
-		if(opts.onUpPic){
-			opts.onUpPic(_this);
-		};
-	});
+	this.$BtnUpPic=this.$UpPic.find(".up");
 	this.$UpPic.find(".cls").click(function(evt){
 		_this.$UpPic.slideUp("fast");
 	});
@@ -312,6 +290,25 @@ sohu.diyChipEditor.Dialog.prototype.Show=function(opts){
 	};
 	*/
 	
+	//各功能按钮的回调
+	if(opts.onSave){
+		this.$BtnSave.unbind("click.a").bind("click.a",function(evt){
+			opts.onSave(_this);
+			return false;
+		});
+	};
+	if(opts.onCancel){
+		this.$BtnCancel.unbind("click.a").bind("click.a",function(evt){
+			opts.onCancel(_this);
+			return false;
+		});
+	};	
+	if(opts.onUpPic){
+		this.$BtnUpPic.unbind("click.a").bind("click.a",function(evt){
+			opts.onUpPic(_this);
+			return false;
+		});
+	};
 	this.$Chip.addClass("on");
 		
 	this.$Layout.jqm(this.jqmOpts).jqmShow();
@@ -353,7 +350,7 @@ sohu.diyChipEditor.Dialog.prototype.ToggleSorting=function($i){
  */
 sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 	opts=opts||{};
-	var _t=0,_this=this;
+	var _this=this,_afterShow=opts.afterShow,_afterHide=opts.afterHide;
 	//改元素是否在编辑中
 	if($elm.hasClass("ing")) return;
 	
@@ -368,15 +365,16 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 	opts.afterShow=function(hash,dlg){	
 		//第一个tab
 		dlg.$ElmTpl.hide().empty();
+		
 		$elmList.each(function(i,o){
 			var $o=$(o);
 			var tpl=null;
 			if(o.nodeType!=1){
 				//文本
-				tpl=sohu.diyChipEditor.$RowTxtA.clone();
+				tpl=$(sohu.diyChipEditor.$ElmTxtTpl.html());
 				dlg.$ElmTpl.append(tpl);
 				var data={$obj:$o,$tpl:tpl};
-				tpl.find("input").val($o.text()).bind("keyup",function(evt){
+				tpl.find(".txt").val($o.text()).bind("keyup",function(evt){
 					var obj0=$(document.createTextNode(this.value));
 					data.$obj.replaceWith(obj0);
 					data.$obj=obj0;
@@ -390,31 +388,29 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 				var $img=$o.find("img");
 				if($img.length>0){
 					//图片链接
-					tpl=$([sohu.diyChipEditor.$RowImg.clone()[0],sohu.diyChipEditor.$RowALT.clone()[0],sohu.diyChipEditor.$RowLnkImg.clone()[0]]);
-					tpl.eq(0).find("input").val($img.attr("src"));
-					tpl.eq(1).find("input").val($img.attr("alt"));
-					tpl.eq(2).find("input").val($o.attr("href"));
+					tpl=$(sohu.diyChipEditor.$ElmImgTpl.html());
 					_this.$ElmTpl.append(tpl);
-					_this.BindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:_t,$img:$img});								
+					_this.BindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:1,$img:$img});								
 				}else{
-					tpl=$([sohu.diyChipEditor.$RowTitleA.clone()[0],sohu.diyChipEditor.$RowLnkA.clone()[0]]);
-					tpl.eq(0).find("input").val($o.html());//attr("title")
-					tpl.eq(1).find("input").val($o.attr("href"));
+					tpl=$(sohu.diyChipEditor.$ElmATpl.html());
 					dlg.$ElmTpl.append(tpl);
-					_this.BindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:_t});							
+					_this.BindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:0});							
 				};
 			};
 	
 		});
 		_this.$ElmTpl.show();
 		//第二个tab
-		sohu.diyChipEditor.MCE().setContent(dlg.$Chip.html());
-		dlg.$Code.val(sohu.diyChipEditor.MCE().getContent());
+		dlg.UpdateCode();
 		//上传按钮
 		dlg.$Layout.find(".btnUpl").click(function(evt){
 			dlg.$UpPic.show().effect("highlight");
 			return false;
 		});
+		
+		//afterShow用户回调
+		if(_afterShow)
+			_afterShow(hash,dlg);
 					
 	};//onShow
 	opts.afterHide=function(hash,dlg){
@@ -423,6 +419,10 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 			dlg.$Elm=null;			
 		};
 		dlg.$Chip.removeClass("on");
+		
+		//afterHide用户回调
+		if(_afterHide)
+			_afterHide(hash,dlg);
 	};//onHide
 	this.Show(opts);
 };
@@ -447,8 +447,7 @@ sohu.diyChipEditor.Dialog.prototype.Sort=function($i){
 	if(this.$Elm)
 		this.$Elm.removeClass('ing');
 	//更新代码textarea
-	sohu.diyChipEditor.MCE().setContent(this.$Chip.html());
-	this.$Code.val(sohu.diyChipEditor.MCE().getContent());
+	this.UpdateCode();
 };
 /**
  * 图标事件处理
@@ -469,46 +468,102 @@ sohu.diyChipEditor.Dialog.prototype.BindIconEvts=function($tpl,data){
 	$tpl.find(".bold").bind("click",function(evt){
 		_this.Bold(data);return false;
 	});
+	//下划线
+	$tpl.find(".udl").bind("click",function(evt){
+		_this.Underline(data);return false;
+	});
 	//颜色
 	$tpl.find(".color").bind("click",function(evt){
 		_this.Color(data);return false;
 	});
 	if(data.t==0){
 		//标题输入框
-		$tpl.eq(0).find("input").keyup(function(evt){
+		$tpl.find(".tt").val(data.$obj.html()).keyup(function(evt){
 			data.$obj.html(this.value);
 		}).focus(this.focusSelect);
 		//链接输入框
-		$tpl.eq(1).find("input").keyup(function(evt){
+		$tpl.find(".lnk").val(data.$obj.attr("href")).keyup(function(evt){
 			data.$obj.attr("href",this.value);
 		}).focus(this.focusSelect);
+		//链接打开方式
+		$tpl.find(".aTarget").val(data.$obj.attr("target")).change(function(evt){
+			data.$obj.attr("target",$(this).val());
+		});
 		//其他图标
-		$tpl.eq(0).find('.icon').click(function(evt){
+		$tpl.find('.icon').click(function(evt){
 			$(this).next().toggle();
 			return false;
 		});
-		$tpl.eq(0).find(".others").mouseleave(function(evt){$(this).hide();});
+		$tpl.find(".others").mouseleave(function(evt){$(this).hide();});
 		//视频前
-		$tpl.eq(0).find(".videoL").bind("click",function(evt){
+		$tpl.find(".videoL").bind("click",function(evt){
 			_this.InsertVDIcon({$obj:data.$obj,before:true});return false;
 		});
 		//视频后
-		$tpl.eq(0).find(".videoR").bind("click",function(evt){
+		$tpl.find(".videoR").bind("click",function(evt){
 			_this.InsertVDIcon({$obj:data.$obj,before:false});return false;
 		});			
 	}else{
 		//图片地址输入框
-		$tpl.eq(0).find("input").change(function(evt){
+		$tpl.find(".imgSrc").val(data.$img.attr("src")).change(function(evt){
 			data.$img.attr("src",this.value);
 		}).focus(this.focusSelect);
 		//ALT输入框
-		$tpl.eq(1).find("input").change(function(evt){
+		$tpl.find(".imgAlt").val(data.$img.attr("alt")).change(function(evt){
 			data.$img.attr("alt",this.value);
 		}).focus(this.focusSelect);
 		//链接输入框
-		$tpl.eq(2).find("input").change(function(evt){
+		$tpl.find(".imgLnk").val(data.$obj.attr("href")).change(function(evt){
 			data.$obj.attr("href",this.value);
 		}).focus(this.focusSelect);
+		//链接打开方式
+		$tpl.find(".imgTarget").val(data.$obj.attr("target")).change(function(evt){
+			data.$obj.attr("target",$(this).val());
+		});		
+		//Title
+		$tpl.find(".imgTitle").val(data.$img.attr("title")).change(function(evt){
+			data.$img.attr("title",this.value);
+		});
+		//宽
+		$tpl.find(".imgW").val(data.$img.width()).change(function(evt){
+			if(this.value==""){
+				data.$img.removeAttr("width");
+				return;
+			};	
+			if(!StringUtils.isPlusInt(this.value)){
+				$(this).addClass("alert");
+				return;
+			};
+			$(this).removeClass("alert");
+			data.$img.attr("width",this.value);
+		});
+		//高
+		$tpl.find(".imgH").val(data.$img.height()).change(function(evt){
+			if(this.value==""){
+				data.$img.removeAttr("height");
+				return;
+			};	
+			if(!StringUtils.isPlusInt(this.value)){
+				$(this).addClass("alert");
+				return;
+			};
+			$(this).removeClass("alert");
+			data.$img.attr("height",this.value);
+		});
+		//边框色
+		$tpl.find(".imgBColor").css("background",data.$img.css("border-color")).click(function(evt){
+			var $i=$(this);
+			sohu.diyDialog.showColorPicker({
+				onSubmit:function(c){
+					$i.css("background",c);
+					data.$img.css("border-color",c);
+				},
+				onChange:function(c){
+					$i.css("background",c);
+					data.$img.css("border-color",c);					
+				}
+			});
+		});		
 	};
 
 };
@@ -534,6 +589,18 @@ sohu.diyChipEditor.Dialog.prototype.Bold=function(data){
 	}else{
 		data.$obj.addClass(this._opts.clBold).css("font-weight","bold");
 		data.$tpl.eq(0).find("input").addClass(this._opts.clBold);
+	};
+};
+/**
+ * 加下划线
+ * @param {Object} data
+ */
+sohu.diyChipEditor.Dialog.prototype.Underline=function(data){
+	if(!data.$obj) return false;
+	if (data.$obj.css("text-decoration") == "underline") {
+		data.$obj.css("text-decoration", "none");
+	}else {
+		data.$obj.css("text-decoration", "underline");
 	};
 };
 /**
@@ -603,4 +670,11 @@ sohu.diyChipEditor.Dialog.prototype.InsertVDIcon=function(data){
 		data.$obj.after(a);
 	};
 	return false;
+};
+/**
+ * 同步当前碎片的Html到代码编辑文本框
+ */
+sohu.diyChipEditor.Dialog.prototype.UpdateCode=function(){
+	sohu.diyChipEditor.MCE().setContent(this.$Chip.html());
+	this.$Code.val(sohu.diyChipEditor.MCE().getContent());
 };

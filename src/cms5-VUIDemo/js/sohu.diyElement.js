@@ -63,7 +63,17 @@ sohu.diyElement=function(opts){
 		_this.$Layout.click(function(evt){
 			sohu.diyChipEditor.Show(_this.$Context,{
 				tabs:[0],
-				$elm:_this.$Layout
+				$elm:_this.$Layout,
+				onSave:function(dlg){
+					dlg.Hide();
+				},
+				afterShow:function(hash,dlg){
+					if(_this.Copyable){
+						dlg.$ElmcActs.show();
+					}else{
+						dlg.$ElmcActs.hide();
+					};
+				}
 			});
 			return false;
 		});
