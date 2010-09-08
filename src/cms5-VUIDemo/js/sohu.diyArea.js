@@ -202,22 +202,19 @@ sohu.diyArea.prototype.Dim=function(){
  */
 sohu.diyArea.prototype.UnbindEvts=function(){
 	var objs=this.$Layout.find("."+this.__p.opts.clElm);
-	//如果横切有元素，则通过元素的evtUnbindEvt事件冒泡来移除事件
+	//如果横切有元素
 	if(objs.length>0){
-		objs.trigger("evtUnbindEvt.edit");
-		return;
+		objs.trigger("evtUnbindEvt");
 	};
-	//如果有内容，则通过内容的evtUnbindEvt事件冒泡来移除事件
+	//如果有内容
 	objs=this.$Layout.find("."+this.__p.opts.clContent);
 	if(objs.length>0){
-		objs.trigger("evtUnbindEvt.edit");
-		return;
+		objs.trigger("evtUnbindEvt");
 	};
 	//如果只有分栏
 	objs=this.$Layout.find("."+this.__p.opts.clSec);
 	if(objs.length>0){
-		objs.trigger("evtUnbindEvt.edit");
-		return;
+		objs.trigger("evtUnbindEvt");
 	};
 	//啥也没有...	
 };
@@ -226,21 +223,18 @@ sohu.diyArea.prototype.UnbindEvts=function(){
  */
 sohu.diyArea.prototype.BindEvts=function(){
 	var objs=this.$Layout.find("."+this.__p.opts.clElm);
-	//如果有元素，则通过元素的evtBindEvt事件冒泡来移除事件
+	//如果有元素
 	if(objs.length>0){
 		objs.trigger("evtBindEvt");
-		return;
 	};
-	//如果有内容，则通过内容的evtUnbindEvt事件冒泡来移除事件
+	//如果有内容
 	objs=this.$Layout.find("."+this.__p.opts.clContent);
 	if(objs.length>0){
 		objs.trigger("evtBindEvt");
-		return;
 	};
 	//如果只有分栏
 	objs=this.$Layout.find("."+this.__p.opts.clSec);
 	if(objs.length>0){
 		objs.trigger("evtBindEvt");
-		return;
 	};
 };

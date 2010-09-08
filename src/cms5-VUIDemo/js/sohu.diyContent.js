@@ -185,7 +185,7 @@ sohu.diyContent.prototype.UnbindEvts=function(){
 sohu.diyContent.prototype.BindEvts=function(){
 	var p={},_this=this;
 	p.mouseEnter=function(evt){
-		_this.$Layout.addClass(opts.clOn);
+		_this.$Layout.addClass(_this.__p.opts.clOn);
 		_this.Editor.CurCT=_this;
 		sohu.diyConsole.CurCT=_this;
 		//ÍÏ×§ÖúÊÖÊÂ¼þ
@@ -219,8 +219,8 @@ sohu.diyContent.prototype.BindEvts=function(){
 	};
 	p.mouseLeave=function(evt){
 		if(_this.Editor.CurArea.IsEditing) return false;
-		_this.$Layout.removeClass(opts.clOn);
-		//sohu.diyConsole.Dragger.handle.remove();
+		_this.$Layout.removeClass(_this.__p.opts.clOn);
+		sohu.diyConsole.Dragger.handle.hide();
 		sohu.diyConsole.CurCT=null;
 	};
 	
@@ -230,9 +230,11 @@ sohu.diyContent.prototype.BindEvts=function(){
 	this.$Layout.unbind("evtBindEvt").bind("evtBindEvt",function(e){
 		_this.BindEvts();
 		//_this.$Layout.find("."+_this.__p.opts.clElm).trigger("evtBindEvt");
+		return false;//Í£Ö¹Ã°ÅÝ
 	});
-	this.$Layout.bind("evtUnBindEvt.edit",function(e){
+	this.$Layout.bind("evtUnbindEvt.edit",function(e){
 		_this.UnbindEvts();
+		return false;//Í£Ö¹Ã°ÅÝ
 	});
 };
 /*¾²Ì¬·½·¨*/

@@ -185,6 +185,8 @@ sohu.diyConsole=function(opts){
 		sohu.diyChipEditor.Init({singleton:true});
 		//on page loaded
 		$(document).ready(p.onLoaded);
+		//自定义事件
+		$(_this).bind("evtPreview",function(e){});
 	};
 	this.__p=p;
 	//Init
@@ -398,6 +400,8 @@ sohu.diyConsole.Preview=function(flag){
 		sohu.diyConsole.IsPreview=true;
 		//隐藏横切工具条
 		bos.$Layout.hide();
+		//触发自定义事件evtPreview以便通知订阅者
+		$(bos).trigger("evtPreview");
 	};
 	
 	if(!sohu.diyConsole.CurArea) return;

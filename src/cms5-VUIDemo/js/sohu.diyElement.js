@@ -71,20 +71,6 @@ sohu.diyElement=function(opts){
 	this.BindEvts();
 };
 /**
- * 关闭元素的编辑状态
- * @param {Object} ignoreCbk
- */
-sohu.diyElement.prototype.HideEditor=function(ignoreCbk){
-	/*
-	if(this.InlineEditable){
-		this.IFEdit("off",ignoreCbk);
-	}else{
-		this.CT.InlineEdit("off");
-	}
-	*/
-	sohu.diyConsole.CurElm=null;
-};
-/**
  * 移除可视化编辑时的事件
  */
 sohu.diyElement.prototype.UnbindEvts=function(){
@@ -103,17 +89,15 @@ sohu.diyElement.prototype.BindEvts=function(){
 	this.$Layout.bind("mouseleave.edit",function(evt){
 		_this.$Layout.removeClass(_this.__p.opts.clOn);
 	});
-	
-	this.$Layout.bind("mousedown.edit",function(evt){
+	this.$Layout.bind("click.edit",function(evt){
+		if(_this.IsEditing) return false;
 		if (sohu.diyConsole.CurElm) {
-			sohu.diyConsole.CurElm.HideEditor(true);
+			sohu.diyConsole.CurElm.IsEditing=false;
 			sohu.diyDialog.Hide(true);
 			//sohu.diyDialog.Hide();
-		};	
+		};
 		sohu.diyConsole.CurElm=_this;
-		return false;
-	});
-	this.$Layout.bind("click.edit",function(evt){
+		//显示碎片编辑器		
 		sohu.diyChipEditor.Show(_this.$Context,{
 			tabs:[0],
 			$elm:_this.$Layout,
@@ -132,7 +116,6 @@ sohu.diyElement.prototype.BindEvts=function(){
 			},
 			afterHide:function(hash,dlg){
 				_this.CT.InlineEdit("off");
-				_this.IsEditing=false;
 			}
 		});
 		return false;
@@ -142,9 +125,11 @@ sohu.diyElement.prototype.BindEvts=function(){
 	//自定义事件
 	this.$Layout.unbind("evtBindEvt").bind("evtBindEvt",function(e){
 		_this.BindEvts();
+		return false;//停止冒泡
 	});
 	this.$Layout.bind("evtUnbindEvt.edit",function(e){
 		_this.UnbindEvts();
+		return false;//停止冒泡
 	});	
 };
 /**

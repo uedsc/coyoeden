@@ -352,9 +352,11 @@ sohu.diySection.prototype.BindEvts=function(){
 			o.$Layout.trigger("evtBindEvt");
 		});
 		*/
+		return false;//Í£Ö¹Ã°ÅÝ
 	});
 	this.$Layout.bind("evtUnbindEvt.edit",function(e){
 		_this.UnbindEvts();
+		return false;//Í£Ö¹Ã°ÅÝ
 	});
 };
 /*¾²Ì¬·½·¨*/

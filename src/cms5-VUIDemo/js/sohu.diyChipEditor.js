@@ -57,12 +57,12 @@ sohu.diyChipEditor = function() {
     };
 	/**
 	 * 显示碎片编辑器
-	 * @param {Object} chip 碎片的dom对象
+	 * @param {Object} $chip 碎片的dom对象
 	 * @param {Object} opts 其他选项
 	 */
-	pub.Show=function(chip,opts){
+	pub.Show=function($chip,opts){
 		opts=$.extend({tabs:[0,1,2]},opts||{});
-		var dlg=null,$chip=$(chip),id=p._singleton?"solo":$chip.attr("id");
+		var dlg=null,id=p._singleton?"solo":$chip.attr("id");
 		opts.isNew=false;
 		opts=$.extend({
 			dlgModel:p._dlgModel,
@@ -267,6 +267,10 @@ sohu.diyChipEditor.Dialog=function(opts){
 	this.$Layout.draggable({handle:".hd",containment:'window'});
 	//margin-left
 	this.$Layout.css("margin-left",-(this.$Layout.width()/2));
+	//订阅diyConsole的evtPreview事件
+	if(bos){
+		$(bos).bind("evtPreview",function(e){_this.Hide();});
+	};
 }; 
 sohu.diyChipEditor.Dialog.prototype.Show=function(opts){
 	var _this=this;
@@ -307,12 +311,6 @@ sohu.diyChipEditor.Dialog.prototype.Show=function(opts){
 			opts.onUpPic(_this);
 			return false;
 		});
-	};
-	//是否栏目标题
-	if(this.$Chip.is(".sec_hd")){
-		this.$ChipTpl.show();
-	}else{
-		this.$ChipTpl.hide();
 	};
 	
 	this.$Chip.addClass("on");
@@ -364,9 +362,16 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 	//更新引用的当前元素
 	this.Elm=opts.elm;
 	this.$Elm=$elm;
+	this.$Chip=opts.$chip;
 
 	opts.afterShow=function(hash,dlg){	
 		//第一个tab
+		//是否栏目标题
+		if(_this.$Chip.is(".sec_hd")){
+			_this.$ChipTpl.show();
+		}else{
+			_this.$ChipTpl.hide();
+		};		
 		dlg.$ElmTpl.hide().empty();
 		
 		$elmList.each(function(i,o){
