@@ -1026,26 +1026,33 @@ sohu.diyDialog.wSetting1=function(dlg){
 	this.IsOpen=true;
 	//事件处理
 	p.onTheme=function(evt){
+		if(sohu.diyConsole.IsPreview) return false;
 		if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsEditing) return false;
 		sohu.diyDialog.Show("wTheme");
 	};
 	p.onPagePro=function(evt){
+		if(sohu.diyConsole.IsPreview) return false;
 		if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsEditing) return false;
 		sohu.diyDialog.Show("wPagePro");
 	};
 	p.onPageBG=function(evt){
 		//if(!sohu.diyConsole.CurArea){alert("未选中任何横切!");return false;};
+		if(sohu.diyConsole.IsPreview) return false;
 		if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsEditing) return false;
 		sohu.diyDialog.Show("cfgPage");
 	};	
 	p.onPreview=function(evt){
 		var $b=$("body");
-		if ($b.hasClass("preview")) {
+		if (sohu.diyConsole.IsPreview) {
 			$(this).find("strong").html("预览");
 			$b.removeClass("preview");
+			sohu.diyConsole.UnPreview();
 		}else{
-			$b.addClass("preview");
-			$(this).find("strong").html("关闭预览");
+			sohu.diyConsole.Preview(true);
+			if(sohu.diyConsole.IsPreview){
+				$b.addClass("preview");
+				$(this).find("strong").html("关闭预览");				
+			};	
 		};
 			
 		if((!sohu.diyConsole.CurArea)||(!sohu.diyConsole.CurArea.IsEditing))

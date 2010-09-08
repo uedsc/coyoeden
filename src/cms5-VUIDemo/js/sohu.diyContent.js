@@ -32,48 +32,7 @@ sohu.diyContent=function(opts){
 	/* Load elements */
 	this.LoadElements();
 	
-	p.mouseEnter=function(evt){
-		_this.$Layout.addClass(opts.clOn);
-		_this.Editor.CurCT=_this;
-		sohu.diyConsole.CurCT=_this;
-		//拖拽助手事件
-		sohu.diyConsole.Dragger.handle.show().appendTo(_this.$Layout);	
-			
-		sohu.diyConsole.Dragger.handle
-		.unbind()
-		.bind("mousedown",function(evt){
-			sohu.diyConsole.Dragger.ing=true;
-			sohu.diyConsole.Dragger.obj=_this;
-			_this.Sec.Deactive();	
-		}).bind("mouseup",function(evt){
-			sohu.diyConsole.Dragger.ing=false;
-		});
-		
-		if(_this.IsFlash){
-			var d=_this.Dim();
-			sohu.diyConsole.$FlashHolder.css({
-				top:d.y-1+17,
-				left:d.x-1,
-				height:d.h-17,
-				width:d.w,
-				opacity:0.5,
-				display:'block'
-			}).unbind("click").bind("click",function(evt){
-				_this.InlineEdit("on");
-				sohu.diyConsole.CurCT=_this;
-				_this.EditFlash();
-			});
-		};
-	};
-	p.mouseLeave=function(evt){
-		if(_this.Editor.CurArea.IsEditing) return false;
-		_this.$Layout.removeClass(opts.clOn);
-		//sohu.diyConsole.Dragger.handle.remove();
-		sohu.diyConsole.CurCT=null;
-	};
-	
-	//内容的鼠标事件
-	this.$Layout.mouseenter(p.mouseEnter).mouseleave(p.mouseLeave);
+	this.BindEvts();
 	//是否flash
 	this.IsFlash=this.$Layout.flash;
 	//TODO:如果是现有的flash怎么处理?需要修改sohu.diy.js，让它可以构建一个sohu.diyTp.Flash实体而不调用write方法
@@ -131,14 +90,14 @@ sohu.diyContent.prototype.EditFlash=function(){
  */
 sohu.diyContent.prototype.InlineEdit=function(state){
 	if(state=="on"){
-		this.Sec.InlineEditing=true;
 		this.Sec.Active();
+		this.Sec.InlineEditing=true;
 		sohu.diyConsole.EditingSec=this.Sec;
 		sohu.diyConsole.EditingCT=this;
 	}else{
-		this.Sec.InlineEditing=false;
 		this.Sec.Deactive();
-		this.$Layout.trigger("mouseleave");
+		this.Sec.InlineEditing=false;
+		//this.$Layout.trigger("mouseleave");
 		sohu.diyConsole.EditingSec=null;
 		sohu.diyConsole.EditingCT=null;
 	}
@@ -209,6 +168,71 @@ sohu.diyContent.prototype.LoadElements=function(){
 			$dom:$(o),
 			ct:_this
 		});
+	});
+};
+/**
+ * 移除可视化编辑注册的事件
+ */
+sohu.diyContent.prototype.UnbindEvts=function(){
+	//移除内容事件
+	this.$Layout.unbind(".edit");
+	//移除元素事件
+	//this.$Layout.find("."+this.__p.opts.clElm).trigger("evtUnbindEvt");
+};
+/**
+ * 绑定可视化编辑的事件
+ */
+sohu.diyContent.prototype.BindEvts=function(){
+	var p={},_this=this;
+	p.mouseEnter=function(evt){
+		_this.$Layout.addClass(opts.clOn);
+		_this.Editor.CurCT=_this;
+		sohu.diyConsole.CurCT=_this;
+		//拖拽助手事件
+		sohu.diyConsole.Dragger.handle.show().appendTo(_this.$Layout);	
+			
+		sohu.diyConsole.Dragger.handle
+		.unbind()
+		.bind("mousedown",function(evt){
+			sohu.diyConsole.Dragger.ing=true;
+			sohu.diyConsole.Dragger.obj=_this;
+			_this.Sec.Deactive();	
+		}).bind("mouseup",function(evt){
+			sohu.diyConsole.Dragger.ing=false;
+		});
+		
+		if(_this.IsFlash){
+			var d=_this.Dim();
+			sohu.diyConsole.$FlashHolder.css({
+				top:d.y-1+17,
+				left:d.x-1,
+				height:d.h-17,
+				width:d.w,
+				opacity:0.5,
+				display:'block'
+			}).unbind("click").bind("click",function(evt){
+				_this.InlineEdit("on");
+				sohu.diyConsole.CurCT=_this;
+				_this.EditFlash();
+			});
+		};
+	};
+	p.mouseLeave=function(evt){
+		if(_this.Editor.CurArea.IsEditing) return false;
+		_this.$Layout.removeClass(opts.clOn);
+		//sohu.diyConsole.Dragger.handle.remove();
+		sohu.diyConsole.CurCT=null;
+	};
+	
+	//内容的鼠标事件
+	this.$Layout.bind("mouseenter.edit",p.mouseEnter).bind("mouseleave.edit",p.mouseLeave);
+	//自定义事件
+	this.$Layout.unbind("evtBindEvt").bind("evtBindEvt",function(e){
+		_this.BindEvts();
+		//_this.$Layout.find("."+_this.__p.opts.clElm).trigger("evtBindEvt");
+	});
+	this.$Layout.bind("evtUnBindEvt.edit",function(e){
+		_this.UnbindEvts();
 	});
 };
 /*静态方法*/

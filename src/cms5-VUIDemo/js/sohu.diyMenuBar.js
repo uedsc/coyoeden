@@ -72,7 +72,7 @@ sohu.diyMenuBar=function(opts){
 			new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$dom});
 		}else{
 			//Çå³ýÔªËØµÄid
-			$dom.find(".elm").attr("id","").css("visibility","visible");
+			$dom.find(".elm").removeAttr("id");
 			sohu.diyConsole.CurElm.$CopyModel.after($dom);
 			//apply diyElement features
 			$dom.find(".elm").each(function(i,o){

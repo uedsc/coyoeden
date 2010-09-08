@@ -8,7 +8,7 @@
 sohu.diyArea=function(opts){
 ///<summary>横切对象</summary>
 	//属性
-	opts=$.extend({},{clArea:"area",clActive:"area_active",clEmpty:"area_empty",isNew:true,clSec:"sec",clHelper:"areaTip",clContent:"ct"},opts);
+	opts=$.extend({},{clArea:"area",clActive:"area_active",clEmpty:"area_empty",isNew:true,clSec:"sec",clElm:"elm",clHelper:"areaTip",clContent:"ct"},opts);
 	var _this=this;
 	this.TemplateID=null;//横切模板id
 	this.Console=opts.console;
@@ -195,5 +195,52 @@ sohu.diyArea.prototype.Dim=function(){
 		y:this.$Layout.offset().top,
 		w:this.$Layout.width(),
 		h:this.$Layout.height()
+	};
+};
+/**
+ * 移除可视化编辑注册的事件
+ */
+sohu.diyArea.prototype.UnbindEvts=function(){
+	var objs=this.$Layout.find("."+this.__p.opts.clElm);
+	//如果横切有元素，则通过元素的evtUnbindEvt事件冒泡来移除事件
+	if(objs.length>0){
+		objs.trigger("evtUnbindEvt.edit");
+		return;
+	};
+	//如果有内容，则通过内容的evtUnbindEvt事件冒泡来移除事件
+	objs=this.$Layout.find("."+this.__p.opts.clContent);
+	if(objs.length>0){
+		objs.trigger("evtUnbindEvt.edit");
+		return;
+	};
+	//如果只有分栏
+	objs=this.$Layout.find("."+this.__p.opts.clSec);
+	if(objs.length>0){
+		objs.trigger("evtUnbindEvt.edit");
+		return;
+	};
+	//啥也没有...	
+};
+/**
+ * 绑定编辑器事件
+ */
+sohu.diyArea.prototype.BindEvts=function(){
+	var objs=this.$Layout.find("."+this.__p.opts.clElm);
+	//如果有元素，则通过元素的evtBindEvt事件冒泡来移除事件
+	if(objs.length>0){
+		objs.trigger("evtBindEvt");
+		return;
+	};
+	//如果有内容，则通过内容的evtUnbindEvt事件冒泡来移除事件
+	objs=this.$Layout.find("."+this.__p.opts.clContent);
+	if(objs.length>0){
+		objs.trigger("evtBindEvt");
+		return;
+	};
+	//如果只有分栏
+	objs=this.$Layout.find("."+this.__p.opts.clSec);
+	if(objs.length>0){
+		objs.trigger("evtBindEvt");
+		return;
 	};
 };

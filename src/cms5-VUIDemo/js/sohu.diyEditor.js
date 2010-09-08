@@ -40,7 +40,7 @@ sohu.diyEditor=function(opts){
 	
 	//persist the editor dom
 	//this.$Layout.attr("id",this.CurSec.ID+"_t").hide().appendTo(this.CurArea.$Layout);
-	_this.$Toolbar.isNew=true;
+	this.$Toolbar.isNew=true;
 };
 /**
  * 弹出添加分栏选择框

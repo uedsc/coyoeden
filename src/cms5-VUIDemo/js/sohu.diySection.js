@@ -29,26 +29,8 @@ sohu.diySection = function(opts) {
 	this.CurArea=opts.curArea;				/* 当前分栏所在的横切。调用LoadCurArea方法时更新该属性 */
 	this.Editor=sohu.diyConsole.SecEditor;
 	this.PSec=opts.pSec||null;							/* parent section */
-
-	var p={};
-	p.mouseOver=function(evt){
-		if(_this.HasSub()) return false;
-		_this.Active();
-		//return false;
-	};
-	p.mouseOut=function(evt){
-		_this.Deactive();
-		return false;
-	};
-
-	//鼠标事件-！！停止冒泡事件
-	this.$Layout.attr("id",this.ID).mouseenter(p.mouseOver);//.mouseleave(p.mouseOut);
-	//获取当前分栏的内容
-	this.LoadContents();
-	//获取当前横切
-	//this.LoadCurArea();
 	//排序事件处理
-	this.$Layout.sortable({
+	this.$Layout.attr("id",this.ID).sortable({
 		items:">.ct",
 		connectWith:".sec",
 		placeholder:"ui-hl",
@@ -59,15 +41,16 @@ sohu.diySection = function(opts) {
 			_this.Contents.push(sohu.diyConsole.Dragger.obj);
 		}
 	});
-	/*  */
-	//自定义事件
-	this.$Layout.bind("evtActive",function(e){
-		_this.Active();
-		return false;//停止冒泡
-	});
+	this.BindEvts();
+	//获取当前分栏的内容
+	this.LoadContents();
+	//获取当前横切
+	//this.LoadCurArea();
+
 }; 
 /**
  * 激活分栏
+ * @param {Boolean} editing 是否分栏处于编辑内容状态
  */
 sohu.diySection.prototype.Active=function(){
 	if(sohu.diyConsole.CurSec&&(sohu.diyConsole.CurSec.IsAddingContent||sohu.diyConsole.CurSec.InlineEditing)) return;
@@ -85,12 +68,14 @@ sohu.diySection.prototype.Active=function(){
 	sohu.diyConsole.CurSec=this;
 	//Show the toolbar
 	this.Editor.Show();
+	return this;
 };
 sohu.diySection.prototype.Deactive=function(){
 	if((!this.IsActive)||this.IsAddingContent||this.InlineEditing) return;/* 正在编辑内容 */
 	this.Editor.Hide();
 	this.IsActive=false;
 	this.$Layout.removeClass(this.__p.opts.clSecOn);
+	return this;
 };
 /**
  * 添加子分栏
@@ -323,6 +308,55 @@ sohu.diySection.prototype.Overlay=function(mode){
 		this.$Holder.attr("style","");
 	};
 };
+/**
+ * 移除可视化编辑时注册的事件
+ */
+sohu.diySection.prototype.UnbindEvts=function(){
+	//移除自身事件
+	this.$Layout.unbind(".edit").sortable("disable");
+	//移除内容的事件-evtUnbindEvt事件会因为diyElement对象的冒泡自动触发
+	/*
+	$(this.Contents).each(function(i,o){
+		o.UnbindEvts();
+	});
+	*/
+};
+/**
+ * 绑定可视化编辑的事件
+ */
+sohu.diySection.prototype.BindEvts=function(){
+	var _this=this;
+	var p={};
+	p.mouseOver=function(evt){
+		if(_this.HasSub()) return false;
+		_this.Active();
+		//return false;
+	};
+	p.mouseOut=function(evt){
+		_this.Deactive();
+		return false;
+	};
+
+	//鼠标事件-！！停止冒泡事件
+	this.$Layout.bind("mouseenter.edit",p.mouseOver);//.mouseleave(p.mouseOut);
+	this.$Layout.sortable("enable");
+	//自定义事件
+	this.$Layout.bind("evtActive.edit",function(e){
+		_this.Active();
+		return false;//停止冒泡
+	});
+	this.$Layout.unbind("evtBindEvt").bind("evtBindEvt",function(e){
+		_this.BindEvts();
+		/*
+		$(_this.Contents).each(function(i,o){
+			o.$Layout.trigger("evtBindEvt");
+		});
+		*/
+	});
+	this.$Layout.bind("evtUnbindEvt.edit",function(e){
+		_this.UnbindEvts();
+	});
+};
 /*静态方法*/
 /**
  * 从现有的dom元素新建一个diySection对象
@@ -331,4 +365,3 @@ sohu.diySection.prototype.Overlay=function(mode){
 sohu.diySection.New=function(opts){
 	return new sohu.diySection(opts);
 };
-

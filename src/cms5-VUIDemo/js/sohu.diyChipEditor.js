@@ -40,6 +40,7 @@ sohu.diyChipEditor = function() {
 		sohu.diyChipEditor.vdTplStr=opts.vdTplStr||'<a href="http://sohu.com" title=""><img src="http://images.sohu.com/uiue/vd.gif" alt="Video"/></a>';
 		p._dlgModel=$(".chipEdt");
 		p._$body=$("body");
+		p._singleton=opts.singleton||false;/* 采用单件模式显示碎片编辑器 */
 	};
     p.onLoaded = function() { 
 		p.initTinyMCE();
@@ -61,13 +62,14 @@ sohu.diyChipEditor = function() {
 	 */
 	pub.Show=function(chip,opts){
 		opts=$.extend({tabs:[0,1,2]},opts||{});
-		var dlg=null,$chip=$(chip),id=$chip.attr("id");
+		var dlg=null,$chip=$(chip),id=p._singleton?"solo":$chip.attr("id");
 		opts.isNew=false;
 		opts=$.extend({
 			dlgModel:p._dlgModel,
 			$body:p._$body,
 			$chip:$chip,				/* 碎片 */
 			$elm:opts.$elm,				/* 元素 */
+			elm:opts.elm,				/* sohu.diyElement对象 */
 			onUpPic:opts.onUpPic,
 			onTest:opts.onTest,
 			onSave:opts.onSave,
@@ -121,6 +123,7 @@ sohu.diyChipEditor.Dialog=function(opts){
 	this.Sorting=false;
 	this._opts=opts;
 	this.$Elm=opts.$elm;//当前元素
+	this.Elm=opts.elm;//当前元素对应的sohu.diyElement对象
 	this.$Chip=opts.$chip;//当前碎片
 	this.SortElm=null;//当前排序元素
 	
@@ -164,10 +167,6 @@ sohu.diyChipEditor.Dialog=function(opts){
 		};
 		return false;
 	});
-	//是否栏目标题
-	if(this.$Chip.is(".sec_hd")){
-		this.$ChipTpl.show();
-	};
 
 	//整体测试
 	this.$BtnTest=this.$Layout.find(".test");
@@ -309,8 +308,15 @@ sohu.diyChipEditor.Dialog.prototype.Show=function(opts){
 			return false;
 		});
 	};
+	//是否栏目标题
+	if(this.$Chip.is(".sec_hd")){
+		this.$ChipTpl.show();
+	}else{
+		this.$ChipTpl.hide();
+	};
+	
 	this.$Chip.addClass("on");
-		
+	//显示弹框	
 	this.$Layout.jqm(this.jqmOpts).jqmShow();
 };
 sohu.diyChipEditor.Dialog.prototype.Hide=function(opts){
@@ -352,16 +358,13 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 	opts=opts||{};
 	var _this=this,_afterShow=opts.afterShow,_afterHide=opts.afterHide;
 	//改元素是否在编辑中
-	if($elm.hasClass("ing")) return;
-	
-	$elm.addClass("ing");
+	if(opts.elm.IsEditing) return;
 	
 	var $elmList=$elm.contents();
-	
-	if(this.$Elm) this.$Elm.removeClass("ing");
+	//更新引用的当前元素
+	this.Elm=opts.elm;
 	this.$Elm=$elm;
-	this.$Chip.addClass("on");
-	
+
 	opts.afterShow=function(hash,dlg){	
 		//第一个tab
 		dlg.$ElmTpl.hide().empty();
@@ -414,11 +417,8 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 					
 	};//onShow
 	opts.afterHide=function(hash,dlg){
-		if(dlg.$Elm){
-			dlg.$Elm.removeClass("ing");
-			dlg.$Elm=null;			
-		};
-		dlg.$Chip.removeClass("on");
+		dlg.Elm=null;
+		dlg.$Elm=null;
 		
 		//afterHide用户回调
 		if(_afterHide)
@@ -444,8 +444,7 @@ sohu.diyChipEditor.Dialog.prototype.Sort=function($i){
 	//结束本次操作
 	this.SortElm.removeClass("sort");
 	this.SortElm=null;
-	if(this.$Elm)
-		this.$Elm.removeClass('ing');
+
 	//更新代码textarea
 	this.UpdateCode();
 };
@@ -629,7 +628,7 @@ sohu.diyChipEditor.Dialog.prototype.AddElm=function(data){
 	data.$obj.after(a0).after(txt0);
 	a0.bind('click.noNav',sohu.diyChipEditor.StopNav);
 	
-	var tpl=sohu.diyChipEditor.$RowTxtA.clone();
+	var tpl=$(sohu.diyChipEditor.$ElmTxtTpl.html());
 	var data1={$obj:txt0,$tpl:tpl};
 	//文字输入框事件(闭包的应用)
 	tpl.find("input").val(" ").bind("keyup",function(evt){
@@ -641,15 +640,12 @@ sohu.diyChipEditor.Dialog.prototype.AddElm=function(data){
 		data1.$obj.remove();
 		tpl.remove();
 	});
-	var tpl1=$([sohu.diyChipEditor.$RowTitleA.clone()[0],sohu.diyChipEditor.$RowLnkA.clone()[0]]);
-	//输入框回填内容
-	tpl1.eq(0).find("input").val(a0.html());
-	tpl1.eq(1).find("input").val(a0.attr("href"));
+	var tpl1=$(sohu.diyChipEditor.$ElmATpl.html());
 	var data2={$obj:a0,$tpl:tpl1,t:0};
 	//图标事件处理
 	this.BindIconEvts(tpl1,data2);
 	
-	data.$tpl.eq(1).after(tpl1).after(tpl);
+	data.$tpl.filter(":last").after(tpl1).after(tpl);
 	return false;
 };
 sohu.diyChipEditor.Dialog.prototype.focusSelect=function(evt){

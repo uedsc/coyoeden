@@ -1,6 +1,6 @@
 /**
  * 可视化编辑元素
- * @dependency sohu.iframeEX,sohu.iEditable,jquery.cssEX,sohu.diyElementTool.js
+ * @dependency sohu.diyMenuBar.js,sohu.diyConsole.js
  * @author levin
  */
 sohu.diyElement=function(opts){
@@ -59,70 +59,16 @@ sohu.diyElement=function(opts){
 		}
 			
 	};
-	p.initEditable=function(){
-		_this.$Layout.click(function(evt){
-			sohu.diyChipEditor.Show(_this.$Context,{
-				tabs:[0],
-				$elm:_this.$Layout,
-				onSave:function(dlg){
-					dlg.Hide();
-				},
-				afterShow:function(hash,dlg){
-					if(_this.Copyable){
-						dlg.$ElmcActs.show();
-					}else{
-						dlg.$ElmcActs.hide();
-					};
-				}
-			});
-			return false;
-		});
-		/*
-		//img
-		if(_this.tagName=="img"){
-			_this.$Layout.click(function(evt){
-				sohu.diyDialog.Show("wImage");
-				_this.Overlay("on");
-				sohu.diyConsole.$EHolder.IsBusy=_this.IsEditing=true;
-				_this.CT.InlineEdit("on");
-			});
-			return;
-		};
-		*/
-		
-	};
 	/* /private member variables */
 	
 	p.Init=function(){
 		p.detectType();
-		p.initEditable();
 	};
 	
 	//初始化
 	p.Init();
 	
-	//鼠标事件
-	this.$Layout.mouseenter(function(evt){
-		_this.$Layout.addClass(opts.clOn);
-	});
-	this.$Layout.mouseleave(function(evt){
-		_this.$Layout.removeClass(opts.clOn);
-	});
-	
-	this.$Layout.mousedown(function(evt){
-		if (sohu.diyConsole.CurElm) {
-			sohu.diyConsole.CurElm.HideEditor(true);
-			sohu.diyDialog.Hide(true);
-			//sohu.diyDialog.Hide();
-		};	
-		sohu.diyConsole.CurElm=_this;
-		return false;
-	});
-	//屏蔽超链接
-	this.$Context.find("a").css("cursor","text").click(function(evt){
-		evt.preventDefault();
-		return true;
-	});
+	this.BindEvts();
 };
 /**
  * 关闭元素的编辑状态
@@ -137,6 +83,69 @@ sohu.diyElement.prototype.HideEditor=function(ignoreCbk){
 	}
 	*/
 	sohu.diyConsole.CurElm=null;
+};
+/**
+ * 移除可视化编辑时的事件
+ */
+sohu.diyElement.prototype.UnbindEvts=function(){
+	this.$Layout.unbind(".edit");
+	this.$Context.find("a").unbind("click.noNav");
+};
+/**
+ * 绑定可视化编辑时的事件
+ */
+sohu.diyElement.prototype.BindEvts=function(){
+	var _this=this;
+	//鼠标事件
+	this.$Layout.bind("mouseenter.edit",function(evt){
+		_this.$Layout.addClass(_this.__p.opts.clOn);
+	});
+	this.$Layout.bind("mouseleave.edit",function(evt){
+		_this.$Layout.removeClass(_this.__p.opts.clOn);
+	});
+	
+	this.$Layout.bind("mousedown.edit",function(evt){
+		if (sohu.diyConsole.CurElm) {
+			sohu.diyConsole.CurElm.HideEditor(true);
+			sohu.diyDialog.Hide(true);
+			//sohu.diyDialog.Hide();
+		};	
+		sohu.diyConsole.CurElm=_this;
+		return false;
+	});
+	this.$Layout.bind("click.edit",function(evt){
+		sohu.diyChipEditor.Show(_this.$Context,{
+			tabs:[0],
+			$elm:_this.$Layout,
+			elm:_this,
+			onSave:function(dlg){
+				dlg.Hide();
+			},
+			afterShow:function(hash,dlg){
+				_this.CT.InlineEdit("on");
+				_this.IsEditing=true;
+				if(_this.Copyable){
+					dlg.$ElmcActs.show();
+				}else{
+					dlg.$ElmcActs.hide();
+				};
+			},
+			afterHide:function(hash,dlg){
+				_this.CT.InlineEdit("off");
+				_this.IsEditing=false;
+			}
+		});
+		return false;
+	});	
+	//屏蔽超链接
+	this.$Context.find("a").bind("click.noNav",sohu.diyConsole.OnStopNav);
+	//自定义事件
+	this.$Layout.unbind("evtBindEvt").bind("evtBindEvt",function(e){
+		_this.BindEvts();
+	});
+	this.$Layout.bind("evtUnbindEvt.edit",function(e){
+		_this.UnbindEvts();
+	});	
 };
 /**
  * dimension info of the element

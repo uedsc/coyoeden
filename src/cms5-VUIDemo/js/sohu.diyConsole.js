@@ -71,6 +71,7 @@ sohu.diyConsole=function(opts){
 		var b=p.getWorkspaceBoundary();
 		
 		if(evt.pageX<b.lbleft||evt.pageX>b.ubleft||evt.pageY>b.ubtop){//||evt.pageY<lbtop
+			/*
 			//反激活横切
 			sohu.diyConsole.CurArea.Deactive();
 			//反激活分栏
@@ -79,6 +80,7 @@ sohu.diyConsole=function(opts){
 				
 			//移除拖拽助手和内容蒙层
 			sohu.diyConsole.Dragger.handle.hide();	
+			*/
 		};
 	};
 	p.onBodyClick=function(evt){
@@ -88,7 +90,16 @@ sohu.diyConsole=function(opts){
 		var b=p.getWorkspaceBoundary();
 		if(evt.pageX<b.lbleft||evt.pageX>b.ubleft||evt.pageY>b.ubtop){//||evt.pageY<lbtop
 			//sohu.diyDialog.Hide(true);
-			//sohu.diyConsole.Preview();			
+			//sohu.diyConsole.Preview();
+			//反激活横切
+			if(sohu.diyConsole.CurArea)
+				sohu.diyConsole.CurArea.Deactive();
+			//反激活分栏
+			if(sohu.diyConsole.CurSec)
+				sohu.diyConsole.CurSec.Deactive();
+				
+			//移除拖拽助手和内容蒙层
+			sohu.diyConsole.Dragger.handle.hide();				
 		};
 		return false;
 	};
@@ -146,6 +157,7 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});	
 		sohu.diyConsole.$AreaHolder=$("#areaHolder");
 		sohu.diyConsole.$FlashHolder=$("#flashHolder").mouseleave(function(evt){$(this).hide();});
+		sohu.diyConsole.IsPreview=false;
 		//加载现有的焦点图flash
 		p.loadFlash();
 		//已有横切
@@ -170,7 +182,7 @@ sohu.diyConsole=function(opts){
 		//弹框组件
 		sohu.diyDialog.Init({console:_this,cssDragCTM:'window',onInit:sohu.diyDialog.onInit});
 		//碎片编辑组件
-		sohu.diyChipEditor.Init({});
+		sohu.diyChipEditor.Init({singleton:true});
 		//on page loaded
 		$(document).ready(p.onLoaded);
 	};
@@ -378,7 +390,16 @@ sohu.diyConsole.IsValidID=function(str){
 /**
  * 预览-退出编辑状态
  */
-sohu.diyConsole.Preview=function(){
+sohu.diyConsole.Preview=function(flag){
+	if(flag&&bos&&bos.Areas&&bos.Areas.length>0){
+		$(bos.Areas).each(function(i,o){
+			o.UnbindEvts();
+		});
+		sohu.diyConsole.IsPreview=true;
+		//隐藏横切工具条
+		bos.$Layout.hide();
+	};
+	
 	if(!sohu.diyConsole.CurArea) return;
 	/*
 	if(!sohu.diyConsole.CurArea.IsActive) return;
@@ -397,6 +418,20 @@ sohu.diyConsole.Preview=function(){
 	//反激活分栏
 	if(sohu.diyConsole.CurSec)
 		sohu.diyConsole.CurSec.Deactive();
+	
+};
+/**
+ * 加载编辑状态
+ */
+sohu.diyConsole.UnPreview=function(){
+	if(bos&&bos.Areas&&bos.Areas.length>0){
+		$(bos.Areas).each(function(i,o){
+			o.BindEvts();
+		});
+		//显示横切工具条
+		bos.$Layout.show();	
+		sohu.diyConsole.IsPreview=false;	
+	};	
 };
 /**
  * 元素选择快照
@@ -416,4 +451,12 @@ sohu.diyConsole.ParseBGImg=function(img){
 	img=img=="none"?"":img;
 	img=img.replace('url("',"").replace('")',"");
 	return img;
+};
+/**
+ * Stop the default navigation behavior of the A tag.
+ * @param {Object} evt
+ */
+sohu.diyConsole.OnStopNav=function(evt){
+	evt.preventDefault();
+	return true;
 };
