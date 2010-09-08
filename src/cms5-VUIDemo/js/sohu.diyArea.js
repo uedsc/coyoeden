@@ -112,7 +112,7 @@ sohu.diyArea.prototype.UpdateID=function(newID){
 		return true;
 	});
 	if (!isOk) {
-		alert("编号" + newID + "已经被占用！");
+		sohu.diyDialog.doAlert({text:"编号" + newID + "已经被占用！"});
 		return false;
 	};
 	
@@ -129,7 +129,8 @@ sohu.diyArea.prototype.Move=function(isUp){
 	var sibling=isUp?this.$Layout.prev():this.$Layout.next();
 	var tip0=isUp? "不能再往上移动了...":"不能再往下移动了...";
 	if (sibling.size() == 0) {
-		alert(tip0);return false;
+		sohu.diyDialog.doAlert({text:tip0});
+		return false;
 	};	
 	if(isUp){sibling.before(this.$Layout);}else{sibling.after(this.$Layout);};
 	return false;	

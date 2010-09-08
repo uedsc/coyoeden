@@ -99,6 +99,7 @@ sohu.diyMenuBar=function(opts){
 		sohu.diyConsole.CurElm.Move(evt.data.up);
 	};
 	
+	
 	//图标的事件绑定
 	p.$cmdItems=opts.$cmdItems||$(".cmdicon");
 	p.yourDaddy=function(evt){

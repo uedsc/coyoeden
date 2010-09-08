@@ -8,14 +8,6 @@ sohu.diyChipEditor = function() {
     var p={},pub={};
 	p.editors={};
 	/* 事件处理 */	
-	/**
-	 * 禁用a标签的默认导航行为
-	 * @param {Object} evt
-	 */
-	p.stopNav=function(evt){
-		evt.preventDefault();
-		return true;		
-	};
 	p.initTinyMCE=function(){
 		/*这种异步加载tiny_mce.js的方式在ie下有问题，需要移到chipEditor.js外面。否则需要用原生的tinymce.init方法。
 		p._$mce=$("#tinymce1").tinymce({
@@ -38,6 +30,7 @@ sohu.diyChipEditor = function() {
 		p._cssColor=opts.cssColor||'cc';
 		sohu.diyChipEditor.aTplStr=opts.aTplStr||'<a href="http://sohu.com" title="">sohu</a>';
 		sohu.diyChipEditor.vdTplStr=opts.vdTplStr||'<a href="http://sohu.com" title=""><img src="http://images.sohu.com/uiue/vd.gif" alt="Video"/></a>';
+		sohu.diyChipEditor.moreStr=opts.moreStr||'<strong class="elm more"><a href="#">更多&gt;&gt;</a></strong>';
 		p._dlgModel=$(".chipEdt");
 		p._$body=$("body");
 		p._singleton=opts.singleton||false;/* 采用单件模式显示碎片编辑器 */
@@ -48,7 +41,7 @@ sohu.diyChipEditor = function() {
     p.initEvents = function(opts) {
         $(document).ready(p.onLoaded);
 		//$(".acts a,button").button();
-		p._dlgModel.find("a").not(".cmdicon").bind('click.noNav',p.stopNav);
+		p._dlgModel.find("a").not(".cmdicon").bind('click.noNav',sohu.diyConsole.OnStopNav);
     };
     //public area
     pub.Init = function(opts) {
@@ -91,7 +84,6 @@ sohu.diyChipEditor = function() {
 	pub.MCE=function(){
 		return tinymce.activeEditor;
 	};
-	pub.StopNav=p.stopNav;
 	pub.$ElmChipTpl=$("#elmChipTpl");
 	pub.$ElmATpl=$("#elmATpl");
 	pub.$ElmImgTpl=$("#elmImgTpl");
@@ -131,6 +123,9 @@ sohu.diyChipEditor.Dialog=function(opts){
 	this.$Layout=opts.dlgModel.clone().appendTo(opts.$body);
 	this.$CmdItems=this.$Layout.find(".cmdicon");
 	this.$ElmcActs=this.$Layout.find(".elmcActs");
+	this.$ElmTpl=this.$Layout.find(".elmTpl");
+	this.$ChipTpl=this.$Layout.find(".chipTpl");
+	this.$SecHDActs=this.$Layout.find(".secHDActs");
 	//初始化文本命令菜单
 	new sohu.diyMenuBar({$cmdItems:this.$CmdItems,onDel:function(){
 		_this.Hide();
@@ -144,12 +139,21 @@ sohu.diyChipEditor.Dialog=function(opts){
 	});
 	*/
 	this.$btnCode=this.$Layout.find(".external");//.globalRes,
-	this.$ElmTpl=this.$Layout.find(".elmTpl");
-	this.$ChipTpl=this.$Layout.find(".chipTpl");
 	
 	//事件处理
 	this.$Backup=this.$Chip.clone(true);
-	
+	//更多按钮
+	this.$CbxSecHDMore=this.$SecHDActs.find(".secHDMore").click(function(evt){
+		if(this.checked){
+			if(sohu.diyConsole.CurElm.CT.$Layout.find(".more").length==0){
+				var $more=$(sohu.diyChipEditor.moreStr);
+				sohu.diyConsole.CurElm.CT.$Layout.append($more);
+				new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$more});
+			};
+		}else{
+			sohu.diyConsole.CurElm.CT.$Layout.find(".more").remove();
+		};
+	});
 	//背景图设置
 	this.$ChipTpl.find(".chipBG").change(function(evt){
 		if(this.value==""){
@@ -330,10 +334,10 @@ sohu.diyChipEditor.Dialog.prototype.ToggleSorting=function($i){
 		this.$CT.tabs("option","selected",0);
 		
 		this.Sorting=false;
-		//绑定click.edit事件
-		this.$Chip.find("a").unbind("click.sort").bind("click.edit",function(evt){
-			_this.Edit($(this));
-		});
+		/*
+		//移除click.sort事件
+		this.$Chip.find("a").unbind("click.sort");
+		*/
 		//重置"可视化修改"和"代码修改"(由于元素发生了变化)
 		this.$ElmA.empty().html(this._opts.lblTab0);
 		this.$ElmImg.empty().html(this._opts.lblTab0);
@@ -342,10 +346,12 @@ sohu.diyChipEditor.Dialog.prototype.ToggleSorting=function($i){
 		$i.addClass("btnSort1").find("span").html(this._opts.lblSort1);
 		this.$CT.tabs("option","disabled",[0,1,2]);
 		this.Sorting=true;
-		//移除碎片a标签的click.edit事件处理
-		this.$Chip.find("a").unbind("click.edit").bind("click.sort",function(evt){
+		/*
+		//绑定a标签的click.sort事件处理
+		this.$Chip.find("a").bind("click.sort",function(evt){
 			_this.Sort($(this));
 		});
+		*/
 	};
 };
 /**
@@ -369,8 +375,11 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 		//是否栏目标题
 		if(_this.$Chip.is(".sec_hd")){
 			_this.$ChipTpl.show();
+			_this.$SecHDActs.show();
+			_this.$CbxSecHDMore[0].checked=(_this.$Chip.find(".more").length>0);
 		}else{
 			_this.$ChipTpl.hide();
+			_this.$SecHDActs.hide();
 		};		
 		dlg.$ElmTpl.hide().empty();
 		
@@ -421,10 +430,9 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 			_afterShow(hash,dlg);
 					
 	};//onShow
-	opts.afterHide=function(hash,dlg){
+	opts.afterHide=function(hash,dlg){		
 		dlg.Elm=null;
 		dlg.$Elm=null;
-		
 		//afterHide用户回调
 		if(_afterHide)
 			_afterHide(hash,dlg);
@@ -631,7 +639,7 @@ sohu.diyChipEditor.Dialog.prototype.AddElm=function(data){
 	var txt0=$(document.createTextNode(" "));
 	var a0=$(sohu.diyChipEditor.aTplStr);
 	data.$obj.after(a0).after(txt0);
-	a0.bind('click.noNav',sohu.diyChipEditor.StopNav);
+	a0.bind('click.noNav',sohu.diyConsole.OnStopNav);
 	
 	var tpl=$(sohu.diyChipEditor.$ElmTxtTpl.html());
 	var data1={$obj:txt0,$tpl:tpl};
@@ -662,9 +670,7 @@ sohu.diyChipEditor.Dialog.prototype.focusSelect=function(evt){
  */
 sohu.diyChipEditor.Dialog.prototype.InsertVDIcon=function(data){
 	var _this=this;
-	var a=$(sohu.diyChipEditor.vdTplStr).bind("click.noNav",sohu.diyChipEditor.StopNav).bind('click.edit',function(evt){
-		_this.Edit($(this));
-	});
+	var a=$(sohu.diyChipEditor.vdTplStr).bind("click.noNav",sohu.diyConsole.OnStopNav);
 	if(data.before){
 		data.$obj.before(a);
 	}else{

@@ -69,6 +69,12 @@ sohu.diyElement=function(opts){
 	p.Init();
 	
 	this.BindEvts();
+	//监听diyConsole对象的evtPreview事件
+	if(bos){
+		$(bos).bind("evtPreview",function(e){
+			_this.IsEditing=false;
+		});
+	};
 };
 /**
  * 移除可视化编辑时的事件
@@ -90,7 +96,7 @@ sohu.diyElement.prototype.BindEvts=function(){
 		_this.$Layout.removeClass(_this.__p.opts.clOn);
 	});
 	this.$Layout.bind("click.edit",function(evt){
-		if(_this.IsEditing) return false;
+		if(_this.IsEditing) return;// false;
 		if (sohu.diyConsole.CurElm) {
 			sohu.diyConsole.CurElm.IsEditing=false;
 			sohu.diyDialog.Hide(true);
@@ -115,13 +121,14 @@ sohu.diyElement.prototype.BindEvts=function(){
 				};
 			},
 			afterHide:function(hash,dlg){
+				_this.IsEditing=false;
 				_this.CT.InlineEdit("off");
 			}
 		});
-		return false;
+		//return false;
 	});	
 	//屏蔽超链接
-	this.$Context.find("a").bind("click.noNav",sohu.diyConsole.OnStopNav);
+	//this.$Context.find("a").bind("click.noNav",sohu.diyConsole.OnStopNav);
 	//自定义事件
 	this.$Layout.unbind("evtBindEvt").bind("evtBindEvt",function(e){
 		_this.BindEvts();

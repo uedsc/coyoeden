@@ -153,7 +153,7 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.$ScrollWrap=$("#scrollWrap");
 		sohu.diyConsole.$BodyBGA=$("#main .bodyBGA");
 		sohu.diyConsole.$BodyBGB=$("#main .bodyBGB");
-		sohu.diyConsole.$ifEditor=$("#ifEditor").iframeEX();	
+		//sohu.diyConsole.$ifEditor=$("#ifEditor").iframeEX();	
 		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});	
 		sohu.diyConsole.$AreaHolder=$("#areaHolder");
 		sohu.diyConsole.$FlashHolder=$("#flashHolder").mouseleave(function(evt){$(this).hide();});
@@ -413,10 +413,7 @@ sohu.diyConsole.Preview=function(flag){
 	//移除分栏编辑器
 	if(sohu.diyConsole.CurSec)
 		sohu.diyConsole.CurSec.Editor.Editing("off");
-	//强制移除内联编辑器
-	if(sohu.diyConsole.EditingSec!=null&&sohu.diyConsole.CurElm!=null){
-		sohu.diyConsole.CurElm.HideEditor(false);
-	};
+
 	//反激活横切
 	sohu.diyConsole.CurArea.Deactive();
 	//反激活分栏
@@ -461,6 +458,7 @@ sohu.diyConsole.ParseBGImg=function(img){
  * @param {Object} evt
  */
 sohu.diyConsole.OnStopNav=function(evt){
+	alert("onStopNav");
 	evt.preventDefault();
 	return true;
 };
