@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>搜狐网站</title>
+<link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
+<script type="text/javascript" src=" http://js.sohu.com/library/jquery1.4.2.js"></script> 
+</head>
+<body>
+
+<style type="text/css">
+/*视频新闻*/
+#FocusImage_1{position:relative}
+#FocusImage_1 img{position:absolute;top:10px;left:10px}
+#FocusImage_1 .transparence{width:290px;height:29px;left:10px;top:211px;position:absolute;background:#000}
+#FocusImage_1 h2{width:290px;height:29px;left:10px;top:211px;position:absolute;font:600 14px/28px '宋体';text-align:center;color:#fff}
+#FocusImage_1 .focusImageBg{width:310px;height:268px;position:absolute;top:0;left:0;background:url(images/MDC_Focus_bg01.gif)}
+#FocusImage_1 .link{position:absolute;top:10px;left:10px;width:290px;height:230px;cursor:pointer}
+#FocusImage_1 .tab{width:305px;height:23px;padding:5px 5px 0 0;position:absolute;bottom:0;left:0;text-align:right}
+#FocusImage_1 .tab span{cursor:pointer;width:16px;height:17px;margin-right:4px;display:inline-block;color:#fff;font:600 12px/17px '宋体';background:url(images/MDC_Focus_bg02.gif) no-repeat right;text-align:center}
+#FocusImage_1 .tab span.now{background:url(images/MDC_Focus_bg02.gif) no-repeat left;color:#006099}
+</style>
+
+<script type="text/javascript">
+var MDC_FocusImage=function(){
+	var FocusImage=arguments[0];
+	this.id=jQuery(FocusImage.id);	
+	this.type=FocusImage.type;
+	this.focusImageW=parseInt(FocusImage.focusImageW);
+	this.focusImageH=parseInt(FocusImage.focusImageH);
+	this.imgW=parseInt(FocusImage.imgW);
+	this.imgH=parseInt(FocusImage.imgH);
+	this.speed=parseInt(FocusImage.speed)||5000;
+	this.focusData=arguments;
+	this.autoPlay;
+};
+MDC_FocusImage.prototype={
+	/**
+		初始化(init):
+			1、根据类型创建焦点图框架;
+			2、并数据回填到结构中.
+	*/
+	init:function(){
+		var that=this;		
+		
+		//创建框架
+		that.id.css({"width":this.focusImageW,"height":this.focusImageH}).append(
+			jQuery("<div>",{
+				id:"FocusImage_"+this.type,
+				css:{
+					width:this.focusImageW,
+					height:this.focusImageH
+				}
+			}).append(
+				jQuery("<img>",{
+					css:{						
+						width:this.imgW,
+						height:this.imgH
+					}
+				})
+			).append(
+				jQuery("<div>",{
+					className:"transparence",
+					css:{						
+						opacity:.5
+					}
+				})
+			).append(
+				jQuery("<h2>")
+			).append(
+				jQuery("<div>",{
+					className:"focusImageBg"
+				})
+			).append(
+				jQuery("<div>",{
+					className:"link"
+				})
+			).append(
+				jQuery("<div>",{
+					className:"tab"
+				})			
+			)		
+		);
+		
+		//根据数据创建tab标签
+		for(var i=1;i<that.focusData.length;i++){
+			that.id.find(".tab").append(
+				jQuery("<span>",{
+					text:i
+				})
+			)
+		};
+				
+		//执行触发
+		this.spring();
+	},
+	/**
+		触发(spring):
+			1、tab切换事件的绑定;
+			2、计时器轮刷的实现.
+	*/
+	spring:function(){
+		var that=this,_tab=that.id.find(".tab span");
+		
+		//执行交互并轮刷
+		var gogo=function(i){
+			var _index=i||1;
+			that.alternation(_index);
+			that.autoPlay=setInterval(function(){
+				that.alternation(_index==that.focusData.length-1?_index=1:++_index);
+			},that.speed);
+		};
+		gogo();
+		
+		//给tab标签绑定Click事件,用于焦点图切换
+		_tab.each(function(i){
+			(function(i){
+				_tab.eq(i).click(function(){
+					if(jQuery(this)[0].className!="now"){
+						clearTimeout(that.autoPlay);
+						gogo(i+1)
+					}
+				})
+			})(i)
+		});
+		
+		//给焦点区绑定Click事件,用于弹出链接
+		this.id.find(".link").click(function(){
+			window.open(that.id.find("img:eq(0)").attr("link"));
+		})
+	},
+	/**
+		交互(alternation):
+			1、根据类型选择对应的过场动画;
+			2、数据切换的实现.
+	*/
+	alternation:function(i){
+		var that=this;
+		
+		//标签切换交互
+		that.id.find(".tab span.now").removeClass();
+		that.id.find(".tab span").eq(i-1).addClass("now");
+		
+		//回填大图路径及绑定链接路径,并给大图加渐显动画
+		that.id.find("img:eq(0)").attr({
+			"src":that.focusData[i][0],
+			"link":that.focusData[i][1]
+		}).css({
+			display:"block",
+			opacity:0
+		}).stop().animate({opacity:1},300);
+		
+		//数据回填
+		this.id.find("h2").html(that.focusData[i][2]);
+	}
+}
+</script>
+
+<br /><br />
+
+<h1>视频新闻 http://tv.sohu.com/news/</h1>
+<div id="MDC_FocusImage_1"></div>
+<script type="text/javascript">
+var MDC_FocusImage_1=new MDC_FocusImage({
+id:"#MDC_FocusImage_1",//#号开头的ID
+type:"1",//类型1=视频新闻
+focusImageW:"310",//焦点图宽
+focusImageH:"268",//焦点图高
+imgW:"290",//图片宽
+imgH:"230",//图片高
+speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
+},
+[	//数据1
+	"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg",
+	"http://pic.yule.sohu.com/group-222940.shtml",
+	"11《大周五影剧院》“戏说德纲”之一颗大枊树引发的惨案"
+],
+[	//数据2
+	"http://i1.itc.cn/20100714/62d_f2014f45_3dc0_4d95_ad1b_a29f3e708071_0.jpg",
+	"http://yule.sohu.com/s2010/6765/s273502153/index.shtml",
+	"22《大周五影剧院》“戏说德纲”之一颗大枊树引发的惨案"
+],
+[	//数据3
+	"http://i1.itc.cn/20100715/5e2_7b4a6f48_ae26_4c03_9a9b_9d9f2efeb94f_0.jpg",
+	"http://yule.sohu.com/20100715/n273517449.shtml",
+	"33《大周五影剧院》“戏说德纲”之一颗大枊树引发的惨案"
+]);
+MDC_FocusImage_1.init();
+</script>
+</body>
+</html>

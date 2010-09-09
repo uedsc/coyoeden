@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>焦点图设计器</title>
+		<link rel="stylesheet" type="text/css" href="http://css.sohu.com/upload/global1.3.css"></link> 
+		<link rel="stylesheet" type="text/css" href="css/style.css"></link> 
+		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
+		<script type="text/javascript" src="js/jquery.json-2.2.min.js"></script>
+		<script type="text/javascript" src="js/sohu.stringUtils.js"></script>
+		<script type="text/javascript" src="1/js/MDC_FocusImage_01.js"></script> 
+	</head>
+	<body>
+		<div id="topNav" class="area">
+			<div class="sec">
+				<label for="txtImgH">图高</label>
+				<input type="text" id="txtImgH"/>
+				<label for="txtImgW">图宽</label>
+				<input type="text" id="txtImgW"/>
+				<label for="txtSpeed">速度(ms)</label>
+				<input type="text" id="txtSpeed" value="5000"/>
+				<label for="ddlBtnPos">按钮位置</label>
+				<select id="ddlBtnPos">
+					<option value="1">左下</option>
+					<option value="2" selected="selected">右下</option>
+					<option value="3">左上</option>
+					<option value="4">右上</option>
+				</select>
+				<input class="cbx" type="checkbox" id="cbxShowTxt" checked="checked"/>
+				<label for="cbxShowTxt">显示文字</label>
+				<label for="txtColor">文字色</label>
+				<input type="text" id="txtColor" value="#333333"/>
+				<label for="txtBGColor">背景色</label>
+				<input type="text" id="txtBGColor" value="#dddddd"/>
+				<button id="btnGen">生成代码</button>
+			</div>			
+		</div>
+		<div id="contentA" class="area">
+			<div id="designer">
+				<div class="sec sec1">
+					<div class="entry">
+						<div class="clear">
+							<label>图片地址</label>	
+							<input type="text" class="imgSrc"/>
+							<button>上传</button>
+						</div>
+						<div class="clear">
+							<label>链接地址</label>
+							<input type="text" class="imgLnk"/>							
+						</div>
+						<div class="clear">
+							<label>标题文字</label>
+							<input type="text" class="imgTt"/>
+						</div>
+						<div class="clear">
+							<label>缩略图片</label>
+							<input type="text" class="imgSrc1"/>
+							<button>上传</button>
+						</div>
+						<div class="acts">
+							<a class="del" href="#"><img src="img/pic02.gif" alt=""/></a>
+							<a class="add" href="#"><img src="img/pic01.gif" alt=""/></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="preview_ovl"></div>
+			<div id="preview">
+				<div class="sec">
+					<h2>脚本代码</h2>
+					<textarea id="txtCode"></textarea>					
+					<div class="acts">
+						<a class="close" href="#">x</a>
+					</div>				
+				</div>
+			</div>			
+		</div>
+	</body>
+	<script type="text/javascript" src="js/MDC_FIDesign.js"></script>
+	<script type="text/javascript">
+	//<![CDATA[
+		MDC_FIDesign.Init({limit:6});
+	//]]>
+	</script>
+ 
+</html>
