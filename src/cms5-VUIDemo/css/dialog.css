@@ -22,14 +22,14 @@ a.btn:hover{color:#333333;}
 .width30{ width: 30px;}
 .fontRed{color:#ff0000; width:205px; padding-left: 30px; text-align: left; height:20px;}
 /* 输入框 */
-.ipt00,.ipt01,.ipt02,.ipt03,.ipt04{border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;color:#666;} 
-.ipt01,.ipt02,.ipt03,.ipt04{float:left;height:20px;} 
+.ipt00,.ipt01,.ipt02,.ipt03,.ipt04,.selAuto{border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;color:#666;} 
+.ipt01,.ipt02,.ipt03,.ipt04,.selAuto{float:left;height:20px;} 
 .ipt02{width: 19px;height:17px;padding-top:0; background:#fff;}
 /* 文字标签 */
 .txt01,.txt02,.txt04,.txt05{float:left;vertical-align: middle; line-height:20px; color:#383836;}
 .txt05{padding-left: 5px;color:#000;}
 /* 下拉框 */
-.selAuto{ float:left; width:62px;height:20px;font-size:12px; margin-left: 4px;}
+.selAuto{width:62px;font-size:12px; margin-left: 4px;}
 /* 分割线 */
 .bottom2line,.bottom3line{margin:0 auto;height:0px;border-bottom: 1px solid #fff;border-top: 1px solid #d6d6d6;}
 /* 按钮 */
