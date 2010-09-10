@@ -12,14 +12,18 @@
 	<body class="fi01">
 		<div id="topNav" class="area">
 			<div class="sec">
-				<label class="sp t02" for="txtH">高度</label>
-				<input class="sp t02" type="text" id="txtH" name="H" title="焦点图高度"/>
-				<label class="sp t02" for="txtW">宽度</label>
-				<input class="sp t02" type="text" id="txtW" name="W" title="焦点图宽度"/>
+				<label class="sp t02 t04" for="txtH">高度</label>
+				<input class="sp t02 t04" type="text" id="txtH" name="H" title="焦点图高度"/>
+				<label class="sp t02 t04" for="txtW">宽度</label>
+				<input class="sp t02 t04" type="text" id="txtW" name="W" title="焦点图宽度"/>
 				<label for="txtImgH">图高</label>
 				<input type="text" id="txtImgH" name="imgH"/>
 				<label for="txtImgW">图宽</label>
 				<input type="text" id="txtImgW" name="imgW"/>
+				<label class="sp t04" for="txtImgH1">小图高</label>
+				<input class="sp t04" type="text" id="txtImgH1" name="imgH1"/>
+				<label class="sp t04" for="txtImgW1">小图宽</label>
+				<input class="sp t04" type="text" id="txtImgW1" name="imgW1"/>				
 				<label for="txtSpeed">速度(ms)</label>
 				<input type="text" id="txtSpeed" value="5000" name="speed"/>
 				<label class="sp t01" for="ddlBtnPos">按钮位置</label>
@@ -47,6 +51,11 @@
 					<option value="4">音乐</option>
 					<option value="5">戏剧</option>
 				</select>
+				<label class="sp t04" for="ddlTypeFI04">类型</label>
+				<select class="sp t04" id="ddlTypeFI04" name="type">
+					<option value="1" selected="selected">综艺</option>
+					<option value="2">记录片</option>
+				</select>				
 				<button id="btnGen">生成代码</button>
 			</div>			
 		</div>
@@ -59,6 +68,11 @@
 							<input type="text" class="fld imgSrc" name="p"/>
 							<button>上传</button>
 						</div>
+						<div class="sp t04 clear">
+							<label>缩略图片</label>
+							<input type="text" class="fld imgSrc1" name="p1"/>
+							<button>上传</button>
+						</div>						
 						<div class="clear">
 							<label>链接地址</label>
 							<input type="text" class="fld imgLnk" name="l"/>							
@@ -67,15 +81,10 @@
 							<label>标题文字</label>
 							<input type="text" class="fld imgTt" name="t"/>
 						</div>
-						<div class="sp t03 clear">
+						<div class="sp t03 t04 clear">
 							<label>描述文字</label>
 							<textarea class="fld imgDesc" name="t1" rows="2" cols="10"></textarea>
 						</div>						
-						<div class="sp clear">
-							<label>缩略图片</label>
-							<input type="text" class="fld imgSrc1" name="p1"/>
-							<button>上传</button>
-						</div>
 						<div class="acts">
 							<a class="del" href="#"><img src="img/pic02.gif" alt=""/></a>
 							<a class="add" href="#"><img src="img/pic01.gif" alt=""/></a>
