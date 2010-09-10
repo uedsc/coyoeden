@@ -131,6 +131,7 @@ var MDC_FIDesign= function() {
 			type_02:$("#ddlTypeFI02"),	/* 第2种焦点图的类型 */
 			type_03:$("#ddlTypeFI03"),	/* 第3种焦点图的类型 */
 			type_04:$("#ddlTypeFI04"),	/* 第3种焦点图的类型 */
+			type_05:$("#ddlTypeFI05"),	/* 第3种焦点图的类型 */
 			_isValid:true,
 			_getData:function(){
 				var d={},o;
