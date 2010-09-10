@@ -18,6 +18,9 @@ var MDC_FIDesign= function() {
 	p.assertIsInt=function(doms){
 		var ok=true;
 		for(var i=0;i<doms.length;i++){
+			if(doms[i].is(":hidden"))
+				continue;
+
 			if(!StringUtils.isPlusInt(doms[i].val())){
 				ok=ok&&false;
 				doms[i].addClass("alert");
@@ -30,7 +33,7 @@ var MDC_FIDesign= function() {
 	};
 	p.assertIsUrl=function(doms){
 		var ok=true;
-		for(var i=0;i<doms.length;i++){
+		for(var i=0;i<doms.length;i++){				
 			if(!StringUtils.isUrl(doms.eq(i).val())){
 				ok=ok&&false;
 				doms.eq(i).addClass("alert");
@@ -58,11 +61,11 @@ var MDC_FIDesign= function() {
 		return r;
 	};
 	p.onValidate=function(){
-		p._fmCfg.isValid=true;
+		p._fmCfg._isValid=true;
 		//validate configuration data
-		var ok=p.assertIsInt([p._fmCfg.h,p._fmCfg.w,p._fmCfg.s]);
-		p._fmCfg.isValid=p._fmCfg.isValid&&ok;
-		if(!p._fmCfg.isValid) return false;
+		var ok=p.assertIsInt([p._fmCfg.h,p._fmCfg.w,p._fmCfg.s,p._fmCfg.h0,p._fmCfg.w0]);
+		p._fmCfg._isValid=p._fmCfg._isValid&&ok;
+		if(!p._fmCfg._isValid) return false;
 		//validate image data
 		var objs=$("#designer .imgSrc");
 		ok=p.assertIsUrl(objs);
@@ -74,7 +77,7 @@ var MDC_FIDesign= function() {
 		
 		//everything is ok
 		var retVal={
-			a:p._fmCfg.getData()
+			a:p._fmCfg._getData()
 		};
 		retVal.b=p.getEntryData();
 		return retVal;
@@ -101,11 +104,20 @@ var MDC_FIDesign= function() {
 		h0=h0>h1?h0:h1;
 		p._$previewOvl.show().css("height",h0+20);
 	};
+	p.onSelect=function(evt){
+		if(this.className=="on") return false;
+		p._$fiItems.removeClass("on");
+		$(this).addClass("on");
+		p._$body.removeClass().addClass(this.rel);
+		return false;
+	};
     //private area
     p.initVar = function(opts) { 
 		p._$entry=$("#contentA .entry");
 		p._limit=opts.limit||10;
 		p._fmCfg={
+			h0:$("#txtH"),
+			w0:$("#txtW"),
 			h:$("#txtImgH"),
 			w:$("#txtImgW"),
 			s:$("#txtSpeed"),
@@ -113,17 +125,23 @@ var MDC_FIDesign= function() {
 			cbxTxt:$("#cbxShowTxt"),
 			color:$("#txtColor"),
 			bgColor:$("#txtBGColor"),
-			isValid:true,
-			getData:function(){
-				return {
-					imgW:p._fmCfg.w.val(),
-					imgH:p._fmCfg.h.val(),
-					speed:p._fmCfg.s.val(),
-					place:p._fmCfg.ddlPos.val(),
-					text:p._fmCfg.cbxTxt[0].checked?"1":"0",
-					txtColor:p._fmCfg.color.val(),
-					bgColor:p._fmCfg.bgColor.val()
-				};
+			type_02:$("#ddlTypeFI02"),	/* 第2种焦点图的类型 */
+			_isValid:true,
+			_getData:function(){
+				var d={},o;
+				for(var c in p._fmCfg){
+					if((c.indexOf("_")==0)||p._fmCfg[c].is(":hidden"))
+						continue;
+						
+					o=p._fmCfg[c][0];
+					if(p._fmCfg[c].is(".cbx")){
+						d[o.name]=o.checked?"1":"0";
+					}else{
+						d[o.name]=p._fmCfg[c].val();
+					};
+				};	
+				
+				return d;
 			}
 		};
 		p._$previewOvl=$("#preview_ovl").css("opacity",0.6);
@@ -131,6 +149,15 @@ var MDC_FIDesign= function() {
 		p._$txtCode=$("#txtCode");
 		p._$btnGen=$("#btnGen");
 		p._$desiner=$("#designer");
+		
+		//焦点图列表
+		p._$fiItems=$("#fiList_ a");
+		//body
+		p._$body=$("body");
+		//左侧菜单
+		p._$fiList=$("#fiList");
+		//左侧菜单开关
+		p._$toggler=p._$fiList.find(".toggler");
 	};
     p.onLoaded = function() { };
     p.initEvents = function(opts) {
@@ -139,12 +166,30 @@ var MDC_FIDesign= function() {
 		p._$entry.find(".imgSrc,.imgLnk").change(function(evt){
 			p.onValidate();
 		});
+		//生成代码
 		p._$btnGen.click(p.onGen);
+		//代码框
 		p._$txtCode.click(function(evt){$(this).select();});
 		p._$preview.find(".close").click(function(evt){
 			p._$previewOvl.hide();
 			p._$preview.slideUp("fast");
+			return false;
 		});
+		//焦点图选择列表
+		p._$fiItems.click(p.onSelect);
+		
+		//左侧菜单关闭和打开
+		p._$toggler.find(".op").click(function(evt){
+			p._$toggler.addClass("open");
+			p._$fiList.animate({left:0},"slow");
+			return false;
+		});
+		p._$toggler.find(".cl").click(function(evt){
+			p._$toggler.removeClass("open");
+			p._$fiList.animate({left:-80},"slow");
+			return false;
+		});
+		
     };
     //public area
     pub.Init = function(opts) {

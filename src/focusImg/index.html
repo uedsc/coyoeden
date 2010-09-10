@@ -8,30 +8,37 @@
 		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
 		<script type="text/javascript" src="js/jquery.json-2.2.min.js"></script>
 		<script type="text/javascript" src="js/sohu.stringUtils.js"></script>
-		<script type="text/javascript" src="1/js/MDC_FocusImage_01.js"></script> 
 	</head>
-	<body>
+	<body class="fi01">
 		<div id="topNav" class="area">
 			<div class="sec">
+				<label class="sp t02" for="txtH">高度</label>
+				<input class="sp t02" type="text" id="txtH" name="H" title="焦点图高度"/>
+				<label class="sp t02" for="txtW">宽度</label>
+				<input class="sp t02" type="text" id="txtW" name="W" title="焦点图宽度"/>
 				<label for="txtImgH">图高</label>
-				<input type="text" id="txtImgH"/>
+				<input type="text" id="txtImgH" name="imgH"/>
 				<label for="txtImgW">图宽</label>
-				<input type="text" id="txtImgW"/>
+				<input type="text" id="txtImgW" name="imgW"/>
 				<label for="txtSpeed">速度(ms)</label>
-				<input type="text" id="txtSpeed" value="5000"/>
-				<label for="ddlBtnPos">按钮位置</label>
-				<select id="ddlBtnPos">
+				<input type="text" id="txtSpeed" value="5000" name="speed"/>
+				<label class="sp t01" for="ddlBtnPos">按钮位置</label>
+				<select class="sp t01" id="ddlBtnPos" name="place">
 					<option value="1">左下</option>
 					<option value="2" selected="selected">右下</option>
 					<option value="3">左上</option>
 					<option value="4">右上</option>
 				</select>
-				<input class="cbx" type="checkbox" id="cbxShowTxt" checked="checked"/>
-				<label for="cbxShowTxt">显示文字</label>
-				<label for="txtColor">文字色</label>
-				<input type="text" id="txtColor" value="#333333"/>
-				<label for="txtBGColor">背景色</label>
-				<input type="text" id="txtBGColor" value="#dddddd"/>
+				<input class="sp t01 cbx" type="checkbox" id="cbxShowTxt" name="text" checked="checked"/>
+				<label class="sp t01" for="cbxShowTxt">显示文字</label>
+				<label class="sp t01" for="txtColor">文字色</label>
+				<input class="sp t01" type="text" id="txtColor" name="txtColor" value="#333333"/>
+				<label class="sp t01" for="txtBGColor">背景色</label>
+				<input class="sp t01" type="text" id="txtBGColor" name="bgColor" value="#dddddd"/>
+				<label class="sp t02" for="ddlTypeFI02">类型</label>
+				<select class="sp t02" id="ddlTypeFI02" name="type">
+					<option value="1" selected="selected">视频新闻</option>
+				</select>
 				<button id="btnGen">生成代码</button>
 			</div>			
 		</div>
@@ -74,6 +81,20 @@
 					</div>				
 				</div>
 			</div>			
+		</div>
+		<div id="fiList">
+			<ul id="fiList_">
+				<li><a href="#" class="on" rel="fi01">焦点图1</a></li>
+				<li><a href="#"  rel="fi02">焦点图2</a></li>
+				<li><a href="#" rel="fi03">焦点图3</a></li>
+				<li><a href="#" rel="fi04">焦点图4</a></li>
+				<li><a href="#" rel="fi05">焦点图5</a></li>
+				<li><a href="#" rel="fi06">焦点图6</a></li>
+			</ul>
+			<div class="toggler open">
+				<a href="#" class="op" title="芝麻快开门">+</a>
+				<a href="#" class="cl" title="关门不打狗">-</a>
+			</div>
 		</div>
 	</body>
 	<script type="text/javascript" src="js/MDC_FIDesign.js"></script>

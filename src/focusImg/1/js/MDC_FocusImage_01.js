@@ -1,5 +1,6 @@
 var MDC_FocusImage=function(cfg,data){
-	this.id=jQuery(cfg.id);
+	this.$d=jQuery(cfg.id);						/* dom jquery对象 */
+	this.id=this.$d[0].id;						/* dom编号 */	
 	this.imgW=parseInt(cfg.imgW);
 	this.imgH=parseInt(cfg.imgH);
 	this.speed=parseInt(cfg.speed)||5000;
@@ -10,11 +11,12 @@ var MDC_FocusImage=function(cfg,data){
 	this.focusData=data;
 	this.autoPlay;
 	//私有属性-缓存dom对象
-	this._$tabC=null;		/* tab标签容器,init方法中生成 */
-	this._$tabs=null;		/* tab标签 */
-	this._$titleC=null;		/* 标题容器,init方法中生成 */
-	this._$img=null;		/* 图片对象 */
-	
+	this._$tabC=null;							/* tab标签容器,init方法中生成 */
+	this._$tabs=null;							/* tab标签 */
+	this._$titleC=null;							/* 标题容器,init方法中生成 */
+	this._$img=null;							/* 图片对象 */
+	//缓存数据
+	this.$d.data("apple",{a:cfg,b:data});
 	//init
 	this.init();
 };
@@ -26,10 +28,9 @@ MDC_FocusImage.prototype={
 	*/
 	init:function(){
 		var that=this;
-		
 		//创建框架
-		this.text==1?this.id.css({"height":parseInt(that.imgH)+20+"px"}):this.id.css({"height":that.imgH+"px"});
-		this.id.css({"width":that.imgW+"px","position":"relative","overflow":"hidden","cursor":"pointer"});
+		this.text==1?this.$d.css({"height":parseInt(that.imgH)+20+"px"}):this.$d.css({"height":that.imgH+"px"});
+		this.$d.css({"width":that.imgW+"px","position":"relative","overflow":"hidden","cursor":"pointer"});
 		var _imgBg,_place;
 		switch(that.place){
 			case "1":
@@ -52,7 +53,7 @@ MDC_FocusImage.prototype={
 		this._$tabC=jQuery('<div style="height:16px;display:inline;position:absolute;'+_place+'"></div>');
 		this._$titleC=jQuery("<div style='height:20px;width:100%;position:absolute;bottom:0;left:0;background:"+that.bgColor+";color:"+that.txtColor+";font:12px/20px \"宋体\"'></div>");
 		this._$img=jQuery('<img style="position:absolute;top:0;left:0;display:block;width:100%;height:'+that.imgH+'px" />');
-		this.id.append(this._$img).append(this._$tabC).append(this._$titleC);			
+		this.$d.append(this._$img).append(this._$tabC).append(this._$titleC);			
 
 		//是否显示文本
 		this.text==1?this._$titleC.show():this._$titleC.hide();
@@ -98,9 +99,9 @@ MDC_FocusImage.prototype={
 		});
 		
 		//给焦点区绑定Click事件,用于弹出链接
-		this.id.click(function(){
+		this.$d.click(function(){
 			window.open(that._$img.attr("link"));
-		})
+		});
 	},
 	/**
 		交互(alternation):
@@ -109,7 +110,7 @@ MDC_FocusImage.prototype={
 	*/
 	alternation:function(i){
 		//回填大图路径及绑定链接路径,并给大图加渐显动画
-		this.id.attr("href",this.focusData[i].l);
+		this.$d.attr("href",this.focusData[i].l);
 		this._$img.attr({"src":this.focusData[i].p,"link":this.focusData[i].l}).css({"opacity":0}).stop().animate({opacity:1},1000);
 		
 		//数据回填
