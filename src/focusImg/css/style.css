@@ -5,7 +5,7 @@ body.fi02 .t02{display:block;}
 body.fi03 .t03{display:block;}
 body.fi04 .t04{display:block;}
 /* color */
-input,select{border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;color:#666;}
+input,select,textarea{border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border-right:1px solid #E1E1E1; border-bottom:1px solid #E1E1E1;color:#666;}
 .area{background:#fff;text-align:left;}
 .alert{border-bottom:1px solid red;}
 #preview_ovl{background:#94CDFF;}
@@ -24,7 +24,7 @@ input,select{border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A3; border
 #contentA .entry{position:relative;background:#eee;margin:10 auto;padding:10px;margin-bottom:5px;width:700px;}
 #contentA .entry1{border-top:1px solid #999;}
 #contentA .entry label{float:left;width:60px;}
-#contentA .entry input{float:left;width:450px;}
+#contentA .entry .fld{float:left;width:500px;}
 #contentA .entry button{margin-left:10px;display:none;}
 #contentA .entry .clear{margin-bottom:10px;}
 #contentA .entry .acts{position:absolute;top:50%;right:10px;width:45px;margin-top:-20px;}

@@ -49,13 +49,11 @@ var MDC_FIDesign= function() {
 		var $o,d;
 		$("#designer .entry").each(function(i,o){
 			$o=$(o);
-			d={
-				p:$o.find(".imgSrc").val(),
-				l:$o.find(".imgLnk").val(),
-				t:$o.find(".imgTt").val(),
-				p1:$o.find(".imgSrc1").val()
-			};
-			d.p1=d.p1==""?d.p:d.p1;
+			d={};
+			$o.find(".fld").each(function(i1,o1){
+				if($(o1).is(":hidden")) return true;
+				d[o1.name]=o1.value;
+			});
 			r.push(d);
 		});
 		return r;
@@ -126,6 +124,7 @@ var MDC_FIDesign= function() {
 			color:$("#txtColor"),
 			bgColor:$("#txtBGColor"),
 			type_02:$("#ddlTypeFI02"),	/* 第2种焦点图的类型 */
+			type_03:$("#ddlTypeFI03"),	/* 第3种焦点图的类型 */
 			_isValid:true,
 			_getData:function(){
 				var d={},o;

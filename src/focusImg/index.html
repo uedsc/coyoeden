@@ -39,6 +39,14 @@
 				<select class="sp t02" id="ddlTypeFI02" name="type">
 					<option value="1" selected="selected">视频新闻</option>
 				</select>
+				<label class="sp t03" for="ddlTypeFI03">类型</label>
+				<select class="sp t03" id="ddlTypeFI03" name="type">
+					<option value="1" selected="selected">V首</option>
+					<option value="2">电影</option>
+					<option value="3">电视</option>
+					<option value="4">音乐</option>
+					<option value="5">戏剧</option>
+				</select>
 				<button id="btnGen">生成代码</button>
 			</div>			
 		</div>
@@ -48,20 +56,24 @@
 					<div class="entry">
 						<div class="clear">
 							<label>图片地址</label>	
-							<input type="text" class="imgSrc"/>
+							<input type="text" class="fld imgSrc" name="p"/>
 							<button>上传</button>
 						</div>
 						<div class="clear">
 							<label>链接地址</label>
-							<input type="text" class="imgLnk"/>							
+							<input type="text" class="fld imgLnk" name="l"/>							
 						</div>
 						<div class="clear">
 							<label>标题文字</label>
-							<input type="text" class="imgTt"/>
+							<input type="text" class="fld imgTt" name="t"/>
 						</div>
-						<div class="clear">
+						<div class="sp t03 clear">
+							<label>描述文字</label>
+							<textarea class="fld imgDesc" name="t1" rows="2" cols="10"></textarea>
+						</div>						
+						<div class="sp clear">
 							<label>缩略图片</label>
-							<input type="text" class="imgSrc1"/>
+							<input type="text" class="fld imgSrc1" name="p1"/>
 							<button>上传</button>
 						</div>
 						<div class="acts">
