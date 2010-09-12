@@ -10,13 +10,14 @@
 </head>
 <body>
 <br /><br /><br />
-<div id="MDC_FocusImage_1"></div>
+<button id="btnEdit">编辑</button>
+<div id="MDC_FocusImage_1" class="fi01"></div>
 <script type="text/javascript">
 var MDC_FocusImage_1=new MDC_FocusImage({
 id:"#MDC_FocusImage_1",//id
 imgW:"500",//图片宽
 imgH:"250",//图片高
-speed:"",//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
+speed:"5000",//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 place:"2",//按扭位置 1下左 2下右 3上左 4上右
 text:"1",//是否显示文字标签 1显示 0不显示
 txtColor:"#333",//文字色
@@ -148,4 +149,22 @@ bgColor:"yellow"//背景色
 new MDC_FocusImage({"imgH":"230","imgW":"500","speed":"3000","place":"2","text":"0","txtColor":"#333333","bgColor":"#dddddd","id":"#MDCFI2A4xHs8H"},[{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"阿呆发生地方","p1":"大斗法但是"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"阿呆发生地方","p1":"大斗法但是"}]);
 </script>
 </body>
+<!--焦点图编辑示例代码-->
+<script type="text/javascript">
+MDC_FocusImage.Edit=function(id,editUrl,featureStr){
+	//准备焦点图的数据
+	var $d=$("#"+id);
+	window.MDCFI_DATA=$d.data("apple");
+	window.MDCFI_DATA.t=$d.attr("class");
+	//打开焦点图设计器
+	var w=window.open(editUrl,"MDCFI_Editor",featureStr);
+	w.focus();	
+};
+
+$("#btnEdit").click(function(evt){
+	MDC_FocusImage.Edit("MDC_FocusImage_1","../index.html","menubar=no,resizable=no,width=960,height=500,location=no,status=no,scrollbars=yes,toolbar=no");
+});
+
+</script>
+<!--/焦点图编辑示例代码--> 
 </html>

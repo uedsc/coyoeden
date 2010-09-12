@@ -12,7 +12,8 @@ var MDC_FIDesign= function() {
 			alert("图片数目超出上限"+p._limit);
 			return false;
 		};
-		$(this).parents(".entry").after(p._$entry.clone(true).addClass("entry1"));
+		p._$entry1=p._$entry.clone(true).addClass("entry1");
+		$(this).parents(".entry").after(p._$entry1);
 		return false;
 	};
 	p.assertIsInt=function(doms){
@@ -58,10 +59,16 @@ var MDC_FIDesign= function() {
 		});
 		return r;
 	};
+	p.fillEntryData=function($entry,data){
+		$entry.find(".fld").each(function(i,o){
+			if(data[o.name])
+				$(o).val(data[o.name]);
+		});
+	};
 	p.onValidate=function(){
 		p._fmCfg._isValid=true;
 		//validate configuration data
-		var ok=p.assertIsInt([p._fmCfg.h,p._fmCfg.w,p._fmCfg.s,p._fmCfg.h0,p._fmCfg.w0,p._fmCfg.h1,p._fmCfg.w1]);
+		var ok=p.assertIsInt([p._fmCfg.H,p._fmCfg.W,p._fmCfg.speed,p._fmCfg.imgH,p._fmCfg.imgW,p._fmCfg.imgH1,p._fmCfg.imgW1]);
 		p._fmCfg._isValid=p._fmCfg._isValid&&ok;
 		if(!p._fmCfg._isValid) return false;
 		//validate image data
@@ -92,7 +99,7 @@ var MDC_FIDesign= function() {
 		
 		var id="MDCFI"+StringUtils.RdStr(8);
 		d.a.id="#"+id;
-		var s='<div id="'+id+'"></div>\r\n';
+		var s='<div id="'+id+'" class="'+p._fiSN+'"></div>\r\n';
 		s+='<script type="text/javascript">\r\n';
 		s+='new MDC_FocusImage('+$.toJSON(d.a)+','+$.toJSON(d.b)+');\r\n';
 		s+='</script>';
@@ -110,28 +117,66 @@ var MDC_FIDesign= function() {
 		p._$fiItems.removeClass("on");
 		$(this).addClass("on");
 		p._$body.removeClass().addClass(this.rel);
+		p._fiSN=this.rel;
 		return false;
+	};
+	p.loadEditData=function(){
+		if(!p._fiData) return;
+		//隐藏左边菜单
+		p._$fiList.hide();
+		//焦点图种类
+		p._$fiItems.each(function(i,o){
+			if(o.rel==p._fiData.t){
+				$(o).trigger("click");
+				return false;
+			};
+		});
+		//根据数据建立编辑ui
+		var $o=null;
+		for(var c in p._fiData.a){
+			if(c=="type"){c=c+"_"+p._fiData.t;};
+			$o=p._fmCfg[c];
+			if(!$o)
+				continue;
+			
+			if($o.is(".cbx")){
+				$o[0].checked=(p._fiData.a[c]=="1");
+			}else{
+				$o.val(p._fiData.a[c]);
+			};
+		};
+		
+		for(var i=0;i<p._fiData.b.length;i++){
+			if(i==0){
+				p.fillEntryData(p._$entry,p._fiData.b[i]);
+			}else{
+				p._$btnAdd.trigger("click");
+				p.fillEntryData(p._$entry1,p._fiData.b[i]);
+			};
+		};
 	};
     //private area
     p.initVar = function(opts) { 
 		p._$entry=$("#contentA .entry");
+		p._$entry1=null;					/* 引用并缓存p._$entry的克隆实体 */
+		p._$btnAdd=p._$entry.find(".add");
 		p._limit=opts.limit||10;
 		p._fmCfg={
-			h0:$("#txtH"),				/* 焦点图整体高 */	
-			w0:$("#txtW"),				/* 焦点图整体宽 */
-			h:$("#txtImgH"),			/* 大图高 */
-			w:$("#txtImgW"),			/* 大图宽 */
-			h1:$("#txtImgH1"),			/* 小图高 */
-			w1:$("#txtImgW1"),			/* 小图宽 */
-			s:$("#txtSpeed"),
-			ddlPos:$("#ddlBtnPos"),
-			cbxTxt:$("#cbxShowTxt"),
-			color:$("#txtColor"),
+			H:$("#txtH"),				/* 焦点图整体高 */	
+			W:$("#txtW"),				/* 焦点图整体宽 */
+			imgH:$("#txtImgH"),			/* 大图高 */
+			imgW:$("#txtImgW"),			/* 大图宽 */
+			imgH1:$("#txtImgH1"),			/* 小图高 */
+			imgW1:$("#txtImgW1"),			/* 小图宽 */
+			speed:$("#txtSpeed"),
+			place:$("#ddlBtnPos"),
+			text:$("#cbxShowTxt"),
+			textColor:$("#txtColor"),
 			bgColor:$("#txtBGColor"),
-			type_02:$("#ddlTypeFI02"),	/* 第2种焦点图的类型 */
-			type_03:$("#ddlTypeFI03"),	/* 第3种焦点图的类型 */
-			type_04:$("#ddlTypeFI04"),	/* 第3种焦点图的类型 */
-			type_05:$("#ddlTypeFI05"),	/* 第3种焦点图的类型 */
+			type_fi02:$("#ddlTypeFI02"),	/* 第2种焦点图的类型 */
+			type_fi03:$("#ddlTypeFI03"),	/* 第3种焦点图的类型 */
+			type_fi04:$("#ddlTypeFI04"),	/* 第4种焦点图的类型 */
+			type_fi05:$("#ddlTypeFI05"),	/* 第5种焦点图的类型 */
 			_isValid:true,
 			_getData:function(){
 				var d={},o;
@@ -164,6 +209,13 @@ var MDC_FIDesign= function() {
 		p._$fiList=$("#fiList");
 		//左侧菜单开关
 		p._$toggler=p._$fiList.find(".toggler");
+		//焦点图类型
+		p._fiSN='fi01';
+		if(window.opener)
+			p._fiData=window.opener.MDCFI_DATA;
+		else
+			p._fiData=null;
+		
 	};
     p.onLoaded = function() { };
     p.initEvents = function(opts) {
@@ -195,7 +247,10 @@ var MDC_FIDesign= function() {
 			p._$fiList.animate({left:-80},"slow");
 			return false;
 		});
-		
+		//排序效果
+		p._$desiner.find(".sec").sortable();
+		//加载编辑数据
+		p.loadEditData();
     };
     //public area
     pub.Init = function(opts) {
