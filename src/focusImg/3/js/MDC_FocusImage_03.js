@@ -29,7 +29,7 @@ MDC_FocusImage.prototype={
 		//创建框架-注:构建html字符串然后一次性构建dom对象比多次使用$(html)高效
 		var html='<div class="fi03_'+this.type+'"'+ 'id="'+this.id+'_'+this.type+'">';
 		html+='<div class="content">';
-		html+='<img style="display:block;"/><div class="transparence"></div><h2></h2><p></p><div class="playButton"></div>';
+		html+='<img width="'+this.imgW+'" height="'+this.imgH+'"/><div class="transparence"></div><h2></h2><p></p><div class="playButton"></div>';
 		html+='</div>';
 		html+='<div class="tab"></div>';
 		html+='</div>';
@@ -37,7 +37,7 @@ MDC_FocusImage.prototype={
 		//样式处理及dom缓存
 		this.$d.children().css("width",this.imgW);
 		this._$transparentOvl=this.$d.find(".transparence").css("opacity",0.5);
-		this._$img=this.$d.find("img").css({width:this.imgW,height:this.imgH});
+		this._$img=this.$d.find("img");
 		this._$titleC=this.$d.find("h2");
 		this._$desc=this.$d.find("p");
 		this._$tabC=this.$d.find(".tab");

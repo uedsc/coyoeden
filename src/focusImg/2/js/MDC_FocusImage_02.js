@@ -28,44 +28,23 @@ MDC_FocusImage.prototype={
 	*/
 	init:function(){
 		//创建框架
-		this._$tabC=jQuery("<div>",{className:"tab"});
-		this._$titleC=jQuery("<h2>");
-		this._$img=jQuery("<img>",{
-			css:{						
-				width:this.imgW,
-				height:this.imgH,
-				display:'block'
-			}
-		});
-		
-		this.$d.css({"width":this.W,"height":this.H}).append(
-			jQuery("<div>",{
-				id:this.id+"_"+this.type,
-				className:'fi02_'+this.type,
-				css:{
-					width:this.W,
-					height:this.H
-				}
-			}).append(this._$img).append(
-				jQuery("<div>",{
-					className:"transparence",
-					css:{						
-						opacity:.5
-					}
-				})
-			).append(this._$titleC).append(
-				jQuery("<div>",{
-					className:"focusImageBg"
-				})
-			).append(
-				jQuery("<div>",{
-					className:"link"
-				})
-			).append(this._$tabC)
-		);
-		
+		var html='<div id="'+this.id+'_'+this.type+'" class="fi02_'+this.type+'">';
+		html+='<img width="'+this.imgW+'" height="'+this.imgH+'"/>';
+		html+='<div class="transparence"></div>';
+		html+='<h2></h2>';
+		html+='<div class="focusImageBg"></div>';
+		html+='<div class="link"></div>';
+		html+='<div class="tab"></div>';
+		html+='</div>';
+		this.$d.css({"width":this.W,"height":this.H}).append(html);
+		//dom缓存
+		this.$d.children().css({width:this.W,height:this.H});
+		this._$tabC=this.$d.find(".tab");
+		this._$titleC=this.$d.find("h2");
+		this._$img=this.$d.find("img");
+		this._$transparentOvl=this.$d.find(".transparence").css("opacity",0.5);
 		//根据数据创建tab标签-注：动态构造大量dom时，先构造完整的html更有效能
-		var html="";
+		html="";
 		for(var i=0;i<this.focusData.length;i++){
 			html+="<span>"+(i+1)+"</span>";
 		};

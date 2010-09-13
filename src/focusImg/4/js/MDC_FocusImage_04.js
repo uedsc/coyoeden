@@ -9,6 +9,10 @@ var MDC_FocusImage=function(cfg,data){
 	this.H=parseInt(cfg.H);						/* 高 */
 	this.speed=parseInt(cfg.speed)||5000;
 	this.type=cfg.type;							/* 类型1=综艺,2=纪录片 */
+	this.ptStepX=cfg.ptStepX||92;					/* tab指针水平位移步长 */
+	this.ptStepY=cfg.ptStepY||81;					/* tab指针垂直位移步长 */
+	this.ptStepX_=cfg.ptStepX_||4;					/* tab指针水平位移步长偏移值 */
+	this.ptStepY_=cfg.ptStepY_||-1;					/* tab指针垂直位移步长 偏移值*/	
 	this.focusData=data;
 	this.autoPlay;
 	
@@ -33,7 +37,6 @@ MDC_FocusImage.prototype={
 			2、并数据回填到结构中.
 	*/
 	init:function(){
-		
 		//创建框架-先构建html再利用$(html)构建dom对象,避免多次使用$(html)
 		var html='<div class="fi04_'+this.type+'"'+ 'id="'+this.id+'_'+this.type+'">';
 		html+='<div class="content">';
@@ -87,7 +90,7 @@ MDC_FocusImage.prototype={
 			(function(i,o){
 				jQuery(o).mouseenter(function(){
 					if(this.className!="now"){
-						clearTimeout(that.autoPlay);
+						clearTimeout(that.autoPlay);//TODO:clearInterval
 						gogo(i);
 					};
 					return false;
@@ -118,10 +121,10 @@ MDC_FocusImage.prototype={
 		//指针滚动动画				
 		switch(this.type){
 			case "1":
-				this._$pointer.stop().animate({"left":i*92+4},200);
+				this._$pointer.stop().animate({"left":i*this.ptStepX+this.ptStepX_},200);
 				break;
 			case "2":
-				this._$pointer.stop().animate({"top":i*81-1},200);
+				this._$pointer.stop().animate({"top":i*this.ptStepY+this.ptStepY_},200);
 				break;
 		};		
 				

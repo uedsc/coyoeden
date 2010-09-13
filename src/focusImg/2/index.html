@@ -2,33 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>搜狐网站</title>
+<title>搜狐网站-焦点图2</title>
 <link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
+<link rel="stylesheet" type="text/css" href="../css/MDC_FocusImage.css"></link>
 <script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
-<script type="text/javascript" src="js/MDC_FocusImage_02.js"></script> 
+<script type="text/javascript" src="../js/MDC_FocusImage.js"></script>
 </head>
 <body>
-
-<style type="text/css">
-/*视频新闻*/
-.fi02_1{position:relative}
-.fi02_1 img{position:absolute;top:10px;left:10px}
-.fi02_1 .transparence{width:290px;height:29px;left:10px;top:211px;position:absolute;background:#000}
-.fi02_1 h2{width:290px;height:29px;left:10px;top:211px;position:absolute;font:600 14px/28px '宋体';text-align:center;color:#fff}
-.fi02_1 .focusImageBg{width:310px;height:268px;position:absolute;top:0;left:0;background:url(images/MDC_Focus_bg01.gif)}
-.fi02_1 .link{position:absolute;top:10px;left:10px;width:290px;height:230px;cursor:pointer}
-.fi02_1 .tab{width:305px;height:23px;padding:5px 5px 0 0;position:absolute;bottom:0;left:0;text-align:right}
-.fi02_1 .tab span{cursor:pointer;width:16px;height:17px;margin-right:4px;display:inline-block;color:#fff;font:600 12px/17px '宋体';background:url(images/MDC_Focus_bg02.gif) no-repeat right;text-align:center}
-.fi02_1 .tab span.now{background:url(images/MDC_Focus_bg02.gif) no-repeat left;color:#006099}
-</style>
-
 <br /><br />
-
 <h1>视频新闻 http://tv.sohu.com/news/<button id="btnEdit">编辑</button></h1>
 <div id="MDC_FocusImage_1" class="fi02"></div>
 <script type="text/javascript">
-var MDC_FocusImage_1=new MDC_FocusImage({
-id:"#MDC_FocusImage_1",//#号开头的ID
+$("#MDC_FocusImage_1").focusImg({
+flag:'fi02',
 type:"1",//类型1=视频新闻
 W:"310",//焦点图宽
 H:"268",//焦点图高
@@ -56,14 +42,11 @@ speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 
 <br />
 <br />
-<div id="MDCFIm4X9WJgO"></div>
-<script type="text/javascript">
-new MDC_FocusImage({"H":"268","W":"310","imgH":"230","imgW":"290","speed":"3000","type":"1","id":"#MDCFIm4X9WJgO"},[{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"阿呆发生地方","p1":"大斗法但是"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"阿呆发生地方","p1":"大斗法但是"}]);
-</script>
+
 </body>
 <!--焦点图编辑示例代码-->
 <script type="text/javascript">
-MDC_FocusImage.Edit=function(id,editUrl,featureStr){
+MDC_FocusImage_Edit=function(id,editUrl,featureStr){
 	//准备焦点图的数据
 	var $d=$("#"+id);
 	window.MDCFI_DATA=$d.data("apple");
@@ -74,7 +57,7 @@ MDC_FocusImage.Edit=function(id,editUrl,featureStr){
 };
 
 $("#btnEdit").click(function(evt){
-	MDC_FocusImage.Edit("MDC_FocusImage_1","../index.html","menubar=no,resizable=no,width=960,height=500,location=no,status=no,scrollbars=yes,toolbar=no");
+	MDC_FocusImage_Edit("MDC_FocusImage_1","../index.html","menubar=no,resizable=no,width=960,height=500,location=no,status=no,scrollbars=yes,toolbar=no");
 });
 
 </script>

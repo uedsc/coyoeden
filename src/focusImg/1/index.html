@@ -3,25 +3,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 <title>搜狐网站</title>
-<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
 <link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
+<link rel="stylesheet" type="text/css" href="../css/MDC_FocusImage.css"></link>  
+<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
 <script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
-<script type="text/javascript" src="js/MDC_FocusImage_01.js"></script>
+<!--<script type="text/javascript" src="js/MDC_FocusImage_01.js"></script>-->
+<script type="text/javascript" src="../js/MDC_FocusImage.js"></script>
 </head>
 <body>
 <br /><br /><br />
 <button id="btnEdit">编辑</button>
 <div id="MDC_FocusImage_1" class="fi01"></div>
 <script type="text/javascript">
-var MDC_FocusImage_1=new MDC_FocusImage({
-id:"#MDC_FocusImage_1",//id
+$("#MDC_FocusImage_1").focusImg({
 imgW:"500",//图片宽
 imgH:"250",//图片高
 speed:"5000",//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
-place:"2",//按扭位置 1下左 2下右 3上左 4上右
-text:"1",//是否显示文字标签 1显示 0不显示
+place:"tabRB",//按扭位置 tabLB下左 tabRB下右 tabLT上左 tabRT上右
+text:true,//是否显示文字标签 true显示 false不显示
 txtColor:"#333",//文字色
-bgColor:"#ddd"//背景色
+bgColor:"#ddd",//背景色
+flag:'fi01',
+hoverStop:true
 },
 [
 	{	//数据1
@@ -45,22 +48,21 @@ bgColor:"#ddd"//背景色
 		t:"文字44"
 	}
 ]);
-//MDC_FocusImage_1.init();
 </script>
 
 <br /><br /><br />
 
-<div id="MDC_FocusImage_2"></div>
+<div id="MDC_FocusImage_2" class="fi01"></div>
 <script type="text/javascript">
-var MDC_FocusImage_2=new MDC_FocusImage({
-id:"#MDC_FocusImage_2",//id
+$("#MDC_FocusImage_2").focusImg({
 imgW:"300",//图片宽
 imgH:"150",//图片高
 speed:"3000",//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
-place:"1",//按扭位置 1下左 2下右 3上左 4上右
-text:"0",//是否显示文字标签 1显示 0不显示
+place:"tabLB",
+text:false,//是否显示文字标签 
 txtColor:"#333",//文字色
-bgColor:"#ddd"//背景色
+bgColor:"#ddd",//背景色
+flag:'fi01'
 },
 [
 	{	//数据1
@@ -90,22 +92,21 @@ bgColor:"#ddd"//背景色
 		t:"文字55"
 	}
 ]);
-//MDC_FocusImage_2.init();
 </script>
 
 <br /><br /><br />
 
-<div id="MDC_FocusImage_3"></div>
+<div id="MDC_FocusImage_3" class="fi01"></div>
 <script type="text/javascript">
-var MDC_FocusImage_3=new MDC_FocusImage({
-id:"#MDC_FocusImage_3",//id
+$("#MDC_FocusImage_3").focusImg({
 imgW:"600",//图片宽
 imgH:"350",//图片高
 speed:"3000",//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
-place:"4",//按扭位置 1下左 2下右 3上左 4上右
-text:"1",//是否显示文字标签 1显示 0不显示
+place:"tabRT",//按扭位置 1下左 2下右 3上左 4上右
+text:true,//是否显示文字标签 1显示 0不显示
 txtColor:"red",//文字色
-bgColor:"yellow"//背景色
+bgColor:"yellow",//背景色
+flag:'fi01'
 },
 [	
 	{
@@ -139,19 +140,14 @@ bgColor:"yellow"//背景色
 	}
 ]
 );
-//MDC_FocusImage_3.init();
 </script>
 <br />
 <br />
 <br />
-<div id="MDCFI2A4xHs8H"></div>
-<script type="text/javascript">
-new MDC_FocusImage({"imgH":"230","imgW":"500","speed":"3000","place":"2","text":"0","txtColor":"#333333","bgColor":"#dddddd","id":"#MDCFI2A4xHs8H"},[{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"阿呆发生地方","p1":"大斗法但是"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"阿呆发生地方","p1":"大斗法但是"}]);
-</script>
 </body>
 <!--焦点图编辑示例代码-->
 <script type="text/javascript">
-MDC_FocusImage.Edit=function(id,editUrl,featureStr){
+MDC_FocusImage_Edit=function(id,editUrl,featureStr){
 	//准备焦点图的数据
 	var $d=$("#"+id);
 	window.MDCFI_DATA=$d.data("apple");
@@ -162,7 +158,7 @@ MDC_FocusImage.Edit=function(id,editUrl,featureStr){
 };
 
 $("#btnEdit").click(function(evt){
-	MDC_FocusImage.Edit("MDC_FocusImage_1","../index.html","menubar=no,resizable=no,width=960,height=500,location=no,status=no,scrollbars=yes,toolbar=no");
+	MDC_FocusImage_Edit("MDC_FocusImage_1","../index.html","menubar=no,resizable=no,width=960,height=500,location=no,status=no,scrollbars=yes,toolbar=no");
 });
 
 </script>

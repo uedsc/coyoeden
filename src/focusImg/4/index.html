@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>搜狐网站</title>
+<title>搜狐网站-焦点图4</title>
 <link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
+<link rel="stylesheet" type="text/css" href="../css/MDC_FocusImage.css"></link>
 <script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
-<script type="text/javascript" src="js/MDC_FocusImage_04.js"></script> 
+<script type="text/javascript" src="../js/MDC_FocusImage.js"></script> 
 </head>
 <body>
 
@@ -13,42 +14,13 @@
 body{background:#333}
 </style>
 
-<style type="text/css">
-
-/*综艺*/
-.fi04_1{width:680px;height:383px!important;padding-top:17px;background:url(images/MDC_Focus_bg03.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src=images/MDC_Focus_bg03.png)}
-.fi04_1 .content{cursor:pointer;width:640px;height:300px;padding:5px;background:#000;border:1px #636363 solid;overflow:hidden;margin:0 auto 12px;position:relative}
-.fi04_1 .transparence{position:absolute;bottom:0;left:5px;width:640px;height:75px;background:#000}
-.fi04_1 .playButton{position:absolute;bottom:8px;right:10px;width:60px;height:60px;background:url(images/MDC_Focus_bg02.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src=images/MDC_Focus_bg02.png)}
-.fi04_1 h2{position:absolute;bottom:38px;left:0;font:600 14px/32px '宋体';color:#fff;text-align:left;padding:0 100px 0 10px}
-.fi04_1 p{position:absolute;bottom:20px;left:0;font:300 12px/20px '宋体';color:#fff;text-align:left;padding:0 100px 0 10px}
-.fi04_1 .tab{width:644px;position:relative;margin:0 auto}
-.fi04_1 .tab .pointer{cursor:pointer;width:84px;height:55px;display:block;background:url(images/MDC_Focus_bg01.gif);position:absolute;top:-9px}
-.fi04_1 .tab dd{width:92px;float:left}
-.fi04_1 .tab dd img{cursor:pointer;border:1px #000 solid;display:block;margin:0 auto}
-
-/*纪录片*/
-.fi04_2{width:688px;height:392px}
-.fi04_2 .content{cursor:pointer;width:585px;height:390px;border:1px #fff solid;float:left;position:relative}
-.fi04_2 .content img{position:absolute;top:0;left:0}
-.fi04_2 .transparence{width:585px;height:87px;background:#000;bottom:0;left:0;position:absolute}
-.fi04_2 .playButton{display:block}
-.fi04_2 h2{font:600 14px/16px '宋体';color:#fff;padding:0 20px;bottom:60px;left:0;position:absolute}
-.fi04_2 p{font:300 12px/16px '宋体';color:#D6D0CB;padding:0 20px;bottom:20px;left:0;position:absolute;text-align:left}
-.fi04_2 .tab{width:90px;position:relative;float:right;margin-top:2px}
-.fi04_2 .tab .pointer{cursor:pointer;width:88px;height:64px;border:1px #fff solid;display:block;position:absolute;top:-1px;left:0}
-.fi04_2 .tab dd{margin-bottom:17px}
-.fi04_2 .tab dd img{cursor:pointer;display:block;margin:0 auto}
-
-</style>
-
 <br /><br />
 
 <h1>综艺  http://v.sohu.com/zy/</h1>
 <div id="MDC_FocusImage_1" class="fi04"></div>
 <script type="text/javascript">
-var MDC_FocusImage_1=new MDC_FocusImage({
-id:"#MDC_FocusImage_1",//id
+$("#MDC_FocusImage_1").focusImg({
+flag:'fi04',
 W:"680",//焦点图宽
 H:"400",//焦点图高
 type:"1",//类型1=综艺,2=纪录片
@@ -56,6 +28,8 @@ imgW:"640",//大图宽
 imgH:"300",//大图高
 imgW1:"76",//缩略图宽
 imgH1:"42",//缩略图高
+myHtml:'<div class="playButton"></div>',
+hoverStop:true,
 speed:"3000"//转刷速度,不填默认为5秒
 },[
 {	//数据1
@@ -110,8 +84,8 @@ speed:"3000"//转刷速度,不填默认为5秒
 <h1>纪录片 http://tv.sohu.com/real/</h1>
 <div id="MDC_FocusImage_2" class="fi04"></div>
 <script type="text/javascript">
-var MDC_FocusImage_2=new MDC_FocusImage({
-id:"#MDC_FocusImage_2",//id
+$("#MDC_FocusImage_2").focusImg({
+flag:'fi04',
 W:"688",//焦点图宽
 H:"392",//焦点图高
 type:"2",//类型1=综艺,2=纪录片
@@ -119,6 +93,7 @@ imgW:"585",//大图宽
 imgH:"390",//大图高
 imgW1:"88",//缩略图宽
 imgH1:"64",//缩略图高
+hoverStop:true,
 speed:"3000"//转刷速度,不填默认为5秒
 },
 [
@@ -158,10 +133,6 @@ speed:"3000"//转刷速度,不填默认为5秒
 
 <br />
 <br />
-<div id="MDCFITdaDBkdC" class="fi04"></div>
-<script type="text/javascript">
-new MDC_FocusImage({"H":"392","W":"688","imgH":"390","imgW":"585","imgH1":"64","imgW1":"88","speed":"3000","type":"2","id":"#MDCFITdaDBkdC"},[{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","p1":"http://i1.itc.cn/20100714/62d_f2014f45_3dc0_4d95_ad1b_a29f3e708071_0.jpg","l":"http://i1.itc.cn/20100714/62d_f2014f45_3dc0_4d95_ad1b_a29f3e708071_0.jpg","t":"打发打发但是","t1":"阿德发达省份啊的发啊地方阿凡达啊地方啊地方"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","p1":"http://i1.itc.cn/20100714/62d_f2014f45_3dc0_4d95_ad1b_a29f3e708071_0.jpg","l":"http://i1.itc.cn/20100714/62d_f2014f45_3dc0_4d95_ad1b_a29f3e708071_0.jpg","t":"打发打发但是","t1":""},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","p1":"http://i1.itc.cn/20100714/62d_f2014f45_3dc0_4d95_ad1b_a29f3e708071_0.jpg","l":"http://i1.itc.cn/20100714/62d_f2014f45_3dc0_4d95_ad1b_a29f3e708071_0.jpg","t":"打发打发但是","t1":""}]);
-</script>
 
 </body>
 </html>
