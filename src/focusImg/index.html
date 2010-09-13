@@ -12,34 +12,18 @@
 	</head>
 	<body class="fi01">
 		<div id="topNav" class="area">
-			<div class="sec">
-				<label class="sp t02 t04 t05" for="txtH">高度</label>
-				<input class="sp t02 t04 t05" type="text" id="txtH" name="H" title="焦点图高度"/>
-				<label class="sp t02 t04 t05" for="txtW">宽度</label>
-				<input class="sp t02 t04 t05" type="text" id="txtW" name="W" title="焦点图宽度"/>
-				<label for="txtImgH">图高</label>
-				<input type="text" id="txtImgH" name="imgH"/>
-				<label for="txtImgW">图宽</label>
-				<input type="text" id="txtImgW" name="imgW"/>
-				<label class="sp t04 t05" for="txtImgH1">小图高</label>
-				<input class="sp t04 t05" type="text" id="txtImgH1" name="imgH1"/>
-				<label class="sp t04 t05" for="txtImgW1">小图宽</label>
-				<input class="sp t04 t05" type="text" id="txtImgW1" name="imgW1"/>				
+			<div class="sec">		
 				<label for="txtSpeed">速度(ms)</label>
 				<input type="text" id="txtSpeed" value="5000" name="speed"/>
 				<label class="sp t01" for="ddlBtnPos">按钮位置</label>
 				<select class="sp t01" id="ddlBtnPos" name="place">
-					<option value="1">左下</option>
-					<option value="2" selected="selected">右下</option>
-					<option value="3">左上</option>
-					<option value="4">右上</option>
+					<option value="tabLB">左下</option>
+					<option value="tabRB" selected="selected">右下</option>
+					<option value="tabLT">左上</option>
+					<option value="tabRT">右上</option>
 				</select>
 				<input class="sp t01 cbx" type="checkbox" id="cbxShowTxt" name="text" checked="checked"/>
 				<label class="sp t01" for="cbxShowTxt">显示文字</label>
-				<label class="sp t01" for="txtColor">文字色</label>
-				<input class="sp t01" type="text" id="txtColor" name="txtColor" value="#333333"/>
-				<label class="sp t01" for="txtBGColor">背景色</label>
-				<input class="sp t01" type="text" id="txtBGColor" name="bgColor" value="#dddddd"/>
 				<label class="sp t02" for="ddlTypeFI02">类型</label>
 				<select class="sp t02" id="ddlTypeFI02" name="type">
 					<option value="1" selected="selected">视频新闻</option>
@@ -60,7 +44,11 @@
 				<label class="sp t05" for="ddlTypeFI05">类型</label>
 				<select class="sp t05" id="ddlTypeFI05" name="type">
 					<option value="1" selected="selected">公益</option>
-				</select>								
+				</select>
+				<label class="sp t06" for="ddlTypeFI06">类型</label>
+				<select class="sp t06" id="ddlTypeFI06" name="type">
+					<option value="1" selected="selected">影视剧</option>
+				</select>												
 				<button id="btnGen">生成代码</button>
 			</div>			
 		</div>
@@ -86,10 +74,18 @@
 							<label>标题文字</label>
 							<input type="text" class="fld imgTt" name="t"/>
 						</div>
-						<div class="sp t03 t04 clear">
+						<div class="sp t03 t04 t06 clear">
 							<label>描述文字</label>
 							<textarea class="fld imgDesc" name="t1" rows="2" cols="10"></textarea>
-						</div>						
+						</div>
+						<div class="sp t06 clear">
+							<label>副标题</label>
+							<input type="text" class="fld imgTt" name="t_"/>
+						</div>
+						<div class="sp t06 clear">
+							<label>副描述</label>
+							<textarea class="fld imgDesc" name="t1_" rows="2" cols="10"></textarea>
+						</div>													
 						<div class="acts">
 							<a class="del" href="#"><img src="img/pic02.gif" alt=""/></a>
 							<a class="add" href="#"><img src="img/pic01.gif" alt=""/></a>
@@ -115,7 +111,7 @@
 				<li><a href="#" rel="fi03">焦点图3</a></li>
 				<li><a href="#" rel="fi04">焦点图4</a></li>
 				<li><a href="#" rel="fi05">焦点图5</a></li>
-				<li class="hidden"><a href="#" rel="fi06">焦点图6</a></li>
+				<li><a href="#" rel="fi06">焦点图6</a></li>
 			</ul>
 			<div class="toggler open">
 				<a href="#" class="op" title="芝麻快开门">+</a>
@@ -126,7 +122,7 @@
 	<script type="text/javascript" src="js/MDC_FIDesign.js"></script>
 	<script type="text/javascript">
 	//<![CDATA[
-		MDC_FIDesign.Init({limit:6});
+		MDC_FIDesign.Init({limit:10});
 	//]]>
 	</script>
  

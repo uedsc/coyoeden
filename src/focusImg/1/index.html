@@ -2,13 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>搜狐网站</title>
+<title>搜狐网站-焦点图1</title>
 <link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
 <link rel="stylesheet" type="text/css" href="../css/MDC_FocusImage.css"></link>  
 <script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
 <script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
 <!--<script type="text/javascript" src="js/MDC_FocusImage_01.js"></script>-->
 <script type="text/javascript" src="../js/MDC_FocusImage.js"></script>
+<style type="text/css">
+#focus2 .fi01{width:300px;height:170px;}
+#focus2 .fi01 img{height:150px;}
+#focus3 .fi01{width:600px;height:370px;}
+#focus3 .fi01 img{height:350px;}
+#focus3 .fi01 .tt{color:red;background:yellow;}
+</style>  
 </head>
 <body>
 <br /><br /><br />
@@ -16,13 +23,9 @@
 <div id="MDC_FocusImage_1" class="fi01"></div>
 <script type="text/javascript">
 $("#MDC_FocusImage_1").focusImg({
-imgW:"500",//图片宽
-imgH:"250",//图片高
 speed:"5000",//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 place:"tabRB",//按扭位置 tabLB下左 tabRB下右 tabLT上左 tabRT上右
 text:true,//是否显示文字标签 true显示 false不显示
-txtColor:"#333",//文字色
-bgColor:"#ddd",//背景色
 flag:'fi01',
 hoverStop:true
 },
@@ -51,17 +54,14 @@ hoverStop:true
 </script>
 
 <br /><br /><br />
-
+<div id="focus2">
 <div id="MDC_FocusImage_2" class="fi01"></div>
+</div>
 <script type="text/javascript">
 $("#MDC_FocusImage_2").focusImg({
-imgW:"300",//图片宽
-imgH:"150",//图片高
 speed:"3000",//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 place:"tabLB",
 text:false,//是否显示文字标签 
-txtColor:"#333",//文字色
-bgColor:"#ddd",//背景色
 flag:'fi01'
 },
 [
@@ -95,17 +95,14 @@ flag:'fi01'
 </script>
 
 <br /><br /><br />
-
+<div id="focus3">
 <div id="MDC_FocusImage_3" class="fi01"></div>
+</div>
 <script type="text/javascript">
 $("#MDC_FocusImage_3").focusImg({
-imgW:"600",//图片宽
-imgH:"350",//图片高
 speed:"3000",//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 place:"tabRT",//按扭位置 1下左 2下右 3上左 4上右
 text:true,//是否显示文字标签 1显示 0不显示
-txtColor:"red",//文字色
-bgColor:"yellow",//背景色
 flag:'fi01'
 },
 [	
@@ -143,6 +140,10 @@ flag:'fi01'
 </script>
 <br />
 <br />
+<div id="MDCFII8J3lXvM" class="fi01"></div>
+<script type="text/javascript">
+jQuery("#MDCFII8J3lXvM").focusImg({"speed":"5000","place":"tabRB","text":true,"flag":"fi01","hoverStop":true},[{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf1"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf122222"}]);
+</script>
 <br />
 </body>
 <!--焦点图编辑示例代码-->

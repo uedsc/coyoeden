@@ -68,7 +68,7 @@ var MDC_FIDesign= function() {
 	p.onValidate=function(){
 		p._fmCfg._isValid=true;
 		//validate configuration data
-		var ok=p.assertIsInt([p._fmCfg.H,p._fmCfg.W,p._fmCfg.speed,p._fmCfg.imgH,p._fmCfg.imgW,p._fmCfg.imgH1,p._fmCfg.imgW1]);
+		var ok=p.assertIsInt([p._fmCfg.speed]);
 		p._fmCfg._isValid=p._fmCfg._isValid&&ok;
 		if(!p._fmCfg._isValid) return false;
 		//validate image data
@@ -96,12 +96,21 @@ var MDC_FIDesign= function() {
 			$(".alert:first").select();
 			return false;
 		};
+		d.a.flag=p._fiSN;
+		d.a.hoverStop=true;
+		
+		if((p._fiSN=='fi03'||p._fiSN=='fi04')&&d.a.type=="1"){
+			d.a.myHtml='<div class="playButton"></div>';
+		};
+		if(p._fiSN=='fi06'&&d.a.type=="1"){
+			d.a.ptStepY=90;
+			d.a.clickTabToNav=true;
+		};
 		
 		var id="MDCFI"+StringUtils.RdStr(8);
-		d.a.id="#"+id;
 		var s='<div id="'+id+'" class="'+p._fiSN+'"></div>\r\n';
 		s+='<script type="text/javascript">\r\n';
-		s+='new MDC_FocusImage('+$.toJSON(d.a)+','+$.toJSON(d.b)+');\r\n';
+		s+='jQuery("#'+id+'").focusImg('+$.toJSON(d.a)+','+$.toJSON(d.b)+');\r\n';
 		s+='</script>';
 
 		p._$txtCode.val(s);
@@ -114,6 +123,9 @@ var MDC_FIDesign= function() {
 	};
 	p.onSelect=function(evt){
 		if(this.className=="on") return false;
+		if(!p._$previewOvl.is(":hidden"))
+			p._$preview.find(".close").trigger("click");
+			
 		p._$fiItems.removeClass("on");
 		$(this).addClass("on");
 		p._$body.removeClass().addClass(this.rel);
@@ -140,7 +152,7 @@ var MDC_FIDesign= function() {
 				continue;
 			
 			if($o.is(".cbx")){
-				$o[0].checked=(p._fiData.a[c]=="1");
+				$o[0].checked=p._fiData.a[c];
 			}else{
 				$o.val(p._fiData.a[c]);
 			};
@@ -162,21 +174,14 @@ var MDC_FIDesign= function() {
 		p._$btnAdd=p._$entry.find(".add");
 		p._limit=opts.limit||10;
 		p._fmCfg={
-			H:$("#txtH"),				/* 焦点图整体高 */	
-			W:$("#txtW"),				/* 焦点图整体宽 */
-			imgH:$("#txtImgH"),			/* 大图高 */
-			imgW:$("#txtImgW"),			/* 大图宽 */
-			imgH1:$("#txtImgH1"),			/* 小图高 */
-			imgW1:$("#txtImgW1"),			/* 小图宽 */
 			speed:$("#txtSpeed"),
 			place:$("#ddlBtnPos"),
 			text:$("#cbxShowTxt"),
-			textColor:$("#txtColor"),
-			bgColor:$("#txtBGColor"),
 			type_fi02:$("#ddlTypeFI02"),	/* 第2种焦点图的类型 */
 			type_fi03:$("#ddlTypeFI03"),	/* 第3种焦点图的类型 */
 			type_fi04:$("#ddlTypeFI04"),	/* 第4种焦点图的类型 */
 			type_fi05:$("#ddlTypeFI05"),	/* 第5种焦点图的类型 */
+			type_fi06:$("#ddlTypeFI06"),	/* 第5种焦点图的类型 */
 			_isValid:true,
 			_getData:function(){
 				var d={},o;
@@ -186,7 +191,7 @@ var MDC_FIDesign= function() {
 						
 					o=p._fmCfg[c][0];
 					if(p._fmCfg[c].is(".cbx")){
-						d[o.name]=o.checked?"1":"0";
+						d[o.name]=o.checked;
 					}else{
 						d[o.name]=p._fmCfg[c].val();
 					};

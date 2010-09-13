@@ -9,19 +9,11 @@
 		this.$d=cfg.$d;								/* JQuery对象 */
 		this.flag=cfg.flag;							/* 焦点图类型标识。如fi01表示类型1的焦点图 */	
 		this.id=this.$d[0].id;						/* dom编号 */
-		this.imgW=parseInt(cfg.imgW);				/* 大图宽 */
-		this.imgH=parseInt(cfg.imgH);				/* 大图高 */
-		this.imgW1=parseInt(cfg.imgW1);				/* 小图宽 */
-		this.imgH1=parseInt(cfg.imgH1);				/* 小图高 */
-		this.W=parseInt(cfg.W);						/* 宽 */
-		this.H=parseInt(cfg.H);						/* 高 */
 		this.text=cfg.text||true;					/* 是否显示标题 */
 		this.speed=parseInt(cfg.speed)||5000;		/* 轮刷速度 */
 		this.hoverStop=cfg.hoverStop;				/* 鼠标移到tab上时是否停止播放 */
 		this.type=cfg.type;							/* 子类型 */
 		this.place=cfg.place||'tabRB';				/* tab标签的位置 */
-		this.txtColor=cfg.txtColor;					/* 标题文本颜色 */
-		this.bgColor=cfg.bgColor;					/* 标题背景色 */
 		this.myHtml=cfg.myHtml||"";					/* 用户额外的html.填充到class='content'的容器中 */
 		this.ptStepX=cfg.ptStepX||92;				/* tab指针水平位移步长 */
 		this.ptStepY=cfg.ptStepY||81;				/* tab指针垂直位移步长 */
@@ -167,23 +159,19 @@
 $.fn.focusImg.Register("fi01",{
 	init:function(fi){
 		//创建框架
-		var html='<img height="'+fi.imgH+'"/>';
+		var html='<img class="iplayer"/>';
 		html+='<div class="tab '+fi.place+'"></div>';
 		html+='<h2 class="tt"></h2>';
 		fi.$d.append(html);
 		//样式处理及dom缓存
 		fi._$tabC=fi.$d.find(".tab");
-		fi._$titleC=fi.$d.find(".tt").css({background:fi.bgColor,color:fi.txtColor});
+		fi._$titleC=fi.$d.find(".tt");
 		fi._$img=fi.$d.find("img");
 		
 		if(fi.text){
-			var h0=fi._$titleC.height();
 			fi._$titleC.show();
-			fi.$d.css({width:fi.imgW,height:fi.imgH+h0});
-			fi._$tabC.css("bottom",h0);
 		}else{
 			fi._$titleC.hide();
-			fi.$d.css({width:fi.imgW,height:fi.imgH});
 		};
 		
 		//根据数据创建tab标签
@@ -204,16 +192,15 @@ $.fn.focusImg.Register("fi02",{
 	init:function(fi){
 		//创建框架
 		var html='<div id="'+fi.id+'_'+fi.type+'" class="fi02_'+fi.type+'">';
-		html+='<img width="'+fi.imgW+'" height="'+fi.imgH+'"/>';
+		html+='<img class="iplayer"/>';
 		html+='<div class="transparence"></div>';
 		html+='<h2 class="tt"></h2>';
 		html+='<div class="focusImageBg"></div>';
 		html+='<div class="link"></div>';
 		html+='<div class="tab"></div>';
 		html+='</div>';
-		fi.$d.css({"width":fi.W,"height":fi.H}).append(html);
+		fi.$d.append(html);
 		//dom缓存
-		fi.$d.children().css({width:fi.W,height:fi.H});
 		fi._$tabC=fi.$d.find(".tab");
 		fi._$titleC=fi.$d.find(".tt");
 		fi._$img=fi.$d.find("img");
@@ -237,13 +224,12 @@ $.fn.focusImg.Register("fi03",{
 		//创建框架-注:构建html字符串然后一次性构建dom对象比多次使用$(html)高效
 		var html='<div class="fi03_'+fi.type+'"'+ 'id="'+fi.id+'_'+fi.type+'">';
 		html+='<div class="content">';
-		html+='<img width="'+fi.imgW+'" height="'+fi.imgH+'"/><div class="transparence"></div><h2></h2><p></p><div class="playButton"></div>';
+		html+='<img class="iplayer"/><div class="transparence"></div><h2></h2><p></p>';
 		html+='</div>';
 		html+='<div class="tab"></div>';
 		html+='</div>';
-		fi.$d.css("width",fi.imgW).append(html);
+		fi.$d.append(html);
 		//样式处理及dom缓存
-		fi.$d.children().css("width",fi.imgW);
 		fi._$transparentOvl=fi.$d.find(".transparence").css("opacity",0.5);
 		fi._$img=fi.$d.find("img");
 		fi._$titleC=fi.$d.find("h2");
@@ -278,14 +264,13 @@ $.fn.focusImg.Register("fi04",{
 		//创建框架-先构建html再利用$(html)构建dom对象,避免多次使用$(html)
 		var html='<div class="fi04_'+fi.type+'"'+ 'id="'+fi.id+'_'+fi.type+'">';
 		html+='<div class="content">';
-		html+='<img width="'+fi.imgW+'" height="'+fi.imgH+'"/><div class="transparence"></div><h2></h2><p></p>';
+		html+='<img class="iplayer"/><div class="transparence"></div><h2></h2><p></p>';
 		html+='</div>';
 		html+='<div class="tab"><span class="pointer"></span><dl></dl></div>';
 		html+='</div>';
-		fi.$d.css("width",fi.W).append(html);
+		fi.$d.append(html);
 		
 		//样式处理及dom缓存
-		fi.$d.children().css({width:fi.W,height:fi.H});
 		fi._$transparentOvl=fi.$d.find(".transparence").css("opacity",0.5);
 		fi._$img=fi.$d.find("img");
 		fi._$titleC=fi.$d.find("h2");
@@ -297,7 +282,7 @@ $.fn.focusImg.Register("fi04",{
 		html="";
 		for(var i=0;i<fi.focusData.length;i++){
 			fi.focusData[i].p1=((!fi.focusData[i].p1)||(fi.focusData[i].p1==""))?fi.focusData[i].p:fi.focusData[i].p1;
-			html+='<dd><img src="'+fi.focusData[i].p1+'" width="'+fi.imgW1+'" height="'+fi.imgH1+'"/></dd>';
+			html+='<dd><img src="'+fi.focusData[i].p1+'"/></dd>';
 		};
 		fi._$tabC.append(html).find("img").css("opacity",0.5);
 		fi._$tabs=fi._$tabC.find("dd");
@@ -328,16 +313,15 @@ $.fn.focusImg.Register("fi05",{
 		//创建框架-先构建html再利用$(html)构建dom对象,避免多次使用$(html)
 		var html='<div class="fi05_'+fi.type+'"'+ 'id="'+fi.id+'_'+fi.type+'">';
 		html+='<div class="content">';
-		html+='<img/><div class="transparence"></div><h2></h2>';
+		html+='<img class="iplayer"/><div class="transparence"></div><h2></h2>';
 		html+='</div>';
 		html+='<div class="tab"><dl></dl></div>';
 		html+='</div>';
-		fi.$d.css("width",fi.W).append(html);
+		fi.$d.append(html);
 		
 		//样式处理及dom缓存
-		fi.$d.children().css({width:fi.W,height:fi.H});
 		fi._$transparentOvl=fi.$d.find(".transparence").css("opacity",0.5);
-		fi._$img=fi.$d.find("img").css({width:fi.imgW,height:fi.imgH});
+		fi._$img=fi.$d.find("img");
 		fi._$titleC=fi.$d.find("h2");
 		fi._$tabC=fi.$d.find("dl");		
 		
@@ -345,7 +329,7 @@ $.fn.focusImg.Register("fi05",{
 		html="";
 		for(var i=0;i<fi.focusData.length;i++){
 			fi.focusData[i].p1=((!fi.focusData[i].p1)||(fi.focusData[i].p1==""))?fi.focusData[i].p:fi.focusData[i].p1;
-			html+='<dd><img src="'+fi.focusData[i].p1+'" width="'+fi.imgW1+'" height="'+fi.imgH1+'"/><p>'+fi.focusData[i].t+'</p></dd>';
+			html+='<dd><img src="'+fi.focusData[i].p1+'"/><p>'+fi.focusData[i].t+'</p></dd>';
 		};
 		fi._$tabC.append(html);
 		fi._$tabs=fi._$tabC.find("dd");		

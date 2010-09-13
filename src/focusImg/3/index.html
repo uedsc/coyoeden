@@ -7,6 +7,16 @@
 <link rel="stylesheet" type="text/css" href="../css/MDC_FocusImage.css"></link> 
 <script type="text/javascript" src=" http://js.sohu.com/library/jquery1.4.2.js"></script>
 <script type="text/javascript" src="../js/MDC_FocusImage.js"></script> 
+<style type="text/css">
+#MDC_FocusImage_2{width:662px;}
+#MDC_FocusImage_2 img{width:662px;height:348px;}
+#MDC_FocusImage_3{width:685px;}
+#MDC_FocusImage_3 img{width:685px;height:351px;}
+#MDC_FocusImage_4{width:500px;}
+#MDC_FocusImage_4 img{width:500px;height:334px;}
+#MDC_FocusImage_5{width:662px;}
+#MDC_FocusImage_5 img{width:662px;height:347px;}
+</style> 
 </head>
 <body>
 <br /><br />
@@ -17,8 +27,7 @@
 $("#MDC_FocusImage_1").focusImg({
 flag:'fi03',
 type:"1",//类型1=V首,2=电影,3=电视,4=音乐,5=戏剧
-imgW:"680",//图片宽
-imgH:"360",//图片高
+myHtml:'<div class="playButton"></div>',
 speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 },[
 {	//数据1
@@ -62,8 +71,6 @@ speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 $("#MDC_FocusImage_2").focusImg({
 flag:'fi03',
 type:"2",//类型1=V首,2=电影,3=电视,4=音乐,5=戏剧
-imgW:"662",//图片宽
-imgH:"348",//图片高
 speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 },[
 {	//数据1
@@ -115,8 +122,6 @@ speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 $("#MDC_FocusImage_3").focusImg({
 flag:'fi03',
 type:"3",//类型1=V首,2=电影,3=电视,4=音乐,5=戏剧
-imgW:"685",//图片宽
-imgH:"351",//图片高
 speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 },[
 {	//数据1
@@ -168,8 +173,6 @@ speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 $("#MDC_FocusImage_4").focusImg({
 flag:'fi03',
 type:"4",//类型1=V首,2=电影,3=电视,4=音乐,5=戏剧
-imgW:"500",//图片宽
-imgH:"334",//图片高
 speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 },[
 {	//数据1
@@ -221,8 +224,6 @@ speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 $("#MDC_FocusImage_5").focusImg({
 flag:'fi03',
 type:"5",//类型1=V首,2=电影,3=电视,4=音乐,5=戏剧
-imgW:"662",//图片宽
-imgH:"347",//图片高
 speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 },[
 {	//数据1
@@ -267,5 +268,9 @@ speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 </script>
 <br/>
 <br />
+<div id="MDCFIkDlKerMB" class="fi03"></div>
+<script type="text/javascript">
+jQuery("#MDCFIkDlKerMB").focusImg({"speed":"5000","type":"1","flag":"fi03","hoverStop":true,"myHtml":"<div class=\"playButton\"></div>"},[{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf1","t1":"adfasdfadfasdffffffffffffffff"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf122222","t1":"dddddddddddddddddddddddd"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf133333","t1":"adfadfadfadfadfadfadfadfad"}]);
+</script>
 </body>
 </html>
