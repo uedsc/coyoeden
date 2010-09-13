@@ -2,38 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>搜狐网站</title>
+<title>搜狐网站-焦点图5</title>
 <link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
+<link type="text/css" rel="stylesheet" href="../css/MDC_FocusImage.css"></link>
 <script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
-<script type="text/javascript" src="js/MDC_FocusImage_05.js"></script> 
+<script type="text/javascript" src="../js/MDC_FocusImage.js"></script> 
 </head>
 <body>
 
 <style>
 body{background:#333}
 </style>
-
-<style type="text/css">
-/*公益*/
-.fi05_1{width:642px;height:260px;position:relative;overflow:hidden}
-.fi05_1 .content{width:456px;height:260px;float:right;position:relative;cursor:pointer}
-.fi05_1 .content .transparence{height:40px;width:100%;background:#000;left:0;bottom:-40px;position:absolute}
-.fi05_1 .content h2{left:0;bottom:16px;position:absolute;padding-left:12px;font:600 14px/16px '宋体';color:#fff}
-.fi05_1 .tab{width:192px;position:absolute;top:0;left:0}
-.fi05_1 .tab dd{float:left;height:65px;width:192px;background:url(images/MDC_Focus_bg01.gif) no-repeat 0 -65px;cursor:pointer}
-.fi05_1 .tab dd img{float:left;margin:3px 8px 0 4px}
-.fi05_1 .tab dd p{font:12px/16px '宋体';color:#999;margin:15px auto 0;width:86px;float:left}
-.fi05_1 .tab dd.now{background:url(images/MDC_Focus_bg01.gif) no-repeat top!important}
-.fi05_1 .tab dd.now p{color:#fff}
-.fi05_1 .tab dd.hover{background:url(images/MDC_Focus_bg01.gif) no-repeat bottom}
-</style>
 <br /><br />
 
 <h1>公益  http://yule.sohu.com/gongyi/<button id="btnEdit">修改</button></h1>
 <div id="MDC_FocusImage_1" class="fi05"></div>
 <script type="text/javascript">
-var MDC_FocusImage_1=new MDC_FocusImage({
-id:"#MDC_FocusImage_1",//#号开头的ID
+$("#MDC_FocusImage_1").focusImg({
+flag:'fi05',	
 type:"1",//类型1=公益
 imgW:"456",//大图片宽
 imgH:"260",//大图片高
@@ -41,6 +27,7 @@ W:"642",//焦点图宽
 H:"260",//焦点图高
 imgW1:"73",//缩略图宽
 imgH1:"58",//缩略图高
+hoverStop:true,
 speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 },[
 {	//数据1
@@ -67,14 +54,11 @@ speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
 </script>
 <br />
 <br/>
-<div id="MDCFIHgVIh69y" class="fi05"></div>
-<script type="text/javascript">
-new MDC_FocusImage({"H":"260","W":"642","imgH":"260","imgW":"456","imgH1":"58","imgW1":"73","speed":"5000","type":"1","id":"#MDCFIHgVIh69y"},[{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"11曾志伟拍贺岁片改喜剧宣扬爱1"},{"p":"http://i1.itc.cn/20100714/62d_f2014f45_3dc0_4d95_ad1b_a29f3e708071_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"11曾志伟拍贺岁片改喜剧宣扬爱2"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"11曾志伟拍贺岁片改喜剧宣扬爱3"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"11曾志伟拍贺岁片改喜剧宣扬爱1"}]);
-</script>
+
 </body>
 <!--焦点图编辑示例代码-->
 <script type="text/javascript">
-MDC_FocusImage.Edit=function(id,editUrl,featureStr){
+MDC_FocusImage_Edit=function(id,editUrl,featureStr){
 	//准备焦点图的数据
 	var $d=$("#"+id);
 	window.MDCFI_DATA=$d.data("apple");
@@ -85,7 +69,7 @@ MDC_FocusImage.Edit=function(id,editUrl,featureStr){
 };
 
 $("#btnEdit").click(function(evt){
-	MDC_FocusImage.Edit("MDC_FocusImage_1","../index.html","menubar=no,resizable=no,width=960,height=500,location=no,status=no,scrollbars=yes,toolbar=no");
+	MDC_FocusImage_Edit("MDC_FocusImage_1","../index.html","menubar=no,resizable=no,width=960,height=500,location=no,status=no,scrollbars=yes,toolbar=no");
 });
 
 </script>
