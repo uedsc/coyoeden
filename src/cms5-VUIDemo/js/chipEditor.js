@@ -162,8 +162,9 @@ chipEditor.Dialog=function(opts){
 	this.$ElmA=this.$Layout.find(".elmA");
 	this.$ElmImg=this.$Layout.find(".elmImg");
 	//事件处理
-	this.$Chip.find("a").click(chipEditor.StopNav).bind("click.edit",function(evt){
+	this.$Chip.find("a").bind("click.edit",function(evt){
 		_this.Edit(jQuery(this));
+		return false;
 	});
 	this.$Backup=this.$Chip.clone(true);
 	//整体测试
@@ -197,7 +198,7 @@ chipEditor.Dialog=function(opts){
 		$o.attr("id",$o.attr("id").replace(opts.tabIDTpl,tabID));
 	});
 	//排序按钮
-	this.$Layout.find('.btnSort').click(function(evt){
+	this.$BtnSort=this.$Layout.find('.btnSort').click(function(evt){
 		_this.ToggleSorting(jQuery(this));return false;
 	});
 	//tab
@@ -233,6 +234,10 @@ chipEditor.Dialog=function(opts){
 		if(doShow){
 			hash.w.show();
 			_this.jqmHash=hash;
+			//清除排序状态
+			if(_this.Sorting){
+				_this.$BtnSort.trigger("click");
+			};
 			if(_this.jqmOpts.afterShow){
 				_this.jqmOpts.afterShow(hash,_this);
 			};
@@ -325,8 +330,8 @@ chipEditor.Dialog.prototype.ToggleSorting=function($i){
 		
 		this.Sorting=false;
 		//绑定click.edit事件
-		this.$Chip.find("a").unbind("click.sort").bind("click.edit",function(evt){
-			_this.Edit(jQuery(this));
+		this.$Chip.find("a").unbind("click").bind("click.edit",function(evt){
+			_this.Edit(jQuery(this));return false;
 		});
 		//重置"可视化修改"和"代码修改"(由于元素发生了变化)
 		this.$ElmA.empty().html(this._opts.lblTab0);
@@ -337,8 +342,8 @@ chipEditor.Dialog.prototype.ToggleSorting=function($i){
 		this.$CT.tabs("option","disabled",[0,1,2]);
 		this.Sorting=true;
 		//移除碎片a标签的click.edit事件处理
-		this.$Chip.find("a").unbind("click.edit").bind("click.sort",function(evt){
-			_this.Sort(jQuery(this));
+		this.$Chip.find("a").unbind("click").bind("click.sort",function(evt){
+			_this.Sort(jQuery(this));return false;
 		});
 	};
 };
