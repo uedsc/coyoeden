@@ -8,7 +8,9 @@
 		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script> 
 		<style type="text/css">
-			#picSlide{margin-top:30px;width:900px;margin:0 auto;border:2px solid #eee;}
+			#picSlide{width:900px;margin:30px auto;border:2px solid #eee;}
+			#picSlide .picsW{width:900px;overflow:hidden;}
+			#picSlide .pics{width:1200px;}
 			#picSlide .pics .left{position:relative;width:300px;}
 			#picSlide .cover{position:absolute;width:100%;height:100%;display:none;}
 			#picSlide .thumb{float:left;width:50%;height:120px;}
@@ -68,6 +70,21 @@
 							</div>						
 							<div class="cover"></div>
 						</div>
+						<div class="left">
+							<div class="thumb">
+								<a href="#"><img src="images/pic13.jpg"/></a>
+							</div>
+							<div class="thumb">
+								<a href="#"><img src="images/pic14.jpg"/></a>
+							</div>
+							<div class="thumb">
+								<a href="#"><img src="images/pic15.jpg"/></a>
+							</div>
+							<div class="thumb">
+								<a href="#"><img src="images/pic16.jpg"/></a>
+							</div>						
+							<div class="cover"></div>
+						</div>						
 					</div>
 				</div>
 				<div class="slider">
@@ -78,9 +95,14 @@
 	</body>
 	<script type="text/javascript">
 	//<![CDATA[
+		var $ct=$("#picSlide .pics");
+		var wCT=$ct.width(),wPN=$("#picSlide").width(),wGap=wCT-wPN,step;
 		$("#picSlide .slider").slider({
 			slide:function(e,ui){
-				
+				if(wGap>0){
+					step=Math.round(ui.value/100*wGap);
+					$ct.css("margin-left",-step);
+				};				
 			}
 		});
 	//]]>
