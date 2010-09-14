@@ -44,3 +44,7 @@ input,select,textarea{border-top:1px solid #A3A3A3; border-left:1px solid #A3A3A
 #fiList a.cl{display:none;}
 #fiList .open a.op{display:none;}
 #fiList .open a.cl{display:block;}
+
+#thumbView{position:absolute;width:960px;display:none;bottom:0px;border:2px solid #eee;left:50%;margin-left:-482px;background:#fff;}
+#thumbView img{display:block;margin:0 auto;}
+#thumbView a{position:absolute;top:0;right:0;display:block;height:17px;width:17px;background:#999;font-size:18px;font-weight:bold;}

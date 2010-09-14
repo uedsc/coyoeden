@@ -216,6 +216,9 @@ var MDC_FIDesign= function() {
 		p._$toggler=p._$fiList.find(".toggler");
 		//焦点图类型
 		p._fiSN='fi01';
+		//预览图
+		p._$thumbView=$("#thumbView");
+		p._$thumbImg=p._$thumbView.find("img");
 		if(window.opener)
 			p._fiData=window.opener.MDCFI_DATA;
 		else
@@ -240,6 +243,13 @@ var MDC_FIDesign= function() {
 		});
 		//焦点图选择列表
 		p._$fiItems.click(p.onSelect);
+		p._$fiList.find("li").hover(function(e){
+			p._$thumbImg.attr("src",($(this).index()+1)+"/images/preview.gif");
+			p._$thumbView.show();
+		},function(e){
+			p._$thumbView.hide();
+		});
+		p._$thumbView.find("a").click(function(){p._$thumbView.fadeTo("fast",0);});
 		
 		//左侧菜单关闭和打开
 		p._$toggler.find(".op").click(function(evt){
