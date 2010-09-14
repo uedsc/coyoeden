@@ -12,7 +12,7 @@ var MDC_FIDesign= function() {
 			alert("图片数目超出上限"+p._limit);
 			return false;
 		};
-		p._$entry1=p._$entry.clone(true).addClass("entry1");
+		p._$entry1=p._$entry.clone(true).addClass("entry1").find(".fld").val("").end();
 		$(this).parents(".entry").after(p._$entry1);
 		return false;
 	};
