@@ -74,14 +74,23 @@ var MDC_FIDesign= function() {
 		//validate image data
 		var objs=$("#designer .imgSrc");
 		ok=p.assertIsUrl(objs);
-		if(!ok) return false;
+		if(!ok){
+			alert("图片地址无效");
+			return false;
+		}; 
 		objs=$("#designer .imgSrc1");
 		ok=$.trim(objs.val())==""?true:p.assertIsUrl(objs);
-		if(!ok) return false;		
+		if (!ok) {
+			alert("图片地址无效");
+			return false;
+		};		
 		//validate href data
 		objs=$("#designer .imgLnk");
 		ok=p.assertIsUrl(objs);
-		if(!ok) return false;
+		if (!ok) {
+			alert("链接地址无效");
+			return false;
+		};	
 		
 		//everything is ok
 		var retVal={
@@ -90,7 +99,17 @@ var MDC_FIDesign= function() {
 		retVal.b=p.getEntryData();
 		return retVal;
 	};
+	p.showCodePreview=function(){
+		p._$preview.show();
+		//show the overlay
+		var h0=p._$desiner.height(),h1=p._$preview.height();
+		h0=h0>h1?h0:h1;
+		p._$previewOvl.show().css("height",h0+20);	
+	};
 	p.onGen=function(evt){
+		p._$btnRGen.removeClass();
+		p._$btnGen.addClass("on");
+		p._$preview.removeClass("rgen");
 		var d=p.onValidate();
 		if(!d){
 			$(".alert:first").select();
@@ -115,16 +134,53 @@ var MDC_FIDesign= function() {
 
 		p._$txtCode.val(s);
 	
-		p._$preview.show();
-		//show the overlay
-		var h0=p._$desiner.height(),h1=p._$preview.height();
-		h0=h0>h1?h0:h1;
-		p._$previewOvl.show().css("height",h0+20);
+		p.showCodePreview();
 	};
+	/**
+	 * 分析代码按钮处理
+	 * @param {Object} evt
+	 */
+	p.onRevertGen=function(evt){
+		p._$btnGen.removeClass();
+		p._$btnRGen.addClass("on");
+		p._$preview.addClass("rgen");
+		p.showCodePreview();
+		p._$txtCode.val("").focus();
+	};
+	/**
+	 * 反向分析焦点图代码
+	 * @param {Object} evt
+	 */
+	p.onDoRGen=function(evt){
+		var c=$.trim(p._$txtCode.val());
+		if(c==""){
+			alert("请输入要分析的焦点图代码");
+			p._$txtCode.focus();
+			return;
+		};
+		c=c.substring(c.indexOf("{"),c.indexOf("]")+1);
+		if(c==""){alert("代码不合法");return;};
+		//配置json数据
+		var d=c.substring(0,c.indexOf("[")-1);
+		if(d==""){alert("代码不合法");return;};
+		p._fiData={};
+		try{p._fiData.a=$.evalJSON(d);}catch(e){alert("代码不合法:"+d);return;};
+		if(!p._fiData.a.flag){alert("代码不合法(缺少焦点图类型flag属性):"+d);return;};
+		//图片json数据
+		d=c.substr(c.indexOf("["));
+		try{p._fiData.b=$.evalJSON(d);}catch(e){alert("代码不合法:"+d);return;};
+		
+		p.loadEditData(true);
+		p._$closePreview.trigger("click");
+	};
+	/**
+	 * 选择焦点图
+	 * @param {Object} evt
+	 */
 	p.onSelect=function(evt){
 		if(this.className=="on") return false;
 		if(!p._$previewOvl.is(":hidden"))
-			p._$preview.find(".close").trigger("click");
+			p._$closePreview.trigger("click");
 			
 		p._$fiItems.removeClass("on");
 		$(this).addClass("on");
@@ -132,21 +188,24 @@ var MDC_FIDesign= function() {
 		p._fiSN=this.rel;
 		return false;
 	};
-	p.loadEditData=function(){
+	p.loadEditData=function(keepLMenu){
 		if(!p._fiData) return;
 		//隐藏左边菜单
-		p._$fiList.hide();
+		if(!keepLMenu)
+			p._$fiList.hide();
 		//焦点图种类
 		p._$fiItems.each(function(i,o){
-			if(o.rel==p._fiData.t){
+			if(o.rel==p._fiData.a.flag){
 				$(o).trigger("click");
 				return false;
 			};
 		});
+		//清空表单
+		p._$desiner.find(".entry1").remove();
 		//根据数据建立编辑ui
 		var $o=null;
 		for(var c in p._fiData.a){
-			if(c=="type"){c=c+"_"+p._fiData.t;};
+			if(c=="type"){c=c+"_"+p._fiData.a.flag;};
 			$o=p._fmCfg[c];
 			if(!$o)
 				continue;
@@ -161,8 +220,11 @@ var MDC_FIDesign= function() {
 		for(var i=0;i<p._fiData.b.length;i++){
 			if(i==0){
 				p.fillEntryData(p._$entry,p._fiData.b[i]);
-			}else{
+			}else if(i==1){
 				p._$btnAdd.trigger("click");
+				p.fillEntryData(p._$entry1,p._fiData.b[i]);
+			}else{
+				p._$entry1.find(".add").trigger("click");
 				p.fillEntryData(p._$entry1,p._fiData.b[i]);
 			};
 		};
@@ -202,8 +264,10 @@ var MDC_FIDesign= function() {
 		};
 		p._$previewOvl=$("#preview_ovl").css("opacity",0.6);
 		p._$preview=$("#preview");
+		p._$closePreview=p._$preview.find(".close");
 		p._$txtCode=$("#txtCode");
 		p._$btnGen=$("#btnGen");
+		p._$btnRGen=$("#btnAnalytics");
 		p._$desiner=$("#designer");
 		
 		//焦点图列表
@@ -234,9 +298,12 @@ var MDC_FIDesign= function() {
 		});
 		//生成代码
 		p._$btnGen.click(p.onGen);
+		//反向分析代码
+		p._$btnRGen.click(p.onRevertGen);
+		$("#btnDoRGen").click(p.onDoRGen);
 		//代码框
 		p._$txtCode.click(function(evt){$(this).select();});
-		p._$preview.find(".close").click(function(evt){
+		p._$closePreview.click(function(evt){
 			p._$previewOvl.hide();
 			p._$preview.slideUp("fast");
 			return false;

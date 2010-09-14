@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<title>VS-JS-Images scroller</title>
+		<link rel="stylesheet" type="text/css" href="http://css.sohu.com/upload/global1.3.css"></link>
+		<link media="all" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet"></link> 
+		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script> 
+		<style type="text/css">
+			#picSlide{margin-top:30px;width:900px;margin:0 auto;border:2px solid #eee;}
+			#picSlide .pics .left{position:relative;width:300px;}
+			#picSlide .cover{position:absolute;width:100%;height:100%;display:none;}
+			#picSlide .thumb{float:left;width:50%;height:120px;}
+			#picSlide .thumb a{display:block;width:140px;padding:5px;background:#333;}
+			#picSlide .thumb a:hover{background:#f4f4f4;}
+			#picSlide .thumb img{display:block;width:140px;height:110px;}
+			#picSlide .slider{background:#333;margin-top:10px;}
+		</style>  
+	</head>
+	<body>
+		<div id="contentA" class="area">
+			<div id="picSlide">
+				<div class="picsW">
+					<div class="pics clear">
+						<div class="left">
+							<div class="thumb">
+								<a href="#"><img src="images/pic1.jpg"/></a>
+							</div>
+							<div class="thumb">
+								<a href="#"><img src="images/pic2.jpg"/></a>
+							</div>
+							<div class="thumb">
+								<a href="#"><img src="images/pic3.jpg"/></a>
+							</div>
+							<div class="thumb">
+								<a href="#"><img src="images/pic5.jpg"/></a>
+							</div>															
+							<div class="cover"></div>
+						</div>
+						<div class="left">
+							<div class="thumb">
+								<a href="#"><img src="images/pic8.jpg"/></a>
+							</div>
+							<div class="thumb">
+								<a href="#"><img src="images/pic4.jpg"/></a>
+							</div>
+							<div class="thumb">
+								<a href="#"><img src="images/pic6.jpg"/></a>
+							</div>
+							<div class="thumb">
+								<a href="#"><img src="images/pic7.jpg"/></a>
+							</div>												
+							<div class="cover"></div>
+						</div>
+						<div class="left">
+							<div class="thumb">
+								<a href="#"><img src="images/pic9.jpg"/></a>
+							</div>
+							<div class="thumb">
+								<a href="#"><img src="images/pic11.jpg"/></a>
+							</div>
+							<div class="thumb">
+								<a href="#"><img src="images/pic10.jpg"/></a>
+							</div>
+							<div class="thumb">
+								<a href="#"><img src="images/pic12.jpg"/></a>
+							</div>						
+							<div class="cover"></div>
+						</div>
+					</div>
+				</div>
+				<div class="slider">
+					
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	//<![CDATA[
+		$("#picSlide .slider").slider({
+			slide:function(e,ui){
+				
+			}
+		});
+	//]]>
+	</script>
+ 
+</html>
