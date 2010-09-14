@@ -340,7 +340,7 @@ $.fn.focusImg.Register("fi05",{
 		});
 		fi._$tabs.mouseleave(function(){
 			jQuery(this).removeClass("hover");
-		})		
+		});		
 		//给焦点区绑定Click事件,用于弹出链接
 		fi.$d.find(".content").click(function(){window.open(fi._$img.attr("link"));});
 	},
