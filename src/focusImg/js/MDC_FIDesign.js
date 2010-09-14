@@ -75,20 +75,17 @@ var MDC_FIDesign= function() {
 		var objs=$("#designer .imgSrc");
 		ok=p.assertIsUrl(objs);
 		if(!ok){
-			alert("图片地址无效");
 			return false;
 		}; 
 		objs=$("#designer .imgSrc1");
 		ok=$.trim(objs.val())==""?true:p.assertIsUrl(objs);
 		if (!ok) {
-			alert("图片地址无效");
 			return false;
 		};		
 		//validate href data
 		objs=$("#designer .imgLnk");
 		ok=p.assertIsUrl(objs);
 		if (!ok) {
-			alert("链接地址无效");
 			return false;
 		};	
 		
