@@ -8,13 +8,13 @@
 <script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
 <script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
 <!--<script type="text/javascript" src="js/MDC_FocusImage_01.js"></script>-->
-<script type="text/javascript" src="../js/MDC_FocusImage.min.js"></script>
+<script type="text/javascript" src="../js/MDC_FocusImage.js"></script>
 <style type="text/css">
 #focus2 .fi01{width:300px;height:170px;}
-#focus2 .fi01 img{height:150px;}
+#focus2 .fi01 .fi_player{height:150px;}
 #focus3 .fi01{width:600px;height:370px;}
-#focus3 .fi01 img{height:350px;}
-#focus3 .fi01 .tt{color:red;background:yellow;}
+#focus3 .fi01 .fi_player{height:350px;}
+#focus3 .fi01 .fi_tt{color:red;background:yellow;}
 </style>  
 </head>
 <body>
@@ -24,7 +24,7 @@
 <script type="text/javascript">
 $("#MDC_FocusImage_1").focusImg({
 speed:"5000",//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
-place:"tabRB",//按扭位置 tabLB下左 tabRB下右 tabLT上左 tabRT上右
+place:"fi_tabRB",//按扭位置 tabLB下左 tabRB下右 tabLT上左 tabRT上右
 text:true,//是否显示文字标签 true显示 false不显示
 flag:'fi01',
 hoverStop:true
@@ -60,7 +60,7 @@ hoverStop:true
 <script type="text/javascript">
 $("#MDC_FocusImage_2").focusImg({
 speed:"3000",//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
-place:"tabLB",
+place:"fi_tabLB",
 text:false,//是否显示文字标签 
 flag:'fi01'
 },
@@ -101,7 +101,7 @@ flag:'fi01'
 <script type="text/javascript">
 $("#MDC_FocusImage_3").focusImg({
 speed:"3000",//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
-place:"tabRT",//按扭位置 1下左 2下右 3上左 4上右
+place:"fi_tabRT",//按扭位置 1下左 2下右 3上左 4上右
 text:true,//是否显示文字标签 1显示 0不显示
 flag:'fi01'
 },
@@ -142,7 +142,7 @@ flag:'fi01'
 <br />
 <div id="MDCFII8J3lXvM" class="fi01"></div>
 <script type="text/javascript">
-jQuery("#MDCFII8J3lXvM").focusImg({"speed":"5000","place":"tabRB","text":true,"flag":"fi01","hoverStop":true},[{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf1"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf122222"}]);
+jQuery("#MDCFII8J3lXvM").focusImg({"speed":"5000","place":"fi_tabRB","text":true,"flag":"fi01","hoverStop":true},[{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf1"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf122222"}]);
 </script>
 <br />
 </body>

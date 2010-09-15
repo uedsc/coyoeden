@@ -116,7 +116,7 @@ var MDC_FIDesign= function() {
 		d.a.hoverStop=true;
 		
 		if((p._fiSN=='fi03'||p._fiSN=='fi04')&&d.a.type=="1"){
-			d.a.myHtml='<div class="playButton"></div>';
+			d.a.myHtml='<div class="fi_btnplay"></div>';
 		};
 		if(p._fiSN=='fi06'&&d.a.type=="1"){
 			d.a.ptStepY=90;

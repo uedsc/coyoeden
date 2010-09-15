@@ -12,7 +12,7 @@
 			#picSlide .picsW{width:900px;overflow:hidden;}
 			#picSlide .pics{width:1200px;}
 			#picSlide .pics .left{position:relative;width:300px;}
-			#picSlide .cover{position:absolute;width:100%;height:100%;display:none;}
+			#picSlide .cover{position:absolute;width:100%;height:100%;display:none;z-index:10;}
 			#picSlide .thumb{float:left;width:50%;height:120px;}
 			#picSlide .thumb a{display:block;width:140px;padding:5px;background:#333;}
 			#picSlide .thumb a:hover{background:#f4f4f4;}
@@ -104,6 +104,17 @@
 					$ct.css("margin-left",-step);
 				};				
 			}
+		});
+		
+		var img,$i;
+		$ct.find(".cover").mouseleave(function(evt){
+			$(this).hide();
+		});
+		$ct.find(".thumb").mouseenter(function(evt){
+			$i=$(this);
+			img=$i.find("img").attr("src");
+			img="url('"+img+"')";
+			$i.parent().find(".cover").css("background",img).fadeIn();
 		});
 	//]]>
 	</script>
