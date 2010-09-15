@@ -211,7 +211,7 @@
 .fi07_1 .fi_tab{cursor:default;height:16px;text-align:center}
 .fi07_1 .fi_tab span{cursor:pointer;display:inline-block;margin:0 6px;width:5px;height:5px;background:url(../7/images/dot.jpg) no-repeat right;vertical-align:middle}
 .fi07_1 .fi_tab span.now{background-position:left;}
-.fi07_1 .fi_btn{cursor:pointer;display:inline-block;margin:0 6px;float:none;width:18px;height:16px;vertical-align:middle;}
+.fi07_1 .fi_btn{cursor:pointer;display:inline-block;margin:0 6px;float:none;width:18px;height:16px;vertical-align:middle;overflow:hidden;}
 .fi07_1 .fi_btn a{width:18px;height:16px;display:block}
 .fi07_1 .l a{background:url(../7/images/lButton_1.jpg)}
 .fi07_1 .l a:hover{background:url(../7/images/lButton_2.jpg)}
