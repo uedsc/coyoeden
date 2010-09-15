@@ -78,7 +78,7 @@
 				(function(i,o){
 					o=jQuery(o).click(function(){
 						if(this.className!="now"){
-							//clearTimeout(that.autoPlay);
+							clearTimeout(that.autoPlay1);
 							clearInterval(that.autoPlay);
 							gogo(i);
 						};
@@ -392,7 +392,7 @@ $.fn.focusImg.Register("fi06",{
 	initEvts:function(fi,gogo){
 		var _num=fi._$tabC.height()-fi._$tabOvl.height();
 		//绑定各种元素的事件
-		fi.$d.find(".fi_btn").click(function(e){return false;});
+		fi.$d.find(".fi_btn").click(function(e){/*失焦以便移除虚线*/this.blur();return false;});
 		fi.$d.find(".r > .fi_up").mousedown(function(){
 			if(fi._$tabC.position().top<0){
 				if(!fi._$tabC.is(":animated")){
@@ -498,7 +498,7 @@ $.fn.focusImg.Register("fi07",{
 		var l=function(){return parseInt(fi._$list.css("left"));};
 		var _this=this;
 		//绑定各种元素的事件
-		fi.$d.find("a").click(function(e){return false;});
+		fi._$tabC.find("a").click(function(e){/*失焦以便移除虚线*/this.blur();return false;});
 		//左按钮
 		fi._$btnL.mousedown(function(){
 			var s=fi._$tabs.index(fi._$tabs.filter(".now")[0]);
