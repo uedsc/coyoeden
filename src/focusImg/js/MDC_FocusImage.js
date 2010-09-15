@@ -439,11 +439,11 @@ $.fn.focusImg.Register("fi06",{
 		fi._$titleC.html(fi.focusData[i].t);
 		fi._$desc.html(fi.focusData[i].t1);
 		
-		var _w=fi._$note.width();
+		var _w=fi._$note.width(),_h=fi._$tabOvl.height();/* _h:tab显示区域的高度 */
 		fi._$transparentOvl.css("width",0).stop().animate({width:_w},200);
 		var _num1=fi._$tabs.filter(".now").prevAll().length*fi.ptStepY;
-		var _num2=fi._$tabC.height()-fi._$tabOvl.height();
-		var _num3=_num1-270;//TODO:270的逻辑怎么来
+		var _num2=fi._$tabC.height()-_h;
+		var _num3=_num1-(_h-fi.ptStepY);
 		if(!fi._$tabC.is(":animated")){
 			if(fi._$tabC.position().top > -_num3){
 				fi._$tabC.stop().animate({top:-_num3},200);
