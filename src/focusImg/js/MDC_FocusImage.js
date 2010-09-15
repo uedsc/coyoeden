@@ -293,8 +293,8 @@ $.fn.focusImg.Register("fi04",{
 		fi._$pointer.click(function(){window.open(fi._$img.attr("link"));});
 	},
 	alt:function(fi,i){
-		fi._$tabs.filter(".now").children().animate({"opacity":.5},200);
-		fi._$tabs.eq(i).children().animate({"opacity":1},200);
+		fi._$tabs.filter(".now").children().css("opacity",.5);
+		fi._$tabs.eq(i).children().css("opacity",1);
 		//Ö¸Õë¹ö¶¯¶¯»­				
 		switch(fi.type){
 			case "1":
