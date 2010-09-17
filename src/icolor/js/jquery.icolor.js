@@ -34,6 +34,7 @@
 	p.M.prototype={
 		_init:function(){
 			this._initColors();
+			this._initCbk();
 			this._initLayout();
 		},
 		_initColors:function(){
@@ -99,7 +100,7 @@
 			var _this=this;
 			//beforeInit callback
 			var go=true;
-			if(this._opts.beforeInit){go=this._opts.beforeInit(this);};
+			if(this._opts.beforeInit){go=this._opts.beforeInit();};
 			if(!go) return;
 			//build the layout
 			this._opts.col=this._opts.col||this.colors.length;
@@ -145,12 +146,12 @@
 			if(this._opts.hover){
 				this.$colors.mouseenter(function(e){
 					var c="#"+this.abbr;
-					_this._opts.onOver?_this._opts.onOver(c,_this):(function(){
+					_this._opts.onOver?_this._opts.onOver(c):(function(){
 						_this._$ipt.css("background-color",c);
 					})();
 				});
 				this.$tb.mouseleave(function(e){
-					_this._opts.onOut?_this._opts.onOut(_this):(function(){
+					_this._opts.onOut?_this._opts.onOut():(function(){
 						_this._$ipt.css("background-color","");
 					})();
 				});
@@ -186,11 +187,11 @@
 			
 			//afterInit callback
 			if(this._opts.afterInit)	
-				this._opts.afterInit(this);
+				this._opts.afterInit();
 		},
 		show:function(){
 			var _this=this;
-			var pos=this.$t.offset(),cbk=this._opts.onShow?function(){_this._opts.onShow(_this,pos);}:null;
+			var pos=this.$t.offset(),cbk=this._opts.onShow?function(){_this._opts.onShow(pos);}:null;
 			this.$layout.css({left:pos.left,top:pos.top+this.$t.height()});
 			if(this._opts.slide){
 				this.$layout.slideDown("fast",cbk);
@@ -199,10 +200,36 @@
 			};
 		},
 		submit:function(){
-			if(this._opts.onSelect){this._opts.onSelect(this.curColor,this);};
+			if(this._opts.onSelect){this._opts.onSelect(this.curColor);};
 			if((!this.flat)&&this._opts.autoClose){
 				this.$layout.hide();
 			};
+		},
+		/**
+		 * Generate a proxy function  for the specified function 'f',
+		 * which will set the 'this' keyword inside the f to the current p.M instance.
+		 * @param {Function} f
+		 */
+		_proxy:function(f){
+			if(!f) return null;
+			var i=this;
+			return function(){
+				return f.apply(i,arguments);
+			};
+		},
+		_initCbk:function(){
+			//onShow
+			this._opts.onShow=this._proxy(this._opts.onShow);
+			//onSelect
+			this._opts.onSelect=this._proxy(this._opts.onSelect);
+			//beforeInit
+			this._opts.beforeInit=this._proxy(this._opts.beforeInit);
+			//afterInit
+			this._opts.afterInit=this._proxy(this._opts.afterInit);
+			//onOver
+			this._opts.onOver=this._proxy(this._opts.onOver);
+			//onOut
+			this._opts.onOut=this._proxy(this._opts.onOut);
 		}
 	};
     //main plugin body

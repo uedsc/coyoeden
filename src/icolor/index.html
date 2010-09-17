@@ -35,7 +35,7 @@
 		<div class="icolorC">
 			<input type="text" id="icolor4"/>
 		</div>
-		<h2>6,Demo-Default colors with popup style,no auto-colose</h2>
+		<h2>6,Demo-Default colors with popup style,no auto-close</h2>
 		<div class="icolorC">
 			<input type="text" id="icolor5"/>
 		</div>							
@@ -44,7 +44,7 @@
 	//<![CDATA[
 		$("#icolor").icolor({
 			flat:true,
-			onSelect:function(c,i){i.$tb.css("background-color",c);},
+			onSelect:function(c){this.$tb.css("background-color",c);},
 			showInput:true,
 			title:false
 		});
@@ -55,7 +55,7 @@
 			colors:["FFFFFF", "EEEEEE", "FFFF88", "FF7400", "CDEB8B", "6BBA70",
 			"006E2E", "C3D9FF", "4096EE", "356AA0", "FF0096", "B02B2C", "000000"],
 			col:4,
-			onSelect:function(c,i){i.$tb.css("background-color",c);},
+			onSelect:function(c){this.$tb.css("background-color",c);}
 		});
 		//3
 		$("#icolor2").icolor({
@@ -63,22 +63,22 @@
 			colors:["FFFFFF", "EEEEEE", "FFFF88", "FF7400", "CDEB8B", "6BBA70",
 			"006E2E", "C3D9FF", "4096EE", "356AA0", "FF0096", "B02B2C", "000000"],
 			col:false,
-			onSelect:function(c,i){i.$tb.css("background-color",c);},
+			onSelect:function(c){this.$tb.css("background-color",c);}
 		});
 		//4
 		$("#icolor3").icolor({
 			flat:true,
-			onSelect:function(c,i){i.$tb.css("background-color",c);},
+			onSelect:function(c){this.$tb.css("background-color",c);},
 			showInput:true,
 			okTpl:'<a class="icolor_ok" href="#"><img src="img/icon_done.gif" alt="ok"/></a>'
 		});	
 		//5
 		$("#icolor4").icolor({
-			onSelect:function(c,i){i.$tb.css("background-color",c);i.$t.val(c);}
+			onSelect:function(c){this.$tb.css("background-color",c);this.$t.val(c);}
 		});	
 		//6
 		$("#icolor5").icolor({
-			onSelect:function(c,i){i.$tb.css("background-color",c);i.$t.val(c);},
+			onSelect:function(c){this.$tb.css("background-color",c);this.$t.val(c);},
 			autoClose:false
 		});						
 	//]]>
