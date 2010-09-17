@@ -16,6 +16,7 @@
 		li li{width:95%;background:#ffffc2;margin-bottom:10px;}
 		li li li{width:95%;background:#ccc;margin-bottom:10px;}
 		.ui-hl{height: 20px; line-height:20px;background:#d5eaff; }
+		.ui-sortable-helper{position:absolute;height:15px; background:red;border:2px dashed #eee;width:50%;}
 		</style> 
 	</head>
 	<body>
@@ -48,12 +49,22 @@
 				</li>
 			</ul>
 		</div>
-			<script type="text/javascript">
+	<script type="text/javascript">
 	//<![CDATA[
 	$(".sort").sortable({
 		items:">.ct",
 		connectWith:".sort",
-		placeholder:"ui-hl"
+		placeholder:"ui-hl",
+		tolerance:'pointer',
+		appendTo:'body',
+		helper:function(e,obj){
+			var e0=e;
+			console.log(e.pageX);
+			var dh=$("<div/>").css({
+				width:80
+			});
+			return dh;
+		}
 	});
 	//]]>
 	</script>

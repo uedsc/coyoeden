@@ -157,6 +157,7 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});	
 		sohu.diyConsole.$AreaHolder=$("#areaHolder");
 		sohu.diyConsole.$FlashHolder=$("#flashHolder").mouseleave(function(evt){$(this).hide();});
+		sohu.diyConsole.$CTHelper=$("#ctHelper");
 		sohu.diyConsole.IsPreview=false;
 		//加载现有的焦点图flash
 		p.loadFlash();

@@ -4,8 +4,9 @@
 /* JQ-UI相关样式 */
 .ui-widget-overlay{opacity:0.4;}
 /* drag&drop style */
-.ui-hl{height: 30px; line-height:30px;background:#ffffc2; }
-#ctHandle{position:absolute;display:none;margin:0;top:-2px;right:-1px;width:16px;height:16px;overflow:hidden;z-index:101;cursor:move;}
+.ui-hl{height:30px;background:#ffffc2; }
+#ctHandle{position:absolute;display:none;margin:0;top:-2px;left:-1px;/*top:-2px;right:-1px;*/width:16px;height:16px;overflow:hidden;z-index:101;cursor:move;}
+#ctHelper{width:80px;height:20px;border:2px dashed #ffffc2;background:red;display:none;}
 /* 对话框 */
 .ui-dialog .skform{width:100%;padding:10px 0;}
 .ui-dialog .skform label{width:25%;}
@@ -78,6 +79,7 @@ display:none;
 .area_active .ing,.area_active .subsec .ing{border-color:#FF0084;}
 /* 内容样式-Editing */
 .ct{position:relative;}
+.ctOn{background:#EFEBEF;}
 #eHolder{position:absolute;z-index:49;border-top:1px dotted #CCC;;border-left:1px dotted #CCC;;border-right:1px dotted #eee;;border-bottom:1px dotted #eee;}
 #areaHolder{position:absolute;display:none;z-index:50;border:1px solid red;background:#f9bfc0;}
 #flashHolder{position:absolute;display:none;z-index:51;border:2px solid red;background:#ffffc2;cursor:pointer;}

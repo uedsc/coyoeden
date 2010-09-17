@@ -35,6 +35,8 @@ sohu.diySection = function(opts) {
 		connectWith:".sec",
 		placeholder:"ui-hl",
 		handle:".dragHandle",
+		tolerance:"pointer",
+		helper:function(evt,o){return sohu.diyConsole.$CTHelper.css({width:80,height:20,display:'block'});},
 		receive:function(evt,ui){
 			sohu.diyConsole.Dragger.obj.Sec.RemoveCTByID(sohu.diyConsole.Dragger.obj.ID);
 			sohu.diyConsole.Dragger.obj.Sec=_this;
