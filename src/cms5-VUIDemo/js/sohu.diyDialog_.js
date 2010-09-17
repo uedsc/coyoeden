@@ -272,18 +272,15 @@ sohu.diyDialog.wCfgPage=function(dlg){
 		p.onOK(null,false);
 	};
 	//事件注册
-	p._fm.cpk.ColorPicker({
+	//TODO:用全局的取色器
+	p._fm.cpk.icolor({
 		flat:true,
-		color:"#ffffff",
-		onChange:function(hsb,hex,rgb){
-			var c="#"+hex;
-			p._fm.txtBGC.css("backgroundColor",c).attr("title",c);
-			sohu.diyConsole.$Body.css("backgroundColor",c);
-		},
-		onSubmit:function(hsb,hex,rgb){
-			sohu.diyConsole.$Body.css("backgroundColor","#"+hex);
+		onSelect:function(hex){
+			sohu.diyConsole.$Body.css("backgroundColor",hex);
+			p._fm.txtBGC.css("backgroundColor",hex);
 			p._fm.cpk.hide();
-		}
+		},
+		showInput:true
 	});
 	p._fm.ddlBGAlignA.change(function(evt){
 		p._fm.ddlBGAlignA.curVal=this.value;
@@ -538,20 +535,16 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		p.preview();
 	});
 	//栏目背景色
-	p._fm.cpk.ColorPicker({
+	//TODO:用全局取色器
+	p._fm.cpk.icolor({
 		flat:true,
-		color:"#eeeeee",
-		onChange:function(hsb,hex,rgb){
-			var c="#"+hex;
+		onSubmit:function(c){
 			p._fm.cpk.$t.css("backgroundColor",c).attr("title",c);
 			if(p._fm.cpk.flag=="bg"){
 				sohu.diyConsole.CurSec.$Layout.css("backgroundColor",c);
 			}else{
 				p._fm.cbxBorder.trigger("evtClick");
 			};
-		},
-		onSubmit:function(hsb,hex,rgb){
-			this.onChange(hsb,hex,rgb);
 			p._fm.cpk.hide();
 		}
 	});			

@@ -324,19 +324,13 @@ sohu.diyDialog.showColorPicker=function(opts){
 			modal:true
 		}).draggable({handle:".hd",containment:'window'});
 				
-		sohu.diyDialog.$jqmCpk.find(".cpk").ColorPicker({
+		sohu.diyDialog.$jqmCpk.find(".cpk").icolor({
 			flat:true,
-			color:"#000000",
-			onSubmit:function(hsb,hex,rgb){
+			onSelect:function(hex){
 				if(sohu.diyDialog.$jqmCpk._onSubmit){
-					sohu.diyDialog.$jqmCpk._onSubmit("#"+hex);
+					sohu.diyDialog.$jqmCpk._onSubmit(hex);
 				};
 				sohu.diyDialog.$jqmCpk.jqmHide();
-			},
-			onChange:function(hsb,hex,rgb){
-				if(sohu.diyDialog.$jqmCpk._onChange){
-					sohu.diyDialog.$jqmCpk._onChange("#"+hex);
-				};
 			}
 		});
 		

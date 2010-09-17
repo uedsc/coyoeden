@@ -1,5 +1,11 @@
 /* color picker */
 .colorpicker{position:relative;z-index:1000;margin:0 auto;}
+.icolor{position:absolute;}
+.icolor_flat,.icolor_ft{position:relative;}
+.icolor td{width: 15px;height: 15px;border: solid 1px #000000;	cursor:pointer;}
+.icolor table{background-color: #FFFFFF;border: solid 1px #ccc;}
+.icolor .icolor_tbx{width:170px;border-top:1px solid #999;border-left:1px solid #ccc;border-right:1px solid #ccc;border-bottom:1px solid #ccc;}
+.icolor_ok img{border:none;}
 
 /* JQ-UI相关样式 */
 .ui-widget-overlay{opacity:0.4;}
