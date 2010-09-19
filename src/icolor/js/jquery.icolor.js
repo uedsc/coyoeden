@@ -135,7 +135,6 @@
 			};
 			//register event handlers
 			this.$colors.click(function(e){
-				if(this.className=="hot") return;
 				_this.$colors.removeClass();
 				$(this).addClass("hot");
 				_this.curColor="#"+this.abbr;
