@@ -29,6 +29,11 @@ sohu.diyContent=function(opts){
 	if((this.ID=this.$Layout.attr("id"))=="")
 		this.ID="ct_"+this.Type+"_"+StringUtils.RdStr(8);
 	
+	this.$Layout.attr("id",this.ID);
+	
+	/* Persistence to the dom tree */
+	this.Editor.UpdateCT(this,1);
+	
 	/* Load elements */
 	this.LoadElements();
 	
@@ -57,7 +62,6 @@ sohu.diyContent=function(opts){
 		};
 		
 	};
-	this.$Layout.attr("id",this.ID);
 };
 /**
  * 获取内容的维度信息
@@ -189,18 +193,13 @@ sohu.diyContent.prototype.BindEvts=function(){
 		_this.Editor.CurCT=_this;
 		sohu.diyConsole.CurCT=_this;
 		//拖拽助手事件
-		sohu.diyConsole.Dragger.handle.show().appendTo(_this.$Layout);	
-			
-		sohu.diyConsole.Dragger.handle
+		sohu.diyConsole.Dragger.handle.show().appendTo(_this.$Layout)
 		.unbind()
 		.bind("mousedown",function(evt){
-			sohu.diyConsole.Dragger.ing=true;
 			sohu.diyConsole.Dragger.obj=_this;
-			_this.Sec.Deactive();	
-		}).bind("mouseup",function(evt){
-			sohu.diyConsole.Dragger.ing=false;
+			//_this.Sec.Deactive();	
 		});
-		
+
 		if(_this.IsFlash){
 			var d=_this.Dim();
 			sohu.diyConsole.$FlashHolder.css({

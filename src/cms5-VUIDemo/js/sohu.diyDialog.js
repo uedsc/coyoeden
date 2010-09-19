@@ -308,7 +308,7 @@ sohu.diyDialog.doAlert=function(opts){
 		btnNO:false,
 		onOK:function($jqm){
 			$jqm.jqmHide();
-		},
+		}
 	},opts);
 	opts.btnNO=false;
 	sohu.diyDialog.doConfirm(opts);
@@ -327,11 +327,12 @@ sohu.diyDialog.showColorPicker=function(opts){
 		sohu.diyDialog.$jqmCpk.find(".cpk").icolor({
 			flat:true,
 			onSelect:function(hex){
-				if(sohu.diyDialog.$jqmCpk._onSubmit){
-					sohu.diyDialog.$jqmCpk._onSubmit(hex);
+				if(sohu.diyDialog.$jqmCpk._onSelect){
+					sohu.diyDialog.$jqmCpk._onSelect(hex);
 				};
 				sohu.diyDialog.$jqmCpk.jqmHide();
-			}
+			},
+			showInput:true
 		});
 		
 		//margin-left
@@ -339,8 +340,7 @@ sohu.diyDialog.showColorPicker=function(opts){
 		sohu.diyDialog.$jqmCpk.css("margin-left",ml);
 	};
 	//缓存及更新回调
-	sohu.diyDialog.$jqmCpk._onSubmit=opts.onSubmit;
-	sohu.diyDialog.$jqmCpk._onChange=opts.onChange;
+	sohu.diyDialog.$jqmCpk._onSelect=opts.onSelect;
 	sohu.diyDialog.$jqmCpk.jqmShow();
 };
 /* /静态方法 */

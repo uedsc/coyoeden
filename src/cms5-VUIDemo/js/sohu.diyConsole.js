@@ -65,7 +65,7 @@ sohu.diyConsole=function(opts){
 		if(!sohu.diyConsole.CurArea) return;
 		if(!sohu.diyConsole.CurArea.IsActive) return;
 		if(sohu.diyConsole.CurArea.IsEditing) return;
-		if(sohu.diyConsole.Dragger.ing) return;
+		//if(sohu.diyConsole.Dragger.ing) return;
 		//if(sohu.diyConsole.EditingSec!=null) return;
 		
 		var b=p.getWorkspaceBoundary();
@@ -289,7 +289,6 @@ sohu.diyConsole.toggleLoading=function(){
 };
 /*静态方法、对象*/
 sohu.diyConsole.Dragger={
-	ing:false,
 	obj:null,
 	handle:$("#ctHandle"),
 	cssHandle:'.dragHandle'
@@ -410,7 +409,7 @@ sohu.diyConsole.Preview=function(flag){
 	if(!sohu.diyConsole.CurArea.IsActive) return;
 	if(sohu.diyConsole.CurArea.IsEditing) return;
 	*/
-	if(sohu.diyConsole.Dragger.ing) return;
+	//if(sohu.diyConsole.Dragger.ing) return;
 	//移除分栏编辑器
 	if(sohu.diyConsole.CurSec)
 		sohu.diyConsole.CurSec.Editor.Editing("off");

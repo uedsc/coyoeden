@@ -345,8 +345,7 @@ sohu.diyDialog.wAddContent=function(dlg){
 		return true;
 	};
 	p.afterHide=function(hash,dlg0){
-		//sohu.diyConsole.CurSec.Editor.Editing("off");
-		//sohu.diyConsole.CurSec.Deactive();
+		//sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
 		sohu.diyConsole.Preview();
 	};
 	//jqm options
@@ -373,7 +372,7 @@ sohu.diyDialog.wCode=function(dlg){
 		return true;
 	};
 	p.afterHide=function(hash,dlg0){
-		//sohu.diyConsole.CurSec.Editor.Editing("off");
+		//sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
 		sohu.diyConsole.Preview();
 	};	
 	p.afterShow=function(hash,dlg0){
@@ -538,7 +537,7 @@ sohu.diyDialog.wCfgSec=function(dlg){
 	//TODO:用全局取色器
 	p._fm.cpk.icolor({
 		flat:true,
-		onSubmit:function(c){
+		onSelect:function(c){
 			p._fm.cpk.$t.css("backgroundColor",c).attr("title",c);
 			if(p._fm.cpk.flag=="bg"){
 				sohu.diyConsole.CurSec.$Layout.css("backgroundColor",c);
@@ -546,7 +545,8 @@ sohu.diyDialog.wCfgSec=function(dlg){
 				p._fm.cbxBorder.trigger("evtClick");
 			};
 			p._fm.cpk.hide();
-		}
+		},
+		showInput:true
 	});			
 	//jqm options
 	this.$Layout.jqmOpts={
@@ -693,7 +693,8 @@ sohu.diyDialog.wSubSec=function(dlg,parentSize){
 		return true;
 	};
 	p.afterHide=function(hash,dlg0){
-		sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
+		//sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
+		sohu.diyConsole.Preview();
 	};	
 	//事件注册
 	this.$Layout.find('.item').click(function(evt){

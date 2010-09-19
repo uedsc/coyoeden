@@ -566,13 +566,9 @@ sohu.diyChipEditor.Dialog.prototype.BindIconEvts=function($tpl,data){
 		$tpl.find(".imgBColor").css("background",data.$img.css("border-color")).click(function(evt){
 			var $i=$(this);
 			sohu.diyDialog.showColorPicker({
-				onSubmit:function(c){
+				onSelect:function(c){
 					$i.css("background",c);
 					data.$img.css("border-color",c);
-				},
-				onChange:function(c){
-					$i.css("background",c);
-					data.$img.css("border-color",c);					
 				}
 			});
 		});		
@@ -622,11 +618,8 @@ sohu.diyChipEditor.Dialog.prototype.Underline=function(data){
 sohu.diyChipEditor.Dialog.prototype.Color=function(data){
 	if(!data.$obj) return false;
 	sohu.diyDialog.showColorPicker({
-		onSubmit:function(c){
+		onSelect:function(c){
 			data.$obj.css("color",c);	
-		},
-		onChange:function(c){
-			data.$obj.css("color",c);
 		}
 	});
 };

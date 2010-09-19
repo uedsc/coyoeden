@@ -593,17 +593,17 @@ sohu.diyCTFactory = function() {
 		return false;
 	};
 	p.getAccordionCfg=function(){
-		var ckName="sohu.diyCTFactory.tabIndx";
+		var ckName="sohu_diyCTFactory_tabIndx";
 		//看cookie中上次打开的tab
 		var tabIdx=$.cookie(ckName);
 		tabIdx=tabIdx||0;
 		//每次tab改变时更新cookie
 		var _onChange=function(evt,ui){
 			var idx=ui.newHeader[0].id.split("_")[1];
-			$.setCookie(ckName,idx);
+			$.cookie(ckName,idx,{expires:30,path:"/"});
 		};
 		return {
-			active:tabIdx,
+			active:parseInt(tabIdx),
 			change:_onChange
 		};
 	};

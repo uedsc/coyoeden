@@ -13,7 +13,7 @@ sohu.diyArea=function(opts){
 	this.TemplateID=null;//横切模板id
 	this.Console=opts.console;
 	this.$Workspace=this.Console.$Workspace;
-	this.IsEditing=false;//是否处于编辑状态:1,添加分栏时为true
+	this.IsEditing=false;//是否处于编辑状态:1,添加分栏时为true,在diyEditor.Editing方法中设置
 	this.IsActive=false;//横切是否激活
 	
 	var p={

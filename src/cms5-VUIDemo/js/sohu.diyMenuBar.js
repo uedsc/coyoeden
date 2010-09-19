@@ -51,10 +51,7 @@ sohu.diyMenuBar=function(opts){
 	p.txtCmd.SetColor=function(evt){
 		var _this=$(this);
 		sohu.diyDialog.showColorPicker({
-			onSubmit:function(c){
-				sohu.diyConsole.CurElm.$Layout.css("color",c);
-			},
-			onChange:function(c){
+			onSelect:function(c){
 				sohu.diyConsole.CurElm.$Layout.css("color",c);
 			}
 		});

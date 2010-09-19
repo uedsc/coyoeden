@@ -109,7 +109,6 @@ sohu.diySection.prototype.AddContent=function(ct){
 			alert(ct.Validation.msg);
 			return;
 		};
-		this.Editor.UpdateCT(ct,1);
 		this.Contents.push(ct);
 	}else{
 		/* ¸üÐÂ */
