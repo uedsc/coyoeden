@@ -157,6 +157,15 @@ sohu.diyChipEditor.Dialog=function(opts){
 		_this.$Layout.jqmHide();
 		return false;
 	});
+	//元素删除按钮
+	this.$BtnElmDel=this.$CmdItems.filter(".elmDel1").bind("click",function(e){
+		if(!sohu.diyConsole.CurElm) return;
+		//关闭编辑对话框
+		_this.Hide();
+		//删除元素
+		sohu.diyConsole.CurElm.$CopyModel.remove();	
+		return false;	
+	});
 	//统一资源库
 	this.$BtnGlobalRes=this.$Layout.find(".globalRes");
 	//外包
