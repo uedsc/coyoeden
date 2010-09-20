@@ -14,7 +14,7 @@
 		this.hoverStop=cfg.hoverStop;				/* 鼠标移到tab上时是否停止播放 */
 		this.type=cfg.type||1;						/* 子类型 */
 		this.place=cfg.place||'fi_tabRB';				/* tab标签的位置 */
-		this.myHtml=cfg.myHtml||"";					/* 用户额外的html.填充到class='content'的容器中 */
+		this.myHtml=cfg.myHtml||"";					/* 用户额外的html.填充到class='fi_ct'的容器中 */
 		this.ptStepX=cfg.ptStepX||92;				/* tab指针水平位移步长 */
 		this.ptStepY=cfg.ptStepY||81;				/* tab指针垂直位移步长 */
 		this.ptStepX_=cfg.ptStepX_||4;				/* tab指针水平位移步长偏移值 */
@@ -525,7 +525,7 @@ $.fn.focusImg.Register("fi07",{
 			});
 		});
 		
-		fi.$d.find(".content").click(function(e){
+		fi.$d.find(".fi_ct").click(function(e){
 			window.open(fi._$tabs.filter(".now").find("a").attr("href"));
 		});
 	},
