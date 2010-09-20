@@ -8,14 +8,15 @@ sohu.diyContent=function(opts){
 	var _this=this;
 	this.Meta=opts.ct;
 	this.IsNew=opts.isNew;
-	this.$Layout=null;/*在Validate方法中构建*/
-	this.Type=opts.ct.type;/* 内容插件类型 */
-	this.Sec=opts.sec;//分栏
-	this.Editor=this.Sec.Editor;//分栏编辑器
-	this.MaxWidth=this.Sec.Width;
-	this.onDomed=null;/* 被添加到dom树后的回调函数 */
-	this.IsFlash=false;/* 是否flash焦点图内容 */
-	this.FlashObj=null;/* flash对象 */
+	this.$Layout=null;				/*在Validate方法中构建*/
+	this.Type=opts.ct.type;			/* 内容插件类型 */
+	this.Sec=opts.sec;				/* 分栏 */
+	this.Editor=this.Sec.Editor;	/* 分栏编辑器 */
+	this.MaxWidth=this.Sec.Width;	/* 最大宽度 */
+	this.onDomed=null;				/* 被添加到dom树后的回调函数 */
+	this.IsFlash=false;				/* 是否flash焦点图内容 */
+	this.FlashObj=null;				/* flash对象 */
+	this.IsEditing=false;			/* 是否处于编辑状态 */
 	
 	//private property
 	var p={opts:opts};
@@ -30,16 +31,25 @@ sohu.diyContent=function(opts){
 		this.ID="ct_"+this.Type+"_"+StringUtils.RdStr(8);
 	
 	this.$Layout.attr("id",this.ID);
-	
+	//是否flash
+	this.IsFlash=this.$Layout.flash;
+	if(this.IsFlash){
+		if(this.IsNew){
+			this.onDomed=function(mode){
+				this.FlashObj=window["F_"+this.FlashData.pid];
+			};	
+		}else{
+			this.FlashObj=window["F_"+this.FlashData.pid];
+		};
+		
+	};
 	/* Persistence to the dom tree */
 	this.Editor.UpdateCT(this,1);
-	
 	/* Load elements */
 	this.LoadElements();
 	
 	this.BindEvts();
-	//是否flash
-	this.IsFlash=this.$Layout.flash;
+
 	//TODO:如果是现有的flash怎么处理?需要修改sohu.diy.js，让它可以构建一个sohu.diyTp.Flash实体而不调用write方法
 	/*
 	if((this.IsFlash=this.$Layout.flash)){
@@ -52,16 +62,6 @@ sohu.diyContent=function(opts){
 		};
 	};
 	*/
-	if(this.IsFlash){
-		if(this.IsNew){
-			this.onDomed=function(mode){
-				this.FlashObj=window["F_"+this.FlashData.pid];
-			};	
-		}else{
-			this.FlashObj=window["F_"+this.FlashData.pid];
-		};
-		
-	};
 };
 /**
  * 获取内容的维度信息
@@ -96,11 +96,13 @@ sohu.diyContent.prototype.InlineEdit=function(state){
 	if(state=="on"){
 		this.Sec.Active();
 		this.Sec.InlineEditing=true;
+		this.IsEditing=true;
 		sohu.diyConsole.EditingSec=this.Sec;
 		sohu.diyConsole.EditingCT=this;
 	}else{
 		this.Sec.Deactive();
 		this.Sec.InlineEditing=false;
+		this.IsEditing=false;
 		//this.$Layout.trigger("mouseleave");
 		sohu.diyConsole.EditingSec=null;
 		sohu.diyConsole.EditingCT=null;
@@ -189,6 +191,10 @@ sohu.diyContent.prototype.UnbindEvts=function(){
 sohu.diyContent.prototype.BindEvts=function(){
 	var p={},_this=this;
 	p.mouseEnter=function(evt){
+		//如果处于编辑内容状态，则不能拖拽
+		if(_this.IsEditing) return false;
+		
+		//显示拖拽助手元素
 		_this.$Layout.addClass(_this.__p.opts.clOn);
 		_this.Editor.CurCT=_this;
 		sohu.diyConsole.CurCT=_this;
@@ -217,7 +223,7 @@ sohu.diyContent.prototype.BindEvts=function(){
 		};
 	};
 	p.mouseLeave=function(evt){
-		if(_this.Editor.CurArea.IsEditing) return false;
+		if(_this.Editor.CurArea.IsEditing||_this.IsEditing) return false;
 		_this.$Layout.removeClass(_this.__p.opts.clOn);
 		sohu.diyConsole.Dragger.handle.hide();
 		sohu.diyConsole.CurCT=null;

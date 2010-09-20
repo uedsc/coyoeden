@@ -133,6 +133,10 @@ sohu.diyArea.prototype.Move=function(isUp){
 		return false;
 	};	
 	if(isUp){sibling.before(this.$Layout);}else{sibling.after(this.$Layout);};
+	//更新编辑器的位置
+	if(sohu.diyConsole.CurSec&&sohu.diyConsole.CurSec.IsActive)
+		sohu.diyConsole.CurSec.Editor.Reposition();
+		
 	return false;	
 };
 /**
@@ -158,6 +162,7 @@ sohu.diyArea.prototype.Remove=function(){
 				_this.__p.opts.onRemove(_this);
 			};
 			$jqm.jqmHide();
+			sohu.diyConsole.CurSec.Deactive();
 		},
 		afterHide:function(hash){
 			sohu.diyConsole.$AreaHolder.hide();

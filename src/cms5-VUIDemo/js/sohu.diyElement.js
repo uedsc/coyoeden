@@ -95,6 +95,7 @@ sohu.diyElement.prototype.BindEvts=function(){
 	this.$Layout.bind("mouseleave.edit",function(evt){
 		_this.$Layout.removeClass(_this.__p.opts.clOn);
 	});
+	//单击进入内容编辑
 	this.$Layout.bind("click.edit",function(evt){
 		if(_this.IsEditing) return;// false;
 		if (sohu.diyConsole.CurElm) {
