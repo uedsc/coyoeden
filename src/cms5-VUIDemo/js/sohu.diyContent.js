@@ -44,7 +44,8 @@ sohu.diyContent=function(opts){
 		
 	};
 	/* Persistence to the dom tree */
-	this.Editor.UpdateCT(this,1);
+	if(this.IsNew)
+		this.Editor.UpdateCT(this,1);
 	/* Load elements */
 	this.LoadElements();
 	

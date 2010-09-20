@@ -142,35 +142,8 @@ sohu.diyChipEditor.Dialog=function(opts){
 	
 	//事件处理
 	this.$Backup=this.$Chip.clone(true);
-	//更多按钮
-	this.$CbxSecHDMore=this.$SecHDActs.find(".secHDMore").click(function(evt){
-		if(this.checked){
-			if(sohu.diyConsole.CurElm.CT.$Layout.find(".more").length==0){
-				var $more=$(sohu.diyChipEditor.moreStr);
-				sohu.diyConsole.CurElm.CT.$Layout.append($more);
-				new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$more});
-			};
-		}else{
-			sohu.diyConsole.CurElm.CT.$Layout.find(".more").remove();
-		};
-	});
-	//背景图设置
-	this.$ChipTpl.find(".chipBG").change(function(evt){
-		if(this.value==""){
-			_this.$Chip.css("background-image","none");
-			return;
-		};
-		_this.$Chip.css("background-image","url('"+this.value+"')");
-	});
-	this.$ChipTpl.find(".chipBGAlign").change(function(evt){
-		_this.$Chip.css("background-repeat",this.value);
-	});
-	this.$ChipTpl.find(".btnUpl").click(function(evt){
-		if(_this.onUpChipBG){
-			_this.onUpChipBG(_this);
-		};
-		return false;
-	});
+	
+	this.InitSecHDTpl();
 
 	//整体测试
 	this.$BtnTest=this.$Layout.find(".test");
@@ -372,15 +345,17 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 
 	opts.afterShow=function(hash,dlg){	
 		//第一个tab
-		//是否栏目标题
-		if(_this.$Chip.is(".sec_hd")){
-			_this.$ChipTpl.show();
-			_this.$SecHDActs.show();
-			_this.$CbxSecHDMore[0].checked=(_this.$Chip.find(".more").length>0);
-		}else{
+		if(!_this.$Chip.is(".sec_hd")){
+			//非栏目标题
 			_this.$ChipTpl.hide();
 			_this.$SecHDActs.hide();
-		};		
+		}else{
+			//栏目标题
+			_this.LoadSecHDTpl();
+		};
+		
+
+				
 		dlg.$ElmTpl.hide().empty();
 		
 		$elmList.each(function(i,o){
@@ -677,4 +652,52 @@ sohu.diyChipEditor.Dialog.prototype.InsertVDIcon=function(data){
 sohu.diyChipEditor.Dialog.prototype.UpdateCode=function(){
 	sohu.diyChipEditor.MCE().setContent(this.$Chip.html());
 	this.$Code.val(sohu.diyChipEditor.MCE().getContent());
+};
+/**
+ * 加载标题栏目编辑模板
+ */
+sohu.diyChipEditor.Dialog.prototype.LoadSecHDTpl=function(){
+	this.$ChipTpl.show();
+	this.$SecHDActs.show();
+	this.$CbxSecHDMore[0].checked=(this.$Chip.find(".more").length>0);
+	
+	var bgimg=this.$Chip.css("background-image");
+	if(bgimg!=""&&bgimg!="none"){
+		this.$SecHDBG.val(bgimg.replace('url("',"").replace('")',""));
+	};
+};
+/**
+ * 初始化标题栏目编辑模板
+ */
+sohu.diyChipEditor.Dialog.prototype.InitSecHDTpl=function(){
+	var _this=this;
+	//更多按钮
+	this.$CbxSecHDMore=this.$SecHDActs.find(".secHDMore").click(function(evt){
+		if(this.checked){
+			if(sohu.diyConsole.CurElm.CT.$Layout.find(".more").length==0){
+				var $more=$(sohu.diyChipEditor.moreStr);
+				sohu.diyConsole.CurElm.CT.$Layout.append($more);
+				new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$more});
+			};
+		}else{
+			sohu.diyConsole.CurElm.CT.$Layout.find(".more").remove();
+		};
+	});
+	//背景图设置
+	this.$SecHDBG=this.$ChipTpl.find(".chipBG").change(function(evt){
+		if(this.value==""){
+			_this.$Chip.css("background-image","none");
+			return;
+		};
+		_this.$Chip.css("background-image","url('"+this.value+"')");
+	});
+	this.$ChipTpl.find(".chipBGAlign").change(function(evt){
+		_this.$Chip.css("background-repeat",this.value);
+	});
+	this.$ChipTpl.find(".btnUpl").click(function(evt){
+		if(_this.onUpChipBG){
+			_this.onUpChipBG(_this);
+		};
+		return false;
+	});
 };
