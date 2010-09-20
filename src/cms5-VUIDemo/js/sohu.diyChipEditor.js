@@ -241,13 +241,15 @@ sohu.diyChipEditor.Dialog=function(opts){
 	};
 	
 	//draggable
-	this.$Layout.draggable({handle:".hd",containment:'window'});
+	this.$Layout.draggable({handle:".hd",containment:'document'});
 	//margin-left
 	this.$Layout.css("margin-left",-(this.$Layout.width()/2));
 	//订阅diyConsole的evtPreview事件
 	if(bos){
 		$(bos).bind("evtPreview",function(e){_this.Hide();});
 	};
+	//订阅window的scroll事件
+	sohu.diyConsole.FixDraggable(this.$Layout);
 }; 
 sohu.diyChipEditor.Dialog.prototype.Show=function(opts){
 	var _this=this;

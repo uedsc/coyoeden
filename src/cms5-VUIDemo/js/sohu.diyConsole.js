@@ -181,7 +181,7 @@ sohu.diyConsole=function(opts){
 		});
 		new sohu.diyMenuBar({});
 		//弹框组件
-		sohu.diyDialog.Init({console:_this,cssDragCTM:'window',onInit:sohu.diyDialog.onInit});
+		sohu.diyDialog.Init({console:_this,cssDragCTM:'document',onInit:sohu.diyDialog.onInit});
 		//碎片编辑组件
 		sohu.diyChipEditor.Init({singleton:true});
 		//on page loaded
@@ -461,4 +461,20 @@ sohu.diyConsole.OnStopNav=function(evt){
 	alert("onStopNav");
 	evt.preventDefault();
 	return true;
+};
+/**
+ * 让指定的拖拽对象订阅window.scroll事件,修正拖拽出窗体之外后无法操作的问题
+ * @param {Object} $t 拖拽对象的jquery dom.
+ */
+sohu.diyConsole.FixDraggable=function($t){
+	//订阅window的scroll事件
+	$(window).scroll(function(){
+		var of;
+		if((of=$t.offset()).top<0)
+			$t.css("top",0);
+		
+		if(of.top>(of.t1=$(document).height()))
+			$t.css("top",$(this).height()-$t.height());
+			
+	});
 };

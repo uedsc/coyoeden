@@ -54,8 +54,10 @@ sohu.diyDialog=function(){
 			};	
 		};
 		//draggable?
-		if(p.opts.draggable)
+		if(p.opts.draggable){
 			this.$Layout.draggable({handle:p.opts.cssDragHandle,containment:p.opts.cssDragCTM});
+			sohu.diyConsole.FixDraggable(this.$Layout);
+		};			
 	};
 	/**
 	 * Update the dialog's content
