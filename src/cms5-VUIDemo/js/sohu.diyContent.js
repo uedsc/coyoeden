@@ -195,18 +195,10 @@ sohu.diyContent.prototype.BindEvts=function(){
 		//如果处于编辑内容状态，则不能拖拽
 		if(_this.IsEditing) return false;
 		
-		//显示拖拽助手元素
-		_this.$Layout.addClass(_this.__p.opts.clOn);
 		_this.Editor.CurCT=_this;
 		sohu.diyConsole.CurCT=_this;
-		//拖拽助手事件
-		sohu.diyConsole.Dragger.handle.show().appendTo(_this.$Layout)
-		.unbind()
-		.bind("mousedown",function(evt){
-			sohu.diyConsole.Dragger.obj=_this;
-			//_this.Sec.Deactive();	
-		});
-
+		_this.ToggleDragger("on");
+		//Flash焦点图
 		if(_this.IsFlash){
 			var d=_this.Dim();
 			sohu.diyConsole.$FlashHolder.css({
@@ -225,8 +217,7 @@ sohu.diyContent.prototype.BindEvts=function(){
 	};
 	p.mouseLeave=function(evt){
 		if(_this.Editor.CurArea.IsEditing||_this.IsEditing) return false;
-		_this.$Layout.removeClass(_this.__p.opts.clOn);
-		sohu.diyConsole.Dragger.handle.hide();
+		_this.ToggleDragger("off");
 		sohu.diyConsole.CurCT=null;
 	};
 	
@@ -242,6 +233,26 @@ sohu.diyContent.prototype.BindEvts=function(){
 		_this.UnbindEvts();
 		return false;//停止冒泡
 	});
+};
+/**
+ * 内容拖拽开关
+ * @param {Object} flag 为“on”时打开拖拽模式；“off”时关闭拖拽模式
+ */
+sohu.diyContent.prototype.ToggleDragger=function(flag){
+	var _i=this;
+	if(flag=="on"){
+		//显示拖拽助手元素
+		this.$Layout.addClass(this.__p.opts.clOn);		
+		//拖拽助手事件
+		sohu.diyConsole.Dragger.handle.show().appendTo(this.$Layout)
+		.unbind()
+		.bind("mousedown",function(evt){
+			sohu.diyConsole.Dragger.obj=_i;
+		});
+	}else{
+		this.$Layout.removeClass(this.__p.opts.clOn);
+		sohu.diyConsole.Dragger.handle.hide();
+	};
 };
 /*静态方法*/
 /**
