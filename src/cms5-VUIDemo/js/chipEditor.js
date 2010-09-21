@@ -574,10 +574,16 @@ chipEditor.Dialog.prototype.BindIconEvts=function($tpl,data){
 	});
 	if(data.t==0){
 		//标题输入框
-		$tpl.eq(0).find("input").keyup(function(evt){
+		var ipt0=$tpl.eq(0).find("input").keyup(function(evt){
 			data.$obj.html(this.value);
 			_this.UpdateCode();
 		}).focus(this.focusSelect);
+		if(data.$obj.hasClass(_this._opts.clBold)){
+			ipt0.addClass(_this._opts.clBold);
+		};
+		if(data.$obj.hasClass(_this._opts.clColor)){
+			ipt0.addClass(_this._opts.clColor);
+		};
 		//链接输入框
 		$tpl.eq(1).find("input").keyup(function(evt){
 			data.$obj.attr("href",this.value);
