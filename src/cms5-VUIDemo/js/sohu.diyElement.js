@@ -190,7 +190,7 @@ sohu.diyElement.prototype.EditView=function(){
 				dlg.$ElmcActs.hide();
 			};
 			//Òş²ØÍÏ×§ÖúÊÖ
-			sohu.diyConsole.Dragger.handle.hide();
+			_i.CT.ToggleDragger("off");
 		},
 		afterHide:function(hash,dlg){
 			_i.IsEditing=false;

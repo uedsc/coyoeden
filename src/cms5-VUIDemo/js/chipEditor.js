@@ -590,11 +590,15 @@ chipEditor.Dialog.prototype.BindIconEvts=function($tpl,data){
 		});
 		//视频前
 		$tpl.eq(0).find(".videoL").bind("click",function(evt){
-			_this.InsertVDIcon({$obj:data.$obj,before:true});return false;
+			_this.InsertVDIcon({$obj:data.$obj,before:true});
+			jQuery(this).parents("ul.others").hide();
+			return false;
 		});
 		//视频后
 		$tpl.eq(0).find(".videoR").bind("click",function(evt){
-			_this.InsertVDIcon({$obj:data.$obj,before:false});return false;
+			_this.InsertVDIcon({$obj:data.$obj,before:false});
+			jQuery(this).parents("ul.others").hide();
+			return false;
 		});			
 	}else{
 		//图片地址输入框
