@@ -39,26 +39,6 @@ sohu.diyElement=function(opts){
 			};
 		};
 	};
-	p.onEditModeChange=function(dom){
-		if (dom.iEditing) {
-			_this.i$frame=_this.$Layout[0].i$frame;
-			if(_this.$Layout.parent().is(".sec_hd")){
-				sohu.diyDialog.Show("wSecHead");
-			}else{
-				sohu.diyDialog.Show("wText");
-			};
-			_this.Overlay("on");
-			sohu.diyConsole.$EHolder.IsBusy=_this.IsEditing=true;
-			_this.CT.InlineEdit("on");
-			
-		}else{
-			_this.i$frame=null;
-			_this.CT.InlineEdit("off");
-			sohu.diyConsole.$EHolder.IsBusy=_this.IsEditing=false;
-			
-		}
-			
-	};
 	/* /private member variables */
 	
 	p.Init=function(){
@@ -96,38 +76,7 @@ sohu.diyElement.prototype.BindEvts=function(){
 		_this.$Layout.removeClass(_this.__p.opts.clOn);
 	});
 	//单击进入内容编辑
-	this.$Layout.bind("click.edit",function(evt){
-		if(_this.IsEditing) return;// false;
-		if (sohu.diyConsole.CurElm) {
-			sohu.diyConsole.CurElm.IsEditing=false;
-			sohu.diyDialog.Hide(true);
-			//sohu.diyDialog.Hide();
-		};
-		sohu.diyConsole.CurElm=_this;
-		//显示碎片编辑器		
-		sohu.diyChipEditor.Show(_this.$Context,{
-			tabs:[0],
-			$elm:_this.$Layout,
-			elm:_this,
-			onSave:function(dlg){
-				dlg.Hide();
-			},
-			afterShow:function(hash,dlg){
-				_this.CT.InlineEdit("on");
-				_this.IsEditing=true;
-				if(_this.Copyable){
-					dlg.$ElmcActs.show();
-				}else{
-					dlg.$ElmcActs.hide();
-				};
-			},
-			afterHide:function(hash,dlg){
-				_this.IsEditing=false;
-				_this.CT.InlineEdit("off");
-			}
-		});
-		//return false;
-	});	
+	this.$Layout.bind("click.edit",$.proxy(this.EditView,this));	
 	//屏蔽超链接
 	//this.$Context.find("a").bind("click.noNav",sohu.diyConsole.OnStopNav);
 	//自定义事件
@@ -212,9 +161,40 @@ sohu.diyElement.prototype.Move=function(isUp){
 	};
 };
 /**
- * Force the element to switch on the edit state
+ * Force the element to switch to the edit state
  */
-sohu.diyElement.prototype.ForceEdit=function(){
-	this.$Layout.trigger("mousedown");
-	this.$Layout.trigger("click");
+sohu.diyElement.prototype.EditView=function(){
+	var _i=this;
+	if(this.IsEditing) return;// false;
+	if (sohu.diyConsole.CurElm) {
+		sohu.diyConsole.CurElm.IsEditing=false;
+		sohu.diyDialog.Hide(true);
+		//sohu.diyDialog.Hide();
+	};
+	sohu.diyConsole.CurElm=this;
+	//显示碎片编辑器		
+	sohu.diyChipEditor.Show(this.$Context,{
+		tabs:[0],
+		$elm:this.$Layout,
+		elm:this,
+		onSave:function(dlg){
+			dlg.Hide();
+		},
+		afterShow:function(hash,dlg){
+			_i.CT.InlineEdit("on");
+			_i.IsEditing=true;
+			//是否隐藏元素的“增加、删除、上移、下移”按钮
+			if(_i.Copyable){
+				dlg.$ElmcActs.show();
+			}else{
+				dlg.$ElmcActs.hide();
+			};
+			//隐藏拖拽助手
+			sohu.diyConsole.Dragger.handle.hide();
+		},
+		afterHide:function(hash,dlg){
+			_i.IsEditing=false;
+			_i.CT.InlineEdit("off");
+		}
+	});
 };
