@@ -5,6 +5,7 @@
  3,p=panel,scroll panel
  4,w=width
  5,ct=content,scroll content
+ 6,tm=timer
  */
 
 ;(function($) {
@@ -17,9 +18,11 @@
 		this.$sA=$t.find("."+opts.clSliderHandle);
 		this.$p=$t.find("."+opts.clPanel);
 		this.$ct=$t.find("."+opts.clContent);
+		this.$ing=$t.find("."+opts.clLoading);
 		this.wCT=this.$ct.width();
 		this.wP=this.$p.width();
 		this.wScrollMax=this.$s.width()-this.$sA.width();
+		this.tm=null;
 		
 		//init
 		this._i();
@@ -45,8 +48,49 @@
 			this.$l.find(this._o.cssThumb).css('opacity',this._o.opacity);
 			//小图交互
 			this.$l.find(this._o.cssItem).mouseenter(function(){
-				
+				_this.z($(this));
 			});
+			//大图onload事件
+			this.$l.find(".lv_zoom img").load(function(){
+				$(this).parent().nextAll().slideDown();
+				_this.$ing.remove();
+			});
+			
+			//初始化大图
+			this.$l.find(".lv_init").trigger("mouseenter");
+		},
+		z:function($t){
+			if($t.nextAll(".lv_cover").is(":visible")) return;
+			var items=this.$l.find(".lv_cover:visible"),_this=this,$cv,d,$img,$z,$n,$ia;
+			//hide a existing cover
+			if(items.length>1){
+				if($t.index()%2==0){
+					items.eq(1).hide();
+				}else{
+					items.eq(0).hide();
+				};				
+			};
+
+			//get image data
+			$ia=$t.find("a");
+			d=$.evalJSON($ia.attr("rel"));
+			//show a cover
+			$cv=$t.nextAll("."+_this._o.clCover).stop(true,true).fadeIn("normal");
+			//loading
+			$cv.append(_this.$ing.show().remove());			
+			//get the zoomed image
+			$img=$t.find("img");
+			d.p=$img.attr("alt");
+			d.p=d.p==""?$img.attr("src"):d.p;
+			//hide the note
+			$n=$cv.find(".lv_ovl,.lv_note").hide().filter(".lv_note").find(".lv_t").html("").end();
+			//update data
+			$z=$cv.find(".lv_zoom").attr("href",$ia[0].href);
+			$cv.find(".lv_t0").html(d.t0);
+			$cv.find(".lv_t1").html(d.t1);			
+			//load the big image
+			$z.find("img").attr("src",d.p);		
+
 		}
 	};
     //main plugin body
@@ -67,6 +111,8 @@
 		clContent:'lv_main_',
 		cssItem:'.lv_item',
 		cssThumb:'.lv_item img',
+		clCover:'lv_cover',
+		clLoading:'lv_loading',
 		opacity:0.7
     };
     // Public functions.
