@@ -166,6 +166,12 @@ chipEditor.Dialog=function(opts){
 		_this.Edit(jQuery(this));
 		return false;
 	});
+	//订阅window.onscroll事件-20100926
+	jQuery(window).scroll(function(e){
+		if(_this.$Layout.position().top<0)
+			_this.$Layout.css("top",0);
+	});
+	// /20100926
 	this.$Backup=this.$Chip.clone(true);
 	//整体测试
 	this.$BtnTest=this.$Layout.find(".test");
@@ -361,10 +367,8 @@ chipEditor.Dialog.prototype.Edit=function($elm){
 	//检查元素类型
 	if($elm.find("img").length>0){
 		_t=1;//图片
-	}else if($elm.parent().is("li")){
-		_t=0;//列表
 	}else{
-		_t=2;//段落
+		_t=0;//非图片
 	};
 	
 	var $elmList=$elm.parent().contents();
@@ -679,7 +683,7 @@ chipEditor.Dialog.prototype.AddElm=function(data){
 	var a0=jQuery(chipEditor.aTplStr);
 	var _this=this;
 	data.$obj.after(a0).after(txt0);
-	a0.bind('click.noNav',chipEditor.StopNav);
+	a0.bind('click.noNav',chipEditor.StopNav).bind("click.edit",function(evt){_this.Edit(jQuery(this));});
 	
 	var tpl=chipEditor.$RowTxtA.clone();
 	var data1={$obj:txt0,$tpl:tpl};

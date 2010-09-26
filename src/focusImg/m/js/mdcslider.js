@@ -52,10 +52,11 @@
 			});
 			//大图onload事件
 			this.$l.find(".lv_zoom img").load(function(){
-				$(this).parent().nextAll().slideDown();
+				$(this).parent().nextAll().slideDown(100);
 				_this.$ing.remove();
 			});
-			
+			//文字蒙层的透明效果
+			this.$l.find(".lv_ovl").css("opacity",0.6);
 			//初始化大图
 			this.$l.find(".lv_init").trigger("mouseenter");
 		},
