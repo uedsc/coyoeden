@@ -49,25 +49,51 @@
 		},
 		_zIn:function($t,even,toLeft){
 			if (even) {
-				$t.stop(true, true).animate({
-					width: this._o.w * 2,
-					height: this._o.h * 2
-				});
-				$t.find("*").stop(true, true).animate({
-					width: this._o.w * 2 - this._o.gapH * 2,
-					height: this._o.h * 2 - this._o.gapV * 2
-				});
+				if(toLeft){
+					$t.stop(true, true).animate({
+						width: this._o.w * 2,
+						height: this._o.h * 2,
+						left:'-='+this._o.w
+					});
+					$t.find("*").stop(true, true).animate({
+						width: this._o.w * 2 - this._o.gapH * 2,
+						height: this._o.h * 2 - this._o.gapV * 2
+					});					
+				}else{
+					$t.stop(true, true).animate({
+						width: this._o.w * 2,
+						height: this._o.h * 2
+					});
+					$t.find("*").stop(true, true).animate({
+						width: this._o.w * 2 - this._o.gapH * 2,
+						height: this._o.h * 2 - this._o.gapV * 2
+					});						
+				};
+
 			}else {
-				$t.stop(true, true).animate({
-					width: this._o.w * 2,
-					height: this._o.h * 2,
-					top:0,
-					left:"-="+this._o.w
-				});
-				$t.find("*").stop(true, true).animate({
-					width: this._o.w * 2 - this._o.gapH * 2,
-					height: this._o.h * 2 - this._o.gapV * 2
-				});
+				if(toLeft){
+					$t.stop(true, true).animate({
+						width: this._o.w * 2,
+						height: this._o.h * 2,
+						top:0,
+						left:"-="+this._o.w
+					});
+					$t.find("*").stop(true, true).animate({
+						width: this._o.w * 2 - this._o.gapH * 2,
+						height: this._o.h * 2 - this._o.gapV * 2
+					});					
+				}else{
+					$t.stop(true, true).animate({
+						width: this._o.w * 2,
+						height: this._o.h * 2,
+						top:"-="+this._o.h
+					});
+					$t.find("*").stop(true, true).animate({
+						width: this._o.w * 2 - this._o.gapH * 2,
+						height: this._o.h * 2 - this._o.gapV * 2
+					});					
+				};
+
 			};
 		},
 		_zOut:function($t){
@@ -75,20 +101,22 @@
 		},
 		_goL:function($t,even,i,i0){
 			if(even&&i>(i0+1)) return;
+			if((!even)&&i>i0) return;
 			if(i%2==0){
-				$t.stop(true,true).animate({left:"-="+this._o.w},400);
+				$t.stop(true,true).animate({left:"-="+this._o.w*(even?1:2)},600);
 			}else{
-				$t.stop(true,true).animate({left:"-="+this._o.w*2},400);
+				$t.stop(true,true).animate({left:"-="+this._o.w*(even?2:1)},600);
 			};
 
 		},
 		_goR:function($t,even,i,i0){
 			if(even&&i<i0) return;
+			if((!even)&&i<(i0-1)) return;
 			if(i%2==0){
-				$t.stop(true,true).animate({left:"+="+this._o.w},400);
+				$t.stop(true,true).animate({left:"+="+this._o.w*(even?1:2)},600);
 			}else{
-				$t.stop(true,true).animate({left:"+="+this._o.w*2},400);
-			};
+				$t.stop(true,true).animate({left:"+="+this._o.w*(even?2:1)},600);
+			};	
 		}
 	};
     //main plugin body
