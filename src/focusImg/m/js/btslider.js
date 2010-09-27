@@ -29,11 +29,7 @@
 				};
 			});
 			//init events
-			this.$items.mouseenter(function(e){
-				_this.z($(this));
-			}).bind("evtReset",function(e){
-				_this.r($(this));
-			});
+			this.b();
 			//init the zoomed items
 			this.$items.filter(".lv_init").trigger("mouseenter");
 			
@@ -41,17 +37,37 @@
 			this.$l.find(".lv_ovl").css("opacity",this._o.opacityOvl);
 		},
 		/**
+		 * bind events
+		 */
+		b:function(){
+			var _this=this;
+			this.$items.bind("mouseenter",function(e){
+				_this.z($(this));
+			}).bind("evtReset",function(e){
+				_this.r($(this));
+			});			
+		},
+		/**
+		 * unbind events
+		 */
+		ub:function(){
+			this.$items.unbind("mouseenter").unbind("evtReset");
+		},
+		/**
 		 * zoom effect
 		 * @param {Object} $t
 		 */
 		z:function($t){
-			var _this=this;
 			if($t.hasClass("lv_zoom")) return;
-			if(this.$hot){
-				this.$hot.trigger("evtReset");
+			var _this=this,$hot=this.$hot;
+			
+			if($hot){
+				$hot.trigger("evtReset");
 			};
+			
 			this.$hot=$t;
 			var i0=$t.index(),even=(i0%2==0),toLeft=(i0>=_this.imiddle);
+			this.ub();
 			this._zIn($t.addClass("lv_zoom"),even,toLeft);
 			this.$items.each(function(i,o){
 				if(i==i0) return true;
@@ -72,12 +88,14 @@
 		 * @param {Object} toLeft
 		 */
 		_zIn:function($t,even,toLeft){
+			var _this=this;
 			$t.stop(true, true);
 			$t.find("img").stop(true, true).animate({
 				width: this._o.w * 2 - this._o.gapH * 2,
 				height: this._o.h * 2 - this._o.gapV * 2
 			},this._o.speed,function(){
 				$t.find(".lv_cover").show();
+				_this.b();
 			});	
 			if (even) {
 				if(toLeft){	
