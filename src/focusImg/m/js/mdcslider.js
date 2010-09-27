@@ -6,6 +6,7 @@
  4,w=width
  5,ct=content,scroll content
  6,tm=timer
+ 7,cv=cover
  */
 
 ;(function($) {
@@ -21,7 +22,9 @@
 		this.$ing=$t.find("."+opts.clLoading);
 		this.wCT=this.$ct.width();
 		this.wP=this.$p.width();
+		this.wCTGap=this.wCT-this.wP;
 		this.wScrollMax=this.$s.width()-this.$sA.width();
+		this.factorCT=this.wCTGap/this.wScrollMax;
 		this.tm=null;
 		
 		//init
@@ -29,21 +32,20 @@
 	};
 	p.M.prototype={
 		_i:function(){
-			var _this=this;
-			var gap=this.wCT-this.wP,step;
+			var _this=this,step;
 			//可拖拽的滚动条
 			this.$sA.draggable({
 				axis:'x',
 				drag:function(evt,ui){
-					if(gap<=0) return;
-					step=Math.round(ui.position.left/_this.wScrollMax*gap);
+					if(_this.wCTGap<=0) return;
+					step=Math.round(ui.position.left*_this.factorCT);
 					_this.$ct.css("margin-left",-step);
 				},
 				containment:'parent'
 			}).click(function(e){return false;});
 			//页面加载时滚动到中间位置
-			this.$sA.animate({left:this.wScrollMax/2},1000);
-			this.$ct.animate({'margin-left':-gap/2},1000);
+			this.$sA.css({left:this.wScrollMax/2});
+			this.$ct.css({'margin-left':-this.wCTGap/2});
 			//小图的透明效果
 			this.$l.find(this._o.cssThumb).css('opacity',this._o.opacity);
 			//小图交互
@@ -52,7 +54,6 @@
 			});
 			//大图onload事件
 			this.$l.find(".lv_zoom img").load(function(){
-				$(this).parent().nextAll().slideDown(100);
 				_this.$ing.remove();
 			});
 			//文字蒙层的透明效果
@@ -63,6 +64,8 @@
 		z:function($t){
 			if($t.nextAll(".lv_cover").is(":visible")) return;
 			var items=this.$l.find(".lv_cover:visible"),_this=this,$cv,d,$img,$z,$n,$ia;
+			//stop existing animation
+			this.$l.find("."+this._o.clCover).stop(true,true);
 			//hide a existing cover
 			if(items.length>1){
 				if($t.index()%2==0){
@@ -76,7 +79,10 @@
 			$ia=$t.find("a");
 			d=$.evalJSON($ia.attr("rel"));
 			//show a cover
-			$cv=$t.nextAll("."+_this._o.clCover).stop(true,true).fadeIn("normal");
+			$cv=$t.nextAll("."+_this._o.clCover).animate({height:"hide",width:"hide"},0).animate({height:"show",width:"show"},_this._o.speed,"linear",function(){
+				$cv.find(".lv_ovl,.lv_note").fadeIn("normal");
+				_this.adjust($cv);
+			});
 			//loading
 			$cv.append(_this.$ing.show().remove());			
 			//get the zoomed image
@@ -92,6 +98,44 @@
 			//load the big image
 			$z.find("img").attr("src",d.p);		
 
+		},
+		/**
+		 * 调整滚动条位置，以便当前大图始终显示在可视区域
+		 * @param {Object} $cv
+		 */
+		adjust:function($cv){
+			var boxIndex=$cv.parent().index(),wCV=$cv.width();
+			var ml=parseInt(this.$ct.css("margin-left"));
+			var gapRight=(boxIndex+1)*wCV+ml-this.wP;		/* 大图距离右边距的大小 */
+			var gapLeft=boxIndex*wCV+ml;					/* 大图距离左边距的大小 */
+			ml=isNaN(ml)?0:ml;
+			if(gapLeft<0){
+				//内容需要往右边滚动
+				this.s(true,-gapLeft);
+				return;
+			};
+			if(gapRight>0){
+				//内容需要往左边滚动
+				this.s(false,gapRight);
+			};
+		},
+		/**
+		 * 滚动内容区域，联动小滚动条
+		 */
+		s:function(toRight,val){
+			var step;
+			var val0=val/this.factorCT;
+			if(toRight){
+				val="+="+val;
+				step="-="+val0;
+			}else{
+				val="-="+val;
+				step="+="+val0;
+			};
+			//内容
+			this.$ct.stop(true,true).animate({"margin-left":val});
+			//小滚动条
+			this.$sA.stop(true,true).animate({"left":step});
 		}
 	};
     //main plugin body
@@ -114,7 +158,8 @@
 		cssThumb:'.lv_item img',
 		clCover:'lv_cover',
 		clLoading:'lv_loading',
-		opacity:0.7
+		opacity:0.7,
+		speed:500
     };
     // Public functions.
     $.fn.ppSlide.method1 = function(skinName) {
