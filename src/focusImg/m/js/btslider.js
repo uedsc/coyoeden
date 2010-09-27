@@ -36,6 +36,9 @@
 			});
 			//init the zoomed items
 			this.$items.filter(".lv_init").trigger("mouseenter");
+			
+			//opacity effect for overlay
+			this.$l.find(".lv_ovl").css("opacity",this._o.opacityOvl);
 		},
 		/**
 		 * zoom effect
@@ -73,6 +76,8 @@
 			$t.find("img").stop(true, true).animate({
 				width: this._o.w * 2 - this._o.gapH * 2,
 				height: this._o.h * 2 - this._o.gapV * 2
+			},function(){
+				$t.find(".lv_cover").show();
 			});	
 			if (even) {
 				if(toLeft){	
@@ -102,6 +107,7 @@
 			var _this=this;
 			var i0=$t.index(),even=(i0%2==0),toLeft=(i0>=this.imiddle),tempObj;
 			$t.removeClass("lv_zoom").find("img").stop(true,true).animate({width:this._o.w-this._o.gapH*2,height:this._o.h-this._o.gapV*2},0);
+			$t.find(".lv_cover").hide();
 			this.$items.stop(true,true);
 			if(even){
 				if(toLeft){
@@ -193,8 +199,9 @@
         w: 140,
 		h:190,
 		gapV:5,				/* 图片垂直方向留白 */
-		gapH:5				/* 图片水平方向留白 */
-    };
+		gapH:5,				/* 图片水平方向留白 */
+    	opacityOvl:0.7
+	};
     // Public functions.
     $.fn.btslide.method1 = function(skinName) {
         return;
