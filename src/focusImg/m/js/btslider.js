@@ -101,31 +101,31 @@
 		r:function($t){
 			var _this=this;
 			var i0=$t.index(),even=(i0%2==0),toLeft=(i0>=this.imiddle),tempObj;
-			$t.removeClass("lv_zoom").find("img").stop(true,true).animate({width:this._o.w-this._o.gapH*2,height:this._o.h-this._o.gapV*2});
+			$t.removeClass("lv_zoom").find("img").stop(true,true).animate({width:this._o.w-this._o.gapH*2,height:this._o.h-this._o.gapV*2},0);
 			this.$items.stop(true,true);
 			if(even){
 				if(toLeft){
 					this.$evenItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i>=i0) return true;
-						tempObj.animate({left:"+="+_this._o.w});
+						tempObj.animate({left:"+="+_this._o.w},0);
 					});
 					this.$oddItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i>(i0+1)) return true;
-						tempObj.animate({left:"+="+_this._o.w*2});
+						tempObj.animate({left:"+="+_this._o.w*2},0);
 					});
-					$t.animate({left:"+="+this._o.w});	
+					$t.animate({left:"+="+this._o.w},0);	
 				}else{
 					this.$evenItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i<=i0) return true;
-						tempObj.animate({left:"-="+_this._o.w});
+						tempObj.animate({left:"-="+_this._o.w},0);
 					});
 					this.$oddItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i<=i0) return true;
-						tempObj.animate({left:"-="+_this._o.w*2});
+						tempObj.animate({left:"-="+_this._o.w*2},0);
 					});
 				};
 			}else{
@@ -133,26 +133,26 @@
 					this.$evenItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i>=i0) return true;
-						tempObj.animate({left:"+="+_this._o.w*2});
+						tempObj.animate({left:"+="+_this._o.w*2},0);
 					});
 					this.$oddItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i>=i0) return true;
-						tempObj.animate({left:"+="+_this._o.w});
+						tempObj.animate({left:"+="+_this._o.w},0);
 					});
-					$t.animate({left:"+="+_this._o.w,top:"+="+_this._o.h});					
+					$t.animate({left:"+="+_this._o.w,top:"+="+_this._o.h},0);					
 				}else{
 					this.$evenItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i<(i0-1)) return true;
-						tempObj.animate({left:"-="+_this._o.w*2});
+						tempObj.animate({left:"-="+_this._o.w*2},0);
 					});
 					this.$oddItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i<=i0) return true;
-						tempObj.animate({left:"-="+_this._o.w});
+						tempObj.animate({left:"-="+_this._o.w},0);
 					});
-					$t.animate({top:"+="+this._o.h});
+					$t.animate({top:"+="+this._o.h},0);
 				};//if toLeft
 			};//end of if even
 		},
