@@ -76,25 +76,25 @@
 			$t.find("img").stop(true, true).animate({
 				width: this._o.w * 2 - this._o.gapH * 2,
 				height: this._o.h * 2 - this._o.gapV * 2
-			},function(){
+			},this._o.speed,function(){
 				$t.find(".lv_cover").show();
 			});	
 			if (even) {
 				if(toLeft){	
 					$t.animate({
 						left:'-='+this._o.w
-					});
+					},this._o.speed);
 				};
 			}else {
 				if(toLeft){
 					$t.animate({
 						top:0,
 						left:"-="+this._o.w
-					});										
+					},this._o.speed);										
 				}else{
 					$t.animate({
 						top:"-="+this._o.h
-					});				
+					},this._o.speed);				
 				};
 
 			};
@@ -104,9 +104,9 @@
 		 * @param {Object} $t
 		 */
 		r:function($t){
-			var _this=this;
+			var _this=this,sp=0;
 			var i0=$t.index(),even=(i0%2==0),toLeft=(i0>=this.imiddle),tempObj;
-			$t.removeClass("lv_zoom").find("img").stop(true,true).animate({width:this._o.w-this._o.gapH*2,height:this._o.h-this._o.gapV*2},0);
+			$t.removeClass("lv_zoom").find("img").stop(true,true).animate({width:this._o.w-this._o.gapH*2,height:this._o.h-this._o.gapV*2},sp);
 			$t.find(".lv_cover").hide();
 			this.$items.stop(true,true);
 			if(even){
@@ -114,24 +114,24 @@
 					this.$evenItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i>=i0) return true;
-						tempObj.animate({left:"+="+_this._o.w},0);
+						tempObj.animate({left:"+="+_this._o.w},sp);
 					});
 					this.$oddItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i>(i0+1)) return true;
-						tempObj.animate({left:"+="+_this._o.w*2},0);
+						tempObj.animate({left:"+="+_this._o.w*2},sp);
 					});
-					$t.animate({left:"+="+this._o.w},0);	
+					$t.animate({left:"+="+this._o.w},sp);	
 				}else{
 					this.$evenItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i<=i0) return true;
-						tempObj.animate({left:"-="+_this._o.w},0);
+						tempObj.animate({left:"-="+_this._o.w},sp);
 					});
 					this.$oddItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i<=i0) return true;
-						tempObj.animate({left:"-="+_this._o.w*2},0);
+						tempObj.animate({left:"-="+_this._o.w*2},sp);
 					});
 				};
 			}else{
@@ -139,26 +139,26 @@
 					this.$evenItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i>=i0) return true;
-						tempObj.animate({left:"+="+_this._o.w*2},0);
+						tempObj.animate({left:"+="+_this._o.w*2},sp);
 					});
 					this.$oddItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i>=i0) return true;
-						tempObj.animate({left:"+="+_this._o.w},0);
+						tempObj.animate({left:"+="+_this._o.w},sp);
 					});
-					$t.animate({left:"+="+_this._o.w,top:"+="+_this._o.h},0);					
+					$t.animate({left:"+="+_this._o.w,top:"+="+_this._o.h},sp);					
 				}else{
 					this.$evenItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i<(i0-1)) return true;
-						tempObj.animate({left:"-="+_this._o.w*2},0);
+						tempObj.animate({left:"-="+_this._o.w*2},sp);
 					});
 					this.$oddItems.each(function(i,o){
 						i=(tempObj=$(o)).index();
 						if(i<=i0) return true;
-						tempObj.animate({left:"-="+_this._o.w},0);
+						tempObj.animate({left:"-="+_this._o.w},sp);
 					});
-					$t.animate({top:"+="+this._o.h},0);
+					$t.animate({top:"+="+this._o.h},sp);
 				};//if toLeft
 			};//end of if even
 		},
@@ -167,9 +167,9 @@
 			if((!even)&&i>i0) return;
 			$t.stop(true,true);
 			if(i%2==0){
-				$t.animate({left:"-="+this._o.w*(even?1:2)},600);
+				$t.animate({left:"-="+this._o.w*(even?1:2)},this._o.speed);
 			}else{
-				$t.animate({left:"-="+this._o.w*(even?2:1)},600);
+				$t.animate({left:"-="+this._o.w*(even?2:1)},this._o.speed);
 			};
 
 		},
@@ -178,9 +178,9 @@
 			if((!even)&&i<(i0-1)) return;
 			$t.stop(true,true);
 			if(i%2==0){
-				$t.animate({left:"+="+this._o.w*(even?1:2)},600);
+				$t.animate({left:"+="+this._o.w*(even?1:2)},this._o.speed);
 			}else{
-				$t.animate({left:"+="+this._o.w*(even?2:1)},600);
+				$t.animate({left:"+="+this._o.w*(even?2:1)},this._o.speed);
 			};	
 		}
 	};
@@ -200,7 +200,8 @@
 		h:190,
 		gapV:5,				/* 图片垂直方向留白 */
 		gapH:5,				/* 图片水平方向留白 */
-    	opacityOvl:0.7
+    	opacityOvl:0.7,
+		speed:400
 	};
     // Public functions.
     $.fn.btslide.method1 = function(skinName) {

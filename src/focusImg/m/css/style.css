@@ -26,7 +26,7 @@
 
 /* 高清电影焦点图风格2 */
 
-#mSlide1{width:980px;position:relative;}
+#mSlide1{width:980px;position:relative;background:#000;}
 #mSlide1 .lv_main{position:relative;overflow:hidden;width:980px;}
 #mSlide1 .lv_main_{width:2300px;height:380px;}
 /* 缩略图 */
