@@ -25,18 +25,12 @@
 
 #mSlide1{width:980px;position:relative;}
 #mSlide1 .lv_main{position:relative;overflow:hidden;width:980px;}
-#mSlide1 .lv_main_{width:2300px;height:350px;}
+#mSlide1 .lv_main_{width:2300px;height:380px;}
 /* 缩略图 */
 #mSlide1 .lv_item{position:absolute;}
-#mSlide1 .lv_item a{display:block;width:120px;padding:5px;background:#000;}
-#mSlide1 .lv_item img{display:block;width:120px;height:165px;}
+#mSlide1 .lv_item a{display:block;padding:5px;background:#000;}
+#mSlide1 .lv_item img{display:block;width:130px;height:180px;}
 /* 放大图 */
-#mSlide1 .lv_zoom a,#mSlide1 .lv_zoom img{width:250px;height:340px;}
 
-/* 滚动条 */
-#mSlide1 .lv_slider{background:#000;height:21px;padding-top:5px;}
-#mSlide1 .lv_slider_{position:relative;height:15px;width:970px;margin:0 auto;background:url("../img/lv_sbg.gif") no-repeat;text-align:left;}
-#mSlide1 .lv_slider_hdl{cursor:default;position:absolute;width:128px;height:14px;margin-left:0;top:0;background:url("../img/lv_hdl.gif") no-repeat;z-index:2;}
-#mSlide1 .lv_slider_hdl:hover{background:url("../img/lv_hdl1.gif") no-repeat;}
-
+/*#mSlide1 .lv_zoom a,#mSlide1 .lv_zoom img{width:250px;height:340px;}*/
 #mSlide1 .lv_loading{position:absolute;display:none;height:32px;width:32px;top:159px;left:114px;}
