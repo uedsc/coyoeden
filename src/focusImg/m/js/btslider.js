@@ -30,6 +30,10 @@
 				_this.z($(this));
 			});
 		},
+		/**
+		 * zoom effect
+		 * @param {Object} $t
+		 */
 		z:function($t){
 			var _this=this;
 			if($t.hasClass("lv_zoom")) return;
@@ -47,6 +51,12 @@
 				};//if
 			});//each
 		},
+		/**
+		 * zoom in
+		 * @param {Object} $t
+		 * @param {Object} even
+		 * @param {Object} toLeft
+		 */
 		_zIn:function($t,even,toLeft){
 			if (even) {
 				if(toLeft){
@@ -96,7 +106,11 @@
 
 			};
 		},
-		_zOut:function($t){
+		/**
+		 * reset
+		 * @param {Object} $t
+		 */
+		r:function($t){
 			$t.stop(true,true).animate({width:this._o.w,height:this._o.h});
 		},
 		_goL:function($t,even,i,i0){

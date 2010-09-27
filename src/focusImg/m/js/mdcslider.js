@@ -20,7 +20,10 @@
 		this.$p=$t.find("."+opts.clPanel);
 		this.$ct=$t.find("."+opts.clContent);
 		this.$ing=$t.find("."+opts.clLoading);
-		this.wCT=this.$ct.width();
+		this.$boxes=this.$ct.children();
+		//this.wCT=this.$ct.width();
+		this.wCT=this.$boxes.length*this.$boxes.eq(0).width();
+		this.$ct.css("width",this.wCT);
 		this.wP=this.$p.width();
 		this.wCTGap=this.wCT-this.wP;
 		this.wScrollMax=this.$s.width()-this.$sA.width();
@@ -73,6 +76,8 @@
 				}else{
 					items.eq(0).hide();
 				};				
+			}else{
+				items.hide();
 			};
 
 			//get image data

@@ -7,13 +7,19 @@
 		<link media="all" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet"></link>
 		<link rel="stylesheet" type="text/css" href="css/style.css"></link> 
 		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script> 
+		<script type="text/javascript" src="js/jquery-ui-1.8.5.custom.min.js"></script> 
 		<script type="text/javascript" src="../js/jquery.json-2.2.min.js"></script> 
-		<script type="text/javascript" src="js/mdcslider.js"></script>
-		<script type="text/javascript" src="js/btslider.js"></script>		
+		<script type="text/javascript" src="js/mdcslider.min.js"></script>
+		<script type="text/javascript" src="js/btslider.js"></script>
+		<script type="text/javascript">
+		//<![CDATA[
+		jQuery.noConflict();
+		//]]>
+		</script>
+ 		
 	</head>
 	<body>
-		<div id="contentA">
+		<div id="contentA" class="hidden">
 			<!--高清电影焦点图-->
 			<div id="mSlide">
 				<div class="lv_main">
@@ -64,7 +70,7 @@
 							</div>
 						</div>
 						<div class="left">
-							<div class="lv_item lv_init"><a href="#" rel='{"t0":"无人驾驶无人驾驶13","t1":"主演：刘德华、高圆圆<br />无人驾驶无人驾驶无人驾驶无"}'><img src="img/pic120x165_1.gif" alt="img/pic250x340_2.gif"/></a></div>
+							<div class="lv_item"><a href="#" rel='{"t0":"无人驾驶无人驾驶13","t1":"主演：刘德华、高圆圆<br />无人驾驶无人驾驶无人驾驶无"}'><img src="img/pic120x165_1.gif" alt="img/pic250x340_2.gif"/></a></div>
 							<div class="lv_item"><a href="#" rel='{"t0":"无人驾驶无人驾驶14","t1":"主演：刘德华、高圆圆<br />无人驾驶无人驾驶无人驾驶无"}'><img src="img/pic120x165_2.gif"/></a></div>
 							<div class="lv_item"><a href="#" rel='{"t0":"无人驾驶无人驾驶15","t1":"主演：刘德华、高圆圆<br />无人驾驶无人驾驶无人驾驶无"}'><img src="img/pic120x165_4.gif"/></a></div>
 							<div class="lv_item"><a href="#" rel='{"t0":"无人驾驶无人驾驶16","t1":"主演：刘德华、高圆圆<br />无人驾驶无人驾驶无人驾驶无"}'><img src="img/pic120x165_3.gif"/></a></div>								
@@ -134,8 +140,8 @@
 		<!--/#contentB-->
 		<script type="text/javascript">
 		//<![CDATA[
-			$("#mSlide").ppSlide();
-			//$("#mSlide1").btslide();
+			//jQuery("#mSlide").ppSlide();
+			jQuery("#mSlide1").btslide();
 		//]]>
 		</script>
  

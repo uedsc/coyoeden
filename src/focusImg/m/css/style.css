@@ -1,7 +1,6 @@
 #contentA,#contentB{width:980px;height:376px;margin:50px auto;}
 #mSlide{width:980px;position:relative;}
 #mSlide .lv_main{position:relative;overflow:hidden;width:980px;}
-#mSlide .lv_main_{width:1300px;}
 #mSlide .left{position:relative;width:260px;}
 #mSlide .lv_item{float:left;width:50%;position:relative;z-index:1;}
 #mSlide .lv_item a{display:block;width:120px;padding:5px;background:#000;}
