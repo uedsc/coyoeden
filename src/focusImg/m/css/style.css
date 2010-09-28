@@ -1,5 +1,8 @@
+#contentA,#contentB,#menu{width:980px;height:376px;margin:50px auto;}
+#menu{height:50px;}
+#menu a{line-height:20px;padding:0 10px;}
+
 /* 高清电影焦点图风格1 */
-#contentA,#contentB{width:980px;height:376px;margin:50px auto;}
 #mSlide{width:980px;position:relative;}
 #mSlide .lv_main{position:relative;overflow:hidden;width:980px;}
 #mSlide .left{position:relative;width:260px;}

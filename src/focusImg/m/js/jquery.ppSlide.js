@@ -166,8 +166,4 @@
 		opacity:0.7,
 		speed:500
     };
-    // Public functions.
-    $.fn.ppSlide.method1 = function(skinName) {
-        return;
-    };
 })(jQuery);  

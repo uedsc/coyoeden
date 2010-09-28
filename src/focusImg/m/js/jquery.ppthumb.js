@@ -203,9 +203,9 @@
 		}
 	};
     //main plugin body
-    $.fn.btslide = function(opts) {
+    $.fn.ppthumb = function(opts) {
         // Set the options.
-        opts = $.extend({}, $.fn.btslide.defaults, opts);
+        opts = $.extend({}, $.fn.ppthumb.defaults, opts);
 
         // Go through the matched elements and return the jQuery object.
         return this.each(function() {
@@ -213,7 +213,7 @@
 		});
     };
     // Public defaults.
-    $.fn.btslide.defaults = {
+    $.fn.ppthumb.defaults = {
         w: 140,
 		h:190,
 		gapV:5,				/* Í¼Æ¬´¹Ö±·½ÏòÁô°× */
@@ -221,8 +221,4 @@
     	opacityOvl:0.7,
 		speed:400
 	};
-    // Public functions.
-    $.fn.btslide.method1 = function(skinName) {
-        return;
-    };
 })(jQuery); 
