@@ -35,6 +35,8 @@
 			
 			//opacity effect for overlay
 			this.$l.find(".lv_ovl").css("opacity",this._o.opacityOvl);
+			//opacity effect for thumb
+			this.$l.find("img").css("opacity",this._o.opacityImg);
 		},
 		/**
 		 * bind events
@@ -81,7 +83,8 @@
 			$t.stop(true, true);
 			$t.find("img").stop(true, true).animate({
 				width: this._o.w * 2 - this._o.gapH * 2,
-				height: this._o.h * 2 - this._o.gapV * 2
+				height: this._o.h * 2 - this._o.gapV * 2,
+				opacity:1
 			},this._o.speed,function(){
 				$t.find(".lv_cover").slideDown();
 				//_this.b();
@@ -113,7 +116,7 @@
 		r:function($t){
 			var _this=this,sp=this._o.speed;
 			var i0=$t.index(),even=(i0%2==0),toLeft=(i0>=this.imiddle),tempObj;
-			$t.removeClass("lv_zoom").find("img").stop(true,true).animate({width:this._o.w-this._o.gapH*2,height:this._o.h-this._o.gapV*2},sp);
+			$t.removeClass("lv_zoom").find("img").stop(true,true).animate({width:this._o.w-this._o.gapH*2,height:this._o.h-this._o.gapV*2,opacity:this._o.opacityImg},sp);
 			$t.find(".lv_cover").stop(true,true).hide();
 			$t.stop(true,true);
 			if(even){
@@ -146,6 +149,7 @@
 		gapV:5,				/* 图片垂直方向留白 */
 		gapH:5,				/* 图片水平方向留白 */
     	opacityOvl:0.7,
+		opacityImg:0.6,
 		speed:400
 	};
     // Public functions.
