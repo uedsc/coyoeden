@@ -7,10 +7,14 @@
 		<link media="all" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet"></link>
 		<link rel="stylesheet" type="text/css" href="css/style.css"></link> 
 		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
-		<script type="text/javascript" src="js/jquery-ui-1.8.5.custom.min.js"></script> 
+		<!--风格1-->
+		<script type="text/javascript" src="js/mdcslider.jquery-ui.min.js"></script>
 		<script type="text/javascript" src="../js/jquery.json-2.2.min.js"></script> 
 		<script type="text/javascript" src="js/mdcslider.min.js"></script>
-		<script type="text/javascript" src="js/btslider.js"></script>
+		<!--/风格1-->
+		<!--风格2-->
+		<script type="text/javascript" src="js/btslider.min.js"></script>
+		<!--/风格2-->
 		<script type="text/javascript">
 		//<![CDATA[
 		jQuery.noConflict();
@@ -110,6 +114,7 @@
 		</div>
 		<!--/#contentA-->
 		<div id="contentB" class="">
+			<!--风格2-->
 			<div id="mSlide1">
 				<div class="lv_main">
 					<div class="lv_main_ clear">
@@ -271,11 +276,12 @@
 				</div>
 				<div class="lv_loading"><img alt="loading..." src="../img/loading.gif"/></div>
 			</div>
+			<!--/风格2-->
 		</div>
 		<!--/#contentB-->
 		<script type="text/javascript">
 		//<![CDATA[
-			//jQuery("#mSlide").ppSlide();
+			jQuery("#mSlide").ppSlide();
 			jQuery("#mSlide1").btslide({speed:500});
 		//]]>
 		</script>
