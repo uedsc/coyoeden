@@ -28,11 +28,13 @@
 
 #mSlide1{width:980px;position:relative;background:#000;}
 #mSlide1 .lv_main{position:relative;overflow:hidden;width:980px;}
-#mSlide1 .lv_main_{width:2300px;height:380px;}
+#mSlide1 .lv_main_{position:relative;height:380px;}
 /* 缩略图 */
 #mSlide1 .lv_item{position:absolute;}
 #mSlide1 .lv_item a{display:block;padding:5px;background:#000;}
 #mSlide1 .lv_item img{display:block;width:130px;height:180px;}
+/* 大图 */
+#mSlide1 .lv_zoom{z-index:2;}
 /* 文字部分 */
 #mSlide1 .lv_cover{position:absolute;display:none;width:100%;height:80px;z-index:10;bottom:0;left:0;}
 /*#mSlide1 .lv_zoom .lv_cover{display:block;}*/
@@ -43,5 +45,3 @@
 #mSlide1 .lv_t{padding:3px 3px 3px 65px;color:#fff;text-align:left;}
 #mSlide1 .lv_t0{font-size:14px;font-weight:bold;}
 #mSlide1 .lv_t1{line-height:20px;}
-/*#mSlide1 .lv_zoom a,#mSlide1 .lv_zoom img{width:250px;height:340px;}*/
-#mSlide1 .lv_loading{position:absolute;display:none;height:32px;width:32px;top:159px;left:114px;}

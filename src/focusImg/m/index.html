@@ -15,6 +15,9 @@
 		<!--风格2-->
 		<script type="text/javascript" src="js/btslider.min.js"></script>
 		<!--/风格2-->
+		<!--风格3-->
+		<script type="text/javascript" src="js/zzThumb.js"></script>
+		<!--/风格3-->
 		<script type="text/javascript">
 		//<![CDATA[
 		jQuery.noConflict();
@@ -274,15 +277,18 @@
 						</div>												
 					</div>
 				</div>
-				<div class="lv_loading"><img alt="loading..." src="../img/loading.gif"/></div>
 			</div>
 			<!--/风格2-->
 		</div>
 		<!--/#contentB-->
 		<script type="text/javascript">
 		//<![CDATA[
+			//风格1
 			jQuery("#mSlide").ppSlide();
-			jQuery("#mSlide1").btslide({speed:500});
+			//风格2
+			//jQuery("#mSlide1").btslide({speed:500});
+			//风格3
+			jQuery("#mSlide1").zzThumb({speed:200});
 		//]]>
 		</script>
  
