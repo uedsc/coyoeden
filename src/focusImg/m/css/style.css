@@ -11,7 +11,7 @@
 #mSlide .lv_item img{display:block;width:120px;height:165px;}
 #mSlide .lv_slider{background:#000;height:21px;padding-top:5px;}
 #mSlide .lv_cover{position:absolute;display:none;width:100%;height:100%;z-index:10;top:0;left:0;}
-#mSlide .lv_zoom,#mSlide .lv_zoom img{display:block;width:250px;height:340px;}
+#mSlide .lv_zoom,#mSlide .lv_zoom img{display:block;}
 #mSlide .lv_zoom{padding:5px;background:#000;}
 #mSlide .lv_ovl,#mSlide .lv_note{position:absolute;bottom:0;left:0;height:70px;width:250px;padding:5px;z-index:4;overflow:hidden;}
 #mSlide .lv_ovl{background:#000;z-index:3;opacity:.5;}
