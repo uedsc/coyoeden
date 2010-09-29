@@ -99,7 +99,7 @@ sohu.diyDialog.wCfgArea=function(dlg){
 		p._fm.txtID.val(sohu.diyConsole.CurArea.ID);
 		//对齐
 		var bg_p=sohu.diyConsole.CurArea.$Layout.css("backgroundPosition");
-		bg_p=bg_p=="0% 0%"?"center top":bg_p;
+		bg_p=bg_p=="0% 0%"?"center top":(bg_p||"center top");
 		bg_p=bg_p.split(" ");
 		if(bg_p.length==2){
 			p._fm.ddlBGAlign.val(bg_p[0]);
@@ -235,7 +235,7 @@ sohu.diyDialog.wCfgPage=function(dlg){
 		//页头
 		//对齐方式
 		var bg_p=sohu.diyConsole.$BodyBGA.css("backgroundPosition");
-		bg_p=bg_p=="0% 0%"?"center top":bg_p;
+		bg_p=bg_p=="0% 0%"?"center top":(bg_p||"center top");
 		bg_p=bg_p.split(" ");
 		if(bg_p.length==2){
 			p._fm.ddlBGAlignA.val(bg_p[0]);
@@ -250,7 +250,7 @@ sohu.diyDialog.wCfgPage=function(dlg){
 		p._fm.ddlBGRepeatA.curVal=bg_a;
 		//页尾
 		bg_p=sohu.diyConsole.$BodyBGB.css("backgroundPosition");
-		bg_p=bg_p=="0% 0%"?"center top":bg_p;
+		bg_p=bg_p=="0% 0%"?"center top":(bg_p||"center top");
 		bg_p=bg_p.split(" ");
 		if(bg_p.length==2){
 			p._fm.ddlBGAlignB.val(bg_p[0]);
@@ -468,7 +468,7 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		p._fm.txtBorderC.css("backgroundColor",bdc);
 		//对齐方式
 		var bg_p=sohu.diyConsole.CurSec.$Layout.css("backgroundPosition");
-		bg_p=bg_p=="0% 0%"?"center top":bg_p;
+		bg_p=bg_p=="0% 0%"?"center top":(bg_p||"center top");
 		bg_p=bg_p.split(" ");
 		if(bg_p.length==2){
 			p._fm.ddlBGAlign.val(bg_p[0]);

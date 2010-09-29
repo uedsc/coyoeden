@@ -43,7 +43,7 @@
 .nav{text-align:center;font-size:14px;font-weight:bold;line-height:30px;}
 .nav12{font-size:12px;}
 .imgNav{line-height:normal;}
-.imgNav li{float:left;display:inline;}
+.nav li{float:left;display:inline;}
 /* À¸Ä¿±êÌâ */
 h2 .more{font-weight:normal;}
 h2 .more span{float:none;font-weight:normal;font-size:12px;}

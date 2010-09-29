@@ -381,11 +381,13 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 					var obj0=$(document.createTextNode(this.value));
 					data.$obj.replaceWith(obj0);
 					data.$obj=obj0;
+					_this.onDomRefreshed();
 				}).focus(_this.focusSelect);
 				//删除按钮
 				tpl.find(".btnDel").bind("click",function(evt){
 					data.$obj.remove();
 					tpl.remove();
+					_this.onDomRefreshed();
 				});
 			}else if($o.is("a")){
 				var $img=$o.find("img");
@@ -478,6 +480,7 @@ sohu.diyChipEditor.Dialog.prototype.BindIconEvts=function($tpl,data){
 		//标题输入框
 		$tpl.find(".tt").val(data.$obj.html()).keyup(function(evt){
 			data.$obj.html(this.value);
+			_this.onDomRefreshed();
 		}).focus(this.focusSelect);
 		//链接输入框
 		$tpl.find(".lnk").val(data.$obj.attr("href")).keyup(function(evt){
@@ -526,6 +529,7 @@ sohu.diyChipEditor.Dialog.prototype.BindIconEvts=function($tpl,data){
 		$tpl.find(".imgW").val(data.$img.width()).change(function(evt){
 			if(this.value==""){
 				data.$img.removeAttr("width");
+				_this.onDomRefreshed();
 				return;
 			};	
 			if(!StringUtils.isPlusInt(this.value)){
@@ -534,11 +538,13 @@ sohu.diyChipEditor.Dialog.prototype.BindIconEvts=function($tpl,data){
 			};
 			$(this).removeClass("alert");
 			data.$img.attr("width",this.value);
+			_this.onDomRefreshed();
 		});
 		//高
 		$tpl.find(".imgH").val(data.$img.height()).change(function(evt){
 			if(this.value==""){
 				data.$img.removeAttr("height");
+				_this.onDomRefreshed();
 				return;
 			};	
 			if(!StringUtils.isPlusInt(this.value)){
@@ -547,6 +553,7 @@ sohu.diyChipEditor.Dialog.prototype.BindIconEvts=function($tpl,data){
 			};
 			$(this).removeClass("alert");
 			data.$img.attr("height",this.value);
+			_this.onDomRefreshed();
 		});
 		//边框色
 		$tpl.find(".imgBColor").css("background",data.$img.css("border-color")).click(function(evt){
@@ -569,6 +576,7 @@ sohu.diyChipEditor.Dialog.prototype.DelElm=function(data){
 	if(data.$obj){
 		data.$obj.remove();
 		data.$tpl.remove();
+		this.onDomRefreshed();
 	};
 };
 /**
@@ -616,6 +624,7 @@ sohu.diyChipEditor.Dialog.prototype.Color=function(data){
 sohu.diyChipEditor.Dialog.prototype.AddElm=function(data){
 	if(!data.$obj) return false;
 	var txt0=$(document.createTextNode(" "));
+	var _this=this;
 	var a0=$(sohu.diyChipEditor.aTplStr);
 	data.$obj.after(a0).after(txt0);
 	a0.bind('click.noNav',sohu.diyConsole.OnStopNav);
@@ -627,10 +636,12 @@ sohu.diyChipEditor.Dialog.prototype.AddElm=function(data){
 		var obj0=$(document.createTextNode(this.value));
 		data1.$obj.replaceWith(obj0);
 		data1.$obj=obj0;
+		_this.onDomRefreshed();
 	}).focus(this.focusSelect);
 	tpl.find(".btnDel").bind("click",function(evt){
 		data1.$obj.remove();
 		tpl.remove();
+		_this.onDomRefreshed();
 	});
 	var tpl1=$(sohu.diyChipEditor.$ElmATpl.html());
 	var data2={$obj:a0,$tpl:tpl1,t:0};
@@ -638,6 +649,7 @@ sohu.diyChipEditor.Dialog.prototype.AddElm=function(data){
 	this.BindIconEvts(tpl1,data2);
 	
 	data.$tpl.filter(":last").after(tpl1).after(tpl);
+	this.onDomRefreshed();
 	return false;
 };
 sohu.diyChipEditor.Dialog.prototype.focusSelect=function(evt){
@@ -655,6 +667,7 @@ sohu.diyChipEditor.Dialog.prototype.InsertVDIcon=function(data){
 	}else{
 		data.$obj.after(a);
 	};
+	this.onDomRefreshed();
 	return false;
 };
 /**
@@ -711,4 +724,10 @@ sohu.diyChipEditor.Dialog.prototype.InitSecHDTpl=function(){
 		};
 		return false;
 	});
+};
+/**
+ * onDomRefreshed事件处理。碎片编辑器编辑时候更新碎片dom时触发
+ */
+sohu.diyChipEditor.Dialog.prototype.onDomRefreshed=function(){
+	this.Elm.CT.Editor.Reposition();
 };
