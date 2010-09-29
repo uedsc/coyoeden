@@ -1,6 +1,7 @@
 #contentA,#contentB,#menu{width:980px;height:376px;margin:50px auto;}
 #menu{height:50px;}
 #menu a{line-height:20px;padding:0 10px;}
+#menu a.on{color:red;background:#eee;}
 
 /* 高清电影焦点图风格1 */
 #mSlide{width:980px;position:relative;}

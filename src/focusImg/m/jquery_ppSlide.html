@@ -119,6 +119,11 @@
 		//<![CDATA[
 			//·ç¸ñ1
 			jQuery("#mSlide").ppSlide({speed:300});
+			jQuery(function(jq){
+				jq("#menu a").filter(function(i){
+					return window.location.href.toLowerCase().indexOf(this.href.toLowerCase())>=0;
+				}).addClass("on");
+			});
 		//]]>
 		</script>
  

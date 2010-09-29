@@ -193,6 +193,11 @@
 		//<![CDATA[
 			//·ç¸ñ3
 			jQuery("#mSlide1").zzThumb({speed:250});
+			jQuery(function(jq){
+				jq("#menu a").filter(function(i){
+					return window.location.href.toLowerCase().indexOf(this.href.toLowerCase())>=0;
+				}).addClass("on");
+			});
 		//]]>
 		</script>
  
