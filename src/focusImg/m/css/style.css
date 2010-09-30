@@ -49,3 +49,25 @@
 #mSlide1 .lv_t{padding:3px 3px 3px 65px;color:#fff;text-align:left;}
 #mSlide1 .lv_t0{font-size:14px;font-weight:bold;}
 #mSlide1 .lv_t1{line-height:20px;}
+
+/* 高清电影焦点图风格2 */
+
+#mSlide2{width:980px;position:relative;background:#000;}
+#mSlide2 .lv_main{position:relative;overflow:hidden;width:560px;margin:0 auto;}
+#mSlide2 .lv_main_{position:relative;height:380px;}
+/* 缩略图 */
+#mSlide2 .lv_item{position:absolute;}
+#mSlide2 .lv_item a{display:block;}
+#mSlide2 .lv_item img{display:block;width:130px;height:180px;padding:5px;background:#000;}
+/* 大图 */
+#mSlide2 .lv_zoom{z-index:2;}
+/* 文字部分 */
+#mSlide2 .lv_cover{position:absolute;display:none;width:100%;height:80px;z-index:10;bottom:0;left:0;}
+/*#mSlide1 .lv_zoom .lv_cover{display:block;}*/
+#mSlide2 .lv_ovl,#mSlide2 .lv_note{position:absolute;bottom:0;left:0;height:70px;width:270px;padding:5px;z-index:4;overflow:hidden;}
+#mSlide2 .lv_ovl{background:#000;z-index:3;opacity:.5;}
+#mSlide2 .lv_item .lv_play{position:absolute;background:url("../img/lv_play.png") no-repeat;width:49px;height:49px;padding:0;left:15px;top:15px;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src="http://i.mdc.sohu.com/levinhuang/focusImg/m/img/lv_play.png");}
+#mSlide2 .lv_item .lv_play:hover{background:url("../img/lv_play1.png") no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='http://i.mdc.sohu.com/levinhuang/focusImg/m/img/lv_play1.png');}
+#mSlide2 .lv_t{padding:3px 3px 3px 65px;color:#fff;text-align:left;}
+#mSlide2 .lv_t0{font-size:14px;font-weight:bold;}
+#mSlide2 .lv_t1{line-height:20px;}
