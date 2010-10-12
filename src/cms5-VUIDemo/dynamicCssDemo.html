@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+		<title>Dynamic css demo</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> 
+		<script type="text/javascript" src="js/jquery.dcss.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://css.sohu.com/upload/global1.3.css"></link>
+		<style type="text/css">
+			#contentA{padding:50px;}
+			#contentA .acts{background:#eee;}
+			#contentA .entry{margin:20px 10px;border:2px dashed #eee;padding:10px;}
+		</style> 
+		<style id="dcss_camp" type="text/css">
+			#contentA .entry{font-style:italic;}
+		</style>  
+	</head>
+	<body>
+		<div class="area" id="contentA">
+			<div class="acts">
+				<button id="btnBold">加粗</button>
+				<button id="btnRed">加红</button>
+			</div>
+			<div class="entry">
+				企业社会责任（Corporate social responsibility,简称CSR）是指企业在创造利润、对股东承担法律责任的同时，还要承担对员工、消费者、社区和环境的责任。企业的社会责任要求企业必须超越把利润作为唯一目标的传统理念，强调要在生产过程中对人的价值的关注，强调对消费者、对环境、对社会的贡献。
+			</div>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		$.DCSS.init();
+		$(function(){
+			var $t=$("#contentA .entry");
+			$("#btnBold").click(function(e){
+				var v="bold",b=$t.hasClass("b");
+				$t.toggleClass("b",!b);
+				if(b){
+					v=null;
+				};
+				$.DCSS.update("#contentA .entry",{
+					"font-weight":v
+				}).refresh();
+			});
+			$("#btnRed").click(function(e){
+				var v="red",b=$t.hasClass("r");;
+				$t.toggleClass("r",!b);
+				if(b){
+					v=null;
+				};
+				$.DCSS.update("#contentA .entry",{
+					"color":v
+				}).refresh();
+			});
+		});
+	</script>
+ 
+</html>

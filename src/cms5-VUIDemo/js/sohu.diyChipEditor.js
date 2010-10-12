@@ -729,5 +729,6 @@ sohu.diyChipEditor.Dialog.prototype.InitSecHDTpl=function(){
  * onDomRefreshed事件处理。碎片编辑器编辑时候更新碎片dom时触发
  */
 sohu.diyChipEditor.Dialog.prototype.onDomRefreshed=function(){
+	if(!this.Elm) return;
 	this.Elm.CT.Editor.Reposition();
 };
