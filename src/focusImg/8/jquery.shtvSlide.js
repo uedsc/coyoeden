@@ -7,8 +7,15 @@
 /* 焦点图8 */
 $.fn.focusImg.Register("fi08", {
     init: function (fi) {
-		fi.ptStepY_=fi.ptStepY_||50;
-		fi.ptStepY=fi.ptStepY||180;
+		//右边文字列-纵向移动偏移值，即padding+margin
+		fi.ptStepY_=fi.ptStepY_||20;
+		//右边文字列-选中项高度
+		fi.ptStepY=fi.ptStepY||160;
+		//右边文字列-默认高度
+		fi.ptStepY1=fi._cfg.ptStepY1||50
+		//右边文字滚动速度
+		fi.speed1=fi._cfg.speed1||200;
+		
         //dom references and cache
         fi._$tabC = fi.$d.find(".fi_tab");
 		fi._$transparentOvl = fi.$d.find(".fi_ovl").css("opacity", fi._cfg.opacity || 0.5);
@@ -92,16 +99,36 @@ $.fn.focusImg.Register("fi08", {
 			return false;
 		});		
 		if(i1==0) return;
-		var step=fi.ptStepY+(i1-1)*fi.ptStepY_;
+		var step=fi.ptStepY+(i1-1)*fi.ptStepY1+i1*fi.ptStepY_;
+		liNow=$(liNow);
+		/*
+		//复制顶部元素到末尾
+		var $prev=liNow.prevAll().each(function(j,o){
+				fi._$list1.append($(o).clone(true).removeClass("fi_note_on").height(fi.ptStepY1));
+		});
 		fi._$list1.stop(true,true).animate({top:-step},200,function(){
-			fi._$list1
-				.append($(liNow).prevAll().removeClass("fi_note_on").stop(true,true).height(fi.ptStepY_))
-				.css("top",0)
-				.find("li:first").stop(true,true)
-				.addClass("fi_note_on")
-				.css("height",fi.ptStepY_)
-				.animate({height:fi.ptStepY},300);
-		});		
+			//移除顶部元素
+			$prev.remove();
+			
+			fi._$list1.css("top",0);
+			
+			liNow.addClass("fi_note_on").css("height",fi.ptStepY);
+			
+		});
+		*/
+		liNow.stop(true,true).animate({height:fi.ptStepY},fi.speed1,function(){
+			liNow.addClass("fi_note_on");
+		});
+		var $prev=liNow.prevAll().stop(true,true).filter(".fi_note_on").animate({height:fi.ptStepY1},fi.speed1,function(){
+			$(this).removeClass("fi_note_on");
+		}).end();
+		fi._$list1.stop(true,true).animate({top:-step},fi.speed1,function(){
+			fi._$list1.css("top",0);
+			for(var k=$prev.length-1;k>=0;k--){
+				fi._$list1.append($prev[k]);
+			};
+		});
+				
 	},
 	tabOffset:function(fi,i){
 		var r={visible:false};
