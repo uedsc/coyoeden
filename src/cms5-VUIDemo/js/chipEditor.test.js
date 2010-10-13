@@ -99,7 +99,16 @@ var test = function() {
 				/* 外包 */
 				onExternal:function(dlg){alert("onExternal");},
 				/* 焦点图编辑 */
-				onFlashEdit:function(dlg){alert("onFlashEdit");}
+				onFlashEdit:function(dlg){alert("onFlashEdit");},
+				afterShow:function(hash,dlg){
+					/* 编辑器定位 */
+					var of=dlg.$Chip.offset();
+					dlg.$Layout.css({
+						top:of.top,
+						left:of.left,
+						"margin-left":"auto"
+					});
+				}
 			});
 		});
 	};

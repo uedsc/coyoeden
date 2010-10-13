@@ -10,7 +10,7 @@
 	};
 	p.onKeyup=function(evt){
 		if(evt.which==13){
-			this.Search(this.value);
+			p.onSearch(this);
 		};
 	};
 	p.onSearch=function(i){

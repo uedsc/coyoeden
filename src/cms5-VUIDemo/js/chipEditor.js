@@ -402,6 +402,7 @@ chipEditor.Dialog.prototype.Edit=function($elm){
 							data.$obj.remove();
 							tpl.remove();
 							dlg.UpdateCode();
+							return false;
 						});
 					}else if($o.is("a")){
 						var $img=$o.find("img");
@@ -537,12 +538,12 @@ chipEditor.Dialog.prototype.Sort=function($i){
 		return;
 	};
 	//调换内容
-	var temp=this.SortElm.html();
-	this.SortElm.html($i.html());
-	$i.html(temp);
+	var temp=this.SortElm.clone(true);
+	this.SortElm.replaceWith($i.clone(true));
+	$i.replaceWith(temp);
 	
 	//结束本次操作
-	this.SortElm.removeClass("sort");
+	temp.removeClass("sort");
 	this.SortElm=null;
 	if(this.$Elm)
 		this.$Elm.removeClass('ing');
@@ -576,6 +577,13 @@ chipEditor.Dialog.prototype.BindIconEvts=function($tpl,data){
 	$tpl.find(".color").bind("click",function(evt){
 		_this.Color(data);return false;
 	});
+	//检查连接按钮
+	$tpl.find(".ce_checklink").click(function(evt){
+		var lnk=jQuery.trim(jQuery(this).prev().val());
+		if(lnk!="")
+			window.open(lnk);
+	});
+	
 	if(data.t==0){
 		//标题输入框
 		var ipt0=$tpl.eq(0).find("input").keyup(function(evt){
