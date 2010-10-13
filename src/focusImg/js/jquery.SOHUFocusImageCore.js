@@ -38,7 +38,8 @@
 		this._$pointer=null;						/* 缩略图指针 */
 		this._cfg=cfg;
 		this._curLink=null;
-		this._$curImg=null;							/* 当前小图 */	
+		this._$curImg=null;							/* 当前小图 */
+        this._tabNum=0;                             /* tab总数 */	
 		//缓存数据
 		this.$d.data("apple",{a:cfg});	
 		//初始化
@@ -74,7 +75,7 @@
 				var _index=i||0;
 				that.alternation(_index);
 				that.autoPlay=setInterval(function(){
-					that.alternation((++_index)==that._$tabs.length?_index=0:_index);
+					that.alternation((++_index)==that._tabNum?_index=0:_index);
 				},that.speed);
 			};
 			gogo();
@@ -102,7 +103,7 @@
 						}).mouseleave(function(){
 							clearInterval(that.autoPlay);
 							clearTimeout(that.autoPlay1);
-							var j=(i+1)==that.focusData.length?0:(i+1);
+							var j=(i+1)==that._tabNum?0:(i+1);
 							that.autoPlay1=window.setTimeout(function(){gogo(j);},that.speed);
 						});
 						
