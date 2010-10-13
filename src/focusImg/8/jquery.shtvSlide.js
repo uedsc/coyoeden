@@ -2,7 +2,7 @@
  * @author levinhuang
  * @搜狐高清-电视剧首页焦点图
  * @version 2010.10.12
- * @dependency jquery.SOHUFocusImageCore.js
+ * @dependency jquery.SOHUFocusImageCore.js 
  */
 /* 焦点图8 */
 $.fn.focusImg.Register("fi08", {
