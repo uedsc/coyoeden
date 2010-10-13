@@ -12,10 +12,11 @@ $.fn.focusImg.Register("fi08", {
 		//右边文字列-选中项高度
 		fi.ptStepY=fi.ptStepY||160;
 		//右边文字列-默认高度
-		fi.ptStepY1=fi._cfg.ptStepY1||50
+		fi.ptStepY1=fi._cfg.ptStepY1||50;
 		//右边文字滚动速度
 		fi.speed1=fi._cfg.speed1||200;
-		
+		//右边文字列是否滚动
+		fi.yRolling=fi._cfg.yRolling||false;
         //dom references and cache
         fi._$tabC = fi.$d.find(".fi_tab");
 		fi._$transparentOvl = fi.$d.find(".fi_ovl").css("opacity", fi._cfg.opacity || 0.5);
@@ -38,13 +39,10 @@ $.fn.focusImg.Register("fi08", {
         fi.ptStepX = fi._$tabs.eq(0).width();
         //设置tab的总长度
         fi._$list.css("width", fi.ptStepX * fi._tabNum);
-        //根据tab个数，设定按钮是否可点击
+        //展示的tab个数，设定按钮初始状态
         fi._cfg.displayNum = fi._cfg.displayNum || 4;
-        if (fi._tabNum <= fi._cfg.displayNum) {
-            fi._$btnR.addClass("fi_btn_off");
-        } else {
-            fi._$btnL.addClass("fi_btn_on");
-        };
+        fi._$btnR.addClass("fi_btn_on");
+		fi._$btnL.addClass("fi_btn_off");
         //所有tab图片半透明
         fi._$tabC.find("img").css("opacity", fi._cfg.opacity || 0.5);
     },
@@ -55,14 +53,13 @@ $.fn.focusImg.Register("fi08", {
         //左按钮
         fi._$btnL.mousedown(function () {
             var s = fi._$tabs.index(fi._$tabs.filter(".now")[0]);
-            if ((s==fi._tabNum-1)||fi._$list.is(":animated") || $(this).hasClass("fi_btn_off")) return;
+            if ((s==0)||fi._$list.is(":animated") || $(this).hasClass("fi_btn_off")) return;
             clearInterval(fi.autoPlay);
             clearTimeout(fi.autoPlay1);
-
-			s=(s+1==fi._tabNum)?0:(s+1);
-			_this.alt(fi,s,function(){
+			
+			_this.alt(fi,s-1,function(){
 				fi.autoPlay1=window.setTimeout(function(){
-					gogo(s-1);
+					gogo(s);
 				},fi.speed);				
 			});	
 
@@ -70,14 +67,14 @@ $.fn.focusImg.Register("fi08", {
         //右按钮
         fi._$btnR.mousedown(function () {
             var s = fi._$tabs.index(fi._$tabs.filter(".now")[0]);
-            if ((s ==0) || fi._$list.is(":animated") || $(this).hasClass("fi_btn_off")) return;
+            if ((s ==fi._tabNum-1) || fi._$list.is(":animated") || $(this).hasClass("fi_btn_off")) return;
             clearInterval(fi.autoPlay);
             clearTimeout(fi.autoPlay1);
 			
-			s=(s-1<0)?0:(s-1);
-			_this.alt(fi,s,function(){
+			_this.alt(fi,s+1,function(){
 				fi.autoPlay1=window.setTimeout(function(){
-					gogo(s+1);
+					s=(s+2)==fi._tabNum?0:(s+2);
+					gogo(s);
 				},fi.speed);				
 			});
         });
@@ -101,34 +98,45 @@ $.fn.focusImg.Register("fi08", {
 		if(i1==0) return;
 		var step=fi.ptStepY+(i1-1)*fi.ptStepY1+i1*fi.ptStepY_;
 		liNow=$(liNow);
-		/*
-		//复制顶部元素到末尾
-		var $prev=liNow.prevAll().each(function(j,o){
-				fi._$list1.append($(o).clone(true).removeClass("fi_note_on").height(fi.ptStepY1));
-		});
-		fi._$list1.stop(true,true).animate({top:-step},200,function(){
-			//移除顶部元素
-			$prev.remove();
-			
-			fi._$list1.css("top",0);
-			
-			liNow.addClass("fi_note_on").css("height",fi.ptStepY);
-			
-		});
-		*/
-		liNow.stop(true,true).animate({height:fi.ptStepY},fi.speed1,function(){
-			liNow.addClass("fi_note_on");
-		});
-		var $prev=liNow.prevAll().stop(true,true).filter(".fi_note_on").animate({height:fi.ptStepY1},fi.speed1,function(){
-			$(this).removeClass("fi_note_on");
-		}).end();
-		fi._$list1.stop(true,true).animate({top:-step},fi.speed1,function(){
-			fi._$list1.css("top",0);
+		var $prev=liNow.prevAll();
+		if(fi.yRolling){
+			//滚动效果
+			//TODO:快速移动鼠标时，右边文字列表可能出现两个处于选中状态
+			//复制顶部元素到末尾
 			for(var k=$prev.length-1;k>=0;k--){
-				fi._$list1.append($prev[k]);
-			};
-		});
+				fi._$list1.append($prev.eq(k).clone(true).removeClass("fi_note_on").height(fi.ptStepY1));
+			};			
+			fi._$list1.stop(true,true).animate({top:-step},fi.speed1,function(){
+				//移除顶部元素
+				$prev.remove();
+				fi._$list1.css("top",0);
+				liNow.addClass("fi_note_on").css("height",fi.ptStepY);
 				
+			});
+			
+			/*
+			liNow.stop(true,false).animate({height:fi.ptStepY},fi.speed1,function(){
+				liNow.addClass("fi_note_on");
+			});
+			var $prev=liNow.prevAll().stop(true,true).filter(".fi_note_on").animate({height:fi.ptStepY1},fi.speed1,function(){
+				$(this).removeClass("fi_note_on");
+			}).end();
+			fi._$list1.stop(true,false).animate({top:-step},fi.speed1,function(){
+				fi._$list1.css("top",0);
+				for(var k=$prev.length-1;k>=0;k--){
+					fi._$list1.append($prev[k]);
+				};
+			});
+			*/				
+		}else{
+			//不带滚动效果
+			fi._$list1.css("top",-step);
+			for(var k=$prev.length-1;k>=0;k--){
+				fi._$list1.append($prev.eq(k).removeClass("fi_note_on").height(fi.ptStepY1));
+			};
+			fi._$list1.css("top",0);
+			liNow.addClass("fi_note_on").height(fi.ptStepY);
+		};			
 	},
 	tabOffset:function(fi,i){
 		var r={visible:false};
@@ -148,13 +156,13 @@ $.fn.focusImg.Register("fi08", {
 	btnTrack:function(fi,i){
         //左右按钮控制
         if (i == 0) {
-            //右边暗左边暗
-            fi._$btnR.removeClass("fi_btn_on").addClass("fi_btn_off");
-            fi._$btnL.removeClass("fi_btn_off").addClass("fi_btn_on");
-        } else if (i == (fi._tabNum - 1)) {
-            //左边暗右边亮
-            fi._$btnL.removeClass("fi_btn_on").addClass("fi_btn_off");
+            //右亮左暗
             fi._$btnR.removeClass("fi_btn_off").addClass("fi_btn_on");
+            fi._$btnL.removeClass("fi_btn_on").addClass("fi_btn_off");
+        } else if (i == (fi._tabNum - 1)) {
+            //左亮右暗
+            fi._$btnL.removeClass("fi_btn_off").addClass("fi_btn_on");
+            fi._$btnR.removeClass("fi_btn_on").addClass("fi_btn_off");
         } else {
             //都亮
             fi._$btnL.removeClass("fi_btn_off").addClass("fi_btn_on");
