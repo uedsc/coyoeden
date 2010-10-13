@@ -1,0 +1,2118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=gb2312" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>搜狐网站</title>
+<script src="http://www.sohu.com/sohuflash_1.js" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
+<link type="text/css" rel="stylesheet" href="style.css" />
+
+<link href="http://tv.sohu.com/upload/hdtvcss100919/hdtv_nav.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="http://css.sohu.com/upload/global1.0.0.9.js"></script>
+<script type="text/javascript" src="http://tv.sohu.com/upload/20090907hd/tv_pub.js"></script>
+
+<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
+<script type="text/javascript" src="js/jquery.SOHUFocusImageCore.min.js"></script>
+<script type="text/javascript" src="js/jquery.shtvSlide.min.js"></script>
+<script type="text/javascript">
+jQuery.noConflict();
+
+//标签
+function showMenu(m,n,count){
+	var jq=jQuery;
+	for(var i=1;i<=count;i++){
+		if (i==n){			
+			jq("#td_"+m+"_"+i).addClass("libg");
+			if(i!=1){
+				jq("#td_"+m+"_"+(i-1)).addClass("nobg");
+				jq("#td_"+m+"_"+(i+1)).addClass("nobg");
+			}
+		}
+		else {
+			if(i!=count){
+				jq("#td_"+m+"_"+i).removeClass("libg nobg");
+			}else{
+				jq("#td_"+m+"_"+i).removeClass("libg");
+			}
+		}
+	}
+}
+
+function showtab(m,n,count){
+	var jq=jQuery;
+	for(var i=1;i<=count;i++){
+		if (i==n){			
+			jq("#td_"+m+"_"+i).addClass("libg");
+			jq("#tab_"+m+"_"+i).show();
+			if(jq("#rtab_"+m+"_"+i)){
+				jq("#rtab_"+m+"_"+i).show();
+			}
+		}
+		else{
+			jq("#td_"+m+"_"+i).removeClass("libg");
+			jq("#tab_"+m+"_"+i).hide();
+			if(jq("#rtab_"+m+"_"+i)){
+				jq("#rtab_"+m+"_"+i).hide();
+			}
+		}
+	}
+}
+
+function popFun(rid){
+	var jq=jQuery;
+	var imgEls = jq("#"+rid+" .pp li img");
+	
+	imgEls.each(function(i){
+		var els = jq(this);
+		var elsLI = els.parent().parent();//li
+		var playPop;
+		
+		els.hover(function(){
+			elsLI.css("z-index",1000);
+			jq("#"+rid).find(".popInfo").attr("style","display:none");
+			
+			playPop = setTimeout(function(){
+				elsLI.find(".popInfo").attr("style","display:block");
+			},600);
+			
+		},function(){
+			elsLI.find(".popInfo").hover(function(){
+				elsLI.css("z-index",1000);
+				jq(this).css("display","block");
+			},function(){
+				elsLI.css("z-index",1);
+				jq(this).css("display","none");
+			});
+			clearTimeout(playPop);
+			els.queue(function () {
+				elsLI.css("z-index",1);
+				elsLI.find(".popInfo").css("display","none");
+				els.dequeue();
+			});
+		});
+		
+	});
+}
+
+//截取个数
+var _avsStr = function(str, n, kh, ftype){
+	var result = "";
+	if(str.length>0 && typeof(str)=="string"){
+		 tmp = str.split(";");
+	}else{
+		tmp = str;
+	}
+	if(n==1){
+		result = tmp[0].substr(0, 7);
+		str = result;
+	}else if(tmp.length >= n) {
+		for (var i = 0; i < n; i++) {
+			result += tmp[i].substr(0, 3).replace(".", "") + ";";
+		}
+		str = result.substr(0, result.length-1);
+	}
+	if (str) {
+		return keyHref(str, kh, ftype);
+	}
+	return str.substr(0, 3).replace(".", "");
+}
+
+//数据链接
+var hotjsonpath = "http://tv.sohu.com/frag/vrs_inc/";
+
+//右侧排行
+var lookRank = function (jsonStr,o){
+	try{
+		var str="",j=1,n="",clsA="",jsonData,jsonLength=0,_tv_name="",_tv_url="",_tv_count="",_tv_trend_count="";		
+		jsonData = eval(jsonStr).videos;		
+		jsonLength = jsonData.length>10 ? 10  : jsonData.length;
+		
+		var buffer = new stringBuffer();
+		for(var i=0;i<jsonLength;i++){
+			j=i+1			
+			n = j<=3 ? ' class="colorA"' : '';
+			
+			if(o == "sea_more"){
+				_tv_name = jsonData[i].name;
+				_name = _tv_name.length>10?_tv_name.substr(0,9)+"..":_tv_name;
+				_nameUrl = keyHref(_name,1);
+				
+				if(jsonStr=="search_history_all"){
+					_tv_count = jsonData[i].count;
+				}else{
+					_tv_trend_count = parseInt(jsonData[i].perm);
+					var _trend_count;
+					if(_tv_trend_count == 0){
+						_trend_count = "&nbsp;";
+						clsA = "trend";
+					}else{
+						_trend_count = _tv_trend_count + "%";
+						if(_tv_trend_count>0){
+							clsA = "trend up";
+						}else{
+							clsA = "trend down";
+						}
+					}
+				}
+				var sss = jsonStr=="search_history_all" ? _tv_count : _trend_count;
+				buffer.append('<li><span class="'+ clsA +'"></span><span class="num">'+sss+'</span><em '+n+'>'+j+'</em>'+ _nameUrl +'</li>'+'\n');
+			}else{
+				_tv_name = jsonData[i].tv_name;
+				_name = _tv_name.length>10?_tv_name.substr(0,9)+"..":_tv_name;
+				_tv_url = jsonData[i].tv_url;
+				_tv_count = jsonData[i].tv_count;
+				_tv_trend_count = parseInt(jsonData[i].tv_trend_count*100);
+				
+				if(_tv_trend_count == -100000 || _tv_trend_count == 0){
+					clsA = "trend";
+				}else{
+					if(_tv_trend_count>0){
+						clsA = "trend up";
+					}else{
+						clsA = "trend down";
+					}
+				}
+				buffer.append('<li><span class="'+ clsA +'"></span><span class="num">'+_tv_count+'</span><em '+n+'>'+j+'</em><a href="'+_tv_url+'" target="_blank" title="'+_tv_name+'">'+_name+'</a></li>'+'\n');
+			}
+		}
+		str = buffer.toString();
+		if (str) {
+			$(o).innerHTML = str;
+		}  
+		buffer = null;
+	}catch(e){}						
+}
+
+function changeDada(key, date, dataId){
+	var $=jQuery, linkStr;
+	switch (date) {
+		case "day":
+			linkStr = "phb_" + key + "_day_10";
+			break;
+		case "week":
+			linkStr = "phb_" + key + "_week_10";
+			break;
+		case "month":
+			linkStr = "phb_" + key + "_month_10";
+			break;
+		case "total":
+			linkStr = "phb_" + key + "_total_10";
+			break;
+		default:
+			linkStr = key
+	}
+	var list = function (){lookRank(linkStr,dataId)}
+	var cs = new createScript("",hotjsonpath + linkStr +".js",list,"",{cache:true})
+}
+
+//看最多、评分最高
+var mhRank = function (jsonStr,o){
+	try{
+		var str="",j=1,n="",clsA="",jsonData,jsonLength=0,_tv_name="",_tv_url="",_tv_count="";		
+		jsonData = eval(jsonStr).videos;		
+		jsonLength = jsonData.length>4 ? 4  : jsonData.length;
+		
+		var buffer = new stringBuffer();
+		
+		if(o == "tv_sh"){
+			var numRd = parseInt(Math.random()*44);
+		}else{
+			var numRd = 0;
+		}
+		
+		for(var i=numRd;i<jsonLength+numRd;i++){
+			_tv_name = jsonData[i].tv_name;
+			_name = _tv_name.length>10?_tv_name.substr(0,9)+"..":_tv_name;
+			_tv_url = jsonData[i].tv_url;
+			
+			if(o == "tv_sh"){
+				_tv_voters = jsonData[i].voters;
+				if(jsonData[i].tv_score=='10.0'){
+					_tv_score = 10;
+				}else{
+					_tv_score = jsonData[i].tv_score.substr(0,3);
+				}
+				buffer.append('<li><span><strong>'+_tv_score+'</strong>分</span><a href="'+_tv_url+'" target="_blank">'+_name+'</a></li>');
+			}else{
+				_tv_count = jsonData[i].tv_count;
+				buffer.append('<li><span><em>'+_tv_count+'</em></span><a href="'+_tv_url+'" target="_blank">'+_name+'</a></li>');
+			}
+		}
+		str = buffer.toString();
+		if (str) {
+			$(o).innerHTML = str;
+		}  
+		buffer = null;
+	}catch(e){}						
+}
+
+//组图、列表
+var ppListRank = function (jsonStr, o, numS){
+	try{
+		var strA="",strB="",nS="",jsonData,jsonLength=0,_tv_name="",_tv_url="",_tv_count="";		
+		
+		jsonData = eval(jsonStr).r;
+		jsonLength = jsonData.length;
+		
+		var bufferA = new stringBuffer();
+		var bufferB = new stringBuffer();
+		
+		if(numS>0){
+			numS = numS>jsonLength ? jsonLength  : numS;
+			
+			bufferA.append('<div class="pp">');
+			bufferA.append('<ul>');
+			for(var i=0;i<numS;i++){
+				_tv_name = jsonData[i].title;
+				_tv_url = jsonData[i].url;
+				_tv_pic = jsonData[i].bP;
+				_tv_count = jsonData[i].pC;
+				var _tv_score = jsonData[i].score.toFixed(1);
+				var _tv_desc = jsonData[i].desc;
+				var _desc = _tv_desc.substr(0,49)+"…<a href="+_tv_url+" target=_blank>[详细]</a>";
+				var _tv_dt = jsonData[i].dt;//导演
+				var _dt = _avsStr(_tv_dt, 1, null ,"movie");
+				var _tv_actor = jsonData[i].mA;//主演
+				var _actor = _avsStr(_tv_actor, 5, null ,"movie");
+				var _tv_type = jsonData[i].type;//类型
+				var _type = _avsStr(_tv_type, 2, null ,"movie");
+				
+				var _ma = _avsStr(_tv_actor, 2, null ,"movie");
+				var _tip = jsonData[i].tip;
+				
+				bufferA.append('<li><a href="'+_tv_url+'" target="_blank"><img src="'+_tv_pic+'" width="95" height="70" /></a><span><a href="'+_tv_url+'" target="_blank">'+_tv_name+'</a><br /><em>'+_ma+'</em></span>');
+					bufferA.append('<div style="display: none;" class="popInfo" rel="mv">');
+					bufferA.append('<div class="popBG"></div>');
+					bufferA.append('<div class="popLay">');
+						bufferA.append('<h4><strong><a target="_blank" href="'+_tv_url+'">'+_tv_name+'</a></strong>('+_tip+')</h4>');
+						bufferA.append('<dl>');
+						bufferA.append('<dt>播放：<b>'+_tv_count+'次</b></dt>');
+						bufferA.append('<dd>评分：<b>'+_tv_score+'</b>分</dd>');
+						bufferA.append('</dl>');
+						bufferA.append('<dl>');
+						bufferA.append('<dt>导演：'+_dt+'</dt>');
+						bufferA.append('<dd>类型：'+_type+'</dd>');
+						bufferA.append('</dl>');
+						bufferA.append('<dl>主演：'+_actor+'</dl>');
+						bufferA.append('<p>'+_desc+'</p>');
+					bufferA.append('</div></div>');
+				bufferA.append('</li>');
+			}
+			bufferA.append('</ul></div>');
+		}
+		
+		nS = numS==0 ? ' class="pList clear"' : ' class="pList pListC5 clear"';
+		
+		if(numS!=jsonLength && numS<jsonLength){
+			bufferB.append('<div class="line"></div>');
+			bufferB.append('<div'+nS+'>');
+			bufferB.append('<ul>');
+			for(var j=numS;j<jsonLength;j++){
+				_tv_name_ = jsonData[j].title;
+				_name_ = _tv_name_.length>8?_tv_name_.substr(0,7)+"..":_tv_name_;
+				_tv_url_ = jsonData[j].url;
+				if(o=="tv_new"){
+					var _iT = jsonData[j].iT;
+					_name_ = _tv_name_.length>12?_tv_name_.substr(0,11)+"..":_tv_name_;
+					
+					bufferB.append('<li><span>'+_iT+'</span><a href="'+_tv_url_+'" target="_blank" title="'+_tv_name_+'">'+_name_+'</a></li>');
+				}else{
+					bufferB.append('<li><a href="'+_tv_url_+'" target="_blank" title="'+_tv_name_+'">'+_name_+'</a></li>');
+				}
+			}
+			bufferB.append('</ul></div>');
+		}
+		
+		strA = bufferA.toString();
+		strB = bufferB.toString();
+		
+		if(o=="tv_new" && strB){
+			$(o).innerHTML = strB;
+		}else if(strA || strB){
+			$(o).innerHTML = strA+strB;
+		}
+		bufferA = bufferB = null;
+		popFun(o);
+	}catch(e){}						
+}
+
+function changeCls(cat, dataId, num){
+	var _hcCat = escape(cat);
+	var _hc_s = new createScript("","http://so.tv.sohu.com/js?c=2&cat="+_hcCat+"&o=3&var=searchPL4&s=20&encode=GBK",ppListRank, ["searchPL4", dataId, num]);
+}
+</script>
+
+<script type="text/javascript">
+function correctPNG(){
+	for(var i=0; i<document.images.length; i++){
+		if(!document.images[i].src.match(/\.png$/i)){continue};
+		var img = document.images[i];
+		var imgName = img.src.toUpperCase();
+		if (imgName.substring(imgName.length-3, imgName.length) == "PNG"){
+			var imgID = (img.id) ? "id='" + img.id + "' " : "";
+			var imgClass = (img.className) ? "class='" + img.className + "' " : "";
+			var imgTitle = (img.title) ? "title='" + img.title + "' " : "title='" + img.alt + "' ";
+			var imgStyle = "display:inline-block;" + img.style.cssText ;
+			if (img.align == "left") imgStyle = "float:left;" + imgStyle;
+			if (img.align == "right") imgStyle = "float:right;" + imgStyle;
+			if (img.parentNode.href) imgStyle = "cursor:hand;" + imgStyle;
+			var strNewHTML = "<em " + imgID + imgClass + imgTitle
+			+ " style=\"" + "width:" + img.width + "px; height:" + img.height + "px;" + imgStyle + ";"
+			+ "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader"
+			+ "(src=\'" + img.src + "\', sizingMethod='scale');\"></em>" 
+			img.outerHTML = strNewHTML;
+			i = i-1;
+		}
+	}
+}
+jQuery(function(){
+	if(jQuery.browser.msie){
+		window.attachEvent("onload",correctPNG);
+	}
+})
+</script>
+
+<script type="text/javascript">
+jQuery(function(jQ){			
+	var iframeData=function(id, num, wd){
+		this.id=jQ(id);
+		this.iframeID="iframe_"+id.split("#")[1];
+		this.num = num;
+		this.wd = parseInt(wd);
+	};
+	iframeData.prototype={
+		/**
+		创建iframe
+		*/
+		foundIframe:function(){					
+			jQ("body").append('<iframe id="'+this.iframeID+'" width="0" height="0" marginheight="0" marginwidth="0" scrolling="no" frameborder="0"></iframe>');
+		},
+		/**
+		标签绑定click
+		*/
+		tab:function(){
+			var _tab=this.id.find(".l li"),that=this;
+			var dataBox=this.id.find(".r .dataCon .dataConInner");
+			dataBox.html("");
+			for(var i=0;i<_tab.length;i++){
+				dataBox.append("<div class='content'></div>")
+			};
+			_tab.each(function(i){				
+				(function(i){												
+					_tab.eq(i).mouseenter(function(){
+						_tab.removeClass("libg");
+						jQ(this).addClass("libg")
+						if(_tab.eq(i).attr("on-off")!="on"){	
+							that.backfill(_tab.eq(i).attr("data"),i);
+							_tab.eq(i).attr("on-off","on");
+						};
+						that.scroll(i);			
+					})							
+				})(i)
+			}).eq(this.num).mouseenter()
+		},
+		/**
+		回填数据
+		*/
+		backfill:function(data,i){					
+			var dataBox=this.id.find(".r .dataCon .dataConInner");					
+			var _iframeID=jQ("#"+this.iframeID),that=this;
+			var writeData=function(){
+				dataBox.find("> div").eq(i).append(_iframeID.contents().find("body").html());
+				dataBox.find("> div").eq(i).width(that.wd);
+				dataBox.parent().height(dataBox.find("> div").eq(i).height());
+				dataBox.width(dataBox.find("> div").length*that.wd).height(dataBox.parent().height())
+			};
+			_iframeID.attr("src",data);					
+			if(_iframeID[0].attachEvent){//for IE						
+		        _iframeID[0].attachEvent("onload",function(){
+					if(dataBox.find("> div").eq(i).html()==""){
+		        		writeData();
+					}
+		        })
+		    }else{
+		        _iframeID[0].onload = function(){
+		        	writeData();
+		        }
+		    }
+		},
+		/**
+		滚动
+		*/
+		scroll:function(i){
+			var dataBox=this.id.find(".r .dataCon .dataConInner");
+			var prev=dataBox.find("> div").eq(i).prevAll();
+			var _width=0;
+			prev.each(function(){
+				_width+=jQ(this).width();
+			});
+			dataBox.stop();
+			if(!dataBox.is(":animated")){
+				if((dataBox.position().left==-_width || dataBox.position().left==-(_width-1)) && i!=0 && i!=dataBox.find("> div").length-1){
+					dataBox.css("left",dataBox.position().left-this.wd).animate({left:-_width},600);
+				}else{
+					dataBox.animate({left:-_width},600);
+				}
+			}
+		},
+		init:function(){
+			this.foundIframe();
+			this.tab();
+		}
+	};
+				
+	var iframeData1=new iframeData("#houseId", 0, 600);
+	var iframeData2=new iframeData("#tvHot", 0, 710);
+	iframeData1.init();
+	iframeData2.init();
+})
+</script>
+
+<script type="text/javascript">
+document.ready(function(){
+	document.cookie = "tvHistory=a; expires=Tue, 01 Apr 1970 00:00:01 GMT; path=/;";
+	readHistory();//读取历史记录，包含当前播放
+	hisOver("listHis");
+	
+	var vCH = jQuery("#videoCls").height()+2;
+	jQuery("#videoCls .vClsLay").height(vCH);
+	var vHH = jQuery("#videoHis").height()+2;
+	jQuery("#videoHis .vHisLay").height(vHH);
+})
+</script>
+</head>
+<body>
+
+<div class="adA area">
+	<div><sohuadcode><a href="http://sohu.ad-plus.cn/event.ng/Type=click&FlightID=201006&TargetID=sohu&Values=cd89a7ed,eff74122,7c954ff1,03e24d74&AdID=37474" target=_blank><img src="http://images.sohu.com/bill/s2010/shuowang/wanglaoji/950600602.jpg" border=0 width=950 height=60></img></a></sohuadcode></div>
+</div>
+
+<!-- tv新版导航 2010.9.16 st -->
+<div class="fullLS">
+<div class="area" id="logoSea">
+	<div class="left">
+		<div class="tvLogo l"><a href="http://tv.sohu.com/" target="_blank"><img src="http://i1.itc.cn/20100919/241_a587f5ec_4b36_4567_b803_86e19497f828_0.gif" width="100" height="50" alt="搜狐高清" /></a></div>
+		<div class="tvAd l"><sohuadcode><a href="http://sohu.ad-plus.cn/event.ng/Type=click&FlightID=201006&TargetID=sohu&Values=cd89a7ed,eff74122,7c954ff1,03e24d74&AdID=37474" target=_blank><img src="http://images.sohu.com/bill/s2010/shuowang/wanglaoji/11050.jpg" border=0 ></img></a></sohuadcode></div>
+	</div>
+	<div class="center">
+		<form action="" method="post" id="sForm" autocomplete="off" name="sForm" onsubmit="return searchForm('sKey');hidResult();">
+			<input type="text" class="tx" value="冯小刚" onblur="hidResult(this);" onkeyup="sResult(event);" id="sKey" /><input type="submit" class="btn" id="searchBtn" onmouseover="this.className='btn btnM'" onmouseout="this.className='btn'" value="搜 索" />
+			<div id="result" class="result" style="display:none;"></div>
+		</form>
+		<script type="text/javascript" src="http://tv.sohu.com/upload/100505tvsearch/search.js"></script>
+	</div>
+	<div class="right">
+		<div class="tvidx"><a href="http://tv.sohu.com/upload/hdfeedback/index.jsp" target="_blank">帮助</a> | <a href="http://tv.sohu.com/" target="_blank">搜狐首页</a></div>
+		<div class="pop">
+			<ul>
+				<li class="liB" id="liB"><a href="http://tv.sohu.com/hothdtv/" target="_blank">排行榜</a></li>
+				<li class="liA" id="liA"><a href="javascript:void(0)" onmouseover="runOpenClose('#liA', '#videoCls', 'liAA')" onmouseout="runOpenClose('#liA', '#videoCls', 'liAA')">视频分类</a></li>
+				<li class="liC" id="liC"><a href="javascript:void(0)" onmouseover="runOpenClose('#liC', '#videoHis', 'liCA')" onmouseout="runOpenClose('#liC', '#videoHis', 'liCA')">我看过的</a></li>
+			</ul>
+		</div>
+		
+		<div class="vCls" id="videoCls" style="display:none" onmouseover="runOpenClose('#liA', '#videoCls', 'liAA')" onmouseout="runOpenClose('#liA', '#videoCls', 'liAA')">
+			<div class="vClsLay"></div>
+			<div class="vClsCont clear">
+				<div class="footer"></div>
+				<div class="blank5B"></div>
+				<div class="l">
+					<div class="ll">
+						<h3><span><a href="http://tv.sohu.com/teleplay/" target="_blank">高清电视剧</a></span></h3>
+						<div class="blank8"></div>
+						<ul>
+							<li><a href="javascript:searchKey('偶像剧',7,'tv')">偶像</a></li>
+							<li><a href="javascript:searchKey('家庭伦理剧',7,'tv')">伦理</a></li>
+							<li><a href="javascript:searchKey('历史剧',7,'tv')">历史</a></li>
+							<li><a href="javascript:searchKey('年代剧',7,'tv')">年代</a></li>
+							<li><a href="javascript:searchKey('言情剧',7,'tv')">言情</a></li>
+						</ul>
+						<ul>						
+							<li><a href="javascript:searchKey('武侠剧',7,'tv')">武侠剧</a></li>
+							<li><a href="javascript:searchKey('古装剧',7,'tv')">古装</a></li>
+							<li><a href="javascript:searchKey('都市剧',7,'tv')">都市</a></li>
+							<li><a href="javascript:searchKey('农村剧',7,'tv')">农村</a></li>
+							<li><a href="javascript:searchKey('军事战争剧',7,'tv')">战争</a></li>
+							</ul>
+						<ul>
+							<li><a href="javascript:searchKey('悬疑剧',7,'tv')">悬疑</a></li>
+							<li><a href="javascript:searchKey('奇幻科幻剧',7,'tv')">科幻</a></li>
+							<li><a href="javascript:searchKey('动作剧',7,'tv')">动作</a></li>
+							<li><a href="javascript:searchKey('连续剧',10,'comic')">动画</a></li>
+						</ul>
+						<ul>
+							<li><a href="javascript:searchKey('内地',4,'tv')">内地</a></li>
+							<li><a href="javascript:searchKey('港台',4,'tv')">港台</a></li>
+							<li><a href="javascript:searchKey('韩剧',4,'tv')">韩剧</a></li>
+							<li><a href="javascript:searchKey('其他',4,'tv')">其他</a></li>
+						</ul>
+						
+						<p><a href="http://tv.sohu.com/tagsearch/#key=经典" target="_blank">经典</a>&nbsp;&nbsp;&nbsp;<a href="http://tv.sohu.com/tagsearch/#key=雷片" target="_blank">雷片</a>&nbsp;&nbsp;&nbsp;<a href="http://tv.sohu.com/tagsearch/#key=情色" target="_blank">情色</a>&nbsp;&nbsp;&nbsp;<a href="http://tv.sohu.com/tagsearch/#key=山寨" target="_blank">山寨</a>&nbsp;&nbsp;&nbsp;<a href="http://tv.sohu.com/tagsearch/#key=搞笑" target="_blank">搞笑</a></p>
+					</div>
+					<div class="rr">
+						<h3><span><a href="http://tv.sohu.com/movie/" target="_blank">高清电影</a></span></h3>
+						<div class="blank8"></div>
+						<ul>
+							<li><a href="javascript:searchKey('爱情片',7,'movie')">爱情</a></li>
+							<li><a href="javascript:searchKey('动作片',7,'movie')">动作</a></li>
+							<li><a href="javascript:searchKey('喜剧片',7,'movie')">喜剧</a></li>
+							<li><a href="javascript:searchKey('科幻片',7,'movie')">科幻</a></li>
+							<li><a href="javascript:searchKey('恐怖片',7,'movie')">恐怖</a></li>
+						</ul>
+						<ul>
+							<li><a href="javascript:searchKey('动画片',4,'movie')">动画</a></li>
+							<li><a href="javascript:searchKey('风月片',7,'movie')">风月</a></li>
+							<li><a href="javascript:searchKey('剧情片',7,'movie')">剧情</a></li>
+							<li><a href="javascript:searchKey('音乐片',7,'movie')">音乐</a></li>
+							<li><a href="javascript:searchKey('战争片',7,'movie')">战争</a></li>
+						</ul>
+				
+						<div class="blank5"></div>
+						<h3><span><a href="http://tv.sohu.com/comic/" target="_blank">高清动漫</a></span></h3>
+						<div class="blank5"></div>
+						<ul>
+							<li><a href="javascript:searchKey('剧情',7,'comic')">剧情</a></li>
+							<li><a href="javascript:searchKey('冒险',7,'comic')">冒险</a></li>
+							<li><a href="javascript:searchKey('动作',7,'comic')">动作</a></li>
+							<li><a href="javascript:searchKey('魔幻',7,'comic')">魔幻</a></li>
+							<li><a href="javascript:searchKey('搞笑',7,'comic')">搞笑</a></li>
+							<li><a href="javascript:searchKey('励志',7,'comic')">励志</a></li>
+							<li><a href="javascript:searchKey('真人',7,'comic')">真人</a></li>
+							<li><a href="javascript:searchKey('神话',7,'comic')">神话</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="c">
+					<h3><span><a href="http://tv.sohu.com/real/" target="_blank">高清纪录片</a></span></h3>
+					<div class="blank8"></div>
+					<ul>
+						<li><a href="http://tv.sohu.com/people/" target="_blank">人物</a></li>
+						<li><a href="http://tv.sohu.com/society/" target="_blank">社会</a></li>
+						<li><a href="http://tv.sohu.com/history/" target="_blank">历史</a></li>
+						<li><a href="http://tv.sohu.com/nature/" target="_blank">自然</a></li>
+						<li><a href="http://tv.sohu.com/discovery/" target="_blank">探索</a></li>
+						<li><a href="http://tv.sohu.com/detect/" target="_blank">刑侦</a></li>
+						<li><a href="http://tv.sohu.com/military/" target="_blank">军事</a></li>
+						<li><a href="http://tv.sohu.com/others/" target="_blank">其他</a></li>
+					</ul>
+					<div class="blank5"></div>
+					<h3><span><a href="http://tv.sohu.com/news/" target="_blank">视频新闻</a></span></h3>
+					<div class="blank5"></div>
+					<ul>
+						<li><a href="http://tv.sohu.com/shishi/" target="_blank">时事</a></li>
+						<li><a href="http://tv.sohu.com/shehui/" target="_blank">社会</a></li>
+						<li><a href="http://tv.sohu.com/fazhi/" target="_blank">法制</a></li>
+						<li><a href="http://tv.sohu.com/caijing/" target="_blank">财经</a></li>
+						<li><a href="http://tv.sohu.com/junshi/" target="_blank">军事</a></li>
+						<li><a href="http://tv.sohu.com/fangchan/" target="_blank">房产</a></li>
+						<li><a href="http://tv.sohu.com/jiankang/" target="_blank">健康</a></li>
+						<li><a href="http://tv.sohu.com/lvyou/" target="_blank">旅游</a></li>
+					</ul>
+				</div>
+				<div class="r">
+					<div class="clear clsRA">
+						<strong>年份检索：</strong>
+						<ul>
+							<li><a href="javascript:searchKey('2010',15,'year')">2010</a></li>
+							<li><a href="javascript:searchKey('2009',15,'year')">2009</a></li>
+							<li><a href="javascript:searchKey('2008',15,'year')">2008</a></li>
+							<li><a href="javascript:searchKey('2007',15,'year')">2007</a></li>
+							<li><a href="javascript:searchKey('2006',15,'year')">2006</a></li>
+							<li><a href="javascript:searchKey('2005',15,'year')">2005</a></li>
+							<li><a href="javascript:searchKey('2004',15,'year')">2004</a></li>
+							<li><a href="javascript:searchKey('2003',15,'year')">2003</a></li>
+							<li><a href="javascript:searchKey('2002',15,'year')">2002</a></li>
+							<li><a href="javascript:searchKey('2001',15,'year')">2001</a></li>
+							<li><a href="javascript:searchKey('2000',15,'year')">2000</a></li>
+							<li><a href="javascript:searchKey('1999',15,'year')">1999</a></li>
+						</ul>
+					</div>
+					<div class="clear clsRB">
+						<strong>网友评分：</strong>
+						<ul>
+							<li><a href="http://tv.sohu.com/score/?searchMark=4" target="_blank">完美</a></li>
+							<li><a href="http://tv.sohu.com/score/?searchMark=3" target="_blank">很好</a></li>
+							<li><a href="http://tv.sohu.com/score/?searchMark=2" target="_blank">一般</a></li>
+							<li><a href="http://tv.sohu.com/score/?searchMark=1" target="_blank">烂片</a></li>
+						</ul>
+					</div>
+					<div class="more"><a href="http://tv.sohu.com/sort/" target="_blank">查看全部分类&gt;&gt;</a></div>
+				</div>
+				<div class="blank5B"></div>
+			</div>
+		</div>
+		
+		<div class="vHis" id="videoHis" style="display:none" onmouseover="runOpenClose('#liC', '#videoHis', 'liCA')" onmouseout="runOpenClose('#liC', '#videoHis', 'liCA')">
+			<div class="vHisLay"></div>
+			<div class="vHisCont">
+				<h3><span>我看过的</span><a href="javascript:void(0)" onclick="layerPop('#layerPop')">清空历史</a></h3>
+				<div class="list12 clear">
+					<ul id="listHis"><li>数据读取中</li></ul>
+				</div>
+			</div>
+		</div>
+		<div class="layer" id="layerPop" style="display:none;z-index:100;">
+			<p>您确定要清空历史记录吗？</p>
+			<div class="btn"><img src="http://tv.sohu.com/upload/20100415tvindex/images/pic01.gif" width="49" height="19" onclick="clearHistory()" alt="清空历史记录" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="http://tv.sohu.com/upload/20100415tvindex/images/pic02.gif" width="49" height="19" alt="" onclick="layerPop('#layerPop')" /></div>
+		</div>
+		
+		<script type="text/javascript">
+		//弹出层
+		function runOpenClose(liO, Po, liCls) {
+		    var jq=jQuery;
+		    var p = jq(Po)[0];
+		    p.style.zIndex = 20;
+		    var ff = document.getElementById(Po);
+		    if(!ff && document.all){
+		        ff = document.createElement('iframe');
+		        ff.className = p.className;
+		        ff.src="";
+		        ff.id = Po;
+		        ff.style.display = 'none';
+		        ff.frameBorder = 'none';
+		        ff.style.zIndex = 10;
+		        p.parentNode.appendChild(ff);
+		    }
+		    if(p.style.display=="none"){
+		        jq(liO).addClass(liCls);
+		        p.style.display = 'block';
+		        if(ff){
+		            ff.width = p.clientWidth;
+		            ff.height = p.clientHeight-10;
+		            ff.style.display = 'block';
+		        }
+		    }else{
+		        jq(liO).removeClass(liCls);
+		        p.style.display = 'none';
+		        if(ff) ff.style.display = 'none';
+		    }
+		}
+		
+		//读取历史记录
+		var readHistory = function(){
+		    var result = getVrsHistory() || [];
+		    var buffer = [];
+		    if(result.length<=0){
+		        buffer.push('<li>您目前还没有观看过视频节目！</li>');
+		    }else{
+		        for (var i = 0; i < result.length; i++) {
+		            var _newTime = result[i].newTime;
+		            var _minute = parseInt(_newTime/60);
+		            _minute = _minute<10 ? "0" + _minute : _minute;
+		            var _sec = parseInt(_newTime%60);
+		            _sec = _sec<10 ? "0" + _sec : _sec;
+		            
+		            if(result[i].nurl != ""){
+		                buffer.push('<li><span class="r"><a href="'+ result[i].nurl +'" target="_blank">下一集</a></span>');
+		            }else{
+		                buffer.push('<li><span class="r">--</span>');
+		            }
+		            buffer.push('<span class="l"><em><a href="'+ result[i].url +'" target="_blank">'+ unescape(result[i].title) +'</a></em>');
+		            buffer.push('已看'+ _minute + ':' + _sec +' |</span>');
+		            buffer.push('<p style="display:none"><strong></strong>' + unescape(result[i].timeSpace) + '　点击自动续播</p>');
+		            buffer.push('</li>');
+		        }
+		    }
+		    $("listHis").innerHTML = buffer.join('');
+		}
+		
+		//清空历史记录
+		var clearHistory = function(){
+			clearVrsHistory();
+			layerPop('#layerPop');
+			$("listHis").innerHTML = "";
+		}
+		
+		//历史记录鼠标背景
+		function hisOver(oo){
+			var o = document.getElementById(oo).getElementsByTagName("li");
+			for(var i=0; i<o.length; i++){
+				o[i].onmouseover = function (){this.className="libg";}
+				o[i].onmouseout = function (){this.className="";}
+			}
+			
+			var p = document.getElementById(oo).getElementsByTagName("em");
+			for(var i=0; i<p.length; i++){
+				p[i].onmouseover = function (){this.parentNode.parentNode.lastChild.style.display="";}
+				p[i].onmouseout = function (){this.parentNode.parentNode.lastChild.style.display="none";}
+			}
+		}
+		
+		//清空弹出层
+		var layerPop = function(oo){
+			var jq=jQuery;
+			var he = jq("#videoHis").height();
+			
+			jq('#layerPop').height(he);
+			jq('#layerPop p').css("paddingTop",he/2-27);
+			runOpenClose('#liC', '#videoHis', 'liCA');
+			
+			if(jq(oo)[0].style.display=="none"){
+				jq(oo).show();
+			}else{
+				jq(oo).hide();
+			}
+		}
+		</script>
+	</div>
+</div>
+</div>
+
+<div class="fullHNS">
+<div class="area" id="hypoNav">
+	<div class="hypoMain clear">
+		<div class="left">
+			<ul>
+				<li class="now"><em><a href="http://tv.sohu.com/hdtv/">高清首页</a></em></li>
+				<li><em><a href="http://tv.sohu.com/movie/">电影</a></em></li>
+				<li><em><a href="http://tv.sohu.com/teleplay/">电视剧</a></em></li>
+				<li><em><a href="http://tv.sohu.com/comic/">动漫</a></em></li>
+				<li><em><a href="http://tv.sohu.com/korea/">韩剧</a></em></li>
+				<li><em><a href="http://v.tv.sohu.com/zy/">综艺</a></em></li>
+				<li><em><a href="http://tv.sohu.com/real/">纪录片</a></em></li>
+				<li class="nobg"><em><a href="http://ipad.tv.sohu.com/" target="_blank">iPad专区</a></em></li>
+			</ul>
+		</div>
+		<div class="right" id="seleMenu">
+			<ul>
+				<li><a href="http://tv.sohu.com/">首页</a></li>
+				<li class="libg wd">视频新闻
+					<div class="seleMenu">
+						<div class="seleLay"></div>
+						<div class="seleCon">
+							<p><a href="http://tv.sohu.com/shishi/">时政新闻</a></p>
+							<p><a href="http://tv.sohu.com/shehui/">社会新闻</a></p>
+							<p><a href="http://v.tv.sohu.com/">娱乐新闻</a></p>
+							<p class="noB"><a href="http://tv.sohu.com/caijing/">财经新闻</a></p>
+						</div>
+					</div>
+				</li>
+				<li class="libg wd">搜狐制造
+					<div class="seleMenu">
+						<div class="seleLay"></div>
+						<div class="seleCon">
+							<p><a href="http://v.tv.sohu.com/star/">明星在线</a></p>
+							<p><a href="http://v.tv.sohu.com/debade/">大鹏嘚吧嘚</a></p>
+							<p><a href="http://v.tv.sohu.com/movies/">大周五影聚院</a></p>
+							<p class="noB"><a href="http://v.tv.sohu.com/style/">潮流实验室</a></p>
+						</div>
+					</div>
+				</li>
+				<li class="libg">电视
+					<div class="seleMenu">
+						<div class="seleLay"></div>
+						<div class="seleCon">
+							<p><a href="http://tv.sohu.com/zhibo/">直播</a></p>
+							<p><a href="http://v.tv.sohu.com/mtv/">MTV</a></p>
+							<p class="noB"><a href="http://data.tv.sohu.com/lanmu/">电视栏目</a></p>
+						</div>
+					</div>
+				</li>
+				<li class="libg">播客
+					<div class="seleMenu">
+						<div class="seleLay"></div>
+						<div class="seleCon">
+							<p><a href="http://my.tv.sohu.com/channel/gaoxiao" target=_blank>搞笑</a></p>
+<p><a href="http://my.tv.sohu.com/channel/bagua" target=_blank>八卦</a></p>
+<p><a href="http://my.tv.sohu.com/channel/lieqi" target=_blank>猎奇</a></p>
+<p class=noB><a href="http://my.tv.sohu.com/channel/yuanchuang" target=_blank>原创</a></p>						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script>
+		jQuery(function(jq){
+			var rr = jq("#seleMenu");
+			var lis = rr.find("li.libg");
+			
+			lis.each(function(){
+				var ls = jq(this).find(".seleMenu");
+				var lsH = ls.height()+2;
+				ls.find(".seleLay").height(lsH);
+				
+				ls.find("p").hover(function(){
+					jq(this).addClass("over");
+				},function(){
+					jq(this).removeClass("over");
+				});
+			});
+			
+			lis.hover(function(){
+				var els = jq(this);
+				els.addClass("now");
+				els.find(".seleMenu").show();
+			},function(){
+				var els = jq(this);
+				els.removeClass("now");
+				els.find(".seleMenu").hide();
+			});
+			
+		});
+		</script>
+	</div>
+	<div class="hypoSub clear">
+	<a href="http://tv.sohu.com/shoubo/" target=_blank>首播院线</a>|<a href="http://tv.sohu.com/warnerzone/" target=_blank>华纳专区</a>|<a href="http://tv.sohu.com/frenchmovie/" target=_blank>法国专区</a>|<a href="http://tv.sohu.com/xiying/" target=_blank>西影专区</a>|<a href="http://tv.sohu.com/hothdtv/" target=_blank>观看排行榜</a>
+	</div>
+</div>
+</div>
+<!-- tv新版导航 2010.9.16 end -->
+
+<div class="fullH">
+<div class="fullHC area">
+	<div id="focusPic" class="area">
+	<div id="MDC_FocusImage_01" class="fi08">
+		<div class="fi_ct clear">
+			<a href="#" class="fi_player_c l">
+				<img class="fi_player" alt="" src="images/pic707x380_2.jpg"/>
+			</a>
+			<div class="fi_note r">
+				<div class="fi_note_c">
+					<ul>
+						<li class="fi_note_on">
+							<div class="fi_tt"><a href="http://baidu.com">天国的阶梯</a></div>
+							<div class="fi_desc">这次张家辉不再是《证人》中的悍匪，而是饰演一名行走在刀锋上的警察，为了破案，他找来刚刚出狱、想洗心革面重新做人的古惑仔做仙人，而这个卧底角色就是谢霆锋。</div>
+						</li>
+						<li>
+							<div class="fi_tt"><a href="http://sohu.com">绯闻女孩季1</a></div>
+							<div class="fi_desc">这次张家辉不再是《证人》中的悍匪，而是饰演一名行走在刀锋上的警察，为了破案，他找来刚刚出狱、想洗心革面重新做人的古惑仔做仙人，而这个卧底角色就是谢霆锋。</div>
+						</li>
+						<li>
+							<div class="fi_tt"><a href="http://sina.com.cn">绯闻女孩季2</a></div>
+							<div class="fi_desc">这次张家辉不再是《证人》中的悍匪，而是饰演一名行走在刀锋上的警察，为了破案，他找来刚刚出狱、想洗心革面重新做人的古惑仔做仙人，而这个卧底角色就是谢霆锋。</div>
+						</li>
+						<li>
+							<div class="fi_tt"><a href="http://126.com">绯闻女孩季3</a></div>
+							<div class="fi_desc">这次张家辉不再是《证人》中的悍匪，而是饰演一名行走在刀锋上的警察，为了破案，他找来刚刚出狱、想洗心革面重新做人的古惑仔做仙人，而这个卧底角色就是谢霆锋。</div>
+						</li>														
+						<li>
+							<div class="fi_tt"><a href="http://m18.com">绯闻女孩季4</a></div>
+							<div class="fi_desc">这次张家辉不再是《证人》中的悍匪，而是饰演一名行走在刀锋上的警察，为了破案，他找来刚刚出狱、想洗心革面重新做人的古惑仔做仙人，而这个卧底角色就是谢霆锋。</div>
+						</li>	
+					</ul>
+				</div>						
+			</div>
+		</div>
+		<div class="fi_tab">
+			<span class="fi_left"><a href="#" class="fi_btn"></a></span>
+			<span class="fi_right"><a href="#" class="fi_btn"></a></span>
+			<div class="fi_tab_">
+				<ul class="clear">
+					<li><a href="http://t.sohu.com"><img src="images/pic707x380_1.jpg"/></a></li>
+					<li class="now"><a href="http://v.sohu.com"><img src="images/pic707x380_2.jpg"/></a></li>
+					<li><a href="http://news.sohu.com"><img src="images/pic707x380_3.jpg"/></a></li>
+					<li><a href="http://2010.sohu.com"><img src="images/pic707x380_4.jpg"/></a></li>
+					<li><a href="http://tv.sohu.com"><img src="images/pic707x380_5.jpg"/></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="fi_ovl"></div>
+	</div>
+	<script type="text/javascript">
+	//<![CDATA[
+	    jQuery("#MDC_FocusImage_01").focusImg({ flag: "fi08", opacity: 0.6, hoverStop: true,ptStepY:160,ptStepY_:20,speed1:400,speed:6000});
+
+	//]]>
+	</script>
+	</div>
+	
+	<div id="fragA" class="area">
+		<div class="title"><img src="images/tt01.gif" width="235" height="28" alt="同步追剧" /></div>
+		<div class="left">
+			<div class="listA clear">
+				<ul>
+					<li class="libg"><span><a href="#" target="_blank">绯闻女孩-第四季</a></span>每周一8点更新</li>
+					<li><span><a href="#" target="_blank">新版红楼梦</a></span>每晚8点更新</li>
+					<li><span><a href="#" target="_blank">绯闻女孩-第四季</a></span>每周一8点更新</li>
+					<li><span><a href="#" target="_blank">新版红楼梦</a></span>每晚8点更新</li>
+					<li><span><a href="#" target="_blank">绯闻女孩-第四季</a></span>每周一8点更新</li>
+					<li><span><a href="#" target="_blank">新版红楼梦</a></span>每晚8点更新</li>
+				</ul>
+			</div>
+		</div>
+		<div class="right">
+			<div class="conPos">
+			<div class="cons">
+				<div class="con">
+					<div class="l">
+						<div class="pic"><a href="#" target="_blank"><img src="images/pic130x100.jpg" width="130" height="100" alt="" /></a></div>
+						<div class="txt">
+							<h3><span><a href="#" target="_blank">绯闻女孩11</a></span><strong>9.5</strong>分</h3>
+							<h4><span>共34集 更新至第2集</span>每周一8点更新</h4>
+							<div class="line"></div>
+							<h5><span><img src="images/pic01.gif" width="28" height="13" alt="" /><a href="#" target="_blank">《绯闻女孩》第四季第二集</a></span><a href="#" target="_blank"><img src="images/pic02.gif" width="47" height="19" alt="" /></a></h5>
+							<p><a href="#" target="_blank">评论</a> | <a href="#" target="_blank">影评</a> | <a href="#" target="_blank">内容介绍</a> | <a href="#" target="_blank">相关</a></p>
+						</div>
+					</div>
+					<div class="r">
+						<p>简介：Blair和Serena在巴黎度过了一个美好的夏天，不知道她以前的情人Chuck Bass正经受枪伤的痛苦...</p>
+						<h5><span><img src="images/pic01.gif" width="28" height="13" alt="" /><a href="#" target="_blank">《绯闻女孩》第四季第三集预告</a></span></h5>
+					</div>
+				</div>
+				<div class="con">
+					<div class="l">
+						<div class="pic"><a href="#" target="_blank"><img src="images/pic130x100.jpg" width="130" height="100" alt="" /></a></div>
+						<div class="txt">
+							<h3><span><a href="#" target="_blank">绯闻女孩22</a></span><strong>9.5</strong>分</h3>
+							<h4><span>共34集 更新至第2集</span>每周一8点更新</h4>
+							<div class="line"></div>
+							<h5><span><img src="images/pic01.gif" width="28" height="13" alt="" /><a href="#" target="_blank">《绯闻女孩》第四季第二集</a></span><a href="#" target="_blank"><img src="images/pic02.gif" width="47" height="19" alt="" /></a></h5>
+							<p><a href="#" target="_blank">评论</a> | <a href="#" target="_blank">影评</a> | <a href="#" target="_blank">内容介绍</a> | <a href="#" target="_blank">相关</a></p>
+						</div>
+					</div>
+					<div class="r">
+						<p>简介：Blair和Serena在巴黎度过了一个美好的夏天，不知道她以前的情人Chuck Bass正经受枪伤的痛苦...</p>
+						<h5><span><img src="images/pic01.gif" width="28" height="13" alt="" /><a href="#" target="_blank">《绯闻女孩》第四季第三集预告</a></span></h5>
+					</div>
+				</div>
+				<div class="con">
+					<div class="l">
+						<div class="pic"><a href="#" target="_blank"><img src="images/pic130x100.jpg" width="130" height="100" alt="" /></a></div>
+						<div class="txt">
+							<h3><span><a href="#" target="_blank">绯闻女孩33</a></span><strong>9.5</strong>分</h3>
+							<h4><span>共34集 更新至第2集</span>每周一8点更新</h4>
+							<div class="line"></div>
+							<h5><span><img src="images/pic01.gif" width="28" height="13" alt="" /><a href="#" target="_blank">《绯闻女孩》第四季第二集</a></span><a href="#" target="_blank"><img src="images/pic02.gif" width="47" height="19" alt="" /></a></h5>
+							<p><a href="#" target="_blank">评论</a> | <a href="#" target="_blank">影评</a> | <a href="#" target="_blank">内容介绍</a> | <a href="#" target="_blank">相关</a></p>
+						</div>
+					</div>
+					<div class="r">
+						<p>简介：Blair和Serena在巴黎度过了一个美好的夏天，不知道她以前的情人Chuck Bass正经受枪伤的痛苦...</p>
+						<h5><span><img src="images/pic01.gif" width="28" height="13" alt="" /><a href="#" target="_blank">《绯闻女孩》第四季第三集预告</a></span></h5>
+					</div>
+				</div>
+				<div class="con">
+					<div class="l">
+						<div class="pic"><a href="#" target="_blank"><img src="images/pic130x100.jpg" width="130" height="100" alt="" /></a></div>
+						<div class="txt">
+							<h3><span><a href="#" target="_blank">绯闻女孩44</a></span><strong>9.5</strong>分</h3>
+							<h4><span>共34集 更新至第2集</span>每周一8点更新</h4>
+							<div class="line"></div>
+							<h5><span><img src="images/pic01.gif" width="28" height="13" alt="" /><a href="#" target="_blank">《绯闻女孩》第四季第二集</a></span><a href="#" target="_blank"><img src="images/pic02.gif" width="47" height="19" alt="" /></a></h5>
+							<p><a href="#" target="_blank">评论</a> | <a href="#" target="_blank">影评</a> | <a href="#" target="_blank">内容介绍</a> | <a href="#" target="_blank">相关</a></p>
+						</div>
+					</div>
+					<div class="r">
+						<p>简介：Blair和Serena在巴黎度过了一个美好的夏天，不知道她以前的情人Chuck Bass正经受枪伤的痛苦...</p>
+						<h5><span><img src="images/pic01.gif" width="28" height="13" alt="" /><a href="#" target="_blank">《绯闻女孩》第四季第三集预告</a></span></h5>
+					</div>
+				</div>
+				<div class="con">
+					<div class="l">
+						<div class="pic"><a href="#" target="_blank"><img src="images/pic130x100.jpg" width="130" height="100" alt="" /></a></div>
+						<div class="txt">
+							<h3><span><a href="#" target="_blank">绯闻女孩55</a></span><strong>9.5</strong>分</h3>
+							<h4><span>共34集 更新至第2集</span>每周一8点更新</h4>
+							<div class="line"></div>
+							<h5><span><img src="images/pic01.gif" width="28" height="13" alt="" /><a href="#" target="_blank">《绯闻女孩》第四季第二集</a></span><a href="#" target="_blank"><img src="images/pic02.gif" width="47" height="19" alt="" /></a></h5>
+							<p><a href="#" target="_blank">评论</a> | <a href="#" target="_blank">影评</a> | <a href="#" target="_blank">内容介绍</a> | <a href="#" target="_blank">相关</a></p>
+						</div>
+					</div>
+					<div class="r">
+						<p>简介：Blair和Serena在巴黎度过了一个美好的夏天，不知道她以前的情人Chuck Bass正经受枪伤的痛苦...</p>
+						<h5><span><img src="images/pic01.gif" width="28" height="13" alt="" /><a href="#" target="_blank">《绯闻女孩》第四季第三集预告</a></span></h5>
+					</div>
+				</div>
+				<div class="con">
+					<div class="l">
+						<div class="pic"><a href="#" target="_blank"><img src="images/pic130x100.jpg" width="130" height="100" alt="" /></a></div>
+						<div class="txt">
+							<h3><span><a href="#" target="_blank">绯闻女孩66</a></span><strong>9.5</strong>分</h3>
+							<h4><span>共34集 更新至第2集</span>每周一8点更新</h4>
+							<div class="line"></div>
+							<h5><span><img src="images/pic01.gif" width="28" height="13" alt="" /><a href="#" target="_blank">《绯闻女孩》第四季第二集</a></span><a href="#" target="_blank"><img src="images/pic02.gif" width="47" height="19" alt="" /></a></h5>
+							<p><a href="#" target="_blank">评论</a> | <a href="#" target="_blank">影评</a> | <a href="#" target="_blank">内容介绍</a> | <a href="#" target="_blank">相关</a></p>
+						</div>
+					</div>
+					<div class="r">
+						<p>简介：Blair和Serena在巴黎度过了一个美好的夏天，不知道她以前的情人Chuck Bass正经受枪伤的痛苦...</p>
+						<h5><span><img src="images/pic01.gif" width="28" height="13" alt="" /><a href="#" target="_blank">《绯闻女孩》第四季第三集预告</a></span></h5>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	jQuery(function(j){
+		function gg(r,btns,el_ani,pw){
+			var p = 0;
+			btns.each(function(idx, btn){
+				btn = j(btn);
+				btn.mouseenter(function(ev){
+					if (idx != p) {
+						j(btns[p]).removeClass('libg');
+						btn.addClass('libg');
+						p = idx;
+						el_ani.stop().animate({left:-pw*idx}, 600);
+						
+						roll(r.find('div.con').eq(idx));
+					}
+					return false;
+				});
+			});
+		}
+		
+		var r = j('#fragA');
+		gg(r,r.find('div.left li'),r.find('div.cons'),690);
+		
+		r = null;
+	});
+	</script>
+</div>
+</div>
+
+<div id="contentA" class="area">
+	<div class="left">
+		<div class="blockLA clear">
+			<div class="l">
+				<h3><span>最新电视剧</span><a href="#" target="_blank">更多&gt;&gt;</a></h3>
+				<div class="picTxt clear">
+					<div class="pic"><a href="#" target="_blank"><img src="images/pic200x100.jpg" width="200" height="100" alt="" /></a></div>
+					<h4><span><a href="#" target="_blank">婚姻保卫战</a></span>年代：<a href="#" target="_blank">2010</a></h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;真实重现莫斯质事件真实重斯科人质事件...</p>
+				</div>
+				<div id="tv_new"></div>
+				<script type="text/javascript">
+				var mn_s = new createScript("","http://so.tv.sohu.com/js?c=2&o=3&var=searchPL5&s=4&encode=GBK",ppListRank,["searchPL5", "tv_new", 0]);
+				</script>
+			</div>
+			<div class="c">
+				<h3><span>大家看最多</span><a href="#" target="_blank">更多&gt;&gt;</a></h3>
+				<div class="picTxt clear">
+					<div class="pic"><a href="#" target="_blank"><img src="images/pic200x100.jpg" width="200" height="100" alt="" /></a></div>
+					<h4><span><a href="#" target="_blank">婚姻保卫战</a></span>年代：<a href="#" target="_blank">2010</a></h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;真实重现莫斯质事件真实重斯科人质事件...</p>
+				</div>
+				<div class="line"></div>
+				<div class="pList clear">
+					<ul id="tv_lm"></ul>
+					<script type="text/javascript">
+					var lm_link = function (){mhRank("phb_tv_month_10","tv_lm")}
+					var lm_data = new createScript("",hotjsonpath + "phb_tv_month_10.js",lm_link,"",{cache:true})
+					</script>
+				</div>
+			</div>
+			<div class="r">
+				<h3><span>大家评分最高</span><a href="#" target="_blank">更多&gt;&gt;</a></h3>
+				<div class="picTxt clear">
+					<div class="pic"><a href="#" target="_blank"><img src="images/pic200x100.jpg" width="200" height="100" alt="" /></a></div>
+					<h4><span><a href="#" target="_blank">婚姻保卫战</a></span>评分：<strong>9.5</strong>分</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;真实重现莫斯质事件真实重斯科人质事件...</p>
+				</div>
+				<div class="line"></div>
+				<div class="pList clear">
+					<ul id="tv_sh"></ul>
+					<script type="text/javascript">
+					var sh_link = function (){mhRank("phb_album_tv_score_perfect_50","tv_sh")}
+					var sh_data = new createScript("",hotjsonpath + "phb_album_tv_score_perfect_50.js",sh_link,"",{cache:true})
+					</script>
+				</div>
+			</div>
+			<div class="bot"></div>
+		</div>
+		<div class="blank10H"></div>
+		
+		<div class="blockLB bordA clear">
+			<h2><span><img src="images/tt02.gif" width="70" height="20" alt="热门分类" /></span><a href="#" target="_blank">更多&gt;&gt;</a></h2>
+			<div class="menuB">
+				<ul>
+					<li id="td_30_1" onclick="showMenu(30,1,13);changeCls('偶像剧', 'hotCls', 5)" class="libg">偶像</li>
+					<li id="td_30_2" onclick="showMenu(30,2,13);changeCls('家庭伦理剧', 'hotCls', 5)">伦理</li>
+					<li id="td_30_3" onclick="showMenu(30,3,13);changeCls('历史剧', 'hotCls', 5)">历史</li>
+					<li id="td_30_4" onclick="showMenu(30,4,13);changeCls('年代剧', 'hotCls', 5)">年代</li>
+					<li id="td_30_5" onclick="showMenu(30,5,13);changeCls('言情剧', 'hotCls', 5)">言情</li>
+					<li id="td_30_6" onclick="showMenu(30,6,13);changeCls('武侠剧', 'hotCls', 5)">武侠</li>
+					<li id="td_30_7" onclick="showMenu(30,7,13);changeCls('古装剧', 'hotCls', 5)">古装</li>
+					<li id="td_30_8" onclick="showMenu(30,8,13);changeCls('都市剧', 'hotCls', 5)">都市</li>
+					<li id="td_30_9" onclick="showMenu(30,9,13);changeCls('农村剧', 'hotCls', 5)">农村</li>
+					<li id="td_30_10" onclick="showMenu(30,10,13);changeCls('军事战争剧', 'hotCls', 5)">战争</li>
+					<li id="td_30_11" onclick="showMenu(30,11,13);changeCls('悬疑剧', 'hotCls', 5)">悬疑</li>
+					<li id="td_30_12" onclick="showMenu(30,12,13);changeCls('奇幻科幻剧', 'hotCls', 5)">科幻</li>
+					<li id="td_30_13" onclick="showMenu(30,13,13);changeCls('动作剧', 'hotCls', 5)">动作</li>
+				</ul>
+			</div>
+			<div id="hotCls"></div>
+			<script type="text/javascript">
+			var hcCat = escape('偶像剧');
+			var hc_s = new createScript("","http://so.tv.sohu.com/js?c=2&cat="+hcCat+"&o=3&var=searchPL4&s=20&encode=GBK",ppListRank,["searchPL4", "hotCls", 5]);
+			</script>
+			
+		</div>
+		<div class="blank10H"></div>
+		
+		<div class="blockLC clear" id="tvHot">
+			<h2><span><img src="images/tt03.gif" width="83" height="20" alt="电视台热播" /></span><a href="#" target="_blank">更多&gt;&gt;</a></h2>
+			<div class="l">
+				<div class="menuB">
+					<ul>
+						<li data="html/data_2_1.html" class="libg">9月</li>
+						<li data="html/data_2_2.html">10月</li>
+						<li data="html/data_2_3.html">11月</li>
+					</ul>
+				</div>
+			</div>
+			<div class="r">
+				<div class="dataCon clear">
+					<div class="dataConInner clear">
+						loadind...
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="right">
+		<div class="blockRA bordB clear">
+			<h2><span><img src="images/tt05.gif" width="81" height="20" alt="电视剧分类" /></span></h2>
+			<div class="list clear">
+				<h3>按地区|</h3>
+				<ul>
+					<li><a href="javascript:searchKey('内地',4,'tv')">内地</a></li>
+					<li><a href="javascript:searchKey('港台',4,'tv')">港台</a></li>
+					<li><a href="javascript:searchKey('韩剧',4,'tv')">韩剧</a></li>
+					<li><a href="javascript:searchKey('美剧',4,'tv')">美剧</a></li>
+					<li><a href="javascript:searchKey('其他',4,'tv')">其他</a></li>
+				</ul>
+			</div>
+			<div class="line"></div>
+			<div class="list clear">
+				<h3>按类型|</h3>
+				<ul>
+					<li><a href="javascript:searchKey('偶像剧',7,'tv')">偶像剧</a></li>
+					<li><a href="javascript:searchKey('家庭伦理剧',7,'tv')">伦理剧</a></li>
+					<li><a href="javascript:searchKey('历史剧',7,'tv')">历史剧</a></li>
+					<li><a href="javascript:searchKey('年代剧',7,'tv')">年代剧</a></li>
+					<li><a href="javascript:searchKey('言情剧',7,'tv')">言情剧</a></li>
+					<li><a href="javascript:searchKey('武侠剧',7,'tv')">武侠剧</a></li>
+					<li><a href="javascript:searchKey('古装剧',7,'tv')">古装剧</a></li>
+					<li><a href="javascript:searchKey('都市剧',7,'tv')">都市剧</a></li>
+					<li><a href="javascript:searchKey('农村剧',7,'tv')">农村剧</a></li>
+					<li><a href="javascript:searchKey('军事战争剧',7,'tv')">战争剧</a></li>
+					<li><a href="javascript:searchKey('悬疑剧',7,'tv')">悬疑剧</a></li>
+					<li><a href="javascript:searchKey('奇幻科幻剧',7,'tv')">科幻剧</a></li>
+					<li><a href="javascript:searchKey('动作剧',7,'tv')">动作剧</a></li>
+				</ul>
+			</div>
+			<div class="line"></div>
+			<div class="list clear">
+				<h3>按明星|</h3>
+				<ul>
+					<li><a href="javascript:searchKey('成龙',4,'star')">成 &nbsp;龙</a></li>
+					<li><a href="javascript:searchKey('周润发',4,'star')">周润发</a></li>
+					<li><a href="javascript:searchKey('梁朝伟',4,'star')">梁朝伟</a></li>
+					<li><a href="javascript:searchKey('葛优',4,'star')">葛 &nbsp;优</a></li>
+					<li><a href="javascript:searchKey('赵薇',4,'star')">赵 &nbsp;薇</a></li>
+					<li><a href="javascript:searchKey('刘德华',4,'star')">刘德华</a></li>
+					<li><a href="javascript:searchKey('周迅',4,'star')">周 &nbsp;迅</a></li>
+					<li><a href="javascript:searchKey('周星驰',4,'star')">周星驰</a></li>
+					<li><a href="javascript:searchKey('舒淇',4,'star')">舒 &nbsp;淇</a></li>
+					<li><a href="javascript:searchKey('李连杰',4,'star')">李连杰</a></li>
+					<li><a href="javascript:searchKey('金城武',4,'star')">金城武</a></li>
+					<li><a href="javascript:searchKey('范冰冰',4,'star')">范冰冰</a></li>
+					<li><a href="javascript:searchKey('谢霆锋',4,'star')">谢霆锋</a></li>
+					<li><a href="javascript:searchKey('章子怡',4,'star')">章子怡</a></li>
+					<li><a href="javascript:searchKey('孙红雷',4,'star')">孙红雷</a></li>
+				</ul>
+			</div>
+			<div class="line"></div>
+			<div class="list clear">
+				<h3>按年份|</h3>
+				<ul>
+					<li><a href="javascript:searchKey('2010',15,'year')">2010</a></li>
+					<li><a href="javascript:searchKey('2009',15,'year')">2009</a></li>
+					<li><a href="javascript:searchKey('2008',15,'year')">2008</a></li>
+					<li><a href="javascript:searchKey('2007',15,'year')">2007</a></li>
+					<li><a href="javascript:searchKey('2006',15,'year')">2006</a></li>
+					<li><a href="javascript:searchKey('2005',15,'year')">2005</a></li>
+					<li><a href="javascript:searchKey('2004',15,'year')">2004</a></li>
+					<li><a href="javascript:searchKey('2003',15,'year')">2003</a></li>
+					<li><a href="javascript:searchKey('2002',15,'year')">2002</a></li>
+					<li><a href="javascript:searchKey('2001',15,'year')">2001</a></li>
+					<li><a href="javascript:searchKey('2000',15,'year')">2000</a></li>
+					<li><a href="javascript:searchKey('1999',15,'year')">1999</a></li>
+					<li><a href="javascript:searchKey('1998',15,'year')">1998</a></li>
+					<li><a href="javascript:searchKey('1997',15,'year')">1997</a></li>
+					<li><a href="javascript:searchKey('1996',15,'year')">1996</a></li>
+				</ul>
+			</div>
+			<div class="line"></div>
+			<div class="list clear c4">
+				<h3>个性分类|</h3>
+				<ul>
+					<li><a href="http://tv.sohu.com/tagsearch/#key=大片" target=_blank>影视大片</a></li>
+					<li><a href="http://tv.sohu.com/tagsearch/#key=经典" target=_blank>经典怀旧</a></li>
+					<li><a href="http://tv.sohu.com/tagsearch/#key=雷片" target=_blank>雷片无敌</a></li>
+					<li><a href="http://tv.sohu.com/tagsearch/#key=情色" target=_blank>情色风月</a></li>
+					<li><a href="http://tv.sohu.com/tagsearch/#key=山寨" target=_blank>山寨草根</a></li>
+					<li><a href="http://tv.sohu.com/tagsearch/#key=新锐" target=_blank>新锐先锋</a></li>
+					<li><a href="http://tv.sohu.com/tagsearch/#key=小资" target=_blank>小资最爱</a></li>
+					<li><a href="http://tv.sohu.com/tagsearch/#key=青春" target=_blank>纯爱青春</a></li>
+					<li><a href="http://tv.sohu.com/tagsearch/#key=惊悚" target=_blank>惊悚悬疑</a></li>
+					<li><a href="http://tv.sohu.com/tagsearch/#key=犯罪" target=_blank>黑色犯罪</a></li>
+					<li><a href="http://tv.sohu.com/tagsearch/#key=禁忌" target=_blank>禁忌非议</a></li>
+					<li><a href="http://tv.sohu.com/tagsearch/#key=搞笑" target=_blank>喜剧搞笑</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="blockRB bordB clear">
+			<div class="title"><img src="images/tt06.gif" width="244" height="40" alt="剧星访谈" /></div>
+			<div class="pt">
+				<div><a href="#" target="_blank"><img src="images/pic95x70.jpg" width="95" height="70" alt="" /></a></div>
+				<h4><a href="#" target="_blank">刘流</a></h4>
+				<p>揭秘“王小蒙”换角风波</p>
+			</div>
+			<div class="pt">
+				<div><a href="#" target="_blank"><img src="images/pic95x70.jpg" width="95" height="70" alt="" /></a></div>
+				<h4><a href="#" target="_blank">刘流</a></h4>
+				<p>揭秘“王小蒙”换角风波</p>
+			</div>
+			<div class="pt">
+				<div><a href="#" target="_blank"><img src="images/pic95x70.jpg" width="95" height="70" alt="" /></a></div>
+				<h4><a href="#" target="_blank">刘流</a></h4>
+				<p>揭秘“王小蒙”换角风波</p>
+			</div>
+			<div class="list12">
+				<ul>
+					<li><a href="#" target="_blank">佟大为：拍摄现场支招婚姻保鲜秘籍</a></li>
+					<li><a href="#" target="_blank">佟大为：拍摄现场支招婚姻保鲜秘籍</a></li>
+					<li><a href="#" target="_blank">佟大为：拍摄现场支招婚姻保鲜秘籍</a></li>
+					<li><a href="#" target="_blank">佟大为：拍摄现场支招婚姻保鲜秘籍</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+</div>
+
+<div id="contentB" class="area">
+	<div class="left">
+		<div class="blockLD bordA clear" id="houseId">
+			<h2><span><img src="images/tt04.gif" width="68" height="20" alt="优选剧场" /></span><a href="#" target="_blank">更多&gt;&gt;</a></h2>
+			<div class="l">
+				<ul>
+					<li class="bgA" data="html/data_1_1.html"><span>青春偶像</span>&gt;&nbsp;</li>
+					<li class="bgB" data="html/data_1_2.html"><span>白领剧场</span>&gt;&nbsp;</li>
+					<li class="bgC" data="html/data_1_3.html"><span>伊人剧场</span>&gt;&nbsp;</li>
+					<li class="bgD" data="html/data_1_4.html"><span>精英剧场</span><img src="images/d06.png" width="48" height="18" alt="" /></li>
+					<li class="bgE" data="html/data_1_5.html"><span>家庭情感</span>&gt;&nbsp;</li>
+					<li class="bgF" data="html/data_1_6.html"><span>古装武侠</span>&gt;&nbsp;</li>
+					<li class="bgG" data="html/data_1_7.html"><span>军事战争</span>&gt;&nbsp;</li>
+					<li class="bgH nobg" data="html/data_1_8.html"><span>悬疑谍战</span>&gt;&nbsp;</li>
+				</ul>
+			</div>
+			<div class="r">
+				<div class="dataCon clear">
+					<div class="dataConInner clear">
+						loadind...
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="blank10H"></div>
+		
+		<div class="blockLEA clear">
+			<h2><span><img src="images/tt07.gif" width="66" height="20" alt="内地剧集" /></span><a href="#" target="_blank">更多&gt;&gt;</a></h2>
+			<div id="nd_area"></div>
+			<script type="text/javascript">
+			var ndArea = escape('内地');
+			var nd_s = new createScript("","http://so.tv.sohu.com/js?c=2&area="+ndArea+"&o=3&var=searchPL1&s=20&encode=GBK",ppListRank,["searchPL1","nd_area", 5]);
+			</script>
+		</div>
+		
+		<div class="blockLEB clear">
+			<h2><span><img src="images/tt08.gif" width="66" height="20" alt="港台剧集" /></span><a href="#" target="_blank">更多&gt;&gt;</a></h2>
+			<div id="gt_area"></div>
+			<script type="text/javascript">
+			var gtArea = escape('港台');
+			var gt_s = new createScript("","http://so.tv.sohu.com/js?c=2&area="+gtArea+"&o=3&var=searchPL2&s=20&encode=GBK",ppListRank,["searchPL2","gt_area", 5]);
+			</script>
+		</div>
+		
+		<div class="blockLEC clear">
+			<h2><span><img src="images/tt09.gif" width="66" height="20" alt="韩国剧集" /></span><a href="#" target="_blank">更多&gt;&gt;</a></h2>
+			<div id="hj_area"></div>
+			<script type="text/javascript">
+			var hjArea = escape('韩剧');
+			var hj_s = new createScript("","http://so.tv.sohu.com/js?c=2&area="+hjArea+"&o=3&var=searchPL3&s=20&encode=GBK",ppListRank,["searchPL3","hj_area", 5]);
+			</script>
+		</div>
+		
+		<div class="blockLED clear">
+			<h2><span><img src="images/tt10.gif" width="66" height="20" alt="其他剧集" /></span><a href="#" target="_blank">更多&gt;&gt;</a></h2>
+			<div id="qt_area"></div>
+			<script type="text/javascript">
+			var qtArea = escape('其他');
+			var qt_s = new createScript("","http://so.tv.sohu.com/js?c=2&area="+qtArea+"&o=3&var=searchPL6&s=10&encode=GBK",ppListRank,["searchPL6","qt_area", 5]);
+			</script>
+		</div>
+	</div>
+	<div class="right">
+		<div class="blockRC bordB clear">
+			<h2><span><img src="images/tt11.gif" width="97" height="20" alt="电视剧排行榜" /></span></h2>
+			<div class="blockRCA clear">
+				<div class="menuA clear">
+					<div class="tt">电视剧排行榜</div>
+					<ul>
+						<li id="td_20_1" onclick="showMenu(20,1,3);changeDada('tv','day','tv_data')" class="libg">每日</li>
+						<li id="td_20_2" onclick="showMenu(20,2,3);changeDada('tv','week','tv_data')">每周</li>
+						<li id="td_20_3" onclick="showMenu(20,3,3);changeDada('tv','total','tv_data')" class="nobg">全部</li>
+					</ul>
+				</div>
+				<div class="snList clear">
+					<ul id="tv_data"></ul>
+				</div>
+				<script type="text/javascript">
+				var tv_link = function (){lookRank("phb_tv_day_10","tv_data")}
+				var tv_data = new createScript("",hotjsonpath + "phb_tv_day_10.js",tv_link,"",{cache:true})
+				</script>
+				<div class="more"><a href="http://tv.sohu.com/hotteleplay/" target="_blank">TOP50 &gt;&gt;</a></div>
+			</div>
+			
+			<div class="blockRCB clear">
+				<div class="menuA clear">
+					<div class="tt">内地排行榜</div>
+					<ul>
+						<li id="td_21_1" onclick="showMenu(21,1,2);changeDada('zh_tv','day','nd_data')" class="libg">每日</li>
+						<li id="td_21_2" onclick="showMenu(21,2,2);changeDada('zh_tv','total','nd_data')" class="nobg">全部</li>
+					</ul>
+				</div>
+				<div class="snList clear">
+					<ul id="nd_data"></ul>
+				</div>
+				<script type="text/javascript">
+				var nd_link = function (){lookRank("phb_zh_tv_day_10","nd_data")}
+				var nd_data = new createScript("",hotjsonpath + "phb_zh_tv_day_10.js",nd_link,"",{cache:true})
+				</script>
+				<div class="more"><a href="#" target="_blank">TOP50 &gt;&gt;</a></div>
+			</div>
+			
+			<div class="blockRDC clear">
+				<div class="menuA clear">
+					<div class="tt">港台排行榜</div>
+					<ul>
+						<li id="td_22_1" onclick="showMenu(22,1,2);changeDada('gt_tv','day','gt_data')" class="libg">每日</li>
+						<li id="td_22_2" onclick="showMenu(22,2,2);changeDada('gt_tv','total','gt_data')" class="nobg">全部</li>
+					</ul>
+				</div>
+				<div class="snList clear">
+					<ul id="gt_data"></ul>
+				</div>
+				<script type="text/javascript">
+				var gt_link = function (){lookRank("phb_gt_tv_day_10","gt_data")}
+				var gt_data = new createScript("",hotjsonpath + "phb_gt_tv_day_10.js",gt_link,"",{cache:true})
+				</script>
+				<div class="more"><a href="#" target="_blank">TOP50 &gt;&gt;</a></div>
+			</div>
+			
+			<div class="blockRCD clear">
+				<div class="menuA clear">
+					<div class="tt">搜索最多排行榜</div>
+					<ul>
+						<li id="td_10_1" onclick="showMenu(10,1,2);changeDada('search_day_all','','sea_more')" class="libg">每日</li>
+						<li id="td_10_2" onclick="showMenu(10,2,2);changeDada('search_history_all','','sea_more')" class="nobg">全部</li>
+					</ul>
+				</div>
+				<div class="snList clear">
+					<ul id="sea_more"></ul>
+				</div>
+				<script type="text/javascript">
+				var seaMor_link = function (){lookRank("search_day_all","sea_more")}
+				var seaMor_data = new createScript("",hotjsonpath + "search_day_all.js",seaMor_link,"",{cache:true})
+				</script>
+				<div class="more"><a href="#" target="_blank">TOP50 &gt;&gt;</a></div>
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+</div>
+
+<div id="contentC" class="area">
+	<div class="left">
+		<div class="menuC">
+			<div class="tt"><img src="images/tt12.gif" width="68" height="20" alt="影评聚焦" /></div>
+			<ul>
+				<li id="td_5_1" onmouseover="showtab(5,1,4)" class="libg">内 地</li>
+				<li id="td_5_2" onmouseover="showtab(5,2,4)">港 台</li>
+				<li id="td_5_3" onmouseover="showtab(5,3,4)">日 韩</li>
+				<li id="td_5_4" onmouseover="showtab(5,4,4)">欧 美</li>
+			</ul>
+		</div>
+		<div class="show" id="tab_5_1">
+			<div class="l">
+				<div class="pt">
+					<div><a href="#" target="_blank"><img src="images/pic95x70.jpg" width="95" height="70" alt="" /></a></div>
+					<h4><a href="#" target="_blank">雪豹1111111</a></h4>
+					<p>改编自网络小说《特战先驱》，还原史上鼎鼎有名的雪豹特工队……<a href="#" target="_blank">[详细]</a></p>
+				</div>
+				<div class="list12">
+					<ul>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+					</ul>
+				</div>
+				<div class="pt">
+					<div><a href="#" target="_blank"><img src="images/pic95x70.jpg" width="95" height="70" alt="" /></a></div>
+					<h4><a href="#" target="_blank">雪豹</a></h4>
+					<p>改编自网络小说《特战先驱》，还原史上鼎鼎有名的雪豹特工队……<a href="#" target="_blank">[详细]</a></p>
+				</div>
+				<div class="list12">
+					<ul>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="r">
+				<div class="list14">
+					<ul>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="hidden" id="tab_5_2">
+			<div class="l">
+				<div class="pt">
+					<div><a href="#" target="_blank"><img src="images/pic95x70.jpg" width="95" height="70" alt="" /></a></div>
+					<h4><a href="#" target="_blank">雪豹22222</a></h4>
+					<p>改编自网络小说《特战先驱》，还原史上鼎鼎有名的雪豹特工队……<a href="#" target="_blank">[详细]</a></p>
+				</div>
+				<div class="list12">
+					<ul>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+					</ul>
+				</div>
+				<div class="pt">
+					<div><a href="#" target="_blank"><img src="images/pic95x70.jpg" width="95" height="70" alt="" /></a></div>
+					<h4><a href="#" target="_blank">雪豹</a></h4>
+					<p>改编自网络小说《特战先驱》，还原史上鼎鼎有名的雪豹特工队……<a href="#" target="_blank">[详细]</a></p>
+				</div>
+				<div class="list12">
+					<ul>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="r">
+				<div class="list14">
+					<ul>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="hidden" id="tab_5_3">
+			<div class="l">
+				<div class="pt">
+					<div><a href="#" target="_blank"><img src="images/pic95x70.jpg" width="95" height="70" alt="" /></a></div>
+					<h4><a href="#" target="_blank">雪豹3333333</a></h4>
+					<p>改编自网络小说《特战先驱》，还原史上鼎鼎有名的雪豹特工队……<a href="#" target="_blank">[详细]</a></p>
+				</div>
+				<div class="list12">
+					<ul>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+					</ul>
+				</div>
+				<div class="pt">
+					<div><a href="#" target="_blank"><img src="images/pic95x70.jpg" width="95" height="70" alt="" /></a></div>
+					<h4><a href="#" target="_blank">雪豹</a></h4>
+					<p>改编自网络小说《特战先驱》，还原史上鼎鼎有名的雪豹特工队……<a href="#" target="_blank">[详细]</a></p>
+				</div>
+				<div class="list12">
+					<ul>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="r">
+				<div class="list14">
+					<ul>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="hidden" id="tab_5_4">
+			<div class="l">
+				<div class="pt">
+					<div><a href="#" target="_blank"><img src="images/pic95x70.jpg" width="95" height="70" alt="" /></a></div>
+					<h4><a href="#" target="_blank">雪豹4444444</a></h4>
+					<p>改编自网络小说《特战先驱》，还原史上鼎鼎有名的雪豹特工队……<a href="#" target="_blank">[详细]</a></p>
+				</div>
+				<div class="list12">
+					<ul>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+					</ul>
+				</div>
+				<div class="pt">
+					<div><a href="#" target="_blank"><img src="images/pic95x70.jpg" width="95" height="70" alt="" /></a></div>
+					<h4><a href="#" target="_blank">雪豹</a></h4>
+					<p>改编自网络小说《特战先驱》，还原史上鼎鼎有名的雪豹特工队……<a href="#" target="_blank">[详细]</a></p>
+				</div>
+				<div class="list12">
+					<ul>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+						<li><a href="#" target="_blank">说好不分手 佳期如梦 枪声背后 又看流星雨</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="r">
+				<div class="list14">
+					<ul>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+						<li>·<a href="#" target="_blank">傅艺伟生日会现场飙泪 谢楠大左解密出道辛酸</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="right">
+		<div class="show" id="rtab_5_1">
+			<div class="title"><img src="images/tt13.gif" width="248" height="44" alt="内地收视榜" /></div>
+			<div class="snpt clear">
+				<div class=pt>
+					<div><a href="http://yule.sohu.com/s2010/quanjf/" target=_blank><img alt="" src="http://i1.itc.cn/20101011/964_ff47444e_858a_403c_ba43_f7506c4e4d0c_0.jpg" width=95 height=70></a></div>
+					<h4><a href="http://yule.sohu.com/s2010/quanjf/" target=_blank>全家福</a></h4>
+					<p>一屋七口六姓人的三十年风雨<a href="http://yule.sohu.com/s2010/quanjf/" target=_blank>[详细]</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;北京&nbsp;&nbsp;&nbsp;7.71</p>
+				</div>
+			</div>
+			<div class=sntab>
+				<table border=0 cellSpacing=0 cellPadding=0 width=259>
+				<colgroup>
+				<div class=sntab></div>
+				<tbody></tbody>
+				</table>
+				<table border=0 cellSpacing=0 cellPadding=0 width=259>
+				<colgroup>
+				<col width=39><col width=112><col width=37><col width=37><col width=34>
+				<tbody>
+				<tr>
+				<td width=18><em class=snred>02</em></td>
+				<td class=tbg2 vAlign=top width=133 noWrap>
+				<p align=left><a href="http://data.yule.sohu.com/movie/data/64184/" target=_blank>雪豹</a></p></td>
+				<td class=tbg2 vAlign=top width=44 noWrap>
+				<p align=center>上海 </p></td>
+				<td class=tbg2 vAlign=top width=64>
+				<p align=center>6.97</p></td></tr>
+				<tr>
+				<td><em class=snred>03</em></td>
+				<td vAlign=top noWrap>
+				<p align=left><a href="http://data.yule.sohu.com/movie/data/23674/" target=_blank>外来媳妇本地郎</a></p></td>
+				<td vAlign=top noWrap>
+				<p align=center>广州 </p></td>
+				<td vAlign=top>
+				<p align=center>8.47</p></td></tr>
+				<tr>
+				<td width=18><em>04</em></td>
+				<td class=tbg2 vAlign=top width=133 noWrap>
+				<p align=left>我的丑爹</p></td>
+				<td class=tbg2 vAlign=top width=44 noWrap>
+				<p align=center>天津 </p></td>
+				<td class=tbg2 vAlign=top width=64>
+				<p align=center>5.66</p></td></tr>
+				<tr>
+				<td><em>05</em></td>
+				<td class=tbg2 vAlign=top width=133 noWrap>
+				<p align=left><a href="http://yule.sohu.com/s2009/yxjj/" target=_blank>隐形将军</a></p></td>
+				<td class=tbg2 vAlign=top width=44 noWrap>
+				<p align=center>重庆 </p></td>
+				<td class=tbg2 vAlign=top width=64>
+				<p align=center>5.58</p></td></tr>
+				<tr>
+				<td><em>06</em></td>
+				<td class=tbg2 vAlign=top width=133 noWrap>
+				<p align=left>经视故事会</p></td>
+				<td class=tbg2 vAlign=top width=44 noWrap>
+				<p align=center>武汉 </p></td>
+				<td class=tbg2 vAlign=top width=64>
+				<p align=center>6.66</p></td></tr>
+				<tr>
+				<td><em>07</em></td>
+				<td vAlign=top width=133 noWrap>
+				<p align=left>闪婚</p></td>
+				<td vAlign=top width=44 noWrap>
+				<p align=center>长沙 </p></td>
+				<td vAlign=top width=64>
+				<p align=center>3.39</p></td></tr>
+				<tr>
+				<td><em>08</em></td>
+				<td vAlign=top width=133 noWrap>
+				<p align=left><a href="http://data.yule.sohu.com/movie/data/61043/" target=_blank>谁懂女儿心</a></p></td>
+				<td vAlign=top width=44 noWrap>
+				<p align=center>成都 </p></td>
+				<td vAlign=top width=64>
+				<p align=center>4.19</p></td></tr>
+				<tr>
+				<td><em>09</em></td>
+				<td vAlign=top width=133 noWrap>
+				<p align=left>婆婆来了</p></td>
+				<td vAlign=top width=44 noWrap>
+				<p align=center>南京 </p></td>
+				<td vAlign=top width=64>
+				<p align=center>7.26</p></td></tr>
+				<tr>
+				<td><em>10</em></td>
+				<td class=tbg2 vAlign=top noWrap>
+				<p align=left><a href="http://yule.sohu.com/s2009/neixian/" target=_blank>内线</a></p></td>
+				<td class=tbg2 vAlign=top noWrap>
+				<p align=center>杭州 </p></td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>6.91</p></td></tr></tbody>
+				</table>
+			</div>
+		</div>
+		
+		<div class="hidden" id="rtab_5_2">
+			<div class="title"><img src="images/tt14.gif" width="246" height="40" alt="港台收视榜" /></div>
+			<div class="menu">
+				<ul>
+					<li id="td_1_1" onmouseover="showtab(1,1,2)" class="libg">香港</li><li class="menuLine"></li>
+					<li id="td_1_2" onmouseover="showtab(1,2,2)">台湾</li>
+				</ul>
+			</div>
+			<div class="show" id="tab_1_1">
+				<div class="snpt clear">
+				<div class=pt>
+				<div><a href="http://data.yule.sohu.com/movie/data/62010/" target=_blank><img height=70 alt="" src="http://i0.itc.cn/20100318/51a_7b0b8b6a_bf67_4920_95ef_dc9fb8c78fe9_0.jpg" width=95></a></div>
+				<h4><a href="http://data.yule.sohu.com/movie/data/62010/" target=_blank>秋香怒点唐伯虎</a></h4>
+				<p>胡囧囧版秋香欢乐登场<a href="http://data.yule.sohu.com/movie/data/62010/" target=_blank>[详细]</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;翡翠&nbsp;&nbsp;30</p></div></div>
+				<div class=sntab>
+				<table cellSpacing=0 cellPadding=0 width=259 border=0>
+				<colgroup>
+				<col width=39>
+				<col width=112>
+				<col width=37>
+				<col width=37>
+				<col width=34>
+				<tbody>
+				<tr>
+				<td width="16"><em class=snred>02</em></td>
+				<td align="left" class="tbg2"><a href="http://data.yule.sohu.com/movie/data/61841/" target="_blank">老公万岁</a></td>
+				<td class="tbg2">翡翠台</td>
+				<td class="tbg2">25点</td>
+				</tr>
+				<tr>
+				<td><em class=snred>03</em></td>
+				<td align="left" class="tbg2">苏GOOD</td>
+				<td class="tbg2">翡翠台</td>
+				<td class="tbg2">25点</td>
+				</tr>
+				<tr>
+				<td><em>04</em></td>
+				<td align="left" class="tbg2"><a href="http://data.yule.sohu.com/movie/data/61823/" target="_blank">女王办公室</a></td>
+				<td class="tbg2">翡翠台</td>
+				<td class="tbg2">24点</td>
+				</tr>
+				<tr>
+				<td><em>05</em></td>
+				<td align="left" class="tbg2">为食总司令</td>
+				<td class="tbg2">翡翠台</td>
+				<td class="tbg2">24点</td>
+				</tr>
+				<tr>
+				<td><em>06</em></td>
+				<td align="left" class="tbg2">东张西望</td>
+				<td class="tbg2">翡翠台</td>
+				<td class="tbg2">20点</td>
+				</tr>
+				<tr>
+				<td><em>07</em></td>
+				<td align="left" class="tbg2">逐格斗</td>
+				<td class="tbg2">翡翠台</td>
+				<td class="tbg2">20点</td>
+				</tr>
+				<tr>
+				<td><em>08</em></td>
+				<td align="left" class="tbg2">没有墙的世界</td>
+				<td class="tbg2">翡翠台</td>
+				<td class="tbg2">17点</td>
+				</tr>
+				<tr>
+				<td><em>09</em></td>
+				<td class="tbg2" align="left">爱回家</td>
+				<td>翡翠台</td>
+				<td>17点</td>
+				</tr>
+				<tr>
+				<td><em>10</em></td>
+				<td align="left" class="tbg2">铿锵集</td>
+				<td class="tbg2">翡翠台</td>
+				<td class="tbg2">16点</td>
+				</tr>
+				</tbody></table>
+				</div>
+			</div>
+			<div class="hidden" id="tab_1_2">
+				<div class="snpt clear">
+				<div class=pt>
+				<div><a href="http://yule.sohu.com/s2010/2992/s270580736/index.shtml" target=_blank><img height=70 alt="" src="http://i2.itc.cn/20100311/51a_a1d762e2_12d5_417a_8705_a461f908a825_0.jpg" width=95></a></div>
+				<h4><a href="http://yule.sohu.com/s2010/2992/s270580736/index.shtml" target=_blank>天下父母心</a></h4>
+				<p>令人感觉温馨的八点档<a href="http://yule.sohu.com/s2010/2992/s270580736/index.shtml" target=_blank>[详细]</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;三立&nbsp;&nbsp;5.73</p></div></div>
+							<div class=sntab>
+				<table cellSpacing=0 cellPadding=0 width=259 border=0>
+				<colgroup>
+				<col width=39>
+				<col width=112>
+				<col width=37>
+				<col width=37>
+				<col width=34>
+				<tbody>
+				<tr>
+				<td><em class=snred>02</em></td>
+				<td align="left" class="tbg2"><a href="http://data.yule.sohu.com/movie/data/61129/" target="_blank">夜市人生</a></td>
+				<td class="tbg2">民视</td>
+				<td class="tbg2">5.37</td>
+				</tr>
+				<tr>
+				<td><em class=snred>03</em></td>
+				<td align="left" class="tbg2"><a href="http://yule.sohu.com/20100228/n270470541.shtml" target="_blank">偷心大圣PS男</a></td>
+				<td class="tbg2">台视</td>
+				<td class="tbg2">3.67</td>
+				</tr>
+				<tr>
+				<td><em>04</em></td>
+				<td align="left" class="tbg2"><a href="http://data.yule.sohu.com/movie/data/61463/" target="_blank">就想赖著你</a></td>
+				<td class="tbg2">中视</td>
+				<td class="tbg2">3.41</td>
+				</tr>
+				<tr>
+				<td><em>05</em></td>
+				<td align="left" class="tbg2">青梅竹马</td>
+				<td class="tbg2">中视</td>
+				<td class="tbg2">1.54</td>
+				</tr>
+				<tr>
+				<td><em>06</em></td>
+				<td class="tbg2" align="left">笑傲江湖</td>
+				<td class="tbg2">华视</td>
+				<td class="tbg2">1.00</td>
+				</tr>
+				<tr>
+				<td><em>07</em></td>
+				<td align="left" class="tbg2">百万小学堂</td>
+				<td class="tbg2">台视</td>
+				<td class="tbg2">0.84</td>
+				</tr>
+				<tr>
+				<td><em>08</em></td>
+				<td align="left">全民快乐有go正</td>
+				<td>华视</td>
+				<td>0.62</td>
+				</tr>
+				<tr>
+				<td><em>09</em></td>
+				<td align="left" class="tbg2">封神榜武王伐纣</td>
+				<td class="tbg2">台视</td>
+				<td class="tbg2">0.60</td>
+				</tr>
+				<tr>
+				<td><em>10</em></td>
+				<td align="left" class="tbg2">星光下的童话</td>
+				<td class="tbg2">华视</td>
+				<td class="tbg2">0.36</td>
+				</tr>
+				</tbody></table>
+				</div>
+			</div>
+		</div>
+		
+		<div class="hidden" id="rtab_5_3">
+			<div class="title"><img src="images/tt15.gif" width="246" height="40" alt="日韩收视榜" /></div>
+			<div class="menu">
+				<ul>
+					<li id="td_2_1" onmouseover="showtab(2,1,2)" class="libg">日本</li><li class="menuLine"></li>
+					<li id="td_2_2" onmouseover="showtab(2,2,2)">韩国</li>
+				</ul>
+			</div>
+			<div class="show" id="tab_2_1">
+				<div class="snpt clear">
+				<div class=pt>
+				<div><a href="http://data.yule.sohu.com/movie/data/63669/" target=_blank><img border=0 alt="" src="http://i0.itc.cn/20101011/964_e1f87066_9235_445b_8c68_4f4624dcf492_0.jpg" width=95 height=70></a></div>
+				<h4><a href="http://data.yule.sohu.com/movie/data/63669/" target=_blank>虹色夏恋</a></h4>
+				<p>大明星与大龄女的童话爱情…<a href="http://data.yule.sohu.com/movie/data/63669/" target=_blank>[详细]</a><br>富士&nbsp;13.1</p></div></div>
+								<div class=sntab>
+				<table border=0 cellSpacing=0 cellPadding=0 width=259>
+				<colgroup>
+				<col width=39>
+				<col width=112>
+				<col width=37>
+				<col width=37>
+				<col width=34>
+				<tbody>
+				<tr>
+				<td><em class=snred>02</em></td>
+				<td class=tbg2 align=left><a href="http://data.yule.sohu.com/movie/data/63721/" target=_blank>不被原谅搜查官</a></td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>富士</p></td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>12.4</p></td></tr>
+				<tr>
+				<td><em class=snred>03</em></td>
+				<td class=tbg2 align=left>美丘</td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>日本</p></td>
+				<td class=tbg2>
+				<div align=center>10.5</div></td></tr>
+				<tr>
+				<td><em>04</em></td>
+				<td class=tbg2 align=left><a href="http://data.yule.sohu.com/movie/data/64151/" target=_blank>神南署安积班3</a></td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>TBS</p></td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>9.3</p></td></tr>
+				<tr>
+				<td><em>05</em></td>
+				<td class=tbg2 align=left>热海搜查官</td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>朝日</p></td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>9.2</p></td></tr>
+				<tr>
+				<td><em>06</em></td>
+				<td class=tbg2 vAlign=top><a href="http://data.yule.sohu.com/movie/data/63782/" target=_blank>GM跳舞的医生</a></td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>TBS</p></td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>8.8</p></td></tr>
+				<tr>
+				<tr>
+				<td><em>07</em></td>
+				<td class=tbg2 vAlign=top>自恋刑警</td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>TBS</p></td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>8.7</p></td></tr>
+				<tr>
+				<td><em>08</em></td>
+				<td class=tbg2 align=left>桂千鹤诊察日记</td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>NHK</p></td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>7.7</p></td></tr>
+				<tr>
+				<td><em>09</em></td>
+				<td class=tbg2 align=left><a href="http://data.yule.sohu.com/movie/data/63681/" target=_blank>震撼鲜师</a></td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>TBS</p></td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>6.8</p></td></tr>
+				<tr>
+				<td><em>10</em></td>
+				<td class=tbg2 vAlign=top>十年后依然爱你</td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>NHK</p></td>
+				<td class=tbg2 vAlign=top>
+				<p align=center>5.3</p></td></tr></tbody></table></div>
+			</div>
+			<div class="hidden" id="tab_2_2">
+				<div class="snpt clear">
+				<div class=pt>
+				<div><a href="http://korea.sohu.com/20100816/n274241124.shtml" target=_blank><img alt="" src="http://i1.itc.cn/20101011/964_9097fce3_f92f_4423_ae71_f81c0b1ed86d_0.jpg" width=95 height=70></a></div>
+				<h4><a href="http://korea.sohu.com/20100816/n274241124.shtml" target=_blank>和我结婚吧</a></h4>
+				<p>结婚7年后面临离婚的夫妻<a href="http://korea.sohu.com/20100816/n274241124.shtml" target=_blank>[详细]</a><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KBS&nbsp;&nbsp;26.0</p></div></div>
+								<div class=sntab>
+				<table border=0 cellSpacing=0 cellPadding=0 width=259>
+				<colgroup>
+				<col width=39>
+				<col width=112>
+				<col width=37>
+				<col width=37>
+				<col width=34>
+				<tbody>
+				<tr>
+				<td width=16><em class=snred>02</em></td>
+				<td class=tbg2 align=left><a href="http://data.yule.sohu.com/movie/data/52163/" target=_blank>同伊</a></td>
+				<td class=tbg2>MBC</td>
+				<td class=tbg2>
+				<p>26.5</p></td></tr>
+				<tr>
+				<td width=16><em class=snred>03</em></td>
+				<td class=tbg2 align=left>和我结婚吧</td>
+				<td class=tbg2>KBS</td>
+				<td class=tbg2>25.8</td>
+				</tr>
+				<tr>
+				<td><em>04</em></td>
+				<td class=tbg2 align=left><a href="http://data.yule.sohu.com/movie/data/63004/" target=_blank>巨人</a></td>
+				<td class=tbg2>SBS</td>
+				<td class=tbg2>23.4</td>
+				</tr>
+				<tr>
+				<td><em>05</em></td>
+				<td class=tbg2 align=left>隔壁的敌人</td>
+				<td class=tbg2>MBC</td>
+				<td class=tbg2>
+				<p>22.4</p></td></tr>
+				<tr>
+				<td><em>06</em></td>
+				<td class=tbg2 align=left><a href="http://data.yule.sohu.com/movie/data/61624" target=_blank>吹着风的好日子</a></td>
+				<td class=tbg2>KBS</td>
+				<td class=tbg2>22.0</td>
+				</tr>
+				<tr>
+				<td><em>07</em></td>
+				<td class=tbg2 align=left><a href="http://data.yule.sohu.com/movie/data/62184/" target=_blank>人生真美丽</a></td>
+				<td class=tbg2>KBS</td>
+				<td class=tbg2>
+				<p>21.9</p></td></tr>
+				
+				
+				<tr>
+				<td><em>08</em></td>
+				<td class=tbg2 align=left>黄金鱼</td>
+				<td class=tbg2>MBC</td>
+				<td class=tbg2>17.0</td></tr>
+				<tr>
+				<td><em>09</em></td>
+				<td class=tbg2 align=left>不懂女人</td>
+				<td class=tbg2>SBS</td>
+				<td class=tbg2>16.0</td></tr>
+				<tr>
+				<td><em>10</em></td>
+				<td class=tbg2 align=left>三姐妹</td>
+				<td class=tbg2>SBS</td>
+				<td class=tbg2>15.6</td></tr></tbody></table></div>
+			</div>
+		</div>
+		
+		<div class="hidden" id="rtab_5_4">
+			<div class="title"><img src="images/tt16.gif" width="246" height="44" alt="欧美收视榜" /></div>
+			<div class="snpt clear">
+				<div class=pt>
+				<div><a href="http://yule.sohu.com/20100624/n273038012.shtml" target=_blank><img height=70 alt="" src="http://i2.itc.cn/20100701/72b_2f931bb8_28a2_4285_88b5_0e6297df3a9b_0.jpg" width=95></a></div>
+				<h4><a href="http://yule.sohu.com/20100624/n273038012.shtml" target=_blank>NBA总决赛第5场</a></h4>
+				<p>本周北美电视NBA决赛垄断<a href="http://yule.sohu.com/20100624/n273038012.shtml" target=_blank>[详细]</a><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABC&nbsp;&nbsp;10.8</p>
+				</div>
+			</div>
+			<div class=sntab>
+			<table cellSpacing=0 cellPadding=0 width=259 border=0>
+			<colgroup>
+			<col width=39>
+			<col width=112>
+			<col width=37>
+			<col width=37>
+			<col width=34>
+			<tbody>
+			<tr>
+			<td width=16><em class=snred>02</em></td>
+			<td class=tbg2 align=left>NBA总决赛第4场</td>
+			<td class=tbg2>ABC</td>
+			<td class=tbg2>9.9</td>
+			</tr>
+			<tr>
+			<td><em class=snred>03</em></td>
+			<td align=left>NBA总决赛第3场</td>
+			<td><span class="tbg2">ABC</span></td>
+			<td><span class="tbg2">9.6</span></td>
+			</tr>
+			<tr>
+			<td><em>04</em></td>
+			<td align=left><a href="http://data.yule.sohu.com/movie/data/14852/" target=_blank>海军罪证调查处</a></td>
+			<td>CBS</td>
+			<td class=tbg2>7.5</td>
+			</tr>
+			<tr>
+			<td><em>05</em></td>
+			<td align=left><A href="http://data.yule.sohu.com/movie/data/26381/" target="_blank">美国达人</A></td>
+			<td>NBC</td>
+			<td>7.4</td>
+			</tr>
+			<tr>
+			<td><em>06</em></td>
+			<td class=tbg2 align=left><A href="http://data.yule.sohu.com/movie/data/59867/" target="_blank">欢乐合唱团</A></td>
+			<td class=tbg2>FOX</td>
+			<td class=tbg2>6.3</td>
+			</tr>
+			<tr>
+			<td><em>07</em></td>
+			<td class=tbg2 align=left><a href="http://data.yule.sohu.com/movie/data/14852/" target=_blank>海军罪证调查处</a></td>
+			<td class=tbg2>CBS</td>
+			<td>6.3</td>
+			</tr>
+			<tr>
+			<td><em>08</em></td>
+			<td class=tbg2 align=left><A href="http://data.yule.sohu.com/movie/data/59960/" target="_blank">好汉两个半</A></td>
+			<td class=tbg2>CBS</td>
+			<td class=tbg2>6.1</td>
+			</tr>
+			<tr>
+			<td><em>09</em></td>
+			<td align=left><A href="http://data.yule.sohu.com/movie/data/59974/" target="_blank">超感警探</A></td>
+			<td><span class="tbg2">CBS</span></td>
+			<td>9.7</td>
+			</tr>
+			<tr>
+			<td><em>10</em></td>
+			<td class=tbg2 align=left><A href="http://data.yule.sohu.com/movie/data/59962/" target="_blank">生活大爆炸</A></td>
+			<td class=tbg2>CBS</td>
+			<td class=tbg2>5.8</td>
+			</tr></tbody></table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="foot" class="area"> 
+Copyright <span class="fontArial">&copy;</span> 2010 Sohu.com Inc. All Rights Reserved. 搜狐公司 <span class="unline"><a href="http://corp.sohu.com/s2007/copyright/" target="_blank">版权所有</a></span><br />
+</div>
+
+</body>
+</html>
+
