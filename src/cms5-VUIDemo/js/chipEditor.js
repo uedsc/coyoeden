@@ -532,6 +532,8 @@ chipEditor.Dialog.prototype.Edit=function($elm){
 		//上传按钮
 		dlg.$Layout.find(".btnUpl").click(function(evt){
 			dlg.$UpPic.show().effect("highlight");
+			//设定当前上传的图片对象2010.10.15
+			dlg.$UpPic.data=jQuery(this).data("data");
 			return false;
 		});
 					
@@ -655,6 +657,8 @@ chipEditor.Dialog.prototype.BindIconEvts=function($tpl,data){
 			data.$obj.attr("href",this.value);
 			_this.UpdateCode();
 		}).focus(this.focusSelect);
+		//为上传按钮设定图片对象-2010.10.15
+		$tpl.find(".btnUpl").data("data",data);
 	};
 
 };
