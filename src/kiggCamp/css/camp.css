@@ -7,12 +7,19 @@ a{text-decoration:none;}
 /* layout */
 
 /* header */
-#scHead{
+#scHead
+{
+    position:fixed;
+    top:0;
+    left:0;
 	height:50px;
-	line-height:50px;
-	padding:0 10px;
+	width:100%;
+	line-height:50px;	
+	_position:absolute;
 }
-#sch_logo{
+#sch_logo
+{
+    margin-left:10px;
 	background:url("../images/logo.png") no-repeat center center;
 	_background:none;
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src="../images/logo.png");
@@ -22,6 +29,7 @@ a{text-decoration:none;}
 }
 #sch_info{
 	position:relative;
+	margin-right:10px;
 }
 #favlinks{
 	margin:14px 12px 0;
@@ -47,18 +55,112 @@ a{text-decoration:none;}
 }
 
 /* main */
-#scMain{margin-left:175px;}
-#scSidebar{
+#scMain
+{
+    margin-left:175px;
+    padding-top:50px;
+}
+
+#scViewport{
+	float:left;
+	width:100%;
+	height:300px;
+}
+#scTip
+{
+    -moz-border-radius:0 0 6px 6px;
+    border-style:none solid solid;
+    border-width:0 1px 1px;
+    line-height:19px;
+    margin:0 15px;
+    padding:5px 0;
+    text-align:center;   
+}
+
+/* menus */
+#scMenus{
 	float:left;
 	margin:15px 5px 15px -160px;
 	position:relative;
 	width:145px;
 	height:300px;
 }
-#scViewport{
-	float:left;
-	width:100%;
-	height:300px;
+#scMenus a
+{
+    display:block;
+    line-height:18px;
+    padding:1px 5px 3px;
 }
+#scMenus .menu_sub a{padding-left:12px;}
+#scMenus a.menu_top
+{
+    border-style:solid solid none;
+    border-width:1px 1px 0;
+    line-height:18px;
+    min-width:10em;
+    padding:5px;
+}
+#scMenus li.menu_top_first a.menu_top
+{
+    -moz-border-radius-topleft:6px;
+    -moz-border-radius-topright:6px;
+    border-style:solid solid none;
+    border-width:1px 1px 0;
+}
+#scMenus li.menu_top_last a.menu_top_last
+{
+    -moz-border-radius-bottomleft:6px;
+    -moz-border-radius-bottomright:6px;
+    border-style:solid;
+    border-width:1px;
+}
+#scMenus *{-moz-user-select:none;}
+#scMenus li{cursor:pointer;}
+#scMenus li.menu_top{min-height:26px;}
+.menu_bg{background:url("../images/menu.png") no-repeat transparent;float:left;height:28px;width:28px;}
+.menu_bg a{height:24px;}
+.menu_trigger
+{
+    clear:right;
+    cursor:default;
+    float:right;
+    height:27px;
+    margin:1px 0 0;
+    padding:1px 2px 0 0;
+    width:22px;
+}
+#menu_home .menu_bg{background-position:-61px -33px;}
+#menu_home .menu_bg:hover{background-position:-61px -1px;}
+#menu_story .menu_bg{background-position:-272px -33px;}
+#menu_story .menu_bg:hover{background-position:-272px -1px;}
+#menu_media .menu_bg{background-position:-121px -33px;}
+#menu_media .menu_bg:hover{background-position:-121px -1px;}
+#menu_comment .menu_bg{background-position:-31px -33px;}
+#menu_comment .menu_bg:hover{background-position:-31px -1px;}
+.menu_split a
+{
+    cursor:w-resize;
+    height:20px;
+    padding:0;
+}
+
+.menu_sub
+{
+    position:relative;
+    z-index:2;    
+}
+.menu_sub a
+{
+    border-style:none solid none none;
+    border-width:0 1px 0 0;    
+}
+.menu_sub_
+{
+    border-style:solid none;
+    border-width:1px 0;    
+}
+.menu_hotSub .menu_sub_{border-top:none;}
+
+
 
 /* /layout */

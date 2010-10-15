@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -16,7 +16,7 @@
 			<img class="l" id="sch_logo" height="45" width="45" alt="" src="images/blank.gif"/>
 			<h1 id="sch_head" class="l">
 				<a title="Go to homepage" href="#">
-					<span id="sch_title">Camp</span>
+					<span id="sch_title">Story Camp</span>
 				</a>
 			</h1>
 			<div id="sch_info" class="r">
@@ -38,13 +38,67 @@
 		<!--#main-->
 		<div id="scMain" class="clear">
 			<!--#sidebar-->
-			<div id="scSidebar">
-				
-			</div>
+			<ul id="scMenus">
+				<li id="menu_home" class="menu_first menu_hasSub menu_hotSub menu_open menu_top menu_top_last">
+                    <div class="menu_bg"></div>
+                    <div class="menu_trigger"></div>
+                    <a href="#" tabindex="1" class="menu_hotSub menu_top menu_first">Camper</a>
+                    <div class="menu_sub">
+                        <ul class="menu_sub_">
+                            <li class="menu_first now">
+                                <a href="#" tabindex="1">Summary</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu_split"><a href="#">&nbsp;</a></li>
+                <li id="menu_story" class="menu_hasSub menu_open menu_top menu_top_first">
+                    <div class="menu_bg"></div>
+                    <div class="menu_trigger"></div>
+                    <a href="#" tabindex="2" class="menu_hasSub menu_top menu_first">Stories</a>
+                    <div class="menu_sub">
+                        <ul class="menu_sub_">
+                            <li><a href="#">Stories</a></li>
+                            <li><a href="#">Add story</a></li>
+                            <li><a href="#">Categories</a></li>
+                            <li><a href="#">Story tags</a></li>
+                        </ul>
+                    </div>                    
+                </li>
+                <li id="menu_media" class="menu_hasSub menu_open menu_top">
+                    <div class="menu_bg"></div>
+                    <div class="menu_trigger"></div>
+                    <a href="#" class="menu_hasSub menu_top">Media</a>
+                    <div class="menu_sub">
+                        <ul class="menu_sub_">
+                            <li><a href="#">Library</a></li>
+                            <li><a href="#">Add Media</a></li>                            
+                        </ul>
+                    </div>
+                </li>
+                <li id="menu_comment" class="menu_top menu_top_last">
+                    <div class="menu_bg"></div>
+                    <a href="#" class="menu_top menu_top_last">Comments</a>
+                </li>
+                <li class="menu_split"><a href="#">&nbsp;</a></li>
+                <li id="menu_user" class="menu_hasSub menu_open menu_top menu_top_first menu_top_last">
+                    <div class="menu_bg"></div>
+                    <div class="menu_trigger"></div>
+                    <a href="#" tabindex="2" class="menu_hasSub menu_top menu_first">Users</a>
+                    <div class="menu_sub">
+                        <ul class="menu_sub_">
+                            <li><a href="#">Users</a></li>
+                            <li><a href="#">Add new</a></li>
+                            <li><a href="#">Your profile</a></li>
+                        </ul>
+                    </div>                    
+                </li>
+			</ul>
 			<!--#viewport-->
 			<div id="scViewport">
 				<div id="scTip">
-					
+                    Today is <span class="year">2010</span>-<span class="month">10</span>-<span class="date">16</span>, 
+                    totally <a href="#"><span class="cnt_story">10</span></a> new stories found in <a href="#"><span class="cnt_category">5</span></a> categories.
 				</div>
 				<div id="scSubhead">
 					

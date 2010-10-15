@@ -1,1 +1,5 @@
 #sch_head{font-size:167%;}
+#scTip{font-size:93%;}
+#scTip span{font-weight:bold;font-size:108%;}
+/* menu */
+.menu_sub_ li.now a{font-weight:bold;}

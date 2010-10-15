@@ -58,5 +58,54 @@ a:focus {
 	background: transparent url(../images/fav-arrow.gif) no-repeat 0 -4px;
 }
 
+#scTip
+{
+    background-color:#FFFBCC;
+    border-color:#E6DB55;
+    color:#555555;    
+}
 
+#scTip .cnt_category
+{
+    color:Green;
+}
+#scTip .cnt_story{color:#E66F00;}
 
+#scMenus *{border-color:#E3E3E3;}
+#scMenus .now a,#scMenus .menu_hotSub .menu_sub_{border-color:#aaa;}
+#scMenus .menu_hotSub a.menu_hotSub
+{
+    background:url("../images/menu-bits.gif") repeat-x scroll left top #E0E0E0;
+    border:1px solid #AAAAAA;
+    color:#000000;
+}
+
+.menu_open .menu_first{-moz-border-radius-bottomleft:0;-moz-border-radius-bottomright:0;}
+.menu_first a.menu_first{-moz-border-radius-topleft:6px;-moz-border-radius-topright:6px;}
+a.menu_first
+{
+    background:url("../images/menu-bits.gif") repeat-x scroll left -379px #F1F1F1;
+}
+.menu_hasSub:hover .menu_trigger,.menu_open .menu_trigger{background:url("../images/menu-bits.gif") no-repeat left -109px transparent;}
+.menu_hotSub:hover .menu_trigger,.menu_hotSub.menu_open .menu_trigger{background-position:left -207px;}
+
+.menu_split{background:url("../images/menu-arrows.gif") no-repeat scroll left 5px transparent;}
+
+.menu_sub{background:transparent;}
+.menu_sub_{background:#fff;}
+.menu_sub_ li.now,.menu_sub_ li.now a
+{
+    background-color:#F5F5F5;
+    background-image:none;
+    color:#333333;
+}
+.menu_sub_ a
+{
+    background:url("../images/menu-bits.gif") no-repeat scroll 0 -310px #FFFFFF;
+}
+.menu_sub_ a:hover
+{
+    background:#eaf2fa;
+    color:#333;
+}
+.menu_sub_ li.now a{background:url("../images/menu-bits.gif") no-repeat scroll 0 -289px transparent;background:url("../images/menu-dark.gif") no-repeat left top !important;}
