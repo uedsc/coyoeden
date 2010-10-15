@@ -7,8 +7,11 @@
 		<link media="all" type="text/css" href="css/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet"></link> 
 		<link rel="stylesheet" href="css/jqueryui/1.8.2/themes/flick/jquery-ui.css" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link>
-		<link rel="stylesheet" type="text/css" href="css/vsp.css"></link>  
-		<script type="text/javascript" src="js/jquery-1.4.2.js"></script>  
+		<link rel="stylesheet" type="text/css" href="css/vsp.css"></link> 
+		<!--test for compability-->
+		<!--<script type="text/javascript" src="http://cms5.sohu.com/js/prototype.js"></script>-->
+		<!--/test for compability-->
+		<script type="text/javascript" src="js/jquery-1.4.2.js"></script>
 		<script type="text/javascript" src="js/jquery-ui.min.js"></script>  
 		<script type="text/javascript" src="js/sohu.jqModal.js"></script>
 		<script type="text/javascript" src="js/jquery.textareaSearch.js"></script>
@@ -133,8 +136,8 @@
 								<input type="file" name="uppic" size="35"/>
 							</div>
 							<div class="upp_btn">
-								<button class="up">上传</button>
-								<button class="cls">取消</button>
+								<button class="ce_up">上传</button>
+								<button class="ce_cls">取消</button>
 							</div>
 						</div>
 					</div>
@@ -234,7 +237,7 @@
 		<script type="text/javascript">	
 		//<![CDATA[
 		/* 碎片编辑器的初始化 */
-		chipEditor.Init({});
+		chipEditor.Init({noTinyMCE:true});
 		//]]>
 		</script>
 		<!--/碎片编辑器-->

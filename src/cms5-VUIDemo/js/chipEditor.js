@@ -2,6 +2,9 @@
  * JS interactive logic for editing fragments
  * 碎片编辑器
  * @author levinhuang
+ * @version 2010.10.13
+ * 1,更新一些编辑器专属class防止冲突，class前缀为ce_
+ * 2,加粗加红利用font标签.(为了兼容老代码)
  */
 
 var chipEditor = function() {
@@ -35,6 +38,7 @@ var chipEditor = function() {
 			theme:'simple'
 		}).hide();
 		*/
+		if(chipEditor.NoTinyMCE) return;
 		tinymce.init({
 			mode:'specific_textareas',
 			editor_selector:'mceEditor',
@@ -46,12 +50,13 @@ var chipEditor = function() {
 	};
     //private area
     p.initVar = function(opts) {
-		p._cssBold=opts.cssBold||'bb';
-		p._cssColor=opts.cssColor||'cc';
+		p._cssBold=opts.cssBold||'ce_bb';
+		p._cssColor=opts.cssColor||'ce_cc';
 		chipEditor.aTplStr=opts.aTplStr||'<a href="http://sohu.com" title="">sohu</a>';
 		chipEditor.vdTplStr=opts.vdTplStr||'<a href="http://sohu.com" title=""><img src="http://images.sohu.com/uiue/vd.gif" alt="Video"/></a>';
 		p._dlgModel=jQuery(".chipEdt");
 		p._$body=jQuery("body");
+		chipEditor.NoTinyMCE=opts.noTinyMCE||false;
 		/* 用户的回调函数 */
 		p.onUpPic=opts.onUpPic;
 		p.onTest=opts.onTest;
@@ -108,6 +113,21 @@ var chipEditor = function() {
 	};
 	pub.MCE=function(){
 		//return p._$mce.tinymce();
+		if(chipEditor.NoTinyMCE){
+			//不用tinymce,为了减少改动代码,伪造一个tinyMCE
+			if(!p._fakeMCE){
+				p._fakeMCE={
+					html:"",
+					setContent:function(html){
+						this.html=html;
+					},
+					getContent:function(){
+						return this.html;
+					}
+				};
+			};
+			return p._fakeMCE; 
+		};
 		return tinymce.activeEditor;
 	};
 	pub.StopNav=p.stopNav;
@@ -131,8 +151,8 @@ chipEditor.Dialog=function(opts){
 		lblSort:'排序状态',
 		lblSort1:'结束排序',
 		lblTab0:'<strong class="alert">行修改状态</strong><em>请选择行</em>',
-		clBold:'bb',
-		clColor:'cc',
+		clBold:'ce_bb',
+		clColor:'ce_cc',
 		onUpPic:null,
 		onTest:null,
 		onSave:null,
@@ -226,8 +246,8 @@ chipEditor.Dialog=function(opts){
 	});
 	//上传浮层
 	this.$UpPic=this.$CT.find(".uppic").draggable({handle:".upp_t",containment:'parent',axis:'y'});
-	this.$BtnUpPic=this.$UpPic.find(".up");
-	this.$UpPic.find(".cls").click(function(evt){
+	this.$BtnUpPic=this.$UpPic.find(".ce_up");
+	this.$UpPic.find(".ce_cls").click(function(evt){
 		_this.$UpPic.slideUp("fast");
 	});
 	//jqm options
@@ -244,6 +264,7 @@ chipEditor.Dialog=function(opts){
 			if(_this.Sorting){
 				_this.$BtnSort.trigger("click");
 			};
+			//显示后的回调函数					
 			if(_this.jqmOpts.afterShow){
 				_this.jqmOpts.afterShow(hash,_this);
 			};
@@ -654,11 +675,20 @@ chipEditor.Dialog.prototype.DelElm=function(data){
  */
 chipEditor.Dialog.prototype.Bold=function(data){
 	if(!data.$obj) return false;
-	if(data.$obj.hasClass(this._opts.clBold)){
-		data.$obj.removeClass(this._opts.clBold).css("font-weight","normal");
+	var $font=data.$obj.children();
+	//a内部没有font标签,加一个
+	if(!$font.is("font")){
+		data.$obj.wrapInner('<font style="font-weight:bold;"/>');
+		data.$tpl.eq(0).find("input").addClass(this._opts.clBold);
+		this.UpdateCode();
+		return;	
+	};
+	//已有font标签，则改样式
+	if($font.css("font-weight")=="bold"){
+		$font.css("font-weight","normal");
 		data.$tpl.eq(0).find("input").removeClass(this._opts.clBold);
 	}else{
-		data.$obj.addClass(this._opts.clBold).css("font-weight","bold");
+		$font.css("font-weight","bold");
 		data.$tpl.eq(0).find("input").addClass(this._opts.clBold);
 	};
 	this.UpdateCode();
@@ -669,15 +699,28 @@ chipEditor.Dialog.prototype.Bold=function(data){
  */
 chipEditor.Dialog.prototype.Color=function(data){
 	if(!data.$obj) return false;
-	if(data.$obj.hasClass(this._opts.clColor)){
-		data.$obj.removeClass(this._opts.clColor).css("color",this._rawColor);
+	var $font=data.$obj.children();
+	//a内部没有font标签,加一个
+	if(!$font.is("font")){
+		data.$obj.wrapInner('<font color="red"/>');
+		data.$tpl.eq(0).find("input").addClass(this._opts.clColor);
+		this.UpdateCode();
+		return;	
+	};
+	//已有font标签，则改样式
+	if($font.attr("color")=="red"){
+		if(this._rawColor){
+			$font.attr("color",this._rawColor);
+		}else{
+			$font.removeAttr("color");	
+		};
 		data.$tpl.eq(0).find("input").removeClass(this._opts.clColor);
 	}else{
 		if(!this._rawColor)
-			this._rawColor=data.$obj.css("color");
+			this._rawColor=$font.attr("color");
 		
-		data.$obj.addClass(this._opts.clColor).css("color","red");
-		data.$tpl.eq(0).find("input").addClass(this._opts.clColor);			
+		$font.attr("color","red");
+		data.$tpl.eq(0).find("input").addClass(this._opts.clColor);
 	};
 	this.UpdateCode();
 };

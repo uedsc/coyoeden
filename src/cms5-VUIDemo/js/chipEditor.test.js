@@ -76,6 +76,15 @@ var test = function() {
 					dlg.$BtnTest.click(function(evt){
 						alert("整体测试");
 					});
+					//定位编辑器位置
+					if(dlg.$Chip){
+						var of=dlg.$Chip.offset();
+						dlg.$Layout.css({
+							top:of.top,
+							left:of.left,
+							"margin-left":"auto"
+						});					
+					};
 				}
 			});
 				return;
@@ -101,13 +110,15 @@ var test = function() {
 				/* 焦点图编辑 */
 				onFlashEdit:function(dlg){alert("onFlashEdit");},
 				afterShow:function(hash,dlg){
-					/* 编辑器定位 */
-					var of=dlg.$Chip.offset();
-					dlg.$Layout.css({
-						top:of.top,
-						left:of.left,
-						"margin-left":"auto"
-					});
+					//定位编辑器位置
+					if(dlg.$Chip){
+						var of=dlg.$Chip.offset();
+						dlg.$Layout.css({
+							top:of.top,
+							left:of.left,
+							"margin-left":"auto"
+						});					
+					};
 				}
 			});
 		});

@@ -19,7 +19,6 @@ a{color:blue;}
 .chipEdt .ui-tabs-nav .ui-button{margin-right:0;background:#FF8400;}
 .chipEdt .elmTpl label{width:42px;text-align:center;}
 .chipEdt .elmTpl input{width:245px;border-top:2px solid #C4C4C5;border-left:2px solid #C4C4C5;}
-.chipEdt .elmTpl .ce_checklink{margin-top:5px;margin-left:3px;cursor:pointer;}
 .chipEdt .icons{position:relative;width:96px;margin-left:3px;}
 .chipEdt .icons a{display:inline-block;border:1px solid #eee;text-decoration:none;}
 .chipEdt .icons span{display:block;font-weight:bold;font-size:0.9em;padding:0.2em 0.5em;}
@@ -30,8 +29,9 @@ a{color:blue;}
 .chipEdt .others a:hover{background:#1F84EC;color:#fff;}
 .chipEdt .icon span{padding-right:0.6em;}
 .chipEdt .icons1{width:34px;line-height:22px;}
-.chipEdt input.bb{font-weight:bold;}
-.chipEdt input.cc{color:red;}
+.chipEdt input.ce_bb{font-weight:bold;}
+.chipEdt input.ce_cc{color:red;}
+.chipEdt .elmTpl .ce_checklink{margin-top:5px;margin-left:3px;cursor:pointer;}
 .chipEdt .acts{margin-bottom:10px;}
 .chipEdt .hide{display:none;}
 .chipEdt textarea{width:100%;height:180px;}
