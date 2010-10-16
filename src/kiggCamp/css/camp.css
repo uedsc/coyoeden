@@ -130,13 +130,15 @@ a{text-decoration:none;}
     width:22px;
 }
 #menu_home .menu_bg{background-position:-61px -33px;}
-#menu_home .menu_bg:hover{background-position:-61px -1px;}
+#menu_home:hover .menu_bg{background-position:-61px -1px;}
 #menu_story .menu_bg{background-position:-272px -33px;}
-#menu_story .menu_bg:hover{background-position:-272px -1px;}
+#menu_story:hover .menu_bg{background-position:-272px -1px;}
 #menu_media .menu_bg{background-position:-121px -33px;}
-#menu_media .menu_bg:hover{background-position:-121px -1px;}
+#menu_media:hover .menu_bg{background-position:-121px -1px;}
 #menu_comment .menu_bg{background-position:-31px -33px;}
-#menu_comment .menu_bg:hover{background-position:-31px -1px;}
+#menu_comment:hover .menu_bg{background-position:-31px -1px;}
+#menu_user .menu_bg{background-position:-301px -33px;}
+#menu_user:hover .menu_bg{background-position:-301px -1px;}
 .menu_split a
 {
     cursor:w-resize;
