@@ -1,8 +1,28 @@
 html{background-color:#f9f9f9;}
 body{color:#333333;}
-*html input,
-*html .widget{border-color:#dfdfdf;}
-
+/* bd-#dfdfdf */
+*html input,*html .widget{border-color:#dfdfdf;}
+.cmt{border-color:#dfdfdf;}
+/* cl-#464646 */
+h2,h3{color:#464646;}
+h2{text-shadow:0 1px 0 #FFFFFF;}
+/* cl-#999 */
+.cmt_meta{color:#999;}
+/* cl-green */
+.widget a.approved,#scTip .cnt_category{color:green;}
+/* cl-#E66F00 */
+.widget a.pending,#scTip .cnt_story,.unapprove{color:#E66F00;}
+/* cl-#BC0B0B */
+.cmt_acts .trash,.cmt_acts .spam{color:#BC0B0B;}
+/* cl-#777 */
+.widget .tbl .txtth{color:#777;}
+/* cl-red */
+.widget a.spam{color:red;}
+/* bd-#ececec */
+.widget .tbl .txtth{border-color:#ececec;}
+/* bg-#F9F9F9 */
+.alt,.even{background-color:#F9F9F9;}
+.widget,
 textarea,
 input[type="text"],
 input[type="password"],
@@ -31,6 +51,34 @@ a:active,
 a:focus {
 	color: #d54e21;
 }
+.btn,
+.submit input,
+input[type=button],
+input[type=submit] {
+	border-color: #bbb;
+	color: #464646;
+}
+
+.btn:hover,
+.submit input:hover,
+input[type=button]:hover,
+input[type=submit]:hover {
+	color: #000;
+	border-color: #666;
+}
+
+.btn,
+.submit input{
+	background: #f2f2f2 url(../images/white-grad.png) repeat-x scroll left top;
+	text-shadow: rgba(255,255,255,1) 0 1px 0;
+}
+
+.btn:active,
+.submit input:active
+{
+	background: #eee url(../images/white-grad-active.png) repeat-x scroll left top;
+}
+
 
 
 #scHead {
@@ -64,12 +112,6 @@ a:focus {
     border-color:#E6DB55;
     color:#555555;    
 }
-
-#scTip .cnt_category
-{
-    color:Green;
-}
-#scTip .cnt_story{color:#E66F00;}
 
 #scMenus *{border-color:#E3E3E3;}
 #scMenus .now a,#scMenus .menu_hotSub .menu_sub_{border-color:#aaa;}
@@ -109,3 +151,18 @@ a.menu_first
     color:#333;
 }
 .menu_sub_ li.now a{background:url("../images/menu-bits.gif") no-repeat scroll 0 -289px transparent;background:url("../images/menu-dark.gif") no-repeat left top !important;}
+
+/* right area */
+.icon32{
+	background:url("../images/icons32.png") no-repeat transparent;
+}
+.camp_index .icon32{
+	background-position:-135px -5px;
+}
+.widget h3{
+	background:url("../images/gray-grad.png") repeat-x scroll left top #DFDFDF;
+	text-shadow:0 1px 0 #FFFFFF;
+}
+.widget:hover .w_tgl{
+	background:url("../images/menu-bits.gif") no-repeat left -111px transparent;
+}

@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="css/camp_font.css"></link> 
 		<link rel="stylesheet" type="text/css" href="css/camp.css"></link> 
 	</head>
-	<body class="camp">
+	<body class="camp_index">
 		<!--#header-->
 		<div id="scHead" class="clear">
 			<img class="l" id="sch_logo" height="45" width="45" alt="" src="images/blank.gif"/>
@@ -100,23 +100,211 @@
                     Today is <span class="year">2010</span>-<span class="month">10</span>-<span class="date">16</span>, 
                     totally <a href="#"><span class="cnt_story">10</span></a> new stories found in <a href="#"><span class="cnt_category">5</span></a> categories.
 				</div>
-				<div id="scSubhead">
-					
-				</div>
-				<div id="scWidgets" class="clear">
-					<div class="listwidget l">
-						<div class="widget">
-							
+				<div id="scViewport_">
+					<div class="icon32"></div>
+					<h2 id="scSubhead">Summary of the site</h2>
+					<div id="scWidgets" class="clear">
+						<div class="wlist l">
+							<div id="wlist1">
+								<div id="wSiteStat" class="widget">
+									<div class="w_tgl" title="click to toggle"></div>
+									<h3 class="w_hd"><span>Site statistic</span></h3>
+									<div class="w_ct">
+										<div class="tbl tbl_ct l">
+											<p class="txtth">Content</p>
+											<table>
+												<tr>
+													<th><a href="#">10</a></th>
+													<td><a href="#">Stories</a></td>
+												</tr>
+												<tr>
+													<th><a href="#">20</a></th>
+													<td><a href="#">Figures</a></td>
+												</tr>			
+												<tr>
+													<th><a href="#">4</a></th>
+													<td><a href="#">Categories</a></td>
+												</tr>
+												<tr>
+													<th><a href="#">12</a></th>
+													<td><a href="#">Tags</a></td>
+												</tr>																																	
+											</table>
+										</div>
+										<div class="tbl tbl_cmt r">
+											<p class="txtth">Discussion</p>
+											<table>
+												<tr>
+													<th><a href="#">22</a></th>
+													<td><a href="#">Comments</a></td>
+												</tr>	
+												<tr>
+													<th><a href="#">20</a></th>
+													<td><a class="approved" href="#">Approved</a></td>
+												</tr>
+												<tr>
+													<th><a href="#">2</a></th>
+													<td><a class="pending" href="#">Pending</a></td>
+												</tr>
+												<tr>
+													<th><a href="#">0</a></th>
+													<td><a class="spam" href="#">Spam</a></td>
+												</tr>																																															
+											</table>
+										</div>
+									</div>
+								</div>
+								<div id="wCategory" class="widget">
+									<div class="w_tgl" title="click to toggle"></div>
+									<h3 class="w_hd"><span>Category statistic</span></h3>
+									<div class="w_ct">
+										<div class="tbl l">
+											<table cellspacing="5px">
+												<tr>
+													<th><div class="txtth">Category</div></th>
+													<th><div class="txtth">Total stories</div></th>
+													<th><div class="txtth">Lastest stories</div></th>
+												</tr>
+												<tr>
+													<td><a href="#">Category1</a></td>
+													<td><a href="#">12</a></td>
+													<td><a href="#">1</a></td>
+												</tr>			
+												<tr>
+													<td><a href="#">Category2</a></td>
+													<td><a href="#">13</a></td>
+													<td><a href="#">3</a></td>													
+												</tr>
+												<tr>
+													<td><a href="#">Category3</a></td>
+													<td><a href="#">1</a></td>
+													<td><a href="#">0</a></td>													
+												</tr>																																	
+											</table>
+										</div>									
+									</div>
+								</div><!--#wCategory-->								
+							</div>
 						</div>
-					</div>
-					<div class="listwidget r">
-						<div class="widget">
-							
-						</div>
-					</div>
-				</div>
+						<div class="wlist l">
+							<div id="wlist2">
+								<div id="wComments" class="widget">
+									<div class="w_tgl" title="click to toggle"></div>
+									<h3 class="w_hd"><span>Recent comments</span></h3>
+									<div class="w_ct">
+										<div id="cmtList">
+											<div class="cmt cmt_first odd">
+												<img class="avatar avatar_50" src="images/avatar-default.jpg" height="50" width="50" />
+												<div class="cmt_">
+													<h4 class="cmt_meta">
+														From <cite class="cmt_user"><a href="#">LEVIN</a></cite>
+														On <a class="cmt_src" href="#">Story1111</a>
+														<a class="cmt_anchor" href="#">#</a>
+													</h4>
+													<blockquote>
+														<p>我是一只小蜜蜂，飞到花丛中...</p>
+													</blockquote>
+													<p class="cmt_acts">
+														<a href="#" class="approved">approve</a>
+														<a href="#" class="unapprove">Unapprove</a>
+														<a href="#" class="reply">reply</a>
+														<a href="#" class="spam">spam</a>
+														<a href="#" class="trash">trash</a>
+													</p>
+												</div>
+											</div>
+											<div class="cmt even">
+												<img class="avatar avatar_50" src="images/avatar-default.jpg" height="50" width="50" />
+												<div class="cmt_">
+													<h4 class="cmt_meta">
+														From <cite class="cmt_user"><a href="#">LEVIN</a></cite>
+														On <a class="cmt_src" href="#">Story1111</a>
+														<a class="cmt_anchor" href="#">#</a>
+													</h4>
+													<blockquote>
+														<p>我是一只小蜜蜂，飞到花丛中...</p>
+													</blockquote>
+													<p class="cmt_acts">
+														<a href="#" class="approved">approve</a>
+														<a href="#" class="unapprove">Unapprove</a>
+														<a href="#" class="reply">reply</a>
+														<a href="#" class="spam">spam</a>
+														<a href="#" class="trash">trash</a>
+													</p>
+												</div>											
+											</div>
+											<div class="cmt odd">
+												<img class="avatar avatar_50" src="images/avatar-default.jpg" height="50" width="50" />
+												<div class="cmt_">
+													<h4 class="cmt_meta">
+														From <cite class="cmt_user"><a href="#">LEVIN</a></cite>
+														On <a class="cmt_src" href="#">Story1111</a>
+														<a class="cmt_anchor" href="#">#</a>
+													</h4>
+													<blockquote>
+														<p>我是一只小蜜蜂，飞到花丛中...</p>
+													</blockquote>
+													<p class="cmt_acts">
+														<a href="#" class="approved">approve</a>
+														<a href="#" class="unapprove">Unapprove</a>
+														<a href="#" class="reply">reply</a>
+														<a href="#" class="spam">spam</a>
+														<a href="#" class="trash">trash</a>
+													</p>
+												</div>											
+											</div>
+											<div class="cmt even">
+												<img class="avatar avatar_50" src="images/avatar-default.jpg" height="50" width="50" />
+												<div class="cmt_">
+													<h4 class="cmt_meta">
+														From <cite class="cmt_user"><a href="#">LEVIN</a></cite>
+														On <a class="cmt_src" href="#">Story1111</a>
+														<a class="cmt_anchor" href="#">#</a>
+													</h4>
+													<blockquote>
+														<p>我是一只小蜜蜂，飞到花丛中...</p>
+													</blockquote>
+													<p class="cmt_acts">
+														<a href="#" class="approved">approve</a>
+														<a href="#" class="unapprove">Unapprove</a>
+														<a href="#" class="reply">reply</a>
+														<a href="#" class="spam">spam</a>
+														<a href="#" class="trash">trash</a>
+													</p>
+												</div>											
+											</div>
+											<div class="cmt odds">
+												<img class="avatar avatar_50" src="images/avatar-default.jpg" height="50" width="50" />
+												<div class="cmt_">
+													<h4 class="cmt_meta">
+														From <cite class="cmt_user"><a href="#">LEVIN</a></cite>
+														On <a class="cmt_src" href="#">Story1111</a>
+														<a class="cmt_anchor" href="#">#</a>
+													</h4>
+													<blockquote>
+														<p>我是一只小蜜蜂，飞到花丛中...</p>
+													</blockquote>
+													<p class="cmt_acts">
+														<a href="#" class="approved">approve</a>
+														<a href="#" class="unapprove">Unapprove</a>
+														<a href="#" class="reply">reply</a>
+														<a href="#" class="spam">spam</a>
+														<a href="#" class="trash">trash</a>
+													</p>
+												</div>											
+											</div><!--/cmt-->
+										</div><!--#cmtList-->
+										<p class="txtR viewall"><a class="btn" href="#">View all</a></p>
+									</div><!--w_ct-->									
+								</div><!--#wComments-->
+							</div><!--#wlist2-->
+						</div><!--.wlist-->
+					</div><!--#scWidgets-->				
+				</div><!--#viewport_-->
 			</div>
+			<!--/#viewport-->
 		</div>
+		<!--/#scMian-->
 		<!--#scfoot-->
 		<div id="scFoot">
 			

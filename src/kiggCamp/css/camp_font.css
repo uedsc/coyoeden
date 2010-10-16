@@ -1,5 +1,31 @@
+.txtR{text-align:right;}
+/* 22px */
 #sch_head{font-size:167%;}
-#scTip{font-size:93%;}
-#scTip span{font-weight:bold;font-size:108%;}
-/* menu */
-.menu_sub_ li.now a{font-weight:bold;}
+/* 20px */
+#scSubhead{
+	font-size:153.9%;
+}
+.widget th a{
+	font-size:138.5%;
+}
+/* 11px */
+.cmt blockquote,.btn{font-size:85%;}
+/* 12px */
+#scTip,.widget .w_ct,.widget h3{font-size:93%;}
+/* 13px */
+#scTip span{font-size:108%;}
+/* bold */
+.menu_sub_ li.now a,
+	.widget h3,
+	#scSubhead,
+	#scTip span{font-weight:bold;}
+
+/* font-italic */
+#scSubhead,.widget .tbl .txtth{font-style:italic;}
+/* font-family */
+#scSubhead,
+	#wSiteStat table th,
+	.cmt_meta,
+	.widget .tbl .txtth{
+	font-family:Georgia,"Times New Roman","Bitstream Charter",Times,serif;
+}
