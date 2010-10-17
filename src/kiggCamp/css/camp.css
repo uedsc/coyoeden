@@ -1,5 +1,5 @@
-.clear,.w_ct{zoom:1;}
-.clear:after,.w_ct:after{display:block;content:'\20';clear:both;}
+.clear,.w_ct,.row{zoom:1;}
+.clear:after,.w_ct:after,.row:after{display:block;content:'\20';clear:both;}
 .l{float:left;}
 .r{float:right;}
 .hide{display:none;}
@@ -8,6 +8,13 @@ a.btn{
 	line-height:15px;
 	padding:3px 10px;
 	white-space:nowrap;
+}
+.txtForScreen,.txtForScreen span{
+	height:1px;
+	left:-1000em;
+	overflow:hidden;
+	position:absolute;
+	width:1px;
 }
 .submit input, .btn{
 -moz-border-radius:11px 11px 11px 11px;
@@ -18,18 +25,86 @@ cursor:pointer;
 line-height:13px;
 padding:3px 8px;
 }
+textarea, input, select {
+	margin:1px;
+	padding:3px;
+	font-size:93%;
+}
+input, select {
+	line-height:15px;
+}
+textarea, input[type="text"], input[type="password"], input[type="file"], select {
+	-moz-border-radius:4px 4px 4px 4px;
+	border-style:solid;
+	border-width:1px;
+}
+input[type="text"], input[type="password"], textarea {
+	-moz-box-sizing:border-box;
+}
+/* table style */
+table{border-collapse:separate;}
+table.fixed {
+	table-layout:fixed;
+}
+.fixed .column-response, .fixed .column-author, .fixed .column-categories, .fixed .column-tags, .fixed .column-rel, .fixed .column-role {
+	width:15%;
+}
+.fixed .column-date, .fixed .column-parent, .fixed .column-links {
+width:10%;
+}
+.widefat {
+	-moz-border-radius:4px 4px 4px 4px;
+	border-spacing:0;
+	border-style:solid;
+	border-width:1px;
+	clear:both;
+	width:100%;
+}
+.widefat * {
+	word-wrap:break-word;
+}
+.widefat .check-column {
+	padding:0;
+	width:2.2em;
+}
+.fixed .column-comments {
+	padding-top:8px;
+	width:4em;
+}
+.widefat tbody th.check-column {
+	padding:7px 0 22px;
+	vertical-align:top;
+}
+.widefat th, .widefat td {
+	overflow:hidden;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+}
+.widefat th{
+	line-height:1.3em;
+	padding:7px 7px 8px;
+	text-align:left;
+}
+.widefat td {
+	padding:3px 7px;
+	vertical-align:top;
+}
+.widefat th input {
+	margin:0 0 0 8px;
+	padding:0;
+	vertical-align:text-top;
+}
 /* layout */
 
 /* header */
 #scHead
 {
-    position:fixed;
+    position:absolute;
     top:0;
     left:0;
 	height:50px;
 	width:100%;
 	line-height:50px;	
-	_position:absolute;
 }
 #sch_logo
 {
@@ -72,12 +147,16 @@ padding:3px 8px;
 #scMain
 {
     margin-left:175px;
-    padding-top:50px;
+    padding:50px 0;
+	min-height:100%;
+	height:100%;
 }
 
 #scViewport{
 	float:left;
 	width:100%;
+	min-height:300px;
+	height:auto !important;
 	height:300px;
 }
 #scTip
@@ -97,6 +176,8 @@ padding:3px 8px;
 	margin:15px 5px 15px -160px;
 	/*position:relative;*/
 	width:145px;
+	min-height:300px;
+	height:auto !important;
 	height:300px;
 }
 #scMenus a
@@ -108,8 +189,8 @@ padding:3px 8px;
 #scMenus .menu_sub a{padding-left:12px;}
 #scMenus a.menu_top
 {
-    border-style:solid solid none;
-    border-width:1px 1px 0;
+    border-style:none solid none;
+    border-width:0 1px 0;
     line-height:18px;
     min-width:10em;
     padding:5px;
@@ -180,6 +261,7 @@ padding:3px 8px;
 
 /* right area */
 #scViewport_{margin-left:5px;}
+#scViewport_ .row{margin:5px 15px 5px 0;}
 .icon32{
 	float:left;
 	height:36px;
@@ -190,7 +272,9 @@ padding:3px 8px;
 	line-height:38px;
 	padding-top:14px;
 }
-
+#scSubhead a{
+	margin-left:10px;
+}
 #scWidgets .wlist{width:49%;padding-right:0.5%;}
 #wlist1,#wlist2{margin:0 5px;}
 .widget{
@@ -247,4 +331,18 @@ padding:3px 8px;
 #wComments p.viewall{padding:10px 10px 0 10px;}
 #wCategory table{margin-left:0;}
 #wCategory .tbl .txtth,#wCategory .tbl td{padding-left:10px;margin-right:10px;}
+
+/* footer */
+#scFoot{
+	border-style:solide;
+	border-width:1px;
+}
+#scFoot .r{
+	line-height:15px;
+	padding:15px;
+}
 /* /layout */
+
+/*=========== stories.html ================ */
+#storyList .acts1 li{display:inline;}
+#storyList .acts1 a{line-height:15px;}

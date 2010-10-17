@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Camp-Stories</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css"></link>
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssfonts/fonts-min.css"></link>   
+		<link rel="stylesheet" type="text/css" href="css/camp_color.css"></link> 
+		<link rel="stylesheet" type="text/css" href="css/camp_font.css"></link> 
+		<link rel="stylesheet" type="text/css" href="css/camp.css"></link> 		
+	</head>
+	<body class="story_index">
+<!--#header-->
+		<div id="scHead" class="clear">
+			<img class="l" id="sch_logo" height="45" width="45" alt="" src="images/blank.gif"/>
+			<h1 id="sch_head" class="l">
+				<a title="Go to homepage" href="#">
+					<span id="sch_title">Story Camp</span>
+				</a>
+			</h1>
+			<div id="sch_info" class="r">
+				<div id="favlinks" class="l">
+					<div id="favlink0"><a href="#">New Story</a></div>
+					<div id="favlink_trigger"></div>
+					<div id="favlinks_" class="hide">
+						
+					</div>
+				</div>
+				<div id="userinfo" class="l">
+					<span id="hello">Welcome,</span>
+					<a id="username" href="#">Levin</a>
+					<span>|</span>
+					<a id="userstate" href="#">Log Out</a>
+				</div>
+			</div>
+		</div>
+		<!--#main-->
+		<div id="scMain" class="clear">
+			<!--#sidebar-->
+			<ul id="scMenus">
+				<li id="menu_home" class="menu_first menu_hasSub menu_open menu_top menu_top_last">
+                    <div class="menu_bg"></div>
+                    <div class="menu_trigger"></div>
+                    <a href="#" tabindex="1" class="menu_hasSub menu_top menu_first">Camper</a>
+                    <div class="menu_sub">
+                        <ul class="menu_sub_">
+                            <li class="menu_first">
+                                <a href="index.html" tabindex="1">Summary</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu_split"><a href="#">&nbsp;</a></li>
+                <li id="menu_story" class="menu_hasSub menu_hotSub menu_open menu_top menu_top_first">
+                    <div class="menu_bg"></div>
+                    <div class="menu_trigger"></div>
+                    <a href="#" tabindex="2" class="menu_hotSub menu_top menu_first">Stories</a>
+                    <div class="menu_sub">
+                        <ul class="menu_sub_">
+                            <li class="now"><a href="stories">Stories</a></li>
+                            <li><a href="#">Add story</a></li>
+                            <li><a href="#">Categories</a></li>
+                            <li><a href="#">Story tags</a></li>
+                        </ul>
+                    </div>                    
+                </li>
+                <li id="menu_media" class="menu_hasSub menu_open menu_top">
+                    <div class="menu_bg"></div>
+                    <div class="menu_trigger"></div>
+                    <a href="#" class="menu_hasSub menu_top">Media</a>
+                    <div class="menu_sub">
+                        <ul class="menu_sub_">
+                            <li><a href="#">Library</a></li>
+                            <li><a href="#">Add Media</a></li>                            
+                        </ul>
+                    </div>
+                </li>
+                <li id="menu_comment" class="menu_top menu_top_last">
+                    <div class="menu_bg"></div>
+                    <a href="#" class="menu_top menu_top_last">Comments</a>
+                </li>
+                <li class="menu_split"><a href="#">&nbsp;</a></li>
+                <li id="menu_user" class="menu_hasSub menu_open menu_top menu_top_first menu_top_last">
+                    <div class="menu_bg"></div>
+                    <div class="menu_trigger"></div>
+                    <a href="#" tabindex="2" class="menu_hasSub menu_top menu_first">Users</a>
+                    <div class="menu_sub">
+                        <ul class="menu_sub_">
+                            <li><a href="#">Users</a></li>
+                            <li><a href="#">Add new</a></li>
+                            <li><a href="#">Your profile</a></li>
+                        </ul>
+                    </div>                    
+                </li>
+			</ul>
+			<!--#viewport-->
+			<div id="scViewport">
+				<div id="scTip">
+                    Today is <span class="year">2010</span>-<span class="month">10</span>-<span class="date">16</span>, 
+                    totally <a href="#"><span class="cnt_story">10</span></a> new stories found in <a href="#"><span class="cnt_category">5</span></a> categories.
+				</div>
+				<div id="scViewport_" class="clear">
+					<div class="icon32"></div>
+					<h2 id="scSubhead">Stories<a class="btn" href="#">Add new</a></h2>
+					<div id="storyList">
+						<div class="row acts1">
+							<ul class="l">
+								<li><a href="#" class="now">All<span class="cnt">&nbsp;(20)&nbsp;</span></a> | </li>
+								<li><a href="#">Published<span class="cnt">&nbsp;(10)&nbsp;</span></a></li>
+							</ul>
+							<div class="r sbox">
+								<label for="txtStorySearch" class="txtForScreen">Search Stories</label>
+								<input type="text" id="txtStorySearch" name="sterm"/>
+								<input type="submit" class="btn" value="Search Stories"/>	
+							</div>
+						</div>
+                        <div class="row tablenav">
+                            <div class="actions">
+                                <select name="action">
+                                    <option selected="selected" value="-1">Bulk Actions</option>
+                                    <option value="edit">Edit</option>
+                                    <option value="trash">Move to Trash</option>
+                                </select>
+                                <input type="submit" class="btn action" id="doaction" name="doaction" value="Apply"/>
+                                <select name="m">
+                                    <option value="0" selected="selected">Show all dates</option>
+                                    <option value="201009">September 2010</option>
+                                    <option value="201008">August 2010</option>
+                                    <option value="201007">July 2010</option>
+                                </select>
+                                <select class="postform" id="cat" name="cat">
+                                    <option value="0">View all categories</option>
+                                    <option value="21">Guitar</option>
+                                    <option value="1">Life</option>
+                                    <option value="3">Music</option>
+                                </select>
+                                <input type="submit" class="btn" value="Filter" id="btnFilter">
+                            </div>
+                        </div>
+						<div class="row">
+							<table class="widefat post fixed" cellspacing="0">
+								<thead>
+									<tr>
+										<th scope="col" id="cb" class="manage-column column-cb check-column" style=""><input type="checkbox" /></th>
+										<th scope="col" id="title" class="manage-column column-title" style="">Title</th>
+										<th scope="col" id="author" class="manage-column column-author" style="">Author</th>
+										<th scope="col" id="categories" class="manage-column column-categories" style="">Categories</th>
+										<th scope="col" id="tags" class="manage-column column-tags" style="">Tags</th>
+										<th scope="col" id="comments" class="manage-column column-comments num" style=""><div class="vers"><img alt="Comments" src="http://www.vivasky.com/wp-admin/images/comment-grey-bubble.png" /></div></th>
+										<th scope="col" id="date" class="manage-column column-date" style="">Date</th>
+										<th scope="col" id="featured" class="manage-column column-featured" style="">Featured</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr id='post-117' class='alt author-self status-publish iedit' valign="top">
+										<th scope="row" class="check-column"><input type="checkbox" name="post[]" value="117" /></th>
+										<td class="post-title column-title">
+											<a class="row-title" href="#" title=""><strong>Story post 1</strong></a>
+										</td>
+										<td class="author column-author"><a href="#">levin</a></td>
+										<td class="categories column-categories"><a href='#'> Category1</a></td>
+										<td class="tags column-tags"><a href='#'> Tag1</a></td>
+										<td class="comments column-comments">
+											<div class="post-com-count-wrapper">
+												<a href='#' title='0 pending' class='post-com-count'><span class='comment-count'>1</span></a>		
+											</div>
+										</td>
+										<td class="date column-date"><abbr title="2010/09/03 12:06:24 AM">2010/09/03</abbr><br />Published</td>					
+										<td class="featured column-featured"><div class="featured_post"><a id="featured-117"  class="off"></a></div></td>
+									</tr>
+									<tr id='post-117' class='author-self status-publish iedit' valign="top">
+										<th scope="row" class="check-column"><input type="checkbox" name="post[]" value="117" /></th>
+										<td class="post-title column-title">
+											<a class="row-title" href="#" title=""><strong>Story post 1</strong></a>
+										</td>
+										<td class="author column-author"><a href="#">levin</a></td>
+										<td class="categories column-categories"><a href='#'> Category1</a></td>
+										<td class="tags column-tags"><a href='#'> Tag1</a></td>
+										<td class="comments column-comments">
+											<div class="post-com-count-wrapper">
+												<a href='#' title='0 pending' class='post-com-count'><span class='comment-count'>1</span></a>		
+											</div>
+										</td>
+										<td class="date column-date"><abbr title="2010/09/03 12:06:24 AM">2010/09/03</abbr><br />Published</td>					
+										<td class="featured column-featured"><div class="featured_post"><a id="featured-117"  class="off"></a></div></td>
+									</tr>
+									<tr id='post-117' class='alt author-self status-publish iedit' valign="top">
+										<th scope="row" class="check-column"><input type="checkbox" name="post[]" value="117" /></th>
+										<td class="post-title column-title">
+											<a class="row-title" href="#" title=""><strong>Story post 1</strong></a>
+										</td>
+										<td class="author column-author"><a href="#">levin</a></td>
+										<td class="categories column-categories"><a href='#'> Category1</a></td>
+										<td class="tags column-tags"><a href='#'> Tag1</a></td>
+										<td class="comments column-comments">
+											<div class="post-com-count-wrapper">
+												<a href='#' title='0 pending' class='post-com-count'><span class='comment-count'>1</span></a>		
+											</div>
+										</td>
+										<td class="date column-date"><abbr title="2010/09/03 12:06:24 AM">2010/09/03</abbr><br />Published</td>					
+										<td class="featured column-featured"><div class="featured_post"><a id="featured-117"  class="off"></a></div></td>
+									</tr>
+									<tr id='post-117' class='author-self status-publish iedit' valign="top">
+										<th scope="row" class="check-column"><input type="checkbox" name="post[]" value="117" /></th>
+										<td class="post-title column-title">
+											<a class="row-title" href="#" title=""><strong>Story post 1</strong></a>
+										</td>
+										<td class="author column-author"><a href="#">levin</a></td>
+										<td class="categories column-categories"><a href='#'> Category1</a></td>
+										<td class="tags column-tags"><a href='#'> Tag1</a></td>
+										<td class="comments column-comments">
+											<div class="post-com-count-wrapper">
+												<a href='#' title='0 pending' class='post-com-count'><span class='comment-count'>1</span></a>		
+											</div>
+										</td>
+										<td class="date column-date"><abbr title="2010/09/03 12:06:24 AM">2010/09/03</abbr><br />Published</td>					
+										<td class="featured column-featured"><div class="featured_post"><a id="featured-117"  class="off"></a></div></td>
+									</tr>
+									<tr id='post-117' class='alt author-self status-publish iedit' valign="top">
+										<th scope="row" class="check-column"><input type="checkbox" name="post[]" value="117" /></th>
+										<td class="post-title column-title">
+											<a class="row-title" href="#" title=""><strong>Story post 1</strong></a>
+										</td>
+										<td class="author column-author"><a href="#">levin</a></td>
+										<td class="categories column-categories"><a href='#'> Category1</a></td>
+										<td class="tags column-tags"><a href='#'> Tag1</a></td>
+										<td class="comments column-comments">
+											<div class="post-com-count-wrapper">
+												<a href='#' title='0 pending' class='post-com-count'><span class='comment-count'>1</span></a>		
+											</div>
+										</td>
+										<td class="date column-date"><abbr title="2010/09/03 12:06:24 AM">2010/09/03</abbr><br />Published</td>					
+										<td class="featured column-featured"><div class="featured_post"><a id="featured-117"  class="off"></a></div></td>
+									</tr>																								
+								</tbody>
+								<tfoot>
+									<tr>
+										<th scope="col"  class="manage-column column-cb check-column" style=""><input type="checkbox" /></th>
+										<th scope="col"  class="manage-column column-title" style="">Title</th>
+										<th scope="col"  class="manage-column column-author" style="">Author</th>
+										<th scope="col"  class="manage-column column-categories" style="">Categories</th>
+										<th scope="col"  class="manage-column column-tags" style="">Tags</th>
+										<th scope="col"  class="manage-column column-comments num" style=""><div class="vers"><img alt="Comments" src="http://www.vivasky.com/wp-admin/images/comment-grey-bubble.png" /></div></th>
+										<th scope="col"  class="manage-column column-date" style="">Date</th>
+										<th scope="col"  class="manage-column column-featured" style="">Featured</th>
+									</tr>
+								</tfoot>
+							</table>							
+						</div>
+                        <div class="row tablenav">
+                            <div class="actions">
+                                <select name="action">
+                                    <option selected="selected" value="-1">Bulk Actions</option>
+                                    <option value="edit">Edit</option>
+                                    <option value="trash">Move to Trash</option>
+                                </select>
+                                <input type="submit" class="btn action" name="doaction" value="Apply"/>
+                            </div>
+                        </div>																
+					</div>			
+				</div><!--#viewport_-->
+			</div>
+			<!--/#viewport-->
+		</div>
+		<!--/#scMian-->
+		<!--#scfoot-->
+		<div id="scFoot" class="clear">
+			<div class="r">Version 2010.10.16</div>
+		</div>		
+	</body>
+</html>
