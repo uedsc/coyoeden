@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+		<title>Conflicts tests between jquery and prototype</title>
+		<!--test for compability-->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1/prototype.js"></script>
+		<!--/test for compability-->	
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> 		
+		<script type="text/javascript">
+			jQuery.noConflict();
+		</script>
+	
+		<style type="text/css">
+			.row{margin:10px auto;min-height:50px;height:auto !important;height:50px;width:980px;padding:10px;}
+			
+			#contentA .row{background:#dfdfdf;}
+			#contentA #testDiv{background:#999;color:#fff;}
+			#contentA .r_on{font-weight:bold;}
+		</style> 		
+	</head>
+	<body>
+		<div id="contentA">
+			<h1 class="row">How to reproduce the issue?->Replace an element with its own cloned copy!!!</h1>
+			<h2 class="row">This weird bug accurs when using prototype along with jquery.</h2>
+			<h3 class="row">Mouse hover the block below,you can see the execption message 'this._each is not a function' via firebug's console.</h3>
+			<div id="testDiv" class="row">div#testDiv for test</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	//<![CDATA[
+		jQuery(document).ready(function($){
+			//1,event test
+			var $test=jQuery("#testDiv").mouseover(function(e){
+				jQuery(this).toggleClass("r_on","");
+			});
+			//2,method test-replaceWith
+			$test.replaceWith($test.clone(true));
+		
+		});
+	//]]>
+	</script>
+ 
+</html>

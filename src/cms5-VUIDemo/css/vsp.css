@@ -1,54 +1,61 @@
-/* Styles for vsp.html */
-body{background:#000;}
-a{color:blue;}
-.alert{color:red;}
+/* 可视化专题弹框样式 */
+/* The Window's CSS z-index value is respected (takes priority). If none is supplied,
+	the Window's z-index value will be set to 3000 by default (via jqModal.js). */
+.cedt_jqm {display: none;position: absolute;top: 17%;left: 50%;margin-left: -300px;border: 1px solid #000;background:#F0F0EE;}
+.cedt_jqmovl { background-color: #ccc; }
+/* Background iframe styling for IE6. Prevents ActiveX bleed-through (<select> form elements, etc.) */
+* iframe.cedt_jqm {position:absolute;top:0;left:0;z-index:-1;width: expression(this.parentNode.offsetWidth+'px');height: expression(this.parentNode.offsetHeight+'px');}
+/* 标题 */
+.cedt_jqm .cedt_hd{position:relative;height: 14px;border-bottom:1px solid #666;text-align:left;padding:3px 5px 2px 9px;color:#F0F0EE;background:url(../images/titlebg.jpg) repeat-x;line-height:normal;}
+.cedt_jqm .cedt_title{font-weight:bold; vertical-align:middle; }
+.cedt_jqm .cedt_draghdl{position:absolute;display:block;top:3px;left:50%;margin-left:-7.5px;width:15px;height:14px;background: url(../images/jqtitlebg.jpg);cursor:move;}
+/* 右上角关闭 */
+.cedt_jqm .cedt_hd .cedt_jqmcls{position:absolute;display:block;background: url(../images/close.jpg) no-repeat top; width:15px; height:13px;top:3px;right:5px;vertical-align:middle;}
+.cedt_jqm .cedt_hd .cedt_jqmcls:hover{background-position: bottom;}
+/* 按钮栏 */
+.cedt_jqm .cedt_btnWrap{height:25px;margin:10px auto;width:105px;}
+.cedt_jqm .cedt_btn {display:block;width: 45px;height: 24px;line-height:25px; background: url(../images/ybtn.gif) top;text-decoration:none;}
+.cedt_jqm .cedt_btn:hover{background-position:bottom;}
+.cedt_jqm .cedt_acts .cedt_btn{margin:0 auto;}
+
+.cedt_alert{color:red;}
 /* JQuery UI Style */
-.ui-button-text-only .ui-button-text{padding:0.2em 0.5em;color:#929292;font-size:0.9em;}
-.ui-tabs .ui-tabs-nav li a{padding:0.3em 0.6em;}
-.ui-tabs .ui-tabs-panel{padding:1em;}
+.cedt_layout .ui-button-text-only .ui-button-text{padding:0.2em 0.5em;color:#929292;font-size:0.9em;}
+.cedt_layout .ui-tabs .ui-tabs-nav li a{padding:0.3em 0.6em;}
+.cedt_layout .ui-tabs .ui-tabs-panel{padding:1em;}
 /* /JQuery UI Style*/
 
-#contentA{/*min-height:618px;height:auto !important;height:718px;*/background:#fff;padding:30px 0;}
-#contentA h2{padding:10px 30px;font-size:1.2em;background:#eee;text-align:left;margin:5px 0;}
-.chipEdt{width:465px;}
-.chipEdt .tabC{position:relative;}
-.chipEdt .row{text-align:left;}
-.chipEdt .rowTitle,.chipEdt .rowTxt{padding-top:4px;border-top:1px dashed #ccc;}
-.chipEdt .ui-widget-header{background:#eee;border:none;}
-.chipEdt .ui-tabs-nav li.last{float:right;margin-right:10px;}
-.chipEdt .ui-tabs-nav .ui-button{margin-right:0;background:#FF8400;}
-.chipEdt .elmTpl label{width:42px;text-align:center;}
-.chipEdt .elmTpl input{width:245px;border-top:2px solid #C4C4C5;border-left:2px solid #C4C4C5;}
-.chipEdt .icons{position:relative;width:96px;margin-left:3px;}
-.chipEdt .icons a{display:inline-block;border:1px solid #eee;text-decoration:none;}
-.chipEdt .icons span{display:block;font-weight:bold;font-size:0.9em;padding:0.2em 0.5em;}
-.chipEdt .color span{border-bottom:2px solid red;padding-bottom:0;}
-.chipEdt .icon{background:url("../images/pic01.jpg") no-repeat right center;}
-.chipEdt .others{position:absolute;top:20px;right:-20px;width:50px;}
-.chipEdt .others a{width:100%;padding:1px 2px 2px 5px;font-size:0.9em;}
-.chipEdt .others a:hover{background:#1F84EC;color:#fff;}
-.chipEdt .icon span{padding-right:0.6em;}
-.chipEdt .icons1{width:34px;line-height:22px;}
-.chipEdt input.ce_bb{font-weight:bold;}
-.chipEdt input.ce_cc{color:red;}
-.chipEdt .elmTpl .ce_checklink{margin-top:5px;margin-left:3px;cursor:pointer;}
-.chipEdt .acts{margin-bottom:10px;}
-.chipEdt .hide{display:none;}
-.chipEdt textarea{width:100%;height:180px;}
-.chipEdt .uppic{position:absolute;display:none;top:10px;border:2px solid #eee;width:92%;z-index:20;background:#f4f4f4;text-align:left;padding:5px;}
-.chipEdt .upp_t{cursor:move;}
-.chipEdt .upp_m{margin:10px 0;} 
-.chipEdt .upp_m input{background:#fff;width:200px;}
-.chipEdt .flashTip,.jqmFlash .btnSort{display:none;}
-.chipEdt .elmImg{display:none;}
+.cedt_layout{width:465px;}
+.cedt_layout .cedt_tabC{position:relative;}
+.cedt_layout .cedt_row{text-align:left;}
+.cedt_layout .cedt_rowTitle,.cedt_layout .cedt_rowTxt{padding-top:4px;border-top:1px dashed #ccc;}
+.cedt_layout .ui-widget-header{background:#eee;border:none;}
+.cedt_layout .ui-tabs-nav li.last{float:right;margin-right:10px;}
+.cedt_layout .ui-tabs-nav .ui-button{margin-right:0;background:#FF8400;}
+.cedt_layout .cedt_elmTpl label{width:42px;text-align:center;}
+.cedt_layout .cedt_elmTpl input{width:245px;border-top:2px solid #C4C4C5;border-left:2px solid #C4C4C5;}
+.cedt_layout .cedt_icons{position:relative;width:96px;margin-left:3px;}
+.cedt_layout .cedt_icons a{display:inline-block;border:1px solid #eee;text-decoration:none;}
+.cedt_layout .cedt_icons span{display:block;font-weight:bold;font-size:0.9em;padding:0.2em 0.5em;}
+.cedt_layout .cedt_color span{border-bottom:2px solid red;padding-bottom:0;}
+.cedt_layout .cedt_icon{background:url("../images/pic01.jpg") no-repeat right center;}
+.cedt_layout .cedt_others{position:absolute;top:20px;right:-20px;width:50px;}
+.cedt_layout .cedt_others a{width:100%;padding:1px 2px 2px 5px;font-size:0.9em;}
+.cedt_layout .cedt_others a:hover{background:#1F84EC;color:#fff;}
+.cedt_layout .cedt_icon span{padding-right:0.6em;}
+.cedt_layout .cedt_icons1{width:34px;line-height:22px;}
+.cedt_layout input.cedt_bb{font-weight:bold;}
+.cedt_layout input.cedt_cc{color:red;}
+.cedt_layout .cedt_elmTpl .cedt_checklink{margin-top:5px;margin-left:3px;cursor:pointer;}
+.cedt_layout .cedt_acts{margin-bottom:10px;}
+.cedt_layout .cedt_hide{display:none;}
+.cedt_layout textarea{width:100%;height:180px;}
+.cedt_layout .cedt_uppic{position:absolute;display:none;top:10px;border:2px solid #eee;width:92%;z-index:20;background:#f4f4f4;text-align:left;padding:5px;}
+.cedt_layout .cedt_upp_t{cursor:move;}
+.cedt_layout .cedt_upp_m{margin:10px 0;} 
+.cedt_layout .cedt_upp_m input{background:#fff;width:200px;}
+.cedt_layout .cedt_flashTip,.cedt_jqmFlash .cedt_btnSort{display:none;}
+.cedt_layout .cedt_elmImg{display:none;}
 /* 隐藏暂时不需要的按钮 */
-.chipEdt .btnVspCBTipAdd,.chipEdt .btnVspCBTipDel,.chipEdt .globalRes{display:none;}
+.cedt_layout .cedt_btnVspCBTipAdd,.cedt_layout .cedt_btnVspCBTipDel,.cedt_layout .cedt_globalRes{display:none;}
 
-#chipCover{position:absolute;z-index:500;border:2px solid red;background:#ffffc2;cursor:pointer;}
-
-/* 碎片 */
-.chip{width:480px;margin:0 auto;text-align:left;padding:10px;border:1px solid #eee;}
-.chip .ct{margin:20px 0;}
-.chip .pp li{float:left;display:inline;width:70px;}
-.chip .pp img{padding:1px;background:#fff;border:1px solid #ccc;}
-.chip .sort{background:red;}

@@ -29,7 +29,7 @@ var test = function() {
 	};
 	p.onFlagMEnter=function(evt){	
 		var $i=jQuery(this);
-		if($i.hasClass("on")) return;/* 在编辑某个元素时碎片会加上on */
+		if($i.hasClass("cedt_on")) return;/* 在编辑某个元素时碎片会加上on */
 		var d=p.getDim($i);
 		p._$chipCover.css({
 			opacity:0.5,
@@ -40,13 +40,13 @@ var test = function() {
 			display:'block'
 		}).one("mouseleave",function(evt){
 			p._$chipCover.hide();
-			//p._$chipCover_t.removeClass("on");
+			//p._$chipCover_t.removeClass("cedt_on");
 			//$i.bind("mouseenter",p.onFlagMEnter);
 		});
 		
 		
 		p._$chipCover_t=$i;
-		//p._$chipCover_t.addClass("on");
+		//p._$chipCover_t.addClass("cedt_on");
 	};	
 	//private area
 	p.initVar = function(opts) { 
@@ -67,14 +67,14 @@ var test = function() {
 				tabs:[1,2],
 				afterShow:function(hash,dlg){
 					//show the flash tip
-					dlg.$TabC.eq(1).find(".row").hide().filter(".flashTip").show();
+					dlg.$TabC.eq(1).find(".cedt_row").hide().filter(".cedt_flashTip").show();
 					//content of tab no2
 					chipEditor.MCE().setContent(dlg.$Chip.html());
 					dlg.$Code.val(chipEditor.MCE().getContent());
-					dlg.$CT.addClass("jqmFlash");/* 控制排序按钮的显示 */
+					dlg.$CT.addClass("cedt_jqmFlash");/* 控制排序按钮的显示 */
 					//按钮绑定
 					dlg.$BtnTest.click(function(evt){
-						alert("整体测试");
+						alert("整体测试");return false;
 					});
 					//定位编辑器位置
 					if(dlg.$Chip){
@@ -85,7 +85,9 @@ var test = function() {
 							"margin-left":"auto"
 						});					
 					};
-				}
+				},
+				onSave:function(dlg){alert("onSave");},
+				onExternal:function(dlg){alert("onExternal");}
 			});
 				return;
 			};
@@ -104,7 +106,7 @@ var test = function() {
 				/* 保存 */
 				onSave:function(dlg){alert("onSave");},
 				/* 取消 */
-				onCancel:function(dlg){alert("onCancel");},
+				onCancel:function(dlg){},
 				/* 外包 */
 				onExternal:function(dlg){alert("onExternal");},
 				/* 焦点图编辑 */

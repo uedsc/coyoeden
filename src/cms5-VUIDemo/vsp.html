@@ -6,7 +6,6 @@
 		<link rel="stylesheet" type="text/css" href="css/global1.3.css"></link>
 		<link media="all" type="text/css" href="css/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet"></link> 
 		<link rel="stylesheet" href="css/jqueryui/1.8.2/themes/flick/jquery-ui.css" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link>
 		<link rel="stylesheet" type="text/css" href="css/vsp.css"></link> 
 		<!--test for compability-->
 		<script type="text/javascript" src="http://cms5.sohu.com/js/prototype.js"></script>
@@ -23,9 +22,20 @@
 			jQuery.noConflict();
 		</script>
 		<style type="text/css">
-		/*覆盖jqModal.css*/
-		.jqmWindow{position:absolute;}
-		* html .jqmWindow{top:17%;}
+			#contentA{/*min-height:618px;height:auto !important;height:718px;*/background:#fff;padding:30px 0;}
+			#contentA h2{padding:10px 30px;font-size:1.2em;background:#eee;text-align:left;margin:5px 0;}
+			/* Styles for vsp.html */
+			body{background:#000;}
+			a{color:blue;}
+
+			#chipCover{position:absolute;z-index:500;border:2px solid red;background:#ffffc2;cursor:pointer;}
+
+			/* 碎片 */
+			.chip{width:480px;margin:0 auto;text-align:left;padding:10px;border:1px solid #eee;}
+			.chip .ct{margin:20px 0;}
+			.chip .pp li{float:left;display:inline;width:70px;}
+			.chip .pp img{padding:1px;background:#fff;border:1px solid #ccc;}
+			.chip .cedt_sort{background:red;}
 		</style> 
 	</head>
 	<body>
@@ -112,127 +122,127 @@
 		<div id="chipCover"></div>
 		<!--碎片编辑器-->
 		<!--jqModal-->
-		<div class="jqmWindow chipEdt">
-			<div class="hd clear">
-	            <h4 class="title">碎片编辑</h4>
-				<a href="#" class="jqmClose"></a>
-				<span class="draghdl"></span>
+		<div class="cedt_jqm cedt_layout">
+			<div class="cedt_hd clear">
+	            <h4 class="cedt_title">碎片编辑</h4>
+				<a href="#" class="cedt_jqmcls"></a>
+				<span class="cedt_draghdl"></span>
 	        </div>
-			<div class="ct">
-				<div class="jqmCT">
+			<div class="cedt_ct">
+				<div class="cedt_jqmCT">
 					<ul>
-						<li><a class="tabM" href="#wVsp_tab1">可视化修改</a></li>
-						<li><a class="tabM" href="#wVsp_tab2">代码修改</a></li>
-						<li><a class="tabM" href="#wVsp_tab3">修改记录</a></li>
-						<li class="last"><a class="tabM hidden" href="#wVsp_tab4">排序状态</a><button class="btnSort">排序状态</button></li>
+						<li><a class="cedt_tabM" href="#wVsp_tab1">可视化修改</a></li>
+						<li><a class="cedt_tabM" href="#wVsp_tab2">代码修改</a></li>
+						<li><a class="cedt_tabM" href="#wVsp_tab3">修改记录</a></li>
+						<li class="last"><a class="cedt_tabM hidden" href="#wVsp_tab4">排序状态</a><button class="cedt_btnSort">排序状态</button></li>
 					</ul>
-					<div id="wVsp_tab1" class="tabC">
+					<div id="wVsp_tab1" class="cedt_tabC">
 						<!--元素模板.文字链-->
-						<div class="elmTpl elmA"><strong class="alert">行修改状态</strong><em>请选择行</em></div>
-						<div class="elmTpl elmImg"><strong class="alert">行修改状态</strong><em>请选择行</em></div>
-						<div class="uppic">
-							<div class="upp_t"><strong>上传图片</strong></div>
-							<div class="upp_m">
+						<div class="cedt_elmTpl cedt_elmA"><strong class="cedt_alert">行修改状态</strong><em>请选择行</em></div>
+						<div class="cedt_elmTpl cedt_elmImg"><strong class="cedt_alert">行修改状态</strong><em>请选择行</em></div>
+						<div class="cedt_uppic">
+							<div class="cedt_upp_t"><strong>上传图片</strong></div>
+							<div class="cedt_upp_m">
 								<input type="file" name="uppic" size="35"/>
 							</div>
-							<div class="upp_btn">
-								<button class="ce_up">上传</button>
-								<button class="ce_cls">取消</button>
+							<div class="cedt_upp_btn">
+								<button class="cedt_up">上传</button>
+								<button class="cedt_cls">取消</button>
 							</div>
 						</div>
 					</div>
-					<div id="wVsp_tab2" class="tabC">
-						<div class="row searchTip">
-							<input type="text" class="txtVspCS" name="vspCS"/>
-							<button class="btnVspCS">搜索</button>
-							<button class="btnVspCBTipAdd">加Blog纸条</button>
-							<button class="btnVspCBTipDel">删Blog纸条</button>
+					<div id="wVsp_tab2" class="cedt_tabC">
+						<div class="cedt_row cedt_searchTip">
+							<input type="text" class="cedt_txtVspCS" name="vspCS"/>
+							<button class="cedt_btnVspCS">搜索</button>
+							<button class="cedt_btnVspCBTipAdd">加Blog纸条</button>
+							<button class="cedt_btnVspCBTipDel">删Blog纸条</button>
 						</div>
-						<div class="row flashTip">
-							<a href="#" class="btnFlashEdit"><strong>点击进入编辑器的可视化修改状态>></strong></a>
+						<div class="cedt_row cedt_flashTip">
+							<a href="#" class="cedt_btnFlashEdit"><strong>点击进入编辑器的可视化修改状态>></strong></a>
 						</div>
-						<textarea class="txtVspC" name="vspC"></textarea>
+						<textarea class="cedt_txtVspC" name="vspC"></textarea>
 					</div>
-					<div id="wVsp_tab3" class="tabC">
+					<div id="wVsp_tab3" class="cedt_tabC">
 						loading...
 					</div>
-					<div  id="wVsp_tab4" class="tabC">
-						<strong class="alert">碎片交换状态</strong>
+					<div  id="wVsp_tab4" class="cedt_tabC">
+						<strong class="cedt_alert">碎片交换状态</strong>
 						<em>请选择要交换的链接</em>
 					</div>
-					<div class="acts clear">
-						<a href="#" class="test">整体测试</a>
-						<a href="#" class="save">保存碎片</a>
-						<a href="#" class="cancel">取消</a>
-						<a href="#" class="globalRes hide">统一资源库</a>
-						<a href="#" class="external hide">外包</a>
+					<div class="cedt_acts clear">
+						<a href="#" class="cedt_test">整体测试</a>
+						<a href="#" class="cedt_save">保存碎片</a>
+						<a href="#" class="cedt_cancel">取消</a>
+						<a href="#" class="cedt_globalRes cedt_hide">统一资源库</a>
+						<a href="#" class="cedt_external cedt_hide">外包</a>
 					</div>
 				</div>
 			</div>	
 		</div>
 		<!--/jqModal-->
-		<div id="elmATpl" class="hidden">
-			<div class="row rowTxt clear">
+		<div id="cedt_elmATpl" class="hidden">
+			<div class="cedt_row cedt_rowTxt clear">
 				<label class="l">文字:</label>
 				<input type="text" class="txt l"/>
-				<div class="r icons1">
-					<a href="#" class="btnDel btnDelTxt"><img src="images/icn_del.gif"/></a>
+				<div class="r cedt_icons1">
+					<a href="#" class="cedt_btnDel cedt_btnDelTxt"><img src="images/icn_del.gif"/></a>
 				</div>
 			</div>
-			<div class="row rowTxt0 clear">
+			<div class="cedt_row cedt_rowTxt0 clear">
 				<label class="l">文字:</label>
-				<input type="text" class="txt l"/>
+				<input type="text" class="cedt_txt l"/>
 			</div>				
-			<div class="row rowTitle clear">
+			<div class="cedt_row cedt_rowTitle clear">
 				<label class="l">标题:</label>
-				<input type="text" class="tt l"/>
-				<div class="l icons clear">
-					<a href="#" class="bold"><span>B</span></a>
-					<a href="#" class="color"><span>A</span></a>
-					<a href="#" class="icon"><span>图标</span></a>
-					<ul class="others hidden">
-						<li><a href="#" class="videoL">视频前</a></li>
-						<li><a href="#" class="videoR">视频后</a></li>
+				<input type="text" class="cedt_tt l"/>
+				<div class="l cedt_icons clear">
+					<a href="#" class="cedt_bold"><span>B</span></a>
+					<a href="#" class="cedt_color"><span>A</span></a>
+					<a href="#" class="cedt_icon"><span>图标</span></a>
+					<ul class="cedt_others hidden">
+						<li><a href="#" class="cedt_videoL">视频前</a></li>
+						<li><a href="#" class="cedt_videoR">视频后</a></li>
 					</ul>
 				</div>
-				<div class="r icons1">
-					<a href="#" class="btnDel btnDelA"><img src="images/icn_del.gif"/></a>
-					<a href="#" class="btnAdd"><img src="images/icn_add.gif"/></a>
+				<div class="r cedt_icons1">
+					<a href="#" class="cedt_btnDel cedt_btnDelA"><img src="images/icn_del.gif"/></a>
+					<a href="#" class="cedt_btnAdd"><img src="images/icn_add.gif"/></a>
 				</div>
 			</div>
-			<div class="row rowTitle0 clear">
+			<div class="cedt_row cedt_rowTitle0 clear">
 				<label class="l">标题:</label>
 				<input type="text" class="tt l"/>
 			</div>			
-			<div class="row rowLnk clear">
+			<div class="cedt_row cedt_rowLnk clear">
 				<label class="l">链接:</label>
-				<input type="text" class="lnk l"/>
-				<img src="images/icon_externalLinkG.gif" width="12" height="11" class="l ce_checklink"/>
+				<input type="text" class="cedt_lnk l"/>
+				<img src="images/icon_externalLinkG.gif" width="12" height="11" class="l cedt_checklink"/>
 			</div>				
 		</div>
-		<div id="elmImgTpl" class="hidden">
-			<div class="row rowImg clear">
+		<div id="cedt_elmImgTpl" class="hidden">
+			<div class="cedt_row cedt_rowImg clear">
 				<label class="l">图片:</label>
-				<input type="text" class="imgSrc l"/>
-				<div class="icons l clear">
-					<a href="#" class="btnUpl"><span>上传</span></a>
+				<input type="text" class="cedt_imgSrc l"/>
+				<div class="cedt_icons l clear">
+					<a href="#" class="cedt_btnUpl"><span>上传</span></a>
 				</div>
-				<div class="r icons1">
-					<a href="#" class="btnDel"><img src="images/icn_del.gif"/></a>
-					<a href="#" class="btnAdd"><img src="images/icn_add.gif"/></a>
+				<div class="r cedt_icons1">
+					<a href="#" class="cedt_btnDel"><img src="images/icn_del.gif"/></a>
+					<a href="#" class="cedt_btnAdd"><img src="images/icn_add.gif"/></a>
 				</div>						
 			</div>
-			<div class="row rowALT clear">
+			<div class="cedt_row cedt_rowALT clear">
 				<label class="l">ALT:</label>
-				<input type="text" class="imgAlt l"/>
+				<input type="text" class="cedt_imgAlt l"/>
 			</div>
-			<div class="row rowLnk clear">
+			<div class="cedt_row cedt_rowLnk clear">
 				<label class="l">链接:</label>
-				<input type="text" class="imgLnk l"/>
-				<img src="images/icon_externalLinkG.gif" width="12" height="11" class="l ce_checklink"/>
+				<input type="text" class="cedt_imgLnk l"/>
+				<img src="images/icon_externalLinkG.gif" width="12" height="11" class="l cedt_checklink"/>
 			</div>						
 		</div>
-		<textarea id="tinymce1" name="tinymce" class="mceEditor hidden" rows="10" cols="60"></textarea>
+		<textarea id="tinymce1" name="tinymce" class="cedt_mceEditor hidden" rows="10" cols="60"></textarea>
 		<script type="text/javascript" src="js/chipEditor.js"></script>
 		<script type="text/javascript">	
 		//<![CDATA[
