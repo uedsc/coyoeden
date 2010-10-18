@@ -181,10 +181,14 @@
 	        fi._$curTab = fi._$tabs.removeClass("now").eq(i).addClass("now");
 	        fi._$curImg = fi._$curTab.find("img").stop(true, true).animate({ opacity: 1 }, 200,cbk);
 			/* 右侧文字列表滚动交互 */
-			this.roll(fi,i);		
-	        fi._curLink = fi._$curTab.find("a").attr("href");
+			this.roll(fi,i);
+			//当前链接
+			fi._$curLink=fi._$curTab.find("a");		
+	        fi._curLink = fi._$curLink.attr("href");
 	        //回填数据
-	        fi._$img.attr("src", fi._$curImg.attr("src")).css("opacity", 0).stop(true, true).animate({ opacity: 1 }, 200);		
+			fi._curBImg=fi._$curLink.attr("rel")||"";
+			fi._curBImg=fi._curBImg==""?fi._$curImg.attr("src"):fi._curBImg;
+	        fi._$img.attr("src", fi._curBImg).css("opacity", 0).stop(true, true).animate({ opacity: 1 }, 200);		
 			
 		},
 	    alt: function (fi, i, cbk) {
