@@ -336,6 +336,10 @@ width:10%;
 #scFoot{
 	border-style:solide;
 	border-width:1px;
+	position:absolute;
+	left:0;
+	bottom:0;
+	width:100%;
 }
 #scFoot .r{
 	line-height:15px;
