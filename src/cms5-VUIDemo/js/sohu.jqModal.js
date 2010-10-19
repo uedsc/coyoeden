@@ -71,8 +71,8 @@
 	//Static methods or properties used by the jqModal plugin
 	$.jqm = {
 		hash:{},
-		open:function(s,t){
-			var h=H[s],c=h.c,cc='.'+c.closeClass,
+		open:function(s0,t){
+			var h=H[s0],c=h.c,cc='.'+c.closeClass,
 			z=(parseInt(h.w.css('z-index'))),z=(z>0)?z:3000,
 			o=$('<div></div>').css({
 				height:'100%',
@@ -92,7 +92,7 @@
  			if(c.modal){
 				if(!A[0])
 					L('bind');
-				A.push(s);
+				A.push(s0);
 			}else if(c.overlay > 0)
 				h.w.jqmAddClose(o);
  			else 
@@ -114,7 +114,7 @@
 						c.onLoad.call(this,h);
 					if(cc)
 						h.w.jqmAddClose($(cc,h.w));
-						e(h);
+					e(h);
 				});
 			}else if(cc)
 				h.w.jqmAddClose($(cc,h.w));
@@ -126,8 +126,8 @@
 			e(h);
 			return F;
 		},//open
-		close:function(s){
-			var h=H[s];
+		close:function(s1){
+			var h=H[s1];
 			//already in close state
 			if(!h.a)return F;
 			//not in close state
@@ -183,21 +183,23 @@
 	},
 	hs=function(w,t,c){
 		return w.each(function(){
-			var s=this._jqm;
+			var s2=this._jqm;
 			$(t).each(function(){
- 				if(!this[c]){
+				if(!this[c]){
 					this[c]=[];
 					$(this).click(function(){
 						for(var i in {jqmShow:1,jqmHide:1}){
-							for(var s in this[i]){
-								if(H[this[i][s]])
-									H[this[i][s]].w[i](this);
-								return F;									
+							if(!this[i]) continue;
+							for(var i0=0;i0<this[i].length;i0++){
+								if(H[this[i][i0]]&&H[this[i][i0]].w)
+									H[this[i][i0]].w[i](this);
+								return F;
+									
 							};//for1					
 						};//for0
 					});//click
-				};//if
-				this[c].push(s);
+				};//if				
+				this[c].push(s2);
 			});//each
 		});//return
 	};//hs
