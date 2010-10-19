@@ -4,7 +4,7 @@
 .cedt_jqm {display: none;position: absolute;top: 17%;left: 50%;margin-left: -300px;border: 1px solid #000;background:#F0F0EE;}
 .cedt_jqmovl { background-color: #ccc; }
 /* Background iframe styling for IE6. Prevents ActiveX bleed-through (<select> form elements, etc.) */
-* iframe.cedt_jqm {position:absolute;top:0;left:0;z-index:-1;width: expression(this.parentNode.offsetWidth+'px');height: expression(this.parentNode.offsetHeight+'px');}
+* iframe.jqm {position:absolute;top:0;left:0;z-index:-1;width: expression(this.parentNode.offsetWidth+'px');height: expression(this.parentNode.offsetHeight+'px');}
 /* БъЬт */
 .cedt_jqm .cedt_hd{position:relative;height: 14px;border-bottom:1px solid #666;text-align:left;padding:3px 5px 2px 9px;color:#F0F0EE;background:url(../images/titlebg.jpg) repeat-x;line-height:normal;}
 .cedt_jqm .cedt_title{font-weight:bold; vertical-align:middle; }
