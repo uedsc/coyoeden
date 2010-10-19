@@ -81,7 +81,7 @@
 	        });
 	
 	        fi.$d.find(".fi_player_c").click(function (e) {
-	            window.open(fi._curLink);
+	            window.open(fi._curLink);return false;
 	        });
 	    },
 		/**
