@@ -1,5 +1,9 @@
 .txtR{text-align:right;}
 .btn{font-style:normal;font-weight:normal;}
+.btn_g1{
+	font-weight:bold;
+	text-shadow:0 -1px 0 rgba(0, 0, 0, 0.3);
+}
 strong,a.now,.widefat th{font-weight:bold;}
 /* 22px */
 #sch_head{font-size:167%;}
@@ -36,3 +40,6 @@ strong,a.now,.widefat th{font-weight:bold;}
 /* ============= stories.html================== */
 #storyList .acts1 li{font-size:85%;}
 #storyList .acts1 span.cnt{font-weight:normal;}
+/* ============= story_add.html =============== */
+#ste_title_c,.bigipt{font-size:1.7em;}
+
