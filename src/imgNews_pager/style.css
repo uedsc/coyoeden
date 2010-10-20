@@ -1,0 +1,41 @@
+body{background:url(images/bg01.gif) repeat-x top}
+em{font-style:normal}
+.footer,.line{height:1px;font-size:0px;margin:0 auto;clear:both;overflow:hidden}
+
+.pp li{float:left;display:inline;width:100%}
+.list14 li{background:url(http://images.sohu.com/uiue/dot.gif) no-repeat;}
+
+#location{height:49px;padding-top:15px;text-align:left;color:#000;line-height:28px}
+#location a{color:#000;text-decoration:underline}
+#location img{float:left;margin-right:8px}
+
+#nav{height:40px}
+#nav .left{width:400px}
+#nav .right{width:260px}
+
+#nav .left li{float:left;display:inline;width:100px;height:28px;padding-top:12px;margin-left:8px;background:url(images/bg02.gif);text-align:left;font:14px/18px "ËÎÌו"}
+#nav .left li img{float:left;margin:0 4px 0 8px}
+#nav .left .now{background:url(images/bg03.gif);font-weight:bold}
+
+#nav .right li{float:left;line-height:24px}
+#nav .right .wdA{width:150px}
+#nav .right .wdA input{float:left}
+#nav .right li span{float:left;margin-right:6px}
+#nav .right .wdB img{float:left;margin-top:4px}
+
+#contentA{margin:0 auto 20px}
+
+.pages{margin:30px auto 0}
+.pages a{display:inline-block;height:14px;margin:0 2px;padding:5px 8px 2px;border:1px #9AAFE4 solid;line-height:14px;color:#3468BB}
+
+
+#contentA .pp{width:948px;margin:0 auto}
+#contentA .pp li{width:227px;height:244px;padding-top:13px;margin:20px 4px 0;border:1px #E6E6E6 solid}
+#contentA .pp li a{color:#004276}
+#contentA .pp li a:hover{color:#C00}
+#contentA .pp li span{display:block;height:170px}
+#contentA .pp p{width:156px;margin:12px auto 0;line-height:18px}
+#contentA .pp p em{display:block;margin:2px auto 0;color:#999}
+#contentA .pp .libg{background:url(images/bg05.gif) repeat-x bottom;cursor:pointer}
+
+
