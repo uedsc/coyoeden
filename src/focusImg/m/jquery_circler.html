@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+		<title>jquery plugin-Circle silder</title>
+		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script> 
+		<script type="text/javascript" src="js/jquery.circler.js"></script>
+		<style type="text/css">
+			body{background:#000;}
+			.wrap{width:980px;margin:20px auto;}
+			
+			#contentA{height:500px;}
+			.cclCanvas{position:relative;width:560px;height:100%;margin:0 auto;}
+			.ccl_item{position:absolute;background:#999;width:80px;height:100px;}
+			.ccl_item img{width:80px;height:100px;padding:2px;}
+			.ccl_item:hover img{background:#fff;}
+			.ccl_hot img{background:red;}
+		</style> 
+	</head>
+	<body>
+		<div id="contentA" class="wrap">
+			<div id="cclCanvas1" class="cclCanvas">
+				
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	//<![CDATA[
+		$("#cclCanvas1").circler({iDia:500,iDivide:12,data:[
+			{img:'img/pic120x165_1.gif'},
+			{img:'img/pic120x165_2.gif'},
+			{img:'img/pic120x165_3.gif'},
+			{img:'img/pic120x165_4.gif'},
+			{img:'img/pic120x165_5.gif'},
+			{img:'img/pic120x165_6.gif'},
+			{img:'img/pic120x165_1.gif'},
+			{img:'img/pic120x165_2.gif'},
+			{img:'img/pic120x165_3.gif'},
+			{img:'img/pic120x165_4.gif'},
+			{img:'img/pic120x165_5.gif'},
+			{img:'img/pic120x165_6.gif'}
+		]});
+	//]]>
+	</script>
+ 
+</html>
