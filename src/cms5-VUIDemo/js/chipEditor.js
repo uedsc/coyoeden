@@ -43,6 +43,10 @@ var chipEditor = function() {
 			mode:'specific_textareas',
 			editor_selector:'cedt_mceEditor',
 			theme:'simple',
+			language: "zh",
+			convert_urls : false,
+			remove_trailing_nbsp: false,
+			extended_valid_elements: "link[id|rel|type|href],style[id|type],align[left|center|right|middle]",
 			oninit:function(){
 				tinymce.activeEditor.hide();
 			}
