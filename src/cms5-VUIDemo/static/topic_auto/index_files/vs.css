@@ -1,0 +1,78 @@
+/*
+	Simple skinny form style
+	@Author levinhuang
+	@Website http://www.vivasky.com
+*/
+/* reset-add this if you don't get a global reset.css */
+/*
+p, h1, form, button {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+*/
+/* /reset-remove if you got a global reset.css */
+
+.spacer {
+    clear: both;
+    height: 1px;
+}
+/* ----------- .skformx ----------- */
+.skform {
+	margin: 0 auto;
+    width: 400px;
+    padding: 14px;
+    border: solid 2px #DEDEDE;
+	text-align:left;
+}
+.skform h1,.skform h2,.skform .title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.skform p {
+    font-size: 11px;
+    color: #666666;
+    margin-bottom: 20px;
+    border-bottom: solid 1px #dedede;
+    padding-bottom: 10px;
+}
+.skform label {
+    display: block;
+    font-weight: bold;
+    text-align: right;
+    width: 140px;
+    float: left;
+}
+.skform .small {
+    color: #666666;
+    display: block;
+    font-size: 11px;
+    font-weight: normal;
+    text-align: right;
+    width: 100%;
+}
+.skform .alert{color:red;}
+.skform .field {
+    float: left;
+    width: 200px;
+    margin: 2px 0 30px 10px;
+}
+.skform .acts{text-align:center;clear: both;}
+.skform button {
+	margin-top:-10px;
+    /*margin-left: 150px;*/
+    background: #888888;
+    color: #FFFFFF;
+    border: solid 1px #666666;
+    font-size: 11px;
+    font-weight: bold;
+	text-align:center;
+    padding: 4px 6px;
+	cursor:pointer;
+}
+/* ----------- .skformx ----------- */
+.skformx {border-color:#b7ddf2;background: #ebf4fb;}
+.skformx p {border-color:#b7ddf2;}
+.skformx .field {font-size: 12px;padding: 4px 2px;border: solid 1px #aacfe4;margin-bottom:20px;}
+.skformx button {background: #ccc;border-color:#f4f4f4;}

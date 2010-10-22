@@ -49,7 +49,7 @@
 .cedt_layout .cedt_elmTpl .cedt_checklink{margin-top:5px;margin-left:3px;cursor:pointer;}
 .cedt_layout .cedt_acts{margin-bottom:10px;}
 .cedt_layout .cedt_hide{display:none;}
-.cedt_layout textarea{width:100%;height:180px;}
+.cedt_layout textarea{width:100%;height:280px;}
 .cedt_layout .cedt_uppic{position:absolute;display:none;top:10px;border:2px solid #eee;width:92%;z-index:20;background:#f4f4f4;text-align:left;padding:5px;}
 .cedt_layout .cedt_upp_t{cursor:move;}
 .cedt_layout .cedt_upp_m{margin:10px 0;} 

@@ -9,28 +9,26 @@
 		<link rel="stylesheet" type="text/css" href="css/layout.css"></link> 
 		<link type="text/css" rel="stylesheet" href="css/index.css"></link> 
 		<link rel="stylesheet" type="text/css" href="css/jqModal.css"></link>
-		<link rel="stylesheet" type="text/css" href="css/dialog.css"></link> 
-		<link rel="stylesheet" type="text/css" href="css/vs.skinform.css"></link> 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
-		<!--<script src="js/jquery-1.4.2.js" type="text/javascript"></script>--> 
-		<!--<script type="text/javascript" src="js/jquery-ui.min.js"></script>-->  
-		<script src="js/jquery.json-2.2.min.js" type="text/javascript"></script> 
+		<link rel="stylesheet" type="text/css" href="css/dialog.css"></link>
+		<script type="text/javascript" src="js/jquery-1.4.2.js"></script> 
+		<script type="text/javascript" src="js/jquery.tmpl.min.js"></script> 
+		<script type="text/javascript" src="js/jquery-ui.min.js"></script>  
+		<script type="text/javascript" src="js/jquery.json-2.2.min.js"></script> 
 		<script type="text/javascript" src="js/sohu.jqModal.js"></script>
 		<script type="text/javascript" src="js/jquery.icolor.js"></script> 
-		<script src="js/sohu.stringUtils.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/sohu.stringUtils.js"></script>
 		<script type="text/javascript" src="editor/tiny_mce/tiny_mce.js"></script> 
 		<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
 	</head>
-    <body>		
+    <body class="vstp_on">		
 		<!--#main-->
-		<div id="main">
+		<div id="vstp_main">
 			<!--通栏背景-->
 			<div class="bodyBGA"></div>
 			<div class="bodyBGB"></div>
 			<!--/通栏背景-->
 			<!--频道头-->
-			<div id="channelNav" class="area static">
+			<div id="channelNav" class="area vstp_static">
 			    <a target="_blank" href="http://www.sohu.com/"><img height="22" border="0" class="left" alt="搜狐网站" src="http://images.sohu.com/uiue/sohu_logo/2005/sohu_logo2.gif"/></a><a target="_blank" href="http://yule.sohu.com/"><img height="22" border="0" class="left" alt="搜狐娱乐" src="http://images.sohu.com/uiue/sohu_logo/2009/cs/yule_logo2.gif"/></a>
 			    <style>#channelNav ul {margin-right:5px;width:auto;clear:none}</style>
 				<ul class="right">
@@ -58,178 +56,178 @@
 			<!--/频道头-->
 		</div>
 		<!--/#main-->
-		<div id="hiddenTemplate">
+		<div id="vstp_templates" class="hidden">
 			<!--横切编辑模板-->
-			<div id="area_editor">
-				<div class="secEditor">
-					<div class="actions">
-						<div class="actions_body clear">
-							<div class="l"><span class="secTip"></span></div>
+			<!--
+			<div id="vstp_area_editor">
+				<div class="vstp_secEditor">
+					<div class="vstp_actions">
+						<div class="vstp_actions_ clear">
+							<div class="l"><span class="vstp_secTip"></span></div>
 							<div class="r">
-								<a class="a_code" href="#" title="查看当前分栏的代码">代码</a>
-								<a class="a_cfg" href="#" title="分栏设置">设置</a>
-								<a class="a_ret" href="#" title="返回上一级分栏">上级</a>
-								<a class="a_content" href="#" title="为分栏添加内容">内容</a>
-								<a class="a_sec" href="#" title="添加子分栏">分栏</a>
-								<a class="a_clear" href="#" title="清除分栏的子分栏以及内容">清除</a>
+								<a class="vstp_a_code" href="#" title="查看当前分栏的代码">代码</a>
+								<a class="vstp_a_cfg" href="#" title="分栏设置">设置</a>
+								<a class="vstp_a_ret" href="#" title="返回上一级分栏">上级</a>
+								<a class="vstp_a_content" href="#" title="为分栏添加内容">内容</a>
+								<a class="vstp_a_sec" href="#" title="添加子分栏">分栏</a>
+								<a class="vstp_a_clear" href="#" title="清除分栏的子分栏以及内容">清除</a>
 							</div>
 						</div>
 					</div>
-					<div class="overlay"></div>
+					<div class="vstp_overlay"></div>
 				</div>
-			</div>						
+			</div>
+			-->						
 			<!--page tip-->
-			<div id="pageTip"></div>
+			<div id="vstp_pageTip"></div>
 			<!-- content temp wrapper临时存放编辑内容的容器 -->
-			<div id="ctWrap"></div>	
+			<div id="vstp_ctWrap"></div>	
 		</div>
-		<div id="secEditor" class="secEditor">
-			<div class="actions">
-				<div class="actions_body clear">
-					<div class="l"><span class="secTip"></span></div>
+		<div id="vstp_secEditor" class="vstp_secEditor">
+			<div class="vstp_actions">
+				<div class="vstp_actions_ clear">
+					<div class="l"><span class="vstp_secTip"></span></div>
 					<div class="r">
-						<a class="a_code" href="#" title="查看当前分栏的代码">代码</a>
-						<a class="a_cfg" href="#" title="分栏设置">设置</a>
-						<a class="a_ret" href="#" title="返回上一级分栏">上级</a>
-						<a class="a_content" href="#" title="为分栏添加内容">内容</a>
-						<a class="a_sec" href="#" title="添加子分栏">分栏</a>
-						<a class="a_clear" href="#" title="清除分栏的子分栏以及内容">清除</a>
+						<a class="vstp_a_code" href="#" title="查看当前分栏的代码">代码</a>
+						<a class="vstp_a_cfg" href="#" title="分栏设置">设置</a>
+						<a class="vstp_a_ret" href="#" title="返回上一级分栏">上级</a>
+						<a class="vstp_a_content" href="#" title="为分栏添加内容">内容</a>
+						<a class="vstp_a_sec" href="#" title="添加子分栏">分栏</a>
+						<a class="vstp_a_clear" href="#" title="清除分栏的子分栏以及内容">清除</a>
 					</div>
 				</div>
 			</div>
-			<div class="overlay"></div>
+			<div class="vstp_overlay"></div>
 		</div>		
 		<!--Dialog layout-->
-		<div id="jqmWin1" class="jqmWindow">
-			<div class="hd clear">
-	            <h4 class="title">...</h4>
+		<div id="vstp_jqmWin1" class="jqmWindow">
+			<div class="vstp_hd clear">
+	            <h4 class="vstp_title">...</h4>
 				<a href="#" class="jqmClose"></a>
-				<span class="draghdl"></span>
+				<span class="vstp_draghdl"></span>
 	        </div>
-			<div class="ct"></div>
-			<div class="acts">
-				<div class="btnWrap clear">
-					<a class="btn jqmOk l" title="确认" href="#"><span>确认</span></a>
-					<a class="btn jqmClose r" title="取消" href="#"><span>取消</span></a>					
+			<div class="vstp_bd"></div>
+			<div class="vstp_acts">
+				<div class="vstp_btnWrap clear">
+					<a class="vstp_btn vstp_jqmOk l" title="确认" href="#"><span>确认</span></a>
+					<a class="vstp_btn jqmClose vstp_jqmcls r" title="取消" href="#"><span>取消</span></a>					
 				</div>
 			</div>	
 		</div>
-		<div id="jqmCpk" class="jqmWindow">
-			<div class="hd clear">
-	            <h4 class="title">颜色拾取</h4>
+		<div id="vstp_jqmCpk" class="jqmWindow">
+			<div class="vstp_hd clear">
+	            <h4 class="vstp_title">颜色拾取</h4>
 				<a href="#" class="jqmClose"></a>
-				<span class="draghdl"></span>
+				<span class="vstp_draghdl"></span>
 	        </div>
-			<div class="ct"><div class="cpk"></div></div>			
+			<div class="vstp_bd"><div class="vstp_cpk"></div></div>			
 		</div>
-		<div id="jqmConfirm" class="jqmWindow">
-			<div class="hd clear">
-	            <h4 class="title">提示信息</h4>
+		<div id="vstp_jqmConfirm" class="jqmWindow">
+			<div class="vstp_hd clear">
+	            <h4 class="vstp_title">提示信息</h4>
 				<a href="#" class="jqmClose"></a>
-				<span class="draghdl"></span>
+				<span class="vstp_draghdl"></span>
 	        </div>
-			<div class="ct">
-				 <div class="tip">
-				 	<span class="icon caution"></span>
-					<div class="txt">
+			<div class="vstp_bd">
+				 <div class="vstp_tip">
+				 	<span class="vstp_icon vstp_caution"></span>
+					<div class="vstp_txt">
 						<p>是否删除所有选中分栏及其内容？</p>
 						<p>注意：删除后无法恢复</p>
 					</div>
 				</div>				
 			</div>
-			<div class="acts">
-				<div class="btnWrap clear">
-					<a class="btn jqmOk l" title="确认" href="#"><span>确认</span></a>
-					<a class="btn jqmClose r" title="取消" href="#"><span>取消</span></a>					
+			<div class="vstp_acts">
+				<div class="vstp_btnWrap clear">
+					<a class="vstp_btn vstp_jqmOk l" title="确认" href="#"><span>确认</span></a>
+					<a class="vstp_btn jqmClose vstp_jqmcls r" title="取消" href="#"><span>取消</span></a>					
 				</div>
 			</div>			
 		</div>
-		<div class="jqmWindow chipEdt">
-			<div class="hd clear">
-	            <h4 class="title">碎片编辑</h4>
-				<a href="#" class="jqmClose"></a>
-				<span class="draghdl"></span>
+		<div class="cedt_jqm vstp_chipEdt">
+			<div class="vstp_hd clear">
+	            <h4 class="vstp_title">碎片编辑</h4>
+				<a href="#" class="cedt_jqmcls"></a>
+				<span class="vstp_draghdl"></span>
 	        </div>
-			<div class="ct">
-				<div class="jqmCT">
+			<div class="vstp_bd">
+				<div class="vstp_jqmCT">
 					<ul class="hidden">
-						<li><a class="tabM" href="#wVsp_tab1">可视化修改</a></li>
-						<li><a class="tabM" href="#wVsp_tab2">代码修改</a></li>
-						<li><a class="tabM" href="#wVsp_tab3">修改记录</a></li>
-						<li class="last"><a class="tabM hidden" href="#wVsp_tab4">排序状态</a><button class="btnSort">排序状态</button></li>
+						<li><a class="vstp_tabM" href="#wVsp_tab1">可视化修改</a></li>
+						<li><a class="vstp_tabM" href="#wVsp_tab2">代码修改</a></li>
+						<li><a class="vstp_tabM" href="#wVsp_tab3">修改记录</a></li>
+						<li class="vstp_last"><a class="vstp_tabM hidden" href="#wVsp_tab4">排序状态</a><button class="vstp_btnSort">排序状态</button></li>
 					</ul>
-					<div id="wVsp_tab1" class="tabC">
-						<div class="elmActs clear">
-							<a class="cmdBold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
-							<a class="cmdUdl cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
-							<a class="cmdColor cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
-							<a class="cmdAL cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
-							<a class="cmdAC cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
-							<a class="cmdAR cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
-							<a class="cmdVideo cmdicon" href="#"><strong><img src="images/w07.gif" /></strong></a>
-							<span class="elmcActs">
-								<a class="elmAdd cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
-								<a class="elmDel1 cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
-								<a class="elmMove0 cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
-								<a class="elmMove1 cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>								
+					<div id="wVsp_tab1" class="vstp_tabC">
+						<div class="vstp_elmActs clear">
+							<a class="vstp_cmdBold vstp_cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
+							<a class="vstp_cmdUdl vstp_cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
+							<a class="vstp_cmdColor vstp_cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
+							<a class="vstp_cmdAL vstp_cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
+							<a class="vstp_cmdAC vstp_cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
+							<a class="vstp_cmdAR vstp_cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
+							<a class="vstp_cmdVideo vstp_cmdicon" href="#"><strong><img src="images/w07.gif" /></strong></a>
+							<span class="vstp_elmcActs">
+								<a class="vstp_elmAdd vstp_cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+								<a class="vstp_elmDel1 vstp_cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+								<a class="vstp_elmMove0 vstp_cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
+								<a class="vstp_elmMove1 vstp_cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>								
 							</span>
-							<span class="secHDActs hidden">
-								<input type="checkbox" class="secHDMore cBox03" checked="checked"/>
-								<label class="txt05">更多</label>
+							<span class="vstp_secHDActs hidden">
+								<input type="checkbox" class="vstp_secHDMore vstp_cBox03" checked="checked"/>
+								<label class="vstp_txt05">更多</label>
 							</span>							
 						</div>				
-						<div class="chipTpl hidden">
-							<div class="row rowChip">
+						<div class="vstp_chipTpl hidden">
+							<div class="vstp_row vstp_rowChip">
 								<label class="l">背景图</label>
-								<input type="text" class="chipBG l"/>
-								<select name="chipBGAlign" class="chipBGAlign selAuto">
+								<input type="text" class="vstp_chipBG l"/>
+								<select name="chipBGAlign" class="vstp_chipBGAlign vstp_selAuto">
 									<option selected="selected" value="repeat">平铺</option>
 									<option value="repeat-y">纵平铺</option>
 									<option value="repeat-x">横平铺</option>
 									<option value="no-repeat">不平铺</option>
 								</select>
-								<button class="btnUpl browse">浏览</button>
+								<button class="vstp_btnUpl vstp_browse">浏览</button>
 							</div>						
 						</div>					
 						<!--元素模板-->
-						<div class="elmTpl"></div>
-						<div class="uppic">
-							<div class="upp_t"><strong>上传图片</strong></div>
-							<div class="upp_m">
+						<div class="vstp_elmTpl"></div>
+						<div class="vstp_uppic">
+							<div class="vstp_upp_t"><strong>上传图片</strong></div>
+							<div class="vstp_upp_m">
 								<input type="file" name="uppic" size="35"/>
 							</div>
-							<div class="upp_btn">
-								<button class="up">上传</button>
-								<button class="cls">取消</button>
+							<div class="vstp_upp_btn">
+								<button class="vstp_up">上传</button>
+								<button class="vstp_cls">取消</button>
 							</div>
 						</div>
 					</div>
-					<div id="wVsp_tab2" class="tabC hidden">
-						<div class="row searchTip">
-							<input type="text" class="txtVspCS" name="vspCS"/>
-							<button class="btnVspCS">搜索</button>
-							<button class="btnVspCBTipAdd">加Blog纸条</button>
-							<button class="btnVspCBTipDel">删Blog纸条</button>
+					<div id="wVsp_tab2" class="vstp_tabC hidden">
+						<div class="vstp_row vstp_searchTip">
+							<input type="text" class="vstp_txtVspCS" name="vstp_vspCS"/>
+							<button class="vstp_btnVspCS">搜索</button>
 						</div>
-						<div class="row flashTip">
-							<a href="#" class="btnFlashEdit"><strong>点击进入编辑器的可视化修改状态>></strong></a>
+						<div class="vstp_row vstp_flashTip">
+							<a href="#" class="vstp_btnFlashEdit"><strong>点击进入编辑器的可视化修改状态>></strong></a>
 						</div>
-						<textarea class="txtVspC" name="vspC"></textarea>
+						<textarea class="vstp_txtVspC" name="vstp_vspC"></textarea>
 					</div>
-					<div id="wVsp_tab3" class="tabC hidden">
+					<div id="wVsp_tab3" class="vstp_tabC hidden">
 						loading...
 					</div>
-					<div  id="wVsp_tab4" class="tabC hidden">
-						<strong class="alert">碎片交换状态</strong>
+					<div  id="wVsp_tab4" class="vstp_tabC hidden">
+						<strong class="vstp_alert">碎片交换状态</strong>
 						<em>请选择要交换的链接</em>
 					</div>
-					<div class="acts">
-						<div class="btnWrap clear">
-							<a href="#" class="test hidden">整体测试</a>
-							<a href="#" class="btn jqmOK save l"><span>确认</span></a>
-							<a href="#" class="btn jqmClose cancel r"><span>取消</span></a>
-							<a href="#" class="globalRes hidden">统一资源库</a>
-							<a href="#" class="external hidden">外包</a>							
+					<div class="vstp_acts">
+						<div class="vstp_btnWrap clear">
+							<a href="#" class="vstp_test hidden">整体测试</a>
+							<a href="#" class="vstp_btn vstp_jqmOK vstp_save l"><span>确认</span></a>
+							<a href="#" class="vstp_btn cedt_jqmcls vstp_cancel r"><span>取消</span></a>
+							<a href="#" class="vstp_globalRes hidden">统一资源库</a>
+							<a href="#" class="vstp_external hidden">外包</a>							
 						</div>
 
 					</div>
@@ -238,133 +236,133 @@
 		</div>				
 		<!--/Dialog layout-->
 		<!--Dialog content-->
-		<div id="dialogList" class="hidden">
+		<div id="vstp_dialogList" class="hidden">
 			<!--图像 -->
-			<div id="picMsg" class="jqmCT">
-				<div class="lineA">
-					<label class="txt01">宽</label>
-					<input id="picW" type="text" value="260" class="ipt01" name="picW"/>
-					<label class="txt02">px</label>
-					<label class="txt02">高</label>
-					<input id="picH" type="text" value="130" class="ipt01" name="picH"/>
-					<label class="txt02">px</label>
-					<label class="txt01" for="picBColor">边框</label>
-					<input id="picBColor" type="text" value="" class="ipt02" name="picBColor"/>
-					<div class="two"></div> 
-					<span class="elmcActs">
-						<a class="elmAdd cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
-						<a class="elmDel cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
-						<a class="elmMove0 cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
-						<a class="elmMove1 cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>								
+			<div id="vstp_picMsg" class="vstp_jqmCT">
+				<div class="vstp_lineA">
+					<label class="vstp_txt01">宽</label>
+					<input id="vstp_picW" type="text" value="260" class="vstp_ipt01" name="vstp_picW"/>
+					<label class="vstp_txt02">px</label>
+					<label class="vstp_txt02">高</label>
+					<input id="vstp_picH" type="text" value="130" class="vstp_ipt01" name="vstp_picH"/>
+					<label class="vstp_txt02">px</label>
+					<label class="vstp_txt01" for="vstp_picBColor">边框</label>
+					<input id="vstp_picBColor" type="text" value="" class="vstp_ipt02" name="vstp_picBColor"/>
+					<div class="vstp_two"></div> 
+					<span class="vstp_elmcActs">
+						<a class="vstp_elmAdd vstp_cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+						<a class="vstp_elmDel vstp_cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+						<a class="vstp_elmMove0 vstp_cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
+						<a class="vstp_elmMove1 vstp_cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>								
 					</span>
 				</div>
 				<div class="blank5"></div>
-				<div class="bottom2line"></div>
-				<div class="lineA">
-					<label class="txt01" for="picSrc">换图</label>
-					<input type="text" value="" class="ipt03" id="picSrc" name="picSrc"/>
-					<input type="button" class="browse"  value="浏览" id="picSwitch"/>
+				<div class="vstp_bottom3line"></div>
+				<div class="vstp_lineA">
+					<label class="vstp_txt01" for="vstp_picSrc">换图</label>
+					<input type="text" value="" class="vstp_ipt03" id="vstp_picSrc" name="vstp_picSrc"/>
+					<input type="button" class="vstp_browse"  value="浏览" id="vstp_picSwitch"/>
 				</div>
-				<div class="lineA">
-					<label class="txt01" for="picLink">链接</label>
-					<input type="text" value="" class="ipt03" id="picLink" name="picLink"/>
-					<select id="picTarget" class="selAuto" name="picTarget">
+				<div class="vstp_lineA">
+					<label class="vstp_txt01" for="vstp_picLink">链接</label>
+					<input type="text" value="" class="vstp_ipt03" id="vstp_picLink" name="vstp_picLink"/>
+					<select id="vstp_picTarget" class="vstp_selAuto" name="vstp_picTarget">
 						<option value="_blank" selected="selected">新窗口</option>
 						<option value="_self">本窗口</option>
 					</select>
 				</div>
-				<div class="lineA tip tipPicLink">请输入有效网址！</div>
-				<div class="lineA">
-					<label for="picAlt" class="txt01">Alt</label>
-					<input type="text" value="" class="ipt03" name="picAlt" id="picAlt"/>
+				<div class="vstp_lineA vstp_tip vstp_tipPicLink">请输入有效网址！</div>
+				<div class="vstp_lineA">
+					<label for="vstp_picAlt" class="vstp_txt01">Alt</label>
+					<input type="text" value="" class="vstp_ipt03" name="vstp_picAlt" id="vstp_picAlt"/>
 				</div>				
-				<div class="lineA">
-					<label for="picTitle" class="txt01">Title</label>
-					<input type="text" value="" class="ipt03" name="picTitle" id="picTitle"/>
+				<div class="vstp_lineA">
+					<label for="vstp_picTitle" class="vstp_txt01">Title</label>
+					<input type="text" value="" class="vstp_ipt03" name="vstp_picTitle" id="vstp_picTitle"/>
 				</div>								
 			</div>			
 			<!--文字 -->
-			 <div id="txtMsg" class="jqmCT">
-				  <div class="wline">
-				   <a class="cmdBold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
-				   <a class="cmdUdl cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
-				   <a class="cmdColor cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
-				   <a class="cmdAL cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
-				   <a class="cmdAC cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
-				   <a class="cmdAR cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
-				   <a class="cmdVideo cmdicon" href="#"><strong><img src="images/w07.gif" /></strong></a>
-				   <div class="two"></div>
-				   <span class="elmcActs">
-				   		<a class="elmAdd cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
-				   		<a class="elmDel cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
-				   		<a class="elmMove0 cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
-				   		<a class="elmMove1 cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>
+			 <div id="vstp_txtMsg" class="vstp_jqmCT">
+				  <div class="vstp_wline">
+				   <a class="vstp_cmdBold vstp_cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
+				   <a class="vstp_cmdUdl vstp_cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
+				   <a class="vstp_cmdColor vstp_cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
+				   <a class="vstp_cmdAL vstp_cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
+				   <a class="vstp_cmdAC vstp_cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
+				   <a class="vstp_cmdAR vstp_cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
+				   <a class="vstp_cmdVideo vstp_cmdicon" href="#"><strong><img src="images/w07.gif" /></strong></a>
+				   <div class="vstp_two"></div>
+				   <span class="vstp_elmcActs">
+				   		<a class="vstp_elmAdd vstp_cmdicon" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+				   		<a class="vstp_elmDel vstp_cmdicon" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+				   		<a class="vstp_elmMove0 vstp_cmdicon" href="#"><strong><img src="images/up.gif" /></strong></a>
+				   		<a class="vstp_elmMove1 vstp_cmdicon" href="#"><strong><img src="images/down.gif" /></strong></a>
 				 	</span>
 				 </div>
 				  <div class="blank8"></div>
-				  <div class="bottom2line"></div>
+				  <div class="vstp_bottom3line"></div>
 				  <div class="blank5"></div>
-				  <div class="lineA">
-				  	<label class="txt01" for="txtAHref">链接</label>
-					<input id="txtAHref" name="txtAHref" type="text" value="" class="ipt03"/>
-					<select id="ddlATarget" name="ddlATarget" class="selAuto">
+				  <div class="vstp_lineA">
+				  	<label class="vstp_txt01" for="vstp_txtAHref">链接</label>
+					<input id="vstp_txtAHref" name="vstp_txtAHref" type="text" value="" class="vstp_ipt03"/>
+					<select id="vstp_ddlATarget" name="vstp_ddlATarget" class="vstp_selAuto">
 						<option value="_blank" selected="selected">新窗口</option>
 						<option value="_self">本窗口</option>
 					</select>
 			      </div>
-				  <div class="lineA tip tipAHref">请输入有效网址！</div>
-				  <div class="lineA rowTitle">
-				 	 <label class="txt01" for="txtATitle">Title</label>
-					 <input id="txtATitle" name="txtATitle" type="text" value="" class="ipt03"/>
+				  <div class="vstp_lineA vstp_tip vstp_tipAHref">请输入有效网址！</div>
+				  <div class="vstp_lineA vstp_rowTitle">
+				 	 <label class="vstp_txt01" for="vstp_txtATitle">Title</label>
+					 <input id="vstp_txtATitle" name="vstp_txtATitle" type="text" value="" class="vstp_ipt03"/>
 			      </div>
 			</div>
 			<!--文字 结束-->
 			<!--添加横切 -->
-			 <div id="addBlock" class="jqmCT">
-				  <div class="lineB clear">
-				       <div class="item block01"><a id="w0" href="#"></a></div>
-					   <div class="item block02"><a id="w470_470" href="#"></a></div>
-					   <div class="item block03"><a id="w270_670" href="#"></a></div>
-					   <div class="item block04"><a id="w670_270" href="#"></a></div>
-					   <div class="item block05"><a id="w430_510" href="#"></a></div>
-					   <div class="item block06"><a id="w510_430" href="#"></a></div>
-					   <div class="item block07"><a id="w190_270_470" href="#"></a></div>
-					   <div class="item block08"><a id="w470_270_190" href="#"></a></div>
-					   <div class="item block09"><a id="w310_390_230" href="#"></a></div>
-					   <div class="item block10"><a id="w270_390_270" href="#"></a></div>
+			 <div id="vstp_addBlock" class="vstp_jqmCT">
+				  <div class="vstp_lineB clear">
+				       <div class="vstp_item vstp_block01"><a id="w0" href="#"></a></div>
+					   <div class="vstp_item vstp_block02"><a id="w470_470" href="#"></a></div>
+					   <div class="vstp_item vstp_block03"><a id="w270_670" href="#"></a></div>
+					   <div class="vstp_item vstp_block04"><a id="w670_270" href="#"></a></div>
+					   <div class="vstp_item vstp_block05"><a id="w430_510" href="#"></a></div>
+					   <div class="vstp_item vstp_block06"><a id="w510_430" href="#"></a></div>
+					   <div class="vstp_item vstp_block07"><a id="w190_270_470" href="#"></a></div>
+					   <div class="vstp_item vstp_block08"><a id="w470_270_190" href="#"></a></div>
+					   <div class="vstp_item vstp_block09"><a id="w310_390_230" href="#"></a></div>
+					   <div class="vstp_item vstp_block10"><a id="w270_390_270" href="#"></a></div>
 				  </div>
 			</div>
 			<!--添加横切 结束-->
 			<!--横切设置-->
-			<div id="cfgArea" class="jqmCT formx">
-				<div class="lineA">
-					<label class="left" for="txtAreaBG">背景图</label>
+			<div id="vstp_cfgArea" class="vstp_jqmCT vstp_formx">
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_txtAreaBG">背景图</label>
 					<div class="center">
-						<input id="txtAreaBG" name="areaBG" type="text" class="ipt03"/>
+						<input id="vstp_txtAreaBG" name="vstp_areaBG" type="text" class="vstp_ipt03"/>
 					</div>
 					<div class="right">
-						<input id="btnAreaBGBrowse" type="button" class="btn btnL"  value="浏览" />
+						<input id="vstp_btnAreaBGBrowse" type="button" class="vstp_btn vstp_btnL"  value="浏览" />
 					</div>
 				</div>
-				<div class="lineA">
-					<label class="left" for="ddlAreaBGAlign">对齐</label>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_ddlAreaBGAlign">对齐</label>
 					<div class="center">
-						<select id="ddlAreaBGAlign" name="areaBGAlign">
+						<select id="vstp_ddlAreaBGAlign" name="vstp_areaBGAlign">
 							<option value="center" selected="selected">水平-中</option>
 							<option value="left">水平-左</option>
 							<option value="right">水平-右</option>
 						</select>
-						<select id="ddlAreaBGAlignV" name="areaBGAlignV">
+						<select id="vstp_ddlAreaBGAlignV" name="vstp_areaBGAlignV">
 							<option value="top" selected="selected">垂直-上</option>
 							<option value="center">垂直-中</option>
 							<option value="bottom">垂直-下</option>
 						</select>												
 					</div>
 				</div>
-				<div class="lineA">
-					<label class="left" for="ddlAreaBGRepeat">平铺</label>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_ddlAreaBGRepeat">平铺</label>
 					<div class="center">
-						<select id="ddlAreaBGRepeat" name="areaBGRepeat">
+						<select id="vstp_ddlAreaBGRepeat" name="vstp_areaBGRepeat">
 							<option value="repeat" selected="selected">平铺</option>
 							<option value="no-repeat">不平铺</option>
 							<option value="repeat-x">横铺</option>
@@ -373,49 +371,49 @@
 					</div>				
 				</div>	
 				<div class="blank5"></div>
-				<div class="bottom3line"></div>
+				<div class="vstp_bottom3line"></div>
 				<div class="blank5"></div>
-				<div class="lineA">
-					<label class="left" for="txtAreaID">横切ID</label>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_txtAreaID">横切ID</label>
 					<div class="center">
-						<input id="txtAreaID" name="areaID" type="text" class="ipt03"/>
+						<input id="vstp_txtAreaID" name="vstp_areaID" type="text" class="vstp_ipt03"/>
 					</div>
 				</div>
 			</div>
 			<!--/横切设置-->		
 			<!--页面背景-->
-			<div id="cfgPage" class="jqmCT formx">
-				<div class="lineA">
-					<label class="left" for="txtPageBGC">页面背景色</label>
-					<div class="center"><input type="text" id="txtPageBGC" name="pageBGC" readonly="readonly" class="ipt02"/></div>
+			<div id="vstp_cfgPage" class="vstp_jqmCT vstp_formx">
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_txtPageBGC">页面背景色</label>
+					<div class="center"><input type="text" id="vstp_txtPageBGC" name="vstp_pageBGC" readonly="readonly" class="vstp_ipt02"/></div>
 				</div>
 				<div class="blank8"></div>
-				<div class="bottom3line"></div>
+				<div class="vstp_bottom3line"></div>
 				<div class="blank8"></div>
-				<div class="lineA">
-					<label class="left" for="txtPageBGA">页头背景图</label>
-					<div class="center"><input type="text" class="ipt03" id="txtPageBGA" name="pageBGA"/></div>
-					<div class="right"><input id="btnPageBGBrowseA" type="button" class="btn btnL"  value="浏览" /></div>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_txtPageBGA">页头背景图</label>
+					<div class="center"><input type="text" class="vstp_ipt03" id="vstp_txtPageBGA" name="vstp_pageBGA"/></div>
+					<div class="right"><input id="vstp_btnPageBGBrowseA" type="button" class="vstp_btn vstp_btnL"  value="浏览" /></div>
 				</div>
-				<div class="lineA">
-					<label class="left" for="pageBGAlignA">对齐</label>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_pageBGAlignA">对齐</label>
 					<div class="center">
-						<select id="pageBGAlignA" name="pageBGAlignA">
+						<select id="vstp_pageBGAlignA" name="vstp_pageBGAlignA">
 							<option value="center" selected="selected">水平-中</option>
 							<option value="left">水平-左</option>
 							<option value="right">水平-右</option>
 						</select>
-						<select id="pageBGAlignAV" name="pageBGAlignAV">
+						<select id="vstp_pageBGAlignAV" name="vstp_pageBGAlignAV">
 							<option value="top" selected="selected">垂直-上</option>
 							<option value="center">垂直-中</option>
 							<option value="bottom">垂直-下</option>
 						</select>										
 					</div>
 				</div>
-				<div class="lineA">
-					<label class="left" for="pageBGRepeatA">平铺</label>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_pageBGRepeatA">平铺</label>
 					<div class="center">
-						<select id="pageBGRepeatA" name="pageBGRepeatA">
+						<select id="vstp_pageBGRepeatA" name="vstp_pageBGRepeatA">
 							<option value="no-repeat">不平铺</option>
 							<option value="repeat">平铺</option>
 							<option value="repeat-x">横铺</option>
@@ -423,44 +421,44 @@
 						</select>					
 					</div>
 				</div>
-				<div class="lineA">
-					<label class="left" for="txtPageBGHA">高度</label>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_txtPageBGHA">高度</label>
 					<div class="center">
-						<input type="text" class="ipt58" id="txtPageBGHA" name="pageBGHA"/>
+						<input type="text" class="vstp_ipt58" id="vstp_txtPageBGHA" name="vstp_pageBGHA"/>
 						<label>px</label>
 					</div>
 				</div>
 				<div class="blank8"></div>
-				<div class="bottom3line"></div>
+				<div class="vstp_bottom3line"></div>
 				<div class="blank8"></div>
-				<div class="lineA">
-					<label class="left" for="txtPageBGB">页脚背景图</label>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_txtPageBGB">页脚背景图</label>
 					<div class="center">
-						<input type="text" class="ipt03" id="txtPageBGB" name="pageBGB"/>
+						<input type="text" class="vstp_ipt03" id="vstp_txtPageBGB" name="vstp_pageBGB"/>
 					</div>
 					<div class="right">
-						<input id="btnPageBGBrowseB" type="button" class="btn btnL"  value="浏览" />
+						<input id="vstp_btnPageBGBrowseB" type="button" class="vstp_btn vstp_btnL"  value="浏览" />
 					</div>
 				</div>				
-				<div class="lineA">
-					<label class="left" for="pageBGAlignB">对齐</label>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_pageBGAlignB">对齐</label>
 					<div class="center">
-						<select id="pageBGAlignB" name="pageBGAlignB">
+						<select id="vstp_pageBGAlignB" name="vstp_pageBGAlignB">
 							<option value="center">水平-中</option>
 							<option value="left">水平-左</option>
 							<option value="right">水平-右</option>						
 						</select>
-						<select id="pageBGAlignBV" name="pageBGAlignBV">
+						<select id="vstp_pageBGAlignBV" name="vstp_pageBGAlignBV">
 							<option value="top">垂直-上</option>
 							<option value="center">垂直-中</option>
 							<option value="bottom">垂直-下</option>						
 						</select>												
 					</div>				
 				</div>	
-				<div class="lineA">
-					<label class="left" for="pageBGRepeatB">平铺</label>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_pageBGRepeatB">平铺</label>
 					<div class="center">
-						<select id="pageBGRepeatB" name="pageBGRepeatB">
+						<select id="vstp_pageBGRepeatB" name="vstp_pageBGRepeatB">
 							<option value="no-repeat">不平铺</option>
 							<option value="repeat">平铺</option>
 							<option value="repeat-x">横铺</option>
@@ -468,84 +466,84 @@
 						</select>				
 					</div>				
 				</div>
-				<div class="lineA">
-					<label class="left" for="txtPageBGHB">高度</label>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_txtPageBGHB">高度</label>
 					<div class="center">
-						<input type="text" class="ipt58" id="txtPageBGHB" name="pageBGHB"/>
+						<input type="text" class="vstp_ipt58" id="vstp_txtPageBGHB" name="vstp_pageBGHB"/>
 						<label>px</label>
 					</div>
 				</div>
-				<div class="cpk"></div>		 
+				<div class="vstp_cpk"></div>		 
 			</div>	
 			<!--/页面背景-->
 			<!--添加内容-->
-			<div id="addContent">
-				<div class="txtLoading">Loading...</div>
-				<iframe id="ifContentList" name="ifContentList" src="" frameborder="0" rel="contents.html" scrolling="no"></iframe>
+			<div id="vstp_addContent">
+				<div class="vstp_txtLoading">Loading...</div>
+				<iframe id="vstp_ifContentList" name="vstp_ifContentList" src="" frameborder="0" rel="contents.html" scrolling="no"></iframe>
 			</div>
 			<!--代码对话框-->
-			<div id="wCode">
+			<div id="vstp_wCode">
 				<textarea cols="75" rows="20"></textarea>
 			</div>
 			<!--分栏设置对话框-->
-			<div id="wCfgSec" class="jqmCT formx">
-				<div class="lineA">
-					<label class="left" for="txtSecBGC">背景色</label>
+			<div id="vstp_wCfgSec" class="vstp_jqmCT vstp_formx">
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_txtSecBGC">背景色</label>
 					<div class="center">
-						<input id="txtSecBGC" type="text" readonly="readonly" class="ipt02"/>
+						<input id="vstp_txtSecBGC" type="text" readonly="readonly" class="vstp_ipt02"/>
 					</div>
 				</div>
 				<div class="blank5"></div>
-				<div class="bottom3line"></div>				
-				<div class="lineA">
-					<label class="left" for="txtSecBorderColor">边框色</label>
+				<div class="vstp_bottom3line"></div>				
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_txtSecBorderColor">边框色</label>
 					<div class="center">
-						<input id="txtSecBorderColor" readonly="readonly" name="SecBorderColor" type="text" class="ipt02"/>
+						<input id="vstp_txtSecBorderColor" readonly="readonly" name="vstp_SecBorderColor" type="text" class="vstp_ipt02"/>
 					</div>	
 				</div>
-				<div class="lineA">
+				<div class="vstp_lineA">
 					<label class="left">边框</label>
 					<div class="center clear">
-						<input name="SecBorderDir" type="checkbox" class="cbx" value="top"/>
-						<label class="cbxLbl">上</label>
-						<input name="SecBorderDir" type="checkbox" class="cbx" value="bottom"/>
-						<label class="cbxLbl">下</label>
-						<input name="SecBorderDir" type="checkbox" class="cbx" value="left"/>
-						<label class="cbxLbl">左</label>
-						<input name="SecBorderDir" type="checkbox" class="cbx" value="right"/>
-						<label class="cbxLbl">右</label>
+						<input name="vstp_SecBorderDir" type="checkbox" class="vstp_cbx" value="top"/>
+						<label class="vstp_cbxLbl">上</label>
+						<input name="vstp_SecBorderDir" type="checkbox" class="vstp_cbx" value="bottom"/>
+						<label class="vstp_cbxLbl">下</label>
+						<input name="vstp_SecBorderDir" type="checkbox" class="vstp_cbx" value="left"/>
+						<label class="vstp_cbxLbl">左</label>
+						<input name="vstp_SecBorderDir" type="checkbox" class="vstp_cbx" value="right"/>
+						<label class="vstp_cbxLbl">右</label>
 					</div>
 				</div>
 				<div class="blank5"></div>
-				<div class="bottom3line"></div>		
-				<div class="lineA">
-					<label class="left" for="txtSecBG">背景图</label>
+				<div class="vstp_bottom3line"></div>		
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_txtSecBG">背景图</label>
 					<div class="center">
-						<input id="txtSecBG" type="text" class="ipt03"/>
+						<input id="vstp_txtSecBG" type="text" class="vstp_ipt03"/>
 					</div>
 					<div class="right">
-						<input id="btnCfgSecBrowse" type="button" class="btn btnL"  value="浏览" />
+						<input id="vstp_btnCfgSecBrowse" type="button" class="vstp_btn vstp_btnL"  value="浏览" />
 					</div>	
 				</div>
-				<div class="lineA">
-					<label class="left" for="ddlSecBGAlign">对齐</label>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_ddlSecBGAlign">对齐</label>
 					<div class="center">
-						<select id="ddlSecBGAlign" name="secBGAlign">
+						<select id="vstp_ddlSecBGAlign" name="vstp_secBGAlign">
 							<option value="center" selected="selected">水平-中</option>
 							<option value="left">水平-左</option>
 							<option value="right">水平-右</option>
 						</select>
-						<select id="ddlSecBGAlignV" name="secBGAlignV">
+						<select id="vstp_ddlSecBGAlignV" name="vstp_secBGAlignV">
 							<option value="top" selected="selected">垂直-上</option>
 							<option value="center">垂直-中</option>
 							<option value="bottom">垂直-下</option>
 						</select>													
 					</div>					
 				</div>
-				<div class="lineA">
-					<label class="left" for="ddlSecBGRepeat">平铺</label>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_ddlSecBGRepeat">平铺</label>
 					<div class="center">
-						<select id="ddlSecBGRepeat" name="secBGRepeat">
+						<select id="vstp_ddlSecBGRepeat" name="vstp_secBGRepeat">
 							<option value="repeat" selected="selected">平铺</option>
 							<option value="no-repeat">不平铺</option>
 							<option value="repeat-x">横铺</option>
@@ -553,332 +551,328 @@
 						</select>					
 					</div>
 				</div>	
-				<div class="cpk"></div>				
+				<div class="vstp_cpk"></div>				
 			</div>
 			<!--栏目头-->
-			<div id="wSecHead" class="jqmCT">
-				<div class="wline">
-					<a class="cmdBold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
-					<a class="cmdUnderline cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
-					<a class="cmdColor cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
-					<a class="cmdAL cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
-					<a class="cmdAC cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
-					<a class="cmdAR cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
-					<input id="cbxSecHDMore" name="secHDMore" type="checkbox" class="cBox03" />
-					<label class="txt05" for="cbxSecHDMore">更多</label>
+			<div id="vstp_wSecHead" class="vstp_jqmCT">
+				<div class="vstp_wline">
+					<a class="vstp_cmdBold vstp_cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
+					<a class="vstp_cmdUnderline vstp_cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
+					<a class="vstp_cmdColor vstp_cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
+					<a class="vstp_cmdAL vstp_cmdicon" href="#"><strong><img src="images/w04.gif" /></strong></a>
+					<a class="vstp_cmdAC vstp_cmdicon" href="#"><strong><img src="images/w05.gif" /></strong></a>
+					<a class="vstp_cmdAR vstp_cmdicon" href="#"><strong><img src="images/w06.gif" /></strong></a>
+					<input id="vstp_cbxSecHDMore" name="vstp_secHDMore" type="checkbox" class="vstp_cBox03" />
+					<label class="vstp_txt05" for="vstp_cbxSecHDMore">更多</label>
 				</div>
-				<div class="lineA">
-					<label class="txt01" for="secHDLink">链接</label>
-					<input id="secHDLink" type="text" value="" class="ipt03"/>
-					<select id="ddlSecHDTarget" class="selAuto">
+				<div class="vstp_lineA">
+					<label class="vstp_txt01" for="vstp_secHDLink">链接</label>
+					<input id="vstp_secHDLink" type="text" value="" class="vstp_ipt03"/>
+					<select id="vstp_ddlSecHDTarget" class="vstp_selAuto">
 						<option value="_blank" selected="selected">新窗口</option>
 						<option value="_self">本窗口</option>
 					</select>
 				</div>
-				<div class="lineA tip tipSecHDLink">请输入有效网址！</div>
-				<div class="lineA hidden">
-					<label class="txt01" for="secHDTitle">Title</label>
-					<input id="secHDTitle" type="text" value="" class="ipt03"/>
+				<div class="vstp_lineA vstp_tip vstp_tipSecHDLink">请输入有效网址！</div>
+				<div class="vstp_lineA hidden">
+					<label class="vstp_txt01" for="vstp_secHDTitle">Title</label>
+					<input id="vstp_secHDTitle" type="text" value="" class="vstp_ipt03"/>
 				</div>
 				<div class="blank8"></div>
-				<div class="bottom3line"></div>
-				<div class="lineA">
-					<label class="txt01" for="secHDBG">背景</label>
-					<input id="secHDBG" name="secHDBG" type="text" value="" class="ipt03"/>
-					<input type="button" class="browse"  value="浏览" />
+				<div class="vstp_bottom3line"></div>
+				<div class="vstp_lineA">
+					<label class="vstp_txt01" for="vstp_secHDBG">背景</label>
+					<input id="vstp_secHDBG" name="vstp_secHDBG" type="text" value="" class="vstp_ipt03"/>
+					<input type="button" class="vstp_browse"  value="浏览" />
 				</div>
 			</div>
 			<!--栏目头 over-->
 			<!--页面属性-->
-			<div id="wPagePro" class="jqmCT">
+			<div id="vstp_wPagePro" class="vstp_jqmCT">
 				 <div class="blank8"></div>
-				 <div class="lineA">
-				 	<div class="txt01">title</div>
-					<input id="pTitle" type="text" value="" class="ipt01"/>
+				 <div class="vstp_lineA">
+				 	<div class="vstp_txt01">title</div>
+					<input id="vstp_pTitle" type="text" value="" class="vstp_ipt01"/>
 			     </div>
-				 <div class="linep tip">请输入有效网址！</div>
-				 <div class="lineA">
-				 	<div class="txt01">keywords</div>
-				 	<input id="pKeyword" type="text" value="" class="ipt01"/>
+				 <div class="vstp_linep vstp_tip">请输入有效网址！</div>
+				 <div class="vstp_lineA">
+				 	<div class="vstp_txt01">keywords</div>
+				 	<input id="vstp_pKeyword" type="text" value="" class="vstp_ipt01"/>
 			     </div>
 				 
-				 <div class="lineA h60">
-				 	<div class="txt01">description</div>
-					<input id="pDesc" type="textarea" value="" class="area01"/>
+				 <div class="vstp_lineA vstp_h60">
+				 	<div class="vstp_txt01">description</div>
+					<input id="vstp_pDesc" type="textarea" value="" class="vstp_area01"/>
 			     </div>
 			</div>
 			<!--页面属性 over-->	
 			<!--更换风格 -->
-			 <div id="wTheme">	  
-			      <div class="lineC tLine">
-				    <div class="wrapDiv"> 
-					   <div class="focusPic"><img src="images/right01.gif" width="4" height="7" alt="" />常用专题风格</div>
-					   <div class="classify">
+			 <div id="vstp_wTheme" class="vstp_jqmCT">	  
+			      <div class="vstp_lineC vstp_tLine">
+				    <div class="vstp_wrapDiv"> 
+					   <div class="vstp_focusPic"><img src="images/right01.gif" width="4" height="7" alt="" />常用专题风格</div>
+					   <div class="vstp_classify">
 					        <ul>
-						    <li class="now"><a href="">分类01</a></li>
-						    <li><a href="">分类02</a></li>
-						    <li><a href="">分类03</a></li>
-						    <li><a href="">分类04</a></li>
+						    	<li class="vstp_now"><a href="#">分类01</a></li>
 						    </ul>
 					   </div>
-					   <div class="wrap01">
-					      <div class="left"><img src="images/lbtn01.gif" width="22" height="30" alt="" /></div>
-					      <div class="center">
-						     <ul>
-			                 <li><a href="#" target="_blank"><img src="images/pic146x151_1.jpg" width="146" height="151" alt="" /></a><span>焦点图形式说明标题</span></li>
-			                 <li><a href="#" target="_blank"><img src="images/pic146x151_1.jpg" width="146" height="151" alt="" /></a><span>焦点图形式说明标题</span></li>
-							 <li><a href="#" target="_blank"><img src="images/pic146x151_1.jpg" width="146" height="151" alt="" /></a><span>焦点图形式说明标题</span></li>
-							 </ul>
-			              </div>
-						 <div class="right"><input type="button" class="r1btn"  onmouseover="this.className='r1btn r1btnM'" onmouseout="this.className='r1btn'" value="" /></div>
-						 <div class="rollDot">
-						    <a id="a_movie_0" class="currA" onclick="" target="_self" href="javascript://">1</a>
-							<a id="a_movie_0" onclick="" target="_self" href="javascript://">2</a>
-							<a id="a_movie_0" onclick="" target="_self" href="javascript://">3</a>
-							<a id="a_movie_0" onclick="" target="_self" href="javascript://">4</a>
-							<a id="a_movie_0" onclick="" target="_self" href="javascript://">5</a>
-						 </div>
+					   <div class="vstp_wrap01">
+							<div class="left">
+								<a class="vstp_navBtn vstp_btnL vstp_noNav" href="#"></a>
+							</div>
+							<div class="center">
+							<ul class="vstp_listTopicTpl"></ul>
+							</div>
+							<div class="right">
+								<a href="#" class="vstp_navBtn vstp_btnR"></a>
+							</div>
+							<div class="vstp_rollDot">
+								<a class="vstp_currA" href="javascript://">1</a>
+							</div>
 					   </div>
 					</div>
 				  </div>
+				  <script id="vstp_topicTpl" type="text/x-jquery-tmpl">
+				  	<li><a href="#" title="${title}" rel="${url}" name="${name}"><img src="${icon}" width="146" height="151" alt="" /></a><span>${title}</span></li>
+				  </script>
 			</div>
 			<!--更换风格 over-->					
 			<!--添加分栏-->			
-			<div id="subSec950" class="jqmCT formss">
-				<div id="sw310_310_310" class="item block01">
+			<div id="vstp_subSec950" class="vstp_jqmCT vstp_formss">
+				<div id="sw310_310_310" class="ivstp_tem vstp_block01">
 					<a href="#"></a>
-					<div class="subsec"><div class="col w310 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w310 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w310 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					<div class="vstp_subsec"><div class="vstp_w310 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w310 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w310 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 				</div>
-				<div id="sw230_230_230_230" class="item block02">
+				<div id="sw230_230_230_230" class="vstp_item block02">
 					<a href="#"></a>
-					<div class="subsec"><div class="col w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					<div class="vstp_subsec"><div class="vstp_w230 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w230 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w230 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w230 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 				</div>
-				<div id="sw182_182_182_182_182" class="item block03 hidden">
+				<div id="sw182_182_182_182_182" class="vstp_item vstp_block03 hidden">
 					<a href="#"></a>
-					<div class="subsec"><div class="col w182 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w182 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w182 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w182 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w182 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					<div class="vstp_subsec"><div class="vstp_w182 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w182 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w182 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w182 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w182 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 				</div>
 			</div>
-			<div id="subSec470" class="jqmCT formss">
+			<div id="vstp_subSec470" class="vstp_jqmCT vstp_formss">
 				<div class="left">
-					<div id="sw470" class="item block04">
+					<div id="sw470" class="vstp_item vstp_block04">
 						<a href="#"></a>
-						<div class="subsec"><div class="w470"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w470"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw270_190" class="item block03">
+					<div id="sw270_190" class="vstp_item vstp_block03">
 						<a href="#"></a>
-						<div class="subsec"><div class="col w270 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w270 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
 				</div>
 				<div class="right">
-					<div id="sw230_230" class="item block01">
+					<div id="sw230_230" class="vstp_item vstp_block01">
 						<a href="#"></a>
-						<div class="subsec"><div class="col w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w230 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w230 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw190_270" class="item block02">
+					<div id="sw190_270" class="vstp_item vstp_block02">
 						<a href="#"></a>
-						<div class="subsec"><div class="col w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w270 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w270 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
 				</div>
 			</div>
-			<div id="subSec670" class="jqmCT formss">
+			<div id="vstp_subSec670" class="vstp_jqmCT vstp_formss">
 				<div class="left">
-					<div id="sw670" class="item block05">
+					<div id="sw670" class="vstp_item vstp_block05">
 						<a href="#"></a>
-						<div class="subsec"><div class="w670"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w670"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw470_190" class="item block03">
+					<div id="sw470_190" class="vstp_item vstp_block03">
 						<a href="#"></a>
-						<div class="subsec"><div class="col w470 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w470 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw430_230" class="item block06">
+					<div id="sw430_230" class="vstp_item vstp_block06">
 						<a href="#"></a>
-						<div class="subsec"><div class="w430 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w430 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w230 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw390_270" class="item block08">
+					<div id="sw390_270" class="vstp_item vstp_block08">
 						<a href="#"></a>
-						<div class="subsec"><div class="w390 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w270 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w390 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w270 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw350_310" class="item block10">
+					<div id="sw350_310" class="vstp_item vstp_block10">
 						<a href="#"></a>
-						<div class="subsec"><div class="w350 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w310 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w350 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w310 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw190_230_230" class="item block12">
+					<div id="sw190_230_230" class="vstp_item vstp_block12">
 						<a href="#"></a>
-						<div class="subsec"><div class="w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w230 center"><div class="sec"><div class="secHolder"></div></div></div><div class="w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w230 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w230 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>	
-					<div id="sw270_190_190" class="item block14">
+					<div id="sw270_190_190" class="vstp_item vstp_block14">
 						<a href="#"></a>
-						<div class="subsec"><div class="w270 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 center"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w270 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w190 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>	
 				</div>
 				<div class="center">
-					<div id="sw330_330" class="item block01">
+					<div id="sw330_330" class="vstp_item vstp_block01">
 						<a href="#"></a>
-						<div class="subsec"><div class="col w330 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w330 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w330 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w330 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw190_470" class="item block02">
+					<div id="sw190_470" class="vstp_item vstp_block02">
 						<a href="#"></a>
-						<div class="subsec"><div class="col w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w470 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w470 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw230_430" class="item block07">
+					<div id="sw230_430" class="vstp_item vstp_block07">
 						<a href="#"></a>
-						<div class="subsec"><div class="w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w430 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w230 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w430 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw270_390" class="item block09">
+					<div id="sw270_390" class="vstp_item vstp_block09">
 						<a href="#"></a>
-						<div class="subsec"><div class="w270 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w390 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w270 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w390 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw310_350" class="item block11">
+					<div id="sw310_350" class="vstp_item vstp_block11">
 						<a href="#"></a>
-						<div class="subsec"><div class="w310 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w350 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w310 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w350 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw230_190_230" class="item block04">
+					<div id="sw230_190_230" class="vstp_item vstp_block04">
 						<a href="#"></a>
-						<div class="subsec"><div class="col w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w230 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w190 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w230 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw190_270_190" class="item block15">
+					<div id="sw190_270_190" class="vstp_item vstp_block15">
 						<a href="#"></a>
-						<div class="subsec"><div class="w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w270 center"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w270 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>					
 				</div>
 				<div class="right">
-					<div id="sw230_230_190" class="item block13">
+					<div id="sw230_230_190" class="vstp_item vstp_block13">
 						<a href="#"></a>
-						<div class="subsec"><div class="w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w230 center"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w230 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w230 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw190_190_270" class="item block16">
+					<div id="sw190_190_270" class="vstp_item vstp_block16">
 						<a href="#"></a>
-						<div class="subsec"><div class="w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 center"><div class="sec"><div class="secHolder"></div></div></div><div class="w270 r"><div class="sec"><div class="secHolder"></div></div></div></div>	
+						<div class="vstp_subsec"><div class="vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w190 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w270 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>	
 					</div>	
 				</div>
 			</div>
-			<div id="subSec390" class="jqmCT formss">
-				<div id="sw390" class="item block02">
+			<div id="vstp_subSec390" class="vstp_jqmCT vstp_formss">
+				<div id="sw390" class="vstp_item vstp_block02">
 					<a href="#"></a>
-					<div class="subsec"><div class="w390"><div class="sec"><div class="secHolder"></div></div></div></div>
+					<div class="vstp_subsec"><div class="vstp_w390"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 				</div>
-				<div id="sw190_190" class="item block01">
+				<div id="sw190_190" class="vstp_item vstp_block01">
 					<a href="#"></a>
-					<div class="subsec"><div class="col w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+					<div class="vstp_subsec"><div class="vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 				</div>
 			</div>
-			<div id="subSec430" class="jqmCT formss">
+			<div id="vstp_subSec430" class="vstp_jqmCT vstp_formss">
 				<div class="left">
-					<div id="sw430" class="item block04">
+					<div id="sw430" class="vstp_item vstp_block04">
 						<a href="#"></a>
-						<div class="subsec"><div class="w430"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w430"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw230_190" class="item block03">
+					<div id="sw230_190" class="vstp_item vstp_block03">
 						<a href="#"></a>
-						<div class="subsec"><div class="w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w230 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
 				</div>
 				<div class="right">
-					<div id="sw210_210" class="item block01">
+					<div id="sw210_210" class="vstp_item vstp_block01">
 						<a href="#"></a>
-						<div class="subsec"><div class="w210 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w210 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w210 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w210 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw190_230" class="item block02">
+					<div id="sw190_230" class="vstp_item vstp_block02">
 						<a href="#"></a>
-						<div class="subsec"><div class="w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>	
+						<div class="vstp_subsec"><div class="vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w230 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>	
 					</div>
 				</div>
 			</div>
-			<div id="subSec510" class="jqmCT formss">
+			<div id="vstp_subSec510" class="vstp_jqmCT vstp_formss">
 				<div class="left">
-					<div id="sw510" class="item block04">
+					<div id="sw510" class="ivstp_tem vstp_block04">
 						<a href="#"></a>
-						<div class="subsec"><div class="w510"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w510"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw270_230" class="item block05">
+					<div id="sw270_230" class="vstp_item vstp_block05">
 						<a href="#"></a>
-						<div class="subsec"><div class="w270 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w270 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w230 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw310_190" class="item block03">
+					<div id="sw310_190" class="vstp_item vstp_block03">
 						<a href="#"></a>
-						<div class="subsec"><div class="w310 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w310 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
 				</div>
 				<div class="right">
-					<div id="sw250_250" class="item block01">
+					<div id="sw250_250" class="vstp_item vstp_block01">
 						<a href="#"></a>
-						<div class="subsec"><div class="w250 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w250 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w250 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w250 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw230_270" class="item block06">
+					<div id="sw230_270" class="vstp_item vstp_block06">
 						<a href="#"></a>
-						<div class="subsec"><div class="w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w270 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w230 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w270 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
-					<div id="sw190_310" class="item block02">
+					<div id="sw190_310" class="vstp_item vstp_block02">
 						<a href="#"></a>
-						<div class="subsec"><div class="w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="w310 r"><div class="sec"><div class="secHolder"></div></div></div></div>
+						<div class="vstp_subsec"><div class="vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_w310 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 					</div>
 				</div>
 			</div>		
-			<div id="subSec310" class="jqmCT formss">
-				<div class="item block01" id="sw310">
+			<div id="vstp_subSec310" class="vstp_jqmCT vstp_formss">
+				<div class="vstp_item vstp_block01" id="sw310">
 					<a href="#"></a>
-					<div class="subsec"><div class="w310"><div class="sec"><div class="secHolder"></div></div></div></div>
+					<div class="vstp_subsec"><div class="vstp_w310"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 				</div>
 			</div>
-			<div id="subSec270" class="jqmCT formss">
-				<div class="item block01" id="sw270">
+			<div id="vstp_subSec270" class="vstp_jqmCT vstp_formss">
+				<div class="vstp_item vstp_block01" id="sw270">
 					<a href="#"></a>
-					<div class="subsec"><div class="w270"><div class="sec"><div class="secHolder"></div></div></div></div>
+					<div class="vstp_subsec"><div class="vstp_w270"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 				</div>
 			</div>
-			<div id="subSec230" class="jqmCT formss">
-				<div class="item block01" id="sw230">
+			<div id="vstp_subSec230" class="vstp_jqmCT vstp_formss">
+				<div class="vstp_item vstp_block01" id="sw230">
 					<a href="#"></a>
-					<div class="subsec"><div class="w230"><div class="sec"><div class="secHolder"></div></div></div></div>
+					<div class="vstp_subsec"><div class="vstp_w230"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 				</div>
 			</div>
-			<div id="subSec190" class="jqmCT formss">
-				<div class="item block01" id="sw190">
+			<div id="vstp_subSec190" class="vstp_jqmCT vstp_formss">
+				<div class="vstp_item vstp_block01" id="sw190">
 					<a href="#"></a>
-					<div class="subsec"><div class="w190"><div class="sec"><div class="secHolder"></div></div></div></div>
+					<div class="vstp_subsec"><div class="vstp_w190"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>
 				</div>
 			</div>									
 			<!--/添加分栏-->
 			<!--焦点图-->
-			<div id="wFlash" class="jqmCT formx">
+			<div id="vstp_wFlash" class="vstp_jqmCT vstp_formx">
 				<div class="blank8"></div>
-				<div class="lineA clear">
-					<div class="left"><label for="txtWFlash">宽度</label></div>
+				<div class="vstp_lineA clear">
+					<div class="left"><label for="vstp_txtWFlash">宽度</label></div>
 					<div class="center clear">
 						<div class="l">
-							<input class="ipt00 ipt58" id="txtWFlash" type="text" name="wFlash"/>
-							<label for="txtWFlash">px</label>
+							<input class="vstp_ipt00 vstp_ipt58" id="vstp_txtWFlash" type="text" name="vstp_wFlash"/>
+							<label for="vstp_txtWFlash">px</label>
 						</div>
 						<div class="r">
-							<label for="txtHFlash">高度</label>
-							<input class="ipt00 ipt58" id="txtHFlash" type="text" name="hFlash"/>
+							<label for="vstp_txtHFlash">高度</label>
+							<input class="vstp_ipt00 vstp_ipt58" id="vstp_txtHFlash" type="text" name="vstp_hFlash"/>
 						</div> 
 					</div>
 					<div class="right">
-						<label for="txtHFlash">px</label>
+						<label for="vstp_txtHFlash">px</label>
 					</div>
 				</div>
-				<div class="cfg clear">
+				<div class="vstp_cfg clear">
 					<div class="left">
-						<img class="thumb" alt="" width="57" height="44" src="images/pic57x44.gif"/>
-						<label class="lbl1">图片</label>
-						<label class="lbl1">标题</label>
-						<label class="lbl1">链接</label>
+						<img class="vstp_thumb" alt="" width="57" height="44" src="images/pic57x44.gif"/>
+						<label class="vstp_lbl1">图片</label>
+						<label class="vstp_lbl1">标题</label>
+						<label class="vstp_lbl1">链接</label>
 					</div>
 					<div class="center">
-						<input class="ipt00 flashImg" type="text"/>
+						<input class="vstp_ipt00 vstp_flashImg" type="text"/>
 						<div class="blank8"></div>
-						<input class="ipt00 flashTxt" type="text"/>
+						<input class="vstp_ipt00 vstp_flashTxt" type="text"/>
 						<div class="blank8"></div>
-						<input class="ipt00 flashHref" type="text"/>
+						<input class="vstp_ipt00 vstp_flashHref" type="text"/>
 					</div>
 					<div class="right">
-						<input type="button" class="btn" value="浏览" />
-						<div class="icons">
-					   		<a class="add" href="#"><strong><img src="images/addblock.gif" /></strong></a>
-					   		<a class="del" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
-					   		<a class="up" href="#"><strong><img src="images/up.gif" /></strong></a>
-					   		<a class="down" href="#"><strong><img src="images/down.gif" /></strong></a>									
+						<input type="button" class="vstp_btn" value="浏览" />
+						<div class="vstp_icons">
+					   		<a class="vstp_add" href="#"><strong><img src="images/addblock.gif" /></strong></a>
+					   		<a class="vstp_del" href="#"><strong><img src="images/cutblock.gif" /></strong></a>
+					   		<a class="vstp_up" href="#"><strong><img src="images/up.gif" /></strong></a>
+					   		<a class="vstp_down" href="#"><strong><img src="images/down.gif" /></strong></a>									
 						</div>				
 					</div>
 				</div>
@@ -886,135 +880,136 @@
 			<!--/焦点图-->													
 		</div>
 		<!--横切工具条-->
-		<div id="areaTools">
-		    <div class="titleA">
+		<div id="vstp_areaTools">
+		    <div class="vstp_titleA">
 		    	<h3>横切</h3>
 			</div>
-			<div class="ctroArea">
-				<a id="lnkAreaAdd" class="ctroBtn" href="#"><strong><img src="images/hq.gif" /></strong></a>
-				<a id="lnkAreaDel" class="ctroBtn" href="#"><strong><img src="images/jhq.gif" /></strong></a>
-				<a id="lnkAreaBG" class="ctroBtn" href="#"><strong><img src="images/bj.gif" /></strong></a>
-				<a id="lnkAreaUp" class="ctroBtn" href="#"><strong><img src="images/sy.gif" /></strong></a>
-				<a id="lnkAreaDown" class="ctroBtn" href="#"><strong><img src="images/xy.gif" /></strong></a>
+			<div class="vstp_ctroArea">
+				<a id="vstp_lnkAreaAdd" class="vstp_ctroBtn" href="#"><strong><img src="images/hq.gif" /></strong></a>
+				<a id="vstp_lnkAreaDel" class="vstp_ctroBtn" href="#"><strong><img src="images/jhq.gif" /></strong></a>
+				<a id="vstp_lnkAreaBG" class="vstp_ctroBtn" href="#"><strong><img src="images/bj.gif" /></strong></a>
+				<a id="vstp_lnkAreaUp" class="vstp_ctroBtn" href="#"><strong><img src="images/sy.gif" /></strong></a>
+				<a id="vstp_lnkAreaDown" class="vstp_ctroBtn" href="#"><strong><img src="images/xy.gif" /></strong></a>
 			</div>
 		</div>
 		<!--/横切工具条-->	
 		<!--左侧菜单-->
-		<div id="wSetting1">
-			<div class="clear close">
+		<div id="vstp_wSetting1">
+			<div class="clear vstp_close">
 				<div class="left">
 				 <ul>
-				 <li><a id="wsTheme" class="editBtn4" href="#"><strong>更换风格</strong></a></li>
-				 <li><a id="wsPagePro" class="editBtn4" href="#"><strong>页面属性</strong></a></li>
-				 <li><a id="wsPageBG" class="editBtn4" href="#"><strong>页面背景</strong></a></li>
-				 <li><a id="wsPreview" class="editBtn4" href="#"><strong>预览</strong></a></li>
-				 <li><a id="wsPublish" class="editBtn4" href="#"><strong>发布</strong></a></li>
-				 <li><a id="wsHelp" class="editBtn4" href="#"><strong>帮助</strong></a></li>
+				 <li><a id="vstp_wsTheme" class="vstp_editBtn4" href="#"><strong>更换风格</strong></a></li>
+				 <li><a id="vstp_wsPagePro" class="vstp_editBtn4" href="#"><strong>页面属性</strong></a></li>
+				 <li><a id="vstp_wsPageBG" class="vstp_editBtn4" href="#"><strong>页面背景</strong></a></li>
+				 <li><a id="vstp_wsPreview" class="vstp_editBtn4" href="#"><strong>预览</strong></a></li>
+				 <li><a id="vstp_wsPublish" class="vstp_editBtn4" href="#"><strong>发布</strong></a></li>
+				 <li><a id="vstp_wsHelp" class="vstp_editBtn4" href="#"><strong>帮助</strong></a></li>
 				 </ul>
 				</div>
-				<div class="right ctr"></div>
+				<div class="right vstp_ctr"></div>
 			</div>	
 		</div>
 		<!--左侧菜单 over-->
 		<!--内容拖拽助手-->
-		<div id="ctHandle" class="dragHandle"><img src="img/move.gif" alt="移动" width="15" height="15"/></div>
-		<div id="ctHelper" class="dragHelper"></div>
+		<div id="vstp_ctHandle" class="vstp_dragHandle"><img src="img/move.gif" alt="移动" width="15" height="15"/></div>
+		<div id="vstp_ctHelper" class="vstp_dragHelper"></div>
 		<!--横切蒙层-->
-		<div id="areaHolder"></div>
+		<div id="vstp_areaHolder"></div>
 		<!--flash蒙层-->
-		<div id="flashHolder"></div>
+		<div id="vstp_flashHolder"></div>
 		<!--chipEditor模板-->
-		<div id="elmTxtTpl" class="hidden">
-			<div class="row rowTxt">
+		<div id="vstp_elmTxtTpl" class="hidden">
+			<div class="vstp_row vstp_rowTxt">
 				<label class="l">文字</label>
 				<input type="text" class="txt l"/>
-				<div class="r icons1">
-					<a href="#" class="btnDel btnDelTxt"><img src="images/icn_del.gif"/></a>
+				<div class="r vstp_icons1">
+					<a href="#" class="vstp_btnDel vstp_btnDelTxt"><img src="images/icn_del.gif"/></a>
 				</div>
 			</div>		
 		</div>
-		<div id="elmATpl" class="hidden">				
-			<div class="row rowTitle">
+		<div id="vstp_elmATpl" class="hidden">				
+			<div class="vstp_row vstp_rowTitle">
 				<label class="l">标题</label>
-				<input type="text" class="tt l"/>
-				<div class="l icons clear">
-				    <a class="bold cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
-				    <a class="udl cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
-				    <a class="color cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
-					<a href="#" class="icon"><span>图标</span></a>
-					<ul class="others clear hidden">
-						<li><a class="cmdicon videoL " href="#">视频前</a></li>
-						<li><a class="cmdicon videoR " href="#">视频后</a></li>
+				<input type="text" class="vstp_tt l"/>
+				<div class="l vstp_icons clear">
+				    <a class="vstp_bold vstp_cmdicon" href="#"><strong><img src="images/w01.gif" /></strong></a>
+				    <a class="vstp_udl vstp_cmdicon" href="#"><strong><img src="images/w02.gif" /></strong></a>
+				    <a class="vstp_color vstp_cmdicon" href="#"><strong><img src="images/w03.gif" style="border-bottom:2px solid #ff0000;margin-right:4px;" /></strong></a>
+					<a href="#" class="vstp_icon"><span>图标</span></a>
+					<ul class="vstp_others clear hidden">
+						<li><a class="vstp_cmdicon vstp_videoL " href="#">视频前</a></li>
+						<li><a class="vstp_cmdicon vstp_videoR " href="#">视频后</a></li>
 					</ul>
 				</div>
-				<div class="r icons1">
-					<a href="#" class="btnDel btnDelA"><img src="images/icn_del.gif"/></a>
-					<a href="#" class="btnAdd"><img src="images/icn_add.gif"/></a>
+				<div class="r vstp_icons1">
+					<a href="#" class="vstp_btnDel vstp_btnDelA"><img src="images/icn_del.gif"/></a>
+					<a href="#" class="vstp_btnAdd"><img src="images/icn_add.gif"/></a>
 				</div>
 			</div>		
-			<div class="row rowLnk">
+			<div class="vstp_row vstp_rowLnk">
 				<label class="l">链接</label>
-				<input type="text" class="lnk l"/>
-				<select name="aTarget" class="aTarget selAuto">
+				<input type="text" class="vstp_lnk l"/>
+				<select name="vstp_aTarget" class="vstp_aTarget vstp_selAuto">
 					<option selected="selected" value="_blank">新窗口</option>
 					<option value="_self">本窗口</option>
 				</select>
 			</div>				
 		</div>
-		<div id="elmImgTpl" class="hidden">
-			<div class="row rowImg">
+		<div id="vstp_elmImgTpl" class="hidden">
+			<div class="vstp_row vstp_rowImg">
 				<label class="l">换图</label>
-				<input type="text" class="imgSrc l"/>
-				<div class="icons l clear">
-					<button class="btnUpl browse">浏览</button>
+				<input type="text" class="vstp_imgSrc l"/>
+				<div class="vstp_icons l clear">
+					<button class="vstp_btnUpl vstp_browse">浏览</button>
 				</div>
-				<div class="r icons1">
-					<a href="#" class="btnDel"><img src="images/icn_del.gif"/></a>
-					<a href="#" class="btnAdd"><img src="images/icn_add.gif"/></a>
+				<div class="r vstp_icons1">
+					<a href="#" class="vstp_btnDel"><img src="images/icn_del.gif"/></a>
+					<a href="#" class="vstp_btnAdd"><img src="images/icn_add.gif"/></a>
 				</div>						
 			</div>
-			<div class="row rowLnk">
+			<div class="vstp_row vstp_rowLnk">
 				<label class="l">链接</label>
-				<input type="text" class="imgLnk l"/>
-				<select name="picTarget" class="imgTarget selAuto">
+				<input type="text" class="vstp_imgLnk l"/>
+				<select name="vstp_picTarget" class="vstp_imgTarget vstp_selAuto">
 					<option selected="selected" value="_blank">新窗口</option>
 					<option value="_self">本窗口</option>
 				</select>				
 			</div>
-			<div class="row rowALT">
+			<div class="vstp_row vstp_rowALT">
 				<label class="l">Alt</label>
 				<input type="text" class="imgAlt l"/>
 			</div>
-			<div class="row rowTit">
+			<div class="vstp_row vstp_rowTit">
 				<label class="l">Title</label>
-				<input type="text" class="imgTitle l"/>
+				<input type="text" class="vstp_imgTitle l"/>
 			</div>
-			<div class="row rowDim">
+			<div class="vstp_row vstp_rowDim">
 				<label class="l">宽(px)</label>
-				<input type="text" class="imgW ipt01"/>
+				<input type="text" class="vstp_imgW vstp_ipt01"/>
 				<label class="center">高(px)</label>
-				<input type="text" class="imgH ipt01"/>
+				<input type="text" class="vstp_imgH vstp_ipt01"/>
 				<label class="center">边框</label>
-				<input type="text" class="imgBColor ipt02"/>
+				<input type="text" class="vstp_imgBColor vstp_ipt02"/>
 			</div>									
 		</div>
-		<textarea id="tinymce1" name="tinymce" class="mceEditor hidden" rows="10" cols="60"></textarea>
-    </body>
-	<script type="text/javascript" src="js/sohu.diy.js"></script>
-	<script type="text/javascript" src="js/sohu.diyElement.js"></script> 
-	<script type="text/javascript" src="js/sohu.diyContent.js"></script>
-	<script type="text/javascript" src="js/sohu.diyEditor.js"></script>
-	<script type="text/javascript" src="js/sohu.diySection.js"></script>
-	<script type="text/javascript" src="js/sohu.diyArea.js"></script>
-	<script type="text/javascript" src="js/sohu.diyMenuBar.js"></script> 
-	<script type="text/javascript" src="js/sohu.diyDialog.js"></script>
-	<script type="text/javascript" src="js/sohu.diyDialog_.js"></script>
-	<script type="text/javascript" src="js/sohu.diyConsole.js"></script>
-	<script type="text/javascript" src="js/sohu.diyChipEditor.js"></script>
-	<script type="text/javascript">
-	//<![CDATA[
-	var bos = new sohu.diyConsole({});
-	//]]>
-	</script>
-	
+		<textarea id="vstp_tinymce1" name="vstp_tinymce" class="vstp_mceEditor hidden" rows="10" cols="60"></textarea>
+    
+		<!--js-->
+		<script type="text/javascript" src="js/sohu.diy.js"></script>
+		<script type="text/javascript" src="js/sohu.diyElement.js"></script> 
+		<script type="text/javascript" src="js/sohu.diyContent.js"></script>
+		<script type="text/javascript" src="js/sohu.diyEditor.js"></script>
+		<script type="text/javascript" src="js/sohu.diySection.js"></script>
+		<script type="text/javascript" src="js/sohu.diyArea.js"></script>
+		<script type="text/javascript" src="js/sohu.diyMenuBar.js"></script> 
+		<script type="text/javascript" src="js/sohu.diyDialog.js"></script>
+		<script type="text/javascript" src="js/sohu.diyDialog_.js"></script>
+		<script type="text/javascript" src="js/sohu.diyConsole.js"></script>
+		<script type="text/javascript" src="js/sohu.diyChipEditor.js"></script>
+		<script id="vstp_jsInit" type="text/javascript">
+		//<![CDATA[
+		var bos = new sohu.diyConsole({});
+		//]]>
+		</script>
+	</body>
 </html>

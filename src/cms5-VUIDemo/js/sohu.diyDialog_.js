@@ -18,7 +18,7 @@ sohu.diyDialog.wArea=function(dlg){
 		dlg.Console.$Layout.animate({top:dlg.Console.__p.opts.dfTop});	
 	};
 	//DOM引用
-	p.$layout=$("#addBlock");
+	p.$layout=$("#vstp_addBlock");
 	p.$layout.jqmOpts={title:"添加横切",afterShow:p.afterShow,hideActions:true};
 	//事件处理
 	p.selTpl=function(evt){
@@ -48,15 +48,15 @@ sohu.diyDialog.wCfgArea=function(dlg){
 	var _this=this;
 	var p={};
 	//DOM引用
-	this.$Layout=$("#cfgArea");
+	this.$Layout=$("#vstp_cfgArea");
 	
 	//私有变量÷函数
 	p._fm={
-		txtBG:$("#txtAreaBG"),
-		txtID:$("#txtAreaID"),
-		ddlBGAlign:$("#ddlAreaBGAlign"),
-		ddlBGAlignV:$("#ddlAreaBGAlignV"),
-		ddlBGRepeat:$("#ddlAreaBGRepeat"),
+		txtBG:$("#vstp_txtAreaBG"),
+		txtID:$("#vstp_txtAreaID"),
+		ddlBGAlign:$("#vstp_ddlAreaBGAlign"),
+		ddlBGAlignV:$("#vstp_ddlAreaBGAlignV"),
+		ddlBGRepeat:$("#vstp_ddlAreaBGRepeat"),
 		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
 	//事件处理
@@ -66,7 +66,7 @@ sohu.diyDialog.wCfgArea=function(dlg){
 		//bg image
 		var url=p._fm.txtBG.val();
 		if((url!="")&&(!StringUtils.isUrl(url))){
-			p._fm.txtBG.addClass("alert").select();
+			p._fm.txtBG.addClass("vstp_alert").select();
 			return false;
 		};
 		if(url==""){
@@ -81,7 +81,7 @@ sohu.diyDialog.wCfgArea=function(dlg){
 		//area id
 		var id=p._fm.txtID.val();
 		if(!sohu.diyConsole.IsValidID(id)){
-			p._fm.txtID.addClass("alert");
+			p._fm.txtID.addClass("vstp_alert");
 			return false;
 		};
 		var isIDOK=sohu.diyConsole.CurArea.UpdateID(id);
@@ -154,22 +154,22 @@ sohu.diyDialog.wCfgPage=function(dlg){
 	var _this=this;
 	var p={};
 	//DOM引用
-	this.$Layout=$("#cfgPage");
+	this.$Layout=$("#vstp_cfgPage");
 	
 	//私有变量÷函数
 	p._fm={
-		txtBGA:$("#txtPageBGA"),
-		txtBGB:$("#txtPageBGB"),
-		txtBGHA:$("#txtPageBGHA"),
-		txtBGHB:$("#txtPageBGHB"),
-		ddlBGAlignA:$("#pageBGAlignA"),
-		ddlBGAlignAV:$("#pageBGAlignAV"),
-		ddlBGAlignB:$("#pageBGAlignB"),
-		ddlBGAlignBV:$("#pageBGAlignBV"),
-		ddlBGRepeatA:$("#pageBGRepeatA"),
-		ddlBGRepeatB:$("#pageBGRepeatB"),
-		txtBGC:$("#txtPageBGC"),
-		cpk:this.$Layout.find(".cpk"),
+		txtBGA:$("#vstp_txtPageBGA"),
+		txtBGB:$("#vstp_txtPageBGB"),
+		txtBGHA:$("#vstp_txtPageBGHA"),
+		txtBGHB:$("#vstp_txtPageBGHB"),
+		ddlBGAlignA:$("#vstp_pageBGAlignA"),
+		ddlBGAlignAV:$("#vstp_pageBGAlignAV"),
+		ddlBGAlignB:$("#vstp_pageBGAlignB"),
+		ddlBGAlignBV:$("#vstp_pageBGAlignBV"),
+		ddlBGRepeatA:$("#vstp_pageBGRepeatA"),
+		ddlBGRepeatB:$("#vstp_pageBGRepeatB"),
+		txtBGC:$("#vstp_txtPageBGC"),
+		cpk:this.$Layout.find(".vstp_cpk"),
 		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
 	//事件处理
@@ -179,13 +179,13 @@ sohu.diyDialog.wCfgPage=function(dlg){
 		//页头背景图
 		var url=p._fm.txtBGA.val();
 		if((url!="")&&(!StringUtils.isUrl(url))){
-			p._fm.txtBGA.addClass("alert").select();
+			p._fm.txtBGA.addClass("vstp_alert").select();
 			return false;
 		};
 		//页尾背景图
 		var url1=p._fm.txtBGB.val();
 		if((url1!="")&&(!StringUtils.isUrl(url1))){
-			p._fm.txtBGB.addClass("alert").select();
+			p._fm.txtBGB.addClass("vstp_alert").select();
 			return false;
 		};
 		//设置页头背景
@@ -335,8 +335,8 @@ sohu.diyDialog.wAddContent=function(dlg){
 	var _this=this;
 	var p={};
 	//DOM引用
-	this.$Layout=$("#addContent");
-	this.$if=$("#ifContentList");
+	this.$Layout=$("#vstp_addContent");
+	this.$if=$("#vstp_ifContentList");
 	//事件处理
 	p.beforeShow=function(hash,dlg0){
 		sohu.diyConsole.CurSec.Editor.Editing("on");
@@ -364,8 +364,9 @@ sohu.diyDialog.wCode=function(dlg){
 	var _this=this;
 	var p={};
 	//DOM引用
-	this.$Layout=$("#wCode");
+	this.$Layout=$("#vstp_wCode");
 	this.$TextArea=this.$Layout.find("textarea");
+	this.$tempWrap=$("<div/>");
 	//事件处理
 	p.beforeShow=function(hash,dlg0){
 		sohu.diyConsole.CurSec.Editor.Editing("on");
@@ -376,13 +377,15 @@ sohu.diyDialog.wCode=function(dlg){
 		sohu.diyConsole.Preview();
 	};	
 	p.afterShow=function(hash,dlg0){
-		_this.$TextArea.val(sohu.diyConsole.CurSec.$Layout.html());
+		_this.$tempWrap.html(sohu.diyConsole.CurSec.$Layout.html()).find(".vstp_secHolder").remove();
+		_this.$TextArea.val(_this.$tempWrap.html());
 	};
 	p.onOK=function(dlg0){
 		sohu.diyDialog.doConfirm({
 			text:'确定更新当前分栏的HTML代码么?',
 			onOK:function($jqm){
-				sohu.diyConsole.CurSec.$Layout.html(_this.$TextArea.val());
+				sohu.diyConsole.CurSec.$Layout.children().filter(":not(.vstp_secHolder)").remove();
+				sohu.diyConsole.CurSec.$Layout.append(_this.$TextArea.val());
 				//重新加载该分栏的内容，利用.html(x)更新内容时，dom已经不是原来的dom
 				sohu.diyConsole.CurSec.LoadContents();
 				$jqm.jqmHide();
@@ -407,16 +410,16 @@ sohu.diyDialog.wCfgSec=function(dlg){
 	var _this=this;
 	var p={};
 	//DOM引用
-	this.$Layout=$("#wCfgSec");
+	this.$Layout=$("#vstp_wCfgSec");
 	//私有函数或变量
 	p._fm={
-		txtBG:$("#txtSecBG"),
-		txtBGC:$("#txtSecBGC"),
-		txtBorderC:$("#txtSecBorderColor"),
-		cpk:this.$Layout.find(".cpk"),
-		ddlBGAlign:$("#ddlSecBGAlign"),
-		ddlBGAlignV:$("#ddlSecBGAlignV"),
-		ddlBGRepeat:$("#ddlSecBGRepeat"),
+		txtBG:$("#vstp_txtSecBG"),
+		txtBGC:$("#vstp_txtSecBGC"),
+		txtBorderC:$("#vstp_txtSecBorderColor"),
+		cpk:this.$Layout.find(".vstp_cpk"),
+		ddlBGAlign:$("#vstp_ddlSecBGAlign"),
+		ddlBGAlignV:$("#vstp_ddlSecBGAlignV"),
+		ddlBGRepeat:$("#vstp_ddlSecBGRepeat"),
 		cbxBorder:this.$Layout.find(".cbx"),
 		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
@@ -435,7 +438,7 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		cls=cls==_undefined?true:cls;
 		var url=$.trim(p._fm.txtBG.val());
 		if( (url!="") && (!StringUtils.isUrl(url)) ){
-			p._fm.txtBG.addClass("alert").select();
+			p._fm.txtBG.addClass("vstp_alert").select();
 			return false;
 		};
 		//更改图片属性
@@ -565,14 +568,14 @@ sohu.diyDialog.wSecHead=function(dlg){
 	var _this=this;
 	var p={};
 	//DOM引用
-	this.$Layout=$("#wSecHead");
+	this.$Layout=$("#vstp_wSecHead");
 	p._fm={
-		bg:$("#secHDBG"),
-		cbxMore:$("#cbxSecHDMore"),
-		link:$("#secHDLink"),
-		ddlTarget:$("#ddlSecHDTarget"),
-		title:$("#secHDTitle"),
-		tipLink:this.$Layout.find(".tipSecHDLink"),
+		bg:$("#vstp_secHDBG"),
+		cbxMore:$("#vstp_cbxSecHDMore"),
+		link:$("#vstp_secHDLink"),
+		ddlTarget:$("#vstp_ddlSecHDTarget"),
+		title:$("#vstp_secHDTitle"),
+		tipLink:this.$Layout.find(".vstp_tipSecHDLink"),
 		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
 	//事件处理
@@ -625,12 +628,12 @@ sohu.diyDialog.wSecHead=function(dlg){
 	p.onOK=function(dlg0){
 		var url=$.trim(p._fm.link.val());
 		if((url!="")&&!StringUtils.isUrl(url)){
-			p._fm.link.addClass("alert").select();
-			p._fm.tipLink.addClass("alert").show();
+			p._fm.link.addClass("vstp_alert").select();
+			p._fm.tipLink.addClass("vstp_alert").show();
 			return false;
 		};
-		p._fm.link.removeClass("alert");
-		p._fm.tipLink.removeClass("alert").hide();
+		p._fm.link.removeClass("vstp_alert");
+		p._fm.tipLink.removeClass("vstp_alert").hide();
 		//背景图
 		var img=$.trim(p._fm.bg.val());
 		img=img==""?"none":img;
@@ -639,7 +642,7 @@ sohu.diyDialog.wSecHead=function(dlg){
 		//显示更多
 		if(p._fm.cbxMore[0].checked){
 			if(sohu.diyConsole.CurElm.CT.$Layout.find(".more").length==0){
-				var $more=$('<strong class="elm more">更多&gt;&gt;</strong>');
+				var $more=$('<strong class="vstp_elm more">更多&gt;&gt;</strong>');
 				sohu.diyConsole.CurElm.CT.$Layout.append($more);
 				new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$more});
 			};
@@ -686,7 +689,7 @@ sohu.diyDialog.wSecHead=function(dlg){
 sohu.diyDialog.wSubSec=function(dlg,parentSize){
 	var p={};
 	//DOM引用
-	this.$Layout=$("#subSec"+parentSize);
+	this.$Layout=$("#vstp_subSec"+parentSize);
 	//事件处理
 	p.beforeShow=function(hash,dlg0){
 		sohu.diyConsole.CurSec.Editor.Editing("on");
@@ -697,10 +700,10 @@ sohu.diyDialog.wSubSec=function(dlg,parentSize){
 		sohu.diyConsole.Preview();
 	};	
 	//事件注册
-	this.$Layout.find('.item').click(function(evt){
+	this.$Layout.find('.vstp_item').click(function(evt){
 		if(!sohu.diyConsole.CurSec) return;
 		//sohu.diyConsole.CurSec.AddSub($(sohu.diyTp[this.id]));
-		sohu.diyConsole.CurSec.AddSub($(this).find(".subsec").clone());
+		sohu.diyConsole.CurSec.AddSub($(this).find(".vstp_subsec").clone());
 		dlg.Hide();
 		return false;
 	}).hover(function(){$(this).addClass("on");},function(){$(this).removeClass("on");});
@@ -720,13 +723,13 @@ sohu.diyDialog.wText=function(dlg){
 	var _this=this;
 	var p={};
 	//DOM引用
-	this.$Layout=$("#txtMsg");
-	this.$ElmCAction=this.$Layout.find(".elmcActs");
+	this.$Layout=$("#vstp_txtMsg");
+	this.$ElmCAction=this.$Layout.find(".vstp_elmcActs");
 	p._fm={
-		txtATitle:$("#txtATitle"),
-		txtAHref:$("#txtAHref"),
-		ddlATarget:$("#ddlATarget"),
-		tipAHref:this.$Layout.find(".tipAHref"),
+		txtATitle:$("#vstp_txtATitle"),
+		txtAHref:$("#vstp_txtAHref"),
+		ddlATarget:$("#vstp_ddlATarget"),
+		tipAHref:this.$Layout.find(".vstp_tipAHref"),
 		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
 	//事件处理
@@ -772,12 +775,12 @@ sohu.diyDialog.wText=function(dlg){
 	p.onOK=function(dlg0){
 		var url=p._fm.txtAHref.val();
 		if(url!=""&&!StringUtils.isUrl(url)){
-			p._fm.txtAHref.addClass("alert").select();
-			p._fm.tipAHref.addClass("alert").show();
+			p._fm.txtAHref.addClass("vstp_alert").select();
+			p._fm.tipAHref.addClass("vstp_alert").show();
 			return false;
 		};
-		p._fm.txtAHref.removeClass("alert");
-		p._fm.tipAHref.removeClass("alert").hide();	
+		p._fm.txtAHref.removeClass("vstp_alert");
+		p._fm.tipAHref.removeClass("vstp_alert").hide();	
 		if(p._fm.isNew&&url!=""){
 			sohu.diyConsole.CurElm.i$frame[0].iDoCommand("createlink",url,null,function($iframe){
 				sohu.diyConsole.DocSelection.selectAndRelease();
@@ -818,19 +821,19 @@ sohu.diyDialog.wImage=function(dlg){
 	var _this=this;
 	var p={};
 	//DOM引用
-	this.$Layout=$("#picMsg");
-	this.$ElmCAction=this.$Layout.find(".elmcActs");
+	this.$Layout=$("#vstp_picMsg");
+	this.$ElmCAction=this.$Layout.find(".vstp_elmcActs");
 	p._fm={
-		h:$("#picH"),
-		w:$("#picW"),
-		bcolor:$("#picBColor"),
-		src:$("#picSrc"),
-		btnSwitch:$("#picSwitch"),
-		link:$("#picLink"),
-		tipLink:this.$Layout.find(".tipPicLink"),
-		ddlTarget:$("#picTarget"),
-		title:$("#picTitle"),
-		alt:$("#picAlt"),
+		h:$("#vstp_picH"),
+		w:$("#vstp_picW"),
+		bcolor:$("#vstp_picBColor"),
+		src:$("#vstp_picSrc"),
+		btnSwitch:$("#vstp_picSwitch"),
+		link:$("#vstp_picLink"),
+		tipLink:this.$Layout.find(".vstp_tipPicLink"),
+		ddlTarget:$("#vstp_picTarget"),
+		title:$("#vstp_picTitle"),
+		alt:$("#vstp_picAlt"),
 		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
 	//事件处理
@@ -886,19 +889,19 @@ sohu.diyDialog.wImage=function(dlg){
 		//链接
 		var link=p._fm.link.val();
 		if(link!=""&&!StringUtils.isUrl(link)){
-			p._fm.link.addClass("alert").select();
-			p._fm.tipLink.addClass("alert").show();
+			p._fm.link.addClass("vstp_alert").select();
+			p._fm.tipLink.addClass("vstp_alert").show();
 			return false;
 		};
-		p._fm.link.removeClass("alert");
-		p._fm.tipLink.removeClass("alert").hide();
+		p._fm.link.removeClass("vstp_alert");
+		p._fm.tipLink.removeClass("vstp_alert").hide();
 		//高宽
 		var fine=true,v=["",""];
 		$.each([p._fm.h,p._fm.w],function(i,o){
 			var v0=o.val();
 			v[i]=v0;
 			if((v0!="")&&(!StringUtils.isPlusInt(v0))){
-				o.addClass("alert");
+				o.addClass("vstp_alert");
 				fine=fine&&false;
 			};//if
 		});//each
@@ -965,12 +968,12 @@ sohu.diyDialog.wImage=function(dlg){
 sohu.diyDialog.wPagePro=function(dlg){
 	var p={},_this=this;
 	//DOM引用
-	this.$Layout=$("#wPagePro");
+	this.$Layout=$("#vstp_wPagePro");
 	//事件处理
 	p._fm={
-		title:$("#pTitle"),
-		kwd:$("#pKeywords"),
-		desc:$("#pDesc")
+		title:$("#vstp_pTitle"),
+		kwd:$("#vstp_pKeywords"),
+		desc:$("#vstp_pDesc")
 	};
 	p.afterShow=function(hash,dlg0){
 		p._fm.title.val($("title").html());
@@ -993,11 +996,28 @@ sohu.diyDialog.wPagePro=function(dlg){
 sohu.diyDialog.wTheme=function(dlg){
 	var p={},_this=this;
 	//DOM引用
-	this.$Layout=$("#wTheme");
+	this.$Layout=$("#vstp_wTheme");
+	this.$list=this.$Layout.find(".vstp_listTopicTpl");
+	//初始化
+	$("#vstp_topicTpl").tmpl(sohu.diyTp.TopicTpl).appendTo(this.$list);
+	this.$Layout.find("a").click(sohu.diyConsole.OnStopNav);
+	this.$list.find("a").click(function(){
+		var n=this.name;
+		//注入当前模板
+		sohu.diyConsole.$Workspace.load(this.rel,function(d){
+			sohu.diyConsole.$Workspace.empty().append($(d).filter(":not(.vstp_exclude,title,meta)"));
+			sohu.diyConsole.$Workspace.find("link,style").appendTo("head");
+			//初始化编辑器
+			//$("#vstp_jsInit").remove().appendTo("body");
+			bos.Fire();
+		});
+	});
 	//事件处理
 	p.afterShow=function(hash,dlg0){
+		dlg0.$Acts.hide();
 	};
 	p.onOK=function(dlg0){
+		//注入当前模板
 		dlg0.Hide();
 	};
 	//事件注册
@@ -1015,7 +1035,7 @@ sohu.diyDialog.wTheme=function(dlg){
 sohu.diyDialog.wSetting1=function(dlg){
 	var p={},_this=this;
 	//DOM引用
-	this.$Layout=$("#wSetting1");
+	this.$Layout=$("#vstp_wSetting1");
 	this.$Body=this.$Layout.children();
 	this.IsOpen=true;
 	//事件处理
@@ -1039,12 +1059,12 @@ sohu.diyDialog.wSetting1=function(dlg){
 		var $b=$("body");
 		if (sohu.diyConsole.IsPreview) {
 			$(this).find("strong").html("预览");
-			$b.removeClass("preview");
+			$b.removeClass("vstp_preview");
 			sohu.diyConsole.UnPreview();
 		}else{
 			sohu.diyConsole.Preview(true);
 			if(sohu.diyConsole.IsPreview){
-				$b.addClass("preview");
+				$b.addClass("vstp_preview");
 				$(this).find("strong").html("关闭预览");				
 			};	
 		};
@@ -1060,11 +1080,11 @@ sohu.diyDialog.wSetting1=function(dlg){
 	p.onHelp=function(evt){alert("help");};
 	p.onToggle=function(evt){
 		if(_this.IsOpen){
-			_this.$Body.addClass("close");
+			_this.$Body.addClass("vstp_close");
 			_this.$Layout.animate({left:-82},"normal");
 			_this.IsOpen=false;
 		}else{
-			_this.$Body.removeClass("close");
+			_this.$Body.removeClass("vstp_close");
 			_this.$Layout.animate({left:-1},"normal");
 			_this.IsOpen=true;
 		};
@@ -1072,12 +1092,12 @@ sohu.diyDialog.wSetting1=function(dlg){
 	};
 	//事件注册
 	this.$Layout.find("a").click(function(evt){return false;});
-	$("#wsTheme").click(p.onTheme);
-	$("#wsPagePro").click(p.onPagePro);
-	$("#wsPageBG").click(p.onPageBG);
-	$("#wsPreview").click(p.onPreview);
-	$("#wsPublish").click(p.onPublish);
-	$("#wsHelp").click(p.onHelp);
+	$("#vstp_wsTheme").click(p.onTheme);
+	$("#vstp_wsPagePro").click(p.onPagePro);
+	$("#vstp_wsPageBG").click(p.onPageBG);
+	$("#vstp_wsPreview").click(p.onPreview);
+	$("#vstp_wsPublish").click(p.onPublish);
+	$("#vstp_wsHelp").click(p.onHelp);
 	this.$Layout.find(".ctr").click(p.onToggle);
 	
 };
@@ -1088,49 +1108,49 @@ sohu.diyDialog.wSetting1=function(dlg){
 sohu.diyDialog.wFlash=function(dlg){
 	var p={},_this=this;
 	//DOM引用
-	this.$Layout=$("#wFlash");
-	this.$t=this.$Layout.find('.cfg');
+	this.$Layout=$("#vstp_wFlash");
+	this.$t=this.$Layout.find('.vstp_cfg');
 	
 	p._fm={
-		w:$("#txtWFlash"),
-		h:$("#txtHFlash"),
+		w:$("#vstp_txtWFlash"),
+		h:$("#vstp_txtHFlash"),
 		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
 	//事件处理
 	p.onChangeImg=function(evt){
-		$(this).parents('.cfg').find('.thumb').attr('src',this.value);
+		$(this).parents('.vstp_cfg').find('.vstp_thumb').attr('src',this.value);
 		return false;
 	};
 	p.onAdd=function(evt){
-		var t0=$(this).parents('.cfg');
+		var t0=$(this).parents('.vstp_cfg');
 		var o=t0.clone(true);
-		o.find(".thumb").attr("src","").end()
-			.find(".flashImg").val("").end()
-			.find(".flashTxt").val("").end()
-			.find(".flashHref").val("");
+		o.find(".vstp_thumb").attr("src","").end()
+			.find(".vstp_flashImg").val("").end()
+			.find(".vstp_flashTxt").val("").end()
+			.find(".vstp_flashHref").val("");
 		t0.after(o);
 		return false;
 	};
 	p.onDel=function(evt){
-		$(this).parents('.cfg').remove();
+		$(this).parents('.vstp_cfg').remove();
 		return false;
 	};
 	p.onUp=function(evt){
-		var t0=$(this).parents('.cfg');
-		var t1=t0.prev(".cfg1");
+		var t0=$(this).parents('.vstp_cfg');
+		var t1=t0.prev(".vstp_cfg1");
 		if(t1.length==0) return false;
 		t1.before(t0);
 		return false;
 	};
 	p.onDown=function(evt){
-		var t0=$(this).parents('.cfg');
-		var t1=t0.next(".cfg1");
+		var t0=$(this).parents('.vstp_cfg');
+		var t1=t0.next(".vstp_cfg1");
 		if(t1.length==0) return false;
 		t1.after(t0);
 		return false;
 	};
 	p.afterShow=function(hash,dlg0){
-		_this.$Layout.find('.cfg1').remove();
+		_this.$Layout.find('.vstp_cfg1').remove();
 		p._fm.w.val(sohu.diyConsole.CurCT.FlashData.w);
 		p._fm.h.val(sohu.diyConsole.CurCT.FlashData.h);
 		//图片列表
@@ -1138,11 +1158,11 @@ sohu.diyDialog.wFlash=function(dlg){
 		p._links=sohu.diyConsole.CurCT.FlashData.v.links.split('|');
 		p._texts=sohu.diyConsole.CurCT.FlashData.v.texts.split('|');
 		$.each(p._pics,function(i,o){
-			var $t0=_this.$t.clone(true).addClass('cfg1');
-			$t0.find('.flashImg').val(o).end()
-				.find('.flashTxt').val(p._texts[i]).end()
-				.find('.flashHref').val(p._links[i]).end()
-				.find('.thumb').attr('src',o).end()
+			var $t0=_this.$t.clone(true).addClass('vstp_cfg1');
+			$t0.find('.vstp_flashImg').val(o).end()
+				.find('.vstp_flashTxt').val(p._texts[i]).end()
+				.find('.vstp_flashHref').val(p._links[i]).end()
+				.find('.vstp_thumb').attr('src',o).end()
 				.appendTo(_this.$Layout);	
 		});
 	};
@@ -1153,21 +1173,21 @@ sohu.diyDialog.wFlash=function(dlg){
 		//验证
 		var h=p._fm.h.val(),w=p._fm.w.val();
 		if(!StringUtils.isPlusInt(h)){
-			p._fm.h.addClass("alert");
+			p._fm.h.addClass("vstp_alert");
 			return false;
 		};
 		if(!StringUtils.isPlusInt(w)){
-			p._fm.w.addClass("alert");
+			p._fm.w.addClass("vstp_alert");
 			return false;
 		};
 		
-		p._pics=_this.$Layout.find('.cfg1 .flashImg').map(function(){
+		p._pics=_this.$Layout.find('.vstp_cfg1 .vstp_flashImg').map(function(){
 			return this.value;
 		}).get().join("|");
-		p._links=_this.$Layout.find('.cfg1 .flashHref').map(function(){
+		p._links=_this.$Layout.find('.vstp_cfg1 .vstp_flashHref').map(function(){
 			return this.value;
 		}).get().join("|");
-		p._texts=_this.$Layout.find('.cfg1 .flashTxt').map(function(){
+		p._texts=_this.$Layout.find('.vstp_cfg1 .vstp_flashTxt').map(function(){
 			return this.value;
 		}).get().join("|");
 		
@@ -1202,11 +1222,11 @@ sohu.diyDialog.wFlash=function(dlg){
 		dlg0.Hide();
 	};
 	//事件注册
-	this.$t.find('.flashImg').change(p.onChangeImg);
-	this.$t.find('.add').click(p.onAdd);
-	this.$t.find('.del').click(p.onDel);
-	this.$t.find('.up').click(p.onUp);
-	this.$t.find('.down').click(p.onDown);
+	this.$t.find('.vstp_flashImg').change(p.onChangeImg);
+	this.$t.find('.vstp_add').click(p.onAdd);
+	this.$t.find('.vstp_del').click(p.onDel);
+	this.$t.find('.vstp_up').click(p.onUp);
+	this.$t.find('.vstp_down').click(p.onDown);
 	//jqm options
 	this.$Layout.jqmOpts={
 		title:"焦点图",
@@ -1222,12 +1242,12 @@ sohu.diyDialog.wFlash=function(dlg){
 sohu.diyDialog.wAreaTool=function(dlg){
 	var p={};
 	//DOM引用
-	p.$layout=$("#areaTools");
-	p._$btnAdd=$("#lnkAreaAdd");
-	p._$btnDel=$("#lnkAreaDel");
-	p._$btnBG=$("#lnkAreaBG");
-	p._$btnDown=$("#lnkAreaDown");
-	p._$btnUp=$("#lnkAreaUp");
+	p.$layout=$("#vstp_areaTools");
+	p._$btnAdd=$("#vstp_lnkAreaAdd");
+	p._$btnDel=$("#vstp_lnkAreaDel");
+	p._$btnBG=$("#vstp_lnkAreaBG");
+	p._$btnDown=$("#vstp_lnkAreaDown");
+	p._$btnUp=$("#vstp_lnkAreaUp");
 	
 	//事件处理
 	p.onReposition=function(evt){

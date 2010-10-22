@@ -4,7 +4,7 @@
  * @param {Object} opts 选项{$obj,sec}
  */
 sohu.diyContent=function(opts){
-	opts=$.extend({},{cl:"ct",clOn:"ctOn",scale:false,clElm:"elm",isNew:true},opts||{});
+	opts=$.extend({},{cl:"vstp_ct",clOn:"vstp_ctOn",scale:false,clElm:"vstp_elm",isNew:true},opts||{});
 	var _this=this;
 	this.Meta=opts.ct;
 	this.IsNew=opts.isNew;
@@ -143,7 +143,7 @@ sohu.diyContent.prototype.Validate=function(){
 		break;
 		case "flash":
 			this.$Layout=this.IsNew?$(this.Meta.html0):this.Meta.$dom;
-			this.$FlashData=this.$Layout.find(".flashData");
+			this.$FlashData=this.$Layout.find(".vstp_flashData");
 			this.FlashData=$.evalJSON(this.$FlashData.html());
 		break;
 		default:
@@ -176,6 +176,7 @@ sohu.diyContent.prototype.LoadElements=function(){
 			ct:_this
 		});
 	});
+	return this;
 };
 /**
  * 移除可视化编辑注册的事件
@@ -185,6 +186,7 @@ sohu.diyContent.prototype.UnbindEvts=function(){
 	this.$Layout.unbind(".edit");
 	//移除元素事件
 	//this.$Layout.find("."+this.__p.opts.clElm).trigger("evtUnbindEvt");
+	return this;
 };
 /**
  * 绑定可视化编辑的事件
@@ -233,6 +235,7 @@ sohu.diyContent.prototype.BindEvts=function(){
 		_this.UnbindEvts();
 		return false;//停止冒泡
 	});
+	return this;
 };
 /**
  * 内容拖拽开关

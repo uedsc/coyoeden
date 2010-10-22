@@ -14,49 +14,49 @@ sohu.diyTp={};
 
 /*=横切模板区域=*/
 //空横切
-sohu.diyTp["w0"]='<div class="area area_empty"><div class="col w950"><div class="sec"><div class="secHolder"></div></div></div></div>';
+sohu.diyTp["w0"]='<div class="area area_empty"><div class="vstp_col vstp_w950"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
 //2栏横切
-sohu.diyTp["w270_670"]='<div class="area area_empty"><div class="col w270 left"><div class="sec"><div class="secHolder"></div></div></div><div class="col w670 right"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["w430_510"]='<div class="area area_empty"><div class="col w430 left"><div class="sec"><div class="secHolder"></div></div></div><div class="col w510 right"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["w470_470"]='<div class="area area_empty"><div class="col w470 left"><div class="sec"><div class="secHolder"></div></div></div><div class="col w470 right"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["w670_270"]='<div class="area area_empty"><div class="col w670 left"><div class="sec"><div class="secHolder"></div></div></div><div class="col w270 right"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["w510_430"]='<div class="area area_empty"><div class="col w510 left"><div class="sec"><div class="secHolder"></div></div></div><div class="col w430 right"><div class="sec"><div class="secHolder"></div></div></div></div>';
+sohu.diyTp["w270_670"]='<div class="area area_empty"><div class="vstp_col vstp_w270 left"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w670 right"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["w430_510"]='<div class="area area_empty"><div class="vstp_col vstp_w430 left"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w510 right"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["w470_470"]='<div class="area area_empty"><div class="vstp_col vstp_w470 left"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w470 right"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["w670_270"]='<div class="area area_empty"><div class="vstp_col vstp_w670 left"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w270 right"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["w510_430"]='<div class="area area_empty"><div class="vstp_col vstp_w510 left"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w430 right"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
 //3栏横切
-sohu.diyTp["w190_270_470"]='<div class="area area_empty"><div class="col w190 left"><div class="sec"><div class="secHolder"></div></div></div><div class="col w270 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w470 right"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["w310_390_230"]='<div class="area area_empty"><div class="col w310 left"><div class="sec"><div class="secHolder"></div></div></div><div class="col w390 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 right"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["w470_270_190"]='<div class="area area_empty"><div class="col w470 left"><div class="sec"><div class="secHolder"></div></div></div><div class="col w270 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 right"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["w270_390_270"]='<div class="area area_empty"><div class="col w270 left"><div class="sec"><div class="secHolder"></div></div></div><div class="col w390 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w270 right"><div class="sec"><div class="secHolder"></div></div></div></div>';
+sohu.diyTp["w190_270_470"]='<div class="area area_empty"><div class="vstp_col vstp_w190 left"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w270 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w470 right"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["w310_390_230"]='<div class="area area_empty"><div class="vstp_col vstp_w310 left"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w390 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w230 right"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["w470_270_190"]='<div class="area area_empty"><div class="vstp_col vstp_w470 left"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w270 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w190 right"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["w270_390_270"]='<div class="area area_empty"><div class="vstp_col vstp_w270 left"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w390 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w270 right"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
 
 /*=/横切模板区域=*/
 
 /*=分栏模板区域=*/
 //390
-sohu.diyTp["sw390"]='<div class="subsec"><div class="w390"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["sw190_190"]='<div class="subsec"><div class="col w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
+sohu.diyTp["sw390"]='<div class="vstp_subsec"><div class="vstp_w390"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["sw190_190"]='<div class="vstp_subsec"><div class="vstp_col vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
 //430
-sohu.diyTp["sw210_210"]='<div class="subsec"><div class="col w210 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w210 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["sw190_230"]='<div class="subsec"><div class="col w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["sw230_190"]='<div class="subsec"><div class="col w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
+sohu.diyTp["sw210_210"]='<div class="vstp_subsec"><div class="vstp_col vstp_w210 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w210 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["sw190_230"]='<div class="vstp_subsec"><div class="vstp_col vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w230 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["sw230_190"]='<div class="vstp_subsec"><div class="vstp_col vstp_w230 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
 //470
-sohu.diyTp["sw230_230"]='<div class="subsec"><div class="col w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["sw270_190"]='<div class="subsec"><div class="col w270 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["sw190_270"]='<div class="subsec"><div class="col w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w270 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
+sohu.diyTp["sw230_230"]='<div class="vstp_subsec"><div class="vstp_col vstp_w230 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w230 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["sw270_190"]='<div class="vstp_subsec"><div class="vstp_col vstp_w270 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["sw190_270"]='<div class="vstp_subsec"><div class="vstp_col vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w270 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
 
 //510
-sohu.diyTp["sw250_250"]='<div class="subsec"><div class="col w250 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w250 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["sw190_310"]='<div class="subsec"><div class="col w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w310 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["sw310_190"]='<div class="subsec"><div class="col w310 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
+sohu.diyTp["sw250_250"]='<div class="vstp_subsec"><div class="vstp_col vstp_w250 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w250 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["sw190_310"]='<div class="vstp_subsec"><div class="vstp_col vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w310 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["sw310_190"]='<div class="vstp_subsec"><div class="vstp_col vstp_w310 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
 
 //670
-sohu.diyTp["sw330_330"]='<div class="subsec"><div class="col w330 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w330 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["sw190_470"]='<div class="subsec"><div class="col w190 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w470 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["sw470_190"]='<div class="subsec"><div class="col w470 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["sw230_190_230"]='<div class="subsec"><div class="col w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w190 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
+sohu.diyTp["sw330_330"]='<div class="vstp_subsec"><div class="vstp_col vstp_w330 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w330 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["sw190_470"]='<div class="vstp_subsec"><div class="vstp_col vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w470 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["sw470_190"]='<div class="vstp_subsec"><div class="vstp_col vstp_w470 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["sw230_190_230"]='<div class="vstp_subsec"><div class="vstp_col w230 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w190 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w230 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
 
 //950
-sohu.diyTp["sw310_310_310"]='<div class="subsec"><div class="col w310 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w310 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w310 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["sw230_230_230_230"]='<div class="subsec"><div class="col w230 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w230 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
-sohu.diyTp["sw182_182_182_182_182"]='<div class="subsec"><div class="col w182 l"><div class="sec"><div class="secHolder"></div></div></div><div class="col w182 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w182 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w182 center"><div class="sec"><div class="secHolder"></div></div></div><div class="col w182 r"><div class="sec"><div class="secHolder"></div></div></div></div>';
+sohu.diyTp["sw310_310_310"]='<div class="vstp_subsec"><div class="vstp_col vstp_w310 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w310 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w310 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["sw230_230_230_230"]='<div class="vstp_subsec"><div class="vstp_col vstp_w230 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w230 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w230 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w230 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["sw182_182_182_182_182"]='<div class="vstp_subsec"><div class="vstp_col vstp_w182 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w182 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w182 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w182 center"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w182 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
 
 /*=/分栏模板区域=*/
 
@@ -180,3 +180,11 @@ sohu.diyTp.Flash.prototype.Vari=function(n,v){
 };
 
 /*=/内容模板区域=*/
+
+/* 专题风格模板配置 */
+/* 将来通过获取后台json数据 */
+sohu.diyTp.TopicTpl=[
+	{id:1,name:'topic_auto',title:'汽车专题模板1',icon:"images/pic146x151_1.jpg",url:'static/topic_auto/index.html'},
+	{id:2,name:'topic_auto1',title:'汽车专题模板2',icon:"images/pic146x151_1.jpg",url:'static/topic_auto/index.html'},
+	{id:3,name:'topic_auto2',title:'汽车专题模板3',icon:"images/pic146x151_1.jpg",url:'static/topic_auto/index.html'}
+];

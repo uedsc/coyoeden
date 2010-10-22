@@ -4,10 +4,10 @@
  */
 sohu.diyEditor=function(opts){
 	var _this=this;
-	opts=$.extend({},{cssSecHelper:".secTip",cssCTSelector:"#content_selector"},opts);
+	opts=$.extend({},{cssSecHelper:".vstp_secTip",cssCTSelector:"#vstp_content_selector"},opts);
 	//属性
 	//this.$LayoutModel=sohu.diyConsole.$SecEditorModel;/* 工具条的dom模型 */
-	this.$Layout=$("#secEditor");
+	this.$Layout=$("#vstp_secEditor");
 	this.Console=opts.bos;
 	this.CurArea=null;//当前横切
 	this.CurSec=null;//当前分栏
@@ -17,17 +17,17 @@ sohu.diyEditor=function(opts){
 	var p={opts:opts};
 	this.__p=p;
 	
-	this.$Toolbar=this.$Layout.find(".actions");	/* editor actions */
-	this.$Overlay=this.$Layout.find(".overlay")
+	this.$Toolbar=this.$Layout.find(".vstp_actions");	/* editor actions */
+	this.$Overlay=this.$Layout.find(".vstp_overlay")
 	this.$ToolbarTip=this.$Toolbar.find(opts.cssSecHelper);	/* sec tip */
 	//按钮事件注册
 	this.$Toolbar.btn={
-		addContent:this.$Toolbar.find(".a_content"),
-		addSec:this.$Toolbar.find(".a_sec"),
-		clear:this.$Toolbar.find(".a_clear"),
-		editCode:this.$Toolbar.find(".a_code"),
-		prevLevel:this.$Toolbar.find(".a_ret"),
-		cfg:this.$Toolbar.find(".a_cfg")
+		addContent:this.$Toolbar.find(".vstp_a_content"),
+		addSec:this.$Toolbar.find(".vstp_a_sec"),
+		clear:this.$Toolbar.find(".vstp_a_clear"),
+		editCode:this.$Toolbar.find(".vstp_a_code"),
+		prevLevel:this.$Toolbar.find(".vstp_a_ret"),
+		cfg:this.$Toolbar.find(".vstp_a_cfg")
 	};
 	this.$Toolbar.btn.addContent.click(function(evt){_this.DialogCT();return false;});
 	this.$Toolbar.btn.addSec.click(function(evt){_this.DialogSec();return false;});
@@ -36,7 +36,7 @@ sohu.diyEditor=function(opts){
 	this.$Toolbar.btn.prevLevel.click(function(evt){_this.CurSec.ActiveParent();return false;});
 	this.$Toolbar.btn.cfg.click(function(evt){_this.DialogSecCfg();return false;});
 
-	this.$CTWrap=$("#ctWrap");
+	this.$CTWrap=$("#vstp_ctWrap");
 	
 	//persist the editor dom
 	//this.$Layout.attr("id",this.CurSec.ID+"_t").hide().appendTo(this.CurArea.$Layout);
@@ -135,7 +135,6 @@ sohu.diyEditor.prototype.Reposition=function(){
 	this.CurArea=sohu.diyConsole.CurArea;
 	this.CurSec=sohu.diyConsole.CurSec;
 	var d=this.CurSec.Dim();
-	var st=sohu.diyConsole.$ScrollWrap.scrollTop();/* 上滚动距离 */
 	this.$Toolbar.css({width:d.w-11,top:d.y-25,left:d.x-1,opacity:0.9});/*宽要减去11个像素的留白;25是工具条高度*/
 	this.$ToolbarTip.css({width:d.w}).html(d.mw);
 	//overlay
@@ -172,11 +171,11 @@ sohu.diyEditor.prototype.Editing=function(mode){
 	if(mode=="on"){
 		this.CurSec.IsAddingContent=true;
 		this.CurArea.IsEditing=true;
-		this.CurSec.$Layout.addClass("ing");
+		this.CurSec.$Layout.addClass("vstp_ing");
 	}else{
 		this.CurSec.IsAddingContent=false;
 		this.CurArea.IsEditing=false;
-		this.CurSec.$Layout.removeClass("ing");
+		this.CurSec.$Layout.removeClass("vstp_ing");
 	};
 	return this;
 };

@@ -56,7 +56,7 @@ sohu.diyTplFactory.Nav.prototype.Submit=function(){
 	ct.html0=this.CurNav;
 	ct.flash=false;
 	ct.isNew=true;
-	ct.type="nav";
+	ct.type="vstp_nav";
 	sohu.diyTplFactory.submit(ct,true);
 };
 /**
@@ -79,7 +79,7 @@ sohu.diyTplFactory.SecHead.prototype.Submit=function(opts){
 		flash:false,
 		html0:this.CurHtml,
 		isNew:true,
-		type:"sec_hd"
+		type:"vstp_sec_hd"
 	};
 	sohu.diyTplFactory.submit(ct,true);
 };
@@ -169,7 +169,7 @@ sohu.diyTplFactory.Line.prototype.Submit=function(opt){
 	this.cLine=this.$cbkLine[0].checked;
 	sohu.diyCTFactory.$ctWrap.html(this.html);
 	var hr=sohu.diyCTFactory.$ctWrap.find("hr");
-	var line=sohu.diyCTFactory.$ctWrap.find(".vspace");
+	var line=sohu.diyCTFactory.$ctWrap.find(".vstp_vspace");
 	if(this.cLine){
 		var css={
 			"border-color":this.color,
@@ -188,7 +188,7 @@ sohu.diyTplFactory.Line.prototype.Submit=function(opt){
 		flash:false,
 		html0:sohu.diyCTFactory.$ctWrap.html(),
 		isNew:true,
-		type:'vspace'
+		type:'vstp_vspace'
 	};
 	
 	sohu.diyTplFactory.submit(ct,true);
@@ -241,7 +241,7 @@ sohu.diyTplFactory.FocusImg.prototype.Submit=function(opt){
 	ct.tplID=this.tplID;
 	*/
 	ct.isNew=true;
-	ct.type='flash';
+	ct.type='vstp_flash';
 	sohu.diyTplFactory.submit(ct,true);
 };
 /**
@@ -281,7 +281,7 @@ sohu.diyTplFactory.Image=function(opts){
 			_this.CurColSize=parseInt(parent.sohu.diyConsole.CurSec.Width);
 			_this.CurSecSize=parent.sohu.diyConsole.CurSec.Dim().w;
 			//如果是组图，弹出组图设置框
-			_this.IsImgList=_this.tplObj.find(".ct").hasClass("pp");
+			_this.IsImgList=_this.tplObj.find(".vstp_ct").hasClass("pp");
 			if(_this.IsImgList){
 				_this.$WinCfg.ovl.css("opacity","0.7").show();
 				_this.$WinCfg.$tip.html(_this.CurColSize);
@@ -550,7 +550,7 @@ sohu.diyTplFactory.DynamicList.prototype.Preview=function(popup){
 sohu.diyTplFactory.DynamicList.prototype.BuildList=function(){
 	//生成相应的dom
 	if(!this._p.form.isValid) return false;
-	var ctWrap=$('<div><div class="dlist ct"><ul/></div></div>');
+	var ctWrap=$('<div><div class="vstp_dlist vstp_ct"><ul/></div></div>');
 	var ul0=ctWrap.find("ul");
 	var ct0=ctWrap.find(".ct");
 	var li0=$('<li><a href="http://testcms.sohu.com/20090602/n264287979.shtml" target="_blank">视频：医院丧道德 致新生儿失治疗机会终生残疾</a><span>(13:00)</span></li>');

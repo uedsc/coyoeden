@@ -8,7 +8,7 @@
 sohu.diyArea=function(opts){
 ///<summary>横切对象</summary>
 	//属性
-	opts=$.extend({},{clArea:"area",clActive:"area_active",clEmpty:"area_empty",isNew:true,clSec:"sec",clElm:"elm",clHelper:"areaTip",clContent:"ct"},opts);
+	opts=$.extend({},{clArea:"area",clActive:"area_active",clEmpty:"area_empty",isNew:true,clSec:"vstp_sec",clElm:"vstp_elm",clHelper:"vstp_areaTip",clContent:"vstp_ct"},opts);
 	var _this=this;
 	this.TemplateID=null;//横切模板id
 	this.Console=opts.console;

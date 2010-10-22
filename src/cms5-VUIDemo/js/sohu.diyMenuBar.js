@@ -5,7 +5,7 @@
  */
 sohu.diyMenuBar=function(opts){
 	var p={};
-	p._opts=$.extend(opts,{clElmCopyable:"elmc",clElmOn:"elmOn"});
+	p._opts=$.extend(opts,{clElmCopyable:"vstp_elmc",clElmOn:"vstp_elmOn",clElm:'vstp_elm'});
 	//文本图片命令
 	p.txtCmd={};
 	p.txtCmd.Bold=function(evt){
@@ -69,10 +69,10 @@ sohu.diyMenuBar=function(opts){
 			new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$dom});
 		}else{
 			//清除元素的id
-			$dom.find(".elm").removeAttr("id");
+			$dom.find("."+p._opts.clElm).removeAttr("id");
 			sohu.diyConsole.CurElm.$CopyModel.after($dom);
 			//apply diyElement features
-			$dom.find(".elm").each(function(i,o){
+			$dom.find("."+p._opts.clElm).each(function(i,o){
 				new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$(o)});
 			});
 		};
@@ -86,6 +86,8 @@ sohu.diyMenuBar=function(opts){
 		sohu.diyDialog.Hide();
 		//删除元素
 		tempElm.$CopyModel.remove();
+		//重定位分栏编辑器
+		sohu.diyConsole.CurElm.CT.Editor.Reposition();		
 		if(opts.onDel){
 			opts.onDel();
 		};
@@ -98,29 +100,29 @@ sohu.diyMenuBar=function(opts){
 	
 	
 	//图标的事件绑定
-	p.$cmdItems=opts.$cmdItems||$(".cmdicon");
+	p.$cmdItems=opts.$cmdItems||$(".vstp_cmdicon");
 	p.yourDaddy=function(evt){
-		p.$cmdItems.removeClass("editBtn1");
-		$(this).addClass("editBtn1");
+		p.$cmdItems.removeClass("vstp_editBtn1");
+		$(this).addClass("vstp_editBtn1");
 		return false;
 	};
 	p.$cmdItems.click(p.yourDaddy);
-	p.$cmdItems.filter(".cmdBold").click(p.txtCmd.Bold);
-	p.$cmdItems.filter(".cmdUdl").click(p.txtCmd.Underline);
-	p.$cmdItems.filter(".cmdColor").click(p.txtCmd.SetColor);
-	p.$cmdItems.filter(".cmdItalic").click(p.txtCmd.Italic);
-	p.$cmdItems.filter(".cmdAL").click(p.txtCmd.AlignLeft);
-	p.$cmdItems.filter(".cmdAC").click(p.txtCmd.AlignCenter);
-	p.$cmdItems.filter(".cmdAR").click(p.txtCmd.AlignRight);
-	p.$cmdItems.filter(".cmdAF").click(p.txtCmd.AlignFull);
-	p.$cmdItems.filter(".cmdVideo").click(p.txtCmd.AddVideoIcon);
-	p.$cmdItems.filter(".elmAdd").click(p.elmCmd.AddCopy);
-	p.$cmdItems.filter(".elmDel").click(p.elmCmd.Del);
-	p.$cmdItems.filter(".elmMove0").bind("click",{up:true},p.elmCmd.Move);
-	p.$cmdItems.filter(".elmMove1").bind("click",{up:false},p.elmCmd.Move);
+	p.$cmdItems.filter(".vstp_cmdBold").click(p.txtCmd.Bold);
+	p.$cmdItems.filter(".vstp_cmdUdl").click(p.txtCmd.Underline);
+	p.$cmdItems.filter(".vstp_cmdColor").click(p.txtCmd.SetColor);
+	p.$cmdItems.filter(".vstp_cmdItalic").click(p.txtCmd.Italic);
+	p.$cmdItems.filter(".vstp_cmdAL").click(p.txtCmd.AlignLeft);
+	p.$cmdItems.filter(".vstp_cmdAC").click(p.txtCmd.AlignCenter);
+	p.$cmdItems.filter(".vstp_cmdAR").click(p.txtCmd.AlignRight);
+	p.$cmdItems.filter(".vstp_cmdAF").click(p.txtCmd.AlignFull);
+	p.$cmdItems.filter(".vstp_cmdVideo").click(p.txtCmd.AddVideoIcon);
+	p.$cmdItems.filter(".vstp_elmAdd").click(p.elmCmd.AddCopy);
+	p.$cmdItems.filter(".vstp_elmDel").click(p.elmCmd.Del);
+	p.$cmdItems.filter(".vstp_elmMove0").bind("click",{up:true},p.elmCmd.Move);
+	p.$cmdItems.filter(".vstp_elmMove1").bind("click",{up:false},p.elmCmd.Move);
 
 	this.IsInit=true;
 };
 sohu.diyMenuBar.Tpl={
-	video:'<a class="vdIcon" target="_blank" href="#" title=""><img height="10" width="16" alt="" src="images/vd.gif"/></a>'
+	video:'<a class="vstp_vdIcon" target="_blank" href="#" title=""><img height="10" width="16" alt="" src="images/vd.gif"/></a>'
 };

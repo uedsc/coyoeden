@@ -17,7 +17,7 @@ sohu.diyDialog=function(){
 		this.$Title=this.$Layout.find(p.opts.cssTitle);
 		this.$Acts=this.$Layout.find(p.opts.cssActs);
 		this.$BtnOK=this.$Layout.find(p.opts.cssOK);
-		this.$BtnNO=this.$Layout.find(".jqmClose");
+		this.$BtnNO=this.$Layout.find(".vstp_jqmcls");
 		this.$Body=this.$Layout.find(p.opts.cssCT);
 		this.$CTWrap=$(p.opts.cssCTWrap);/* Wrapper for all the dialog contents */
 		this.jqmHash=null;
@@ -121,7 +121,7 @@ sohu.diyDialog=function(){
 	};
 	//public 
 	pub.Init=function(opts){
-		p.opts=$.extend({cssLayout:"#jqmWin1",cssTitle:".title",cssCT:".ct",cssOK:".jqmOk",draggable:true,cssDragHandle:".hd",cssDragCTM:"#main",cssCTWrap:"#dialogList",cssActs:".acts"},opts);
+		p.opts=$.extend({cssLayout:"#vstp_jqmWin1",cssTitle:".vstp_title",cssCT:".vstp_bd",cssOK:".vstp_jqmOk",draggable:true,cssDragHandle:".vstp_hd",cssDragCTM:"#vstp_main",cssCTWrap:"#vstp_dialogList",cssActs:".vstp_acts"},opts);
 		p.console=opts.console;/* diyConsole instance */
 		p.dlg=new p.dialog();
 		
@@ -213,8 +213,8 @@ sohu.diyDialog=function(){
  * @param {Object} dlg
  */
 sohu.diyDialog.resetForm=function(dlg,callback){
-	dlg.$Layout.find("*").removeClass("alert").end().find(":text").val("");
-	dlg.$Layout.find(".tip").hide();
+	dlg.$Layout.find("*").removeClass("vstp_alert").end().find(":text").val("");
+	dlg.$Layout.find(".vstp_tip").hide();
 	if(callback)
 		callback(dlg);
 };
@@ -248,7 +248,7 @@ sohu.diyDialog.doConfirm=function(opts){
 			
 			sohu.diyDialog.$jqmConfirm.$txt.empty().append(opts.text);
 			sohu.diyDialog.$jqmConfirm.$title.html(opts.title);
-			sohu.diyDialog.$jqmConfirm.$icon.attr("class","").addClass("icon "+opts.type);
+			sohu.diyDialog.$jqmConfirm.$icon.attr("class","").addClass("vstp_icon vstp_"+opts.type);
 			sohu.diyDialog.$jqmConfirm.$btnOK.attr("style",'');
 			sohu.diyDialog.$jqmConfirm.$btnNO.attr("style",'');
 			if(!opts.btnNO){
@@ -281,13 +281,13 @@ sohu.diyDialog.doConfirm=function(opts){
 	
 	
 	if(!sohu.diyDialog.$jqmConfirm){
-		sohu.diyDialog.$jqmConfirm=$("#jqmConfirm").jqm(jqmOpts).draggable({handle:".hd",containment:'window'});
-		sohu.diyDialog.$jqmConfirm.$txt=sohu.diyDialog.$jqmConfirm.find(".txt");
-		sohu.diyDialog.$jqmConfirm.$icon=sohu.diyDialog.$jqmConfirm.find(".icon");
-		sohu.diyDialog.$jqmConfirm.$title=sohu.diyDialog.$jqmConfirm.find(".title");
-		sohu.diyDialog.$jqmConfirm.$acts=sohu.diyDialog.$jqmConfirm.find(".acts");
-		sohu.diyDialog.$jqmConfirm.$btnOK=sohu.diyDialog.$jqmConfirm.find(".jqmOk");
-		sohu.diyDialog.$jqmConfirm.$btnNO=sohu.diyDialog.$jqmConfirm.find(".jqmClose");
+		sohu.diyDialog.$jqmConfirm=$("#vstp_jqmConfirm").jqm(jqmOpts).draggable({handle:".vstp_hd",containment:'window'});
+		sohu.diyDialog.$jqmConfirm.$txt=sohu.diyDialog.$jqmConfirm.find(".vstp_txt");
+		sohu.diyDialog.$jqmConfirm.$icon=sohu.diyDialog.$jqmConfirm.find(".vstp_icon");
+		sohu.diyDialog.$jqmConfirm.$title=sohu.diyDialog.$jqmConfirm.find(".vstp_title");
+		sohu.diyDialog.$jqmConfirm.$acts=sohu.diyDialog.$jqmConfirm.find(".vstp_acts");
+		sohu.diyDialog.$jqmConfirm.$btnOK=sohu.diyDialog.$jqmConfirm.find(".vstp_jqmOk");
+		sohu.diyDialog.$jqmConfirm.$btnNO=sohu.diyDialog.$jqmConfirm.find(".vstp_jqmcls");
 	};
 	
 	sohu.diyDialog.$jqmConfirm.$btnOK.unbind("click");
@@ -321,12 +321,12 @@ sohu.diyDialog.doAlert=function(opts){
  */
 sohu.diyDialog.showColorPicker=function(opts){
 	if(!sohu.diyDialog.$jqmCpk){
-		sohu.diyDialog.$jqmCpk=$("#jqmCpk").jqm({
+		sohu.diyDialog.$jqmCpk=$("#vstp_jqmCpk").jqm({
 			title:"ÑÕÉ«",
 			modal:true
-		}).draggable({handle:".hd",containment:'window'});
+		}).draggable({handle:".vstp_hd",containment:'window'});
 				
-		sohu.diyDialog.$jqmCpk.find(".cpk").icolor({
+		sohu.diyDialog.$jqmCpk.find(".vstp_cpk").icolor({
 			flat:true,
 			onSelect:function(hex){
 				if(sohu.diyDialog.$jqmCpk._onSelect){

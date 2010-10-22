@@ -4,7 +4,7 @@
  * @author levin
  */
 sohu.diyElement=function(opts){
-	opts=$.extend({},{cl:"elm",clOn:"elmOn",clCopyable:"elmc"},opts||{});
+	opts=$.extend({},{cl:"vstp_elm",clOn:"vstp_elmOn",clCopyable:"vstp_elmc"},opts||{});
 	var _this=this;
 	this.CT=opts.ct;
 	this.$Context=this.CT.$Layout;
@@ -25,12 +25,12 @@ sohu.diyElement=function(opts){
 			_this.InlineEditable=false;
 		
 		//Copyable
-		if(_this.$Layout.is(".elmc")){
+		if(_this.$Layout.is("."+opts.clCopyable)){
 			_this.Copyable=true;
 			_this.IsSelfCopyable=true;
 			_this.$CopyModel=_this.$Layout;
 		}else{
-			var o0=_this.$Layout.parents(".elmc");
+			var o0=_this.$Layout.parents("."+opts.clCopyable);
 			if(o0.length>0){
 				o0=o0.eq(0);
 				_this.Copyable=true;

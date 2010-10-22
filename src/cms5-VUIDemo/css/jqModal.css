@@ -10,14 +10,14 @@
      For valid CSS, use a conditional include instead */
 * html .jqmWindow {position: absolute;top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');}
 /* 标题 */
-.jqmWindow .hd{position:relative;height: 14px;border-bottom:1px solid #666;text-align:left;padding:3px 5px 2px 9px;color:#F0F0EE;background:url(../images/titlebg.jpg) repeat-x;line-height:normal;}
-.jqmWindow .title{font-weight:bold; vertical-align:middle; }
-.jqmWindow .draghdl{position:absolute;display:block;top:3px;left:50%;margin-left:-7.5px;width:15px;height:14px;background: url(../images/jqtitlebg.jpg);cursor:move;}
+.jqmWindow .vstp_hd{position:relative;height: 14px;border-bottom:1px solid #666;text-align:left;padding:3px 5px 2px 9px;color:#F0F0EE;background:url(../images/titlebg.jpg) repeat-x;line-height:normal;}
+.jqmWindow .vstp_title{font-weight:bold; vertical-align:middle; }
+.jqmWindow .vstp_draghdl{position:absolute;display:block;top:3px;left:50%;margin-left:-7.5px;width:15px;height:14px;background: url(../images/jqtitlebg.jpg);cursor:move;}
 /* 右上角关闭 */
-.jqmWindow .hd .jqmClose{position:absolute;display:block;background: url(../images/close.jpg) no-repeat top; width:15px; height:13px;top:3px;right:5px;vertical-align:middle;}
-.jqmWindow .hd .jqmClose:hover{background-position: bottom;}
+.jqmWindow .vstp_hd .jqmClose{position:absolute;display:block;background: url(../images/close.jpg) no-repeat top; width:15px; height:13px;top:3px;right:5px;vertical-align:middle;}
+.jqmWindow .vstp_hd .jqmClose:hover{background-position: bottom;}
 /* 按钮栏 */
-.jqmWindow .btnWrap{height:25px;margin:10px auto;width:105px;}
-.jqmWindow .btn {display:block;width: 45px;height: 24px;line-height:25px; background: url(../images/ybtn.gif) top;text-decoration:none;}
-.jqmWindow .btn:hover{background-position:bottom;}
-.jqmWindow .acts .btn{margin:0 auto;}
+.jqmWindow .vstp_btnWrap{height:25px;margin:10px auto;width:105px;}
+.jqmWindow .vstp_btn {display:block;width: 45px;height: 24px;line-height:25px; background: url(../images/ybtn.gif) top;text-decoration:none;}
+.jqmWindow .vstp_btn:hover{background-position:bottom;}
+.jqmWindow .vstp_acts .vstp_btn{margin:0 auto;}

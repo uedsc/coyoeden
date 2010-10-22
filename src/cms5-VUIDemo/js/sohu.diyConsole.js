@@ -8,32 +8,26 @@
 sohu.diyConsole=function(opts){
 	//属性
 	opts=$.extend({},{
-		cssWsp:"#main",clSec:"sec",clSec0:"sec0",clSecSub:"subsec",
-		clSecRoot:"col",clArea:"area",cssArea:".area",dfTop:100,
-		clAreaStatic:"static",
+		cssWsp:"#vstp_main",clSec:"vstp_sec",clSec0:"vstp_sec0",clSecSub:"vstp_subsec",
+		clSecRoot:"vstp_col",clArea:"area",cssArea:".area",dfTop:100,
+		clAreaStatic:"vstp_static",
 		limitSec:390,
 		scrollWrapMainginTop:0
 		},opts);
 	var _this=this;
 	this.$Workspace=$(opts.cssWsp);
-	this.$Layout=$("#areaTools");
+	this.$Layout=$("#vstp_areaTools");
+	
 
 	this.Areas=null;
 	
 	var p={opts:opts};
-	p._$pageTip=$("#pageTip");
-	p._$elmTool=$("#elmTool");
+	p._$pageTip=$("#vstp_pageTip");
+	p._$elmTool=$("#vstp_elmTool");
 	/* 对话框jq对象 */
-	p._$wAreaBG=$("#wAreaBG");
-	p._$wPageBG=$("#wPageBG");
-	p._$wCpkWrap=$("#cpkWrap");
-	p._$wAddLink=$("#addLink");
-	p._$wSecHead=$("#cfgSecHead");
-	p._$wSec=$("#wCfgSec");
-	p._$wCode=$("#wCode");
+	p._$wSec=$("#vstp_wCfgSec");
+	p._$wCode=$("#vstp_wCode");
 	/* /对话框jq对象 */
-
-	p._$txtFontColor=$("#txtFontColor");
 	p._opts=opts;
 	/* =/顶部交互菜单= */
 	
@@ -108,25 +102,7 @@ sohu.diyConsole=function(opts){
 		var fullheight, height;
 		fullheight = sohu.diyConsole.InnerHeight();        
 		height = fullheight - p.opts.scrollWrapMainginTop;
-		
-		sohu.diyConsole.$ScrollWrap.css("height",height);
 		_this.$Workspace.css("minHeight",height);
-	};
-	p.loadFlash=function(){
-		$(".flashWrap").each(function(i,o){
-			var $o=$(o);
-			var d=$.evalJSON($o.next().html());
-			if(d.dummy) return;
-			var f=new sohuFlash(d.swf,d.id,d.w,d.h,d.interval);
-			f.addParam("quality", "high");
-			f.addParam("wmode", "opaque");
-			for(var n in d.v){
-				f.addVariable(n,d.v[n]);
-			};
-			f.write(d.pid);
-			f.data=d;
-			window['F_'+d.pid]=f;
-		});
 	};
 	p.onLoaded=function(){
 		//文档高度适应处理
@@ -146,31 +122,19 @@ sohu.diyConsole=function(opts){
 	};
 	p.Init=function(){
 		//公有属性引用
+		sohu.diyConsole.URL_TopicTpl=opts.urlTopicTpl||'static/';
 		sohu.diyConsole.$WinSec=p._$wSec;
 		sohu.diyConsole.$WinCode=p._$wCode;
 		//sohu.diyConsole.$WinPageBG=p._$wPageBG;
-		sohu.diyConsole.$SecEditorModel=$("#area_editor");
-		sohu.diyConsole.$ScrollWrap=$("#scrollWrap");
-		sohu.diyConsole.$BodyBGA=$("#main .bodyBGA");
-		sohu.diyConsole.$BodyBGB=$("#main .bodyBGB");
-		//sohu.diyConsole.$ifEditor=$("#ifEditor").iframeEX();	
+		sohu.diyConsole.$SecEditorModel=$("#vstp_area_editor");		
+		sohu.diyConsole.$BodyBGA=$("#vstp_main .bodyBGA");
+		sohu.diyConsole.$BodyBGB=$("#vstp_main .bodyBGB");	
 		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});	
-		sohu.diyConsole.$AreaHolder=$("#areaHolder");
-		sohu.diyConsole.$FlashHolder=$("#flashHolder").mouseleave(function(evt){$(this).hide();});
-		sohu.diyConsole.$CTHelper=$("#ctHelper");
+		sohu.diyConsole.$AreaHolder=$("#vstp_areaHolder");
+		sohu.diyConsole.$FlashHolder=$("#vstp_flashHolder").mouseleave(function(evt){$(this).hide();});
+		sohu.diyConsole.$CTHelper=$("#vstp_ctHelper");
 		sohu.diyConsole.IsPreview=false;
-		//加载现有的焦点图flash
-		p.loadFlash();
-		//已有横切
-		_this.Areas=_this.AreaList().map(function(i,o){
-			var a=new sohu.diyArea({
-				isNew:false,
-				console:_this,
-				onRemove:p.onAreaRemove,
-				obj:$(o)
-			});
-			return a;
-		});
+		sohu.diyConsole.$Workspace=_this.$Workspace;
 		//body鼠标事件
 		sohu.diyConsole.$Body=$("body").mousemove(p.onMousemove).click(p.onBodyClick);
 		//window resize事件
@@ -192,6 +156,44 @@ sohu.diyConsole=function(opts){
 	this.__p=p;
 	//Init
 	p.Init();
+	this.Fire();
+};
+/**
+ * 将编辑功能注入现有文档
+ */
+sohu.diyConsole.prototype.Fire=function(){
+	var _this=this;
+	//加载现有的焦点图flash
+	this.loadFlash();
+	//已有横切
+	this.Areas=this.AreaList().map(function(i,o){
+		var a=new sohu.diyArea({
+			isNew:false,
+			console:_this,
+			onRemove:null,
+			obj:$(o)
+		});
+		return a;
+	});
+};
+/**
+ * 加载现有flash
+ */
+sohu.diyConsole.prototype.loadFlash=function(){
+	$(".vstp_flashWrap").each(function(i,o){
+		var $o=$(o);
+		var d=$.evalJSON($o.next().html());
+		if(d.dummy) return;
+		var f=new sohuFlash(d.swf,d.id,d.w,d.h,d.interval);
+		f.addParam("quality", "high");
+		f.addParam("wmode", "opaque");
+		for(var n in d.v){
+			f.addVariable(n,d.v[n]);
+		};
+		f.write(d.pid);
+		f.data=d;
+		window['F_'+d.pid]=f;
+	});
 };
 /**
  * 重定位
@@ -285,13 +287,13 @@ sohu.diyConsole.prototype.Confirm=function(opts){
  * 移除.txtLoading
  */
 sohu.diyConsole.toggleLoading=function(){
-	$(".txtLoading").toggle();
+	$(".vstp_txtLoading").toggle();
 };
 /*静态方法、对象*/
 sohu.diyConsole.Dragger={
 	obj:null,
-	handle:$("#ctHandle"),
-	cssHandle:'.dragHandle'
+	handle:$("#vstp_ctHandle"),
+	cssHandle:'.vstp_dragHandle'
 };
 sohu.diyConsole.CurArea=null;
 sohu.diyConsole.CurSec=null;		/* 当前鼠标所在的分栏 */

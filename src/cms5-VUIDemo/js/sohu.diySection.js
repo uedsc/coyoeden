@@ -6,13 +6,13 @@
 sohu.diySection = function(opts) {
 	var _this=this;
 	opts=$.extend({},{
-		clSecSub:"subsec",
-		limitSec:190,clSec:"sec",clSecOn:"secOn",
-		clHasSub:"hasSub",
-		clSecRoot:"col",
+		clSecSub:"vstp_subsec",
+		limitSec:190,clSec:"vstp_sec",clSecOn:"vstp_secOn",
+		clHasSub:"vstp_hasSub",
+		clSecRoot:"vstp_col",
 		clArea:"area",
-		clContent:"ct",
-		clTip:"secTip",
+		clContent:"vstp_ct",
+		clTip:"vstp_secTip",
 		pSec:null
 		},opts);
 	var p={opts:opts};
@@ -20,7 +20,7 @@ sohu.diySection = function(opts) {
 	//属性
 	this.ID="sec_"+StringUtils.RdStr(8);
 	this.$Layout=opts.$obj;
-	this.$Holder=this.$Layout.children(".secHolder");
+	this.$Holder=this.$Layout.children(".vstp_secHolder");
 	this.Width=this.Size();
 	this.Divisible=(this.Width>=190);		/* 可继续分栏 */
 	this.IsActive=false;
@@ -31,10 +31,10 @@ sohu.diySection = function(opts) {
 	this.PSec=opts.pSec||null;							/* parent section */
 	//排序事件处理
 	this.$Layout.attr("id",this.ID).sortable({
-		items:">.ct",
-		connectWith:".sec",
+		items:">.vstp_ct",
+		connectWith:".vstp_sec",
 		placeholder:"ui-hl",
-		handle:".dragHandle",
+		handle:".vstp_dragHandle",
 		tolerance:"pointer",
 		helper:function(evt,o){return sohu.diyConsole.$CTHelper.css({width:80,height:20,display:'block'});},
 		receive:function(evt,ui){
@@ -143,7 +143,7 @@ sohu.diySection.prototype.Cls=function(){
 	};
 	//内容不为空则删除内容和子分栏
 	//删除内容
-	this.$Layout.children(":not(.secHolder)").remove();
+	this.$Layout.children(":not(.vstp_secHolder)").remove();
 	this.SetAsEmpty();
 	this.Contents=[];
 };
@@ -185,8 +185,8 @@ sohu.diySection.prototype.Size=function(){
 	var width=0;
 	var classes=this.$Layout.parent().attr("class").split(" ");
 	$.each(classes,function(i1,o1){
-		if(o1.indexOf("w")==0){
-			width=parseInt(o1.substr(1));
+		if(o1.indexOf("vstp_w")==0){
+			width=parseInt(o1.substr(6));
 			return false;
 		};
 	});//each
@@ -245,7 +245,7 @@ sohu.diySection.prototype.LoadContents=function(){
 			type:sohu.diyConsole.GetClassName($dom),
 			$dom:$dom
 		};
-		if(ct.type=="flash"){
+		if(ct.type=="vstp_flash"){
 			ct.flash=true;
 		};
 		return sohu.diyContent.New({
@@ -272,14 +272,14 @@ sohu.diySection.prototype.ActiveParent=function(){
  * 当前分栏是否为空
  */
 sohu.diySection.prototype.IsEmpty=function(){
-	return (this.$Layout.children(":not(.secHolder)").length==0);
+	return (this.$Layout.children(":not(.vstp_secHolder)").length==0);
 };
 /**
  * 设置当前分栏是空分栏
  * @param {Function} cbk callback function
  */
 sohu.diySection.prototype.SetAsEmpty=function(cbk){
-	this.$Layout.removeClass("hasSub");
+	this.$Layout.removeClass("vstp_hasSub");
 	if(cbk){
 		cbk(this);
 	};
