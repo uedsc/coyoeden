@@ -28,7 +28,7 @@ strong,a.now,.widefat th{font-weight:bold;}
 	#scTip span{font-weight:bold;}
 
 /* font-italic */
-#scSubhead,.widget .tbl .txtth,#scFoot{font-style:italic;}
+#scSubhead,.widget .tbl .txtth,#scFoot,.howto,.form-wrap p{font-style:italic;}
 /* font-family */
 #scSubhead,
 	#wSiteStat table th,
@@ -37,9 +37,9 @@ strong,a.now,.widefat th{font-weight:bold;}
 	font-family:Georgia,"Times New Roman","Bitstream Charter",Times,serif;
 }
 
-/* ============= stories.html================== */
-#storyList .acts1 li{font-size:85%;}
-#storyList .acts1 span.cnt{font-weight:normal;}
+/* ============= listView like stories.html================== */
+.listView .acts1 li{font-size:85%;}
+.listView .acts1 span.cnt{font-weight:normal;}
 /* ============= story_add.html =============== */
-#ste_title_c,.bigipt{font-size:1.7em;}
+.bigipt{font-size:1.7em;}
 

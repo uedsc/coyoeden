@@ -4,14 +4,14 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
 		<title>Add new story</title>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
-		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css"></link>
-		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssfonts/fonts-min.css"></link>   
+		<link rel="stylesheet" type="text/css" href="css/reset-min.css"></link>
+		<link rel="stylesheet" type="text/css" href="css/fonts-min.css"></link>   
 		<link rel="stylesheet" type="text/css" href="css/camp_color.css"></link> 
 		<link rel="stylesheet" type="text/css" href="css/camp_font.css"></link> 
 		<link rel="stylesheet" type="text/css" href="css/camp.css"></link>
 	</head>
 	<body class="camp story_add">
-<!--#header-->
+		<!--#header-->
 		<div id="scHead" class="clear">
 			<img class="l" id="sch_logo" height="45" width="45" alt="" src="images/blank.gif"/>
 			<h1 id="sch_head" class="l">
@@ -71,8 +71,8 @@
                     <a href="#" class="menu_hasSub menu_top">Media</a>
                     <div class="menu_sub">
                         <ul class="menu_sub_">
-                            <li><a href="#">Library</a></li>
-                            <li><a href="#">Add Media</a></li>                            
+                            <li><a href="media.html">Library</a></li>
+                            <li><a href="media_new.html">Add Media</a></li>                            
                         </ul>
                     </div>
                 </li>
@@ -116,6 +116,52 @@
 										</div>
 									</div>
 								</div>
+								<div id="boxCategory" class="widget">
+									<div class="w_tgl" title="click to toggle"></div>
+									<h3 class="w_hd"><span>Categories</span></h3>
+									<div class="w_ct">
+										<div id="catSelector">
+											<ul id="category-tabs" class="slimtab">
+												<li class="slimtab_on"><a href="#category-all">All categories</a></li>
+												<li class=""><a href="#category-pop">Most used</a></li>
+											</ul>
+											<div id="category-all" class="slimtab_bd">
+												<ul id="cbxlist-cat-all" class="cbxlist">
+													<li><input id="cat-1" type="checkbox" value="1"/><label for="cat-1">Category1</label></li>
+													<li><input id="cat-2" type="checkbox" value="2"/><label for="cat-2">Category2</label></li>
+													<li><input id="cat-3" type="checkbox" value="3"/><label for="cat-3">Category3</label></li>
+												</ul>
+											</div>
+											<div id="category-pop" class="slimtab_bd hide">
+												<ul id="cbxlist-cat-pop" class="cbxlist">
+													<li><input id="cat-3" type="checkbox" value="3"/><label for="cat-3">Category3</label></li>
+													<li><input id="cat-2" type="checkbox" value="2"/><label for="cat-2">Category2</label></li>
+													<li><input id="cat-1" type="checkbox" value="1"/><label for="cat-1">Category1</label></li>
+												</ul>												
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--/#boxCategory-->
+								<!--boxTag-->
+								<div id="boxTag" class="widget">
+									<div class="w_tgl" title="click to toggle"></div>
+									<h3 class="w_hd"><span>Story tags</span></h3>
+									<div class="w_ct">
+										<div id="tagAdder">
+											<div id="tagAdder_">
+												<p>
+													<input type="text" value="" size="16" class="newtag form-input-tip" name="newtag_story" id="newtag-story"/>
+													<input type="button" tabindex="3" value="Add" class="btn btnAddTag"/>
+												</p>														
+											</div>
+											<p class="howto">Separate tags with commas</p>
+										</div>
+										<p id="tagSelector">
+											<a href="#">Choose from most used tags</a>
+										</p>
+									</div>
+								</div>
 							</div>
 						</div>
 						<!--#ste_main-->
@@ -123,7 +169,6 @@
 							<div id="ste_main_" class="rsb_ct_">
 								<div id="ste_title">
 									<div id="ste_title_">
-										<label id="ste_title_c" for="storyTitle" style="visibility:hidden;">Title goes here...</label>
 										<input id="storyTitle" class="bigipt bd0" type="text" value="" tabindex="1" size="30" name="storyTitle"/>
 									</div>
 									<div id="ste_slug">
@@ -145,7 +190,7 @@
 										</div>
 									</div>
 									<div id="edt_main" class="bd0">
-										<textarea id="edt_hoder" class="edt_holder" tabindex="2" name="storyContent" cols="40" rows="12"></textarea>
+										<textarea id="edt_hoder" class="edt_holder" tabindex="2" name="storyContent" cols="40" rows="20"></textarea>
 									</div>
 								</div>
 							</div>
@@ -161,6 +206,7 @@
 			<div class="r">Version 2010.10.16</div>
 		</div>
 		<!--scripts-->
+		<script type="text/javascript" src="assets/javascripts/jquery.vsUtils.js"></script>
 		<script type="text/javascript" src="assets/javascripts/tiny_mce/jquery.tinymce.js"></script>
 		<script type="text/javascript" src="assets/javascripts/Admin.StoryAdd.js"></script>
 		<script type="text/javascript">

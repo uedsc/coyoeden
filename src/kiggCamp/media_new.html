@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Camp-Add new media files</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="css/reset-min.css"></link>
+		<link rel="stylesheet" type="text/css" href="css/fonts-min.css"></link>   
+		<link rel="stylesheet" type="text/css" href="css/camp_color.css"></link> 
+		<link rel="stylesheet" type="text/css" href="css/camp_font.css"></link> 
+		<link rel="stylesheet" type="text/css" href="css/camp.css"></link> 		
+	</head>
+	<body class="media_new">
+		<!--#header-->
+		<div id="scHead" class="clear">
+			<img class="l" id="sch_logo" height="45" width="45" alt="" src="images/blank.gif"/>
+			<h1 id="sch_head" class="l">
+				<a title="Go to homepage" href="#">
+					<span id="sch_title">Story Camp</span>
+				</a>
+			</h1>
+			<div id="sch_info" class="r">
+				<div id="favlinks" class="l">
+					<div id="favlink0"><a href="#">New Story</a></div>
+					<div id="favlink_trigger"></div>
+					<div id="favlinks_" class="hide">
+						
+					</div>
+				</div>
+				<div id="userinfo" class="l">
+					<span id="hello">Welcome,</span>
+					<a id="username" href="#">Levin</a>
+					<span>|</span>
+					<a id="userstate" href="#">Log Out</a>
+				</div>
+			</div>
+		</div>
+		<!--#main-->
+		<div id="scMain" class="clear">
+			<!--#sidebar-->
+			<ul id="scMenus">
+				<li id="menu_home" class="menu_first menu_hasSub menu_open menu_top menu_top_last">
+                    <div class="menu_bg"></div>
+                    <div class="menu_trigger"></div>
+                    <a href="#" tabindex="1" class="menu_hasSub menu_top menu_first">Camper</a>
+                    <div class="menu_sub">
+                        <ul class="menu_sub_">
+                            <li class="menu_first">
+                                <a href="index.html" tabindex="1">Summary</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu_split"><a href="#">&nbsp;</a></li>
+                <li id="menu_story" class="menu_hasSub menu_open menu_top menu_top_first">
+                    <div class="menu_bg"></div>
+                    <div class="menu_trigger"></div>
+                    <a href="#" tabindex="2" class="menu_top menu_first">Stories</a>
+                    <div class="menu_sub">
+                        <ul class="menu_sub_">
+                            <li><a href="stories.html">Stories</a></li>
+                            <li><a href="story_add.html">Add story</a></li>
+                            <li><a href="category.html">Categories</a></li>
+                            <li><a href="tag.html">Story tags</a></li>
+                        </ul>
+                    </div>                    
+                </li>
+                <li id="menu_media" class="menu_hasSub menu_hotSub menu_open menu_top">
+                    <div class="menu_bg"></div>
+                    <div class="menu_trigger"></div>
+                    <a href="#" class="menu_hotSub menu_top">Media</a>
+                    <div class="menu_sub">
+                        <ul class="menu_sub_">
+                            <li><a href="media.html">Library</a></li>
+                            <li  class="now"><a href="media_new.html">Add Media</a></li>                            
+                        </ul>
+                    </div>
+                </li>
+                <li id="menu_comment" class="menu_top menu_top_last">
+                    <div class="menu_bg"></div>
+                    <a href="#" class="menu_top menu_top_last">Comments</a>
+                </li>
+                <li class="menu_split"><a href="#">&nbsp;</a></li>
+                <li id="menu_user" class="menu_hasSub menu_open menu_top menu_top_first menu_top_last">
+                    <div class="menu_bg"></div>
+                    <div class="menu_trigger"></div>
+                    <a href="#" tabindex="2" class="menu_hasSub menu_top menu_first">Users</a>
+                    <div class="menu_sub">
+                        <ul class="menu_sub_">
+                            <li><a href="#">Users</a></li>
+                            <li><a href="#">Add new</a></li>
+                            <li><a href="#">Your profile</a></li>
+                        </ul>
+                    </div>                    
+                </li>
+			</ul>
+			<!--#viewport-->
+			<div id="scViewport">
+				<div id="scTip">
+                    Today is <span class="year">2010</span>-<span class="month">10</span>-<span class="date">16</span>, 
+                    totally <a href="#"><span class="cnt_story">10</span></a> new stories found in <a href="#"><span class="cnt_category">5</span></a> categories.
+				</div>
+				<div id="scViewport_" class="clear">
+					<div class="icon32"></div>
+					<h2 id="scSubhead">Upload New Media</h2>
+					<div id="flash-upload-ui">
+						<div>
+							Choose files to upload	
+							<span><input type="button" class="btn" value="Cancel Upload" onclick="cancelUpload()" disabled="disabled" id="cancel-upload"/></span>
+						</div>
+						<p class="media-upload-size">Maximum upload file size: 8MB</p>
+						<p class="upload-flash-bypass">You are using the Flash uploader.  Problems?  Try the <a href="media_new.html?flash=0">Browser uploader</a> instead.</p>	
+						<p class="howto">After a file has been uploaded, you can add titles and descriptions.</p>
+					</div>
+					<div id="media-items"> </div>								
+				</div><!--#viewport_-->
+			</div>
+			<!--/#viewport-->
+		</div>
+		<!--/#scMian-->
+		<!--#scfoot-->
+		<div id="scFoot" class="bd0 clear">
+			<div class="r">Version 2010.10.16</div>
+		</div>		
+	</body>
+</html>

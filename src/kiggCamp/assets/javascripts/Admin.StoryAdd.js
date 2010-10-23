@@ -21,13 +21,35 @@ var this$ = (function($) {
 			dialog_type:"modal"		
 		});
 	};
+	p.initTabs=function(){
+		var hd=$("#category-tabs li"), bd=$("#catSelector .slimtab_bd");
+		$("#category-tabs a").click(function(e){
+			var $i=$(this),$li=$i.parent();
+			if($li.hasClass("slimtab_on")) return false;
+			bd.hide().filter($i.attr("href")).fadeIn();
+			hd.removeClass();
+			$li.addClass("slimtab_on");
+			return false;
+		});
+	};
+	p.initPreInput=function(){
+		$("#storyTitle").preInput({val:p._lang.lblTitle});
+		$("#newtag-story").preInput({val:p._lang.lblTag});
+	};
 	//private area
-    p.initVar = function(opts) { };
+    p.initVar = function(opts) { 
+		p._lang=opts.lang||{
+			lblTitle:'Title goes here...',
+			lblTag:'Add New Tag'
+		};
+	};
     p.onLoaded = function() { 
 		p.loadMCE();
 	};
     p.initEvents = function(opts) {
         $(document).ready(p.onLoaded);
+		p.initTabs();
+		p.initPreInput();
     };
     //public area
     pub.Init = function(opts) {

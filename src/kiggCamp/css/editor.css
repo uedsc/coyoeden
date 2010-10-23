@@ -3,7 +3,7 @@
 html{background:transparent url(images/main-right.jpg) no-repeat right top;}
 
 html .mceContentBody {font-family:"Segoe UI",Calibri,"Myriad Pro",Myriad,"Trebuchet MS",Helvetica,Arial,sans-serif;font-size:13px;font-style:normal;color:#4e4e4e;
-background:transparent url(images/main-left.jpg) no-repeat left top;min-height:380px;}
+background:transparent url(images/main-left.jpg) no-repeat left top;min-height:300px;}
 
 /* links */
 a{color:#0071bb;outline:none;}

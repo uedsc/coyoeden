@@ -10,6 +10,7 @@
 .l{float:left;}
 .r{float:right;}
 .hide{display:none;}
+.novisible{visibility:hidden;}
 a{text-decoration:none;}
 a.btn{
 	line-height:15px;
@@ -32,6 +33,10 @@ cursor:pointer;
 line-height:13px;
 padding:3px 8px;
 }
+input[type="checkbox"], input[type="radio"] {
+	vertical-align:middle;
+	margin-right:4px;
+}
 textarea, input, select {
 	margin:1px;
 	padding:3px;
@@ -48,7 +53,7 @@ textarea, input[type="text"], input[type="password"], input[type="file"], select
 input[type="text"], input[type="password"], textarea {
 	-moz-box-sizing:border-box;
 }
-label{vertical-align:middle;}
+label{vertical-align:middle;cursor:pointer;}
 /* table style */
 table{border-collapse:separate;}
 table.fixed {
@@ -58,7 +63,10 @@ table.fixed {
 	width:15%;
 }
 .fixed .column-date, .fixed .column-parent, .fixed .column-links {
-width:10%;
+	width:10%;
+}
+.fixed .column-icon {
+	width:80px;
 }
 .widefat {
 	-moz-border-radius:4px 4px 4px 4px;
@@ -333,6 +341,25 @@ width:10%;
 .metabox .rsb_sb{float:right;position:relative;width:281px;}
 /* /metabox */
 
+/* slimtab */
+.slimtab{margin-top:12px;margin-bottom:3px;}
+.slimtab li{display:inline;-moz-border-radius:3px 3px 0 0;padding:5px;margin-bottom:6px;}
+.slimtab_bd{
+	border-style:solid;
+	border-width:1px;
+	height:200px;
+	overflow:auto;
+	padding:0.5em 0.9em;
+}
+/* /slimtab */
+
+/* checkbox list */
+.cbxlist li{
+	line-height:19px;
+	word-wrap:break-word;
+}
+/* /checkbox list */
+
 /* layout for pages like story_add */
 #ste_sidebar_{min-height:300px;height:auto !important;height:300px;width:280px;}
 .rsb #ste_main{float:left;margin-right:-340px;width:100%;}
@@ -371,6 +398,39 @@ width:10%;
 .cmt blockquote p{display:inline;}
 .cmt_acts{margin-top:3px;}
 
+/*=========== listView ================ */
+.listView .acts1 li{display:inline;}
+.listView .acts1 a{line-height:15px;}
+
+/* tow column layout like category.html */
+.multiColBox .mcb_L{
+	overflow:hidden;
+	width:39%;
+}
+.multiColBox .mcb_R{
+	width:59%;
+	overflow:hidden;
+}
+.form-wrap h3{
+	font-size:1.1em;
+	margin:12px 0;
+	font-weight:bold;
+}
+.form-wrap .form-field{
+	margin:0 0 10px;
+	padding:8px;
+}
+.form-wrap label {
+	display:block;
+	padding:2px;
+}
+.form-field input, .form-field textarea {
+	border-style:solid;
+	border-width:1px;
+	width:95%;
+}
+.form-wrap p{margin:2px 0 5px;}
+
 #wComments p.viewall{padding:10px 10px 0 10px;}
 #wCategory table{margin-left:0;}
 #wCategory .tbl .txtth,#wCategory .tbl td{padding-left:10px;margin-right:10px;}
@@ -379,24 +439,19 @@ width:10%;
 #scFoot{
 	border-style:solide;
 	border-width:1px;
-	position:absolute;
-	left:0;
-	bottom:0;
+	position:relative;
 	width:100%;
 }
 #scFoot .r{
 	line-height:15px;
 	padding:15px;
 }
+
 /* /layout */
 
-/*=========== stories.html ================ */
-#storyList .acts1 li{display:inline;}
-#storyList .acts1 a{line-height:15px;}
-
 /*=========== story_add.html=============== */
+#ste_sidebar_ .widget .w_ct{margin:6px 6px 0;}
 #ste_slug_{height:1em;margin-top:8px;padding:0 7px;}
-#ste_title_c{padding:8px;position:absolute;}
 #edtbtn_others{cursor:default;padding:8px 8px 0;}
 #edtbtn_others a{cursor:pointer;padding:0 0 5px 10px;}
 #edtbtn_others img{vertical-align:middle;}
@@ -410,5 +465,15 @@ width:10%;
 	padding:4px 5px 2px;
 }
 #edtbtn_html{margin-right:15px;}
-#act_publish{padding:6px 6px 0 6px;}
 #btnPublish{width:80px;}
+#boxTag p{margin:6px 6px 8px;}
+#tagAdder p.howto{margin:0 0 6px 8px;}
+#newtag-story{width:180px;position:relative;background:transparent;}
+
+/* media_add.html */
+#flash-upload-ui p{margin:1em 0;}
+#media-items{
+	border-style:solid solid none;
+	border-width:1px;
+	width:670px;
+}

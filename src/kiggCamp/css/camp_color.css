@@ -8,7 +8,7 @@ body{color:#333333;}
 .cmt,
 .widefat td,
 .bd0,
-.widefat th{border-color:#dfdfdf;}
+.widefat th,.slimtab_on,.slimtab_bd{border-color:#dfdfdf;}
 /* cl-#464646 */
 h2,h3{color:#464646;}
 h2{text-shadow:0 1px 0 #FFFFFF;}
@@ -22,16 +22,25 @@ h2{text-shadow:0 1px 0 #FFFFFF;}
 .cmt_acts .trash,.cmt_acts .spam{color:#BC0B0B;}
 /* cl-#777 */
 .widget .tbl .txtth,#scFoot{color:#777;}
+/* cl=#666 */
+.howto,.form-wrap p{color:#666;}
 /* cl-red */
 .widget a.spam{color:red;}
+/* cl-#333 */
+.slimtab_on a,.slimtab_on a:hover,.slimtab_on a:active,.slimtab_on a:focus,.slimtab_on a:visited{color:#333;}
+/* cl-#bbb */
+.ipt_default{color:#bbb;}
 /* bd-#ececec */
 .widget .tbl .txtth{border-color:#ececec;}
 /* bg-#F9F9F9 */
 .alt,.even{background-color:#F9F9F9;}
 /* bg-#fff */
-/* bg-#f1f1f1 */
-#edtbtn_html,#edtbtn_preview{background-color:#f1f1f1;}
 .bigipt{background-color:#fff;}
+/* bg-#f1f1f1 */
+#edtbtn_html,#edtbtn_preview,.slimtab_on{background-color:#f1f1f1;}
+/* bd-#dfdfdf */
+#media-items{border-color:#dfdfdf;}
+
 .widget,
 textarea,
 input[type="text"],
@@ -57,7 +66,7 @@ a{color: #21759b;}
 a:hover,
 a:active,
 a:focus {
-	color: #d54e21;
+	color: #d54e21;outline:none;
 }
 .btn,
 .submit input,
@@ -76,13 +85,16 @@ input[type=submit]:hover {
 }
 
 .btn,
-.widefat thead th,
-.widefat tfoot th,
 .submit input{
 	background: #f2f2f2 url(../images/white-grad.png) repeat-x scroll left top;
 	text-shadow: rgba(255,255,255,1) 0 1px 0;
 }
 
+.widefat thead th,
+.widefat tfoot th{
+	background: #f2f2f2 url(../images/gray-grad.png) repeat-x scroll left top;
+	text-shadow:0 1px 0 rgba(255, 255, 255, 0.8);
+}
 .btn:active,
 .submit input:active
 {
@@ -208,7 +220,8 @@ a.menu_first
 /* right area */
 .icon32{background:url("../images/icons32.png") no-repeat transparent;}
 .camp_index .icon32{background-position:-135px -5px;}
-.story_index .icon32,.story_add .icon32,.category .icon32,.tag_index .icon32{background-position:-552px -5px;}
+.story_index .icon32,.story_add .icon32,.category_index .icon32,.tag_index .icon32{background-position:-552px -5px;}
+.media_index .icon32,.media_new .icon32{background-position:-251px -5px;}
 .widget h3{
 	background:url("../images/gray-grad.png") repeat-x scroll left top #DFDFDF;
 	text-shadow:0 1px 0 #FFFFFF;
@@ -419,20 +432,27 @@ a.menu_first
 .camp .clearlooks2 .mceFocus .mceTop span {
 	color: #e5e5e5;
 }
+
+/* =============== listView ================= */
+.listView .acts1 span.cnt,.listView a.now{color:#999;}
+.listView a.now{color:#000;}
+
 /* end TinyMCE */
 /* footer */
 #scFoot{
 	background:-moz-linear-gradient(center bottom , #D7D7D7, #E4E4E4) repeat scroll 0 0 transparent;
 }
 
-/* =============== stories.html ================= */
-#storyList .acts1 span.cnt,#storyList a.now{color:#999;}
-#storyList a.now{color:#000;}
 /* =============== story_add.html =============== */
 #ste_slug_{color:#666;}
-#ste_title_c{color:#bbb;}
+
 #edt_toolbar .edtbtn_on{
 	background-color:#E9E9E9;
 	border-bottom-color:#E9E9E9;
 	color:#333333;
+}
+/* category.html */
+.form-wrap label{
+	color:#222222;
+	text-shadow:0 1px 0 #FFFFFF;
 }
