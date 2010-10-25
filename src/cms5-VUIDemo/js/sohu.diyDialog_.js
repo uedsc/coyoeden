@@ -1010,6 +1010,7 @@ sohu.diyDialog.wTheme=function(dlg){
 			//初始化编辑器
 			//$("#vstp_jsInit").remove().appendTo("body");
 			bos.Fire();
+			dlg.Hide();
 		});
 	});
 	//事件处理

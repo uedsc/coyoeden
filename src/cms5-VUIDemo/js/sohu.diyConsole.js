@@ -460,7 +460,7 @@ sohu.diyConsole.ParseBGImg=function(img){
  * @param {Object} evt
  */
 sohu.diyConsole.OnStopNav=function(evt){
-	alert("onStopNav");
+	//alert("onStopNav");
 	evt.preventDefault();
 	return true;
 };

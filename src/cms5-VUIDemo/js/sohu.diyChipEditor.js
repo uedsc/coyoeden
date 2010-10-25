@@ -59,9 +59,10 @@ sohu.diyChipEditor = function() {
 	 */
 	pub.Show=function($chip,opts){
 		opts=$.extend({tabs:[0,1,2]},opts||{});
-		var dlg=null,id=p._singleton?"solo":$chip.attr("id");
+		var chipID=$chip.attr("id");
+		var dlg=null,id=p._singleton?"solo":chipID;
 		opts.isNew=false;
-		opts=$.extend({
+		opts=$.extend(opts,{
 			dlgModel:p._dlgModel,
 			$body:p._$body,
 			$chip:$chip,				/* 碎片 */
@@ -75,15 +76,23 @@ sohu.diyChipEditor = function() {
 			onExternal:opts.onExternal,
 			onFlashEdit:opts.onFlashEdit,
 			onLoadHis:opts.onLoadHis								
-		},opts);		
+		});		
 		if(!(dlg=p.editors[id])){
 			opts.isNew=true;
 			dlg=new sohu.diyChipEditor.Dialog(opts);
-			p.editors[id]=dlg;
-			
+			p.editors[id]=dlg;				
 		};
-		//dlg.Show(opts);
 		dlg.Edit(opts.$elm,opts);
+		//编辑器定位在碎片上
+		if(dlg.ChipID!=chipID){
+			var of=$chip.offset();
+			dlg.$Layout.css({
+				top:of.top,
+				left:of.left,
+				"margin-left":"auto"
+			});
+			dlg.ChipID=chipID;					
+		};		
 	};
 	pub.MCE=function(){
 		if(p._noTinyMCE){
@@ -133,11 +142,10 @@ sohu.diyChipEditor.Dialog=function(opts){
 	var _this=this;
 	this.Sorting=false;
 	this._opts=opts;
-	this.$Elm=opts.$elm;//当前元素
-	this.Elm=opts.elm;//当前元素对应的sohu.diyElement对象
-	this.CT=opts.elm.CT;//当前碎片对象
-	this.$Chip=opts.$chip;//当前碎片
-	this.SortElm=null;//当前排序元素
+	//设置编辑器的目标碎片
+	this.SetTarget(opts.$chip,opts.$elm,opts);
+	//当前排序元素
+	this.SortElm=null;
 	
 	//DOM引用
 	this.$Layout=opts.dlgModel.clone().appendTo(opts.$body);
@@ -161,10 +169,6 @@ sohu.diyChipEditor.Dialog=function(opts){
 	this.$btnCode=this.$Layout.find(".vstp_external");//.globalRes,
 	
 	//事件处理
-	this.$Backup=this.$Chip.clone(true).removeClass("vstp_ctOn")
-		.find(".vstp_elm").removeClass("vstp_elmOn").end()
-		.find(".vstp_dragHandle").hide().end();
-	
 	this.InitSecHDTpl();
 
 	//整体测试
@@ -174,11 +178,14 @@ sohu.diyChipEditor.Dialog=function(opts){
 	//取消
 	this.$BtnCancel=this.$Layout.find(".vstp_cancel").click(function(evt){
 		/* 注：如果页面中存在prototype库，用replaceWith可能会出现bug。到时需要参照chipEditor.js进行修改 */
+		/*
 		var c=_this.$Backup.clone(true);
 		_this.$Chip.replaceWith(c);
 		_this.CT.$Layout=_this.$Chip=c;
-		_this.CT.LoadElements();
-		//_this.$Layout.jqmHide();
+		*/
+		_this.$Chip.html(_this.$Backup.html());
+		_this.CT.LoadElements();		
+		
 		_this.Hide();
 		//重定位分栏编辑器
 		_this.CT.Editor.Reposition();		
@@ -243,7 +250,7 @@ sohu.diyChipEditor.Dialog=function(opts){
 		_this.$UpPic.slideUp("fast");
 	});
 	//jqm options
-	this.jqmOpts={trigger:false,modal:false,overlay:false,autoFocus:false,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,overlayClass:"vstp_jqmovl",closeClass:'vstp_jqmcls'};
+	this.jqmOpts={trigger:false,modal:false,overlay:false,autoFocus:false,beforeShow:null,afterShow:null,beforeHide:null,afterHide:null,overlayClass:"cedt_jqmovl",closeClass:'cedt_jqmcls'};
 	this.jqmOpts.onShow=function(hash){
 		var doShow=true;
 		if(_this.jqmOpts.beforeShow){
@@ -382,10 +389,8 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 	if(opts.elm.IsEditing) return;
 	
 	var $elmList=$elm.contents();
-	//更新引用的当前元素
-	this.Elm=opts.elm;
-	this.$Elm=$elm;
-	this.$Chip=opts.$chip;
+	//更新碎片目标
+	this.SetTarget(opts.$chip,$elm,opts);
 
 	opts.afterShow=function(hash,dlg){	
 		//第一个tab
@@ -442,7 +447,7 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 		//第二个tab
 		dlg.UpdateCode();
 		//上传按钮
-		dlg.$Layout.find(".btnUpl").click(function(evt){
+		dlg.$Layout.find(".vstp_btnUpl").click(function(evt){
 			dlg.$UpPic.show().effect("highlight");
 			//设定当前上传的图片对象2010.10.15
 			dlg.$UpPic.data=jQuery(this).data("data");			
@@ -720,7 +725,6 @@ sohu.diyChipEditor.Dialog.prototype.LoadSecHDTpl=function(){
 	this.$ChipTpl.show();
 	this.$SecHDActs.show();
 	this.$CbxSecHDMore[0].checked=(this.$Chip.find(".more").length>0);
-	
 	var bgimg=this.$Chip.css("background-image");
 	if(bgimg!=""&&bgimg!="none"){
 		this.$SecHDBG.val(bgimg.replace('url("',"").replace('")',""));
@@ -732,7 +736,7 @@ sohu.diyChipEditor.Dialog.prototype.LoadSecHDTpl=function(){
 sohu.diyChipEditor.Dialog.prototype.InitSecHDTpl=function(){
 	var _this=this;
 	//更多按钮
-	this.$CbxSecHDMore=this.$SecHDActs.find(".vstp_secHDMore").click(function(evt){
+	this.$CbxSecHDMore=this.$SecHDActs.find(".vstp_secHDMore").click(function(evt){	
 		if(this.checked){
 			if(sohu.diyConsole.CurElm.CT.$Layout.find(".more").length==0){
 				var $more=$(sohu.diyChipEditor.moreStr);
@@ -767,4 +771,19 @@ sohu.diyChipEditor.Dialog.prototype.InitSecHDTpl=function(){
 sohu.diyChipEditor.Dialog.prototype.onDomRefreshed=function(){
 	if(!this.Elm) return;
 	this.Elm.CT.Editor.Reposition();
+};
+/**
+ * 设置碎片编辑器的目标碎片
+ * @param {Object} $chip
+ * @param {Object} $elm
+ * @param {Object} opts
+ */
+sohu.diyChipEditor.Dialog.prototype.SetTarget=function($chip,$elm,opts){
+	this.$Elm=$elm;//当前元素
+	this.Elm=opts.elm;//当前元素对应的sohu.diyElement对象
+	this.CT=opts.elm.CT;//当前碎片对象
+	this.$Chip=$chip;//当前碎片
+	this.$Backup=this.$Chip.clone(true).removeClass("vstp_ctOn")
+	.find(".vstp_elm").removeClass("vstp_elmOn").end()
+	.find(".vstp_dragHandle").hide().end();
 };

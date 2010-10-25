@@ -27,10 +27,11 @@ sohu.diyContent=function(opts){
 	if(!this.Validation.valid) return;
 	
 	/* ID */
-	if((this.ID=this.$Layout.attr("id"))=="")
-		this.ID="ct_"+this.Type+"_"+StringUtils.RdStr(8);
+	if ((this.ID = this.$Layout.attr("id")) == "") {
+		this.ID = "ct_" + this.Type + "_" + StringUtils.RdStr(8);
+		this.$Layout.attr("id",this.ID);
+	};
 	
-	this.$Layout.attr("id",this.ID);
 	//ÊÇ·ñflash
 	this.IsFlash=this.$Layout.flash;
 	if(this.IsFlash){
@@ -141,7 +142,7 @@ sohu.diyContent.prototype.Validate=function(){
 				this.$Layout=$("<div/>").addClass(this.__p.opts.cl+" "+this.Type+" clear").append(this.$Layout);
 			}
 		break;
-		case "flash":
+		case "vstp_flash":
 			this.$Layout=this.IsNew?$(this.Meta.html0):this.Meta.$dom;
 			this.$FlashData=this.$Layout.find(".vstp_flashData");
 			this.FlashData=$.evalJSON(this.$FlashData.html());

@@ -8,7 +8,7 @@
 sohu.diyArea=function(opts){
 ///<summary>横切对象</summary>
 	//属性
-	opts=$.extend({},{clArea:"area",clActive:"area_active",clEmpty:"area_empty",isNew:true,clSec:"vstp_sec",clElm:"vstp_elm",clHelper:"vstp_areaTip",clContent:"vstp_ct"},opts);
+	opts=$.extend({},{clArea:"area",clActive:"area_active",clEmpty:"area_empty",isNew:true,clSec:"vstp_sec",clSubSec:'vstp_subsec',clElm:"vstp_elm",clHelper:"vstp_areaTip",clContent:"vstp_ct"},opts);
 	var _this=this;
 	this.TemplateID=null;//横切模板id
 	this.Console=opts.console;
@@ -175,14 +175,22 @@ sohu.diyArea.prototype.Remove=function(){
  */
 sohu.diyArea.prototype.LoadSections=function(){
 	var _this=this;
-	var items=this.$Layout.find("."+this.__p.opts.clSec);
-	items=items.map(function(i,sec){
-		return sohu.diySection.New({
-			$obj:$(sec),
-			curArea:_this
-		});
-	});
-	return items;
+	var onLoadItems=function(t,isArea,items){
+		items=isArea?t.$Layout.find(">.vstp_col >."+_this.__p.opts.clSec):t.$Layout.find(">.vstp_subsec >.vstp_col >."+_this.__p.opts.clSec);
+		var items1=items.map(function(i,sec){
+			return sohu.diySection.New({
+				$obj:$(sec),
+				curArea:_this,
+				pSec:isArea?null:t
+			});
+		});	
+		if(items.length>0){
+			for(var i0=0;i0<items.length;i0++){
+				onLoadItems(items1[i0],false,[]);
+			};
+		};
+	};
+	onLoadItems(this,true,[]);
 };
 /**
  * 当前横切是否有内容

@@ -238,7 +238,7 @@ sohu.diySection.prototype.Dim=function(){
  */
 sohu.diySection.prototype.LoadContents=function(){
 	var _this=this;
-	var items=this.$Layout.find("."+this.__p.opts.clContent);
+	var items=this.$Layout.find(">."+this.__p.opts.clContent);
 	items=items.map(function(i,ctdom){
 		var $dom=$(ctdom);
 		var ct={
@@ -329,9 +329,9 @@ sohu.diySection.prototype.BindEvts=function(){
 	var _this=this;
 	var p={};
 	p.mouseOver=function(evt){
-		if(_this.HasSub()) return false;
+		//if(_this.HasSub()) return false;
 		_this.Active();
-		//return false;
+		return false;
 	};
 	p.mouseOut=function(evt){
 		_this.Deactive();
@@ -339,7 +339,7 @@ sohu.diySection.prototype.BindEvts=function(){
 	};
 
 	//鼠标事件-！！停止冒泡事件
-	this.$Layout.bind("mouseenter.edit",p.mouseOver);//.mouseleave(p.mouseOut);
+	this.$Layout.bind("mouseover.edit",p.mouseOver);//.mouseleave(p.mouseOut);
 	this.$Layout.sortable("enable");
 	//自定义事件
 	this.$Layout.bind("evtActive.edit",function(e){

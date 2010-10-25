@@ -3,6 +3,8 @@
  * date: 2010.10.12 
  */
 /**È«¾Ö**/
+.vstp_sec{zoom:1;}
+.vstp_sec:after{display:block;content:'\20';clear:both;}
 .vstp_w950 .vstp_imgNav li.vstp_elmc{ background:#a8a999; width:950px; height:160px; }
 .vstp_subsec{ padding-bottom:10px; border:1px solid #d0d0d0; }
 .vstp_sec_hd{ height:30px; line-height:30px;  background:url(pic308x30.jpg) no-repeat;border:1px solid #d0d0d0; border-bottom:0 none}

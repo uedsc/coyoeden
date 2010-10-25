@@ -31,7 +31,7 @@ sohu.diyTp["w270_390_270"]='<div class="area area_empty"><div class="vstp_col vs
 
 /*=·ÖÀ¸Ä£°åÇøÓò=*/
 //390
-sohu.diyTp["sw390"]='<div class="vstp_subsec"><div class="vstp_w390"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
+sohu.diyTp["sw390"]='<div class="vstp_subsec"><div class="vstp_col vstp_w390"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
 sohu.diyTp["sw190_190"]='<div class="vstp_subsec"><div class="vstp_col vstp_w190 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w190 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
 //430
 sohu.diyTp["sw210_210"]='<div class="vstp_subsec"><div class="vstp_col vstp_w210 l"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div><div class="vstp_col vstp_w210 r"><div class="vstp_sec"><div class="vstp_secHolder"></div></div></div></div>';
