@@ -90,7 +90,7 @@
 							gogo(i);
 						};
 						if(that.clickTabToNav){
-							window.open(fi._curLink);
+							window.open(that._curLink);
 						};
 						return false;
 					});
