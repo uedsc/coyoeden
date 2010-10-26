@@ -533,6 +533,7 @@ chipEditor.Dialog.prototype.Edit=function($elm){
 					
 	};//onShow
 	this.jqmOpts.afterShow=onShow;
+	this.jqmOpts.isNew=false;
 	this.Show(this.jqmOpts);
 };
 /**

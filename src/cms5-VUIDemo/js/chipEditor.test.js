@@ -123,7 +123,7 @@ var test = function() {
 					};
 				},
 				afterHide:function(hash,dlg){
-					alert("hi");
+					
 				}
 			});
 		});
