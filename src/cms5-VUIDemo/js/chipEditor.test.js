@@ -121,6 +121,9 @@ var test = function() {
 							"margin-left":"auto"
 						});					
 					};
+				},
+				afterHide:function(hash,dlg){
+					alert("hi");
 				}
 			});
 		});

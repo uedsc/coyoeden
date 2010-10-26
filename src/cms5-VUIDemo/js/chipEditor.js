@@ -288,14 +288,18 @@ chipEditor.Dialog=function(opts){
 			hash.w.hide();				
 			if(_this.jqmOpts.modal){hash.o.remove();}; 
 			//afterHide callback
-			_this.$Chip.removeClass("cedt_on");
+			_this.$Chip.removeClass("cedt_on");			
 			//重置第一个tab的内容
 			_this.$ElmA.empty().html(_this._opts.lblTab0);
 			_this.$ElmImg.empty().html(_this._opts.lblTab0);
 			
 			if(_this.jqmOpts.afterHide)
 			{
-				_this.jqmOpts.afterHide(hash,_this);
+				_this.jqmOpts.afterHide(hash,_this);		
+			};
+			if (_this.$Elm) {
+				_this.$Elm.removeClass(_this._opts.clIng);
+				_this.$Elm = null;
 			};
 		};	
 	};
@@ -528,16 +532,8 @@ chipEditor.Dialog.prototype.Edit=function($elm){
 		});
 					
 	};//onShow
-	var onHide=function(hash,dlg){
-		if(dlg.$Elm){
-			dlg.$Elm.removeClass(_this._opts.clIng);
-			dlg.$Elm=null;			
-		};
-		dlg.$Chip.removeClass("cedt_on");
-	};//onHide
 	this.Show({
-		afterShow:onShow,
-		afterHide:onHide
+		afterShow:onShow
 	});
 };
 /**
