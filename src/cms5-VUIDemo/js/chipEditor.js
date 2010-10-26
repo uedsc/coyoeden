@@ -532,9 +532,8 @@ chipEditor.Dialog.prototype.Edit=function($elm){
 		});
 					
 	};//onShow
-	this.Show({
-		afterShow:onShow
-	});
+	this.jqmOpts.afterShow=onShow;
+	this.Show(this.jqmOpts);
 };
 /**
  * ≈≈–Ú
