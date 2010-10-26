@@ -183,6 +183,7 @@ var MDC_FIDesign= function() {
 		$(this).addClass("on");
 		p._$body.removeClass().addClass(this.rel);
 		p._fiSN=this.rel;
+		p._demoUrl=this.href;
 		return false;
 	};
 	p.loadEditData=function(keepLMenu){
@@ -266,6 +267,8 @@ var MDC_FIDesign= function() {
 		p._$btnGen=$("#btnGen");
 		p._$btnRGen=$("#btnAnalytics");
 		p._$desiner=$("#designer");
+		p._$btnViewDemo=$("#btnViewDemo");
+		p._demoUrl="http://i.mdc.sohu.com/levinhuang/focusImg/1/";
 		
 		//焦点图列表
 		p._$fiItems=$("#fiList_ a");
@@ -298,6 +301,9 @@ var MDC_FIDesign= function() {
 		//反向分析代码
 		p._$btnRGen.click(p.onRevertGen);
 		$("#btnDoRGen").click(p.onDoRGen);
+		p._$btnViewDemo.click(function(){
+			window.open(p._demoUrl);
+		});
 		//代码框
 		p._$txtCode.click(function(evt){$(this).select();});
 		p._$closePreview.click(function(evt){
