@@ -198,4 +198,5 @@ sohu.diyElement.prototype.EditView=function(){
 			_i.CT.InlineEdit("off");
 		}
 	});
+	return false;
 };

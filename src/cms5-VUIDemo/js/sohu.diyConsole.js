@@ -55,34 +55,13 @@ sohu.diyConsole=function(opts){
 		};
 	};
 	//body标签的鼠标事件
-	p.onMousemove=function(evt){
-		if(!sohu.diyConsole.CurArea) return;
-		if(!sohu.diyConsole.CurArea.IsActive) return;
-		if(sohu.diyConsole.CurArea.IsEditing) return;
-		//if(sohu.diyConsole.Dragger.ing) return;
-		//if(sohu.diyConsole.EditingSec!=null) return;
-		
-		var b=p.getWorkspaceBoundary();
-		
-		if(evt.pageX<b.lbleft||evt.pageX>b.ubleft||evt.pageY>b.ubtop){//||evt.pageY<lbtop
-			/*
-			//反激活横切
-			sohu.diyConsole.CurArea.Deactive();
-			//反激活分栏
-			if(sohu.diyConsole.CurSec)
-				sohu.diyConsole.CurSec.Deactive();
-				
-			//移除拖拽助手和内容蒙层
-			sohu.diyConsole.Dragger.handle.hide();	
-			*/
-		};
-	};
 	p.onBodyClick=function(evt){
 		//用户是否点击#editMenu
-		if($(evt.target).parents(".jqmWindow").length>0) return;
+		var $t=$(evt.target);
+		if($t.parents(".jqmWindow").length>0||$t.parents(".cedt_jqm").length>0) return;
 		
 		var b=p.getWorkspaceBoundary();
-		if(evt.pageX<b.lbleft||evt.pageX>b.ubleft||evt.pageY>b.ubtop){//||evt.pageY<lbtop
+		if(evt.pageX<b.lbleft||evt.pageX>b.ubleft||evt.pageY>b.ubtop){//||evt.pageY<b.lbtop
 			//sohu.diyDialog.Hide(true);
 			//sohu.diyConsole.Preview();
 			//反激活横切
@@ -95,7 +74,6 @@ sohu.diyConsole=function(opts){
 			//移除拖拽助手和内容蒙层
 			sohu.diyConsole.Dragger.handle.hide();				
 		};
-		return false;
 	};
 	p.setDocumentDim=function(){
 		return;
@@ -122,13 +100,10 @@ sohu.diyConsole=function(opts){
 	};
 	p.Init=function(){
 		//公有属性引用
-		sohu.diyConsole.URL_TopicTpl=opts.urlTopicTpl||'static/';
 		sohu.diyConsole.$WinSec=p._$wSec;
 		sohu.diyConsole.$WinCode=p._$wCode;
 		//sohu.diyConsole.$WinPageBG=p._$wPageBG;
 		sohu.diyConsole.$SecEditorModel=$("#vstp_area_editor");		
-		sohu.diyConsole.$BodyBGA=$("#vstp_main .bodyBGA");
-		sohu.diyConsole.$BodyBGB=$("#vstp_main .bodyBGB");	
 		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});	
 		sohu.diyConsole.$AreaHolder=$("#vstp_areaHolder");
 		sohu.diyConsole.$FlashHolder=$("#vstp_flashHolder").mouseleave(function(evt){$(this).hide();});
@@ -136,7 +111,7 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.IsPreview=false;
 		sohu.diyConsole.$Workspace=_this.$Workspace;
 		//body鼠标事件
-		sohu.diyConsole.$Body=$("body").mousemove(p.onMousemove).click(p.onBodyClick);
+		sohu.diyConsole.$Body=$("body").click(p.onBodyClick);
 		//window resize事件
 		sohu.diyConsole.$Window=$(window).resize(function(evt){
 			p.setDocumentDim();
@@ -175,6 +150,9 @@ sohu.diyConsole.prototype.Fire=function(){
 		});
 		return a;
 	});
+	//更新背景元素引用
+	sohu.diyConsole.$BodyBGA=$("#vstp_main .bodyBGA");
+	sohu.diyConsole.$BodyBGB=$("#vstp_main .bodyBGB");	
 };
 /**
  * 加载现有flash
