@@ -52,8 +52,8 @@ h2 .more span{float:none;font-weight:normal;font-size:12px;}
 /* 大标题 */
 h1,.vstp_h1{font-family:'黑体';font-size:18px;line-height:34px;}
 /* 文本 */
-.vstp_sec_hd,.vstp_hd{zoom:1} /* 文本标题 */
-.vstp_sec_hd:after,.vstp_hd:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
+.vstp_sec_hd{zoom:1} /* 文本标题 */
+.vstp_sec_hd:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
 .vstp_sec_hd{height:26px;line-height:26px;}/* 高26px */
 .vstp_txt p{line-height:24px;text-align:left;font-size:12px;} /* 文本段落 */
 .vstp_txt14 p{font-size:14px;}

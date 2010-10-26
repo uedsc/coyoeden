@@ -16,6 +16,7 @@
 
 /**¶¥²¿**/
 .vstp_nav{ font-weight:normal; height:40px; line-height:35px; background:url(pic1x35.jpg) repeat-x;}
+.vstp_imgNav{height:auto;}
 .vstp_nav .vstp_elm img{ width:950px; height:160px}
 .vstp_nav .vstp_elm a{ display:inline-block; margin:0 10px;}
 .vstp_imgNav .vstp_elm a{ display:block; margin:0 auto}

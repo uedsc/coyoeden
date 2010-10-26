@@ -62,7 +62,7 @@ sohu.diyTp["sw182_182_182_182_182"]='<div class="vstp_subsec"><div class="vstp_c
 
 /*=内容模板区域=*/
 //空行
-sohu.diyTp["ctEmptyLine"]='<div class="vspace ct"><hr/></div>';
+sohu.diyTp["ctEmptyLine"]='<div class="vstp_vspace vstp_ct"><hr/></div>';
 //焦点图
 sohu.diyTp.Flash=function(opts){
 	var opts0={

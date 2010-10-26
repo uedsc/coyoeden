@@ -218,7 +218,7 @@ sohu.diyTplFactory.FocusImg=function(opts){
 		p.onAddFlash=function(evt){
 			_this.tplID=this.id;
 			_this.tplObj=$(this).find('.ctWrap').clone();
-			_this.$jsonData=_this.tplObj.find('.flashData');
+			_this.$jsonData=_this.tplObj.find('.vstp_flashData');
 			_this.flashData=$.evalJSON(_this.$jsonData.html());
 			_this.flashData.dummy=false;
 			_this.$jsonData.html($.toJSON(_this.flashData));

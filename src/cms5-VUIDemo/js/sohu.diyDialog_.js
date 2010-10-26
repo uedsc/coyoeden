@@ -420,7 +420,7 @@ sohu.diyDialog.wCfgSec=function(dlg){
 		ddlBGAlign:$("#vstp_ddlSecBGAlign"),
 		ddlBGAlignV:$("#vstp_ddlSecBGAlignV"),
 		ddlBGRepeat:$("#vstp_ddlSecBGRepeat"),
-		cbxBorder:this.$Layout.find(".cbx"),
+		cbxBorder:this.$Layout.find(".vstp_cbx"),
 		reset:function(){sohu.diyDialog.resetForm(_this);}
 	};
 	//事件处理
@@ -1004,7 +1004,7 @@ sohu.diyDialog.wTheme=function(dlg){
 	this.$list.find("a").click(function(){
 		var n=this.name;
 		//注入当前模板
-		sohu.diyConsole.$Workspace.load(this.rel,function(d){
+		sohu.diyConsole.$Workspace.load(this.rel+"?t="+new Date().getTime(),function(d){
 			sohu.diyConsole.$Workspace.empty().append($(d).filter(":not(.vstp_exclude,title,meta)"));
 			sohu.diyConsole.$Workspace.find("link,style").appendTo("head");
 			//初始化编辑器

@@ -66,7 +66,14 @@ sohu.diyDialog=function(){
 	p.dialog.prototype.SetBody=function($dom){
 		this.$Body.append($dom);
 		//adjust margin-left
-		this.$Layout.css("margin-left",-(this.$Layout.width()/2));
+		var w=this.$Layout.width();
+		//bug fix for jqModal in ie7 & ie6
+		if($.browser.msie&&$.browser.version<8){
+			w=parseInt($dom.css("width"))+parseInt($dom.css("padding-left"))+parseInt($dom.css("padding-right"));
+			this.$Layout.css("width",w);
+		};
+		this.$Layout.css("margin-left",-(w/2));
+
 		return this;
 	};
 	p.dialog.prototype.SetTitle=function(txt){

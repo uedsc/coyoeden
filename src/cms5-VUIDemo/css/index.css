@@ -20,7 +20,7 @@
 /* |JQ-UI相关样式 */
 
 #vstp_jqmWin1 .skform{border:none;}
-#vstp_jqmWin1 .skformx{background:#F0F0EE;}
+#vstp_jqmWin1 .vstp_skformx{background:#F0F0EE;}
 .vstp_jqmCT{position:relative;}
 
 #vstp_jqmCpk{z-index:4000;}

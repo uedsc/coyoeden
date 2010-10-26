@@ -7,7 +7,7 @@
 .vstp_titleA{position:relative; width:auto; height: 14px;  border-bottom:1px solid #666; text-align:left; padding:3px 5px 2px 9px; color:#F0F0EE;  background:url(../images/common.jpg) 0px -19px;}
 .vstp_titleA h1 { float:left; font-weight:bold; vertical-align:middle; }
 .vstp_titleA span { float:right; width:15px; height:13px;vertical-align:middle; }
-a.vstp_close{position:absolute;top:3px;right:5px;display: block;background: url(../images/close.jpg) no-repeat top;	width: 15px;	height: 13px;}
+a.vstp_close{position:absolute;top:3px;right:5px;display: block;background: url(../images/close.jpg) no-repeat top;	width: 15px;height: 13px;}
 a.vstp_close:hover{background-position: bottom;}
 a.vstp_btn:hover{color:#333333;}
 .vstp_btnLine{margin:0 auto; width: 105px; height:25px;}
@@ -68,7 +68,7 @@ a.vstp_btn:hover{color:#333333;}
 .vstp_formx .vstp_cbx{padding:0;margin:3px 5px 0 0;}
 .vstp_formx select{width:72px;height:20px;font-size:12px;}
 
-#vstp_jqmConfirm{z-index:3005;top: 25%}
+#vstp_jqmConfirm{z-index:3005;top: 25%;width:300px;}
 #vstp_jqmConfirm .vstp_tip{ width:300px;padding:15px 0px 10px;}
 #vstp_jqmConfirm span.vstp_icon{display:block; float:left; width:35px; height:40px;}
 #vstp_jqmConfirm span.vstp_caution{background: url(../images/caution.jpg) center no-repeat;}
@@ -181,7 +181,7 @@ a.vstp_btn:hover{color:#333333;}
 #vstp_wTheme .vstp_rollDot a.vstp_currA,#vstp_wTheme .vstp_rollDot a:hover { background-position:-207px -5px; width: 7px; height: 7px; }
 #vstp_wTheme .vstp_navBtn{ margin-top: 70px;}
 
-
+#vstp_wCode{width:480px;}
 
 #vstp_spPub{ width:255px;}
 #vstp_spPub .vstp_titleA{ background:url(../images/common.jpg) 0px -19px;}
