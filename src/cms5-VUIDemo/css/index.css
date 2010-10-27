@@ -10,7 +10,7 @@
 /* JQ-UI相关样式 */
 .ui-widget-overlay{opacity:0.4;}
 /* drag&drop style */
-.ui-hl{height:30px;background:#ffffc2; }
+.ui-hl{height:35px;background:#ffffc2; }
 #vstp_ctHandle{position:absolute;display:none;margin:0;top:-2px;left:-1px;/*top:-2px;right:-1px;*/width:16px;height:16px;overflow:hidden;z-index:101;cursor:move;}
 #vstp_ctHelper{width:80px;height:20px;border:2px dashed #ffffc2;background:red;display:none;}
 /* 对话框 */
@@ -56,11 +56,25 @@
 /* 分栏编辑器 */
 #vstp_secEditor{display:none;}
 .vstp_secEditor .vstp_actions{position:absolute;padding:3px 6px;border:1px solid #bbd2ea;border-bottom:none;z-index:300;height:18px;background:#e2ecf8;}
+.vstp_secEditor .vstp_actions .r{display:none;}
 .vstp_secEditor .vstp_actions .r a{color:#0858a6;}
-.vstp_secEditor .vstp_actions .l a{}
 .vstp_secEditor .vstp_actions .vstp_secTip{font-size:98%;}
 .vstp_secEditor .vstp_overlay{position:absolute;border:1px solid #bbd2ea;border-top:none;background:transparent;z-index:-100;}
-.vstp_footer{border-top:none;padding-top:0;padding-bottom:0;height:9px;}
+
+/* 内容编辑器 */
+#vstp_ctEditor{display:none;font-size:12px;font-weight:normal;line-height:normal;text-align:left;}
+.vstp_ctEditor .vstp_actions{position:absolute;padding:3px 6px;border:1px solid #bbd2ea;border-bottom:none;z-index:301;height:18px;background:#e2ecf8;}
+.vstp_ctEditor .vstp_actions a{color:#0858a6;}
+.vstp_dragHandle{cursor:move;}
+.vstp_ctEditor .vstp_arrow{cursor:pointer;}
+.vstp_ctEditor .vstp_others{position:absolute;background:#E2ECF8;border:1px solid #BBD2EA;cursor:default;right:-15px;top:20px;width:60px;}
+.vstp_ctEditor .vstp_others li{margin:1px;padding:1px;border:1px solid #eee;font-size:12px;line-height:normal;background:none;}
+.vstp_ctEditor .vstp_overlay{position:absolute;border:1px solid #bbd2ea;border-top:none;background:transparent;z-index:-99;}
+/* 重置.pt .pp的影响 */
+.pt div.vstp_ctEditor,.pt div.vstp_ctEditor div{float:none;margin:0;}
+.pt div.vstp_ctEditor div.r{float:right;}
+.pt div.vstp_ctEditor div.l{float:left;}
+.pp .vstp_others li{float:none;display:block;margin:0;padding:0;}
 /* =/main= */
 
 /*内容模板*/

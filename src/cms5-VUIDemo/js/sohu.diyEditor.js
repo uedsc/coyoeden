@@ -18,7 +18,7 @@ sohu.diyEditor=function(opts){
 	this.__p=p;
 	
 	this.$Toolbar=this.$Layout.find(".vstp_actions");	/* editor actions */
-	this.$Overlay=this.$Layout.find(".vstp_overlay")
+	this.$Overlay=this.$Layout.find(".vstp_overlay");
 	this.$ToolbarTip=this.$Toolbar.find(opts.cssSecHelper);	/* sec tip */
 	//按钮事件注册
 	this.$Toolbar.btn={
@@ -134,11 +134,15 @@ sohu.diyEditor.prototype.Reposition=function(){
 	//获取当前的横切、分栏
 	this.CurArea=sohu.diyConsole.CurArea;
 	this.CurSec=sohu.diyConsole.CurSec;
+	//编辑器置入当前分栏
+	this.CurSec.$Layout.append(this.$Layout);
 	var d=this.CurSec.Dim();
-	this.$Toolbar.css({width:d.w-11,top:d.y-25,left:d.x-1,opacity:0.9});/*宽要减去11个像素的留白;25是工具条高度*/
+	//this.$Toolbar.css({width:d.w-11,top:d.y-25,left:d.x-1,opacity:0.9});/*宽要减去11个像素的留白;25是工具条高度*/
+	this.$Toolbar.css({width:d.w-11,top:15,right:-1,opacity:0.9});
 	this.$ToolbarTip.css({width:d.w}).html(d.mw);
 	//overlay
-	this.$Overlay.css({width:d.w+1,top:d.y,left:d.x-1,opacity:0.9,height:d.h+1});
+	//this.$Overlay.css({width:d.w+1,top:d.y,left:d.x-1,opacity:0.9,height:d.h+1});
+	this.$Overlay.css({width:d.w+1,top:0,left:-1,opacity:0.9,height:d.h+1});
 };
 /**
  * 显示编辑器-即激活编辑器

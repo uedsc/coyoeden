@@ -2,6 +2,11 @@
  * lin changqing 新加样式
  * date: 2010.10.12 
  */
+
+/**
+ * 注意:编辑器#vstp_ctEditor内置于碎片之内，所以框架级容器比如vstp_sec、vstp_subsec、vstp_ct等切记不能用Overflow:hidden，否则会影响编辑器显示。 
+ */
+
 /**全局**/
 .vstp_sec{zoom:1;}
 .vstp_sec:after{display:block;content:'\20';clear:both;}
@@ -23,9 +28,9 @@
 /**左侧**/
 
 .vstp_w310 .vstp_flashWrap{ border:#d0d0d0 1px solid; border-bottom:0 none; padding-top:4px; padding-bottom:6px}
-.vstp_w310 .vstp_subsec{ width:308px; border-top:0 none; overflow:hidden; padding:0;}
+.vstp_w310 .vstp_subsec{ width:308px; border-top:0 none;padding:0;}
 .vstp_w310 h2.vstp_sec_hd{ background:url(pic308x30.jpg)}
-.vstp_w310 .pt{ width:294px; padding:8px 6px 8px 8px;  overflow:hidden; border-left:1px solid #d0d0d0; border-right:1px solid #d0d0d0}
+.vstp_w310 .pt{ width:294px; padding:8px 6px 8px 8px;border-left:1px solid #d0d0d0; border-right:1px solid #d0d0d0}
 .vstp_w310 .pt h4{ font-weight:bold;}
 .vstp_w310 .pt img{ border:1px solid #d0d0d0; padding:2px;}
 .vstp_w310 .pt_t{ float:right; width:142px; border:0 none }
@@ -55,7 +60,6 @@
 .vstp_w230 .acts{ margin:10px}
 .vstp_w230 .acts button{ width:46px; height:19px; font-size:12px; cursor:pointer; background:url(pic02.jpg) no-repeat; border:0 none}
 .vstp_w230 .acts button.sb{ margin-right:8px}
-.vstp_w230 .pt{ overflow:hidden;}
 .vstp_w230 .pt img{ margin:10px 30px 5px 30px; border:1px solid #d0d0d0;width:165px; height:98px}
 .vstp_subsec p{ padding-right:12px}
 

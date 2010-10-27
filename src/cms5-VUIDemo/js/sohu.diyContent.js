@@ -8,15 +8,16 @@ sohu.diyContent=function(opts){
 	var _this=this;
 	this.Meta=opts.ct;
 	this.IsNew=opts.isNew;
-	this.$Layout=null;				/*在Validate方法中构建*/
-	this.Type=opts.ct.type;			/* 内容插件类型 */
-	this.Sec=opts.sec;				/* 分栏 */
-	this.Editor=this.Sec.Editor;	/* 分栏编辑器 */
-	this.MaxWidth=this.Sec.Width;	/* 最大宽度 */
-	this.onDomed=null;				/* 被添加到dom树后的回调函数 */
-	this.IsFlash=false;				/* 是否flash焦点图内容 */
-	this.FlashObj=null;				/* flash对象 */
-	this.IsEditing=false;			/* 是否处于编辑状态 */
+	this.$Layout=null;							/*在Validate方法中构建*/
+	this.Type=opts.ct.type;						/* 内容插件类型 */
+	this.Sec=opts.sec;							/* 分栏 */
+	this.Editor=this.Sec.Editor;				/* 分栏编辑器 */
+	this.CTEditor=sohu.diyConsole.CTEditor;		/* 内容编辑器 */
+	this.MaxWidth=this.Sec.Width;				/* 最大宽度 */
+	this.onDomed=null;							/* 被添加到dom树后的回调函数 */
+	this.IsFlash=false;							/* 是否flash焦点图内容 */
+	this.FlashObj=null;							/* flash对象 */
+	this.IsEditing=false;						/* 是否处于编辑状态 */
 	
 	//private property
 	var p={opts:opts};
@@ -51,19 +52,6 @@ sohu.diyContent=function(opts){
 	this.LoadElements();
 	
 	this.BindEvts();
-
-	//TODO:如果是现有的flash怎么处理?需要修改sohu.diy.js，让它可以构建一个sohu.diyTp.Flash实体而不调用write方法
-	/*
-	if((this.IsFlash=this.$Layout.flash)){
-		//将flash对象呈现出来
-		var fOpt={tplID:this.$Layout.tplID};
-		if(opts.scale){fOpt.w=this.MaxWidth;};
-		this.onDomed=function(mode){
-			this.FlashObj=this.$Layout.flashObj=new sohu.diyTp.Flash(fOpt);
-			this.FlashObj.Render(this.$Layout);
-		};
-	};
-	*/
 };
 /**
  * 获取内容的维度信息
@@ -74,7 +62,9 @@ sohu.diyContent.prototype.Dim=function(){
 		x:this.$Layout.offset().left,
 		y:this.$Layout.offset().top,
 		w:this.$Layout.width(),
-		h:this.$Layout.height()
+		h:this.$Layout.height(),
+		w1:this.$Layout.outerWidth(),
+		h1:this.$Layout.outerHeight()
 	};
 };
 /**
@@ -200,7 +190,8 @@ sohu.diyContent.prototype.BindEvts=function(){
 		
 		_this.Editor.CurCT=_this;
 		sohu.diyConsole.CurCT=_this;
-		_this.ToggleDragger("on");
+		//_this.ToggleDragger("on");
+		_this.CTEditor.Show();
 		//Flash焦点图
 		if(_this.IsFlash){
 			var d=_this.Dim();
@@ -220,7 +211,7 @@ sohu.diyContent.prototype.BindEvts=function(){
 	};
 	p.mouseLeave=function(evt){
 		if(_this.Editor.CurArea.IsEditing||_this.IsEditing) return false;
-		_this.ToggleDragger("off");
+		//_this.ToggleDragger("off");
 		sohu.diyConsole.CurCT=null;
 	};
 	
@@ -257,6 +248,13 @@ sohu.diyContent.prototype.ToggleDragger=function(flag){
 		this.$Layout.removeClass(this.__p.opts.clOn);
 		sohu.diyConsole.Dragger.handle.hide();
 	};
+};
+/**
+ * 删除碎片内容
+ */
+sohu.diyContent.prototype.Cls=function(){
+	this.Sec.RemoveCTByID(this.ID);
+	this.$Layout.remove();
 };
 /*静态方法*/
 /**

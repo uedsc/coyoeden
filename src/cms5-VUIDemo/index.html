@@ -56,28 +56,7 @@
 			<!--/频道头-->
 		</div>
 		<!--/#main-->
-		<div id="vstp_templates" class="hidden">
-			<!--横切编辑模板-->
-			<!--
-			<div id="vstp_area_editor">
-				<div class="vstp_secEditor">
-					<div class="vstp_actions">
-						<div class="vstp_actions_ clear">
-							<div class="l"><span class="vstp_secTip"></span></div>
-							<div class="r">
-								<a class="vstp_a_code" href="#" title="查看当前分栏的代码">代码</a>
-								<a class="vstp_a_cfg" href="#" title="分栏设置">设置</a>
-								<a class="vstp_a_ret" href="#" title="返回上一级分栏">上级</a>
-								<a class="vstp_a_content" href="#" title="为分栏添加内容">内容</a>
-								<a class="vstp_a_sec" href="#" title="添加子分栏">分栏</a>
-								<a class="vstp_a_clear" href="#" title="清除分栏的子分栏以及内容">清除</a>
-							</div>
-						</div>
-					</div>
-					<div class="vstp_overlay"></div>
-				</div>
-			</div>
-			-->						
+		<div id="vstp_templates" class="hidden">					
 			<!--page tip-->
 			<div id="vstp_pageTip"></div>
 			<!-- content temp wrapper临时存放编辑内容的容器 -->
@@ -98,7 +77,24 @@
 				</div>
 			</div>
 			<div class="vstp_overlay"></div>
-		</div>		
+		</div>
+		<div id="vstp_ctEditor" class="vstp_ctEditor">
+			<div class="vstp_actions">
+				<div class="vstp_actions_ vstp_dragHandle clear">
+					<div class="r">
+						<a class="vstp_a_code" href="#" title="查看当前碎片的代码">代码</a>
+						<a class="vstp_a_cfg" href="#" title="更多设置项">设置<label class="vstp_arrow">▼</label></a>
+						<ul class="vstp_others hidden">
+							<li><a class="vstp_a_content" href="#" title="添加内容">内容</a></li>
+							<li><a class="vstp_a_color" href="#" title="设置背景色">背景</a></li>							
+							<li><a class="vstp_a_clear" href="#" title="清除碎片内容">删除</a></li>
+							<li><a class="vstp_a_cfgSec" href="#" title="分栏设置">设置分栏</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="vstp_overlay"></div>
+		</div>				
 		<!--Dialog layout-->
 		<div id="vstp_jqmWin1" class="jqmWindow">
 			<div class="vstp_hd">
@@ -999,6 +995,7 @@
 		<script type="text/javascript" src="js/sohu.diyElement.js"></script> 
 		<script type="text/javascript" src="js/sohu.diyContent.js"></script>
 		<script type="text/javascript" src="js/sohu.diyEditor.js"></script>
+		<script type="text/javascript" src="js/sohu.diyCTEditor.js"></script> 
 		<script type="text/javascript" src="js/sohu.diySection.js"></script>
 		<script type="text/javascript" src="js/sohu.diyArea.js"></script>
 		<script type="text/javascript" src="js/sohu.diyMenuBar.js"></script> 

@@ -36,7 +36,7 @@ sohu.diySection = function(opts) {
 		placeholder:"ui-hl",
 		handle:".vstp_dragHandle",
 		tolerance:"pointer",
-		helper:function(evt,o){return sohu.diyConsole.$CTHelper.css({width:80,height:20,display:'block'});},
+		helper:function(evt,o){return sohu.diyConsole.$CTHelper.css({width:180,height:25,display:'block'});},
 		receive:function(evt,ui){
 			sohu.diyConsole.Dragger.obj.Sec.RemoveCTByID(sohu.diyConsole.Dragger.obj.ID);
 			sohu.diyConsole.Dragger.obj.Sec=_this;
@@ -230,6 +230,8 @@ sohu.diySection.prototype.Dim=function(){
 		y:this.$Layout.offset().top,
 		w:this.$Layout.width(),
 		h:this.$Layout.height(),
+		w1:this.$Layout.outerWidth(),
+		h1:this.$Layout.outerHeight(),
 		mw:this.Size()
 	};
 };
