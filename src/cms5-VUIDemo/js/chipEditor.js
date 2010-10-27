@@ -645,7 +645,7 @@ chipEditor.Dialog.prototype.BindIconEvts=function($tpl,data){
 			_this.UpdateCode();
 		}).focus(this.focusSelect);
 		//为上传按钮设定图片对象-2010.10.15
-		$tpl.find(".btnUpl").data("data",data);
+		$tpl.find(".cedt_btnUpl").data("data",data);
 	};
 
 };
