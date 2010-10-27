@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KiggEFDomainObjectsStoreContainer" CdmEntityContainer="KiggEntityContainer">
+    <EntitySetMapping Name="Category" StoreEntitySet="Category" TypeName="Kigg.EF.DomainObjects.Category">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="UniqueName" ColumnName="UniqueName" />
+      <ScalarProperty Name="Name" ColumnName="Name" />
+      <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="KnownSource" StoreEntitySet="KnownSource" TypeName="Kigg.EF.DomainObjects.KnownSource">
+      <ScalarProperty Name="Url" ColumnName="Url" />
+      <ScalarProperty Name="Grade" ColumnName="Grade" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Story" StoreEntitySet="Story" TypeName="Kigg.EF.DomainObjects.Story">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="UniqueName" ColumnName="UniqueName" />
+      <ScalarProperty Name="Title" ColumnName="Title" />
+      <ScalarProperty Name="HtmlDescription" ColumnName="HtmlDescription" />
+      <ScalarProperty Name="TextDescription" ColumnName="TextDescription" />
+      <ScalarProperty Name="Url" ColumnName="Url" />
+      <ScalarProperty Name="UrlHash" ColumnName="UrlHash" />
+      <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+      <ScalarProperty Name="UserId" ColumnName="UserId" />
+      <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+      <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+      <ScalarProperty Name="LastActivityAt" ColumnName="LastActivityAt" />
+      <ScalarProperty Name="ApprovedAt" ColumnName="ApprovedAt" />
+      <ScalarProperty Name="PublishedAt" ColumnName="PublishedAt" />
+      <ScalarProperty Name="Rank" ColumnName="Rank" />
+      <ScalarProperty Name="LastProcessedAt" ColumnName="LastProcessedAt" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoryComment" StoreEntitySet="StoryComment" TypeName="Kigg.EF.DomainObjects.StoryComment">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="HtmlBody" ColumnName="HtmlBody" />
+      <ScalarProperty Name="TextBody" ColumnName="TextBody" />
+      <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+      <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+      <ScalarProperty Name="UserId" ColumnName="UserId" />
+      <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+      <ScalarProperty Name="IsOffended" ColumnName="IsOffended" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoryMarkAsSpam" StoreEntitySet="StoryMarkAsSpam" TypeName="Kigg.EF.DomainObjects.StoryMarkAsSpam">
+      <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+      <ScalarProperty Name="UserId" ColumnName="UserId" />
+      <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+      <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoryView" StoreEntitySet="StoryView" TypeName="Kigg.EF.DomainObjects.StoryView">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+      <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+      <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoryVote" StoreEntitySet="StoryVote" TypeName="Kigg.EF.DomainObjects.StoryVote">
+      <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+      <ScalarProperty Name="UserId" ColumnName="UserId" />
+      <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+      <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tag" StoreEntitySet="Tag" TypeName="Kigg.EF.DomainObjects.Tag">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="UniqueName" ColumnName="UniqueName" />
+      <ScalarProperty Name="Name" ColumnName="Name" />
+      <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="User" StoreEntitySet="User" TypeName="Kigg.EF.DomainObjects.User">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="UserName" ColumnName="UserName" />
+      <ScalarProperty Name="Password" ColumnName="Password" />
+      <ScalarProperty Name="Email" ColumnName="Email" />
+      <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+      <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+      <ScalarProperty Name="Role" ColumnName="Role" />
+      <ScalarProperty Name="LastActivityAt" ColumnName="LastActivityAt" />
+      <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserScore" StoreEntitySet="UserScore" TypeName="Kigg.EF.DomainObjects.UserScore">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="UserId" ColumnName="UserId" />
+      <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+      <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+      <ScalarProperty Name="Score" ColumnName="Score" />
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CommentSubscribtion" TypeName="Kigg.EF.DomainObjects.CommentSubscribtion" StoreEntitySet="CommentSubscribtion">
+      <EndProperty Name="Story">
+        <ScalarProperty Name="Id" ColumnName="StoryId" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="StoryTag" TypeName="Kigg.EF.DomainObjects.StoryTag" StoreEntitySet="StoryTag">
+      <EndProperty Name="Story">
+        <ScalarProperty Name="Id" ColumnName="StoryId" />
+      </EndProperty>
+      <EndProperty Name="Tag">
+        <ScalarProperty Name="Id" ColumnName="TagId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserTag" TypeName="Kigg.EF.DomainObjects.UserTag" StoreEntitySet="UserTag">
+      <EndProperty Name="Tag">
+        <ScalarProperty Name="Id" ColumnName="TagId" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
