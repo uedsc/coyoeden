@@ -27,7 +27,6 @@ sohu.diyCTEditor=function(opts){
 	this.$Toolbar.btn.addContent.click(function(evt){_this.DialogCT();return false;});
 	this.$Toolbar.btn.clear.click(function(evt){_this.Cls();return false;});
 	this.$Toolbar.btn.editCode.click(function(evt){_this.DialogCode();return false;});
-	this.$Toolbar.btn.cfgSec.click(function(evt){_this.DialogSecCfg();return false;});
 	this.$Toolbar.btn.cfg.mouseenter(function(evt){_this.$menuOthers.show();return false;}).click(sohu.diyConsole.OnStopNav);
 	
 	//其他事件注册
@@ -36,18 +35,14 @@ sohu.diyCTEditor=function(opts){
 	//拖拽
 	this.$Toolbar.find(".vstp_dragHandle").mousedown(function(){
 		sohu.diyConsole.Dragger.obj=sohu.diyConsole.CurCT;
+		sohu.diyConsole.Dragger.ing=true;
+	}).mouseup(function(){
+		sohu.diyConsole.Dragger.ing=false;
 	});
 
 	this.$CTWrap=$("#vstp_ctWrap");
 	
 	this.$Toolbar.isNew=true;
-};
-/**
- * 弹出分栏设置对话框
- */
-sohu.diyCTEditor.prototype.DialogSecCfg=function(){
-	if(sohu.diyConsole.CurArea.IsEditing) return;
-	sohu.diyDialog.Show("cfgSec");
 };
 /**
  * 弹出代码对话框

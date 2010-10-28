@@ -189,8 +189,6 @@ sohu.diyElement.prototype.EditView=function(){
 			}else{
 				dlg.$ElmcActs.hide();
 			};
-			//Òş²ØÍÏ×§ÖúÊÖ
-			_i.CT.ToggleDragger("off");
 		
 		},
 		afterHide:function(hash,dlg){

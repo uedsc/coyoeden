@@ -181,7 +181,7 @@ a.vstp_btn:hover{color:#333333;}
 #vstp_wTheme .vstp_rollDot a.vstp_currA,#vstp_wTheme .vstp_rollDot a:hover { background-position:-207px -5px; width: 7px; height: 7px; }
 #vstp_wTheme .vstp_navBtn{ margin-top: 70px;}
 
-#vstp_wCode{width:480px;}
+#vstp_wCode,#vstp_wCode_CT{width:480px;}
 
 #vstp_spPub{ width:255px;}
 #vstp_spPub .vstp_titleA{ background:url(../images/common.jpg) 0px -19px;}

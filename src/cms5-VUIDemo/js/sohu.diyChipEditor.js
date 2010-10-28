@@ -785,5 +785,5 @@ sohu.diyChipEditor.Dialog.prototype.SetTarget=function($chip,$elm,opts){
 	this.$Chip=$chip;//µ±«∞ÀÈ∆¨
 	this.$Backup=this.$Chip.clone(true).removeClass("vstp_ctOn")
 	.find(".vstp_elm").removeClass("vstp_elmOn").end()
-	.find(".vstp_dragHandle").hide().end();
+	.find("#vstp_ctEditor").remove().end();
 };

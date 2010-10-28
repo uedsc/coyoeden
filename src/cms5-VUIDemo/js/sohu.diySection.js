@@ -41,6 +41,7 @@ sohu.diySection = function(opts) {
 			sohu.diyConsole.Dragger.obj.Sec.RemoveCTByID(sohu.diyConsole.Dragger.obj.ID);
 			sohu.diyConsole.Dragger.obj.Sec=_this;
 			_this.Contents.push(sohu.diyConsole.Dragger.obj);
+			sohu.diyConsole.Dragger.ing=false;
 		}
 	});
 	this.BindEvts();

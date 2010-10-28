@@ -18,6 +18,7 @@ sohu.diyContent=function(opts){
 	this.IsFlash=false;							/* 是否flash焦点图内容 */
 	this.FlashObj=null;							/* flash对象 */
 	this.IsEditing=false;						/* 是否处于编辑状态 */
+	this.IsActive=false;						/* 是否处于选中状态 */
 	
 	//private property
 	var p={opts:opts};
@@ -185,9 +186,20 @@ sohu.diyContent.prototype.UnbindEvts=function(){
 sohu.diyContent.prototype.BindEvts=function(){
 	var p={},_this=this;
 	p.mouseEnter=function(evt){
-		//如果处于编辑内容状态，则不能拖拽
+		//已经选中
+		if(_this.IsActive) return false;
+		//如果自己处于编辑内容状态，则不显示编辑器
 		if(_this.IsEditing) return false;
+		//如果别人处于编辑状态，则不显示编辑器
+		if(sohu.diyConsole.CurCT&&sohu.diyConsole.CurCT.IsEditing) return false;
+		//如果处于拖拽状态 ，则不显示编辑器
+		if(sohu.diyConsole.Dragger.ing) return false;
 		
+		if(sohu.diyConsole.CurCT){
+			sohu.diyConsole.CurCT.IsActive=false;
+		};
+		
+		_this.IsActive=true;
 		_this.Editor.CurCT=_this;
 		sohu.diyConsole.CurCT=_this;
 		//_this.ToggleDragger("on");
@@ -196,10 +208,10 @@ sohu.diyContent.prototype.BindEvts=function(){
 		if(_this.IsFlash){
 			var d=_this.Dim();
 			sohu.diyConsole.$FlashHolder.css({
-				top:d.y-1+17,
+				top:d.y-1,
 				left:d.x-1,
-				height:d.h-17,
-				width:d.w,
+				height:d.h+1,
+				width:d.w+1,
 				opacity:0.5,
 				display:'block'
 			}).unbind("click").bind("click",function(evt){
@@ -208,9 +220,10 @@ sohu.diyContent.prototype.BindEvts=function(){
 				_this.EditFlash();
 			});
 		};
+		return false;//stop bubbling
 	};
 	p.mouseLeave=function(evt){
-		if(_this.Editor.CurArea.IsEditing||_this.IsEditing) return false;
+		if(_this.Editor.CurArea.IsEditing||_this.IsEditing||(_this.diyConsole.CurCT&&_this.diyConsole.CurCT.IsEditing)) return false;
 		//_this.ToggleDragger("off");
 		sohu.diyConsole.CurCT=null;
 	};
@@ -228,26 +241,6 @@ sohu.diyContent.prototype.BindEvts=function(){
 		return false;//停止冒泡
 	});
 	return this;
-};
-/**
- * 内容拖拽开关
- * @param {Object} flag 为“on”时打开拖拽模式；“off”时关闭拖拽模式
- */
-sohu.diyContent.prototype.ToggleDragger=function(flag){
-	var _i=this;
-	if(flag=="on"){
-		//显示拖拽助手元素
-		this.$Layout.addClass(this.__p.opts.clOn);		
-		//拖拽助手事件
-		sohu.diyConsole.Dragger.handle.show().appendTo(this.$Layout)
-		.unbind()
-		.bind("mousedown",function(evt){
-			sohu.diyConsole.Dragger.obj=_i;
-		});
-	}else{
-		this.$Layout.removeClass(this.__p.opts.clOn);
-		sohu.diyConsole.Dragger.handle.hide();
-	};
 };
 /**
  * 删除碎片内容

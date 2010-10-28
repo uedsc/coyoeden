@@ -357,7 +357,7 @@ sohu.diyDialog.wAddContent=function(dlg){
 	};
 };
 /**
- * 分栏代码弹框
+ * 代码弹框
  * @param {Object} dlg
  */
 sohu.diyDialog.wCode=function(dlg){
@@ -373,21 +373,19 @@ sohu.diyDialog.wCode=function(dlg){
 		return true;
 	};
 	p.afterHide=function(hash,dlg0){
-		//sohu.diyConsole.CurSec.Editor.Editing("off").CurSec.Deactive();
 		sohu.diyConsole.Preview();
 	};	
 	p.afterShow=function(hash,dlg0){
-		_this.$tempWrap.html(sohu.diyConsole.CurSec.$Layout.html()).find(".vstp_secHolder").remove();
+		_this.$tempWrap.html(sohu.diyConsole.CurCT.$Layout.html()).find("#vstp_ctEditor").remove();
 		_this.$TextArea.val(_this.$tempWrap.html());
 	};
 	p.onOK=function(dlg0){
 		sohu.diyDialog.doConfirm({
-			text:'确定更新当前分栏的HTML代码么?',
+			text:'确定更新当前内容的HTML代码么?',
 			onOK:function($jqm){
-				sohu.diyConsole.CurSec.$Layout.children().filter(":not(.vstp_secHolder)").remove();
-				sohu.diyConsole.CurSec.$Layout.append(_this.$TextArea.val());
-				//重新加载该分栏的内容，利用.html(x)更新内容时，dom已经不是原来的dom
-				sohu.diyConsole.CurSec.LoadContents();
+				sohu.diyConsole.CurCT.$Layout.html(_this.$TextArea.val());
+				//重新加载该碎片的内容，利用.html(x)更新内容时，dom已经不是原来的dom
+				sohu.diyConsole.CurCT.LoadElements();
 				$jqm.jqmHide();
 				dlg0.Hide();
 			}
@@ -1099,7 +1097,7 @@ sohu.diyDialog.wSetting1=function(dlg){
 	$("#vstp_wsPreview").click(p.onPreview);
 	$("#vstp_wsPublish").click(p.onPublish);
 	$("#vstp_wsHelp").click(p.onHelp);
-	this.$Layout.find(".ctr").click(p.onToggle);
+	this.$Layout.find(".vstp_ctr").click(p.onToggle);
 	
 };
 /**

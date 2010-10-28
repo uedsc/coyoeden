@@ -25,14 +25,12 @@ sohu.diyEditor=function(opts){
 		addContent:this.$Toolbar.find(".vstp_a_content"),
 		addSec:this.$Toolbar.find(".vstp_a_sec"),
 		clear:this.$Toolbar.find(".vstp_a_clear"),
-		editCode:this.$Toolbar.find(".vstp_a_code"),
 		prevLevel:this.$Toolbar.find(".vstp_a_ret"),
 		cfg:this.$Toolbar.find(".vstp_a_cfg")
 	};
 	this.$Toolbar.btn.addContent.click(function(evt){_this.DialogCT();return false;});
 	this.$Toolbar.btn.addSec.click(function(evt){_this.DialogSec();return false;});
 	this.$Toolbar.btn.clear.click(function(evt){_this.Cls();return false;});
-	this.$Toolbar.btn.editCode.click(function(evt){_this.DialogCode();return false;});
 	this.$Toolbar.btn.prevLevel.click(function(evt){_this.CurSec.ActiveParent();return false;});
 	this.$Toolbar.btn.cfg.click(function(evt){_this.DialogSecCfg();return false;});
 
@@ -55,13 +53,6 @@ sohu.diyEditor.prototype.DialogSec=function(){
 sohu.diyEditor.prototype.DialogSecCfg=function(){
 	if(this.CurArea.IsEditing) return;
 	sohu.diyDialog.Show("cfgSec");
-};
-/**
- * 弹出代码对话框
- */
-sohu.diyEditor.prototype.DialogCode=function(){
-	if(this.CurArea.IsEditing) return;
-	sohu.diyDialog.Show("code");
 };
 /**
  * 弹出添加内容选择框
@@ -138,11 +129,12 @@ sohu.diyEditor.prototype.Reposition=function(){
 	this.CurSec.$Layout.append(this.$Layout);
 	var d=this.CurSec.Dim();
 	//this.$Toolbar.css({width:d.w-11,top:d.y-25,left:d.x-1,opacity:0.9});/*宽要减去11个像素的留白;25是工具条高度*/
-	this.$Toolbar.css({width:d.w-11,top:15,right:-1,opacity:0.9});
-	this.$ToolbarTip.css({width:d.w}).html(d.mw);
+	this.$Toolbar.css({opacity:0.9});
+	//this.$ToolbarTip.css({width:d.w}).html(d.mw);
+	this.$ToolbarTip.html(d.mw);
 	//overlay
 	//this.$Overlay.css({width:d.w+1,top:d.y,left:d.x-1,opacity:0.9,height:d.h+1});
-	this.$Overlay.css({width:d.w+1,top:0,left:-1,opacity:0.9,height:d.h+1});
+	this.$Overlay.css({width:d.w1+4,top:-2,left:-2,opacity:0.9,height:d.h1+4});
 };
 /**
  * 显示编辑器-即激活编辑器
