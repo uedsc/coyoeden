@@ -3,7 +3,7 @@
  * 如果不是最后一页并且li不足整页则自动随机补足
  * @param {Object} $
  * @author levinvan
- * @version 2010.10.20
+ * @version 2010.10.28
  */
 var sohu_pager = (function($) {
     var p={},pub={};
@@ -63,8 +63,13 @@ var sohu_pager = (function($) {
 	  return false;
     };
 	p.fixItems=function(){
-		if(p._$items.size()<=p._iMax) return;
-		var gap=p._iRow-p._$items.size()%p._iRow;
+		var gap=0,n;
+		if((n=p._$items.size())<=p._iMax){
+			gap=p._iMax-n;
+		}else{
+			gap=p._iRow-n%p._iRow;
+			gap=gap==p._iRow?0:gap;
+		};
 		//随机补足
 		for(var i=0;i<gap;i++){
 			var iRandom=Math.random()*p._$items.size();iRandom=parseInt(iRandom);
