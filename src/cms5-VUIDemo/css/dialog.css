@@ -253,7 +253,7 @@ a.vstp_btn:hover{color:#333333;}
 .vstp_editBtn4:focus{background-position:0 -40px\0}
 .vstp_editBtn4:focus strong{background-position:right -61px\0}
 /******/
-#vstp_wCfgSec{position:relative;}
+#vstp_wCfgSec,#vstp_wCfgCT{position:relative;}
 #vstp_wCfgSec .vstp_cpk{position:absolute;display:none;width:172px;top:12%;left:85px;}
 
 /* ·ÖÀ¸¶Ô»°¿ò */

@@ -183,6 +183,7 @@ sohu.diyChipEditor.Dialog=function(opts){
 		_this.$Chip.replaceWith(c);
 		_this.CT.$Layout=_this.$Chip=c;
 		*/
+		sohu.diyConsole.CTEditor.Detach();
 		_this.$Chip.html(_this.$Backup.html());
 		_this.CT.LoadElements();		
 		
@@ -783,7 +784,7 @@ sohu.diyChipEditor.Dialog.prototype.SetTarget=function($chip,$elm,opts){
 	this.Elm=opts.elm;//当前元素对应的sohu.diyElement对象
 	this.CT=opts.elm.CT;//当前碎片对象
 	this.$Chip=$chip;//当前碎片
-	this.$Backup=this.$Chip.clone(true).removeClass("vstp_ctOn")
+	this.$Backup=this.$Chip.clone().removeClass("vstp_ctOn")
 	.find(".vstp_elm").removeClass("vstp_elmOn").end()
 	.find("#vstp_ctEditor").remove().end();
 };

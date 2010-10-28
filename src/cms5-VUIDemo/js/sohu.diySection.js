@@ -41,6 +41,10 @@ sohu.diySection = function(opts) {
 			sohu.diyConsole.Dragger.obj.Sec.RemoveCTByID(sohu.diyConsole.Dragger.obj.ID);
 			sohu.diyConsole.Dragger.obj.Sec=_this;
 			_this.Contents.push(sohu.diyConsole.Dragger.obj);
+			sohu.diyConsole.CTEditor.Reposition();
+			sohu.diyConsole.SecEditor.Reposition();
+		},
+		stop:function(evt,ui){
 			sohu.diyConsole.Dragger.ing=false;
 		}
 	});
@@ -70,7 +74,7 @@ sohu.diySection.prototype.Active=function(){
 	//Update sohu.diyConsole.CurSec
 	sohu.diyConsole.CurSec=this;
 	//Show the toolbar
-	this.Editor.Show();
+	this.Editor.AttachTo(this).Show();
 	return this;
 };
 sohu.diySection.prototype.Deactive=function(){
@@ -105,7 +109,7 @@ sohu.diySection.prototype.AddContent=function(ct){
 	if(ct.isNew){
 		/* 新增 */
 		//创建相应的diyContent实体
-		ct=sohu.diyContent.New({sec:this,ct:ct});
+		ct=sohu.diyContent.New({sec:this,ct:ct,addingMode:0});
 		if(!ct.Validation.valid){
 			alert(ct.Validation.msg);
 			return;

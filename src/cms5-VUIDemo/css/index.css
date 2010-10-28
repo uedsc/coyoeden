@@ -51,7 +51,7 @@
 .vstp_ctOn{background:#EFEBEF;}
 #vstp_eHolder{position:absolute;z-index:49;border-top:1px dotted #CCC;;border-left:1px dotted #CCC;;border-right:1px dotted #eee;;border-bottom:1px dotted #eee;}
 #vstp_areaHolder{position:absolute;display:none;z-index:50;border:1px solid red;background:#f9bfc0;}
-#vstp_flashHolder{position:absolute;display:none;z-index:51;border:2px solid red;background:#ffffc2;cursor:pointer;}
+#vstp_flashHolder{position:absolute;display:none;z-index:51;cursor:pointer;}
 
 /* 分栏编辑器 */
 #vstp_secEditor{display:none;text-align:left;}
@@ -66,12 +66,13 @@
 #vstp_ctEditor{display:none;font-size:12px;font-weight:normal;line-height:normal;text-align:left;}
 .vstp_ctEditor .vstp_actions{position:absolute;padding:3px 6px;border:1px solid #bbd2ea;border-bottom:none;z-index:301;height:18px;line-height:18px;background:#e2ecf8;}
 .vstp_ctEditor .vstp_actions a{color:#0858a6;}
-#vstp_ctEditor img.vstp_a_clear{margin:0;padding:0;width:15px;height:15px;border:none;cursor:pointer;}
-#vstp_ctEditor img.vstp_dragHandle{cursor:move;margin:0;padding:0;width:15px;height:15px;border:none;}
+#vstp_ctEditor img.vstp_a_clear{display:inline;margin:0;padding:0;width:15px;height:15px;border:none;cursor:pointer;}
+#vstp_ctEditor img.vstp_dragHandle{display:inline;cursor:move;margin:0;padding:0;width:15px;height:15px;border:none;}
 .vstp_ctEditor .vstp_arrow{cursor:pointer;}
 .vstp_ctEditor .vstp_others,#vstp_ctEditor ul.vstp_others{position:absolute;background:#E2ECF8;border:1px solid #BBD2EA;cursor:default;right:-2px;top:20px;width:50px;margin:0;}
 .vstp_ctEditor .vstp_others li{margin:1px;padding:1px 1px 1px 8px;border:1px solid #eee;font-size:12px;line-height:normal;background:none;}
 .vstp_ctEditor .vstp_overlay{position:absolute;border:1px solid #bbd2ea;border-top:none;background:transparent;z-index:-99;}
+.vstp_ctEditor .vstp_overlay_hot{z-index:1;background:#f9bfc0;}
 /* 重置.pt .pp的影响 */
 .pt div.vstp_ctEditor,.pt div.vstp_ctEditor div{float:none;margin:0;}
 .pt div.vstp_ctEditor div.r{float:right;}

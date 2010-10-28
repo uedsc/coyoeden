@@ -89,7 +89,7 @@
 						<a class="vstp_a_cfg" href="#" title="更多设置项">设置<label class="vstp_arrow">▼</label></a>
 						<ul class="vstp_others hidden">
 							<li><a class="vstp_a_content" href="#" title="添加内容">内容</a></li>
-							<li><a class="vstp_a_color" href="#" title="设置背景色">背景</a></li>							
+							<li><a class="vstp_a_cfgCT" href="#" title="设置背景色">背景</a></li>							
 						</ul>
 					</div>
 				</div>
@@ -550,6 +550,73 @@
 				</div>	
 				<div class="vstp_cpk"></div>				
 			</div>
+			<!--碎片设置对话框-->
+			<div id="vstp_wCfgCT" class="vstp_jqmCT vstp_formx">
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_txtCTBGC">背景色</label>
+					<div class="center">
+						<input id="vstp_txtCTBGC" type="text" readonly="readonly" class="vstp_ipt02"/>
+					</div>
+				</div>
+				<div class="blank5"></div>
+				<div class="vstp_bottom3line"></div>				
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_txtCTBorderColor">边框色</label>
+					<div class="center">
+						<input id="vstp_txtCTBorderColor" readonly="readonly" name="vstp_ctBorderColor" type="text" class="vstp_ipt02"/>
+					</div>	
+				</div>
+				<div class="vstp_lineA">
+					<label class="left">边框</label>
+					<div class="center clear">
+						<input name="vstp_CTBorderDir" type="checkbox" class="vstp_cbx" value="top"/>
+						<label class="vstp_cbxLbl">上</label>
+						<input name="vstp_CTBorderDir" type="checkbox" class="vstp_cbx" value="bottom"/>
+						<label class="vstp_cbxLbl">下</label>
+						<input name="vstp_CTBorderDir" type="checkbox" class="vstp_cbx" value="left"/>
+						<label class="vstp_cbxLbl">左</label>
+						<input name="vstp_CTBorderDir" type="checkbox" class="vstp_cbx" value="right"/>
+						<label class="vstp_cbxLbl">右</label>
+					</div>
+				</div>
+				<div class="blank5"></div>
+				<div class="vstp_bottom3line"></div>		
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_txtCTBG">背景图</label>
+					<div class="center">
+						<input id="vstp_txtCTBG" type="text" class="vstp_ipt03"/>
+					</div>
+					<div class="right">
+						<input id="vstp_btnCfgCTBrowse" type="button" class="vstp_btn vstp_btnL"  value="浏览" />
+					</div>	
+				</div>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_ddlCTBGAlign">对齐</label>
+					<div class="center">
+						<select id="vstp_ddlCTBGAlign" name="vstp_ctBGAlign">
+							<option value="center" selected="selected">水平-中</option>
+							<option value="left">水平-左</option>
+							<option value="right">水平-右</option>
+						</select>
+						<select id="vstp_ddlCTBGAlignV" name="vstp_ctBGAlignV">
+							<option value="top" selected="selected">垂直-上</option>
+							<option value="center">垂直-中</option>
+							<option value="bottom">垂直-下</option>
+						</select>													
+					</div>					
+				</div>
+				<div class="vstp_lineA">
+					<label class="left" for="vstp_ddlCTBGRepeat">平铺</label>
+					<div class="center">
+						<select id="vstp_ddlCTBGRepeat" name="vstp_ctBGRepeat">
+							<option value="repeat" selected="selected">平铺</option>
+							<option value="no-repeat">不平铺</option>
+							<option value="repeat-x">横铺</option>
+							<option value="repeat-y">纵铺</option>
+						</select>					
+					</div>
+				</div>				
+			</div>			
 			<!--栏目头-->
 			<div id="vstp_wSecHead" class="vstp_jqmCT">
 				<div class="vstp_wline">

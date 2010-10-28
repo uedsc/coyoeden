@@ -60,6 +60,7 @@ sohu.diyEditor.prototype.DialogSecCfg=function(){
  */
 sohu.diyEditor.prototype.DialogCT=function(mode){
 	if(this.CurArea.IsEditing) return;
+	sohu.diyDialog.Get("addContent").$Layout.data("mode",0);//0表示往分栏添加内容；1表示往碎片下方添加内容
 	sohu.diyDialog.Show("addContent");
 };
 /**
@@ -121,12 +122,19 @@ sohu.diyEditor.prototype.Cls=function(){
 	});
 	
 };
+/**
+ * 编辑器置入分栏对象
+ * @param {Object} sec
+ */
+sohu.diyEditor.prototype.AttachTo=function(sec){
+	sec.$Layout.append(this.$Layout);
+	return this;
+};
 sohu.diyEditor.prototype.Reposition=function(){
 	//获取当前的横切、分栏
 	this.CurArea=sohu.diyConsole.CurArea;
 	this.CurSec=sohu.diyConsole.CurSec;
-	//编辑器置入当前分栏
-	this.CurSec.$Layout.append(this.$Layout);
+
 	var d=this.CurSec.Dim();
 	//this.$Toolbar.css({width:d.w-11,top:d.y-25,left:d.x-1,opacity:0.9});/*宽要减去11个像素的留白;25是工具条高度*/
 	this.$Toolbar.css({opacity:0.9});

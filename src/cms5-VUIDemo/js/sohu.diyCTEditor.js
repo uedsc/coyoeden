@@ -8,6 +8,7 @@ sohu.diyCTEditor=function(opts){
 	//属性
 	this.$Layout=$("#vstp_ctEditor");
 	this.Console=opts.bos;
+	this.CT=null;						/* 当前编辑器的目标内容 */
 	
 	var p={opts:opts};
 	this.__p=p;
@@ -21,12 +22,13 @@ sohu.diyCTEditor=function(opts){
 		clear:this.$Toolbar.find(".vstp_a_clear"),
 		editCode:this.$Toolbar.find(".vstp_a_code"),
 		cfg:this.$Toolbar.find(".vstp_a_cfg"),
-		cfgSec:this.$Toolbar.find(".vstp_a_cfgSec")
+		cfgCT:this.$Toolbar.find(".vstp_a_cfgCT")
 	};
 	
 	this.$Toolbar.btn.addContent.click(function(evt){_this.DialogCT();return false;});
 	this.$Toolbar.btn.clear.click(function(evt){_this.Cls();return false;});
 	this.$Toolbar.btn.editCode.click(function(evt){_this.DialogCode();return false;});
+	this.$Toolbar.btn.cfgCT.click(function(evt){_this.DialogCTCfg();return false;});
 	this.$Toolbar.btn.cfg.mouseenter(function(evt){_this.$menuOthers.show();return false;}).click(sohu.diyConsole.OnStopNav);
 	
 	//其他事件注册
@@ -52,11 +54,19 @@ sohu.diyCTEditor.prototype.DialogCode=function(){
 	sohu.diyDialog.Show("code");
 };
 /**
+ * 弹出设置对话框
+ */
+sohu.diyCTEditor.prototype.DialogCTCfg=function(){
+	if(sohu.diyConsole.CurArea.IsEditing) return;
+	sohu.diyDialog.Show("cfgCT");
+};
+/**
  * 弹出添加内容选择框
  * @param {String} mode mode="update"时编辑html内容
  */
 sohu.diyCTEditor.prototype.DialogCT=function(mode){
 	if(sohu.diyConsole.CurArea.IsEditing) return;
+	sohu.diyDialog.Get("addContent").$Layout.data("mode",1);//0表示往分栏添加内容；1表示往碎片下方添加内容
 	sohu.diyDialog.Show("addContent");
 };
 /**
@@ -93,27 +103,60 @@ sohu.diyCTEditor.prototype.Cls=function(){
 	sohu.diyDialog.doConfirm({
 		text:"确认删除改碎片内容<br/>注意：删除后无法恢复！",
 		onOK:function($jqm){
+			_this.Detach();
 			sohu.diyConsole.CurCT.Cls();
 			$jqm.jqmHide();
 		},
 		beforeShow:function(hash){
-			sohu.diyConsole.Editing("on");
+			_this.Editing("on");
 			return true;
 		},
 		afterShow:function(hash){
 			//显示红色蒙层
 			//_this.CurSec.Overlay("on");
+			//_this.CT.Blink({speed:3000}).Blink(false);
+			_this.Highlight();
 		},
 		afterHide:function(hash){
-			//_this.Editing("off").CurSec.Deactive();
+			_this.Editing("off");
+			sohu.diyConsole.CurSec.Deactive();
 			//_this.CurSec.Overlay("off");
+			_this.Highlight('off');
 		}
 	});
 	
 };
-sohu.diyCTEditor.prototype.Reposition=function(){
-	//内容编辑器置入
-	sohu.diyConsole.CurCT.$Layout.append(this.$Layout);
+/**
+ * highlight the editor background
+ * @param {Object} mode 'on' or 'off'
+ */
+sohu.diyCTEditor.prototype.Highlight=function(mode){
+	mode=mode||'on';
+	if(mode=='on'){
+		this.$Overlay.addClass('vstp_overlay_hot');
+	}else{
+		this.$Overlay.removeClass("vstp_overlay_hot");
+	};
+	return this;
+};
+/**
+ * 编辑器置入内容对象
+ * @param {Object} ct
+ */
+sohu.diyCTEditor.prototype.AttachTo=function(ct){
+	ct.$Layout.append(this.$Layout);
+	this.CT=ct;
+	return this;
+};
+sohu.diyCTEditor.prototype.Detach=function(){
+	this.$Layout.detach();
+	this.CT=null;
+	return this;
+};
+/**
+ * 重新定位碎片编辑器呈现
+ */
+sohu.diyCTEditor.prototype.Reposition=function(){		
 	//获取当前的横切、分栏
 	var d=sohu.diyConsole.CurCT.Dim();
 	//this.$Toolbar.css({width:d.w1-11,top:d.y-25,left:d.x-1,opacity:0.9});/*宽要减去11个像素的留白;25是工具条高度*/

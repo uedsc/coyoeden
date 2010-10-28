@@ -4,7 +4,7 @@
  * @param {Object} opts 选项{$obj,sec}
  */
 sohu.diyContent=function(opts){
-	opts=$.extend({},{cl:"vstp_ct",clOn:"vstp_ctOn",scale:false,clElm:"vstp_elm",isNew:true},opts||{});
+	opts=$.extend({},{cl:"vstp_ct",clOn:"vstp_ctOn",scale:false,clElm:"vstp_elm",isNew:true,addingMode:0},opts||{});
 	var _this=this;
 	this.Meta=opts.ct;
 	this.IsNew=opts.isNew;
@@ -19,6 +19,8 @@ sohu.diyContent=function(opts){
 	this.FlashObj=null;							/* flash对象 */
 	this.IsEditing=false;						/* 是否处于编辑状态 */
 	this.IsActive=false;						/* 是否处于选中状态 */
+	this._timerBlink=null;						/* 闪烁计时器 */
+	this.AddingMode=opts.addingMode;			/* 0为当前分栏添加的内容；1为当前碎片下方添加的内容 */							
 	
 	//private property
 	var p={opts:opts};
@@ -47,8 +49,12 @@ sohu.diyContent=function(opts){
 		
 	};
 	/* Persistence to the dom tree */
-	if(this.IsNew)
-		this.Editor.UpdateCT(this,1);
+	if (this.IsNew) {
+		if(this.AddingMode==0)
+			this.Editor.UpdateCT(this, 1);
+		else
+			this.CTEditor.UpdateCT(this,1);
+	};
 	/* Load elements */
 	this.LoadElements();
 	
@@ -186,45 +192,11 @@ sohu.diyContent.prototype.UnbindEvts=function(){
 sohu.diyContent.prototype.BindEvts=function(){
 	var p={},_this=this;
 	p.mouseEnter=function(evt){
-		//已经选中
-		if(_this.IsActive) return false;
-		//如果自己处于编辑内容状态，则不显示编辑器
-		if(_this.IsEditing) return false;
-		//如果别人处于编辑状态，则不显示编辑器
-		if(sohu.diyConsole.CurCT&&sohu.diyConsole.CurCT.IsEditing) return false;
-		//如果处于拖拽状态 ，则不显示编辑器
-		if(sohu.diyConsole.Dragger.ing) return false;
-		
-		if(sohu.diyConsole.CurCT){
-			sohu.diyConsole.CurCT.IsActive=false;
-		};
-		
-		_this.IsActive=true;
-		_this.Editor.CurCT=_this;
-		sohu.diyConsole.CurCT=_this;
-		//_this.ToggleDragger("on");
-		_this.CTEditor.Show();
-		//Flash焦点图
-		if(_this.IsFlash){
-			var d=_this.Dim();
-			sohu.diyConsole.$FlashHolder.css({
-				top:d.y-1,
-				left:d.x-1,
-				height:d.h+1,
-				width:d.w+1,
-				opacity:0.5,
-				display:'block'
-			}).unbind("click").bind("click",function(evt){
-				_this.InlineEdit("on");
-				sohu.diyConsole.CurCT=_this;
-				_this.EditFlash();
-			});
-		};
+		_this.Active();
 		return false;//stop bubbling
 	};
 	p.mouseLeave=function(evt){
 		if(_this.Editor.CurArea.IsEditing||_this.IsEditing||(_this.diyConsole.CurCT&&_this.diyConsole.CurCT.IsEditing)) return false;
-		//_this.ToggleDragger("off");
 		sohu.diyConsole.CurCT=null;
 	};
 	
@@ -248,6 +220,91 @@ sohu.diyContent.prototype.BindEvts=function(){
 sohu.diyContent.prototype.Cls=function(){
 	this.Sec.RemoveCTByID(this.ID);
 	this.$Layout.remove();
+};
+/**
+ * highlight current content
+ * @param {Object} opts {color:'red',speed:2000}
+ */
+sohu.diyContent.prototype.Blink=function(opts){
+	clearInterval(this._timerBlink);
+	if(arguments.length==1&&opts==false){return this;};
+	opts=$.extend({color:'red',speed:2000},opts||{});
+	var _i=this,b=function(){
+		_i.$Layout.effect("highlight",{color:opts.color},opts.speed/2);
+	};
+	this._timerBlink=window.setInterval(b,opts.speed);
+	b();
+	return this;
+};
+/**
+ * active current content
+ */
+sohu.diyContent.prototype.Active=function(){
+	var _i=this;
+	//已经选中
+	if(this.IsActive) return this;
+	//如果自己处于编辑内容状态，则不显示编辑器
+	if(this.IsEditing) return this;
+	//如果别人处于编辑状态，则不显示编辑器
+	if(sohu.diyConsole.CurCT&&sohu.diyConsole.CurCT.IsEditing) return this;
+	//如果处于拖拽状态 ，则不显示编辑器
+	if(sohu.diyConsole.Dragger.ing) return this;
+	
+	if(sohu.diyConsole.CurCT){
+		sohu.diyConsole.CurCT.IsActive=false;
+	};
+	
+	this.IsActive=true;
+	this.Editor.CurCT=this;
+	sohu.diyConsole.CurCT=this;
+	//_this.ToggleDragger("on");
+	this.CTEditor.AttachTo(this).Show();
+	//Flash焦点图
+	if(this.IsFlash){
+		var d=this.Dim();
+		sohu.diyConsole.$FlashHolder.CT=this;
+		sohu.diyConsole.$FlashHolder.css({
+			top:d.y-1,
+			left:d.x-1,
+			height:d.h+1,
+			width:d.w+1,
+			opacity:0.5,
+			display:'block'
+		}).unbind("click").bind("click",function(evt){
+			_i.InlineEdit("on");
+			sohu.diyConsole.CurCT=_i;
+			_i.EditFlash();
+		});
+	};
+	return this;	
+};
+/**
+ * 添加内容-在内容的末尾添加内容
+ * @param {Object} ct 待添加内容对象。如{html0:'xx',flash:false,type:'pp'}
+ */
+sohu.diyContent.prototype.AddContent=function(ct){
+	var _this=this;
+	if(ct.isNew){
+		/* 新增 */
+		//创建相应的diyContent实体
+		ct=sohu.diyContent.New({sec:this.Sec,ct:ct,addingMode:1});
+		if(!ct.Validation.valid){
+			alert(ct.Validation.msg);
+			return;
+		};
+		this.Sec.Contents.push(ct);
+	}else{
+		/* 更新 */
+		var ct0=this.Sec.GetCTByID(ct.attr("id"));
+		if(!ct0) return;
+		if(ct.html0==""){
+			if (window.confirm("HTML内容为空或者不符合模板规范,是否确定删除原内容?")) {
+				ct0.$Layout.remove();
+			};
+		}else{
+			ct0.$Layout.html(ct.html0);
+		};//if1	
+	};//if0
 };
 /*静态方法*/
 /**

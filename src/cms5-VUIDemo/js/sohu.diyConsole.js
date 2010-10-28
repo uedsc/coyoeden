@@ -107,7 +107,11 @@ sohu.diyConsole=function(opts){
 		sohu.diyConsole.SecEditor=new sohu.diyEditor({bos:_this});
 		sohu.diyConsole.CTEditor=new sohu.diyCTEditor({bos:_this});	
 		sohu.diyConsole.$AreaHolder=$("#vstp_areaHolder");
-		sohu.diyConsole.$FlashHolder=$("#vstp_flashHolder").mouseleave(function(evt){$(this).hide();});
+		sohu.diyConsole.$FlashHolder=$("#vstp_flashHolder").mouseenter(function(){
+			if(sohu.diyConsole.$FlashHolder.CT){
+				sohu.diyConsole.$FlashHolder.CT.Active();
+			};
+		});
 		sohu.diyConsole.$CTHelper=$("#vstp_ctHelper");
 		sohu.diyConsole.IsPreview=false;
 		sohu.diyConsole.$Workspace=_this.$Workspace;
@@ -458,4 +462,19 @@ sohu.diyConsole.FixDraggable=function($t){
 			$t.css("top",$(this).height()-$t.height());
 			
 	});
+};
+/**
+ * 添加内容的工厂方法。根据需求往当前分栏内部或者当前碎片下方添加内容
+ * @param {Object} ct 内容对象
+ */
+sohu.diyConsole.AddCT=function(ct){
+	var dlgCT=sohu.diyDialog.Get("addContent");
+	var ctMode=dlgCT.$Layout.data("mode");
+	if(ctMode==0){//mode的定义见sohu.diyDialog_.js
+		//往当前分栏内部加内容
+		sohu.diyConsole.CurSec.AddContent(ct);
+	}else{
+		//往当前碎片下发添加内容
+		sohu.diyConsole.CurCT.AddContent(ct);
+	};
 };
