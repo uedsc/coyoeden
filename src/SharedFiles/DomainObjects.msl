@@ -6,6 +6,7 @@
       <ScalarProperty Name="UniqueName" ColumnName="UniqueName" />
       <ScalarProperty Name="Name" ColumnName="Name" />
       <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+      <ScalarProperty Name="Parent" ColumnName="Parent" />
     </EntitySetMapping>
     <EntitySetMapping Name="KnownSource" StoreEntitySet="KnownSource" TypeName="Kigg.EF.DomainObjects.KnownSource">
       <ScalarProperty Name="Url" ColumnName="Url" />
@@ -81,12 +82,27 @@
       <ScalarProperty Name="ActionType" ColumnName="ActionType" />
       <ScalarProperty Name="Score" ColumnName="Score" />
     </EntitySetMapping>
+    <EntitySetMapping Name="XFile" StoreEntitySet="XFile" TypeName="Kigg.EF.DomainObjects.XFile">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="UniqueName" ColumnName="UniqueName" />
+      <ScalarProperty Name="Title" ColumnName="Title" />
+      <ScalarProperty Name="Description" ColumnName="Description" />
+      <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+    </EntitySetMapping>
     <AssociationSetMapping Name="CommentSubscribtion" TypeName="Kigg.EF.DomainObjects.CommentSubscribtion" StoreEntitySet="CommentSubscribtion">
       <EndProperty Name="Story">
         <ScalarProperty Name="Id" ColumnName="StoryId" />
       </EndProperty>
       <EndProperty Name="User">
         <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="StoryFile" TypeName="Kigg.EF.DomainObjects.StoryFile" StoreEntitySet="StoryFile">
+      <EndProperty Name="Story">
+        <ScalarProperty Name="Id" ColumnName="StoryId" />
+      </EndProperty>
+      <EndProperty Name="XFile">
+        <ScalarProperty Name="Id" ColumnName="FileId" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="StoryTag" TypeName="Kigg.EF.DomainObjects.StoryTag" StoreEntitySet="StoryTag">

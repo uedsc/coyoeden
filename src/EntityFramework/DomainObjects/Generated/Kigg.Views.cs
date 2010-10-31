@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets4044C39C6052EE755DE5A1383DD9ADC456E3B5EF339079B95127859CAF1AEBAD))]
+[assembly: System.Data.Mapping.EntityViewGenerationAttribute(typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets57B7D851AB2D776764B33CA58FC5CA46CC8FB5EDC485F1E7F5785B3BE25A9BE0))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -17,19 +17,19 @@ namespace Edm_EntityMappingGeneratedViews
     /// <Summary>
     /// The type contains views for EntitySets and AssociationSets that were generated at design time.
     /// </Summary>
-    public sealed class ViewsForBaseEntitySets4044C39C6052EE755DE5A1383DD9ADC456E3B5EF339079B95127859CAF1AEBAD : System.Data.Mapping.EntityViewContainer
+    public sealed class ViewsForBaseEntitySets57B7D851AB2D776764B33CA58FC5CA46CC8FB5EDC485F1E7F5785B3BE25A9BE0 : System.Data.Mapping.EntityViewContainer
     {
         
         /// <Summary>
         /// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
         /// </Summary>
-        public ViewsForBaseEntitySets4044C39C6052EE755DE5A1383DD9ADC456E3B5EF339079B95127859CAF1AEBAD()
+        public ViewsForBaseEntitySets57B7D851AB2D776764B33CA58FC5CA46CC8FB5EDC485F1E7F5785B3BE25A9BE0()
         {
             this.EdmEntityContainerName = "KiggEntityContainer";
             this.StoreEntityContainerName = "KiggEFDomainObjectsStoreContainer";
-            this.HashOverMappingClosure = "57622b5a1ced95eb6767f68ab3638ba048c4481ff0c384de2857f2a3cfc71e87";
-            this.HashOverAllExtentViews = "77e4017a05858d09c68aa7ef279cec22ca7d0498f06b8edf96af97ca8cd0bfcb";
-            this.ViewCount = 26;
+            this.HashOverMappingClosure = "7d6028853be4975ab689fc88b7e46b75f2b365f1280910a19bdaa2444d4f4c0a";
+            this.HashOverAllExtentViews = "c79e8d10bbe207b182b5cf54522ddf4310fe6a282bc2ff9f09e67c715f23f2ec";
+            this.ViewCount = 30;
         }
         
         /// <Summary>
@@ -141,6 +141,22 @@ namespace Edm_EntityMappingGeneratedViews
             {
                 return GetView25();
             }
+            if ((index == 26))
+            {
+                return GetView26();
+            }
+            if ((index == 27))
+            {
+                return GetView27();
+            }
+            if ((index == 28))
+            {
+                return GetView28();
+            }
+            if ((index == 29))
+            {
+                return GetView29();
+            }
             throw new System.IndexOutOfRangeException();
         }
         
@@ -151,13 +167,14 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEFDomainObjectsStoreContainer.Category", @"
     SELECT VALUE -- Constructing Category
-        [Kigg.EF.DomainObjects.Store.Category](T1.Category_Id, T1.Category_UniqueName, T1.Category_Name, T1.Category_CreatedAt)
+        [Kigg.EF.DomainObjects.Store.Category](T1.Category_Id, T1.Category_UniqueName, T1.Category_Name, T1.Category_CreatedAt, T1.Category_Parent)
     FROM (
         SELECT 
             T.Id AS Category_Id, 
             T.UniqueName AS Category_UniqueName, 
             T.Name AS Category_Name, 
             T.CreatedAt AS Category_CreatedAt, 
+            T.Parent AS Category_Parent, 
             True AS _from0
         FROM KiggEntityContainer.Category AS T
     ) AS T1");
@@ -338,9 +355,29 @@ namespace Edm_EntityMappingGeneratedViews
         }
         
         /// <Summary>
-        /// return view for KiggEFDomainObjectsStoreContainer.CommentSubscribtion
+        /// return view for KiggEFDomainObjectsStoreContainer.XFile
         /// </Summary>
         private System.Collections.Generic.KeyValuePair<string, string> GetView9()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("KiggEFDomainObjectsStoreContainer.XFile", @"
+    SELECT VALUE -- Constructing XFile
+        [Kigg.EF.DomainObjects.Store.XFile](T1.XFile_Id, T1.XFile_UniqueName, T1.XFile_Title, T1.XFile_Description, T1.XFile_CreatedAt)
+    FROM (
+        SELECT 
+            T.Id AS XFile_Id, 
+            T.UniqueName AS XFile_UniqueName, 
+            T.Title AS XFile_Title, 
+            T.Description AS XFile_Description, 
+            T.CreatedAt AS XFile_CreatedAt, 
+            True AS _from0
+        FROM KiggEntityContainer.XFile AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
+        /// return view for KiggEFDomainObjectsStoreContainer.CommentSubscribtion
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView10()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEFDomainObjectsStoreContainer.CommentSubscribtion", @"
     SELECT VALUE -- Constructing CommentSubscribtion
@@ -355,9 +392,26 @@ namespace Edm_EntityMappingGeneratedViews
         }
         
         /// <Summary>
+        /// return view for KiggEFDomainObjectsStoreContainer.StoryFile
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView11()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("KiggEFDomainObjectsStoreContainer.StoryFile", @"
+    SELECT VALUE -- Constructing StoryFile
+        [Kigg.EF.DomainObjects.Store.StoryFile](T1.StoryFile_StoryId, T1.StoryFile_FileId)
+    FROM (
+        SELECT 
+            Key(T.Story).Id AS StoryFile_StoryId, 
+            Key(T.XFile).Id AS StoryFile_FileId, 
+            True AS _from0
+        FROM KiggEntityContainer.StoryFile AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
         /// return view for KiggEFDomainObjectsStoreContainer.StoryTag
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView10()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView12()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEFDomainObjectsStoreContainer.StoryTag", @"
     SELECT VALUE -- Constructing StoryTag
@@ -374,7 +428,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for KiggEFDomainObjectsStoreContainer.UserTag
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView11()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView13()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEFDomainObjectsStoreContainer.UserTag", @"
     SELECT VALUE -- Constructing UserTag
@@ -391,17 +445,18 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for KiggEntityContainer.Category
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView12()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView14()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.Category", @"
     SELECT VALUE -- Constructing Category
-        [Kigg.EF.DomainObjects.Category](T1.Category_Id, T1.Category_UniqueName, T1.Category_Name, T1.Category_CreatedAt)
+        [Kigg.EF.DomainObjects.Category](T1.Category_Id, T1.Category_UniqueName, T1.Category_Name, T1.Category_CreatedAt, T1.Category_Parent)
     FROM (
         SELECT 
             T.Id AS Category_Id, 
             T.UniqueName AS Category_UniqueName, 
             T.Name AS Category_Name, 
             T.CreatedAt AS Category_CreatedAt, 
+            T.Parent AS Category_Parent, 
             True AS _from0
         FROM KiggEFDomainObjectsStoreContainer.Category AS T
     ) AS T1");
@@ -410,7 +465,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for KiggEntityContainer.Story
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView13()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView15()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.Story", @"
     SELECT VALUE -- Constructing Story
@@ -441,7 +496,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for KiggEntityContainer.StoryComment
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView14()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView16()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.StoryComment", @"
     SELECT VALUE -- Constructing StoryComment
@@ -464,7 +519,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for KiggEntityContainer.StoryMarkAsSpam
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView15()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView17()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.StoryMarkAsSpam", @"
     SELECT VALUE -- Constructing StoryMarkAsSpam
@@ -483,7 +538,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for KiggEntityContainer.StoryView
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView16()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView18()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.StoryView", @"
     SELECT VALUE -- Constructing StoryView
@@ -502,7 +557,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for KiggEntityContainer.StoryVote
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView17()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView19()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.StoryVote", @"
     SELECT VALUE -- Constructing StoryVote
@@ -521,7 +576,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for KiggEntityContainer.Tag
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView18()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView20()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.Tag", @"
     SELECT VALUE -- Constructing Tag
@@ -540,7 +595,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for KiggEntityContainer.User
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView19()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView21()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.User", @"
     SELECT VALUE -- Constructing User
@@ -564,7 +619,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for KiggEntityContainer.UserScore
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView20()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView22()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.UserScore", @"
     SELECT VALUE -- Constructing UserScore
@@ -582,9 +637,29 @@ namespace Edm_EntityMappingGeneratedViews
         }
         
         /// <Summary>
+        /// return view for KiggEntityContainer.XFile
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView23()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.XFile", @"
+    SELECT VALUE -- Constructing XFile
+        [Kigg.EF.DomainObjects.XFile](T1.XFile_Id, T1.XFile_UniqueName, T1.XFile_Title, T1.XFile_Description, T1.XFile_CreatedAt)
+    FROM (
+        SELECT 
+            T.Id AS XFile_Id, 
+            T.UniqueName AS XFile_UniqueName, 
+            T.Title AS XFile_Title, 
+            T.Description AS XFile_Description, 
+            T.CreatedAt AS XFile_CreatedAt, 
+            True AS _from0
+        FROM KiggEFDomainObjectsStoreContainer.XFile AS T
+    ) AS T1");
+        }
+        
+        /// <Summary>
         /// return view for KiggEntityContainer.CommentSubscribtion
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView21()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView24()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.CommentSubscribtion", @"
     SELECT VALUE -- Constructing CommentSubscribtion
@@ -609,9 +684,36 @@ namespace Edm_EntityMappingGeneratedViews
         }
         
         /// <Summary>
+        /// return view for KiggEntityContainer.StoryFile
+        /// </Summary>
+        private System.Collections.Generic.KeyValuePair<string, string> GetView25()
+        {
+            return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.StoryFile", @"
+    SELECT VALUE -- Constructing StoryFile
+        [Kigg.EF.DomainObjects.StoryFile](T3.StoryFile_Story, T3.StoryFile_XFile)
+    FROM (
+        SELECT -- Constructing Story
+            CreateRef(KiggEntityContainer.Story, row(T2.StoryFile_Story_Id),[Kigg.EF.DomainObjects.Story]) AS StoryFile_Story, 
+            T2.StoryFile_XFile
+        FROM (
+            SELECT -- Constructing XFile
+                CreateRef(KiggEntityContainer.XFile, row(T1.StoryFile_XFile_Id),[Kigg.EF.DomainObjects.XFile]) AS StoryFile_XFile, 
+                T1.StoryFile_Story_Id
+            FROM (
+                SELECT 
+                    T.StoryId AS StoryFile_Story_Id, 
+                    T.FileId AS StoryFile_XFile_Id, 
+                    True AS _from0
+                FROM KiggEFDomainObjectsStoreContainer.StoryFile AS T
+            ) AS T1
+        ) AS T2
+    ) AS T3");
+        }
+        
+        /// <Summary>
         /// return view for KiggEntityContainer.StoryTag
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView22()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView26()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.StoryTag", @"
     SELECT VALUE -- Constructing StoryTag
@@ -638,7 +740,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for KiggEntityContainer.UserTag
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView23()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView27()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.UserTag", @"
     SELECT VALUE -- Constructing UserTag
@@ -665,7 +767,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for KiggEFDomainObjectsStoreContainer.KnownSource
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView24()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView28()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEFDomainObjectsStoreContainer.KnownSource", @"
     SELECT VALUE -- Constructing KnownSource
@@ -682,7 +784,7 @@ namespace Edm_EntityMappingGeneratedViews
         /// <Summary>
         /// return view for KiggEntityContainer.KnownSource
         /// </Summary>
-        private System.Collections.Generic.KeyValuePair<string, string> GetView25()
+        private System.Collections.Generic.KeyValuePair<string, string> GetView29()
         {
             return new System.Collections.Generic.KeyValuePair<string, string>("KiggEntityContainer.KnownSource", @"
     SELECT VALUE -- Constructing KnownSource

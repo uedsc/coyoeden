@@ -6,6 +6,7 @@
     <EntitySet Name="KnownSource" EntityType="Kigg.EF.DomainObjects.Store.KnownSource" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Story" EntityType="Kigg.EF.DomainObjects.Store.Story" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="StoryComment" EntityType="Kigg.EF.DomainObjects.Store.StoryComment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StoryFile" EntityType="Kigg.EF.DomainObjects.Store.StoryFile" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="StoryMarkAsSpam" EntityType="Kigg.EF.DomainObjects.Store.StoryMarkAsSpam" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="StoryTag" EntityType="Kigg.EF.DomainObjects.Store.StoryTag" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="StoryView" EntityType="Kigg.EF.DomainObjects.Store.StoryView" store:Type="Tables" Schema="dbo" />
@@ -14,6 +15,11 @@
     <EntitySet Name="User" EntityType="Kigg.EF.DomainObjects.Store.User" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserScore" EntityType="Kigg.EF.DomainObjects.Store.UserScore" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserTag" EntityType="Kigg.EF.DomainObjects.Store.UserTag" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="XFile" EntityType="Kigg.EF.DomainObjects.Store.XFile" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Category_Category" Association="Kigg.EF.DomainObjects.Store.FK_Category_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Category1" EntitySet="Category" />
+    </AssociationSet>
     <AssociationSet Name="FK_CommentSubscribtion_Story" Association="Kigg.EF.DomainObjects.Store.FK_CommentSubscribtion_Story">
       <End Role="Story" EntitySet="Story" />
       <End Role="CommentSubscribtion" EntitySet="CommentSubscribtion" />
@@ -37,6 +43,14 @@
     <AssociationSet Name="FK_StoryComment_User" Association="Kigg.EF.DomainObjects.Store.FK_StoryComment_User">
       <End Role="User" EntitySet="User" />
       <End Role="StoryComment" EntitySet="StoryComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryFile_Story" Association="Kigg.EF.DomainObjects.Store.FK_StoryFile_Story">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="StoryFile" EntitySet="StoryFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoryFile_XFile" Association="Kigg.EF.DomainObjects.Store.FK_StoryFile_XFile">
+      <End Role="XFile" EntitySet="XFile" />
+      <End Role="StoryFile" EntitySet="StoryFile" />
     </AssociationSet>
     <AssociationSet Name="FK_StoryMarkAsSpam_Story" Association="Kigg.EF.DomainObjects.Store.FK_StoryMarkAsSpam_Story">
       <End Role="Story" EntitySet="Story" />
@@ -87,6 +101,7 @@
     <Property Name="UniqueName" Type="nvarchar" Nullable="false" MaxLength="64" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
     <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Parent" Type="uniqueidentifier" />
   </EntityType>
   <EntityType Name="CommentSubscribtion">
     <Key>
@@ -136,6 +151,14 @@
     <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="IPAddress" Type="varchar" Nullable="false" MaxLength="15" />
     <Property Name="IsOffended" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StoryFile">
+    <Key>
+      <PropertyRef Name="StoryId" />
+      <PropertyRef Name="FileId" />
+    </Key>
+    <Property Name="StoryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FileId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="StoryMarkAsSpam">
     <Key>
@@ -215,6 +238,28 @@
     <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="TagId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
+  <EntityType Name="XFile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UniqueName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="600" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Category_Category">
+    <End Role="Category" Type="Kigg.EF.DomainObjects.Store.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="Kigg.EF.DomainObjects.Store.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_CommentSubscribtion_Story">
     <End Role="Story" Type="Kigg.EF.DomainObjects.Store.Story" Multiplicity="1" />
     <End Role="CommentSubscribtion" Type="Kigg.EF.DomainObjects.Store.CommentSubscribtion" Multiplicity="*" />
@@ -284,6 +329,30 @@
       </Principal>
       <Dependent Role="StoryComment">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryFile_Story">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Store.Story" Multiplicity="1" />
+    <End Role="StoryFile" Type="Kigg.EF.DomainObjects.Store.StoryFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Story">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryFile">
+        <PropertyRef Name="StoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoryFile_XFile">
+    <End Role="XFile" Type="Kigg.EF.DomainObjects.Store.XFile" Multiplicity="1" />
+    <End Role="StoryFile" Type="Kigg.EF.DomainObjects.Store.StoryFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="XFile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoryFile">
+        <PropertyRef Name="FileId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -18,6 +18,7 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
+[assembly: EdmRelationshipAttribute("Kigg.EF.DomainObjects", "FK_Category_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Kigg.EF.DomainObjects.Category), "Category1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.Category), true)]
 [assembly: EdmRelationshipAttribute("Kigg.EF.DomainObjects", "FK_Story_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Kigg.EF.DomainObjects.Category), "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.Story), true)]
 [assembly: EdmRelationshipAttribute("Kigg.EF.DomainObjects", "FK_Story_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Kigg.EF.DomainObjects.User), "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.Story), true)]
 [assembly: EdmRelationshipAttribute("Kigg.EF.DomainObjects", "FK_StoryComment_Story", "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Kigg.EF.DomainObjects.Story), "StoryComment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.StoryComment), true)]
@@ -29,6 +30,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Kigg.EF.DomainObjects", "FK_StoryVote_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Kigg.EF.DomainObjects.User), "StoryVote", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.StoryVote), true)]
 [assembly: EdmRelationshipAttribute("Kigg.EF.DomainObjects", "FK_UserScore_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Kigg.EF.DomainObjects.User), "UserScore", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.UserScore), true)]
 [assembly: EdmRelationshipAttribute("Kigg.EF.DomainObjects", "CommentSubscribtion", "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.Story), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.User))]
+[assembly: EdmRelationshipAttribute("Kigg.EF.DomainObjects", "StoryFile", "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.Story), "XFile", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.XFile))]
 [assembly: EdmRelationshipAttribute("Kigg.EF.DomainObjects", "StoryTag", "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.Story), "Tag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.Tag))]
 [assembly: EdmRelationshipAttribute("Kigg.EF.DomainObjects", "UserTag", "Tag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.Tag), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Kigg.EF.DomainObjects.User))]
 
@@ -241,6 +243,22 @@ namespace Kigg.EF.DomainObjects
             }
         }
         private ObjectSet<UserScore> _UserScore;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<XFile> XFile
+        {
+            get
+            {
+                if ((_XFile == null))
+                {
+                    _XFile = base.CreateObjectSet<XFile>("XFile");
+                }
+                return _XFile;
+            }
+        }
+        private ObjectSet<XFile> _XFile;
 
         #endregion
         #region AddTo Methods
@@ -323,6 +341,14 @@ namespace Kigg.EF.DomainObjects
         public void AddToUserScore(UserScore userScore)
         {
             base.AddObject("UserScore", userScore);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the XFile EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToXFile(XFile xFile)
+        {
+            base.AddObject("XFile", xFile);
         }
 
         #endregion
@@ -461,10 +487,94 @@ namespace Kigg.EF.DomainObjects
         private global::System.DateTime _CreatedAt;
         partial void OnCreatedAtChanging(global::System.DateTime value);
         partial void OnCreatedAtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> Parent
+        {
+            get
+            {
+                return _Parent;
+            }
+            set
+            {
+                OnParentChanging(value);
+                ReportPropertyChanging("Parent");
+                _Parent = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Parent");
+                OnParentChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _Parent;
+        partial void OnParentChanging(Nullable<global::System.Guid> value);
+        partial void OnParentChanged();
 
         #endregion
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Kigg.EF.DomainObjects", "FK_Category_Category", "Category1")]
+        public EntityCollection<Category> Category1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Category>("Kigg.EF.DomainObjects.FK_Category_Category", "Category1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Category>("Kigg.EF.DomainObjects.FK_Category_Category", "Category1", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Kigg.EF.DomainObjects", "FK_Category_Category", "Category")]
+        public Category Category2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Kigg.EF.DomainObjects.FK_Category_Category", "Category").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Kigg.EF.DomainObjects.FK_Category_Category", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Category> Category2Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Kigg.EF.DomainObjects.FK_Category_Category", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Kigg.EF.DomainObjects.FK_Category_Category", "Category", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1191,6 +1301,28 @@ namespace Kigg.EF.DomainObjects
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("Kigg.EF.DomainObjects.CommentSubscribtion", "User", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Kigg.EF.DomainObjects", "StoryFile", "XFile")]
+        public EntityCollection<XFile> XFile
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<XFile>("Kigg.EF.DomainObjects.StoryFile", "XFile");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<XFile>("Kigg.EF.DomainObjects.StoryFile", "XFile", value);
                 }
             }
         }
@@ -2931,6 +3063,190 @@ namespace Kigg.EF.DomainObjects
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("Kigg.EF.DomainObjects.FK_UserScore_User", "User", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Kigg.EF.DomainObjects", Name="XFile")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class XFile : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new XFile object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="uniqueName">Initial value of the UniqueName property.</param>
+        /// <param name="title">Initial value of the Title property.</param>
+        /// <param name="description">Initial value of the Description property.</param>
+        /// <param name="createdAt">Initial value of the CreatedAt property.</param>
+        public static XFile CreateXFile(global::System.Guid id, global::System.String uniqueName, global::System.String title, global::System.String description, global::System.DateTime createdAt)
+        {
+            XFile xFile = new XFile();
+            xFile.Id = id;
+            xFile.UniqueName = uniqueName;
+            xFile.Title = title;
+            xFile.Description = description;
+            xFile.CreatedAt = createdAt;
+            return xFile;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _Id;
+        partial void OnIdChanging(global::System.Guid value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UniqueName
+        {
+            get
+            {
+                return _UniqueName;
+            }
+            set
+            {
+                OnUniqueNameChanging(value);
+                ReportPropertyChanging("UniqueName");
+                _UniqueName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("UniqueName");
+                OnUniqueNameChanged();
+            }
+        }
+        private global::System.String _UniqueName;
+        partial void OnUniqueNameChanging(global::System.String value);
+        partial void OnUniqueNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime CreatedAt
+        {
+            get
+            {
+                return _CreatedAt;
+            }
+            set
+            {
+                OnCreatedAtChanging(value);
+                ReportPropertyChanging("CreatedAt");
+                _CreatedAt = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedAt");
+                OnCreatedAtChanged();
+            }
+        }
+        private global::System.DateTime _CreatedAt;
+        partial void OnCreatedAtChanging(global::System.DateTime value);
+        partial void OnCreatedAtChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Kigg.EF.DomainObjects", "StoryFile", "Story")]
+        public EntityCollection<Story> Story
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Story>("Kigg.EF.DomainObjects.StoryFile", "Story");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Story>("Kigg.EF.DomainObjects.StoryFile", "Story", value);
                 }
             }
         }

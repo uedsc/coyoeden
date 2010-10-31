@@ -11,6 +11,11 @@
     <EntitySet Name="Tag" EntityType="Kigg.EF.DomainObjects.Tag" />
     <EntitySet Name="User" EntityType="Kigg.EF.DomainObjects.User" />
     <EntitySet Name="UserScore" EntityType="Kigg.EF.DomainObjects.UserScore" />
+    <EntitySet Name="XFile" EntityType="Kigg.EF.DomainObjects.XFile" />
+    <AssociationSet Name="FK_Category_Category" Association="Kigg.EF.DomainObjects.FK_Category_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Category1" EntitySet="Category" />
+    </AssociationSet>
     <AssociationSet Name="FK_Story_Category" Association="Kigg.EF.DomainObjects.FK_Story_Category">
       <End Role="Category" EntitySet="Category" />
       <End Role="Story" EntitySet="Story" />
@@ -55,6 +60,10 @@
       <End Role="Story" EntitySet="Story" />
       <End Role="User" EntitySet="User" />
     </AssociationSet>
+    <AssociationSet Name="StoryFile" Association="Kigg.EF.DomainObjects.StoryFile">
+      <End Role="Story" EntitySet="Story" />
+      <End Role="XFile" EntitySet="XFile" />
+    </AssociationSet>
     <AssociationSet Name="StoryTag" Association="Kigg.EF.DomainObjects.StoryTag">
       <End Role="Story" EntitySet="Story" />
       <End Role="Tag" EntitySet="Tag" />
@@ -72,6 +81,9 @@
     <Property Name="UniqueName" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
     <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
+    <Property Name="Parent" Type="Guid" />
+    <NavigationProperty Name="Category1" Relationship="Kigg.EF.DomainObjects.FK_Category_Category" FromRole="Category" ToRole="Category1" />
+    <NavigationProperty Name="Category2" Relationship="Kigg.EF.DomainObjects.FK_Category_Category" FromRole="Category1" ToRole="Category" />
     <NavigationProperty Name="Story" Relationship="Kigg.EF.DomainObjects.FK_Story_Category" FromRole="Category" ToRole="Story" />
   </EntityType>
   <EntityType Name="KnownSource">
@@ -108,6 +120,7 @@
     <NavigationProperty Name="StoryView" Relationship="Kigg.EF.DomainObjects.FK_StoryView_Story" FromRole="Story" ToRole="StoryView" />
     <NavigationProperty Name="StoryVote" Relationship="Kigg.EF.DomainObjects.FK_StoryVote_Story" FromRole="Story" ToRole="StoryVote" />
     <NavigationProperty Name="User1" Relationship="Kigg.EF.DomainObjects.CommentSubscribtion" FromRole="Story" ToRole="User" />
+    <NavigationProperty Name="XFile" Relationship="Kigg.EF.DomainObjects.StoryFile" FromRole="Story" ToRole="XFile" />
     <NavigationProperty Name="Tag" Relationship="Kigg.EF.DomainObjects.StoryTag" FromRole="Story" ToRole="Tag" />
   </EntityType>
   <EntityType Name="StoryComment">
@@ -202,6 +215,29 @@
     <Property Name="Score" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
     <NavigationProperty Name="User" Relationship="Kigg.EF.DomainObjects.FK_UserScore_User" FromRole="UserScore" ToRole="User" />
   </EntityType>
+  <EntityType Name="XFile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="UniqueName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="600" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Story" Relationship="Kigg.EF.DomainObjects.StoryFile" FromRole="XFile" ToRole="Story" />
+  </EntityType>
+  <Association Name="FK_Category_Category">
+    <End Role="Category" Type="Kigg.EF.DomainObjects.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="Kigg.EF.DomainObjects.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Story_Category">
     <End Role="Category" Type="Kigg.EF.DomainObjects.Category" Multiplicity="1" />
     <End Role="Story" Type="Kigg.EF.DomainObjects.Story" Multiplicity="*" />
@@ -325,6 +361,10 @@
   <Association Name="CommentSubscribtion">
     <End Role="Story" Type="Kigg.EF.DomainObjects.Story" Multiplicity="*" />
     <End Role="User" Type="Kigg.EF.DomainObjects.User" Multiplicity="*" />
+  </Association>
+  <Association Name="StoryFile">
+    <End Role="Story" Type="Kigg.EF.DomainObjects.Story" Multiplicity="*" />
+    <End Role="XFile" Type="Kigg.EF.DomainObjects.XFile" Multiplicity="*" />
   </Association>
   <Association Name="StoryTag">
     <End Role="Story" Type="Kigg.EF.DomainObjects.Story" Multiplicity="*" />
