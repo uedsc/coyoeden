@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+		<title>2010年10月版新闻首页焦点图</title>
+		<link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
+		<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
+		<script type="text/javascript" src="../js/jquery.SOHUFocusImageCore.min.js"></script>
+		<script type="text/javascript" src="sohu.MDCFocus_10.min.js"></script>
+		<script type="text/javascript">
+		//<![CDATA[
+		jQuery.noConflict();
+		//]]>
+		</script>
+		
+		<style type="text/css">
+			body{text-align:left;}
+			.container{width:950px;margin:50px auto;}
+			h1,h2{font-size:1.4em;font-weight:bold;text-align:left;}
+			h2{font-size:1.2em;}
+			
+			.fi10,.fi10 .fi_ct li{position:relative;width:682px;height:292px;overflow:hidden;}
+			.fi10 a:focus,.fi10 a:visited{outline:none;}
+			.fi10 .fi_ct img,.fi10 .fi_ct a{display:block;width:680px;height:290px;}
+			.fi10 .fi_ct a{border:1px solid #e7e7e7;background:#000;}
+			.fi10 .fi_tab_c{position:absolute;bottom:1px;left:1px;width:680px;height:14px;background:#171b21;text-align:center;}
+			.fi10 .fi_tab{margin:4px auto 0;}
+			.fi10 .fi_tab li{float:left;width:7px;height:7px;margin:0 5px;_overflow:hidden;background:url("images/fi10_tab_bg0.png") no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src="images/fi10_tab_bg0.png");}
+			.fi10 .fi_tab a{display:block;width:7px;height:7px;}
+			.fi10 .fi_tab li.fi_now{background:url("images/fi10_tab_bg1.png") no-repeat;_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src="images/fi10_tab_bg1.png");}
+			.fi10 .fi_lazyload{position:absolute;display:none;top:50%;left:50%;margin-top:-24px;margin-left:-24px;width:48px;height:48px;background:url("images/loading_black.gif") no-repeat;}
+			
+		</style> 
+	</head>
+	<body>
+		<div id="header" class="container">
+			<h1>搜狐-2010年10月版新闻首页焦点图</h1>
+		</div>
+		<div class="container">
+			<h2>1,启用延时加载lazyload=true,默认显示第一张图片,其余图片页面加载后再加载-</h2>
+		</div>
+		<div id="contentA" class="container">
+			<!--焦点图10-新闻首页-->
+			<div id="News_Focus_01" class="fi10">
+				<ul class="fi_ct">
+					<li><a href="http://sohu.com" target="_blank"><img src="images/pic680x290_1.gif" width="680" height="290" alt=""/></a></li>
+					<li  class="hidden"><a href="http://baidu.com" target="_blank"><img src="images/fi10_blackdot.gif" data-src="http://i2.itc.cn/20101027/56a_1eb38cb7_6046_4eb8_ae99_1c400cc0fac9_01.jpg" width="680" height="290" alt=""/></a></li>
+					<li  class="hidden"><a href="#" target="_blank"><img src="images/fi10_blackdot.gif" data-src="http://i2.itc.cn/20101019/241_98e1ebf8_fa34_404b_bfec_41902af2678b_0.jpg" width="680" height="290" alt=""/></a></li>
+					<li  class="hidden"><a href="#" target="_blank"><img src="images/fi10_blackdot.gif" data-src="http://i3.itc.cn/20101019/241_98e1ebf8_fa34_404b_bfec_41902af2678b_2.jpg" width="680" height="290" alt=""/></a></li>
+					<li  class="hidden"><a href="#" target="_blank"><img src="images/fi10_blackdot.gif" data-src="http://i1.itc.cn/20101014/241_3d50a40f_a0d0_4435_a63a_cfe447bdbc17_0.jpg" width="680" height="290" alt=""/></a></li>
+				</ul>
+				<div class="fi_tab_c">
+					<ul class="fi_tab clear">
+						<li class="fi_now"><a href="#">&nbsp;</a></li>
+						<li><a href="#">&nbsp;</a></li>
+						<li><a href="#">&nbsp;</a></li>
+						<li><a href="#">&nbsp;</a></li>
+						<li><a href="#">&nbsp;</a></li>										
+					</ul>
+				</div>
+			</div>
+			<script type="text/javascript">
+			//<![CDATA[
+			    jQuery("#News_Focus_01").focusImg({ flag: "fi10", hoverStop: true,speed:6000,clickTabToNav:false,lazyload:true});
+			//]]>
+			</script>			
+			<!--/焦点图10-->
+		</div>
+		<div class="container">
+			<h2>2,不启用延时加载(lazyload=false),所有图片顺序加载-</h2>
+		</div>
+		<div id="contentB" class="container">
+			<!--焦点图10-新闻首页-->
+			<div id="News_Focus_02" class="fi10">
+				<ul class="fi_ct">
+					<li><a href="#" target="_blank"><img src="images/pic680x290_1.gif" width="680" height="290" alt=""/></a></li>
+					<li  class="hidden"><a href="#" target="_blank"><img src="http://i2.itc.cn/20101027/56a_1eb38cb7_6046_4eb8_ae99_1c400cc0fac9_01.jpg" width="680" height="290" alt=""/></a></li>
+					<li  class="hidden"><a href="#" target="_blank"><img src="http://i2.itc.cn/20101019/241_98e1ebf8_fa34_404b_bfec_41902af2678b_0.jpg" width="680" height="290" alt=""/></a></li>
+					<li  class="hidden"><a href="#" target="_blank"><img src="http://i3.itc.cn/20101019/241_98e1ebf8_fa34_404b_bfec_41902af2678b_2.jpg" width="680" height="290" alt=""/></a></li>
+					<li  class="hidden"><a href="#" target="_blank"><img src="http://i1.itc.cn/20101014/241_3d50a40f_a0d0_4435_a63a_cfe447bdbc17_0.jpg" width="680" height="290" alt=""/></a></li>
+				</ul>
+				<div class="fi_tab_c">
+					<ul class="fi_tab clear">
+						<li class="fi_now"><a href="#">&nbsp;</a></li>
+						<li><a href="#">&nbsp;</a></li>
+						<li><a href="#">&nbsp;</a></li>
+						<li><a href="#">&nbsp;</a></li>
+						<li><a href="#">&nbsp;</a></li>										
+					</ul>
+				</div>
+			</div>
+			<script type="text/javascript">
+			//<![CDATA[
+			    jQuery("#News_Focus_02").focusImg({ flag: "fi10", hoverStop: true,speed:6000,clickTabToNav:false});
+			//]]>
+			</script>			
+			<!--/焦点图10-->
+		</div>		
+	</body>
+</html>
