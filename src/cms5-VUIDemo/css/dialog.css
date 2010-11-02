@@ -14,6 +14,9 @@ a.vstp_btn:hover{color:#333333;}
 .vstp_Btn {display: block; background: url(../images/ybtn.gif) top;width: 45px;height: 24px; border: 0px; cursor:pointer;}
 .vstp_BtnM {background-position: bottom;}
 
+.vstp_btn1{display:block;background:url("../images/pic06.gif") 0 -39px repeat-y;height:20px;border-width:1px;border-style:solid;border-color:#a3a3a3 #737373 #737373 #a3a3a3;}
+.vstp_btn1:hover{background-position:0 -20px;border-color:#737373;}
+
 .vstp_navBtn{display: block;width: 22px;height: 30px;margin-top: 50px; border:none;}
 .vstp_btnR {background: url(../images/r1btn.gif) top;}
 .vstp_btnR:hover{background-position: bottom;}
@@ -117,7 +120,7 @@ a.vstp_btn:hover{color:#333333;}
 .vstp_cmdicon,.vstp_editBtn1,.vstp_editBtn2,.vstp_editBtn3{margin:0 0 0.2em;padding:0 0 0 4px;}
 .vstp_cmdicon strong,.vstp_editBtn1 strong,.vstp_editBtn2 strong,.vstp_editBtn3 strong{display:block;*display:inline;*zoom:1;padding:0px;margin:0;*vertical-align:top;}
 .vstp_cmdicon,.vstp_editBtn2{vertical-align:middle;white-space:nowrap;cursor:pointer;cursor:hand;}
-.vstp_cmdicon strong{background-position:right -21px;}
+.vstp_cmdicon strong{background-position:right -21px;font-weight:normal;}
 .vstp_cmdicon:hover{background-position:0 -80px;text-decoration:none;}
 .vstp_cmdicon:hover strong{background-position:right -101px;text-decoration:none;}
 .vstp_cmdicon:active{background-position:0 -40px;}
@@ -343,6 +346,10 @@ a.vstp_btn:hover{color:#333333;}
 .cedt_jqm .vstp_acts .vstp_btn{margin:0 auto;}
 /* chipEditor */
 .vstp_chipEdt{width:490px;}
+.vstp_chipEdt .vstp_elmActs img{margin-top:2px;}
+.vstp_chipEdt .vstp_elmActs .vstp_cmdicon{background:url("../images/pic06.gif") repeat-x;height:20px;padding:0 4px;margin-left:4px;;border-width:1px;border-style:solid;border-color:#a3a3a3 #737373 #737373 #a3a3a3;}
+.vstp_chipEdt .vstp_elmActs .vstp_cmdicon:hover,.vstp_chipEdt .vstp_elmActs .vstp_editBtn1{background-position:0 -39px;text-decoration:none;border-color:#737373;}
+.vstp_chipEdt .vstp_elmActs .vstp_cmdicon strong{background:none;}
 .vstp_chipEdt .vstp_tabC{position:relative;}
 .vstp_chipEdt .vstp_row{text-align:left;margin-bottom:8px;}
 .vstp_chipEdt .vstp_rowTitle,.vstp_chipEdt .vstp_rowTxt,.vstp_chipEdt .vstp_rowImg,.vstp_chipEdt .vstp_rowChip{padding-top:5px;margin-top:5px;border-top:1px solid #d6d6d6;}
