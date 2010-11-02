@@ -41,11 +41,11 @@ sohu.diySection = function(opts) {
 			sohu.diyConsole.Dragger.obj.Sec.RemoveCTByID(sohu.diyConsole.Dragger.obj.ID);
 			sohu.diyConsole.Dragger.obj.Sec=_this;
 			_this.Contents.push(sohu.diyConsole.Dragger.obj);
-			sohu.diyConsole.CTEditor.Reposition();
-			sohu.diyConsole.SecEditor.Reposition();
 		},
 		stop:function(evt,ui){
 			sohu.diyConsole.Dragger.ing=false;
+			sohu.diyConsole.CTEditor.Reposition();
+			sohu.diyConsole.SecEditor.Reposition();
 		}
 	});
 	this.BindEvts();

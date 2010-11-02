@@ -124,5 +124,5 @@ sohu.diyMenuBar=function(opts){
 	this.IsInit=true;
 };
 sohu.diyMenuBar.Tpl={
-	video:'<a class="vstp_vdIcon" target="_blank" href="#" title=""><img height="10" width="16" alt="" src="images/vd.gif"/></a>'
+	video:'<a class="vstp_vdIcon" target="_blank" href="#" title=""><img height="10" width="16" alt="" src="http://images.sohu.com/uiue/vd.gif"/></a>'
 };

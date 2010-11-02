@@ -518,6 +518,12 @@ sohu.diyChipEditor.Dialog.prototype.BindIconEvts=function($tpl,data){
 	$tpl.find(".vstp_color").bind("click",function(evt){
 		_this.Color(data);return false;
 	});
+	//检查连接按钮
+	$tpl.find(".vstp_checklink").click(function(evt){
+		var lnk=jQuery.trim(jQuery(this).prevAll("input").val());
+		if(lnk!="")
+			window.open(lnk);
+	});	
 	if(data.t==0){
 		//标题输入框
 		$tpl.find(".vstp_tt").val(data.$obj.html()).keyup(function(evt){
@@ -684,6 +690,7 @@ sohu.diyChipEditor.Dialog.prototype.AddElm=function(data){
 		data1.$obj.remove();
 		tpl.remove();
 		_this.onDomRefreshed();
+		return false;
 	});
 	var tpl1=$(sohu.diyChipEditor.$ElmATpl.html());
 	var data2={$obj:a0,$tpl:tpl1,t:0};

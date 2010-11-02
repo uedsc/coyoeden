@@ -358,6 +358,7 @@ a.vstp_btn:hover{color:#333333;}
 .vstp_chipEdt .vstp_elmTpl input.ipt02{width:19px;}
 .vstp_chipEdt .vstp_icons{position:relative;width:120px;margin-left:8px;}
 .vstp_chipEdt .vstp_icons a{display:inline-block;border:1px solid #eee;text-decoration:none;}
+.vstp_chipEdt .vstp_icons a.vstp_udl{display:none;}
 .vstp_chipEdt .vstp_icons span{display:block;font-weight:bold;font-size:0.9em;padding:0.2em 0.5em;}
 .vstp_chipEdt .vstp_color span{border-bottom:2px solid red;padding-bottom:0;}
 .vstp_chipEdt .vstp_icon{background:url("../images/pic01.jpg") no-repeat right center;}
@@ -372,6 +373,7 @@ a.vstp_btn:hover{color:#333333;}
 .vstp_chipEdt .vstp_selAuto{margin-left:8px;}
 .vstp_chipEdt .vstp_browse{margin-left:0px;}
 .vstp_chipEdt .vstp_chipTpl .vstp_browse{margin-left:8px;}
+.vstp_chipEdt .vstp_elmTpl .vstp_checklink{margin-top:5px;margin-left:8px;cursor:pointer;}
 .vstp_chipEdt .vstp_acts{margin-bottom:10px;}
 .vstp_chipEdt .vstp_hide{display:none;}
 .vstp_chipEdt textarea{width:100%;height:180px;}

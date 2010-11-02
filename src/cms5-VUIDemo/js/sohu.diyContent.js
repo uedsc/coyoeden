@@ -196,8 +196,7 @@ sohu.diyContent.prototype.BindEvts=function(){
 		return false;//stop bubbling
 	};
 	p.mouseLeave=function(evt){
-		if(_this.Editor.CurArea.IsEditing||_this.IsEditing||(_this.diyConsole.CurCT&&_this.diyConsole.CurCT.IsEditing)) return false;
-		sohu.diyConsole.CurCT=null;
+		_this.Deactive();
 	};
 	
 	//内容的鼠标事件
@@ -277,6 +276,13 @@ sohu.diyContent.prototype.Active=function(){
 		});
 	};
 	return this;	
+};
+/**
+ * Deactive current content obj
+ */
+sohu.diyContent.prototype.Deactive=function(){
+	if(this.Editor.CurArea.IsEditing||this.IsEditing||(this.diyConsole.CurCT&&this.diyConsole.CurCT.IsEditing)) return false;
+	sohu.diyConsole.CurCT=null;
 };
 /**
  * 添加内容-在内容的末尾添加内容

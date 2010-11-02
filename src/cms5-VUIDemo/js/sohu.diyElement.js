@@ -165,12 +165,19 @@ sohu.diyElement.prototype.Move=function(isUp){
  */
 sohu.diyElement.prototype.EditView=function(){
 	var _i=this;
-	if(this.IsEditing) return;// false;
+	//当前元素正在被编辑
+	
+	if(sohu.diyConsole.CurElm&&sohu.diyConsole.CurElm.IsEditing) return false;
+	/*
+	if(this.IsEditing) return false;
+	
 	if (sohu.diyConsole.CurElm) {
 		sohu.diyConsole.CurElm.IsEditing=false;
-		sohu.diyDialog.Hide(true);
+		sohu.diyDialog.Hide(true);//hide without executing callbacks
 		//sohu.diyDialog.Hide();
 	};
+	*/
+	
 	sohu.diyConsole.CurElm=this;
 	//显示碎片编辑器		
 	sohu.diyChipEditor.Show(this.$Context,{
@@ -181,7 +188,7 @@ sohu.diyElement.prototype.EditView=function(){
 			dlg.Hide();
 		},
 		afterShow:function(hash,dlg){
-			_i.CT.InlineEdit("on");
+			_i.CT.Active().InlineEdit("on");
 			_i.IsEditing=true;
 			//是否隐藏元素的“增加、删除、上移、下移”按钮
 			if(_i.Copyable){
