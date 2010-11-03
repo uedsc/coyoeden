@@ -20,6 +20,16 @@
 	        var _this = this;
 	        //绑定各种元素的事件
 	        fi._$tabC.find("a").click(function (e) { e.preventDefault(); return true; });
+			//右边内容区域的hover处理
+			fi._$ctItems.mouseenter(function(e){
+				if(fi._$curTab){
+					fi._$curTab.trigger("mouseenter");
+				};	
+			}).mouseleave(function(e){
+				if(fi._$curTab){
+					fi._$curTab.trigger("mouseleave");
+				};				
+			});
 	    },
 		/**
 		 * 选中指定tab
