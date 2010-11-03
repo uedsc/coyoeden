@@ -32,7 +32,9 @@
 		this._$img=null;							/* 图片对象 */
 		this._$transparentOvl=null;					/* 透明蒙层 */
 		this._$desc=null;							/* 描述文字 */
-		this._$pointer=null;						/* 缩略图指针 */	
+		this._$pointer=null;						/* 缩略图指针 */
+		this._curData=null;							/* 当前json数据项 */
+		this._cfg=cfg;								/* 引用用户的配置项 */	
 		//缓存数据
 		this.$d.data("apple",{a:cfg,b:data});	
 		//初始化
@@ -51,6 +53,10 @@
 			if(!this._fiObj) return;
 			//创建框架-并缓存dom
 			this._fiObj.init(this);
+			//afterInit回调
+			if(this._cfg.afterInit){
+				this._cfg.afterInit(this);
+			};
 			//额外的html内容
 			this.$d.find(".fi_ct").append(this.myHtml);
 			//执行触发
@@ -106,6 +112,10 @@
 						
 			if(this._fiObj.initEvts){
 				this._fiObj.initEvts(this,gogo);
+				//afterInitEvts回调
+				if(this._cfg.afterInitEvts){
+					this._cfg.afterInitEvts(this);
+				};
 			};
 		},
 		/**
@@ -115,19 +125,32 @@
 		*/
 		alternation:function(i){			
 			var continueCommon=true;
+			this._curData=this.focusData[i];
+			this.$d.data("curData",this._curData);
 			//定制的交互效果
 			if(this._fiObj.alt)
 				continueCommon=this._fiObj.alt(this,i);
 				
-			if(!continueCommon) return;
+			if(!continueCommon){
+				//afterAlt回调
+				if(this._cfg.afterAlt){
+					this._cfg.afterAlt(this);
+				};				
+				return;
+			}; 
 			//回填大图路径及绑定链接路径,并给大图加渐显动画
-			this._$img.attr({"src":this.focusData[i].p,"link":this.focusData[i].l}).css({opacity:0}).stop().animate({opacity:1},500);		
+			this._$img.attr({"src":this._curData.p,"link":this._curData.l}).css({opacity:0}).stop().animate({opacity:1},500);		
 			//标签切换交互
 			this._$tabs.filter(".now").removeClass().end().eq(i).addClass("now");	
 			//数据回填
-			this._$titleC.html(this.focusData[i].t);
+			this._$titleC.html(this._curData.t);
 			if(this._$desc)
-				this._$desc.html(this.focusData[i].t1);
+				this._$desc.html(this._curData.t1);
+				
+			//afterAlt回调
+			if(this._cfg.afterAlt){
+				this._cfg.afterAlt(this);
+			};
 			
 		}
 	};
@@ -153,6 +176,13 @@
     $.fn.focusImg.Register = function(key,fiObj) {
         p.cache[key]=fiObj;
     };
+	/**
+	 * 获取指定焦点图定制对象
+	 * @param {Object} key
+	 */
+	$.fn.focusImg.Get=function(key){
+		return p.cache[key];
+	};
 })(jQuery);
 
 /* 焦点图1 */
@@ -185,6 +215,7 @@ $.fn.focusImg.Register("fi01",{
 	initEvts:function(fi){
 		//给焦点区绑定Click事件,用于弹出链接
 		fi.$d.click(function(){window.open(fi._$img.attr("link"));});
+		
 	}
 });
 /* 焦点图2 */
@@ -429,7 +460,13 @@ $.fn.focusImg.Register("fi06",{
 			$(this).find(".fi_btnplay").removeClass("now");
 		}).click(function(){
 			window.open($(this).find("a:eq(0)").attr("href"));
-			return false;
+			//return false;
+		});
+		
+		//fi_player外面的a标签
+		fi._$img.parent("a").click(function(e){
+			e.preventDefault();
+			return true;
 		});
 	},
 	alt:function(fi,i){
