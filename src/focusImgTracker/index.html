@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>搜狐网站-焦点图点击统计测试</title>
+<link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.3.css" />
+<link rel="stylesheet" type="text/css" href="css/MDC_FocusImage.css"></link>  
+<script type="text/javascript" src="http://www.sohu.com/sohuflash_1.js"></script>
+<script type="text/javascript" src="http://js.sohu.com/library/jquery1.4.2.js"></script>
+<script type="text/javascript" src="http://js.sohu.com/focus/mdcfocus.min.js"></script>
+<style type="text/css">
+.test1{border:2px dashed #eee; width:100px;height:60px;margin:20px;background:#ffffc2;padding:20px;}
+.test1 a{display:block;margin:10px;}	
+.area{padding:15px 0;}
+h2{font-size:18px;font-weight:bold;padding:10px;text-align:left;}
+form{padding:20px;border:2px solid #eee;width:50%;}
+.fi01{margin:0;}
+</style>  
+</head>
+<body>
+	<div class="area" id="contentA">
+		<h2>1，普通含有a标签的容器</h2>
+		<div collection="Y" class="test1">
+			<a href="http://sina.com" target="_blank">测试连接1</a>
+			<a href="http://sohu.com" target="_blank">测试连接2</a>
+			<a href="http://baidu.com" target="_blank">测试连接3</a>
+		</div>
+	
+	</div>
+	<div class="area" id="contentB">
+		<h2>2,焦点图类型1</h2>
+		<div id="MDCFII8J3lXvM" class="fi01" data-track="170"  collection="Y"></div>
+		<script type="text/javascript">
+		$("#MDCFII8J3lXvM").focusImg({"speed":"5000","place":"fi_tabRB","text":true,"flag":"fi01","hoverStop":true},[{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf1"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf122222"}]);
+		</script>
+	</div>
+	
+	<div class="area" id="contentC">
+		<h2>3,焦点图类型2</h2>
+		<div id="MDCFIbzfXl3FW" class="fi02" data-track="170" collection="Y"></div>
+		<script type="text/javascript">
+		jQuery("#MDCFIbzfXl3FW").focusImg({"speed":"5000","type":"1","flag":"fi02","hoverStop":true},[{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf1"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf122222"}]);
+		</script>
+	</div>	
+	
+	<div class="area" id="contentD">
+		<h2>4,表单</h2>
+		<div id="testForm">
+			<form name="testForm" action="" method="post" collection="Y" data-track="170">
+				<input type="text" name="f1"/>
+				<input type="password" name="pwd"/>
+				<input type="submit" value="提交表单"/>
+			</form>
+		</div>
+	</div>
+	
+	<div class="area" id="contentE">
+		<h2>5,焦点图类型3</h2>
+		<div id="MDCFIkDlKerMB" class="fi03" data-track="170" collection="Y"></div>
+		<script type="text/javascript">
+		jQuery("#MDCFIkDlKerMB").focusImg({"speed":"5000","type":"1","flag":"fi03","hoverStop":true,"myHtml":"<div class=\"fi_btnplay\"></div>"},[{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf1","t1":"adfasdfadfasdffffffffffffffff"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf122222","t1":"dddddddddddddddddddddddd"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf133333","t1":"adfadfadfadfadfadfadfadfad"}]);
+		</script>
+	</div>
+	
+	<div class="area" id="contentF">
+		<h2>6,焦点图类型4</h2>
+		<div id="MDC_FocusImage_4" class="fi04" data-track="170" collection="Y"></div>
+		<script type="text/javascript">
+		$("#MDC_FocusImage_4").focusImg({
+		flag:'fi04',
+		type:"2",//类型1=综艺,2=纪录片
+		hoverStop:true,
+		speed:"3000"//转刷速度,不填默认为5秒
+		},
+		[
+		{	//数据1
+			p:"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg",
+			l:"http://pic.yule.sohu.com/group-222940.shtml",
+			t:"11《我们约会吧》单身王子性感热舞",
+			t1:"11《我们约会吧》“男选女”再度精彩上演。男嘉宾开场大秀性感热舞引来笑声不断……"
+		},
+		{	//数据2
+			p:"http://i1.itc.cn/20100714/62d_f2014f45_3dc0_4d95_ad1b_a29f3e708071_0.jpg",
+			l:"http://yule.sohu.com/s2010/6765/s273502153/index.shtml",
+			t:"22《我们约会吧》单身王子性感热舞",
+			t1:"22《我们约会吧》“男选女”再度精彩上演。男嘉宾开场大秀性感热舞引来笑声不断……"
+		},
+		{	//数据3
+			p:"http://i1.itc.cn/20100715/5e2_7b4a6f48_ae26_4c03_9a9b_9d9f2efeb94f_0.jpg",
+			l:"http://yule.sohu.com/20100715/n273517449.shtml",
+			t:"33《我们约会吧》单身王子性感热舞",
+			t1:"33《我们约会吧》“男选女”再度精彩上演。男嘉宾开场大秀性感热舞引来笑声不断……"
+		},
+		{   //数据4
+			p:"http://photocdn.sohu.com/focusUp/20100806/084052312672287796.jpg",
+			l:"http://pic.yule.sohu.com/group-222951.shtml#g=222951&p=1993593",
+			t:"44《我们约会吧》单身王子性感热舞",
+			t1:"44《我们约会吧》“男选女”再度精彩上演。男嘉宾开场大秀性感热舞引来笑声不断……"
+		},
+		{   //数据5
+			p:"http://i0.itc.cn/20100715/5e2_298c7c0f_b12e_46b3_90a4_4b4615d5c386_0.jpg",
+			l:"http://pic.yule.sohu.com/group-222861.shtml#g=222861&p=1992606",
+			t:"55《我们约会吧》单身王子性感热舞",
+			t1:"55《我们约会吧》“男选女”再度精彩上演。男嘉宾开场大秀性感热舞引来笑声不断……"
+		
+		}
+		]);
+		</script>		
+	</div>
+	
+	<div class="area" id="contentG">
+		<h2>7,FLASH</h2>
+        <div id="flashliRIFJxH" class="vstp_flashWrap" collection="Y">
+            <embed type="application/x-shockwave-flash" src="images/allfocus4.swf" id="flashliRIFJxH_obj" name="flashliRIFJxH_obj" quality="high" wmode="opaque" flashvars="pics=http://photocdn.sohu.com/focusUp/20100713/172739313454441044.jpg|http://photocdn.sohu.com/focusUp/20100712/140811552183145090.jpg|http://photocdn.sohu.com/focusUp/20100712/140813992219672509.jpg|http://photocdn.sohu.com/focusUp/20100712/140816512183145090.jpg&amp;links=http://pic.yule.sohu.com/group-222714.shtml|http://yule.sohu.com/20100706/n273301501.shtml|http://yule.sohu.com/20100625/n273063715.shtml|http://yule.sohu.com/20100122/n269770598.shtml&amp;texts=《婚姻保卫战》官网启动 赵宝刚携搜狐视频维权|《婚姻保卫战》即将打响 佟大为马伊琍演夫妻|《婚姻保卫战》首轮卫视签约 众星到场助阵|《婚姻保卫战》超豪华落幕 打造时尚唯美秀场&amp;pic_width=300&amp;pic_height=250&amp;show_text=1&amp;txtcolor=000000&amp;bgcolor=ffffff&amp;button_pos=2&amp;stop_time=5000" height="270" width="300"/>
+        </div>		
+	</div>
+	
+	<div class="area" id="contentH">
+		<h2>8,焦点图类型5</h2>
+		<div id="MDC_FocusImage_5" class="fi05" data-track="170" collection="Y"></div>
+		<script type="text/javascript">
+		$("#MDC_FocusImage_5").focusImg({
+		flag:'fi05',	
+		type:"1",//类型1=公益
+		hoverStop:true,
+		speed:"3000"//轮刷速度,单位微秒,不填默认为5000微秒(5秒)
+		},[
+		{	//数据1
+			p:"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg",
+			l:"http://pic.yule.sohu.com/group-222940.shtml",
+			t:"11曾志伟拍贺岁片改喜剧宣扬爱"
+		},
+		{	//数据2
+			p:"http://i1.itc.cn/20100714/62d_f2014f45_3dc0_4d95_ad1b_a29f3e708071_0.jpg",
+			l:"http://yule.sohu.com/s2010/6765/s273502153/index.shtml",
+			t:"22曾志伟拍贺岁片改喜剧宣扬爱"
+		},
+		{	//数据3
+			p:"http://i1.itc.cn/20100715/5e2_7b4a6f48_ae26_4c03_9a9b_9d9f2efeb94f_0.jpg",
+			l:"http://yule.sohu.com/20100715/n273517449.shtml",
+			t:"33曾志伟拍贺岁片改喜剧宣扬爱"
+		},
+		{   //数据4
+			p:"http://photocdn.sohu.com/focusUp/20100806/084052312672287796.jpg",
+			l:"http://pic.yule.sohu.com/group-222951.shtml#g=222951&p=1993593",
+			t:"44曾志伟拍贺岁片改喜剧宣扬爱"
+		}
+		]);
+		</script>		
+	</div>
+	
+	<div class="area" id="contentI">
+		<h2>9,焦点图类型6</h2>
+		<div id="MDCFIFFruuzoW" class="fi06" data-track="170" collection="Y"></div>
+		<script type="text/javascript">
+		jQuery("#MDCFIFFruuzoW").focusImg({"speed":"3222","type":"1","flag":"fi06","hoverStop":true,"ptStepY":90,"clickTabToNav":true},[{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf1","t1":"adfasdfadfasdffffffffffffffffadfasdfadfasdffffffffffffffffadfasdfadfasdffffffffffffffffadfasdfadfasdffffffffffffffffadfasdfadfasdffffffffffffffff","t_":"adfadfdfadf1","t1_":"adfasdfadfasdffffffffffffffffadfasdfadfasdffffffffffffffff"},{"p":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","l":"http://i0.itc.cn/20100715/5e2_6dfb4f8f_4e38_4b97_a2a7_57673562f6b4_0.jpg","t":"adfadfdfadf2","t1":"adfasdfadfasdffffffffffffffffadfasdfadfasdffffffffffffffffadfasdfadfasdffffffffffffffffadfasdfadfasdffffffffffffffff","t_":"adfadfdfadf2","t1_":"adfasdfadfasdffffffffffffffffadfasdfadfasdffffffffffffffff"}]);
+		</script>		
+	</div>
+	
+	<div class="area" id="contentJ">
+		<h2>10,焦点图类型7</h2>
+		<div id="MDCFILdn7MdD3" class="fi07" data-track="170" collection="Y"></div>
+		<script type="text/javascript">
+		jQuery("#MDCFILdn7MdD3").focusImg({"speed":"5000","flag":"fi07","hoverStop":true},[{"p":"http://www.google.com/intl/en_ALL/images/srpr/logo1w.png ","l":"http://www.google.com/intl/en_ALL/images/srpr/logo1w.png","t":"adfadfasfsafas111111"},{"p":"http://www.google.com/intl/en_ALL/images/srpr/logo1w.png","l":"http://www.google.com/intl/en_ALL/images/srpr/logo1w.png","t":"asdfasdfasdafasdfas22222"},{"p":"http://www.google.com/intl/en_ALL/images/srpr/logo1w.png","l":"http://www.google.com/intl/en_ALL/images/srpr/logo1w.png","t":"adsfasdfasdfasdfa333333"}]);
+		</script>		
+	</div>
+	
+<!--点击测试代码-->
+<script src='http://js.sohu.com/track/sdev_click.js' type='text/javascript'></script>
+<script src='http://js.sohu.com/track/task_170.js' type='text/javascript'></script>
+<script type="text/javascript" src="js/MDC_FocusImage.tracker.min.js"></script> 
+<!--/点击测试代码-->
+</body>
+</html>

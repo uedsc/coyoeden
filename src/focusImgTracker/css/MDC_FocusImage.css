@@ -1,0 +1,222 @@
+/*
+	焦点图样式规范及说明
+	规范：fi=focus image，焦点图元素的class须以"fi_"作为前缀
+	常用类说明：
+	1，.fi_player	大图片
+	2，.fi_tt		标题
+	3，.fi_tt0		副标题
+	4，.fi_desc		描述
+	5，.fi_desc0		副描述
+	6，.fi_tab		tab标签容器
+	7，.fi_ovl		文字标题处的透明蒙层
+	8，.fi_bg		焦点图背景蒙层
+	9，.fi_ct		焦点图主体内容容器
+	10,.fi_btnplay	播放按钮图标
+	11,.fi_pointer	tab标签覆盖的指针图标
+	12,.fi_btn		按钮
+ */
+
+/* 焦点图1 */
+.fi01{position:relative;overflow:hidden;cursor:pointer;width:500px;height:270px;margin:0 auto;}
+.fi01 .fi_player{position:absolute;top:0;left:0;width:100%;height:250px;}
+.fi01 .fi_tt{position:absolute;bottom:0;left:0;height:20px;width:100%;font:12px/20px "宋体";color:#333;background:#ddd;text-decoration:none;}
+.fi01 .fi_tab{height:16px;display:inline;position:absolute;}
+.fi01 .fi_tabLB{left:2px;bottom:20px;}
+.fi01 .fi_tabRB{right:2px;bottom:20px;}
+.fi01 .fi_tabLT{left:2px;top:0;}
+.fi01 .fi_tabRT{right:2px;top:0;}
+.fi01 .fi_tab span{width:23px;font:12px/12px 'arial';color:#fff;float:left;margin-left:-1px;background-position:bottom;background-repeat:no-repeat;}
+.fi01 .fi_tab span.now{background-position:top;}
+.fi01 .fi_tabLB span,.fi01 .fi_tabRB span{height:13px;padding-top:3px;background-image:url(../images/MDC_Focus01_bg01.gif);}
+.fi01 .fi_tabLT span,.fi01 .fi_tabRT span{height:16px;padding-top:0;background-image:url(../images/MDC_Focus01_bg02.gif);}
+/* 焦点图2 */
+.fi02{width:310px;height:268px;}
+.fi02_1{position:relative;width:310px;height:268px;}
+.fi02_1 .fi_player{position:absolute;top:10px;left:10px;display:block;width:290px;height:230px;}
+.fi02_1 .fi_ovl{width:290px;height:29px;left:10px;top:211px;position:absolute;background:#000}
+.fi02_1 .fi_tt{width:290px;height:29px;left:10px;top:211px;position:absolute;font:600 14px/28px '宋体';text-align:center;color:#fff}
+.fi02_1 .fi_bg{width:310px;height:268px;position:absolute;top:0;left:0;background:url(../images/MDC_Focus02_bg01.gif)}
+.fi02_1 .fi_link{position:absolute;top:10px;left:10px;width:290px;height:230px;cursor:pointer}
+.fi02_1 .fi_tab{width:305px;height:23px;padding:5px 5px 0 0;position:absolute;bottom:0;left:0;text-align:right}
+.fi02_1 .fi_tab span{cursor:pointer;width:16px;height:17px;margin-right:4px;display:inline-block;color:#fff;font:600 12px/17px '宋体';background:url(../images/MDC_Focus02_bg02.gif) no-repeat right;text-align:center}
+.fi02_1 .fi_tab span.now{background:url(../images/MDC_Focus02_bg02.gif) no-repeat left;color:#006099;}
+/* 焦点图3 */
+.fi03{width:680px;}
+.fi03 .fi_player{display:block;width:680px;height:360px;}
+/*V首*/
+.fi03_1{width:680px;}
+.fi03_1 .fi_ct{cursor:pointer;position:relative;overflow:hidden;}
+.fi03_1 .fi_ovl{position:absolute;left:0;background:#000;bottom:0;width:100%;height:80px}
+.fi03_1 .fi_tt{position:absolute;color:#fff;text-align:left;bottom:45px;left:0;font:600 14px/32px '宋体';padding:0 100px 0 10px}
+.fi03_1 .fi_desc{position:absolute;font:300 12px/20px '宋体';color:#fff;text-align:left;bottom:8px;left:0;padding:0 100px 0 10px}
+.fi03_1 .fi_btnplay{position:absolute;bottom:12px;right:28px;width:60px;height:60px;background:url(../images/MDC_Focus03_bg03.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src=../images/MDC_Focus03_bg03.png)}
+.fi03_1 .fi_tab{height:22px;text-align:center;padding:8px 0 0 0;background:url(../images/MDC_Focus03_bg01.gif)}
+.fi03_1 .fi_tab span{display:inline-block;cursor:pointer;overflow:hidden;width:10px;height:11px;background:url(../images/MDC_Focus03_bg02.gif) no-repeat top;margin:0 5px;color:#000;font:0/99999px 'arial'}
+.fi03_1 .fi_tab span.now{background:url(../images/MDC_Focus03_bg02.gif) no-repeat 0 -19px}
+
+/*电影*/
+.fi03_2{width:662px;}
+.fi03_2 .fi_ct{cursor:pointer;position:relative;overflow:hidden;}
+.fi03_2 .fi_ovl{position:absolute;left:0;background:#000;bottom:5px;width:60%;height:95px}
+.fi03_2 .fi_tt{position:absolute;color:#fff;text-align:left;width:50%;bottom:60px;left:20px;font:600 20px/32px '宋体';padding:}
+.fi03_2 .fi_desc{position:absolute;font:300 12px/20px '宋体';color:#fff;text-align:left;width:50%;bottom:15px;left:20px}
+.fi03_2 .fi_btnplay{display:none}
+.fi03_2 .fi_tab{height:13px;text-align:right;border-top:1px #4B83CD solid;padding:0 30px 0 0;background:#1E1B22}
+.fi03_2 .fi_tab span{display:inline-block;cursor:pointer;overflow:hidden;width:20px;height:10px;margin:1px 2px 0;color:#fff;font:600 10px/10px 'arial';text-align:center}
+.fi03_2 .fi_tab span.now{background:#4B83CD}
+
+/*电视*/
+.fi03_3{width:685px;}
+.fi03_3 .fi_ct{cursor:pointer;position:relative;overflow:hidden;}
+.fi03_3 .fi_ovl{position:absolute;left:0;background:#000;bottom:5px;width:60%;height:95px}
+.fi03_3 .fi_tt{position:absolute;color:#fff;text-align:left;width:50%;bottom:60px;left:20px;font:600 20px/32px '宋体';padding:}
+.fi03_3 .fi_desc{position:absolute;font:300 12px/20px '宋体';color:#fff;text-align:left;width:50%;bottom:15px;left:20px}
+.fi03_3 .fi_btnplay{display:none}
+.fi03_3 .fi_tab{height:13px;text-align:right;border-top:1px #4B83CD solid;padding:0 30px 0 0;background:#1E1B22}
+.fi03_3 .fi_tab span{display:inline-block;cursor:pointer;overflow:hidden;width:20px;height:10px;margin:1px 2px 0;color:#fff;font:600 10px/10px 'arial';text-align:center}
+.fi03_3 .fi_tab span.now{background:#4B83CD}
+
+/*音乐*/
+.fi03_4{width:500px;}
+.fi03_4 .fi_ct{cursor:pointer;position:relative;overflow:hidden;}
+.fi03_4 .fi_ovl{position:absolute;left:0;background:#000;bottom:5px;width:60%;height:95px}
+.fi03_4 .fi_tt{position:absolute;color:#fff;text-align:left;width:50%;bottom:60px;left:20px;font:600 20px/32px '宋体';padding:}
+.fi03_4 .fi_desc{position:absolute;font:300 12px/20px '宋体';color:#fff;text-align:left;width:50%;bottom:15px;left:20px}
+.fi03_4 .fi_btnplay{display:none}
+.fi03_4 .fi_tab{height:13px;text-align:right;border-top:1px #FE921A solid;padding:0 30px 0 0;background:#1E1B22}
+.fi03_4 .fi_tab span{display:inline-block;cursor:pointer;overflow:hidden;width:20px;height:10px;margin:1px 2px 0;color:#fff;font:600 10px/10px 'arial';text-align:center}
+.fi03_4 .fi_tab span.now{background:#FE921A}
+
+/*戏剧*/
+.fi03_5{width:662px;}
+.fi03_5 .fi_ct{cursor:pointer;position:relative;overflow:hidden;}
+.fi03_5 .fi_ovl{position:absolute;left:0;background:#000;bottom:5px;width:60%;height:95px}
+.fi03_5 .fi_tt{position:absolute;color:#fff;text-align:left;width:50%;bottom:60px;left:20px;font:600 20px/32px '宋体';padding:}
+.fi03_5 .fi_desc{position:absolute;font:300 12px/20px '宋体';color:#fff;text-align:left;width:50%;bottom:15px;left:20px}
+.fi03_5 .fi_btnplay{display:none}
+.fi03_5 .fi_tab{height:13px;text-align:right;border-top:1px #C11F37 solid;padding:0 30px 0 0;background:#1E1B22}
+.fi03_5 .fi_tab span{display:inline-block;cursor:pointer;overflow:hidden;width:20px;height:10px;margin:1px 2px 0;color:#fff;font:600 10px/10px 'arial';text-align:center}
+.fi03_5 .fi_tab span.now{background:#C11F37}
+
+/* 焦点图4 */
+.fi04{width:680px;}
+.fi04 img{display:block;}
+.fi04 .tab dl{zoom:1;}
+.fi04 .tab dl:after{display:block;content:'\20';clear:both;}
+/*综艺*/
+.fi04_1{width:680px;height:383px!important;height:400px;padding-top:17px;background:url(../images/MDC_Focus04_bg03.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src=../images/MDC_Focus04_bg03.png)}
+.fi04_1 .fi_ct{cursor:pointer;width:640px;height:300px;padding:5px;background:#000;border:1px #636363 solid;overflow:hidden;margin:0 auto 12px;position:relative}
+.fi04_1 .fi_player{width:640px;height:300px;}
+.fi04_1 .fi_ovl{position:absolute;bottom:0;left:5px;width:640px;height:75px;background:#000}
+.fi04_1 .fi_btnplay{position:absolute;bottom:8px;right:10px;width:60px;height:60px;background:url(../images/MDC_Focus04_bg02.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src=../images/MDC_Focus04_bg02.png)}
+.fi04_1 .fi_tt{position:absolute;bottom:38px;left:0;font:600 14px/32px '宋体';color:#fff;text-align:left;padding:0 100px 0 10px}
+.fi04_1 .fi_desc{position:absolute;bottom:20px;left:0;font:300 12px/20px '宋体';color:#fff;text-align:left;padding:0 100px 0 10px}
+.fi04_1 .fi_tab{width:644px;position:relative;margin:0 auto}
+.fi04_1 .fi_tab img{cursor:pointer;border:1px #000 solid;display:block;margin:0 auto;width:76px;height:42px;}
+.fi04_1 .fi_pointer{cursor:pointer;width:84px;height:55px;display:block;background:url(../images/MDC_Focus04_bg01.gif);position:absolute;top:-9px;z-index:-50;}
+.fi04_1 .fi_tab dd{width:92px;float:left}
+
+/*纪录片*/
+.fi04_2{width:688px;height:392px}
+.fi04_2 .fi_ct{cursor:pointer;width:585px;height:390px;border:1px #fff solid;float:left;position:relative}
+.fi04_2 .fi_player{position:absolute;top:0;left:0;width:585px;height:390px;}
+.fi04_2 .fi_ovl{width:585px;height:87px;background:#000;bottom:0;left:0;position:absolute}
+.fi04_2 .fi_btnplay{display:block}
+.fi04_2 .fi_tt{font:600 14px/16px '宋体';color:#fff;padding:0 20px;bottom:60px;left:0;position:absolute}
+.fi04_2 .fi_desc{font:300 12px/16px '宋体';color:#D6D0CB;padding:0 20px;bottom:20px;left:0;position:absolute;text-align:left}
+.fi04_2 .fi_tab{width:90px;position:relative;float:right;margin-top:2px}
+.fi04_2 .fi_pointer{cursor:pointer;width:88px;height:64px;border:1px #fff solid;display:block;position:absolute;top:-1px;left:0;z-index:-50;}
+.fi04_2 .fi_tab dd{margin-bottom:17px}
+.fi04_2 .fi_tab img{cursor:pointer;display:block;margin:0 auto;width:88px;height:64px;}
+
+/* 焦点图5 */
+.fi05{width:642px;}
+.fi05 img{display:block;}
+/*公益*/
+.fi05_1{width:642px;height:260px;position:relative;overflow:hidden}
+.fi05_1 .fi_ct{width:456px;height:260px;float:right;position:relative;cursor:pointer}
+.fi05_1 .fi_player{width:456px;height:260px;}
+.fi05_1 .fi_ovl{height:40px;width:100%;background:#000;left:0;bottom:-40px;position:absolute}
+.fi05_1 .fi_tt{left:0;bottom:16px;position:absolute;padding-left:12px;font:600 14px/16px '宋体';color:#fff}
+.fi05_1 .fi_tab{width:192px;position:absolute;top:0;left:0}
+.fi05_1 .fi_tab dd{float:left;height:65px;width:192px;background:url(../images/MDC_Focus05_bg01.gif) no-repeat 0 -65px;cursor:pointer}
+.fi05_1 .fi_tab img{float:left;margin:3px 8px 0 4px;width:73px;height:58px;}
+.fi05_1 dd div{font:12px/16px '宋体';color:#999;margin:15px auto 0;width:86px;float:left}
+.fi05_1 dd.now{background:url(../images/MDC_Focus05_bg01.gif) no-repeat top!important}
+.fi05_1 dd.now p{color:#fff}
+.fi05_1 dd.hover{background:url(../images/MDC_Focus05_bg01.gif) no-repeat bottom}
+
+/* 焦点图6 */
+.fi06_1{border:1px #E2E2E2 solid;background:url(../images/loading06.gif) 50% 50% #F4F4F4;position:relative;width:978px;height:396px;margin:0 auto;}
+.fi06_1 .fi_player{display:block;width:100%;height:100%;}
+.fi06_1 .l{position:relative;cursor:pointer;float:left;margin:3px auto 0 3px;display:inline;background:#000;padding:5px;width:705px;height:380px;}
+.fi06_1 .r{width:268px;height:396px;position:absolute;right:3px;top:0}
+
+.fi06_1 .l span{position:absolute;top:150px;left:315px;width:83px;height:83px;display:block;background:url(../images/MDChdtvFocus06_bg01.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src=../images/MDChdtvFocus06_bg01.png)}
+.fi06_1 .l span.now{background:url(../6/images/MDChdtvFocus_bg02.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src=../images/MDChdtvFocus06_bg02.png)}
+.fi06_1 .fi_ovl,.fi06_1 .fi_note{position:absolute;bottom:0;left:5px;height:96px;width:705px;}
+.fi06_1 .fi_tt{width:660px;margin:0 auto;font:22px/44px '微软雅黑';text-align:left;color:#fff}
+.fi06_1 .fi_desc{width:660px;margin:0 auto;font:12px/20px '宋体';text-align:left;color:#CFC5C0}
+.fi06_1 .fi_ovl{width:0;overflow:hidden;background:url(../images/MDChdtvFocus06_bg03.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src=../images/MDChdtvFocus06_bg03.png)}
+
+.fi06_1 .fi_up{cursor:pointer;position:absolute;top:0;left:113px;width:64px;height:13px;display:block;overflow:hidden}
+.fi06_1 .fi_up a{background:url(../6/images/MDChdtvFocus_bg04.gif) top;display:block;width:100%;height:100%}
+.fi06_1 .fi_up a:hover{background:url(../images/MDChdtvFocus06_bg04.gif) 0 -13px}
+
+.fi06_1 .fi_down{cursor:pointer;position:absolute;bottom:0;left:113px;width:64px;height:13px;display:block;overflow:hidden}
+.fi06_1 .fi_down a{background:url(../images/MDChdtvFocus06_bg05.gif) top;display:block;width:100%;height:100%}
+.fi06_1 .fi_down a:hover{background:url(../images/MDChdtvFocus06_bg05.gif) 0 -13px}
+
+.fi06_1 .fi_tab_{width:268px;height:360px;overflow:hidden;position:relative;top:21px}
+.fi06_1 .fi_tab_ img{float:left;padding:1px;background:#fff;border:1px #A3BBDD solid;width:110px;height:70px;}
+.fi06_1  dl{width:268px;position:absolute;left:0;top:0}
+.fi06_1  dd{cursor:pointer;height:80px;padding-top:6px;margin-bottom:4px;padding-left:20px}
+.fi06_1  .fi_tt0{width:120px;float:left;margin:8px auto 0 8px;display:inline;font:600 12px/20px '宋体';text-align:left;color:#1D569C}
+.fi06_1  .fi_icon{margin:4px 5px 0 auto;float:left;background:url(../images/MDChdtvFocus06_bg06.gif) top;display:block;width:13px;height:13px;overflow:hidden}
+.fi06_1  .now .fi_icon{background:url(../images/MDChdtvFocus06_bg06.gif) 0 -13px;overflow:hidden;width:13px;height:13px}
+.fi06_1 .fi_desc0{width:120px;float:left;margin-left:8px;display:inline;font:12px/20px '宋体';color:#666;text-align:left}
+.fi06_1 dd.now{background:url(../images/MDChdtvFocus06_bg07.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src=../images/MDChdtvFocus06_bg07.png)}
+.fi06_1 dd.now img{border:1px #fff solid}
+.fi06_1 dd.now .fi_tt0{color:#fff}
+.fi06_1 dd.now .fi_tt0 img{border:0}
+.fi06_1 dd.now .fi_desc0{color:#fff}
+
+.fi06_2{width:957px;height:396px;position:relative}
+.fi06_2 .fi_ct{width:685px;height:396px;position:absolute;top:0;left:0}
+.fi06_2 .fi_player{position:absolute;top:0;left:0}
+.fi06_2 .fi_ovl{position:absolute;bottom:0;left:0;height:88px;width:100%;background:#000}
+.fi06_2 .fi_btnplay{position:absolute;top:137px;left:295px;width:83px;height:83px;background:url(../images/MDC_Focus06_bg01.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src="../images/MDC_Focus06_bg01.png")}
+.fi06_2 .fi_btnplay1{background:url(../images/MDC_Focus06_bg02.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src="../images/MDC_Focus06_bg02.png")}
+.fi06_2 .fi_tt{font:600 14px/16px '宋体';color:#fff;position:absolute;bottom:60px;padding:0 100px 0 18px}
+.fi06_2 .fi_desc{font:300 12px/22px '宋体';color:#B3B3B3;position:absolute;bottom:10px;padding:0 100px 0 18px;text-align:left}
+.fi06_2 .fi_tab{position:absolute;top:0;right:0;width:350px;height:396px;background:url(../images/MDC_Focus06_bg07.png);_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src="../images/MDC_Focus06_bg07.png")}
+.fi06_2 .fi_tab dl{}
+.fi06_2 .fi_tab dd{}
+.fi06_2 .fi_tab dd img{}
+.fi06_2 .fi_tab dd imgCover{}
+.fi06_2 .fi_tab dd h2{}
+.fi06_2 .fi_tab dd p{}
+.fi06_2 .fi_tab dd .slide{}
+
+/* 焦点图 7*/
+/* 高宽-请依据图片高宽设定 */	
+.fi07{width:290px;height:205px;/*X*/}
+.fi07_1{position:relative;width:100%;height:100%;}
+.fi07_1 .fi_ct{position:relative;overflow:hidden;height:180px;cursor:pointer;/*X*/}
+.fi07_1 .fi_list{position:absolute;left:0;top:0;text-align:left;width:2000px;/*X*/}
+.fi07_1 .fi_list img{width:290px;height:180px;/*X*/}
+.fi07_1 .fi_ovl,.fi07_1 .fi_tt,.fi07_1 .fi_tab{position:absolute;bottom:0;left:0;width:100%}
+.fi07_1 .fi_ovl{height:30px;background:#000;}
+.fi07_1 .fi_tt{font:600 14px/30px '宋体';color:#fff;text-align:center;}
+.fi07_1 .fi_tab{cursor:default;height:16px;text-align:center}
+.fi07_1 .fi_tab span{cursor:pointer;display:inline-block;margin:0 6px;width:5px;height:5px;background:url(../images/dot07.jpg) no-repeat right;vertical-align:middle}
+.fi07_1 .fi_tab span.now{background-position:left;}
+.fi07_1 .fi_btn{cursor:pointer;display:inline-block;margin:0 6px;float:none;width:18px;height:16px;vertical-align:middle;overflow:hidden;}
+.fi07_1 .fi_btn a{width:18px;height:16px;display:block}
+.fi07_1 .l a{background:url(../images/lButton07_1.jpg)}
+.fi07_1 .l a:hover{background:url(../images/lButton07_2.jpg)}
+.fi07_1 .r a{background:url(../images/rButton07_1.jpg)}
+.fi07_1 .r a:hover{background:url(../images/rButton07_2.jpg)}
+
+
+
