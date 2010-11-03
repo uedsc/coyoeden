@@ -4,7 +4,7 @@
  * @param {Object} opts 选项{$obj,sec}
  */
 sohu.diyContent=function(opts){
-	opts=$.extend({},{cl:"vstp_ct",clOn:"vstp_ctOn",scale:false,clElm:"vstp_elm",isNew:true,addingMode:0},opts||{});
+	opts=$.extend({},{cl:"vstp_ct",clOn:"vstp_ctOn",scale:false,clElm:"vstp_elm",clElmOn:"vstp_elmOn",isNew:true,addingMode:0},opts||{});
 	var _this=this;
 	this.Meta=opts.ct;
 	this.IsNew=opts.isNew;
@@ -165,7 +165,29 @@ sohu.diyContent.prototype.SetValidation=function(isValid,msg){
 	};
 	return this;
 };
+/**
+ * 加载当前内容的元素
+ */
 sohu.diyContent.prototype.LoadElements=function(){
+	var _this=this;
+	//a标签的事件注册
+	this.$Layout.find("a").bind("click.edit",function(e){
+		var _i=$(this);
+		if(_i.hasClass(_this.__p.opts.clElmOn)) return false;
+		_i.addClass(_this.__p.opts.clElmOn);
+		_this.ShowChipEditor(_i);
+		return false;
+	}).end()
+		.find("."+this.__p.opts.clElm).unbind(".edit")//其他手工加vstp_elm的元素
+		.bind("click.edit",function(e){
+			var _i=$(this);
+			if(_i.hasClass(_this.__p.opts.clElmOn)) return false;
+			_i.addClass(_this.__p.opts.clElmOn);
+			_this.ShowChipEditor(_i);
+			return false;
+	});	
+	return this;
+	/*
 	var _this=this;
 	var items=this.$Layout.find("."+this.__p.opts.clElm);
 	items.each(function(i,o){
@@ -174,6 +196,16 @@ sohu.diyContent.prototype.LoadElements=function(){
 			ct:_this
 		});
 	});
+	return this;
+	*/
+};
+/**
+ * unload event handlers for the elements
+ */
+sohu.diyContent.prototype.UnloadElements=function(){
+	this.$Layout.find("a").unbind(".edit").end()
+		.find("."+this.__p.opts.clElm).unbind(".edit");
+		
 	return this;
 };
 /**
@@ -211,6 +243,7 @@ sohu.diyContent.prototype.BindEvts=function(){
 		_this.UnbindEvts();
 		return false;//停止冒泡
 	});
+	
 	return this;
 };
 /**
@@ -311,6 +344,30 @@ sohu.diyContent.prototype.AddContent=function(ct){
 			ct0.$Layout.html(ct.html0);
 		};//if1	
 	};//if0
+};
+/**
+ * 显示碎片编辑器
+ * @param {Object} $t 当前a标签或者具有vstp_elm类的元素
+ */
+sohu.diyContent.prototype.ShowChipEditor=function($t){
+	if(this.IsEditing) return;
+	var _i=this;
+	sohu.diyChipEditor.Show(this.$Layout,{
+		tabs:[0],
+		$elm:$t,
+		ct:this,
+		onSave:function(dlg){
+			dlg.Hide();
+		},
+		afterShow:function(hash,dlg){
+			_i.InlineEdit("on");
+			//是否隐藏元素的“增加、删除、上移、下移”按钮
+			dlg.$ElmcActs.show();
+		},
+		afterHide:function(hash,dlg){			
+			_i.InlineEdit("off");
+		}
+	});
 };
 /*静态方法*/
 /**

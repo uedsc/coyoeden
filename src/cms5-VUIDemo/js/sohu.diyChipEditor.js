@@ -54,20 +54,19 @@ sohu.diyChipEditor = function() {
     };
 	/**
 	 * 显示碎片编辑器
-	 * @param {Object} $chip 碎片的dom对象
+	 * @param {Object} ct 碎片的dom对象
 	 * @param {Object} opts 其他选项
 	 */
-	pub.Show=function($chip,opts){
+	pub.Show=function(ct,opts){
 		opts=$.extend({tabs:[0,1,2]},opts||{});
-		var chipID=$chip.attr("id");
+		var chipID=ct.$Layout.attr("id");
 		var dlg=null,id=p._singleton?"solo":chipID;
 		opts.isNew=false;
 		opts=$.extend(opts,{
 			dlgModel:p._dlgModel,
 			$body:p._$body,
-			$chip:$chip,				/* 碎片 */
-			$elm:opts.$elm,				/* 元素 */
-			elm:opts.elm,				/* sohu.diyElement对象 */
+			$chip:ct.$Layout,			/* 碎片 */
+			$elm:opts.$elm,				/* 元素 -a标签或者手工加vstp_elm的元素*/			
 			onUpPic:opts.onUpPic,
 			onTest:opts.onTest,
 			onSave:opts.onSave,
@@ -85,7 +84,7 @@ sohu.diyChipEditor = function() {
 		dlg.Edit(opts.$elm,opts);
 		//编辑器定位在碎片上
 		if(dlg.ChipID!=chipID){
-			var of=$chip.offset();
+			var of=ct.$Layout.offset();
 			dlg.$Layout.css({
 				top:of.top,
 				left:of.left,
@@ -154,6 +153,7 @@ sohu.diyChipEditor.Dialog=function(opts){
 	this.$ElmTpl=this.$Layout.find(".vstp_elmTpl");
 	this.$ChipTpl=this.$Layout.find(".vstp_chipTpl");
 	this.$SecHDActs=this.$Layout.find(".vstp_secHDActs");
+	this.$ElmParent=null;											/* 当前编辑元素的父级元素 */
 	//初始化文本命令菜单
 	new sohu.diyMenuBar({$cmdItems:this.$CmdItems,onDel:function(){
 		_this.Hide();
@@ -194,13 +194,13 @@ sohu.diyChipEditor.Dialog=function(opts){
 	});
 	//元素删除按钮
 	this.$BtnElmDel=this.$CmdItems.filter(".vstp_elmDel1").bind("click",function(e){
-		if(!sohu.diyConsole.CurElm) return;
+		if(!_this.$ElmParent) return;
 		//关闭编辑对话框
 		_this.Hide();
 		//删除元素
-		sohu.diyConsole.CurElm.$CopyModel.remove();
+		_this.$ElmParent.remove();
 		//重定位分栏编辑器
-		sohu.diyConsole.CurElm.CT.Editor.Reposition();			
+		_this.CT.Editor.Reposition();			
 		return false;	
 	});
 	//统一资源库
@@ -387,9 +387,11 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 	opts=opts||{};
 	var _this=this,_afterShow=opts.afterShow,_afterHide=opts.afterHide;
 	//改元素是否在编辑中
-	if(opts.elm.IsEditing) return;
+	if(this.CT.IsEditing) return;
 	
-	var $elmList=$elm.contents();
+	this.$ElmParent=$elm.hasClass("vstp_elm")?$elm:$elm.parent();
+	
+	var $elmList=this.$ElmParent.contents();
 	//更新碎片目标
 	this.SetTarget(opts.$chip,$elm,opts);
 
@@ -441,6 +443,22 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 					dlg.$ElmTpl.append(tpl);
 					_this.BindIconEvts(tpl,{$obj:$o,$tpl:tpl,t:0});							
 				};
+			}else{//别的标签
+				//文本
+				tpl=$(sohu.diyChipEditor.$ElmTxtTpl.html());
+				dlg.$ElmTpl.append(tpl);
+				var data={$obj:$o,$tpl:tpl};
+				tpl.find(".vstp_txt").val($o.html()).bind("keyup",function(evt){
+					$o.html(this.value);
+					_this.onDomRefreshed();
+				}).focus(_this.focusSelect);
+				//删除按钮
+				tpl.find(".vstp_btnDel").bind("click",function(evt){
+					data.$obj.remove();
+					tpl.remove();
+					_this.onDomRefreshed();
+					return false;
+				});				
 			};
 	
 		});
@@ -461,7 +479,6 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 					
 	};//onShow
 	opts.afterHide=function(hash,dlg){		
-		dlg.Elm=null;
 		dlg.$Elm=null;
 		//afterHide用户回调
 		if(_afterHide)
@@ -746,10 +763,9 @@ sohu.diyChipEditor.Dialog.prototype.InitSecHDTpl=function(){
 	//更多按钮
 	this.$CbxSecHDMore=this.$SecHDActs.find(".vstp_secHDMore").click(function(evt){	
 		if(this.checked){
-			if(sohu.diyConsole.CurElm.CT.$Layout.find(".more").length==0){
+			if(_this.CT.$Layout.find(".more").length==0){
 				var $more=$(sohu.diyChipEditor.moreStr);
-				sohu.diyConsole.CurElm.CT.$Layout.append($more);
-				new sohu.diyElement({ct:sohu.diyConsole.CurElm.CT,$dom:$more});
+				_this.CT.$Layout.append($more);
 			};
 		}else{
 			sohu.diyConsole.CurElm.CT.$Layout.find(".more").remove();
@@ -788,10 +804,9 @@ sohu.diyChipEditor.Dialog.prototype.onDomRefreshed=function(){
  */
 sohu.diyChipEditor.Dialog.prototype.SetTarget=function($chip,$elm,opts){
 	this.$Elm=$elm;//当前元素
-	this.Elm=opts.elm;//当前元素对应的sohu.diyElement对象
-	this.CT=opts.elm.CT;//当前碎片对象
+	this.CT=opts.ct;//当前碎片对象
 	this.$Chip=$chip;//当前碎片
 	this.$Backup=this.$Chip.clone().removeClass("vstp_ctOn")
-	.find(".vstp_elm").removeClass("vstp_elmOn").end()
+	.find("*").removeClass("vstp_elmOn").end()
 	.find("#vstp_ctEditor").remove().end();
 };
