@@ -84,7 +84,7 @@
 			this._$tabs.each(function(i){
 				(function(i,o){
 					o=jQuery(o).click(function(){
-						if(this.className!="now"){
+						if(!(o.hasClass("now")||o.hasClass("fi_now"))){
 							clearTimeout(that.autoPlay1);
 							clearInterval(that.autoPlay);
 							gogo(i);
@@ -98,7 +98,7 @@
 						o.mouseenter(function(){
 							clearInterval(that.autoPlay);
 							clearTimeout(that.autoPlay1);
-							if (this.className != "now") {that.alternation(i);};
+							if (!(o.hasClass("now")||o.hasClass("fi_now"))) {that.alternation(i);};
 							return false;
 						}).mouseleave(function(){
 							clearInterval(that.autoPlay);
