@@ -15,7 +15,7 @@
 					$t.click(function(){
 						data.id=$t.attr("data-track");
 						data.index=$t.index("[collection='Y']");
-						data.url=$t.data("curData").l;
+						data.url=($t.data("curData")||{l:''}).l;
 						data.ts=new Date().getTime();
 						$if.attr("src",trackUrl+"?"+$.param(data));	
 					});					
