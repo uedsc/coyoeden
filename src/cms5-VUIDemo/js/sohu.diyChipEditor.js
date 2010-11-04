@@ -54,18 +54,17 @@ sohu.diyChipEditor = function() {
     };
 	/**
 	 * 显示碎片编辑器
-	 * @param {Object} ct 碎片的dom对象
-	 * @param {Object} opts 其他选项
+	 * @param {Object} opts 选项 {ct:,tabs:,$elm}
 	 */
-	pub.Show=function(ct,opts){
+	pub.Show=function(opts){
 		opts=$.extend({tabs:[0,1,2]},opts||{});
-		var chipID=ct.$Layout.attr("id");
+		var chipID=opts.ct.$Layout.attr("id");
 		var dlg=null,id=p._singleton?"solo":chipID;
 		opts.isNew=false;
 		opts=$.extend(opts,{
 			dlgModel:p._dlgModel,
 			$body:p._$body,
-			$chip:ct.$Layout,			/* 碎片 */
+			$chip:opts.ct.$Layout,			/* 碎片 */
 			$elm:opts.$elm,				/* 元素 -a标签或者手工加vstp_elm的元素*/			
 			onUpPic:opts.onUpPic,
 			onTest:opts.onTest,
@@ -84,7 +83,7 @@ sohu.diyChipEditor = function() {
 		dlg.Edit(opts.$elm,opts);
 		//编辑器定位在碎片上
 		if(dlg.ChipID!=chipID){
-			var of=ct.$Layout.offset();
+			var of=opts.ct.$Layout.offset();
 			dlg.$Layout.css({
 				top:of.top,
 				left:of.left,
@@ -386,8 +385,6 @@ sohu.diyChipEditor.Dialog.prototype.ToggleSorting=function($i){
 sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 	opts=opts||{};
 	var _this=this,_afterShow=opts.afterShow,_afterHide=opts.afterHide;
-	//改元素是否在编辑中
-	if(this.CT.IsEditing) return;
 	
 	this.$ElmParent=$elm.hasClass("vstp_elm")?$elm:$elm.parent();
 	

@@ -350,12 +350,11 @@ sohu.diyContent.prototype.AddContent=function(ct){
  * @param {Object} $t 当前a标签或者具有vstp_elm类的元素
  */
 sohu.diyContent.prototype.ShowChipEditor=function($t){
-	if(this.IsEditing) return;
 	var _i=this;
-	sohu.diyChipEditor.Show(this.$Layout,{
+	sohu.diyChipEditor.Show({
+		ct:this,
 		tabs:[0],
 		$elm:$t,
-		ct:this,
 		onSave:function(dlg){
 			dlg.Hide();
 		},
@@ -364,7 +363,8 @@ sohu.diyContent.prototype.ShowChipEditor=function($t){
 			//是否隐藏元素的“增加、删除、上移、下移”按钮
 			dlg.$ElmcActs.show();
 		},
-		afterHide:function(hash,dlg){			
+		afterHide:function(hash,dlg){
+			$t.removeClass(_i.__p.opts.clElmOn);			
 			_i.InlineEdit("off");
 		}
 	});
