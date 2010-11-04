@@ -279,5 +279,77 @@
 			<!--/焦点图09数据-->
 		 	<!--/焦点图09-->
 		</div>
+		<div class="container">
+			<h2>3,搜狐-2010年10月版视频新闻首页焦点图-动态HTML简化版(大图小图一致,左右标题一致)</h2>
+		</div>
+		<div id="contentC" class="container">
+			<!--焦点图09-->
+			<!--焦点图09模板-->
+			<script id="fi09_tmpl_01" type="text/x-jquery-tmpl">
+				<div class="fi_ct clear">
+					<!--左侧新闻图文-开始-->
+					<div class="l">
+						<!--编辑区域1-开始-->
+						{{each d}}
+						<div class="fi_ct_ hidden clear">
+							<div class="left">
+								<div class="fi_note_c">
+									<div class="fi_tt"><a href="${l}">${t}</a></div>
+									<div class="fi_desc">来源：<a href="${src.l}" title="" target="_blank">${src.t}</a></div>
+									<div class="fi_desc">${t1}</div>
+									<div class="fi_related">
+										<p class="fi_related_tt">相关新闻：</p>
+										<ul class="fi_related_ct">
+											{{each(i0,v0) rLinks}}
+											<li><a href="${v0.l2}" title="" target="_blank">${v0.t2}</a></li>
+											{{/each}}
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="right">
+								<a class="fi_player" href="${l}" target="_blank">
+									<img src="${p}" height="300" width="400" alt=""/>
+								</a>
+							</div>
+						</div>								
+						{{/each}}																
+						<!--编辑区域1-结束-->
+					</div>
+					<!--左侧新闻图文-结束-->
+					<!--右侧小图TAB区域-开始-->
+					<div class="r">
+						<div class="fi_tab">
+							<ul>
+								<!--编辑区域1-开始-->
+								{{each d}}
+								<li class="{{if $index==0}}fi_top{{else}}{{/if}}">
+									<a href="${l}" target="_blank"><img width="80" height="60" alt="" src="${p}"/></a>
+									<div>
+										<a href="${l}" target="_blank">${t}</a>
+									</div>
+								</li>								
+								{{/each}}
+								<!--编辑区域1-结束-->																								
+							</ul>
+						</div>
+					</div>
+					<!--右侧小图TAB区域-结束-->
+				</div>					
+			</script>
+			<!--/焦点图09模板-->
+			<!--焦点图09主体-->
+			<div id="vNews_Focus_03" class="fi09"></div>
+			<!--/焦点图09主体-->
+			<!--焦点图09数据-->
+			<script type="text/javascript" src="sohu.MDCFocus_09_01.js"></script>
+			<script type="text/javascript">
+			//<![CDATA[
+			jQuery("#vNews_Focus_03").focusImg({ flag: "fi09", hoverStop: true,speed:6000,clickTabToNav:true});
+			//]]>
+			</script>
+			<!--/焦点图09数据-->
+		 	<!--/焦点图09-->
+		</div>		
 	</body>
 </html>
