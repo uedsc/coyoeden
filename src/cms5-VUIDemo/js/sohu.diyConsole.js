@@ -279,12 +279,12 @@ sohu.diyConsole.Dragger={
 	cssHandle:'.vstp_dragHandle'
 };
 sohu.diyConsole.CurArea=null;
-sohu.diyConsole.CurSec=null;		/* 当前鼠标所在的分栏 */
-sohu.diyConsole.EditingSec=null;	/* 当前内联编辑的分栏 */
+sohu.diyConsole.CurSec=null;			/* 当前鼠标所在的分栏 */
+sohu.diyConsole.EditingSec=null;		/* 当前内联编辑的分栏 */
 sohu.diyConsole.CurCT=null;
 sohu.diyConsole.EditingCT=null;
-sohu.diyConsole.CurElm=null;/* current editing element */
-sohu.diyConsole.$SecEditorModel=null; /* 分栏编辑器dom模型 */
+sohu.diyConsole.CurElm=null;			/* current editing element */
+sohu.diyConsole.$SecEditorModel=null; 	/* 分栏编辑器dom模型 */
 sohu.diyConsole.DocSelection='';
 sohu.diyConsole.InnerHeight=function() {
     var x,y;

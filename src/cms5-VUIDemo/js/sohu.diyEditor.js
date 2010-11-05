@@ -7,7 +7,7 @@ sohu.diyEditor=function(opts){
 	opts=$.extend({},{cssSecHelper:".vstp_secTip",cssCTSelector:"#vstp_content_selector"},opts);
 	//属性
 	//this.$LayoutModel=sohu.diyConsole.$SecEditorModel;/* 工具条的dom模型 */
-	this.$Layout=$("#vstp_secEditor");
+	this.$Layout=$("#vstp_secEditor").click(function(){return false;}).bind("mouseover.edit",function(){return false;});
 	this.Console=opts.bos;
 	this.CurArea=null;//当前横切
 	this.CurSec=null;//当前分栏

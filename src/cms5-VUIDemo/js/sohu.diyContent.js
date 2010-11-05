@@ -172,18 +172,13 @@ sohu.diyContent.prototype.LoadElements=function(){
 	var _this=this;
 	//a标签的事件注册
 	this.$Layout.find("a").bind("click.edit",function(e){
-		var _i=$(this);
-		if(_i.hasClass(_this.__p.opts.clElmOn)) return false;
-		_i.addClass(_this.__p.opts.clElmOn);
-		_this.ShowChipEditor(_i);
+		//显示编辑器
+		_this.ShowChipEditor($(this));
 		return false;
 	}).end()
 		.find("."+this.__p.opts.clElm).unbind(".edit")//其他手工加vstp_elm的元素
 		.bind("click.edit",function(e){
-			var _i=$(this);
-			if(_i.hasClass(_this.__p.opts.clElmOn)) return false;
-			_i.addClass(_this.__p.opts.clElmOn);
-			_this.ShowChipEditor(_i);
+			_this.ShowChipEditor($(this));
 			return false;
 	});	
 	return this;
@@ -232,7 +227,7 @@ sohu.diyContent.prototype.BindEvts=function(){
 	};
 	
 	//内容的鼠标事件
-	this.$Layout.bind("mouseenter.edit",p.mouseEnter).bind("mouseleave.edit",p.mouseLeave);
+	this.$Layout.bind("mouseenter.edit",p.mouseEnter);//.bind("mouseleave.edit",p.mouseLeave);
 	//自定义事件
 	this.$Layout.unbind("evtBindEvt").bind("evtBindEvt",function(e){
 		_this.BindEvts();
@@ -271,20 +266,25 @@ sohu.diyContent.prototype.Blink=function(opts){
 /**
  * active current content
  */
-sohu.diyContent.prototype.Active=function(){
+sohu.diyContent.prototype.Active=function(force){
+	force=force||false;
 	var _i=this;
 	//已经选中
 	if(this.IsActive) return this;
 	//如果自己处于编辑内容状态，则不显示编辑器
 	if(this.IsEditing) return this;
-	//如果别人处于编辑状态，则不显示编辑器
-	if(sohu.diyConsole.CurCT&&sohu.diyConsole.CurCT.IsEditing) return this;
 	//如果处于拖拽状态 ，则不显示编辑器
 	if(sohu.diyConsole.Dragger.ing) return this;
-	
+	//别人处于编辑状态，则不显示编辑器
+	if(sohu.diyConsole.CurCT&&sohu.diyConsole.CurCT.IsEditing&&(!force)) return this;
+	//反激活上一个内容对象
 	if(sohu.diyConsole.CurCT){
-		sohu.diyConsole.CurCT.IsActive=false;
+		sohu.diyConsole.CurCT.Deactive();
 	};
+	
+	//激活相关分栏对象
+	if(force)
+		this.Sec.Active(true);
 	
 	this.IsActive=true;
 	this.Editor.CurCT=this;
@@ -314,8 +314,11 @@ sohu.diyContent.prototype.Active=function(){
  * Deactive current content obj
  */
 sohu.diyContent.prototype.Deactive=function(){
-	if(this.Editor.CurArea.IsEditing||this.IsEditing||(this.diyConsole.CurCT&&this.diyConsole.CurCT.IsEditing)) return false;
+	this.Blink(false);
+	this.IsActive=false;
+	sohu.diyConsole.CTEditor.Detach();
 	sohu.diyConsole.CurCT=null;
+	return this;
 };
 /**
  * 添加内容-在内容的末尾添加内容
@@ -350,7 +353,9 @@ sohu.diyContent.prototype.AddContent=function(ct){
  * @param {Object} $t 当前a标签或者具有vstp_elm类的元素
  */
 sohu.diyContent.prototype.ShowChipEditor=function($t){
-	var _i=this;
+	if($t.hasClass(this.__p.opts.clElmOn)) return this;
+	
+	var _this=this;
 	sohu.diyChipEditor.Show({
 		ct:this,
 		tabs:[0],
@@ -359,13 +364,15 @@ sohu.diyContent.prototype.ShowChipEditor=function($t){
 			dlg.Hide();
 		},
 		afterShow:function(hash,dlg){
-			_i.InlineEdit("on");
 			//是否隐藏元素的“增加、删除、上移、下移”按钮
 			dlg.$ElmcActs.show();
+			dlg.$Elm.addClass(_this.__p.opts.clElmOn);
+			//确认激活内容对象
+			dlg.CT.Active(true);
+			dlg.CT.InlineEdit("on");			
 		},
-		afterHide:function(hash,dlg){
-			$t.removeClass(_i.__p.opts.clElmOn);			
-			_i.InlineEdit("off");
+		afterHide:function(hash,dlg){		
+			dlg.CT.InlineEdit("off");			
 		}
 	});
 };

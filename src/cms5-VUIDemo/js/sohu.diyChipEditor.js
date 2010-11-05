@@ -476,10 +476,10 @@ sohu.diyChipEditor.Dialog.prototype.Edit=function($elm,opts){
 					
 	};//onShow
 	opts.afterHide=function(hash,dlg){		
-		dlg.$Elm=null;
 		//afterHide用户回调
 		if(_afterHide)
 			_afterHide(hash,dlg);
+
 	};//onHide
 	this.Show(opts);
 };
@@ -800,6 +800,9 @@ sohu.diyChipEditor.Dialog.prototype.onDomRefreshed=function(){
  * @param {Object} opts
  */
 sohu.diyChipEditor.Dialog.prototype.SetTarget=function($chip,$elm,opts){
+	if(this.$Elm){
+		this.$Elm.removeClass("vstp_elmOn");
+	};
 	this.$Elm=$elm;//当前元素
 	this.CT=opts.ct;//当前碎片对象
 	this.$Chip=$chip;//当前碎片

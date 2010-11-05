@@ -59,8 +59,9 @@ sohu.diySection = function(opts) {
  * 激活分栏
  * @param {Boolean} editing 是否分栏处于编辑内容状态
  */
-sohu.diySection.prototype.Active=function(){
-	if(sohu.diyConsole.CurSec&&(sohu.diyConsole.CurSec.IsAddingContent||sohu.diyConsole.CurSec.InlineEditing)) return;
+sohu.diySection.prototype.Active=function(force){
+	force=force||false;
+	if((!force)&&sohu.diyConsole.CurSec&&(sohu.diyConsole.CurSec.IsAddingContent||sohu.diyConsole.CurSec.InlineEditing)) return;
 	if(this.IsActive) return;
 	//看看当前横切是否激活，没激活的话激活
 	if(sohu.diyConsole.CurArea&&sohu.diyConsole.CurArea.IsActive){
@@ -345,7 +346,7 @@ sohu.diySection.prototype.BindEvts=function(){
 		return false;
 	};
 
-	//鼠标事件-！！停止冒泡事件
+	//鼠标事件-	
 	this.$Layout.bind("mouseover.edit",p.mouseOver);//.mouseleave(p.mouseOut);
 	this.$Layout.sortable("enable");
 	//自定义事件
@@ -355,11 +356,6 @@ sohu.diySection.prototype.BindEvts=function(){
 	});
 	this.$Layout.unbind("evtBindEvt").bind("evtBindEvt",function(e){
 		_this.BindEvts();
-		/*
-		$(_this.Contents).each(function(i,o){
-			o.$Layout.trigger("evtBindEvt");
-		});
-		*/
 		return false;//停止冒泡
 	});
 	this.$Layout.bind("evtUnbindEvt.edit",function(e){
