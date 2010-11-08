@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Cookie demo </title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script> 
+		<script type="text/javascript" src="js/jquery.tmpl.min.js"></script>
+		<script type="text/javascript" src="js/jquery.json-2.2.min.js"></script>
+	</head>
+	<body>
+		<div id="cookie-demo"> 
+			<div id="product_his">
+				<ul class="cls"></ul>
+			</div>
+			<script type="text/x-jquery-tmpl" id="tpl_product">
+				<li><a href="http://baidu.com?w=${p}" target="_blank" title="${t}"><img alt="${t}" src="img/${p}.jpg" width="90" height="90"/></a></li>
+			</script>
+			<script type="text/javascript" src="js/jquery.cookie.js"></script>
+			<script type="text/javascript">
+			//<![CDATA[
+				/* 注:此页面的内容由index.html通过ajax方式获取，为避免乱码须使用utf-8编码 */
+				(function($){
+					var items=[],key="jqfocus_cookiedemo",max=14;
+					var ck=$.cookie(key);
+					if(ck&&ck!=""){
+						items=$.evalJSON(ck);
+					};
+					var pid="pic"+(Math.floor(Math.random()*5)+1);
+					
+					//existing check
+					items=$.grep(items,function(o,i){
+						if(o.p==pid) return false;
+						return true;
+					});
+					
+					if(items.length==max){
+						items.shift();
+					};
+					
+					items.push({
+						"p": pid,
+						"t":"产品"+new Date().getTime()
+					});
+					
+					//revert the array,let the first item be the lastest one
+					items=items.reverse();
+					
+					$.cookie(key,$.toJSON(items));
+					
+					$("#product_his ul").html($("#tpl_product").tmpl(items)).find("li").hover(function(){
+						this.className="on";
+					},function(){
+						this.className="";
+					});
+				})(jQuery);
+				
+			//]]>
+			</script>
+		 
+		</div>
+	</body>
+</html>

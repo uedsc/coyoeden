@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+		<title>jQuery demos</title>
+		<!--common hd-->
+		<link rel="stylesheet" type="text/css" href="css/global.css"></link>
+		<link rel="stylesheet" type="text/css" href="css/style.css"></link> 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>  
+		<script type="text/javascript" src="js/jquery.json-2.2.min.js"></script>
+		<script type="text/javascript" src="http://cdn.jquerytools.org/1.2.5/tiny/jquery.tools.min.js"></script>
+		<script type="text/javascript" src="js/jquery.tmpl.min.js"></script>
+		<!--/common hd-->
+	</head>
+	<body>
+		<div id="header" class="wrap">
+			<div class="wrap_inside">
+				<h1>jQuery demos</h1>
+			</div> 
+		</div>
+		<div id="main" class="wrap">
+			<div id="main_inside" class="wrap_inside lo">
+				<div id="sidebar" class="lo_L">
+					<ul></ul>
+				</div>
+				<div id="content" class="lo_R">
+					Loading...
+				</div>
+			</div>
+		</div>
+		
+		<script id="tpl_sideitem" type="text/x-jquery-tmpl">
+			<li id="${pid}"><a href="#${pid}.html">${title}</a></li>
+		</script>
+	 
+		<script type="text/javascript">
+		//<![CDATA[
+			var $sb=$("#sidebar"),$sb_items=null;
+			var $ct=$("#content");
+			var loadCT=function(pid){
+				$ct.load(pid+".html");
+			};
+			var sideBarUI=function(){
+				$.getJSON("js/sitemap.json",{t:new Date().getTime()},function(d){
+					$("#tpl_sideitem").tmpl(d).appendTo("#sidebar ul");
+					$sb_items=$sb.find("li").click(function(){
+						$sb_items.removeClass();
+						this.className="cur";
+						loadCT(this.id);
+						return false;		
+					});
+					$sb_items.first().click();
+				});				
+			};
+			
+			sideBarUI();
+
+		//]]>
+		</script>
+	 
+	</body>
+</html>

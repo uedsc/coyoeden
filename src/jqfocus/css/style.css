@@ -1,0 +1,7 @@
+#sidebar li{margin:0px 5px 5px 5px;padding:3px 0 3px 5px; line-height:1.2em;background:#fff;}
+#sidebar li.cur,#sidebar li:hover{background:#6ABCE3;margin-left:0;}
+#sidebar li.cur a{color:#fff;font-weight:bold;}
+
+#cookie-demo li{float:left;margin:5px;}
+#cookie-demo li img{padding:2px;background:#fff;}
+#cookie-demo li.on img{background:#6ABCE3;}
