@@ -16,8 +16,20 @@
 		//]]>
 		</script>
  		
+		<style type="text/css">
+			#contentA{position:relative;}
+			#test{position:absolute;top:0;left:50%;margin-left:-135px;width:270px;height:370px;background:#000;overflow:hidden;}
+			#test img{position:relative;width:270px;height:370px;}
+		</style> 
+		
 	</head>
 	<body>
+		<!--contentA-->
+		<div id="contentA">
+			<div id="test">
+				
+			</div>
+		</div>
 		<!--/#contentA-->
 		<div id="contentB" class="">
 			<!--·ç¸ñ2-->
@@ -200,6 +212,17 @@
 			});
 		//]]>
 		</script>
+ 
+ 		<script type="text/javascript">
+		//<![CDATA[
+			var $img=jQuery("<img src='img/pic120x165_6.gif' width='270' height='370'/>").appendTo("#test");
+			$img.css({top:-370,left:-270});
+			
+			$img.animate({top:0,left:0},800);
+			
+		//]]>
+		</script>
+	 
  
 	</body>
 </html>

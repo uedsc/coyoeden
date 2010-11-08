@@ -5,3 +5,5 @@
 #cookie-demo li{float:left;margin:5px;}
 #cookie-demo li img{padding:2px;background:#fff;}
 #cookie-demo li.on img{background:#6ABCE3;}
+
+#jqplot-demo #chart_pp{width:400px;height:300px;}
