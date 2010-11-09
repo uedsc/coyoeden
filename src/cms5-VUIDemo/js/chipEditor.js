@@ -2,6 +2,9 @@
  * JS interactive logic for editing fragments
  * 碎片编辑器
  * @author levinhuang
+ * @version 2010.11.09
+ * 1,判断元素是否处于编辑状态，不再采用在元素上架vstp_ing css 类的方式
+ * 2,增加方法chipEditor.Dialog.prototype.ElmData
  * @version 2010.10.13
  * 1,更新一些编辑器专属class防止冲突，class前缀为cedt_
  * 2,加粗加红利用font标签.(为了兼容老代码)
@@ -399,10 +402,11 @@ chipEditor.Dialog.prototype.ToggleSorting=function($i){
 chipEditor.Dialog.prototype.Edit=function($elm){
 	var _t=0,_this=this;
 	//改元素是否在编辑中
-	if($elm.hasClass(this._opts.clIng)) return;
+	/* 20101109-begin */
+	if(this.ElmData($elm,"IsEditing")) return;
 	
-	$elm.addClass(this._opts.clIng);
-	
+	this.ElmData($elm,"IsEditing",true);
+	/* 20101109-end */
 	//检查元素类型
 	if($elm.find("img").length>0){
 		_t=1;//图片
@@ -411,8 +415,9 @@ chipEditor.Dialog.prototype.Edit=function($elm){
 	};
 	
 	var $elmList=$elm.parent().contents();
-	
-	if(this.$Elm) this.$Elm.removeClass(this._opts.clIng);
+	/* 20101109-begin */
+	if(this.$Elm) this.ElmData(this.$Elm,"IsEditing",false);
+	/* 20101109-end */
 	this.$Elm=$elm;
 	this.$Chip.addClass("cedt_on");
 	
@@ -541,11 +546,14 @@ chipEditor.Dialog.prototype.Edit=function($elm){
  * @param {Object} $i
  */
 chipEditor.Dialog.prototype.Sort=function($i){
-	if($i.hasClass(this._opts.clSort)) return;
+	/* 20101109-begin */
+	if(this.ElmData($i,"IsSorting")) return;
 	if(!this.SortElm){
-		this.SortElm=$i.addClass(this._opts.clSort);
+		this.ElmData($i,"IsSorting",true);
+		this.SortElm=$i;
 		return;
 	};
+	/* 20101109-end */
 	//调换内容
 	/* 20101018 */
 	var temp=this.SortElm.html(),_class=this.SortElm.removeClass(this._opts.clSort).attr("class"),_tl=this.SortElm.attr("title"),_href=this.SortElm.attr("href");
@@ -554,9 +562,12 @@ chipEditor.Dialog.prototype.Sort=function($i){
 	/* /20101018 */
 	
 	//结束本次操作
+	/* 20101109-begin */
+	this.ElmData(this.SortElm,"IsSorting",false);
 	this.SortElm=null;
 	if(this.$Elm)
-		this.$Elm.removeClass(this._opts.clIng);
+		this.ElmData(this.$Elm,"IsEditing",false);
+	/* 20101109-begin */
 	//更新代码textarea
 	/*
 	chipEditor.MCE().setContent(this.$Chip.html());
@@ -791,7 +802,9 @@ chipEditor.Dialog.prototype.UpdateCode=function(){
 chipEditor.Dialog.prototype.InitEdit=function(){
 	var _this=this;
 	if(this.SortElm){
-		this.SortElm.removeClass(this._opts.clSort);
+		/* 20101109-begin */
+		this.ElmData(this.SortElm,"IsSorting",false);
+		/* 20101109-end */
 		this.SortElm=null;
 	};
 	this.$Chip.find("a").unbind("click").bind("click.edit",function(evt){
@@ -808,5 +821,25 @@ chipEditor.Dialog.prototype.InitSort=function(){
 	this.$Chip.find("a").unbind("click").bind("click.sort",function(evt){
 		_this.Sort(jQuery(this));return false;
 	});
+	return this;
+};
+/**
+ * 为元素设定/获取指定键的数据项 20101109
+ * @param {Object} $elm 目标元素,即a标签
+ * @param {String} key 数据键
+ * @param {Object} val 数据项
+ */
+chipEditor.Dialog.prototype.ElmData=function($elm,key,val){
+	var d=$elm.data("DATA_chipEditor"),udf;
+	if(!d){
+		d={};
+	};
+	//获取数据项
+	if(val===udf){
+		return d[key];
+	};
+	//设置数据项
+	d[key]=val;
+	$elm.data("DATA_chipEditor",d);
 	return this;
 };
