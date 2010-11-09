@@ -1,0 +1,59 @@
+body{background:url(images/bodyBg.gif) repeat-x top #F2F2F2}a:hover{color:#3D7CC1}em{font-style:normal}
+
+#nav{text-align:right;width:932px;padding:6px 15px 0 3px;font:12px/28px '宋体';background:url(images/navBg.gif) repeat-x bottom;color:#333;margin-bottom:15px}
+#nav span{float:left;margin-top:-6px;_margin-top:-5px;padding-top:6px}
+#nav span em{width:117px;height:19px;background:url(images/logo.gif) no-repeat center;display:inline-block;margin:-5px 16px 0 auto;vertical-align:middle}
+#nav span em a{width:100%;display:block;text-align:left;text-indent:-99999px}
+
+.title{text-align:left}
+.title h2{text-align:left;font:600 14px/16px '宋体';color:#333;margin:0 auto}
+
+.pp a{text-decoration:none!important}
+
+.lineA,.lineB,.lineC,.lineD,.lineE,.lineF{background-image:url(images/lineBg.gif);background-position:0 0;height:6px;font-size:1px;overflow:hidden;width:100%}
+.lineB{background-position:-954px 0}
+.lineC{background-position:-1908px 0}
+.lineD{background-position:-2222px 0}
+.lineE{background-position:-2851px 0}
+.lineF{background:#E9E9E9;height:1px;margin:60px auto 15px}
+
+.red{color:#C00}
+
+.container{overflow:hidden;display:block;margin:0 auto}
+.container img{vertical-align:middle;display:inline}
+.container .rule{display:-moz-inline-box!important;display:inline-block;vertical-align:middle;height:100%}
+
+#foot,#foot a{color:#666;border:0}
+
+#tab span a,#tab span.now,#contentA .page span,#contentA .page li a,#contentA .page li.now{background:url(images/iconBg.gif)}
+
+#tab{margin-bottom:15px}
+#tab span{float:left;margin:0 6px;display:inline;height:30px;width:62px;font:14px/30px '宋体'}
+#tab span a{display:block;width:100%;background-position:0 0;text-decoration:none}
+#tab span a:hover{background-position:-67px 0}
+#tab span.now{background-position:-134px 0;color:#fff}
+
+#contentA{background:url(images/lineBg.gif) -3480px 0;width:954px;margin-bottom:10px}
+
+#contentA .title h2{width:855px;margin:15px auto}
+
+#contentA .pp{width:884px;margin:0 auto 20px;overflow:hidden}
+#contentA .pp ul{width:920px}
+#contentA .pp li{width:194px;float:left;margin-right:36px;display:inline;padding-bottom:12px}
+#contentA .pp a{background:url(images/uniteBg.gif)}
+#contentA .pp a{width:194px;height:230px;padding-top:10px;display:block;background-position:0 0;font:12px/18px '宋体';cursor:pointer}
+#contentA .pp a:hover{background-position:-199px 0}
+#contentA .pp a:hover em{color:#3D7CC1}
+#contentA .pp .container{width:170px;height:170px;margin:0 auto 6px}
+#contentA .pp em{color:#666;display:block}
+
+#contentA .page{margin:0 auto 20px}
+#contentA .page ul,#contentA .page li{display:inline}
+#contentA .page ul{margin:0 -1px 0 -6px}
+#contentA .page a{text-decoration:none}
+#contentA .page span{width:75px;height:30px;display:inline-block;font:600 14px/30px 'Arial';vertical-align:top}
+#contentA .page span a{display:block;width:100%;height:100%}
+#contentA .page span.prev{background-position:0 -35px}
+#contentA .page span.next{background-position:-80px -35px}
+#contentA .page li a,#contentA .page li.now{width:40px;height:30px;background-position:0 -70px;display:inline-block;font:600 14px/30px 'Arial';margin:0 -6px 0 auto}
+#contentA .page li.now{background-position:-45px -70px;color:#3D7CC1;*display:inline;*margin:0 auto}
